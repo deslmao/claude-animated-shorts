@@ -190,8 +190,11 @@ const person = (cam: CamInfo, who: Who, x: number, y: number, z: number, view: {
   const d = cam.pos.distanceTo(tmp.set(x, y + 1.2, z)) / scale;
   const [w, h, k] = tier(d);
   const mirror = view.side && view.mirror, light = light2D(cam, mirror), seed = seedOf(who.i);
-  const f2: FrontOpts = { ...fo, light, seed }, s2: SideOpts = { ...so, light, seed };
-  const key = view.side ? `S|${who.okey}|${fkey(s2)}` : `F|${who.okey}|${fkey(f2)}`;
+  // Draw from the SAME quantized values the cache key is made of. Drawing from the exact values made a card depend on
+  // which frame first drew that key in this browser tab, so chunked renders (fresh tabs) differed at every seam.
+  const fk = fkey({ ...fo, light, seed }), sk = fkey({ ...so, light, seed });
+  const f2: FrontOpts = JSON.parse(fk), s2: SideOpts = JSON.parse(sk);
+  const key = view.side ? `S|${who.okey}|${sk}` : `F|${who.okey}|${fk}`;
   return {
     key, x, y, z, scale, mirror, tierKey: `${w}`,
     draw: (p) => (view.side ? bodySide(p, who.o, s2) : bodyFront(p, who.o, f2)),
