@@ -18,6 +18,10 @@ Proven on **The Bridge That Fell for a Song**, a 67 s short about the 1831 Broug
 | `references/frames/` | 38 full-size reference frames (540x960) to compare your frames against |
 | `references/sheets/` | 20 contact sheets, one per reference short, 60 frames each (1,200 frames) |
 
+## Rendering on your Mac
+See [`docs/MAC_RENDERING.md`](docs/MAC_RENDERING.md): one-time setup (`bash setup-mac.sh`), a speed benchmark
+(`npm run benchmark`) and one-command renders (`npm run render -- <Composition>`). Cloud previews use the same commands.
+
 ## Install
 1. Copy this folder to `~/.claude/skills/cartoon-3d-short/` (clone it there, or download the ZIP).
 2. You need [Remotion](https://www.remotion.dev/) with `@remotion/three`, plus Node, Python 3 and ffmpeg.
