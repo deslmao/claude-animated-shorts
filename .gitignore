@@ -1,0 +1,14 @@
+# Secrets: API keys live ONLY in environment variables or a local .env file — never in git.
+.env
+.env.*
+!.env.example
+*.key
+
+# Build / render output and caches
+node_modules/
+out/
+dist/
+__pycache__/
+*.pyc
+.DS_Store
+remotion-tmp/

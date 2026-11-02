@@ -1,6 +1,7 @@
 import { Composition, staticFile } from "remotion";
 import { Scene, myCompSchema } from "./Scene";
 import { getMediaMetadata } from "./helpers/get-media-metadata";
+import { BridgeShort, BRIDGE_FRAMES } from "./videos/bridge/Bridge";
 
 // Welcome to the Remotion Three Starter Kit!
 // Two compositions have been created, showing how to use
@@ -51,6 +52,15 @@ export const RemotionRoot: React.FC = () => {
             },
           };
         }}
+      />
+      {/* The creator's original short "The Bridge That Fell for a Song" (templates/bridge), 1080x1920 @ 30 fps */}
+      <Composition
+        id="BridgeShort"
+        component={BridgeShort}
+        fps={30}
+        durationInFrames={BRIDGE_FRAMES}
+        width={1080}
+        height={1920}
       />
     </>
   );
