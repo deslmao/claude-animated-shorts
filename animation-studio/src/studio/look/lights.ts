@@ -11,8 +11,10 @@ export type LightPreset = {
   top: string; hor: string; skyCurve: C3; fog: string; fogNear: number; fogFar: number; sunDisc: string; // depth.md 6.5
   sunCol: string; sunI: number; sky: string; ground: string; hemiI: number;         // three lights (unpatched mats only)
   bias: number; normalBias: number;
+  /** character card brightness (default 1.03, the calibrated day value; night dims the cards) */
+  charGain?: number;
 };
-export const LIGHTS: Record<"day" | "golden" | "interior", LightPreset> = {
+export const LIGHTS: Record<"day" | "golden" | "interior" | "interiorCool" | "night", LightPreset> = {
   day: {
     az: 75, el: 48,
     lit: [1.58, 1.5, 1.33], shade: [0.3, 0.29, 0.36], lift: [0.05, 0.06, 0.11], lambert: 0.35, sideK: 0.84, term: 0.2,
@@ -44,6 +46,28 @@ export const LIGHTS: Record<"day" | "golden" | "interior", LightPreset> = {
     sunCol: "#fff0d8", sunI: 2.6, sky: "#f3e6d0", ground: "#b49a78", hemiI: 0.55,
     bias: -0.0003, normalBias: 0.012,
   },
+  // Stage 1D: cool clinical light (labs, hospitals, tense explanations): same rig as interior, blue-white key,
+  // blue-grey shade (never lilac: the albedos under it are warm whites and mint)
+  interiorCool: {
+    az: 140, el: 46,
+    lit: [1.32, 1.37, 1.42], shade: [0.52, 0.55, 0.62], lift: [0.06, 0.07, 0.09], lambert: 0.3, sideK: 0.88, term: 0.25,
+    charTint: [0.97, 0.98, 1.0], charShade: 0.9, charGrad: 0.07, bodyGrad: 0.2, sideTint: [0.9, 0.92, 0.98],
+    blob: [0.6, 0.6, 0.64], actorShadow: false,
+    top: "#3e7fd2", hor: "#b8d0ec", skyCurve: [0.0, 0.5, 0.6], fog: "#dfe6ea", fogNear: 60, fogFar: 900, sunDisc: "#000000",
+    sunCol: "#eef4ff", sunI: 2.6, sky: "#e6eef4", ground: "#9aa4ac", hemiI: 0.55,
+    bias: -0.0003, normalBias: 0.012,
+  },
+  // Stage 1D: moonlit night. Cool key from behind the camera's shoulder, deep navy shade, dark blue haze, pale moon
+  // disc; glowing windows / lamps / screens become the warm accents. Characters are dimmed and cooled but stay readable.
+  night: {
+    az: 125, el: 34,
+    lit: [0.66, 0.76, 1.08], shade: [0.13, 0.15, 0.28], lift: [0.03, 0.04, 0.1], lambert: 0.35, sideK: 0.82, term: 0.2,
+    charTint: [0.82, 0.88, 1.0], charShade: 0.85, charGrad: 0.1, bodyGrad: 0.25, sideTint: [0.8, 0.83, 1.0],
+    blob: [0.5, 0.5, 0.62], actorShadow: false,
+    top: "#0b1636", hor: "#2c3f6e", skyCurve: [0.0, 0.5, 0.6], fog: "#1f2c52", fogNear: 28, fogFar: 260, sunDisc: "#e8eefc",
+    sunCol: "#b8c8ff", sunI: 1.2, sky: "#33456e", ground: "#1a1a2a", hemiI: 0.4,
+    bias: -0.00025, normalBias: 0.015, charGain: 0.8,
+  },
 };
 
 /** world-only look per light (sky stops by elevation in degrees, river colours, cloud palette). All colours are
@@ -55,7 +79,7 @@ export type WorldLook = {
   sat: number;                                                // shade.ts uSat: world albedo saturation (1 = as painted)
   cloud: { lit: string; mid: string; shade: string };
 };
-export const LOOK: Record<"day" | "golden" | "interior", WorldLook> = {
+export const LOOK: Record<"day" | "golden" | "interior" | "interiorCool" | "night", WorldLook> = {
   day: {
     // depth.md 2.2: horizon #9fb6e6 just above the skyline, upper sky #5e93d9 at ~20 deg (grade: frame top #5997e2)
     sky: { c: ["#b8d0ec", "#9cbfea", "#6a9fe0", "#4f8cdb", "#3373cc"], e: [0, 3, 8, 16, 40] },
@@ -79,5 +103,19 @@ export const LOOK: Record<"day" | "golden" | "interior", WorldLook> = {
     cloud: { lit: "#fbf8f1", mid: "#e1e5f3", shade: "#c3cbe9" },
     bounce: [0.03, 0.02, 0.0],
     sat: 1.05,
+  },
+  interiorCool: {
+    sky: { c: ["#b8d0ec", "#9cbfea", "#6a9fe0", "#4f8cdb", "#3373cc"], e: [0, 3, 8, 16, 40] },
+    water: { near: "#22a7b6", mid: "#167fb2", far: "#1a5596", crest: "#7ddfe8", trough: "#0e4a80", glint: "#ffffff", shade: [0.5, 0.56, 0.72] },
+    cloud: { lit: "#fbf8f1", mid: "#e1e5f3", shade: "#c3cbe9" },
+    bounce: [0.0, 0.01, 0.02],
+    sat: 1.0,
+  },
+  night: {
+    sky: { c: ["#2c3f6e", "#22335d", "#18264a", "#101b38", "#0a1330"], e: [0, 4, 10, 20, 40] },
+    water: { near: "#1a3d66", mid: "#132f55", far: "#0e2244", crest: "#4f78b0", trough: "#0a1a36", glint: "#d8e4ff", shade: [0.4, 0.45, 0.65] },
+    cloud: { lit: "#6a7aa6", mid: "#465480", shade: "#2a3456" },
+    bounce: [0, 0, 0],
+    sat: 0.95,
   },
 };

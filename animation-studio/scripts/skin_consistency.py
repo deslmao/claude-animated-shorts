@@ -1,6 +1,6 @@
 # Lighting consistency test: Milo's face across every set and light (SetTour mode "lighting" stills).
 #   python3 scripts/skin_consistency.py out/verify
-# Finds skin pixels (Milo's peach skin hue band) in the central part of each close-up and reports mean colour,
+# Samples Milo's cheeks (fixed patches: the close-up is shot-fitted identically in every set) and reports mean colour,
 # brightness (luma) and warmth (R-B). PASS when every DAY / INTERIOR face is within +-8 % luma of their mean and within
 # +-12 warmth (R-B, 0-255); golden-hour faces are reported separately (warmer by design).
 import sys, glob, os
@@ -12,13 +12,13 @@ rows = []
 for f in sorted(glob.glob(os.path.join(d, "*_lighting_*.jpg"))):
     im = np.asarray(Image.open(f).convert("RGB")).astype(float)
     h, w, _ = im.shape
-    c = im[int(h * 0.2):int(h * 0.75), int(w * 0.2):int(w * 0.8)]
-    r, g, b = c[..., 0], c[..., 1], c[..., 2]
-    mx, mn = c.max(-1), c.min(-1)
-    sat = (mx - mn) / np.maximum(mx, 1)
-    skin = (r > g) & (g > b) & (r > 150) & (sat > 0.12) & (sat < 0.55) & ((r - g) < 70) & ((g - b) > 12)
+    # the lighting close-up is shot-fitted identically in every set, so Milo's cheeks are at the same pixels in every
+    # frame: sample two cheek patches (clear of eyes, brows, mouth and outline)
+    patches = [im[int(h * 0.6):int(h * 0.68), int(w * 0.24):int(w * 0.32)], im[int(h * 0.6):int(h * 0.68), int(w * 0.66):int(w * 0.74)]]
+    c = np.concatenate([q.reshape(-1, 3) for q in patches])
+    skin = (c[:, 0] > c[:, 2] + 20) & (c[:, 0] > 150)
     n = int(skin.sum())
-    if n < 500:
+    if n < 0.9 * len(c):
         rows.append((os.path.basename(f), n, None)); continue
     m = c[skin].mean(0)
     rows.append((os.path.basename(f), n, m))

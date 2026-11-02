@@ -6,6 +6,7 @@ import * as THREE from "three";
 import { ctex, cloudHD } from "../materials/paint";
 import { LIGHTS, LOOK } from "../look/lights";
 import { TONE, CHAR, untone } from "../look/shade";
+import { CARD_K } from "../look/cardshade";
 import { NOINK } from "../look/ink";
 
 export type LightName = keyof typeof LIGHTS;
@@ -45,6 +46,8 @@ export class Environment {
   private clouds: THREE.Mesh[] = [];
   private cloudMaps: Record<string, THREE.Texture[]> = {};
 
+  /** switch sky / clouds per shot (one world can cut between indoor and outdoor sets) */
+  setSky(sky: boolean, clouds = sky) { this.opts = { ...this.opts, sky, clouds }; }
   constructor(private opts: EnvOptions = {}) {
     const R = this.root;
     this.skyMat = new THREE.ShaderMaterial({
@@ -104,6 +107,7 @@ export class Environment {
     TONE.uLambert.value = L.lambert; TONE.uSideK.value = L.sideK; TONE.uTerm.value = L.term; TONE.uBounce.value.set(...K.bounce); TONE.uSat.value = K.sat;
     CHAR.uCharTint.value.set(...L.charTint); CHAR.uCharShade.value = L.charShade; CHAR.uGrad.value = L.charGrad;
     CHAR.uBodyGrad.value = L.bodyGrad; CHAR.uSideTint.value.set(...L.sideTint);
+    CARD_K.uGain.value = L.charGain ?? 1.03;
     // sky (5 stops), fog = horizon colour, sun disc + halo (golden), clouds turned to the lens
     const su = this.skyMat.uniforms;
     K.sky.c.forEach((h, i) => untone(h, su["c" + i].value));
@@ -113,17 +117,18 @@ export class Environment {
     this.sky.visible = this.opts.sky !== false;
     untone(L.fog, this.fog.color); this.fog.near = L.fogNear; this.fog.far = L.fogFar;
     scene.fog = this.fog; scene.background = null;
-    const showSun = light === "golden" && this.opts.sky !== false;
+    const showSun = (light === "golden" || light === "night") && this.opts.sky !== false; // golden sun / night moon
     this.sunDisc.visible = this.sunHalo.visible = showSun;
     if (showSun) {
       this.sunDisc.position.copy(cam.position).addScaledVector(sunDir, 900);
       this.sunDisc.scale.setScalar(2 * 900 * Math.tan(THREE.MathUtils.degToRad(1.7)));
-      this.sunHalo.position.copy(this.sunDisc.position); this.sunHalo.scale.setScalar(2 * 900 * Math.tan(THREE.MathUtils.degToRad(24)));
+      this.sunHalo.position.copy(this.sunDisc.position); this.sunHalo.scale.setScalar(2 * 900 * Math.tan(THREE.MathUtils.degToRad(light === "night" ? 10 : 24)));
+      (this.sunDisc.material as THREE.SpriteMaterial).color.copy(light === "night" ? new THREE.Color(1.6, 1.7, 2.0) : new THREE.Color(6.0, 4.4, 2.4));
       (this.sunHalo.material as THREE.SpriteMaterial).color.set(L.sunDisc).multiplyScalar(1.3);
     }
     for (let i = 0; i < this.clouds.length; i++) {
       const m = this.clouds[i];
-      m.visible = this.opts.sky !== false;
+      m.visible = this.opts.sky !== false && this.opts.clouds !== false;
       m.lookAt(cam.position.x, m.position.y, cam.position.z);
       (m.material as THREE.MeshBasicMaterial).map = this.cloudMaps[light][i % 4];
     }

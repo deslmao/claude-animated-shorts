@@ -37,10 +37,11 @@ export const PROPSTUDIO: SetDef = {
     const root = new THREE.Group(), b = new Batch(), views: View[] = [];
     b.add(quadUp(-300, 300, -300, 300, 150, 150), tex("studiofloor", () => concreteHD("#cfc8bb"), 1, 1));
     ROWS.forEach((row, k) => {
-      const z = -k * 9, total = row.reduce((s, [, w]) => s + w + 0.6, 0);
-      let x = -total / 2;
-      row.forEach(([, w, fn], i) => { fn(b, x + w / 2, z, 0.45 * ((i % 3) - 1) + (k % 2 ? 0.3 : -0.3)); x += w + 0.6; });
-      views.push({ name: `row ${k + 1}`, pos: [0, 4.2, z + total * 0.95 + 2], look: [0, 0.8, z], fov: 40 });
+      // rows side by side (60 m apart in x), each seen by its own camera, so no row stands in front of another
+      const ox = k * 60, z = 0, total = row.reduce((s, [, w]) => s + w + 0.6, 0);
+      let x = ox - total / 2;
+      row.forEach(([, w, fn], i) => { fn(b, x + w / 2, z + (i % 2) * 1.2, 0.45 * ((i % 3) - 1) + (k % 2 ? 0.3 : -0.3)); x += w + 0.6; });
+      views.push({ name: `row ${k + 1}`, pos: [ox, 5.5, z + total * 0.95 + 3], look: [ox, 0.6, z], fov: 40 });
     });
     b.build(root, true);
     return { root, env: {}, spots: {}, views };

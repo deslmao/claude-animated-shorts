@@ -100,7 +100,7 @@ export const LAB: SetDef = {
     board(b, { x: 3.99, z: 0.6, y: 1.65, yaw: -Math.PI / 2 }, 2.6, 1.2, "white", "formula");
     picture(b, { x: 1.6, z: bz + 0.02, y: 2.1 }, 0.8, 0.6, 1, "#eef0f2");
     clock(b, { x: -3.99, z: 1.4, y: 2.4, yaw: Math.PI / 2 });
-    chair(b, { x: 0.4, z: 0.4, yaw: Math.PI }, "#3f6fb5");
+    chair(b, { x: 1.7, z: 0.35, yaw: Math.PI + 0.4 }, "#3f6fb5");
     plant(b, { x: -3.5, z: bz + 0.4 }, 1.0, "#eef0f2", 11);
     for (const x of [-1.5, 1.8]) pendant(b, { x, z: -0.6, y: 3.0 }, 0.5);
     b.build(root, true);

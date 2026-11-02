@@ -22,7 +22,7 @@ const OT = { a: [-0.9, 0, 3.4] as V3, b: [0.2, 0, 2.9] as V3 };
 
 export const LAYOUTS: Record<string, Layout> = {
   home: {
-    spots: { a: [-0.75, 0, 0.35], b: [0.45, 0, -0.2], c: [1.55, 0, 0.5], d: [2.3, 0, -0.9], armchair: [-1.55, 0, 0.35], door: [-2.6, 0, 0.2], window: [1.3, 0, -1.7], kitchen: [2.3, 0, -0.9] },
+    spots: { a: [-0.75, 0, 0.35], b: [0.45, 0, -0.2], c: [1.55, 0, 0.5], d: [2.3, 0, -0.9], armchair: [-1.55, 0, 0.35], door: [-2.6, 0, 0.2], window: [1.6, 0, -1.3], kitchen: [2.3, 0, -0.9] },
     views: [
       { name: "wide", pos: [0.45, 1.35, 5.7], look: [0.1, 0.95, -1.2], fov: 52 },
       fit("two-shot", [H.a, H.b], { size: "medium", from: 6, height: 1.45, fov: 38 }, { cInf: 10 }),
@@ -31,7 +31,7 @@ export const LAYOUTS: Record<string, Layout> = {
     ],
   },
   classroom: {
-    spots: { a: [-0.45, 0, bz + 0.95], b: [0.65, 0, bz + 1.1], c: [2.9, 0, -0.4], board: [-0.45, 0, bz + 0.95], teacherDesk: [-2.0, 0, bz + 2.0], aisle: [0.1, 0, 1.0], door: [3.2, 0, 1.6] },
+    spots: { a: [-0.45, 0, bz + 0.95], b: [0.65, 0, bz + 1.1], c: [2.9, 0, -0.4], board: [-0.45, 0, bz + 0.95], teacherDesk: [-2.0, 0, bz + 2.0], aisle: [0.5, 0, 0.35], door: [3.2, 0, 1.6] },
     views: [
       { name: "wide", pos: [3.0, 1.75, 5.0], look: [-0.4, 1.25, -2.4], fov: 50 },
       fit("at the board", [C.a, C.b], { size: "medium", from: 4, height: 1.45, fov: 40 }, { cInf: 8 }),

@@ -7,6 +7,7 @@ import { FoundationTest, FOUNDATION_FRAMES } from "./studio/checks/FoundationTes
 import { CharacterSheet, SHEET_W, SHEET_H } from "./studio/checks/CharacterSheet";
 import { CastTest, CASTTEST_FRAMES } from "./studio/checks/CastTest";
 import { SetTour } from "./studio/checks/SetTour";
+import { MovesTest, MOVESTEST_FRAMES } from "./studio/checks/MovesTest";
 
 // Welcome to the Remotion Three Starter Kit!
 // Two compositions have been created, showing how to use
@@ -71,6 +72,7 @@ export const RemotionRoot: React.FC = () => {
       <Folder name="Studio">
         <Composition id="LookCheck" component={LookCheck} fps={30} durationInFrames={LOOKCHECK_FRAMES} width={1080} height={1920} />
         <Composition id="CharacterSheet" component={CharacterSheet} fps={30} durationInFrames={1} width={SHEET_W} height={SHEET_H} />
+        <Composition id="MovesTest" component={MovesTest} fps={30} durationInFrames={MOVESTEST_FRAMES} width={1080} height={1920} />
         <Composition id="SetTour" component={SetTour} fps={30} durationInFrames={64} width={1080} height={1920} />
         <Composition id="CastTest" component={CastTest} fps={30} durationInFrames={CASTTEST_FRAMES} width={1080} height={1920} />
         <Composition id="FoundationTest" component={FoundationTest} fps={30} durationInFrames={FOUNDATION_FRAMES} width={1080} height={1920} />
