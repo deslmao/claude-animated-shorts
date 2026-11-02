@@ -15,7 +15,7 @@ import { GradeEffect, GRADES, GRADE_STRENGTH, gradeFor } from "./grade";
 
 export type GradeName = keyof typeof GRADES;
 /** what a world reports after posing frame f: the camera's look target, lens blur and which grade to use */
-/** grade: any light name; golden -> golden grade, everything else -> day grade (grade.ts has day + golden) */
+/** grade: any light name; golden / night -> their grades, everything else -> the day grade */
 export type FrameInfo = { target: THREE.Vector3; cInf: number; focus?: THREE.Vector3; grade: GradeName | string };
 /** anything that can pose a three.js scene for (shot, frame) as a PURE function of those two numbers */
 export interface StudioWorld { root: THREE.Object3D; update(shot: number, f: number, cam: THREE.PerspectiveCamera, scene: THREE.Scene): FrameInfo }
@@ -72,7 +72,7 @@ function Inner<K>({ id, kit, makeWorld }: { id: number; kit: K; makeWorld: (kit:
   fpt.copy(info.focus ?? info.target);
   fx.lens.focus = Math.max(0.3, fpt.sub(cam.position).dot(fwd));
   fx.lens.cInf = info.cInf;
-  gradeFor(fx.grade, info.grade === "golden" ? "golden" : "day");
+  gradeFor(fx.grade, info.grade === "golden" || info.grade === "night" ? info.grade : "day");
   fx.grain.seed = f;
   return (
     <>

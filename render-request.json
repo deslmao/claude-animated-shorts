@@ -1,7 +1,7 @@
 {
-  "composition": "BridgeShort",
-  "chunks": 20,
+  "composition": "MovesTest",
+  "chunks": 10,
   "preview": false,
   "audio": "",
-  "note": "Change any field (or this note) and commit to start a new cloud render. Run 3: deterministic cards + QA/publish."
+  "note": "Stage 1D motion test: camera moves, subtle acting, effects, night + cool light presets."
 }

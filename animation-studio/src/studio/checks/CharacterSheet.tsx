@@ -45,7 +45,8 @@ const pageOf = (page: string, g: CanvasRenderingContext2D) => {
       { look: l, pose: { facing: -1 }, label: `${n.split(" ").pop()} 3/4 L` },
       { look: l, pose: { facing: 1 }, label: "3/4 R" },
       { look: l, side: { mode: "stand" }, label: "side" },
-    ]), 9, y, 560, "Turnaround");
+      { look: l, pose: { back: true }, label: "back" },
+    ]), 12, y, 560, "Turnaround");
     y = grid(g, [...LEADS.map(([n, l]) => ({ look: l, pose: act("neutral"), label: `${n.split(" ").pop()} silhouette`, silhouette: true })),
       { look: JUNO_OUT, pose: act("explain"), label: "Juno (outside lab)" }], 4, y, 560, "Silhouettes + variant");
     // phone-size test: how big a character is in a typical medium shot on a phone (~180 px tall)

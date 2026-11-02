@@ -61,12 +61,12 @@ export const LIGHTS: Record<"day" | "golden" | "interior" | "interiorCool" | "ni
   // disc; glowing windows / lamps / screens become the warm accents. Characters are dimmed and cooled but stay readable.
   night: {
     az: 125, el: 34,
-    lit: [0.66, 0.76, 1.08], shade: [0.13, 0.15, 0.28], lift: [0.03, 0.04, 0.1], lambert: 0.35, sideK: 0.82, term: 0.2,
+    lit: [0.42, 0.5, 0.8], shade: [0.08, 0.1, 0.22], lift: [0.02, 0.03, 0.08], lambert: 0.35, sideK: 0.82, term: 0.2,
     charTint: [0.82, 0.88, 1.0], charShade: 0.85, charGrad: 0.1, bodyGrad: 0.25, sideTint: [0.8, 0.83, 1.0],
     blob: [0.5, 0.5, 0.62], actorShadow: false,
     top: "#0b1636", hor: "#2c3f6e", skyCurve: [0.0, 0.5, 0.6], fog: "#1f2c52", fogNear: 28, fogFar: 260, sunDisc: "#e8eefc",
     sunCol: "#b8c8ff", sunI: 1.2, sky: "#33456e", ground: "#1a1a2a", hemiI: 0.4,
-    bias: -0.00025, normalBias: 0.015, charGain: 0.8,
+    bias: -0.00025, normalBias: 0.015, charGain: 0.74,
   },
 };
 

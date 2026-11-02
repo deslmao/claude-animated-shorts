@@ -3,7 +3,7 @@
 // celebration (confetti, sparkles, music notes). Every effect is animated by t (seconds since it started): pop-in
 // with overshoot over ~6 frames, a little life while it holds, fade at the end. Drawn on a 400 x 400 canvas.
 import { Pen, INK, P2, rad, fxBurst, fxSplash, fxPuff, fxStars, fxNote, fxRing } from "../characters/toon";
-import { FxPlace, cardKey } from "../cards/cards";
+import { FxPlace, cardKey, CamInfo } from "../cards/cards";
 
 export type FxKind = "question" | "exclaim" | "sweat" | "anger" | "idea" | "hearts" | "zzz" | "speed" | "puff" | "stars" | "burst" | "confetti" | "sparkle" | "notes" | "splash" | "ring";
 export const FX_KINDS: FxKind[] = ["question", "exclaim", "sweat", "anger", "idea", "hearts", "zzz", "speed", "puff", "stars", "burst", "confetti", "sparkle", "notes", "splash", "ring"];
@@ -87,4 +87,14 @@ export const fxCard = (kind: FxKind, x: number, y: number, z: number, size: numb
   const s = size * (fade < 1 ? 0.85 + 0.15 * fade : 1);
   return { key: `fx|${kind}|${cardKey({ tq, seed })}|${fade < 1 ? Math.round(fade * 6) : 6}`, cw: 400, ch: 400, x, y, z, w: s, h: s,
     draw: (p) => { if (fade < 1) p.g.globalAlpha = Math.round(fade * 6) / 6; drawFx(p, kind, tq, seed); p.g.globalAlpha = 1; } };
+};
+
+/** a reaction mark just above and beside a character's head as seen from the camera (stays in frame from wide shots
+ *  to close-ups): mark = the character's floor mark; side +1 = screen right of the head */
+export const fxNear = (cam: CamInfo, kind: FxKind, mark: [number, number, number], t: number, t0: number, life = 1.6, side: -1 | 1 = 1, size = 0.42, seed = 1) => {
+  // half the frame width at the character (~0.2 x distance for the 34-46 deg lenses on a 9:16 frame): the mark sits
+  // inside the frame, beside the head, scaled down in close-ups
+  const d = Math.hypot(cam.pos.x - mark[0], cam.pos.z - mark[2]) || 1, halfW = 0.2 * d;
+  const lat = Math.min(0.42, 0.62 * halfW), sz = Math.min(size, 0.5 * halfW), y = mark[1] + 1.72 + Math.min(0.22, 0.06 * d);
+  return fxCard(kind, mark[0] + cam.right.x * lat * side, y, mark[2] + cam.right.z * lat * side, sz, t, t0, life, seed);
 };

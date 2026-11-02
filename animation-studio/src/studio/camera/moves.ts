@@ -65,7 +65,7 @@ export const plan = (m: Move, f0: number, f1: number, o: { cut?: boolean; dur?: 
     case "overShoulder": {
       // camera just behind and beside the near character's shoulder, looking at the far one's face
       const s = m.side ?? 1, dx = m.at[0] - m.over[0], dz = m.at[2] - m.over[2], L = Math.hypot(dx, dz) || 1, ux = dx / L, uz = dz / L;
-      const pos: V3 = [m.over[0] - ux * 0.9 - uz * 0.55 * s, m.over[1] + 1.62, m.over[2] - uz * 0.9 + ux * 0.55 * s];
+      const pos: V3 = [m.over[0] - ux * 0.95 - uz * 0.62 * s, m.over[1] + 1.5, m.over[2] - uz * 0.95 + ux * 0.62 * s];
       const look: V3 = [m.at[0], m.at[1] + 1.45, m.at[2]];
       return k((f) => dolly(pos, look, creep(f, 0.002), { fov: 36 }), 11, eye(m.at));
     }
