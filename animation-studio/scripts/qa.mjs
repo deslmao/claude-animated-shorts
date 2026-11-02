@@ -1,7 +1,8 @@
 // Automatic quality check of a finished video. Needs a full ffmpeg/ffprobe on PATH (GitHub runners: apt ffmpeg).
 //   node scripts/qa.mjs <video.mp4> <outDir> [--frames N] [--width W --height H] [--fps 30] [--audio required|none|any]
 // Writes <outDir>/qa.md, qa.json and contact_sheet.jpg. Exits 1 if a hard check fails.
-// Hard checks: codec, resolution, fps, exact frame count, no duplicated consecutive frames (chunk seams), audio present
+// Hard checks: codec, resolution, fps, exact frame count, no duplicated consecutive frames (chunk seams; frames held
+// dark by a dip to black are exempt), audio present
 // and the same length as the picture (sync), audio starting at 0. Soft (reported): loudness, black and frozen spans.
 import fs from "node:fs";
 import path from "node:path";
@@ -26,8 +27,13 @@ const md5 = spawnSync(FF, ["-v", "error", "-i", video, "-map", "0:v:0", "-f", "f
 // changes while its neighbours move normally (re-encoding means "identical" frames are only almost identical)
 const diffOut = spawnSync(FF, ["-v", "error", "-i", video, "-map", "0:v:0", "-vf", "scale=270:-2,tblend=all_mode=difference,signalstats,metadata=print:key=lavfi.signalstats.YAVG:file=-", "-f", "null", "-"], { maxBuffer: 1 << 28 }).stdout.toString();
 const diffs = [...diffOut.matchAll(/YAVG=([\d.]+)/g)].map((m) => Number(m[1])); // diffs[k] = change between frame k and k+1
+// per-frame brightness: a fade / dip to black is meant to hold nearly identical dark frames, which is not a seam bug
+const lumaOut = spawnSync(FF, ["-v", "error", "-i", video, "-map", "0:v:0", "-vf", "scale=270:-2,signalstats,metadata=print:key=lavfi.signalstats.YAVG:file=-", "-f", "null", "-"], { maxBuffer: 1 << 28 }).stdout.toString();
+const luma = [...lumaOut.matchAll(/YAVG=([\d.]+)/g)].map((m) => Number(m[1])); // luma[k] = mean brightness of frame k (0-255)
+const DARK = 24; // both frames this dark (a dip to black) -> not a duplicate
 const dups = [];
 for (let k = 0; k < diffs.length; k++) {
+  if (luma[k] < DARK && luma[k + 1] < DARK) continue;
   const nb = [diffs[k - 2], diffs[k - 1], diffs[k + 1], diffs[k + 2]].filter((x) => x !== undefined).sort((x, y) => x - y);
   const med = nb.length ? (nb[Math.floor((nb.length - 1) / 2)] + nb[Math.ceil((nb.length - 1) / 2)]) / 2 : 0;
   if (med > 0.6 && diffs[k] < 0.3) dups.push(k + 1); // real duplicate ~0.02; slowest natural motion here >= 1.3

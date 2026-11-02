@@ -1,8 +1,8 @@
 {
-  "run_id": 41412913275,
-  "composition": "BridgeShort",
-  "frames": 2025,
+  "run_id": 41538502849,
+  "composition": "Short-yawn-demo",
+  "frames": 540,
   "width": 1080,
   "height": 1920,
-  "audio": "required"
+  "audio": "none"
 }
