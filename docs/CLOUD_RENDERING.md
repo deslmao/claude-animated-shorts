@@ -12,15 +12,21 @@ You only need a web browser and your GitHub login. Nothing is installed on your 
 | Write, build and preview the video | Claude, in the Claude Code session |
 | Start the full-quality render | Claude, by committing `render-request.json` (or you, see below) |
 | Wait (about 30-60 min for a 60 s short) | GitHub |
-| Download the MP4 | You, in the browser, or Claude sends it to you |
+| Quality check (frames, resolution, sound sync, loudness) | GitHub, automatically |
+| Download the MP4 | You, from the Releases page (or Claude sends it to you) |
 
 ## Downloading a finished video (browser only)
-1. Open **https://github.com/deslmao/claude-animated-shorts/actions** (sign in to GitHub if asked).
-2. Click the newest **"Render video"** run with a green ✔.
-3. Scroll to the bottom, to **Artifacts**. Click the video's name (e.g. `BridgeShort-run2`). A `.zip` downloads.
-4. Open the zip: the `.mp4` is inside, ready for YouTube.
+Every finished render is **checked automatically** and then published on the project's **Releases** page:
+1. Open **https://github.com/deslmao/claude-animated-shorts/releases**.
+2. Find the newest video (e.g. `BridgeShort-run3`). The notes show the quality-check table (resolution, frame count,
+   sound sync, loudness).
+3. Under **Assets**, click the **`.mp4`** file. It downloads directly (no zip), ready for YouTube.
+   `contact_sheet.jpg` is a one-image overview of 20 frames.
 
-Artifacts are kept for 30 days, so download the ones you want to keep.
+Releases don't expire. (The repository is public, so released videos can be seen by anyone with the link. Delete a
+release on GitHub once you've uploaded the video, if you prefer.)
+
+Backup route: **Actions** → the run → **Artifacts** → the video zip (kept for 30 days, needs a GitHub login).
 
 ## Starting a render yourself (optional, browser only)
 1. On GitHub, open the file **`render-request.json`** on the working branch.
@@ -44,3 +50,15 @@ Artifacts are kept for 30 days, so download the ones you want to keep.
   computer, and `scripts/concat.mjs` joins them. It's slow (no graphics chip), so it's only for short clips and previews.
 - **A personal computer with Node.js** (if you ever have one): see [MAC_RENDERING.md](MAC_RENDERING.md). One command,
   and fastest when there's a real graphics chip.
+
+## Limits and costs (checked 2026-11-02)
+| Topic | What applies to this project |
+|---|---|
+| Cost | **Free.** Standard GitHub-hosted runners are free for public repositories. Making the repo private would use the 2,000 free minutes/month of GitHub Free (one 60 s video ≈ 5-6 runner-hours ≈ 300+ minutes, so only ~6 videos a month), so keep it public or expect to pay. |
+| Parallel jobs | GitHub Free allows up to 20 concurrent jobs. **Measured on this account: 5-6 at a time**, the rest queue. |
+| Time per job | Each chunk of ~100 frames takes 12-25 min (measured about 7 s per frame at 1080x1920). GitHub stops a job after 6 hours, so chunks stay far below that. |
+| Matrix size | Up to 256 jobs per run (we use ≤ 20). |
+| Whole render (measured) | 67.5 s bridge short, 20 chunks: **73 minutes** from start to published video (run #2). |
+| Downloads | Release files up to 2 GB each (our videos are ~100 MB). Artifacts are kept 30 days. |
+
+These limits can change, so the Actions page always shows the real state of a run.

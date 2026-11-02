@@ -408,7 +408,10 @@ export class World {
     }
     // ---- cast + effects ----
     const right = V(0, 0, 0).setFromMatrixColumn(cam.matrixWorld, 0);
-    const st = stage(id, t, b, { pos: cam.position, right });
+    // pass this frame's sun explicitly: on a browser tab's first frame the world root isn't attached to the scene yet,
+    // so findSun() couldn't see it and cards were drawn with a default sun (chunk renders differed at every seam)
+    const sunNow = V(0, 0, 0).copy(this.sun.position).sub(this.sun.target.position);
+    const st = stage(id, t, b, { pos: cam.position, right, sun: sunNow });
     if (id === 8) {
       snapFx(tau, BOLT, st); splashFx(tau, st);
       if (tau > 33.1 && tau < SNAP) creakFx(t, [[BOLT[0] + 0.3, BOLT[1] + 0.14, BOLT[2] - 0.12], [BOLT[0] - 0.32, BOLT[1] + 0.08, BOLT[2] - 0.12]], st, 0.3);
