@@ -20,7 +20,8 @@ export type FrameInfo = { target: THREE.Vector3; cInf: number; focus?: THREE.Vec
 /** anything that can pose a three.js scene for (shot, frame) as a PURE function of those two numbers */
 export interface StudioWorld { root: THREE.Object3D; update(shot: number, f: number, cam: THREE.PerspectiveCamera, scene: THREE.Scene): FrameInfo }
 /** which shot(s) to draw at frame f (two layers during a crossfade) and where the white flashes are */
-export interface Timeline { total: number; layersAt(f: number): { id: number; alpha: number }[]; flashes?: number[] }
+/** flashes: 4-frame white fades starting at each frame; dips: 12-frame dips to black centred on each frame (the cut) */
+export interface Timeline { total: number; layersAt(f: number): { id: number; alpha: number }[]; flashes?: number[]; dips?: number[] }
 
 /** A/B switches for test stills only (inputProps `{ post: { ink: false, ... } }`); everything is on by default */
 type PostToggles = { ink: boolean; lens: boolean; pre: boolean; bloom: boolean; grade: boolean; grain: boolean };
@@ -95,6 +96,8 @@ export function StudioFilm<K>({ timeline, makeWorld, load, background = "#cfe3f2
   if (kit === null) return null;
   let flash = 0;
   for (const a of timeline.flashes ?? []) if (f >= a && f < a + 4) flash = Math.max(flash, [1, 0.75, 0.45, 0.2][f - a]);
+  let dip = 0;
+  for (const c of timeline.dips ?? []) if (f >= c - 6 && f < c + 6) dip = Math.max(dip, 1 - Math.abs(f + 0.5 - c) / 6);
   return (
     <AbsoluteFill style={{ background }}>
       {timeline.layersAt(f).map((l, i) => (
@@ -107,6 +110,7 @@ export function StudioFilm<K>({ timeline, makeWorld, load, background = "#cfe3f2
         </AbsoluteFill>
       ))}
       {flash > 0 && <AbsoluteFill style={{ background: "#ffffff", opacity: flash }} />}
+      {dip > 0 && <AbsoluteFill style={{ background: "#0b0a10", opacity: Math.min(1, dip * 1.25) }} />}
     </AbsoluteFill>
   );
 }

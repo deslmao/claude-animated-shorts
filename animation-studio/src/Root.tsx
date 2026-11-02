@@ -8,6 +8,11 @@ import { CharacterSheet, SHEET_W, SHEET_H } from "./studio/checks/CharacterSheet
 import { CastTest, CASTTEST_FRAMES } from "./studio/checks/CastTest";
 import { SetTour } from "./studio/checks/SetTour";
 import { MovesTest, MOVESTEST_FRAMES } from "./studio/checks/MovesTest";
+import { STORIES } from "./studio/stories";
+import { makeShort } from "./studio/story/Short";
+
+// one composition per storyboard: "Short-<id>"
+const SHORTS = STORIES.map((sb) => ({ id: sb.id, ...makeShort(sb) }));
 
 // Welcome to the Remotion Three Starter Kit!
 // Two compositions have been created, showing how to use
@@ -68,6 +73,10 @@ export const RemotionRoot: React.FC = () => {
         width={1080}
         height={1920}
       />
+      {/* Storyboard-driven shorts (stage 1E): one per storyboard in src/studio/stories */}
+      <Folder name="Shorts">
+        {SHORTS.map((s) => <Composition key={s.id} id={`Short-${s.id}`} component={s.Comp} fps={30} durationInFrames={s.frames} width={1080} height={1920} />)}
+      </Folder>
       {/* Reusable studio library: test compositions (not videos) */}
       <Folder name="Studio">
         <Composition id="LookCheck" component={LookCheck} fps={30} durationInFrames={LOOKCHECK_FRAMES} width={1080} height={1920} />
