@@ -1,0 +1,64 @@
+# Quality-check and publish a video that an earlier "Render video" run already produced (no re-render).
+# Trigger: edit publish-request.json (run_id = the render run's number in its URL, composition, frames) and commit,
+# or Actions → "Publish rendered video" → Run workflow (once this file is on the default branch).
+name: Publish rendered video
+
+on:
+  push:
+    paths: [publish-request.json]
+  workflow_dispatch:
+    inputs:
+      run_id: { description: "Render run ID (the number in the run's URL)", required: true }
+      composition: { description: "Composition ID", required: true, default: "BridgeShort" }
+      frames: { description: "Expected frame count", required: true }
+      width: { description: "Expected width", required: true, default: "1080" }
+      height: { description: "Expected height", required: true, default: "1920" }
+      audio: { description: "required | none", required: true, default: "required" }
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - id: req
+        name: Read request
+        env:
+          IN: ${{ toJSON(inputs) }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then echo "$IN" > req.json; else cp publish-request.json req.json; fi
+          for k in run_id composition frames; do v=$(jq -r ".$k // empty" req.json); [ -n "$v" ] || { echo "missing $k"; exit 1; }; done
+          echo "run_id=$(jq -r '.run_id' req.json)" >> "$GITHUB_OUTPUT"
+          echo "composition=$(jq -r '.composition' req.json)" >> "$GITHUB_OUTPUT"
+          echo "frames=$(jq -r '.frames' req.json)" >> "$GITHUB_OUTPUT"
+          echo "width=$(jq -r '.width // 1080' req.json)" >> "$GITHUB_OUTPUT"
+          echo "height=$(jq -r '.height // 1920' req.json)" >> "$GITHUB_OUTPUT"
+          echo "audio=$(jq -r '.audio // "required"' req.json)" >> "$GITHUB_OUTPUT"
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Download the render's video
+        uses: actions/download-artifact@v4
+        with:
+          run-id: ${{ steps.req.outputs.run_id }}
+          github-token: ${{ github.token }}
+          pattern: ${{ steps.req.outputs.composition }}*-run*
+          path: dl
+      - id: find
+        name: Find the MP4
+        run: |
+          F=$(find dl -name "*.mp4" | head -1); [ -n "$F" ] || { echo "no mp4 in run ${{ steps.req.outputs.run_id }}"; exit 1; }
+          N=$(basename "$(dirname "$F")"); echo "video=$F" >> "$GITHUB_OUTPUT"; echo "name=$N" >> "$GITHUB_OUTPUT"; ls -la "$F"
+      - uses: ./.github/actions/qa-publish
+        with:
+          video: ${{ steps.find.outputs.video }}
+          frames: ${{ steps.req.outputs.frames }}
+          width: ${{ steps.req.outputs.width }}
+          height: ${{ steps.req.outputs.height }}
+          audio: ${{ steps.req.outputs.audio }}
+          tag: video-${{ steps.find.outputs.name }}
+          title: ${{ steps.find.outputs.name }}
+          notes: "Published from render run ${{ steps.req.outputs.run_id }}."

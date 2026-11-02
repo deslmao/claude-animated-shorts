@@ -1,0 +1,50 @@
+name: QA and publish video
+description: Run the automatic quality check on a finished MP4 and, if it passes, publish it as a GitHub Release (direct download link).
+inputs:
+  video: { description: "Path to the MP4 (relative to the repo root)", required: true }
+  frames: { description: "Expected frame count", required: true }
+  width: { description: "Expected width", required: true }
+  height: { description: "Expected height", required: true }
+  audio: { description: "required | none", required: true, default: "required" }
+  tag: { description: "Release tag", required: true }
+  title: { description: "Release title", required: true }
+  notes: { description: "Extra release notes (markdown)", required: false, default: "" }
+runs:
+  using: composite
+  steps:
+    - name: Install ffmpeg (analysis filters)
+      shell: bash
+      run: command -v ffprobe >/dev/null || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg >/dev/null)
+    - name: Quality check
+      id: qa
+      shell: bash
+      run: |
+        set +e
+        node animation-studio/scripts/qa.mjs "${{ inputs.video }}" qa --frames "${{ inputs.frames }}" --width "${{ inputs.width }}" --height "${{ inputs.height }}" --fps 30 --audio "${{ inputs.audio }}"
+        code=$?
+        cat qa/qa.md >> "$GITHUB_STEP_SUMMARY"
+        exit $code
+    - name: Upload QA report
+      if: always()
+      uses: actions/upload-artifact@v4
+      with: { name: "qa-${{ inputs.tag }}", path: qa/, retention-days: 30 }
+    - name: Publish release (direct MP4 download)
+      shell: bash
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        {
+          echo "${{ inputs.notes }}"
+          echo
+          echo "**Download:** click the \`.mp4\` file under *Assets* below."
+          echo
+          cat qa/qa.md
+          echo
+          echo "Rendered from \`${{ github.ref_name }}\` @ \`${GITHUB_SHA::7}\` — [workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+        } > qa/notes.md
+        gh release delete "${{ inputs.tag }}" --yes --cleanup-tag 2>/dev/null || true
+        gh release create "${{ inputs.tag }}" "${{ inputs.video }}" qa/contact_sheet.jpg \
+          --target "$GITHUB_SHA" --prerelease --title "${{ inputs.title }}" --notes-file qa/notes.md
+        URL="${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ inputs.tag }}"
+        echo "### 🎬 [Download the video]($URL)" >> "$GITHUB_STEP_SUMMARY"
+        echo "Published: $URL"

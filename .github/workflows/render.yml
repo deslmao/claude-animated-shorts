@@ -17,6 +17,10 @@ on:
       preview: { description: "Half-size preview (540x960) instead of full 1080x1920", type: boolean, default: false }
       audio: { description: "Soundtrack path in the repo (optional, e.g. videos/x/audio/mix.wav)", required: false, default: "" }
 
+permissions:
+  contents: write   # publish finished videos as GitHub Releases
+  actions: read
+
 concurrency:
   group: render-${{ github.ref }}
   cancel-in-progress: false
@@ -39,6 +43,8 @@ jobs:
       audio: ${{ steps.req.outputs.audio }}
       matrix: ${{ steps.plan.outputs.matrix }}
       total: ${{ steps.plan.outputs.total }}
+      width: ${{ steps.plan.outputs.width }}
+      height: ${{ steps.plan.outputs.height }}
     steps:
       - uses: actions/checkout@v4
       - id: req
@@ -75,6 +81,10 @@ jobs:
           echo "$P"
           echo "matrix=$(echo "$P" | jq -c '.chunks')" >> "$GITHUB_OUTPUT"
           echo "total=$(echo "$P" | jq -r '.total')" >> "$GITHUB_OUTPUT"
+          W=$(echo "$P" | jq -r '.width'); H=$(echo "$P" | jq -r '.height')
+          # expected output size (a preview renders at half size)
+          if [ "${{ steps.req.outputs.preview }}" = "true" ]; then W=$((W / 2)); H=$((H / 2)); fi
+          echo "width=$W" >> "$GITHUB_OUTPUT"; echo "height=$H" >> "$GITHUB_OUTPUT"
 
   render:
     needs: plan
@@ -126,21 +136,20 @@ jobs:
           if [ -n "${{ needs.plan.outputs.audio }}" ]; then AUDIO_ARGS=(--audio "../${{ needs.plan.outputs.audio }}"); fi
           node scripts/concat.mjs "$OUT" $(ls out/parts/part_*.mp4 | sort) "${AUDIO_ARGS[@]}"
           echo "out=$OUT" >> "$GITHUB_OUTPUT"; echo "name=${COMP}${SUFFIX}-run${{ github.run_number }}" >> "$GITHUB_OUTPUT"
-      - name: Check the video
-        run: |
-          OUT="${{ steps.join.outputs.out }}"
-          N=$(npx remotion ffprobe -v error -count_frames -select_streams v:0 -show_entries stream=nb_read_frames -of csv=p=0 "$OUT")
-          INFO=$(npx remotion ffprobe -v error -show_entries stream=codec_type,width,height,r_frame_rate -of compact "$OUT")
-          echo "$INFO"; echo "frames: $N (expected ${{ needs.plan.outputs.total }})"
-          {
-            echo "## ${{ steps.join.outputs.name }}"
-            echo '```'; echo "$INFO"; echo "frames: $N / ${{ needs.plan.outputs.total }}"; ls -la "$OUT"; echo '```'
-            echo "Download it from **Artifacts** below."
-          } >> "$GITHUB_STEP_SUMMARY"
-          [ "$N" = "${{ needs.plan.outputs.total }}" ] || { echo "frame count mismatch"; exit 1; }
       - uses: actions/upload-artifact@v4
         with:
           name: ${{ steps.join.outputs.name }}
           path: animation-studio/${{ steps.join.outputs.out }}
           retention-days: 30
           compression-level: 0
+      - name: Quality check + publish
+        uses: ./.github/actions/qa-publish
+        with:
+          video: animation-studio/${{ steps.join.outputs.out }}
+          frames: ${{ needs.plan.outputs.total }}
+          width: ${{ needs.plan.outputs.width }}
+          height: ${{ needs.plan.outputs.height }}
+          audio: ${{ needs.plan.outputs.audio != '' && 'required' || 'none' }}
+          tag: video-${{ steps.join.outputs.name }}
+          title: "${{ steps.join.outputs.name }}"
+          notes: "Composition **${{ needs.plan.outputs.composition }}**, ${{ needs.plan.outputs.preview == 'true' && 'half-size preview' || 'full quality' }}, soundtrack: `${{ needs.plan.outputs.audio || 'none' }}`."
