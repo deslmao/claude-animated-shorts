@@ -4,5 +4,6 @@
   "frames": 540,
   "width": 1080,
   "height": 1920,
-  "audio": "none"
+  "audio": "none",
+  "note": "retry after QA threshold fix"
 }
