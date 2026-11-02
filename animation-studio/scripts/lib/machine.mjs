@@ -24,7 +24,9 @@ export const detect = () => {
   }
   return {
     platform, osName, chip, cores: cpus.length, ramGB: +(os.totalmem() / 1024 ** 3).toFixed(1), gl, browser,
-    node: process.version, where: platform === "darwin" ? "mac" : hasGpuDevice ? "gpu-pc" : "cloud-cpu",
+    node: process.version,
+    // CPU-only WebGL means a cloud machine (no GPU), whatever devices it advertises
+    where: platform === "darwin" ? "mac" : /swangle|swiftshader/.test(gl) ? "cloud-cpu" : "gpu-pc",
   };
 };
 

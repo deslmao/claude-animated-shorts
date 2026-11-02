@@ -2,5 +2,6 @@
   "composition": "BridgeShort",
   "chunks": 20,
   "preview": false,
-  "audio": ""
+  "audio": "",
+  "note": "Change any field (or this note) and commit to start a new cloud render. Attempt 2."
 }

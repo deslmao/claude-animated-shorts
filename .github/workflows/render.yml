@@ -21,6 +21,10 @@ concurrency:
   group: render-${{ github.ref }}
   cancel-in-progress: false
 
+env:
+  # GitHub runners have no real GPU (they expose a /dev/dri device that WebGL can't use): render on the CPU.
+  REMOTION_GL: swangle
+
 defaults:
   run:
     working-directory: animation-studio
