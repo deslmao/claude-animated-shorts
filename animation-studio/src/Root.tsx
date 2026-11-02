@@ -4,6 +4,8 @@ import { getMediaMetadata } from "./helpers/get-media-metadata";
 import { BridgeShort, BRIDGE_FRAMES } from "./videos/bridge/Bridge";
 import { LookCheck, LOOKCHECK_FRAMES } from "./studio/checks/LookCheck";
 import { FoundationTest, FOUNDATION_FRAMES } from "./studio/checks/FoundationTest";
+import { CharacterSheet, SHEET_W, SHEET_H } from "./studio/checks/CharacterSheet";
+import { CastTest, CASTTEST_FRAMES } from "./studio/checks/CastTest";
 
 // Welcome to the Remotion Three Starter Kit!
 // Two compositions have been created, showing how to use
@@ -67,6 +69,8 @@ export const RemotionRoot: React.FC = () => {
       {/* Reusable studio library: test compositions (not videos) */}
       <Folder name="Studio">
         <Composition id="LookCheck" component={LookCheck} fps={30} durationInFrames={LOOKCHECK_FRAMES} width={1080} height={1920} />
+        <Composition id="CharacterSheet" component={CharacterSheet} fps={30} durationInFrames={1} width={SHEET_W} height={SHEET_H} />
+        <Composition id="CastTest" component={CastTest} fps={30} durationInFrames={CASTTEST_FRAMES} width={1080} height={1920} />
         <Composition id="FoundationTest" component={FoundationTest} fps={30} durationInFrames={FOUNDATION_FRAMES} width={1080} height={1920} />
       </Folder>
     </>

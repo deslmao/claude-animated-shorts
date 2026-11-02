@@ -3,6 +3,7 @@
 // shared), blinks on a seeded schedule, and the contact shadow under the feet (+ a sun-direction tail by day).
 import * as THREE from "three";
 import { bodyFront, bodySide, fxShadow, fxContact, Outfit, FrontOpts, SideOpts } from "../characters/toon";
+import { figureFront, figureSide, Look, Pose, SidePose } from "../characters/figure";
 import { Place, Stage, CamInfo, cardKey, cardOpts } from "./cards";
 import type { LightName } from "../scene/environment";
 
@@ -71,4 +72,20 @@ export const contactShadow = (out: Stage, sun: THREE.Vector3, light: LightName, 
   const cc = hexOf(CONTACT[light] ?? CONTACT.day, k);
   out.fx.push({ key: `blob|contact|${cc}`, cw: 128, ch: 128, draw: (p) => fxContact(p, cc), x: x + ox * 0.03 * sc, y: y + 0.022, z: z + oz * 0.03 * sc,
     w: 0.52 * sc, h: 0.4 * sc, flat: true, rot });
+};
+
+/** a library character (characters/figure.ts) as a card. side = profile drawing (mirror = facing screen-left).
+ *  The light side and drawing tier are filled in here; key and drawing share the same rounded options. */
+export const lookCard = (cam: CamInfo, L: Look, x: number, y: number, z: number,
+  view: { pose?: Pose; side?: SidePose; mirror?: boolean }, scale = 1): Place => {
+  const d = cam.pos.distanceTo(tmp.set(x, y + 1.2 * scale, z)) / scale;
+  const [w, h, k] = tier(d);
+  const mirror = !!view.side && !!view.mirror, light = light2D(cam, mirror);
+  const opts = view.side ? { ...view.side, light } : { ...(view.pose ?? {}), light };
+  const ok = cardKey(opts), lk = cardKey(L);
+  const o2 = cardOpts(opts);
+  return {
+    key: `${view.side ? "LS" : "LF"}|${lk}|${ok}`, x, y, z, scale, mirror, size: [w, h, k],
+    draw: (p) => (view.side ? figureSide(p, L, o2 as SidePose) : figureFront(p, L, o2 as Pose)),
+  };
 };
