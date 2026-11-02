@@ -1,9 +1,9 @@
 # Rendering on your Mac — step-by-step guide
 
-Your workflow (Option 3):
-- **Claude (in the cloud)** writes, builds and checks each video, and makes quick low-resolution previews for you to approve.
-- **Your Mac** renders the finished full-quality 1080x1920 MP4 with one command, because its graphics chip makes it far
-  faster than the cloud computer (which has no graphics chip).
+> **Optional.** The main way to make finished videos is the cloud render farm, which needs no installs: see
+> [CLOUD_RENDERING.md](CLOUD_RENDERING.md). This guide is only for a **personal** Mac where you're allowed to install
+> software (a school-managed laptop without admin rights can't do Part 1). Renders there are fastest because a real
+> graphics chip is used.
 
 You never need to write code. You only copy commands into the **Terminal** app and press Enter.
 

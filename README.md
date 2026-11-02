@@ -18,9 +18,11 @@ Proven on **The Bridge That Fell for a Song**, a 67 s short about the 1831 Broug
 | `references/frames/` | 38 full-size reference frames (540x960) to compare your frames against |
 | `references/sheets/` | 20 contact sheets, one per reference short, 60 frames each (1,200 frames) |
 
-## Rendering on your Mac
-See [`docs/MAC_RENDERING.md`](docs/MAC_RENDERING.md): one-time setup (`bash setup-mac.sh`), a speed benchmark
-(`npm run benchmark`) and one-command renders (`npm run render -- <Composition>`). Cloud previews use the same commands.
+## Rendering
+- **Cloud (default, no installs):** [`docs/CLOUD_RENDERING.md`](docs/CLOUD_RENDERING.md). GitHub Actions renders a video in
+  parallel chunks, joins them with the soundtrack, and gives you a downloadable MP4.
+- **Personal computer (optional):** [`docs/MAC_RENDERING.md`](docs/MAC_RENDERING.md). `bash setup-mac.sh`, `npm run benchmark`,
+  `npm run render -- <Composition>`.
 
 ## Install
 1. Copy this folder to `~/.claude/skills/cartoon-3d-short/` (clone it there, or download the ZIP).
