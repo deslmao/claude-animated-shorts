@@ -21,10 +21,10 @@ const PAL = [
 
 export const CITY: SetDef = {
   id: "city", title: "Modern city street", lights: ["day", "golden"],
-  build: () => {
+  build: (cams) => {
     const root = new THREE.Group(), b = new Batch(), r = rng(21);
     const views = LAYOUTS.city.views;
-    const ok = (x: number, z: number, rad = 0.5) => clearOf(views, x, z, rad);
+    const ok = (x: number, z: number, rad = 0.5) => clearOf(cams ? [...views, ...cams] : views, x, z, rad);
     // road along x (z -4..4), raised pavements to z +-7.6, buildings beyond
     b.add(quadUp(-260, 260, -4, 4, 130, 2), tex("asphalt", asphaltHD, 1, 1));
     for (const s of [-1, 1]) {
@@ -68,10 +68,10 @@ export const CITY: SetDef = {
 
 export const OLDTOWN: SetDef = {
   id: "oldtown", title: "Old town market square", lights: ["day", "golden"],
-  build: () => {
+  build: (cams) => {
     const root = new THREE.Group(), b = new Batch(), r = rng(33);
     const views = LAYOUTS.oldtown.views;
-    const ok = (x: number, z: number, rad = 0.6) => clearOf(views, x, z, rad);
+    const ok = (x: number, z: number, rad = 0.6) => clearOf(cams ? [...views, ...cams] : views, x, z, rad);
     b.add(quadUp(-60, 60, -60, 60, 30, 30), tex("cobbleHD", cobbleHD, 1, 1));
     b.add(quadUp(-400, 400, -400, 400, 100, 100, -0.01), lam("grassHD", () => ({ map: grassHD() })));
     // houses around the square (fronts face the centre)
@@ -105,10 +105,10 @@ export const OLDTOWN: SetDef = {
 
 export const NATURE: SetDef = {
   id: "nature", title: "Nature: park path, pond and hills", lights: ["day", "golden"],
-  build: () => {
+  build: (cams) => {
     const root = new THREE.Group(), b = new Batch(), r = rng(47);
     const views = LAYOUTS.nature.views;
-    const ok = (x: number, z: number, rad = 0.6) => clearOf(views, x, z, rad, 6);
+    const ok = (x: number, z: number, rad = 0.6) => clearOf(cams ? [...views, ...cams] : views, x, z, rad, 6);
     b.add(quadUp(-600, 600, -600, 600, 300, 300), lam("grassHD", () => ({ map: grassHD() })));
     // rolling hills + far mountains (fog = horizon colour pushes them back)
     const hill = tex("hillgrass", grassHD, 12, 6);

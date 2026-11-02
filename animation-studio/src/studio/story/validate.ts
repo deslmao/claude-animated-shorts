@@ -62,6 +62,7 @@ export const validate = (sb: Storyboard): Report => {
   });
   if (errors.length) return { errors, warnings, framing };
   // framing: solve the camera at the start, middle and end of each shot and check the subjects' heads are in frame
+  // (a subject who walks in is checked from the moment they arrive)
   const film = compile(sb), ranges = shotFrames(sb);
   sb.shots.forEach((s, i) => {
     const c = s.camera, subj = c.move === "overShoulder" ? [c.at] : "on" in c ? (Array.isArray(c.on) ? c.on : [c.on]) : [];
@@ -69,7 +70,16 @@ export const validate = (sb: Storyboard): Report => {
     for (const f of [a, Math.round((a + b) / 2), b - 1]) {
       const cm = runKeys(film.shots[i].keys, f), cam = new THREE.PerspectiveCamera(cm.fov, 9 / 16, 0.05, 3000);
       cam.position.set(...cm.pos); cam.up.set(0, 1, 0); cam.lookAt(...cm.look); cam.rotateZ(cm.roll); cam.updateMatrixWorld(); cam.updateProjectionMatrix();
-      for (const who of subj) { const act = s.actors.find((x) => x.who === who)!; if (!headIn(cam, actorPos(s.set, act, (f - a) / FPS))) fails.push(`${who} @${((f - a) / FPS).toFixed(1)}s`); }
+      for (const who of subj) { const act = s.actors.find((x) => x.who === who)!; const tt = (f - a) / FPS; if (act.walk && tt < act.walk.t1) continue; /* walking in: checked once arrived */ if (!headIn(cam, actorPos(s.set, act, (f - a) / FPS))) fails.push(`${who} @${((f - a) / FPS).toFixed(1)}s`); }
+    }
+    // over-the-shoulder: the near character's back must actually be in the frame (at shoulder height)
+    if (c.move === "overShoulder") for (const f of [a, b - 1]) {
+      const cm = runKeys(film.shots[i].keys, f), cam = new THREE.PerspectiveCamera(cm.fov, 9 / 16, 0.05, 3000);
+      cam.position.set(...cm.pos); cam.up.set(0, 1, 0); cam.lookAt(...cm.look); cam.updateMatrixWorld(); cam.updateProjectionMatrix();
+      const m = actorPos(s.set, s.actors.find((x) => x.who === c.over)!, (f - a) / FPS), right = new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld, 0);
+      const xs = [-0.24, 0.24].map((d) => new THREE.Vector3(m[0], m[1] + 1.3, m[2]).addScaledVector(right, d).project(cam).x);
+      const shown = Math.max(0, Math.min(1, Math.max(...xs)) - Math.max(-1, Math.min(...xs))) / 2;
+      if (shown < 0.15) fails.push(`${c.over}'s shoulder ${(shown * 100).toFixed(0)}% of frame @${((f - a) / FPS).toFixed(1)}s`);
     }
     const line = `shot ${String(i + 1).padStart(2)} ${s.set.padEnd(9)} ${c.move.padEnd(12)} subjects: ${subj.join(", ") || "(place shot)"}`;
     if (fails.length) { errors.push(`shot ${i + 1}: subject head out of frame: ${fails.join(", ")}`); framing.push(`${line}  -> FAIL (${fails.join(", ")})`); }

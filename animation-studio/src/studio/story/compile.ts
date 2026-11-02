@@ -31,19 +31,26 @@ export const actorPos = (set: string, a: ActorSpec, tt: number): V3 => {
   return [p0[0] + (p1[0] - p0[0]) * k, p0[1] + (p1[1] - p0[1]) * k, p0[2] + (p1[2] - p0[2]) * k];
 };
 
+/** where an actor settles in the shot (the end of their walk): cameras frame this, so walk-ins enter the frame */
+export const restPos = (set: string, a: ActorSpec): V3 => whereOf(set, a.walk ? a.walk.to : a.at);
+
 /** frame ranges of the shots: shot k covers [a, b) */
 export const shotFrames = (sb: Storyboard) => {
   let f = 0;
   return sb.shots.map((s) => { const a = f; f += Math.round(s.dur * FPS); return { a, b: f }; });
 };
 
-/** camera spec -> library move, naming actors instead of coordinates */
+/** camera spec -> library move, naming actors instead of coordinates (framed where they settle) */
 const moveOf = (s: ShotSpec, c: CameraSpec): Move => {
-  const pos = (who: string) => { const a = s.actors.find((x) => x.who === who); if (!a) throw new Error(`camera names "${who}" but no such actor in the shot`); return actorPos(s.set, a, 0); };
+  // the slow "breathing" push of held shots totals at most 8 % of the distance however long the shot, so a fitted
+  // group stays in frame to the last frame
+  const creep = Math.min(0.0022, 0.08 / Math.max(1, Math.round(s.dur * FPS)));
+  const pos = (who: string) => { const a = s.actors.find((x) => x.who === who); if (!a) throw new Error(`camera names "${who}" but no such actor in the shot`); return restPos(s.set, a); };
   const view = (name: string) => { const v = LAYOUTS[s.set].views.find((x) => x.name === name); if (!v) throw new Error(`set ${s.set} has no view "${name}"`); return v; };
   switch (c.move) {
-    case "view": case "establish": return { move: c.move, view: view(c.view) };
-    case "frame": return { move: "frame", marks: c.on.map(pos), size: c.size, from: c.from, height: c.height, roll: c.roll };
+    case "view": return { move: "view", view: view(c.view), creep };
+    case "establish": return { move: "establish", view: view(c.view) };
+    case "frame": return { move: "frame", marks: c.on.map(pos), size: c.size, from: c.from, height: c.height, roll: c.roll, creep };
     case "pushIn": case "pullOut": return { move: c.move, marks: c.on.map(pos), size: c.size, to: c.to, from: c.from, height: c.height };
     case "closeUp": return { move: "closeUp", mark: pos(c.on), from: c.from, punch: c.punch };
     case "lowHero": return { move: "lowHero", mark: pos(c.on), from: c.from };
@@ -106,7 +113,12 @@ export const compile = (sb: Storyboard) => {
       }
       contactShadow(out, cam.sun, shot.light, p[0], p[1], p[2]);
     }
-    for (const fx of s.fx ?? []) { const p = posOf.get(fx.on); if (!p) continue; const c = fxNear(cam, fx.kind, p, t, t0 + fx.t, fx.life ?? 1.6, fx.side ?? 1); if (c) out.fx.push(c); }
+    // effects sit beside the head on the side facing the frame centre (a character right of centre gets it on the left)
+    for (const fx of s.fx ?? []) {
+      const p = posOf.get(fx.on); if (!p) continue;
+      const x = (p[0] - cam.pos.x) * cam.right.x + (p[2] - cam.pos.z) * cam.right.z;
+      const c = fxNear(cam, fx.kind, p, t, t0 + fx.t, fx.life ?? 1.6, fx.side ?? (x > 0 ? -1 : 1)); if (c) out.fx.push(c);
+    }
   };
   return { total, shots, timeline, director };
 };

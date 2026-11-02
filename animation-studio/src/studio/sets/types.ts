@@ -5,7 +5,8 @@ import type { V3 } from "../camera/keys";
 
 /** a designed camera framing (camera position, look point, lens), with suggested lens blur */
 /** establishing = a place / insert shot that frames no actor on purpose */
-export type View = { name: string; pos: V3; look: V3; fov?: number; roll?: number; cInf?: number; focus?: V3; establishing?: boolean };
+/** clearD = how far along the view props are cleared (default: clearOf's maxD); used for storyboard cameras */
+export type View = { name: string; pos: V3; look: V3; fov?: number; roll?: number; cInf?: number; focus?: V3; establishing?: boolean; clearD?: number };
 export type BuiltSet = {
   root: THREE.Object3D;
   /** named actor marks: [x, y (floor height), z] */
@@ -15,4 +16,5 @@ export type BuiltSet = {
   /** per-set sun tweak (degrees, camera-relative az / el) */
   sun?: { az?: number; el?: number };
 };
-export type SetDef = { id: string; title: string; lights: LightName[]; build: () => BuiltSet };
+export type SetDef = { id: string; title: string; lights: LightName[]; /** cams = extra camera positions (a storyboard's shots) whose sight lines the set must keep clear of props */
+  build: (cams?: View[]) => BuiltSet };

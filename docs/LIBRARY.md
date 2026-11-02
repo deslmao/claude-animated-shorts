@@ -1,5 +1,7 @@
 # Studio library: what exists and how to use it
 
+To make a video from these parts, write a storyboard: see [STORYBOARD.md](STORYBOARD.md).
+
 Everything here lives in `animation-studio/src/studio/` and renders on GitHub Actions (no GPU, no downloads).
 The look is the creator's (ink, two-tone light, lens blur, grade): it is never re-designed per video.
 Picture sheets: [`docs/library/characters/`](library/characters) and [`docs/library/sets/`](library/sets).
@@ -91,3 +93,4 @@ Rooms: `buildRoom(root, { w, d, h, floor, wall, lower, openings: [window / door]
 | Lighting | `SetTour` `{ set, mode: "lighting" }` + `python3 scripts/skin_consistency.py out/verify` | the cast's skin colour stays within ±8 % across sets |
 | Determinism | warm tab vs fresh tab PNG compare | chunked cloud renders join without seams |
 | BridgeShort | frames 608 / 1417 vs reference | the creator's original is untouched |
+| Storyboards | `npm run test:story` | every storyboard is valid and its subjects framed in 9:16; deliberate mistakes are caught (see [STORYBOARD.md](STORYBOARD.md)) |

@@ -63,11 +63,15 @@ export const plan = (m: Move, f0: number, f1: number, o: { cut?: boolean; dur?: 
       return k((f) => dolly(c.pos, c.look, creep(f, 0.0015), { fov: 42 }), 0);
     }
     case "overShoulder": {
-      // camera just behind and beside the near character's shoulder, looking at the far one's face
+      // camera behind and beside the near character, solved for the narrow 9:16 frame (~10 deg either side): the near
+      // character's back fills the outer third of the frame (inner edge at x = -0.15), the far character's face sits
+      // at x = +0.25 on the other side. Tiny creep: a push would carry the lens past the near shoulder.
       const s = m.side ?? 1, dx = m.at[0] - m.over[0], dz = m.at[2] - m.over[2], L = Math.hypot(dx, dz) || 1, ux = dx / L, uz = dz / L;
-      const pos: V3 = [m.over[0] - ux * 0.95 - uz * 0.62 * s, m.over[1] + 1.5, m.over[2] - uz * 0.95 + ux * 0.62 * s];
-      const look: V3 = [m.at[0], m.at[1] + 1.45, m.at[2]];
-      return k((f) => dolly(pos, look, creep(f, 0.002), { fov: 36 }), 11, eye(m.at));
+      const fov = 32, tanH = Math.tan((fov * Math.PI) / 360) * (9 / 16), back = 1.35, T = L + back, hw = 0.24, inner = -0.15, jx = 0.25;
+      const off = -jx * T * tanH, lat = (hw - (off * back) / T - inner * back * tanH) / (1 - back / T);
+      const pos: V3 = [m.over[0] - ux * back - uz * lat * s, m.over[1] + 1.5, m.over[2] - uz * back + ux * lat * s];
+      const look: V3 = [m.at[0] - uz * off * s, m.at[1] + 1.45, m.at[2] + ux * off * s];
+      return k((f) => dolly(pos, look, creep(f, 0.0005), { fov }), 11, eye(m.at));
     }
     case "orbit": {
       return k((f) => toShot(fitShot(m.marks, { size: m.size ?? "medium", from: m.fromDeg[0] + (m.fromDeg[1] - m.fromDeg[0]) * clamp01((f - f0) / Math.max(1, f1 - f0)), height: m.height })), DOF_BY_SIZE[m.size ?? "medium"], eye(m.marks[0]));

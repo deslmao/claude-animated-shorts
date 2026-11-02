@@ -5,7 +5,7 @@ import * as THREE from "three";
 import { Environment, sunFor, LightName } from "./environment";
 import { CardLayer, Stage, CamInfo } from "../cards/cards";
 import { SETS, TEST_SETS } from "../sets";
-import type { BuiltSet } from "../sets/types";
+import type { BuiltSet, View } from "../sets/types";
 import { runKeys, Key, meanView, kickAt, withKick, V3 } from "../camera/keys";
 import type { FrameInfo, StudioWorld } from "../look/StudioFilm";
 
@@ -18,11 +18,23 @@ export class SetWorld implements StudioWorld {
   private cards = new CardLayer(this.root);
   private sets = new Map<string, BuiltSet>();
   private suns = new Map<number, THREE.Vector3>();
-  constructor(private shots: WorldShot[], private director: Director) { this.root.add(this.env.root); }
+  /** clearShots: keep every shot's camera path clear of props (storyboard films, whose cameras are solved, not designed) */
+  constructor(private shots: WorldShot[], private director: Director, private opts: { clearShots?: boolean } = {}) { this.root.add(this.env.root); }
 
+  /** this film's camera positions on a set, sampled along each shot's move, as views the set keeps clear of props
+   *  up to just short of what the camera looks at (a lamp post between lens and cast is left out of the build) */
+  private camsOn(id: string): View[] | undefined {
+    if (!this.opts.clearShots) return undefined;
+    const out: View[] = [];
+    for (const s of this.shots) if (s.set === id) for (let i = 0; i <= 4; i++) {
+      const c = runKeys(s.keys, Math.round(s.a + ((s.b - 1 - s.a) * i) / 4)), d = Math.hypot(c.look[0] - c.pos[0], c.look[2] - c.pos[2]);
+      out.push({ name: `shot${s.id}.${i}`, pos: c.pos, look: c.look, fov: c.fov, clearD: Math.max(1, d - 0.9) });
+    }
+    return out;
+  }
   private use(id: string) {
     let s = this.sets.get(id);
-    if (!s) { s = (SETS[id] ?? TEST_SETS[id]).build(); this.sets.set(id, s); this.root.add(s.root); }
+    if (!s) { s = (SETS[id] ?? TEST_SETS[id]).build(this.camsOn(id)); this.sets.set(id, s); this.root.add(s.root); }
     for (const [k, v] of this.sets) v.root.visible = k === id;
     this.env.setSky(s.env.sky !== false, s.env.clouds !== false);
     return s;

@@ -27,8 +27,8 @@ const broken: [string, (sb: Storyboard) => void][] = [
   ["actor not in cast", (sb) => { sb.shots[0].actors[0].who = "zed"; }],
   ["camera on absent actor", (sb) => { sb.shots[1].camera = { move: "closeUp", on: "juno" }; }],
   ["two actors on one mark", (sb) => { sb.shots[0].actors[1].at = sb.shots[0].actors[2].at; }],
-  // the close-up is solved where Gus starts; walking 6 m away during the shot takes his head out of frame
-  ["head out of frame", (sb) => { const g = sb.shots[1].actors.find((a) => a.who === "gus")!; const p = typeof g.at === "string" ? null : g.at; g.walk = { to: p ? [p[0] + 6, p[1], p[2]] : "d", t0: 0.2, t1: 1.6 }; }],
+  // an extreme 0.5 rad dutch tilt on a close two-shot swings a head out of the 9:16 frame
+  ["head out of frame", (sb) => { sb.shots[4].camera = { move: "dutch", on: ["milo", "gus"], size: "close", roll: 0.5 }; }],
 ];
 console.log("\n== validator catches mistakes");
 for (const [name, mutate] of broken) {
