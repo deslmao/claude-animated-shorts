@@ -16,6 +16,10 @@ storyboard (data)  ->  validate (npm run test:story)  ->  compile  ->  Short-<id
 | `animation-studio/src/studio/story/Short.tsx` | the one generic composition used by every storyboard |
 | `animation-studio/src/studio/stories/*.ts` | the storyboards themselves; register each one in `stories/index.ts` |
 
+The first video built this way is the 18-second "yawn" demo: `stories/yawn-demo.ts`, cloud render run 5, release `video-Short-yawn-demo-run5`.
+
+![yawn demo frames](library/storyboard_demo_strip.jpg)
+
 ## Making a new video
 1. Copy `stories/yawn-demo.ts` to a new file and give it a new `id`.
 2. Add it to the `STORIES` list in `stories/index.ts`. It automatically becomes the composition `Short-<id>`.
