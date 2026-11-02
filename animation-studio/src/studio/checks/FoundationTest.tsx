@@ -15,7 +15,7 @@ const FPS = 30, TOTAL = 180;
 type ShotDef = { id: number; a: number; b: number; light: LightName; keys: Key[]; cInf: number };
 const SHOTS: ShotDef[] = [
   { id: 1, a: 0, b: 92, light: "day", cInf: 11, keys: [{ f: 0, s: (f) => dolly([1.6, 1.55, 6.2], [0, 1.25, 0], pushK(f, 0, 0.0025), { fov: 38 }) }] },
-  { id: 2, a: 92, b: TOTAL, light: "golden", cInf: 6, keys: [{ f: 84, s: (f) => dolly([-5.5, 1.0, 4.5], [0, 1.2, -0.5], pushK(f, 84, 0.002), { fov: 40, roll: 0.03 }) }] },
+  { id: 2, a: 92, b: TOTAL, light: "golden", cInf: 6, keys: [{ f: 84, s: (f) => dolly([5.2, 0.9, 3.8], [0, 1.25, -0.2], pushK(f, 84, 0.002), { fov: 40, roll: 0.03 }) }] },
 ];
 const XF = 8;
 const timeline: Timeline = {
