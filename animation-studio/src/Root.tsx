@@ -1,7 +1,9 @@
-import { Composition, staticFile } from "remotion";
+import { Composition, Folder, staticFile } from "remotion";
 import { Scene, myCompSchema } from "./Scene";
 import { getMediaMetadata } from "./helpers/get-media-metadata";
 import { BridgeShort, BRIDGE_FRAMES } from "./videos/bridge/Bridge";
+import { LookCheck, LOOKCHECK_FRAMES } from "./studio/checks/LookCheck";
+import { FoundationTest, FOUNDATION_FRAMES } from "./studio/checks/FoundationTest";
 
 // Welcome to the Remotion Three Starter Kit!
 // Two compositions have been created, showing how to use
@@ -62,6 +64,11 @@ export const RemotionRoot: React.FC = () => {
         width={1080}
         height={1920}
       />
+      {/* Reusable studio library: test compositions (not videos) */}
+      <Folder name="Studio">
+        <Composition id="LookCheck" component={LookCheck} fps={30} durationInFrames={LOOKCHECK_FRAMES} width={1080} height={1920} />
+        <Composition id="FoundationTest" component={FoundationTest} fps={30} durationInFrames={FOUNDATION_FRAMES} width={1080} height={1920} />
+      </Folder>
     </>
   );
 };
