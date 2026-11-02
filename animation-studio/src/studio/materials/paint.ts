@@ -25,8 +25,8 @@ export const ctex = (key: string, w: number, h: number, draw: (g: CanvasRenderin
 export const rep = (t: THREE.Texture, x: number, y: number) => {
   const c = t.clone(); c.repeat.set(x, y); c.needsUpdate = true; return c;
 };
-const pick = <T,>(r: () => number, a: T[]) => a[Math.floor(r() * a.length) % a.length];
-const INKL = "rgba(40,30,40,0.85)";
+export const pick = <T,>(r: () => number, a: T[]) => a[Math.floor(r() * a.length) % a.length];
+export const INKL = "rgba(40,30,40,0.85)";
 const _jc = new THREE.Color(), _hsl = { h: 0, s: 0, l: 0 };
 /** per-tile colour jitter in sRGB HSL: lightness x(1 +- dv), hue +- dh degrees, saturation x(1 +- ds) -> css hex.
  *  (MAT pass: reviewer saw tiled brick / cobbles / blocks; about +-10 % per tile breaks the repetition) */
@@ -205,26 +205,26 @@ export const facade = (key: string, wm: number, hm: number, o: { wall: string; s
   });
 
 // ---------------- HD painters (textures.md 5.1, from compare/textures/proto/paint_recipe.ts) ----------------
-type R = () => number;
-type G = CanvasRenderingContext2D;
-const U = (r: R, a: number, b: number) => a + (b - a) * r();
-const TAU = Math.PI * 2;
+export type R = () => number;
+export type G = CanvasRenderingContext2D;
+export const U = (r: R, a: number, b: number) => a + (b - a) * r();
+export const TAU = Math.PI * 2;
 
 /** run fn at x and again one tile over when [x, x + w] crosses the left / right edge (seamless repeat in x) */
-const wrapX = (W: number, x: number, w: number, fn: (x: number) => void) => {
+export const wrapX = (W: number, x: number, w: number, fn: (x: number) => void) => {
   fn(x);
   if (x + w > W) fn(x - W);
   if (x < 0) fn(x + W);
 };
 /** same for a scattered mark of radius rad, in x and y */
-const wrap2 = (W: number, H: number, x: number, y: number, rad: number, fn: (x: number, y: number) => void) => {
+export const wrap2 = (W: number, H: number, x: number, y: number, rad: number, fn: (x: number, y: number) => void) => {
   for (const ox of [0, -W, W]) for (const oy of [0, -H, H]) {
     const X = x + ox, Y = y + oy;
     if (X + rad > 0 && X - rad < W && Y + rad > 0 && Y - rad < H) fn(X, Y);
   }
 };
 /** rounded-rectangle path */
-const rr = (g: G, x: number, y: number, w: number, h: number, k: number) => {
+export const rr = (g: G, x: number, y: number, w: number, h: number, k: number) => {
   k = Math.max(0, Math.min(k, w / 2, h / 2));
   g.beginPath();
   g.moveTo(x + k, y);
@@ -233,7 +233,7 @@ const rr = (g: G, x: number, y: number, w: number, h: number, k: number) => {
   g.closePath();
 };
 /** soft elliptical blotch (radial gradient) stretched sx along x */
-const blotch = (g: G, x: number, y: number, rad: number, sx: number, rgb: string, a: number) => {
+export const blotch = (g: G, x: number, y: number, rad: number, sx: number, rgb: string, a: number) => {
   g.save(); g.translate(x, y); g.scale(sx, 1);
   const gr = g.createRadialGradient(0, 0, 0, 0, 0, rad);
   gr.addColorStop(0, `rgba(${rgb},${a})`); gr.addColorStop(1, `rgba(${rgb},0)`);
@@ -241,7 +241,7 @@ const blotch = (g: G, x: number, y: number, rad: number, sx: number, rgb: string
   g.restore();
 };
 /** long, soft wood-grain stroke along +x; random offsets drawn once so the wrapped copy matches */
-const grain = (g: G, r: R, W: number, x: number, y: number, len: number, amp: number, lw: number, col: string) => {
+export const grain = (g: G, r: R, W: number, x: number, y: number, len: number, amp: number, lw: number, col: string) => {
   const n = Math.max(2, Math.round(len / 180));
   const dy = Array.from({ length: n + 1 }, () => (r() - 0.5) * 2 * amp);
   wrapX(W, x, len, (xx) => {
@@ -255,7 +255,7 @@ const grain = (g: G, r: R, W: number, x: number, y: number, len: number, amp: nu
   });
 };
 /** nail / bolt head with a small painted glint (ref: dark dots with a white catch-light) */
-const nail = (g: G, x: number, y: number, rad: number, col = "#3a2212") => {
+export const nail = (g: G, x: number, y: number, rad: number, col = "#3a2212") => {
   g.fillStyle = col; g.beginPath(); g.arc(x, y, rad, 0, TAU); g.fill();
   g.fillStyle = "rgba(255,240,215,0.55)"; g.beginPath(); g.arc(x - rad * 0.32, y - rad * 0.32, rad * 0.36, 0, TAU); g.fill();
 };

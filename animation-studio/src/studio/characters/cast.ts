@@ -51,9 +51,9 @@ const pick = <T,>(r: (k: number) => number, k: number, a: readonly T[]) => a[Mat
 /** a deterministic background person: same i + era = same person every frame and every render */
 export const extra = (i: number, era: Era = "modern"): Look => {
   const r = rndOf(i + 1);
-  const build: Build = pick(r, 1, ["adult", "adult", "adult", "tall", "stout", "adult"] as const);
+  const build: Build = pick(r, 1, ["adult", "adult", "tall", "stout", "lanky", "petite", "big", "adult", "petite"] as const);
   const fem = r(2) < 0.5;
-  const hair: HairStyle = fem ? pick(r, 3, ["bob", "long", "bun", "ponytail", "curly", "side"] as const) : pick(r, 3, ["short", "side", "buzz", "curly", "bald", "short"] as const);
+  const hair: HairStyle = fem ? pick(r, 3, ["bob", "long", "bun", "ponytail", "curly", "side", "afro", "topknot"] as const) : pick(r, 3, ["short", "side", "buzz", "curly", "bald", "short", "afro", "receding"] as const);
   const base: Look = {
     name: `extra${i}`, build, skin: pick(r, 4, SKINS), seed: 10 + (i % 7),
     hair: { style: hair, color: hair === "bald" ? "#000000" : pick(r, 5, HAIRC) },

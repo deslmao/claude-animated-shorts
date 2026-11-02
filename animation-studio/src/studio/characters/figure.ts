@@ -13,15 +13,18 @@ import {
 } from "./toon";
 
 // ---------------- recipe ----------------
-export type Build = "adult" | "tall" | "stout" | "kid";
+export type Build = "adult" | "tall" | "stout" | "kid" | "lanky" | "petite" | "big";
 /** head half-width a, torso and legs in head-heights (HH), torso width in head widths (W) */
 export const BUILDS: Record<Build, { a: number; torso: number; legs: number; tw: number; egg: number }> = {
   adult: { a: 118, torso: 1.1, legs: 1.4, tw: 0.8, egg: 0.12 },   // 3.5 HH (measured)
   tall: { a: 116, torso: 1.12, legs: 1.55, tw: 0.7, egg: 0.08 },  // 3.67 HH, slimmer
   stout: { a: 120, torso: 1.15, legs: 1.3, tw: 0.98, egg: 0.2 },  // 3.45 HH, round belly
   kid: { a: 112, torso: 0.85, legs: 1.0, tw: 0.72, egg: 0.12 },   // 2.85 HH
+  lanky: { a: 110, torso: 1.18, legs: 1.66, tw: 0.6, egg: 0.06 },  // 3.84 HH, thin and tall (extras)
+  petite: { a: 112, torso: 0.98, legs: 1.22, tw: 0.7, egg: 0.12 }, // 3.2 HH, short adult (extras)
+  big: { a: 124, torso: 1.2, legs: 1.26, tw: 1.1, egg: 0.24 },     // 3.46 HH, broad (extras)
 };
-export type HairStyle = "tuft" | "bob" | "horseshoe" | "short" | "side" | "long" | "bun" | "ponytail" | "curly" | "spiky" | "buzz" | "bald";
+export type HairStyle = "tuft" | "bob" | "horseshoe" | "short" | "side" | "long" | "bun" | "ponytail" | "curly" | "spiky" | "buzz" | "bald" | "afro" | "topknot" | "receding";
 export type TopStyle = "hoodie" | "turtleneck" | "shirt" | "tee" | "sweater" | "dress";
 export type LayerStyle = "labcoat" | "waistcoat" | "blazer" | "cardigan" | "apron";
 export type HatStyle = "cap" | "beanie" | "tophat" | "bowler" | "hardhat";
@@ -193,17 +196,13 @@ const cutCap = (hp: P2[], keep: (x: number, y: number) => boolean, cx: number, h
 /** hair parts that sit BEHIND the head (bob back, long hair, bun, ponytail) */
 const hairBack = (p: Pen, L: Look, H: Blob, cx: number, hc: number, light: number, thick: number, ow: number, side: boolean, chin: number) => {
   const s = L.hair.style, col = L.hair.color, sh = mul(col, SH_FELT), u = H.a / 50;
-  if (s === "horseshoe") {
-    // fluffy tufts that stick out from BEHIND the head above the ears (Gus); the head covers their inner half
-    for (const sd of side ? [-1] : [-1, 1]) {
-      const x = cx + sd * H.a * (side ? 0.75 : 0.98) - (side ? 8 * u : 0), y = hc - 0.04 * H.b * 2;
-      const pts: P2[] = [];
-      for (let i = 0; i <= 48; i++) {
-        const t = rad((360 * i) / 48), r = 15 * u * (1 + 0.16 * Math.max(0, Math.cos(3 * t)) * (sd * Math.cos(t) > 0 ? 1 : 0));
-        pts.push([x + Math.cos(t) * r * 1.05, y + Math.sin(t) * r * 0.95]);
-      }
-      p.shadedFill(pts, col, sh, light, 15 * u, 0.35); p.inkRing(pts, ow * 0.8, thick);
-    }
+  if (s === "afro") {
+    // big rounded cloud of curls behind the head
+    const pts: P2[] = [];
+    for (let i = 0; i <= 60; i++) { const t = (i / 60) * Math.PI * 2, r = H.a * 1.32 * (1 + 0.05 * Math.abs(Math.sin(5 * t))); pts.push([cx - (side ? 14 * u : 0) + Math.cos(t) * r, hc - 0.18 * H.b + Math.sin(t) * r * 0.92]); }
+    p.shadedFill(pts, col, sh, light, H.a * 1.3); p.inkRing(pts, ow * 0.85, thick);
+  } else if (s === "topknot") {
+    p.ell(cx - (side ? 18 * u : 0), hc - H.b * 1.08, 15 * u, 13 * u, col, ow * 0.85);
   } else if (s === "bob") {
     const bb = blobPts(cx - (side ? 10 * u : 0), hc + 0.12 * H.b, { ...H, a: H.a * 1.15, b: H.b * 1.06, egg: 0.02, asym: 0, nBot: 4, seed: H.seed + 3 });
     p.shadedFill(bb, col, sh, light, H.a * 1.15); p.inkRing(bb, ow * 0.85, thick);
@@ -226,8 +225,38 @@ const hairFront = (p: Pen, L: Look, hp: P2[], H: Blob, cx: number, hc: number, l
   const fill = (pts: P2[]) => { p.shadedFill(pts, col, sh, light, H.a, 0.35); p.poly(pts, null, ow * 0.85); };
   const fs = side ? 1 : facing || 1;
   if (s === "bald") return;
-  if (s === "horseshoe") {
-    return; // tufts are drawn behind the head in hairBack
+  if (s === "horseshoe" || s === "receding") {
+    // hair that hugs the skull: a band following the head contour from the temple down past the ear, with a soft
+    // fluffy outer edge (Gus). Front view: both sides; side view: around the back of the head to the nape.
+    const n = hp.length, bands: P2[][] = [];
+    const inBand = (x: number, y: number, sd: number) => side ? x < cx - 0.15 * H.a && y > hc - 0.42 * H.b && y < hc + 0.5 * H.b
+      : sd * (x - cx) > (s === "receding" ? 0.35 : 0.5) * H.a && y > hc - (s === "receding" ? 0.75 : 0.5) * H.b && y < hc + 0.5 * H.b;
+    for (const sd of side ? [-1] : [-1, 1]) {
+      const idx: number[] = [];
+      for (let i = 0; i < n; i++) if (inBand(hp[i][0], hp[i][1], sd)) idx.push(i);
+      if (idx.length < 3) continue;
+      // keep a contiguous run (the contour wraps around index 0)
+      const start = idx.find((i) => !idx.includes((i + n - 1) % n)) ?? idx[0];
+      const run: number[] = []; for (let k = 0, i = start; k < n && inBand(hp[i][0], hp[i][1], sd); k++, i = (i + 1) % n) run.push(i);
+      const outer: P2[] = [], inner: P2[] = [];
+      run.forEach((i, k) => {
+        const [x, y] = hp[i], dx = x - cx, dy = y - hc, l = Math.hypot(dx, dy) || 1, t = k / Math.max(1, run.length - 1);
+        // slim band (thickest at the ear), outer edge broken into small curls, tucked inside the head outline
+        const taper = Math.sin(Math.PI * Math.min(1, Math.max(0, t))) ** 0.8, curl = Math.max(0, Math.sin(k * 1.9)) * 4.5 * u;
+        const out = (3 * u + curl) * taper + 0.5 * u, inn = 9 * u * taper;
+        outer.push([x + (dx / l) * out, y + (dy / l) * out]);
+        inner.push([x - (dx / l) * inn, y - (dy / l) * inn]);
+      });
+      bands.push([...outer, ...inner.reverse()]);
+    }
+    for (const bp of bands) {
+      p.shadedFill(bp, col, sh, light, H.a * 0.4, 0.3); p.poly(bp, null, ow * 0.65);
+      // a few strand lines along the band so it reads as hair, not a pad
+      const m2 = Math.floor(bp.length / 2);
+      for (const f of [0.3, 0.5, 0.7]) { const i = Math.floor(m2 * f), o = bp[i], q = bp[bp.length - 1 - i]; p.stroke([[o[0] * 0.6 + q[0] * 0.4, o[1] * 0.6 + q[1] * 0.4], [o[0] * 0.25 + q[0] * 0.75, o[1] * 0.25 + q[1] * 0.75 + 4 * u]], 1.3 * u, mul(col, [0.75, 0.75, 0.8])); }
+    }
+    if (s === "receding" && !side) { const cap = cutCap(hp, (x, y) => y < hc - 0.8 * H.b && Math.abs(x - cx) > 0.25 * H.a, cx, hc, 1.03); if (cap.length > 2) fill(cap); }
+    return;
   }
   if (s === "bob") {
     // straight fringe over the brow line
@@ -242,7 +271,7 @@ const hairFront = (p: Pen, L: Look, hp: P2[], H: Blob, cx: number, hc: number, l
     return;
   }
   // hairline stays ABOVE the brows (brows reach hc - 0.62 b when raised): forehead always free for acting
-  const cutY = crown + ({ tuft: 0.19, short: 0.2, side: 0.21, long: 0.2, bun: 0.19, ponytail: 0.19, curly: 0.2, spiky: 0.18, buzz: 0.16 } as Record<string, number>)[s] * HH;
+  const cutY = crown + ({ tuft: 0.19, short: 0.2, side: 0.21, long: 0.2, bun: 0.19, ponytail: 0.19, curly: 0.2, spiky: 0.18, buzz: 0.16, afro: 0.2, topknot: 0.17 } as Record<string, number>)[s] * HH;
   const keep = (x: number, y: number) => y < cutY || (side && (s === "long" || s === "side" || s === "short") && x < cx - 6 * u && y < hc + 0.42 * H.b);
   let cap = cutCap(hp, keep, cx, hc, s === "curly" ? 1.08 : s === "buzz" ? 1.01 : 1.03);
   if (cap.length < 3) return;

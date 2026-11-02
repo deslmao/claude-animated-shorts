@@ -12,7 +12,7 @@ export type LightPreset = {
   sunCol: string; sunI: number; sky: string; ground: string; hemiI: number;         // three lights (unpatched mats only)
   bias: number; normalBias: number;
 };
-export const LIGHTS: Record<"day" | "golden", LightPreset> = {
+export const LIGHTS: Record<"day" | "golden" | "interior", LightPreset> = {
   day: {
     az: 75, el: 48,
     lit: [1.58, 1.5, 1.33], shade: [0.3, 0.29, 0.36], lift: [0.05, 0.06, 0.11], lambert: 0.35, sideK: 0.84, term: 0.2,
@@ -31,6 +31,19 @@ export const LIGHTS: Record<"day" | "golden", LightPreset> = {
     sunCol: "#ffab5e", sunI: 5.5, sky: "#d8b0b8", ground: "#8a6a60", hemiI: 0.5,
     bias: -0.0006, normalBias: 0.03,
   },
+  // Stage 1C: rooms. A warm key from behind the camera's shoulder (camera-relative az 140 / el 42: walls facing the
+  // lens are lit; a backlight left them lilac-grey, the creator's warning), softer and warmer shade than outdoors
+  // (no blue sky fill indoors), characters slightly warm. Walls do not cast shadows (sets build them with cast off),
+  // so the key lights the floor and props and gives every prop a grounded contact shadow.
+  interior: {
+    az: 140, el: 42,
+    lit: [1.42, 1.3, 1.12], shade: [0.62, 0.53, 0.52], lift: [0.08, 0.06, 0.06], lambert: 0.3, sideK: 0.88, term: 0.25,
+    charTint: [1.0, 0.95, 0.9], charShade: 0.9, charGrad: 0.07, bodyGrad: 0.2, sideTint: [0.93, 0.9, 0.95],
+    blob: [0.62, 0.58, 0.58], actorShadow: false,
+    top: "#3e7fd2", hor: "#b8d0ec", skyCurve: [0.0, 0.5, 0.6], fog: "#efe2cc", fogNear: 60, fogFar: 900, sunDisc: "#000000",
+    sunCol: "#fff0d8", sunI: 2.6, sky: "#f3e6d0", ground: "#b49a78", hemiI: 0.55,
+    bias: -0.0003, normalBias: 0.012,
+  },
 };
 
 /** world-only look per light (sky stops by elevation in degrees, river colours, cloud palette). All colours are
@@ -42,7 +55,7 @@ export type WorldLook = {
   sat: number;                                                // shade.ts uSat: world albedo saturation (1 = as painted)
   cloud: { lit: string; mid: string; shade: string };
 };
-export const LOOK: Record<"day" | "golden", WorldLook> = {
+export const LOOK: Record<"day" | "golden" | "interior", WorldLook> = {
   day: {
     // depth.md 2.2: horizon #9fb6e6 just above the skyline, upper sky #5e93d9 at ~20 deg (grade: frame top #5997e2)
     sky: { c: ["#b8d0ec", "#9cbfea", "#6a9fe0", "#4f8cdb", "#3373cc"], e: [0, 3, 8, 16, 40] },
@@ -59,5 +72,12 @@ export const LOOK: Record<"day" | "golden", WorldLook> = {
     cloud: { lit: "#ffd2a8", mid: "#f2a08f", shade: "#a98fc4" },
     bounce: [0.04, 0.02, 0.0],
     sat: 1.1,
+  },
+  interior: {
+    sky: { c: ["#b8d0ec", "#9cbfea", "#6a9fe0", "#4f8cdb", "#3373cc"], e: [0, 3, 8, 16, 40] },
+    water: { near: "#22a7b6", mid: "#167fb2", far: "#1a5596", crest: "#7ddfe8", trough: "#0e4a80", glint: "#ffffff", shade: [0.5, 0.56, 0.72] },
+    cloud: { lit: "#fbf8f1", mid: "#e1e5f3", shade: "#c3cbe9" },
+    bounce: [0.03, 0.02, 0.0],
+    sat: 1.05,
   },
 };
