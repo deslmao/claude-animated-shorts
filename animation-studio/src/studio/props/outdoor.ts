@@ -4,7 +4,7 @@
 import * as THREE from "three";
 import { Batch, V, lam, quad, tri, boxGeo } from "../materials/geo";
 import { brick, rep, facadeHD, roofHD, stoneHD, planksHD } from "../materials/paint";
-import { modernFacadeHD, fabricHD } from "../materials/paint2";
+import { modernFacadeHD, fabricHD, shopInteriorHD } from "../materials/paint2";
 import { At, frame, col, tex, glow, box, rbox, cyl, sph, lathe } from "./kit";
 
 // ---------------- street ----------------
@@ -166,4 +166,31 @@ export const fountain = (b: Batch, a: At) => {
   lathe(b, stone, m, 0, 0, 0, [[2.0, 0], [2.0, 0.55], [1.75, 0.55], [1.75, 0.4]], 32);
   b.add(new THREE.CircleGeometry(1.76, 32).rotateX(-Math.PI / 2).translate(0, 0.42, 0), col("#3a9fbf"), m);
   lathe(b, stone, m, 0, 0.4, 0, [[0.3, 0], [0.2, 0.9], [0.8, 1.1], [0.8, 1.2], [0.2, 1.25], [0.12, 1.8], [0.25, 1.9], [0.05, 2.1]], 22);
+};
+
+/** a detailed 3D shopfront for close / medium shots, built against a facade (front faces local +z): framed shop
+ *  window with a painted lit interior, door, striped awning, sign board, a cafe table + chairs and planters */
+export const shopfront = (b: Batch, a: At, w = 7, kind: "cafe" | "books" | "grocer" = "cafe", c = "#2f5f6a", awn = "#c0353a", treeFn?: (b: Batch, x: number, y: number, z: number, h: number, seed: number) => void) => {
+  const m = frame(a), frameC = col(c), trimC = col("#f2ead8"), inside = glow("shopin" + kind, () => ({ map: shopInteriorHD(kind) }));
+  const hw = w / 2;
+  box(b, col("#9a948c"), m, -hw, hw, 0, 0.5, 0, 0.12);                                   // stall riser
+  for (const [x0, x1] of [[-hw + 0.3, 0.6], [1.9, hw - 0.3]]) {                          // two windows
+    b.add(new THREE.PlaneGeometry(x1 - x0, 2.3).translate((x0 + x1) / 2, 1.65, 0.05), inside, m);
+    for (const [a0, a1, b0, b1] of [[x0 - 0.12, x0, 0.5, 2.92], [x1, x1 + 0.12, 0.5, 2.92], [x0 - 0.12, x1 + 0.12, 2.8, 2.95], [x0 - 0.12, x1 + 0.12, 0.42, 0.52]]) box(b, frameC, m, a0, a1, b0, b1, 0.0, 0.16);
+    for (let x = x0 + (x1 - x0) / 3; x < x1 - 0.05; x += (x1 - x0) / 3) box(b, frameC, m, x - 0.03, x + 0.03, 0.5, 2.8, 0.06, 0.12);
+  }
+  b.add(new THREE.PlaneGeometry(1.1, 2.45).translate(1.25, 1.25, 0.04), inside, m);       // glazed door
+  for (const [a0, a1, b0, b1] of [[0.6, 0.72, 0, 2.6], [1.78, 1.9, 0, 2.6], [0.6, 1.9, 2.48, 2.6], [0.6, 1.9, 1.05, 1.13]]) box(b, frameC, m, a0, a1, b0, b1, 0.0, 0.14);
+  rbox(b, col(c), m, 0, 3.15, 0.12, w + 0.2, 0.75, 0.2, 0.04);                          // sign board
+  for (let k = 0; k < 4; k++) rbox(b, trimC, m, -0.9 + k * 0.6, 3.32, 0.23, 0.42, 0.42, 0.03, 0.1); // painted letters (no words)
+  // awning: striped, sloping out over the pavement, scalloped hem
+  const aw = tex("awnS" + awn, () => fabricHD(awn), 1, 1), stripe = col("#f2ead8");
+  const N = Math.round(w / 0.5);
+  for (let i = 0; i < N; i++) { const x0 = -hw + (i * w) / N, x1 = x0 + w / N; b.add(quad(V(x0, 2.62, 1.5), V(x1, 2.62, 1.5), V(x1, 3.05, 0.2), V(x0, 3.05, 0.2)), i % 2 ? stripe : aw, m); b.add(tri(V(x0, 2.62, 1.5), V(x1, 2.62, 1.5), V((x0 + x1) / 2, 2.45, 1.52)), i % 2 ? stripe : aw, m); }
+  // pavement dressing
+  const ct = frame({ x: a.x + Math.sin(a.yaw ?? 0) * 1.3 - Math.cos(a.yaw ?? 0) * 2.4, z: a.z + Math.cos(a.yaw ?? 0) * 1.3 + Math.sin(a.yaw ?? 0) * 2.4, y: a.y, yaw: a.yaw });
+  cyl(b, col("#3d4a52"), ct, 0, 0, 0, 0.25, 0.25, 0.03, 16); cyl(b, col("#3d4a52"), ct, 0, 0, 0, 0.03, 0.03, 0.72, 8); cyl(b, col("#efe6d4"), ct, 0, 0.72, 0, 0.36, 0.36, 0.04, 20);
+  lathe(b, col("#f1e6cf"), ct, 0.1, 0.76, 0.05, [[0.04, 0], [0.05, 0.08]], 12);
+  for (const s of [-1, 1]) { box(b, col("#3d4a52"), ct, s * 0.55 - 0.2, s * 0.55 + 0.2, 0.44, 0.48, -0.2, 0.2); box(b, col("#3d4a52"), ct, s * 0.55 + s * 0.18 - 0.02, s * 0.55 + s * 0.18 + 0.02, 0.48, 0.9, -0.2, 0.2); for (const z of [-0.17, 0.17]) box(b, col("#3d4a52"), ct, s * 0.55 - 0.02, s * 0.55 + 0.02, 0, 0.44, z - 0.02, z + 0.02); }
+  for (const x of [-hw + 0.15, hw - 0.15]) { rbox(b, col("#c8643f"), m, x, 0, 0.45, 0.5, 0.55, 0.5, 0.05); const wx = a.x + Math.cos(a.yaw ?? 0) * x + Math.sin(a.yaw ?? 0) * 0.45, wz = a.z - Math.sin(a.yaw ?? 0) * x + Math.cos(a.yaw ?? 0) * 0.45; treeFn?.(b, wx, (a.y ?? 0) + 0.5, wz, 1.0, x * 9); }
 };

@@ -86,9 +86,9 @@ export const fabricHD = (col: string) => ctex("fab" + col, 512, 512, (g, r) => {
   g.globalAlpha = 0.05; g.fillStyle = "#ffffff"; for (let y = 0; y < 512; y += 4) g.fillRect(0, y, 512, 1); g.fillStyle = "#000000"; for (let x = 0; x < 512; x += 4) g.fillRect(x, 0, 1, 512); g.globalAlpha = 1;
 });
 /** tarmac road, 1024 px = 4 m: dark warm grey (never black), aggregate speckle, patches and cracks */
-export const asphaltHD = () => ctex("asphalt", 1024, 1024, (g, r) => {
-  g.fillStyle = "#5d5a60"; g.fillRect(0, 0, 1024, 1024);
-  tone(g, r, 1024, 1024, 22, "150,145,150", "40,38,45", 0.18, 60, 220);
+export const asphaltHD = () => ctex("asphalt2", 1024, 1024, (g, r) => {
+  g.fillStyle = "#77716f"; g.fillRect(0, 0, 1024, 1024);
+  tone(g, r, 1024, 1024, 22, "170,160,150", "60,52,50", 0.18, 60, 220);
   speckle(g, r, 1024, 1024, 5000, ["rgba(190,185,190,0.35)", "rgba(30,28,34,0.35)", "rgba(140,130,125,0.3)"], 0.8, 2.2);
   for (let i = 0; i < 3; i++) { rr(g, U(r, 0, 900), U(r, 0, 900), U(r, 120, 260), U(r, 80, 200), 18); g.fillStyle = "rgba(50,48,55,0.35)"; g.fill(); }
   g.strokeStyle = "rgba(35,32,38,0.55)"; g.lineWidth = 2.5; g.lineCap = "round";
@@ -200,7 +200,8 @@ export const modernFacadeHD = (key: string, wm: number, hm: number, o: { wall: s
       const y0 = H - m(4);
       g.fillStyle = o.sign; g.fillRect(0, y0, W, m(0.9));
       g.fillStyle = "rgba(255,255,255,0.85)"; for (let k = 0; k < 5; k++) rr(g, W * 0.25 + k * m(0.55), y0 + m(0.25), m(0.4), m(0.4), m(0.08)), g.fill();
-      g.fillStyle = o.trim; g.fillRect(0, y0 + m(0.9), W, H - y0);
+      g.fillStyle = jit(r, o.wall, 0.06, 2, 0.05); g.fillRect(0, y0 + m(0.9), W, H - y0);
+      g.fillStyle = o.trim; g.fillRect(0, H - m(0.25), W, m(0.25));
       glass(m(0.4), y0 + m(1.2), W * 0.55, m(2.5));
       const dx = W * 0.62 + m(0.3); glass(dx, y0 + m(1.0), m(1.2), m(3.0)); g.fillStyle = o.trim; g.fillRect(dx + m(0.58), y0 + m(1.0), m(0.05), m(3.0));
       g.fillStyle = "rgba(240,220,160,0.6)"; for (let k = 0; k < 4; k++) g.fillRect(m(0.7) + k * m(0.9), y0 + m(2.6), m(0.6), m(0.9)); // goods in the window
@@ -257,4 +258,18 @@ export const ceilingTilesHD = (c: string) => ctex("ceilt" + c, 1024, 1024, (g, r
   g.fillStyle = "rgba(255,252,240,0.95)"; for (const [i, j] of [[1, 2], [5, 2], [1, 5], [5, 5], [3, 7]]) { g.fillRect(i * 128 + 6, j * 128 + 6, 244, 116); }
   g.strokeStyle = "rgba(120,110,95,0.55)"; g.lineWidth = 6; for (let x = 0; x <= 1024; x += 128) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, 1024); g.stroke(); g.beginPath(); g.moveTo(0, x); g.lineTo(1024, x); g.stroke(); }
   const back = g.createLinearGradient(0, 1024, 0, 640); back.addColorStop(0, "rgba(90,70,50,0.25)"); back.addColorStop(1, "rgba(90,70,50,0)"); g.fillStyle = back; g.fillRect(0, 640, 1024, 384);
+});
+
+/** lit shop interior seen through a window: warm back wall, shelves with goods, a counter (unlit material) */
+export const shopInteriorHD = (kind: "cafe" | "books" | "grocer" = "cafe") => ctex("shopin" + kind, 1024, 768, (g, r) => {
+  const gr = g.createLinearGradient(0, 0, 0, 768); gr.addColorStop(0, "#f6dca8"); gr.addColorStop(1, "#e5b77a"); g.fillStyle = gr; g.fillRect(0, 0, 1024, 768);
+  for (let k = 0; k < 3; k++) {
+    const y = 140 + k * 150; g.fillStyle = "#8a5a3c"; g.fillRect(40, y, 944, 14);
+    let x = 60; while (x < 960) { const w = kind === "books" ? U(r, 18, 34) : U(r, 40, 70), h = kind === "books" ? U(r, 70, 110) : U(r, 40, 80);
+      g.fillStyle = pick(r, kind === "grocer" ? ["#e2453c", "#f4b23a", "#7ab65e", "#9b4ad8"] : kind === "books" ? ["#8c3b4a", "#2f5f6a", "#c9a24e", "#3f6fb5", "#5d7a3a"] : ["#f1e6cf", "#c8643f", "#3f6fb5", "#e9c46a"]);
+      if (kind === "cafe") { g.beginPath(); g.ellipse(x + w / 2, y - h / 2, w / 2.4, h / 2, 0, 0, TAU); g.fill(); } else g.fillRect(x, y - h, w - 4, h);
+      x += w + U(r, 4, 14); }
+  }
+  g.fillStyle = "#6e4b33"; g.fillRect(0, 560, 1024, 208); g.fillStyle = "#8a5a3c"; g.fillRect(0, 548, 1024, 24);
+  if (kind === "cafe") { for (const x of [200, 520, 820]) { g.fillStyle = "#fff4d6"; g.beginPath(); g.arc(x, 60, 26, 0, TAU); g.fill(); g.fillStyle = "rgba(255,240,200,0.25)"; g.beginPath(); g.arc(x, 90, 90, 0, TAU); g.fill(); } }
 });

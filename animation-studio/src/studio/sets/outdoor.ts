@@ -5,10 +5,11 @@ import { Batch, V, lam, quad, tri, quadUp, boxGeo } from "../materials/geo";
 import { grassHD, cobbleHD, stoneHD, roofHD } from "../materials/paint";
 import { asphaltHD, pavementHD, dirtHD, concreteHD } from "../materials/paint2";
 import { tex, col, box, decal, cyl, frame } from "../props/kit";
-import { streetLamp, bench, bin, hydrant, trafficLight, car, busStop, planterTree, signPost, mailbox, modernBuilding, house, marketStall, barrel, crate, cart, well, lanternPost, fountain } from "../props/outdoor";
+import { streetLamp, bench, bin, hydrant, trafficLight, car, busStop, planterTree, signPost, mailbox, modernBuilding, shopfront, house, marketStall, barrel, crate, cart, well, lanternPost, fountain } from "../props/outdoor";
 import { tree, rock, log, stump, flowers, tufts, mushroom, fence } from "../props/nature";
 import { rng } from "../materials/paint";
-import { SetDef } from "./types";
+import { SetDef, View } from "./types";
+import { clearOf } from "./clear";
 
 const PAL = [
   { wall: "#d98f6a", trim: "#f2ead8", sign: "#2f5f6a", awning: "#c0353a" }, { wall: "#e7d3a8", trim: "#5d6470", sign: "#c0353a", awning: "#2f6a43" },
@@ -21,6 +22,13 @@ export const CITY: SetDef = {
   id: "city", title: "Modern city street", lights: ["day", "golden"],
   build: () => {
     const root = new THREE.Group(), b = new Batch(), r = rng(21);
+    const views: View[] = [
+      { name: "down the street", pos: [8, 1.7, 0.6], look: [-30, 3.5, -1.5], fov: 46 },
+      { name: "storefront", pos: [0.4, 1.5, -0.6], look: [0.1, 1.85, -7.6], fov: 42, cInf: 9, focus: [-0.9, 1.7, -5.7] },
+      { name: "crossing high", pos: [20, 6.5, 6], look: [5, 1.2, -4], fov: 46 },
+      { name: "low hero", pos: [-0.5, 0.9, -3.3], look: [-0.9, 2.0, -5.7], fov: 38, cInf: 12, roll: -0.04 },
+    ];
+    const ok = (x: number, z: number, rad = 0.5) => clearOf(views, x, z, rad);
     // road along x (z -4..4), raised pavements to z +-7.6, buildings beyond
     b.add(quadUp(-260, 260, -4, 4, 130, 2), tex("asphalt", asphaltHD, 1, 1));
     for (const s of [-1, 1]) {
@@ -43,24 +51,21 @@ export const CITY: SetDef = {
     }
     // street furniture on both pavements
     for (const s of [-1, 1]) for (let x = -60; x <= 60; x += 12) {
-      streetLamp(b, { x, z: s * 4.55, y: 0.15, yaw: s < 0 ? 0 : Math.PI });
-      if (Math.abs(x) % 24 === 0) planterTree(b, { x: x + 6, z: s * 5.0, y: 0.15 }, 4.8, x + s * 7, (bb, X, Y, Z, H, sd) => tree(bb, "round", X, Y, Z, H, sd, 0));
+      if (ok(x, s * 4.55)) streetLamp(b, { x, z: s * 4.55, y: 0.15, yaw: s < 0 ? 0 : Math.PI });
+      if (Math.abs(x) % 24 === 0 && ok(x + 6, s * 5.0, 1.4)) planterTree(b, { x: x + 6, z: s * 5.0, y: 0.15 }, 4.8, x + s * 7, (bb, X, Y, Z, H, sd) => tree(bb, "round", X, Y, Z, H, sd, 0));
     }
-    bench(b, { x: -3.5, z: -6.9, y: 0.15 }); bin(b, { x: -1.6, z: -7.1, y: 0.15 }); hydrant(b, { x: 3.4, z: -4.6, y: 0.15 });
-    busStop(b, { x: -14, z: -6.6, y: 0.15 }); trafficLight(b, { x: 9.6, z: -4.6, y: 0.15, yaw: 0 }); trafficLight(b, { x: 14.4, z: 4.6, y: 0.15, yaw: Math.PI });
-    mailbox(b, { x: 6.5, z: -7.0, y: 0.15 }); signPost(b, { x: -8, z: -4.6, y: 0.15 }, "#3f6fb5");
-    car(b, { x: -9, z: -2.5, yaw: Math.PI / 2 }, "#d2603a"); car(b, { x: 22, z: -2.4, yaw: Math.PI / 2 }, "#3f6fb5");
-    car(b, { x: 4, z: 2.5, yaw: -Math.PI / 2 }, "#e9c46a"); car(b, { x: -24, z: 2.4, yaw: -Math.PI / 2 }, "#5d8a3a");
+    shopfront(b, { x: 0.2, z: -7.6, y: 0.15 }, 7.2, "cafe", "#2f5f6a", "#c0353a", (bb, X, Y, Z, H, sd) => tree(bb, "bush", X, Y, Z, H, sd, 1));
+    if (ok(-6.5, -7.0)) bench(b, { x: -6.5, z: -6.9, y: 0.15 }); if (ok(4.6, -7.1)) bin(b, { x: 4.6, z: -7.1, y: 0.15 }); if (ok(5.4, -4.6)) hydrant(b, { x: 5.4, z: -4.6, y: 0.15 });
+    busStop(b, { x: -14, z: -6.6, y: 0.15 });
+    for (const [x, z, yaw] of [[9.6, -4.6, 0], [14.4, 4.6, Math.PI]]) if (ok(x, z)) trafficLight(b, { x, z, y: 0.15, yaw });
+    if (ok(7.5, -7.0)) mailbox(b, { x: 7.5, z: -7.0, y: 0.15 }); if (ok(-9, -4.6)) signPost(b, { x: -9, z: -4.6, y: 0.15 }, "#3f6fb5");
+    for (const [x, z, yaw, c] of [[-9, -2.5, Math.PI / 2, "#d2603a"], [22, -2.4, Math.PI / 2, "#3f6fb5"], [-4, 2.5, -Math.PI / 2, "#e9c46a"], [-24, 2.4, -Math.PI / 2, "#5d8a3a"]] as const)
+      if (ok(x, z, 2.3)) car(b, { x, z, yaw }, c);
     b.build(root, true);
     return {
       root, env: {},
-      spots: { a: [-1.4, 0.15, -5.6], b: [0.2, 0.15, -6.0], c: [1.9, 0.15, -5.4], d: [-6, 0.15, -6.4] },
-      views: [
-        { name: "down the street", pos: [8, 1.7, 0.6], look: [-30, 3.5, -1.5], fov: 46 },
-        { name: "storefront", pos: [0.6, 1.5, -1.2], look: [0.0, 1.6, -7.5], fov: 40, cInf: 9, focus: [-1.4, 1.7, -5.6] },
-        { name: "crossing high", pos: [20, 6.5, 6], look: [5, 1.2, -4], fov: 46 },
-        { name: "low hero", pos: [-0.9, 0.9, -3.2], look: [-1.4, 2.0, -5.6], fov: 38, cInf: 12, roll: -0.04 },
-      ],
+      spots: { a: [-0.9, 0.15, -5.7], b: [0.25, 0.15, -6.1], c: [1.35, 0.15, -5.5], d: [-6, 0.15, -6.4] },
+      views,
     };
   },
 };
@@ -69,6 +74,13 @@ export const OLDTOWN: SetDef = {
   id: "oldtown", title: "Old town market square", lights: ["day", "golden"],
   build: () => {
     const root = new THREE.Group(), b = new Batch(), r = rng(33);
+    const views: View[] = [
+      { name: "square wide", pos: [4, 4.2, 19], look: [-0.5, 2.4, -8], fov: 46 },
+      { name: "market", pos: [-2.6, 1.6, -0.6], look: [-7.2, 1.3, -8.8], fov: 40, cInf: 7, focus: [-5.5, 1.6, -6.8] },
+      { name: "fountain two-shot", pos: [0.6, 1.45, 8.6], look: [0.0, 1.6, 2.4], fov: 38, cInf: 10, focus: [-0.9, 1.6, 3.4] },
+      { name: "low hero", pos: [-0.4, 0.8, 6.0], look: [-0.9, 2.0, 3.4], fov: 38, cInf: 12, roll: 0.04 },
+    ];
+    const ok = (x: number, z: number, rad = 0.6) => clearOf(views, x, z, rad);
     b.add(quadUp(-60, 60, -60, 60, 30, 30), tex("cobbleHD", cobbleHD, 1, 1));
     b.add(quadUp(-400, 400, -400, 400, 100, 100, -0.01), lam("grassHD", () => ({ map: grassHD() })));
     // houses around the square (fronts face the centre)
@@ -85,22 +97,17 @@ export const OLDTOWN: SetDef = {
       b.add(tri(a, c, d), roof);
     fountain(b, { x: 0, z: -4 });
     marketStall(b, { x: -7.5, z: -9, yaw: 0.25 }, "#c0353a", "fruit"); marketStall(b, { x: 7, z: -9.5, yaw: -0.3 }, "#2f6a43", "bread"); marketStall(b, { x: -12, z: 1, yaw: Math.PI / 2 }, "#3f6fb5", "cloth");
-    for (const [x, z] of [[-5, -10.5], [-4.3, -10.2], [9.2, -10.6]]) barrel(b, { x, z });
-    for (const [x, z, s] of [[-10, -8.6, 0.6], [-10.2, -8.0, 0.5], [5.2, -11, 0.6]] as const) crate(b, { x, z, yaw: x }, s);
-    cart(b, { x: 11, z: -2, yaw: -0.6 });
-    well(b, { x: -11, z: 9 });
-    for (const [x, z] of [[-14, -13], [14, -13], [-14, 14], [14, 14]]) lanternPost(b, { x, z });
-    for (const [x, z, k] of [[-15.5, 4, "round"], [15.6, 6, "fat"], [-16, -14.5, "round"]] as const) tree(b, k, x, 0, z, 6, x * 3 + z, 0);
+    for (const [x, z] of [[-5, -10.5], [-4.3, -10.2], [9.2, -10.6]]) if (ok(x, z)) barrel(b, { x, z });
+    for (const [x, z, s] of [[-10, -8.6, 0.6], [-10.2, -8.0, 0.5], [5.2, -11, 0.6]] as const) if (ok(x, z)) crate(b, { x, z, yaw: x }, s);
+    if (ok(11, -2, 1.5)) cart(b, { x: 11, z: -2, yaw: -0.6 });
+    if (ok(-11, 9, 1.2)) well(b, { x: -11, z: 9 });
+    for (const [x, z] of [[-14, -13], [14, -13], [-14, 14], [14, 14], [-6, 7], [6.5, 6.5]]) if (ok(x, z)) lanternPost(b, { x, z });
+    for (const [x, z, k] of [[-15.5, 4, "round"], [15.6, 6, "fat"], [-16, -14.5, "round"]] as const) if (ok(x, z, 2.5)) tree(b, k, x, 0, z, 6, x * 3 + z, 0);
     b.build(root, true);
     return {
       root, env: {},
-      spots: { a: [-1.6, 0, 3.4], b: [0.4, 0, 2.8], c: [2.3, 0, 3.6], d: [-5.5, 0, -6.8], e: [6.5, 0, -7.2] },
-      views: [
-        { name: "square wide", pos: [4, 4.2, 19], look: [-0.5, 2.4, -8], fov: 46 },
-        { name: "market", pos: [-2.6, 1.6, -0.6], look: [-7.2, 1.3, -8.8], fov: 40, cInf: 7, focus: [-5.5, 1.6, -6.8] },
-        { name: "fountain two-shot", pos: [1.1, 1.45, 9.4], look: [0.2, 1.55, 2.4], fov: 38, cInf: 10, focus: [-1.6, 1.6, 3.4] },
-        { name: "low hero", pos: [-0.8, 0.8, 6.2], look: [-1.6, 1.9, 3.4], fov: 36, cInf: 12, roll: 0.04 },
-      ],
+      spots: { a: [-0.9, 0, 3.4], b: [0.2, 0, 2.9], c: [1.3, 0, 3.6], d: [-5.5, 0, -6.8], e: [6.5, 0, -7.2] },
+      views,
     };
   },
 };
@@ -109,6 +116,13 @@ export const NATURE: SetDef = {
   id: "nature", title: "Nature: park path, pond and hills", lights: ["day", "golden"],
   build: () => {
     const root = new THREE.Group(), b = new Batch(), r = rng(47);
+    const views: View[] = [
+      { name: "path wide", pos: [1.4, 1.8, 13.5], look: [-0.6, 1.6, -8], fov: 46 },
+      { name: "pond", pos: [2.2, 1.35, 3.2], look: [8, 0.9, -7.5], fov: 44, cInf: 4 },
+      { name: "forest edge low", pos: [-4.5, 0.75, 8.5], look: [-1.0, 2.4, -3], fov: 46, cInf: 3 },
+      { name: "close", pos: [-0.35, 1.4, 7.1], look: [-0.9, 1.55, 4.4], fov: 34, cInf: 13 },
+    ];
+    const ok = (x: number, z: number, rad = 0.6) => clearOf(views, x, z, rad, 6);
     b.add(quadUp(-600, 600, -600, 600, 300, 300), lam("grassHD", () => ({ map: grassHD() })));
     // rolling hills + far mountains (fog = horizon colour pushes them back)
     const hill = tex("hillgrass", grassHD, 12, 6);
@@ -123,36 +137,39 @@ export const NATURE: SetDef = {
     for (let i = 0; i < 26; i++) {
       const nx = 0.6 + 3.2 * Math.sin(i * 0.33) - i * 0.15, nz = 14 - (i + 1) * 2.6, w = 2.4, ax = nz - pz, az = -(nx - px), L = Math.hypot(ax, az) || 1;
       const ox = (ax / L) * w / 2, oz = (az / L) * w / 2;
-      b.add(quad(V(px - ox, 0.012, pz - oz), V(px + ox, 0.012, pz + oz), V(nx + ox, 0.012, nz + oz), V(nx - ox, 0.012, nz - oz), 0.6, 0.65), dirt);
+      b.add(quad(V(px - ox, 0.012, pz - oz), V(nx - ox, 0.012, nz - oz), V(nx + ox, 0.012, nz + oz), V(px + ox, 0.012, pz + oz), 0.65, 0.6), dirt); // wound so it faces up
       px = nx; pz = nz;
     }
     // pond: water disc, muddy rim, reeds, lily pads
     b.add(new THREE.CircleGeometry(5.6, 40).rotateX(-Math.PI / 2).translate(8, 0.008, -7), tex("pondrim", dirtHD, 2, 2));
     b.add(new THREE.CircleGeometry(5.0, 40).rotateX(-Math.PI / 2).translate(8, 0.02, -7), col("#3a9fbf"));
     b.add(new THREE.CircleGeometry(3.4, 40).rotateX(-Math.PI / 2).translate(8.6, 0.022, -7.6), col("#4ab3cf"));
-    for (let i = 0; i < 26; i++) { const a = r() * 6.28, d = 4.7 + r() * 0.6, m = frame({ x: 8 + Math.cos(a) * d, z: -7 + Math.sin(a) * d }); cyl(b, col(i % 3 ? "#5a9c43" : "#7a8f3a"), m, 0, 0, 0, 0.02, 0.008, 0.6 + r() * 0.5, 5, (r() - 0.5) * 0.3, (r() - 0.5) * 0.3); }
+    // reed clumps with cattail heads around the far half of the pond (kept out of the near bank the views look over)
+    for (let i = 0; i < 9; i++) {
+      const a = -2.6 + (i / 8) * 2.2 + (r() - 0.5) * 0.2, d = 4.9 + r() * 0.4, cx = 8 + Math.cos(a) * d, cz = -7 + Math.sin(a) * d;
+      for (let k = 0; k < 6; k++) {
+        const m = frame({ x: cx + (r() - 0.5) * 0.5, z: cz + (r() - 0.5) * 0.5 }), h = 0.7 + r() * 0.6, tx = (r() - 0.5) * 0.25, tz = (r() - 0.5) * 0.25;
+        cyl(b, col(k % 3 ? "#5a9c43" : "#7aa83f"), m, 0, 0, 0, 0.03, 0.01, h, 5, tx, tz);
+        if (k % 2 === 0) cyl(b, col("#7a4f33"), m, Math.sin(tz) * -h, h * 0.92, Math.sin(tx) * h, 0.035, 0.035, 0.16, 8, tx, tz);
+      }
+    }
     for (const [x, z] of [[6.5, -5.5], [9.5, -8.5], [7.6, -9.2]]) b.add(new THREE.CircleGeometry(0.35, 16).rotateX(-Math.PI / 2).translate(x, 0.03, z), col("#5aa83c"));
     // trees: groves on both sides, kept out of the path and the views
     const T: [number, number, string, number][] = [[-6, 2, "round", 7], [-8, -4, "fat", 8], [-5, -12, "tall", 9], [-10, -16, "round", 7], [-14, -6, "cone", 9], [-16, 4, "round", 8],
       [14, -2, "round", 8], [16, -12, "fat", 9], [13, -18, "cone", 10], [4, -22, "round", 8], [-2, -30, "tall", 10], [9, -30, "round", 9], [-12, -26, "fat", 8], [20, 3, "tall", 9]];
-    for (const [x, z, k, h] of T) tree(b, k as "round", x, 0, z, h, x * 7 + z * 3, 0);
-    for (const [x, z, h] of [[-4, 4, 1.4], [3.6, 6, 1.1], [-3.2, -6, 1.3], [12, -1, 1.5], [-7.5, -1, 1.2]]) tree(b, "bush", x, 0, z, h, x * 5 + z, 0);
-    rock(b, { x: -3, z: 8.5 }, 0.9, 1); rock(b, { x: 4.4, z: -2.5 }, 1.2, 2); rock(b, { x: 11, z: -12 }, 1.6, 3);
-    log(b, { x: -4.2, z: 1.2, yaw: 0.5 }); stump(b, { x: 3.4, z: 3.2 });
-    flowers(b, { x: -2.6, z: 6.5 }, 16, 1.6, 1); flowers(b, { x: 3.2, z: 9 }, 12, 1.4, 2); flowers(b, { x: -6, z: -8 }, 14, 2, 3);
-    tufts(b, { x: 1.8, z: 10.5 }, 10, 2.5, 1); tufts(b, { x: -1.6, z: 11 }, 8, 2, 2);
-    mushroom(b, { x: -3.6, z: 1.6 }, 1.2); mushroom(b, { x: -3.9, z: 1.9 }, 0.8);
-    fence(b, { x: 3.2, z: 1, yaw: 1.35 }, 7);
+    for (const [x, z, k, h] of T) if (ok(x, z, h * 0.3)) tree(b, k as "round", x, 0, z, h, x * 7 + z * 3, 0);
+    for (const [x, z, h] of [[-4, 4, 1.4], [3.6, 6, 1.1], [-3.2, -6, 1.3], [12, -1, 1.5], [-7.5, -1, 1.2], [-6.5, 9.5, 1.3], [5.5, 10, 1.2]]) if (ok(x, z, h * 0.8)) tree(b, "bush", x, 0, z, h, x * 5 + z, 0);
+    for (const [x, z, sz, sd] of [[-3, 8.5, 0.9, 1], [5.6, -1.5, 1.0, 2], [11, -12, 1.6, 3], [2.6, -9, 0.8, 4]]) if (ok(x, z, sz)) rock(b, { x, z }, sz, sd);
+    if (ok(-4.2, 1.2, 1.2)) log(b, { x: -4.2, z: 1.2, yaw: 0.5 }); if (ok(3.4, 3.2)) stump(b, { x: 3.4, z: 3.2 });
+    for (const [x, z, n, sp, sd] of [[-2.6, 6.5, 16, 1.6, 1], [3.2, 9, 12, 1.4, 2], [-6, -8, 14, 2, 3], [4.8, 1.8, 12, 1.5, 4]]) if (ok(x, z, sp)) flowers(b, { x, z }, n, sp, sd);
+    for (const [x, z, n, sp, sd] of [[1.8, 10.5, 10, 2.5, 1], [-1.6, 11, 8, 2, 2], [-5.4, 3, 8, 2, 3]]) if (ok(x, z, sp)) tufts(b, { x, z }, n, sp, sd);
+    if (ok(-3.7, 1.7)) { mushroom(b, { x: -3.6, z: 1.6 }, 1.2); mushroom(b, { x: -3.9, z: 1.9 }, 0.8); }
+    if (ok(-2.6, -1.5, 3.5)) fence(b, { x: -2.6, z: -1.5, yaw: 1.2 }, 6);
     b.build(root, true);
     return {
       root, env: {},
-      spots: { a: [-0.9, 0, 4.4], b: [0.7, 0, 3.8], c: [2.3, 0, 4.6] },
-      views: [
-        { name: "path wide", pos: [1.4, 1.8, 13.5], look: [-0.6, 1.6, -8], fov: 46 },
-        { name: "pond", pos: [2.2, 1.35, 3.2], look: [8, 0.9, -7.5], fov: 44, cInf: 4 },
-        { name: "forest edge low", pos: [-4.5, 0.75, 8.5], look: [-1.0, 2.4, -3], fov: 46, cInf: 3 },
-        { name: "close", pos: [-0.35, 1.4, 7.1], look: [-0.9, 1.55, 4.4], fov: 34, cInf: 13 },
-      ],
+      spots: { a: [-0.9, 0, 4.4], b: [0.2, 0, 3.9], c: [1.3, 0, 4.6] },
+      views,
     };
   },
 };
