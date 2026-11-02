@@ -11,7 +11,7 @@ You only need a web browser and your GitHub login. Nothing is installed on your 
 |---|---|
 | Write, build and preview the video | Claude, in the Claude Code session |
 | Start the full-quality render | Claude, by committing `render-request.json` (or you, see below) |
-| Wait (about 30-60 min for a 60 s short) | GitHub |
+| Wait (measured 41-73 min for the 67.5 s bridge short) | GitHub |
 | Quality check (frames, resolution, sound sync, loudness) | GitHub, automatically |
 | Download the MP4 | You, from the Releases page (or Claude sends it to you) |
 
@@ -58,7 +58,7 @@ Backup route: **Actions** → the run → **Artifacts** → the video zip (kept 
 | Parallel jobs | GitHub Free allows up to 20 concurrent jobs. **Measured on this account: 5-6 at a time**, the rest queue. |
 | Time per job | Each chunk of ~100 frames takes 12-25 min (measured about 7 s per frame at 1080x1920). GitHub stops a job after 6 hours, so chunks stay far below that. |
 | Matrix size | Up to 256 jobs per run (we use ≤ 20). |
-| Whole render (measured) | 67.5 s bridge short, 20 chunks: **73 minutes** from start to published video (run #2). |
+| Whole render (measured) | 67.5 s bridge short, 20 chunks: **41 minutes** (run #3) to **73 minutes** (run #2) from start to published, checked video, depending on how many jobs GitHub runs at once. |
 | Downloads | Release files up to 2 GB each (our videos are ~100 MB). Artifacts are kept 30 days. |
 
 These limits can change, so the Actions page always shows the real state of a run.
