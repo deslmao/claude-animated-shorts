@@ -8,6 +8,7 @@ import { tex } from "../props/kit";
 import { sofa, armchair, coffeeTable, rug, bookshelf, floorLamp, plant, picture, clock, curtains, counter, fridge, stove, floorMat, wallShelf, chair, pendant } from "../props/interior";
 import { buildRoom } from "./room";
 import { SetDef } from "./types";
+import { LAYOUTS } from "./layouts";
 
 export const HOME: SetDef = {
   id: "home", title: "Home: living room + kitchen", lights: ["interior"],
@@ -46,13 +47,7 @@ export const HOME: SetDef = {
     b.build(root, true);
     return {
       root, env: { sky: false, clouds: false },
-      spots: { a: [-0.75, 0, 0.35], b: [0.45, 0, -0.2], c: [1.55, 0, 0.5], d: [2.3, 0, -0.9] },
-      views: [
-        { name: "wide", pos: [0.5, 1.35, 5.0], look: [0, 0.95, -1.2], fov: 50 },
-        { name: "two-shot", pos: [0.0, 1.45, 2.7], look: [-0.15, 1.35, -0.2], fov: 38, cInf: 10, focus: [-0.75, 1.55, 0.35] },
-        { name: "kitchen", pos: [-1.6, 1.55, 2.4], look: [2.4, 1.15, -1.0], fov: 44, cInf: 6, focus: [2.3, 1.5, -0.9] },
-        { name: "low close", pos: [-0.25, 1.05, 1.75], look: [-0.7, 1.55, 0.35], fov: 34, cInf: 13, roll: 0.04 },
-      ],
+      ...LAYOUTS.home,
     };
   },
 };

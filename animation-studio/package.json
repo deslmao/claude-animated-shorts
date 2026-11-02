@@ -42,7 +42,8 @@
     "render": "node scripts/render.mjs",
     "preview": "node scripts/render.mjs --preview",
     "benchmark": "node scripts/benchmark.mjs",
-    "stills": "node scripts/stills.mjs"
+    "stills": "node scripts/stills.mjs",
+    "test:framing": "esbuild scripts/framing-test.ts --bundle --platform=node --format=esm --outfile=out/framing-test.mjs --log-level=warning && node out/framing-test.mjs"
   },
   "allowScripts": {
     "esbuild": false

@@ -4,7 +4,8 @@ import type { LightName, EnvOptions } from "../scene/environment";
 import type { V3 } from "../camera/keys";
 
 /** a designed camera framing (camera position, look point, lens), with suggested lens blur */
-export type View = { name: string; pos: V3; look: V3; fov?: number; roll?: number; cInf?: number; focus?: V3 };
+/** establishing = a place / insert shot that frames no actor on purpose */
+export type View = { name: string; pos: V3; look: V3; fov?: number; roll?: number; cInf?: number; focus?: V3; establishing?: boolean };
 export type BuiltSet = {
   root: THREE.Object3D;
   /** named actor marks: [x, y (floor height), z] */

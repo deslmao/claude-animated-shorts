@@ -8,7 +8,8 @@ import { tex, col, box, decal, cyl, frame } from "../props/kit";
 import { streetLamp, bench, bin, hydrant, trafficLight, car, busStop, planterTree, signPost, mailbox, modernBuilding, shopfront, house, marketStall, barrel, crate, cart, well, lanternPost, fountain } from "../props/outdoor";
 import { tree, rock, log, stump, flowers, tufts, mushroom, fence } from "../props/nature";
 import { rng } from "../materials/paint";
-import { SetDef, View } from "./types";
+import { SetDef } from "./types";
+import { LAYOUTS } from "./layouts";
 import { clearOf } from "./clear";
 
 const PAL = [
@@ -22,12 +23,7 @@ export const CITY: SetDef = {
   id: "city", title: "Modern city street", lights: ["day", "golden"],
   build: () => {
     const root = new THREE.Group(), b = new Batch(), r = rng(21);
-    const views: View[] = [
-      { name: "down the street", pos: [8, 1.7, 0.6], look: [-30, 3.5, -1.5], fov: 46 },
-      { name: "storefront", pos: [0.4, 1.5, -0.6], look: [0.1, 1.85, -7.6], fov: 42, cInf: 9, focus: [-0.9, 1.7, -5.7] },
-      { name: "crossing high", pos: [20, 6.5, 6], look: [5, 1.2, -4], fov: 46 },
-      { name: "low hero", pos: [-0.5, 0.9, -3.3], look: [-0.9, 2.0, -5.7], fov: 38, cInf: 12, roll: -0.04 },
-    ];
+    const views = LAYOUTS.city.views;
     const ok = (x: number, z: number, rad = 0.5) => clearOf(views, x, z, rad);
     // road along x (z -4..4), raised pavements to z +-7.6, buildings beyond
     b.add(quadUp(-260, 260, -4, 4, 130, 2), tex("asphalt", asphaltHD, 1, 1));
@@ -64,7 +60,7 @@ export const CITY: SetDef = {
     b.build(root, true);
     return {
       root, env: {},
-      spots: { a: [-0.9, 0.15, -5.7], b: [0.25, 0.15, -6.1], c: [1.35, 0.15, -5.5], d: [-6, 0.15, -6.4] },
+      spots: LAYOUTS.city.spots,
       views,
     };
   },
@@ -74,12 +70,7 @@ export const OLDTOWN: SetDef = {
   id: "oldtown", title: "Old town market square", lights: ["day", "golden"],
   build: () => {
     const root = new THREE.Group(), b = new Batch(), r = rng(33);
-    const views: View[] = [
-      { name: "square wide", pos: [4, 4.2, 19], look: [-0.5, 2.4, -8], fov: 46 },
-      { name: "market", pos: [-2.6, 1.6, -0.6], look: [-7.2, 1.3, -8.8], fov: 40, cInf: 7, focus: [-5.5, 1.6, -6.8] },
-      { name: "fountain two-shot", pos: [0.6, 1.45, 8.6], look: [0.0, 1.6, 2.4], fov: 38, cInf: 10, focus: [-0.9, 1.6, 3.4] },
-      { name: "low hero", pos: [-0.4, 0.8, 6.0], look: [-0.9, 2.0, 3.4], fov: 38, cInf: 12, roll: 0.04 },
-    ];
+    const views = LAYOUTS.oldtown.views;
     const ok = (x: number, z: number, rad = 0.6) => clearOf(views, x, z, rad);
     b.add(quadUp(-60, 60, -60, 60, 30, 30), tex("cobbleHD", cobbleHD, 1, 1));
     b.add(quadUp(-400, 400, -400, 400, 100, 100, -0.01), lam("grassHD", () => ({ map: grassHD() })));
@@ -106,7 +97,7 @@ export const OLDTOWN: SetDef = {
     b.build(root, true);
     return {
       root, env: {},
-      spots: { a: [-0.9, 0, 3.4], b: [0.2, 0, 2.9], c: [1.3, 0, 3.6], d: [-5.5, 0, -6.8], e: [6.5, 0, -7.2] },
+      spots: LAYOUTS.oldtown.spots,
       views,
     };
   },
@@ -116,12 +107,7 @@ export const NATURE: SetDef = {
   id: "nature", title: "Nature: park path, pond and hills", lights: ["day", "golden"],
   build: () => {
     const root = new THREE.Group(), b = new Batch(), r = rng(47);
-    const views: View[] = [
-      { name: "path wide", pos: [1.4, 1.8, 13.5], look: [-0.6, 1.6, -8], fov: 46 },
-      { name: "pond", pos: [2.2, 1.35, 3.2], look: [8, 0.9, -7.5], fov: 44, cInf: 4 },
-      { name: "forest edge low", pos: [-4.5, 0.75, 8.5], look: [-1.0, 2.4, -3], fov: 46, cInf: 3 },
-      { name: "close", pos: [-0.35, 1.4, 7.1], look: [-0.9, 1.55, 4.4], fov: 34, cInf: 13 },
-    ];
+    const views = LAYOUTS.nature.views;
     const ok = (x: number, z: number, rad = 0.6) => clearOf(views, x, z, rad, 6);
     b.add(quadUp(-600, 600, -600, 600, 300, 300), lam("grassHD", () => ({ map: grassHD() })));
     // rolling hills + far mountains (fog = horizon colour pushes them back)
@@ -168,7 +154,7 @@ export const NATURE: SetDef = {
     b.build(root, true);
     return {
       root, env: {},
-      spots: { a: [-0.9, 0, 4.4], b: [0.2, 0, 3.9], c: [1.3, 0, 4.6] },
+      spots: LAYOUTS.nature.spots,
       views,
     };
   },

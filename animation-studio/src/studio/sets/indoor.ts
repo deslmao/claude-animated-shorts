@@ -9,6 +9,7 @@ import {
 } from "../props/interior";
 import { buildRoom } from "./room";
 import { SetDef } from "./types";
+import { LAYOUTS } from "./layouts";
 
 const globe = (b: Batch, x: number, y: number, z: number) => { const m = frame({ x, z, y }); cyl(b, col("#8a5a3c"), m, 0, 0, 0, 0.09, 0.06, 0.06, 12); cyl(b, col("#7d8088"), m, 0, 0.06, 0, 0.01, 0.01, 0.12, 6); sph(b, col("#3f8fd8"), m, 0, 0.3, 0, 0.16, 0.16, 0.16, 18); sph(b, col("#7ab65e"), m, 0.05, 0.36, 0.08, 0.08, 0.06, 0.07, 10); };
 
@@ -39,13 +40,7 @@ export const CLASSROOM: SetDef = {
     b.build(root, true);
     return {
       root, env: { sky: false, clouds: false },
-      spots: { a: [-0.45, 0, bz + 0.95], b: [0.65, 0, bz + 1.1], c: [2.9, 0, -0.4] },
-      views: [
-        { name: "wide", pos: [3.0, 1.75, 5.0], look: [-0.4, 1.25, -2.4], fov: 50 },
-        { name: "at the board", pos: [0.3, 1.45, 1.4], look: [0.1, 1.45, bz], fov: 40, cInf: 8, focus: [-0.45, 1.55, bz + 0.95] },
-        { name: "desks", pos: [-3.1, 1.0, 3.4], look: [0.6, 1.1, -1.6], fov: 46, cInf: 5 },
-        { name: "close", pos: [0.0, 1.3, -0.4], look: [-0.5, 1.55, bz + 0.95], fov: 34, cInf: 13 },
-      ],
+      ...LAYOUTS.classroom,
     };
   },
 };
@@ -79,13 +74,7 @@ export const OFFICE: SetDef = {
     b.build(root, true);
     return {
       root, env: { sky: false, clouds: false },
-      spots: { a: [-0.9, 0, 0.5], b: [0.6, 0, 0.2], c: [2.6, 0, 0.9] },
-      views: [
-        { name: "wide", pos: [-0.6, 1.6, 5.0], look: [0.2, 1.2, -1.8], fov: 50 },
-        { name: "desk", pos: [1.6, 1.4, 3.0], look: [-0.4, 1.25, -1.0], fov: 40, cInf: 7, focus: [-0.9, 1.55, 0.5] },
-        { name: "whiteboard", pos: [-1.6, 1.5, 2.6], look: [3.2, 1.4, -0.4], fov: 42, cInf: 5, focus: [2.6, 1.5, 0.9] },
-        { name: "close", pos: [-0.35, 1.35, 2.3], look: [-0.9, 1.55, 0.5], fov: 34, cInf: 13 },
-      ],
+      ...LAYOUTS.office,
     };
   },
 };
@@ -117,13 +106,7 @@ export const LAB: SetDef = {
     b.build(root, true);
     return {
       root, env: { sky: false, clouds: false },
-      spots: { a: [-1.2, 0, 0.45], b: [0.95, 0, 0.6], c: [2.5, 0, -1.4] },
-      views: [
-        { name: "wide", pos: [1.2, 1.65, 5.0], look: [-0.2, 1.2, -1.8], fov: 50 },
-        { name: "bench", pos: [-0.2, 1.3, 1.9], look: [-0.4, 1.15, -1.0], fov: 40, cInf: 8, focus: [-1.2, 1.55, 0.45] },
-        { name: "fume hood", pos: [-1.8, 1.5, 2.5], look: [2.8, 1.3, -1.8], fov: 42, cInf: 5, focus: [2.5, 1.5, -1.4] },
-        { name: "close", pos: [-0.65, 1.3, 2.3], look: [-1.2, 1.55, 0.45], fov: 34, cInf: 13 },
-      ],
+      ...LAYOUTS.lab,
     };
   },
 };
