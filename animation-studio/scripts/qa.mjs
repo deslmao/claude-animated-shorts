@@ -30,7 +30,7 @@ const diffs = [...diffOut.matchAll(/YAVG=([\d.]+)/g)].map((m) => Number(m[1])); 
 // per-frame brightness: a fade / dip to black is meant to hold nearly identical dark frames, which is not a seam bug
 const lumaOut = spawnSync(FF, ["-v", "error", "-i", video, "-map", "0:v:0", "-vf", "scale=270:-2,signalstats,metadata=print:key=lavfi.signalstats.YAVG:file=-", "-f", "null", "-"], { maxBuffer: 1 << 28 }).stdout.toString();
 const luma = [...lumaOut.matchAll(/YAVG=([\d.]+)/g)].map((m) => Number(m[1])); // luma[k] = mean brightness of frame k (0-255)
-const DARK = 24; // both frames this dark (a dip to black) -> not a duplicate
+const DARK = 32; // video luma is TV range (16 = black): both frames this dark (a dip to black, ~7 % grey) -> not a duplicate
 const dups = [];
 for (let k = 0; k < diffs.length; k++) {
   if (luma[k] < DARK && luma[k + 1] < DARK) continue;
