@@ -40,6 +40,7 @@ export const SFX = {
   knock: "three knocks on a door", clock_tick: "one clock tick", cash: "cash register ding", gasp: "crowd gasp", oof: "pained oof",
   applause: "applause", creak: "wood creak", crack: "wood cracking", splash: "big splash", bubbles: "bubbling", clink: "metal / glass clink",
   hammer: "hammer blow", cannon: "distant cannon boom", bell_ring: "ship / church bell", wave_crash: "a wave breaking",
+  giggle: "a short burst of giggles (someone tickled)", feather_swish: "a feather brushing skin (soft, airy)", servo: "small robot servo whirr", stumble: "shoe scuffs + light thump (a stumble)",
 } as const;
 export type SfxName = keyof typeof SFX;
 

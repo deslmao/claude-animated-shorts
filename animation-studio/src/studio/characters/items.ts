@@ -16,6 +16,17 @@ const ol = (u: number) => 3.0 * u;
 export const ITEMS: Record<string, ItemEntry> = {
   book: { name: "Book", desc: "closed hardback book", themes: ["modern", "school", "history"], tags: ["read", "study", "knowledge"],
     draw: (p, x, y, u, s) => { p.poly(R(x + 4 * u * s, y - 12 * u, 26 * u, 34 * u, 0.12 * s), "#b5553a", ol(u)); p.poly(R(x + 7 * u * s, y - 12 * u, 18 * u, 30 * u, 0.12 * s), "#f2ead8", 0); p.stroke([[x + (4 - 13) * u * s, y - 28 * u], [x + (4 - 13) * u * s, y + 4 * u]], 2 * u); } },
+  openBook: { name: "Open book", desc: "a book held open, the pages (with lines of text) toward the viewer; use with the \"read\" gesture (both hands)", themes: ["modern", "school", "history"], tags: ["read", "study", "joke", "story"],
+    draw: (p, x, y, u) => {
+      // the cover behind, the two pages in a shallow V (centred on x; y = the hands at the lower corners), the spine
+      const w = 40 * u, h = 46 * u, top = y - h + 6 * u;
+      p.poly([[x - w - 3 * u, top + 3 * u], [x, top + 7 * u], [x + w + 3 * u, top + 3 * u], [x + w + 3 * u, y + 9 * u], [x, y + 13 * u], [x - w - 3 * u, y + 9 * u]], "#b5553a", ol(u));
+      for (const s of [-1, 1]) {
+        p.poly([[x, top + 6 * u], [x + s * w, top], [x + s * w, y + 4 * u], [x, y + 9 * u]], "#fbf6ea", ol(u) * 0.8);
+        for (let k = 0; k < 5; k++) { const yy = top + (9 + k * 7) * u, l = k === 4 ? 0.55 : 0.85; p.stroke([[x + s * 6 * u, yy + 4 * u], [x + s * (6 + (w / u - 12) * l) * u, yy]], 1.8 * u, "#9a8f80"); }
+      }
+      p.stroke([[x, top + 6 * u], [x, y + 9 * u]], 2.2 * u);
+    } },
   phone: { name: "Phone", desc: "smartphone", themes: ["modern"], tags: ["call", "screen", "social media"],
     draw: (p, x, y, u) => { p.poly(R(x, y - 10 * u, 14 * u, 26 * u), "#2b2f3a", ol(u)); p.poly(R(x, y - 11 * u, 10 * u, 18 * u), "#8fd0f0", 0); } },
   mug: { name: "Mug", desc: "coffee mug", themes: ["modern", "home", "office"], tags: ["coffee", "tea", "drink"],

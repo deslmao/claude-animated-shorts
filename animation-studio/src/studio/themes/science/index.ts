@@ -28,7 +28,7 @@ const robotArm = (b: Batch, a: At) => {
  *  actor's open palm and brushes it with the replayed control stroke. Pure: the pose depends only on the inputs. */
 const L1 = 0.55, L2 = 0.46, FEATHER = 0.24, SHOULDER = 0.95;
 const robotRig = (a: At): PropRig => {
-  const root = new THREE.Group(), steel = col("#8a929c"), dark = col("#3a3d47"), arm = col("#e9a93b"), white = col("#f6f1e6");
+  const root = new THREE.Group(), steel = col("#8a929c"), dark = col("#3a3d47"), arm = col("#e9a93b"), plume = col("#ff9cc8");
   root.position.set(a.x, a.y ?? 0, a.z); root.rotation.y = a.yaw ?? 0;
   const b = new Batch(), I = frame({ x: 0, z: 0 });
   cyl(b, dark, I, 0, 0, 0, 0.3, 0.26, 0.08, 20); cyl(b, steel, I, 0, 0.08, 0, 0.18, 0.15, 0.82, 18); sph(b, dark, I, 0, SHOULDER, 0, 0.13, 0.13, 0.13);
@@ -36,7 +36,7 @@ const robotRig = (a: At): PropRig => {
   b.build(root, true);
   const unit = new THREE.CylinderGeometry(1, 1, 1, 14).translate(0, 0.5, 0), ball = new THREE.SphereGeometry(1, 14, 10);
   const mk = (geo: THREE.BufferGeometry, mat: THREE.Material) => { const m = new THREE.Mesh(geo, mat); m.castShadow = true; m.receiveShadow = true; root.add(m); return m; };
-  const upper = mk(unit, arm), fore = mk(unit, arm), elbow = mk(ball, dark), wrist = mk(ball, dark), grip = mk(new THREE.BoxGeometry(0.06, 0.1, 0.08), steel), feather = mk(ball, white);
+  const upper = mk(unit, arm), fore = mk(unit, arm), elbow = mk(ball, dark), wrist = mk(ball, dark), grip = mk(new THREE.BoxGeometry(0.06, 0.1, 0.08), steel), feather = mk(ball, plume), quill = mk(unit, dark);
   const Y = new THREE.Vector3(0, 1, 0), q = new THREE.Quaternion(), tmp = new THREE.Vector3();
   const span = (m: THREE.Mesh, p0: THREE.Vector3, p1: THREE.Vector3, r: number) => { tmp.subVectors(p1, p0); const len = tmp.length(); m.position.copy(p0); m.quaternion.copy(q.setFromUnitVectors(Y, tmp.normalize())); m.scale.set(r, len, r); };
   return {
@@ -51,7 +51,9 @@ const robotRig = (a: At): PropRig => {
       const r = Math.hypot(T.x, T.z), hw = T.y + FEATHER, dx = r, dy = hw - SHOULDER;
       const d = Math.min(Math.max(0.15, Math.hypot(dx, dy)), L1 + L2 - 0.005);
       const a1 = Math.atan2(dy, dx) + Math.acos(Math.min(1, Math.max(-1, (L1 * L1 + d * d - L2 * L2) / (2 * L1 * d))));
-      const lat = 0.035 * stroke, at = (rr: number, hh: number, l: number) => new THREE.Vector3(Math.sin(phi) * rr, hh, Math.cos(phi) * rr).addScaledVector(side, l);
+      // the stroke: the wrist sweeps 6 cm and the feather tip 13 cm each way across the palm, so the brushing (and a
+      // delay between the control and the robot) reads at phone size
+      const lat = 0.06 * stroke, at = (rr: number, hh: number, l: number) => new THREE.Vector3(Math.sin(phi) * rr, hh, Math.cos(phi) * rr).addScaledVector(side, l);
       const S = new THREE.Vector3(0, SHOULDER, 0), E = at(L1 * Math.cos(a1), SHOULDER + L1 * Math.sin(a1), lat * 0.3);
       const k = d / Math.max(1e-6, Math.hypot(dx, dy)), W = at(dx * k, SHOULDER + dy * k, lat);
       span(upper, S, E, 0.07); span(fore, E, W, 0.055);
@@ -59,7 +61,8 @@ const robotRig = (a: At): PropRig => {
       grip.position.copy(W).add(new THREE.Vector3(0, -0.06, 0)); grip.rotation.set(0, phi, 0);
       // the feather hangs from the gripper to the palm and swings with the stroke (brushing across the hand)
       const tip = at(r, T.y, lat * 2.2), mid = new THREE.Vector3().addVectors(W, tip).multiplyScalar(0.5);
-      feather.position.copy(mid); feather.quaternion.copy(q.setFromUnitVectors(Y, tmp.subVectors(tip, W).normalize())); feather.scale.set(0.028, FEATHER * 0.55, 0.06);
+      feather.position.copy(mid).lerp(tip, 0.12); feather.quaternion.copy(q.setFromUnitVectors(Y, tmp.subVectors(tip, W).normalize())); feather.scale.set(0.055, FEATHER * 0.5, 0.055);
+      span(quill, W, tip, 0.008);
     },
   };
 };

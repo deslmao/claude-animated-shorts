@@ -6,12 +6,13 @@
 import { Pen, INK, P2, rad } from "../characters/toon";
 import { FxPlace, cardKey } from "../cards/cards";
 
-export type DiagramKind = "forecast" | "prediction" | "delay";
-export const DIAGRAM_KINDS: DiagramKind[] = ["forecast", "prediction", "delay"];
+export type DiagramKind = "forecast" | "prediction" | "contrast" | "delay";
+export const DIAGRAM_KINDS: DiagramKind[] = ["forecast", "prediction", "contrast", "delay"];
 export const DIAGRAM_STEPS: Record<DiagramKind, string> = {
-  forecast: "1 brain appears, 2 cerebellum lights up, 3 a signal runs to the forecast card, 4 the predicted hand travels to the armpit, 5 the countdown completes",
-  prediction: "1 your own hand lands in its predicted outline, 2 match tick, 3 your tickle meter drops, 4 someone else's unpredicted hand: meter jumps, 5 your meter settles at zero",
-  delay: "1 control (blue) and robot (orange) strokes in sync, 2 the robot's stroke slips behind (a delay), 3 a tickle burst",
+  forecast: "the brain from the first frame; 1 the cerebellum lights up, 2 a signal runs to the forecast card, 3 the predicted hand travels to the armpit, 4 the countdown completes",
+  prediction: "your own touch, from the first frame (the predicted outline waiting); 1 your hand lands in it, 2 tick, 3 the tickle meter turns down, 4 + 5 it sits at zero (no surprise, no tickle)",
+  contrast: "both touches from the first frame: yours (predicted, meter low) vs someone else's (unpredicted, meter high); 1 highlights the surprise, 2 sparkles it",
+  delay: "control (blue) and robot (orange) strokes in sync from the first frame; 1 tick, 2 the robot's stroke slips behind (a delay), 3 a tickle burst",
 };
 
 const PINK = "#f4a6b8", PINK_D = "#d97b93", ORANGE = "#ff9f43", BLUE = "#3f8fd8", GREEN = "#4fbf7a", RED = "#e2453c", PAPER = "#fffaf0", SKIN = "#f5c9a0";
@@ -62,87 +63,102 @@ const hand = (p: Pen, x: number, y: number, s: number, ghost = false, fill = SKI
   for (let k = 0; k < 3; k++) p.line([[x + (k - 1) * 18 * s, y - 20 * s], [x + (k - 1) * 22 * s, y - 56 * s]], fill, 14 * s);
   p.ell(x, y, 34 * s, 30 * s, fill, 9);
 };
-/** a horizontal tickle meter 0..1 (green -> red) */
-const meter = (p: Pen, x: number, y: number, w: number, v: number) => {
-  p.poly([[x, y - 26], [x + w, y - 26], [x + w, y + 26], [x, y + 26]], "#efe6d8", 9);
-  const vv = Math.max(0.02, Math.min(1, v)), col = vv < 0.35 ? GREEN : vv < 0.7 ? "#f4d24a" : RED;
-  p.poly([[x + 8, y - 17], [x + 8 + (w - 16) * vv, y - 17], [x + 8 + (w - 16) * vv, y + 17], [x + 8, y + 17]], col, 0);
-  // a little laughing face at the right end that grins when the meter is high
-  p.ell(x + w + 50, y, 34, 34, "#ffe8a3", 8);
-  if (vv > 0.6) p.arc(x + w + 50, y + 2, 18, 14, 10, 170, 7); else p.stroke([[x + w + 36, y + 10], [x + w + 64, y + 10]], 7);
-  for (const dx of [-12, 12]) p.dot(x + w + 50 + dx, y - 8, 5);
+/** a big "tickle meter" bar with a face at its end that laughs when it is high; glow = pulse a ring round the face */
+const bigMeter = (p: Pen, x: number, y: number, w: number, v: number, glow = 0) => {
+  const h = 46, vv = Math.max(0.02, Math.min(1, v)), col = vv < 0.3 ? GREEN : vv < 0.65 ? "#f4d24a" : RED;
+  p.poly([[x, y - h], [x + w, y - h], [x + w, y + h], [x, y + h]], "#efe6d8", 11);
+  p.poly([[x + 12, y - h + 12], [x + 12 + (w - 24) * vv, y - h + 12], [x + 12 + (w - 24) * vv, y + h - 12], [x + 12, y + h - 12]], col, 0);
+  const fx = x + w + 74;
+  if (glow > 0) { p.g.save(); p.g.globalAlpha = 0.35 * glow; p.ell(fx, y, 70, 70, GREEN, 0); p.g.restore(); }
+  p.ell(fx, y, 52, 52, "#ffe8a3", 9);
+  for (const dx of [-17, 17]) { if (vv > 0.65) p.arc(fx + dx, y - 10, 9, 7, 200, 340, 7); else p.dot(fx + dx, y - 10, 7); }
+  if (vv > 0.65) dmouthOpen(p, fx, y + 14); else p.stroke([[fx - 20, y + 18], [fx + 20, y + 18]], 8);
+};
+const dmouthOpen = (p: Pen, x: number, y: number) => { p.ell(x, y, 22, 16, "#7a2a3a", 7, 0, 180); };
+/** one "touch" row: a body icon, a dotted predicted outline at the armpit (or none), the hand landing, a meter */
+const touchRow = (p: Pen, y: number, s: number, who: "self" | "other", landed: number, predicted: boolean, meterV: number, glow = 0) => {
+  body(p, 210, y - 30, s, who === "self" ? "#4a2f22" : "#bdb8b1", who === "other");
+  const ax = 210 + 95 * s, ay = y - 10;
+  if (predicted) hand(p, ax + 30, ay, s, true);
+  const u = ease(landed);
+  hand(p, ax + 30 + 170 * (1 - u), ay + 110 * (1 - u) * (who === "self" ? 1 : -0.2), s, false, who === "self" ? SKIN : "#ffe2c2");
+  bigMeter(p, 470, y + 150 * s - 120, 300, meterV, glow);
 };
 
 export const drawDiagram = (p: Pen, kind: DiagramKind, tt: number, steps: number[]) => {
   panel(p);
   const t = (k: number) => since(tt, steps, k);
   if (kind === "forecast") {
-    // the brain (and its cerebellum) top-left; the forecast card bottom-right; a signal between them
-    scaled(p, 380, 330, pop(t(1)), () => brain(p, 380, 330, 1, t(2) >= 0 ? ease(t(2) / 0.4) : 0, tt));
-    if (t(3) >= 0) {
-      // the signal: dots running along a curve from the cerebellum to the card
-      const path = (u: number): P2 => { const a: P2 = [530, 440], c: P2 = [720, 420], b: P2 = [700, 560]; return [(1 - u) ** 2 * a[0] + 2 * u * (1 - u) * c[0] + u * u * b[0], (1 - u) ** 2 * a[1] + 2 * u * (1 - u) * c[1] + u * u * b[1]]; };
-      const grow = ease(t(3) / 0.5);
-      p.g.save(); p.g.setLineDash([18, 16]); const seg: P2[] = []; for (let i = 0; i <= 20; i++) seg.push(path((i / 20) * grow)); p.stroke(seg, 9, ORANGE); p.g.restore();
-      for (let k = 0; k < 3; k++) { const u = ((tt * 1.3 + k / 3) % 1) * grow; const [x, y] = path(u); p.dot(x, y, 13, ORANGE); p.dot(x, y, 6, "#ffffff"); }
-      // the forecast card: a body icon, the predicted (dotted) hand at the armpit, a dashed arc for the hand's path
-      scaled(p, 690, 760, pop(t(3) - 0.35), () => {
-        p.poly([[480, 570], [900, 570], [900, 930], [480, 930]], "#fff3d6", 10);
-        body(p, 620, 740, 0.9, "#4a2f22");
-        const ax = 690, ay = 760; // armpit (the icon's right side)
-        hand(p, ax + 22, ay - 6, 0.85, true);
-        p.g.save(); p.g.setLineDash([12, 12]); p.arc(ax + 60, ay + 70, 110, 90, -70, 70, 7, BLUE); p.g.restore();
-        // the real hand travelling along the predicted path (step 4), arriving at the armpit
-        const u = t(4) >= 0 ? ease(t(4) / 1.2) : 0, a = rad(70 - 140 * u);
-        hand(p, ax + 60 + 110 * Math.cos(a), ay + 70 + 90 * Math.sin(a), 0.85);
-        // countdown ring (step 5): fills, then a tick: "arriving any moment now"
-        const cx = 840, cy = 630;
-        p.ell(cx, cy, 40, 40, "#ffffff", 7);
-        const fill = t(5) >= 0 ? ease(t(5) / 0.9) : t(4) >= 0 ? 0.35 * ease(t(4) / 1.2) : 0;
-        if (fill > 0) { const pts: P2[] = [[cx, cy]]; for (let i = 0; i <= 24; i++) pts.push([cx + 34 * Math.cos(rad(-90 + 360 * fill * (i / 24))), cy + 34 * Math.sin(rad(-90 + 360 * fill * (i / 24)))]); p.poly(pts, BLUE, 0); }
-        if (t(5) > 0.9) check(p, 840, 630, 0.75 * pop(t(5) - 0.9));
+    // the brain is there from the first frame; 1 the cerebellum lights up, 2 a signal runs to the forecast card,
+    // 3 the predicted hand travels to the armpit, 4 the countdown completes
+    brain(p, 360, 300, 1.05, t(1) >= 0 ? ease(t(1) / 0.4) : 0, tt);
+    {
+      const live = t(2) >= 0;
+      const path = (u: number): P2 => { const a: P2 = [520, 420], c: P2 = [700, 400], b: P2 = [660, 520]; return [(1 - u) ** 2 * a[0] + 2 * u * (1 - u) * c[0] + u * u * b[0], (1 - u) ** 2 * a[1] + 2 * u * (1 - u) * c[1] + u * u * b[1]]; };
+      const grow = live ? ease(t(2) / 0.5) : 0;
+      if (live) { p.g.save(); p.g.setLineDash([20, 16]); const seg: P2[] = []; for (let i = 0; i <= 20; i++) seg.push(path((i / 20) * grow)); p.stroke(seg, 11, ORANGE); p.g.restore();
+      for (let k = 0; k < 3; k++) { const u = ((tt * 1.3 + k / 3) % 1) * grow; const [x, y] = path(u); p.dot(x, y, 16, ORANGE); p.dot(x, y, 7, "#ffffff"); } }
+      // the forecast card, large: body icon, the predicted (dotted) hand at the armpit, the hand's dashed path
+      // before the forecast arrives the card waits, faded (so the panel is never half empty); then it pops in
+      const e = live ? ease((t(2) - 0.35) / 0.3) : 0, k = 1 + 0.08 * Math.sin(Math.PI * e);
+      p.g.save(); p.g.globalAlpha = 0.3 + 0.7 * e;
+      scaled(p, 600, 740, k, () => {
+        p.poly([[300, 530], [920, 530], [920, 935], [300, 935]], "#fff3d6", 11);
+        body(p, 460, 730, 1.15, "#4a2f22");
+        const ax = 560, ay = 740;
+        hand(p, ax + 30, ay - 8, 1.1, true);
+        p.g.save(); p.g.setLineDash([14, 12]); p.arc(ax + 95, ay + 45, 150, 110, -70, 70, 9, BLUE); p.g.restore();
+        const u = t(3) >= 0 ? ease(t(3) / 1.2) : 0, a = rad(70 - 140 * u);
+        hand(p, ax + 95 + 150 * Math.cos(a), ay + 45 + 110 * Math.sin(a), 1.1);
+        const cx = 835, cy = 615;
+        p.ell(cx, cy, 52, 52, "#ffffff", 9);
+        const fill = t(4) >= 0 ? ease(t(4) / 0.9) : t(3) >= 0 ? 0.35 * ease(t(3) / 1.2) : 0;
+        if (fill > 0) { const pts: P2[] = [[cx, cy]]; for (let i = 0; i <= 24; i++) pts.push([cx + 44 * Math.cos(rad(-90 + 360 * fill * (i / 24))), cy + 44 * Math.sin(rad(-90 + 360 * fill * (i / 24)))]); p.poly(pts, BLUE, 0); }
+        if (t(4) > 0.9) check(p, cx, cy, 1.0 * pop(t(4) - 0.9));
       });
+      p.g.restore();
     }
   } else if (kind === "prediction") {
-    // row A: your own hand meets its prediction -> meter low. Row B: someone else's hand, no prediction -> meter high
-    const rowA = 300, rowB = 690;
-    scaled(p, 230, rowA, pop(Math.max(t(1), 0.3)), () => {
-      body(p, 200, rowA, 0.8, "#4a2f22");
-      hand(p, 290, rowA + 20, 0.8, true);
-      const u = t(1) >= 0 ? ease(t(1) / 0.8) : 0;
-      hand(p, 290 + 150 * (1 - u), rowA + 20 + 120 * (1 - u), 0.8);
-      if (t(2) >= 0) check(p, 400, rowA - 80, 0.8 * pop(t(2)));
-    });
-    // your meter: starts mid, drops on step 3 ("turns the feeling down"), sits at zero on step 5
-    const vA = t(3) >= 0 ? 0.55 - 0.5 * ease(t(3) / 0.8) : 0.55;
-    meter(p, 520, rowA, 270, vA);
-    if (t(5) >= 0) { p.g.save(); p.g.globalAlpha = 0.5 * (1 + Math.sin(tt * 10)) / 2 + 0.25; p.ell(528, rowA, 30, 30, GREEN, 0); p.g.restore(); }
-    p.stroke([[90, 495], [910, 495]], 8, "#e2d6c4");
-    if (t(4) >= 0) {
-      scaled(p, 230, rowB, pop(t(4)), () => {
-        body(p, 200, rowB, 0.8, "#bdb8b1", true);
-        // someone else's hand comes in from the side, with no predicted outline waiting for it
-        const u = ease(t(4) / 0.5);
-        hand(p, 290 + 160 * (1 - u), rowB + 20, 0.8, false, "#ffe2c2");
-        ask(p, 400, rowB - 80, 0.8);
-      });
-      const vB = 0.1 + 0.9 * ease((t(4) - 0.25) / 0.5);
-      meter(p, 520, rowB, 270, vB);
-      if (t(4) > 0.6) bang(p, 880, rowB - 85, 0.7 * pop(t(4) - 0.6));
-    }
+    // your OWN touch only, large and visible from the first frame: the predicted (dotted) outline waits at the armpit;
+    // 1 your hand lands in it, 2 a tick (as predicted), 3 the tickle meter turns down, 4 + 5 it sits at zero ("no
+    // surprise, no tickle") with a calm, glowing face
+    const v = t(3) >= 0 ? 0.6 - 0.58 * ease(t(3) / 0.8) : 0.6, glow = t(4) >= 0 ? 0.6 + 0.4 * Math.sin(tt * 8) : 0;
+    body(p, 290, 370, 1.6, "#4a2f22");
+    const gx = 470, gy = 430, u = t(1) >= 0 ? ease(t(1) / 0.8) : 0;
+    hand(p, gx, gy, 1.5, true);
+    if (u < 1) { p.g.save(); p.g.setLineDash([16, 14]); p.stroke([[gx + 40, gy + 20], [gx + 330 * (1 - u) + 40, gy + 150 * (1 - u) + 20]], 8, BLUE); p.g.restore(); }
+    hand(p, gx + 330 * (1 - u), gy + 150 * (1 - u), 1.5);
+    if (t(2) >= 0) check(p, 700, 250, 1.4 * pop(t(2)));
+    bigMeter(p, 130, 835, 580, v, glow);
+    if (t(5) >= 0) { const k = pop(t(5)); scaled(p, 845, 690, k, () => { p.ell(845, 690, 60, 60, GREEN, 9); p.stroke([[815, 690], [875, 690]], 15, "#ffffff"); }); } // "zero"
+  } else if (kind === "contrast") {
+    // predicted vs unexpected, both rows from the first frame: your hand (outline waiting, meter low) vs someone
+    // else's (no outline, "?", meter high); 1 highlights the surprise row, 2 sparkles it
+    touchRow(p, 250, 1.05, "self", 1, true, 0.05);
+    check(p, 470, 120, 0.9);
+    p.stroke([[80, 500], [920, 500]], 9, "#e2d6c4");
+    const hl = t(1) >= 0 ? ease(t(1) / 0.3) : 0;
+    if (hl > 0) { p.g.save(); p.g.globalAlpha = 0.25 * hl; p.poly([[70, 515], [930, 515], [930, 935], [70, 935]], "#f4d24a", 0); p.g.restore(); }
+    touchRow(p, 670, 1.05, "other", 1, false, 0.95);
+    ask(p, 470, 540, 0.9); bang(p, 880, 560, 0.85);
+    if (t(2) >= 0) for (const [x, y, ph] of [[150, 560, 0], [860, 880, 1.3], [520, 900, 2.1]]) { const s2 = 0.6 + 0.4 * Math.abs(Math.sin(tt * 8 + ph)); p.poly([[x, y - 40 * s2], [x + 10 * s2, y - 10 * s2], [x + 40 * s2, y], [x + 10 * s2, y + 10 * s2], [x, y + 40 * s2], [x - 10 * s2, y + 10 * s2], [x - 40 * s2, y], [x - 10 * s2, y - 10 * s2]], "#fff6c8", 6); }
   } else {
-    // delay: two strokes on a timeline; the robot's (orange) slips behind the control's (blue) on step 2
-    const x0 = 120, x1 = 880, mid = 430, sh = t(2) >= 0 ? 90 * ease(t(2) / 0.6) : 0;
-    p.stroke([[x0, mid + 170], [x1, mid + 170]], 7, "#cfc3b0");
-    const wave = (dx: number, y: number, col: string) => { const pts: P2[] = []; for (let x = x0; x <= x1; x += 10) pts.push([x, y + 70 * Math.sin(((x - x0 - dx) / 170) * Math.PI * 2 - tt * 6)]); p.stroke(pts, 14, col); };
-    if (t(1) >= 0 || steps.length === 0) { wave(0, mid - 40, BLUE); wave(sh, mid + 40, ORANGE); }
-    if (sh > 2) { p.stroke([[x1 - 160, mid + 250], [x1 - 160 + sh, mid + 250]], 10, INK); p.poly([[x1 - 160 + sh, mid + 236], [x1 - 160 + sh + 22, mid + 250], [x1 - 160 + sh, mid + 264]], INK, 0); }
-    // stopwatch
-    p.ell(200, 760, 70, 70, "#ffffff", 9); p.poly([[188, 676], [212, 676], [212, 692], [188, 692]], INK, 0);
-    const a = rad(-90 + (sh / 90) * 80);
-    if (sh > 2) { const pts: P2[] = [[200, 760]]; for (let i = 0; i <= 12; i++) { const b = rad(-90) + (a - rad(-90)) * (i / 12); pts.push([200 + 58 * Math.cos(b), 760 + 58 * Math.sin(b)]); } p.poly(pts, ORANGE, 0); }
-    p.stroke([[200, 760], [200 + 52 * Math.cos(a), 760 + 52 * Math.sin(a)]], 9);
-    if (t(3) >= 0) { const k = pop(t(3)); scaled(p, 700, 780, k, () => { for (let i = 0; i < 10; i++) { const b = rad(i * 36); p.stroke([[700 + 40 * Math.cos(b), 780 + 40 * Math.sin(b)], [700 + 95 * Math.cos(b), 780 + 95 * Math.sin(b)]], 12, "#f4d24a"); } p.ell(700, 780, 34, 34, "#fff3b0", 8); }); }
+    // delay: the control's stroke (blue) and the robot's (orange), in sync from the first frame; 1 a tick (in sync),
+    // 2 the robot's stroke slips behind (the delay, stopwatch), 3 a tickle burst
+    const x0 = 250, x1 = 900, mid = 400, sh = t(2) >= 0 ? 100 * ease(t(2) / 0.6) : 0;
+    const wave = (dx: number, y: number, col: string) => { const pts: P2[] = []; for (let x = x0; x <= x1; x += 10) pts.push([x, y + 80 * Math.sin(((x - x0 - dx) / 190) * Math.PI * 2 - tt * 6)]); p.stroke(pts, 18, col); };
+    wave(0, mid - 50, BLUE); wave(sh, mid + 50, ORANGE);
+    // what each stroke is: your hand on the control (blue) and the robot's feather (orange)
+    p.ell(150, mid - 110, 62, 62, "#dcebfa", 8); hand(p, 150, mid - 92, 0.95);
+    p.ell(150, mid + 110, 62, 62, "#ffe6cc", 8);
+    p.g.save(); p.g.translate(150, mid + 110); p.g.rotate(rad(-35)); p.ell(0, 0, 18, 46, PINK, 6); p.stroke([[0, 46], [0, -40]], 5); p.g.restore();
+    if (t(1) >= 0 && t(2) < 0) check(p, 690, 790, 1.3 * pop(t(1)));
+    if (sh > 2) { p.stroke([[x1 - 190, mid + 270], [x1 - 190 + sh, mid + 270]], 12, INK); p.poly([[x1 - 190 + sh, mid + 254], [x1 - 190 + sh + 26, mid + 270], [x1 - 190 + sh, mid + 286]], INK, 0); }
+    p.ell(210, 770, 92, 92, "#ffffff", 11); p.poly([[195, 664], [225, 664], [225, 684], [195, 684]], INK, 0);
+    const a = rad(-90 + (sh / 100) * 80);
+    if (sh > 2) { const pts: P2[] = [[210, 770]]; for (let i = 0; i <= 12; i++) { const b = rad(-90) + (a - rad(-90)) * (i / 12); pts.push([210 + 78 * Math.cos(b), 770 + 78 * Math.sin(b)]); } p.poly(pts, ORANGE, 0); }
+    p.stroke([[210, 770], [210 + 70 * Math.cos(a), 770 + 70 * Math.sin(a)]], 11);
+    if (t(3) >= 0) { const k = pop(t(3)); scaled(p, 690, 790, k, () => { for (let i = 0; i < 10; i++) { const b = rad(i * 36); p.stroke([[690 + 50 * Math.cos(b), 790 + 50 * Math.sin(b)], [690 + 120 * Math.cos(b), 790 + 120 * Math.sin(b)]], 15, "#f4d24a"); } p.ell(690, 790, 44, 44, "#fff3b0", 9); }); }
   }
 };
 

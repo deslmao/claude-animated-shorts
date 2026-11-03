@@ -259,7 +259,8 @@
   "hold": "",
   "tickleSelf": "",
   "tickle": "",
-  "operate": ""
+  "operate": "",
+  "read": ""
  },
  "effects": {
   "question": "",
@@ -552,6 +553,7 @@
  },
  "items": {
   "book": "",
+  "openBook": "",
   "phone": "",
   "mug": "",
   "apple": "",

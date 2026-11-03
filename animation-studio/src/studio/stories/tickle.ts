@@ -5,6 +5,10 @@
 // tickles him (tickle gesture reaching Milo's flank), Milo squirms and nearly falls over (stagger, no camera shake);
 // dizzy stars orbit his head; the cerebellum's forecast and the predicted-vs-surprise touch are animated diagrams; the
 // over-the-shoulder obstruction is gone; the robot arm really tickles Gus's palm, in sync and then with a delay.
+// Revision cycle 2 (after the Stage C review, productions/tickle/revision-stageC-review.md): shot 10's panel shows only
+// your own predicted touch (meter to zero); the surprise comparison moved to shot 14 ("contrast"); every panel shows its
+// first picture from frame one; no floating bursts; Milo beside Juno in shot 8; Gus reads an open joke book in shot 11;
+// the robot sits closer, brushes in big, slower strokes and visibly lags after "delay"; shots 3 and 6 widened.
 import type { Storyboard } from "../story/types";
 
 export const TICKLE: Storyboard = {
@@ -23,7 +27,7 @@ export const TICKLE: Storyboard = {
       actors: [{ who: "milo", at: "b", act: "determined", facing: "camera", beats: [{ word: "Fingers", gesture: "tickle", face: "determined" }, { word: "armpit", gesture: "tickleSelf" }, { word: "focus", face: "stern" }] }] },
     // ...and nothing: he is still tickling, face completely deadpan
     { say: "Nothing. Not even a giggle.", set: "home", light: "interior", transition: "cut",
-      camera: { move: "frame", on: ["milo"], size: "medium", from: -6, height: 1.45 },
+      camera: { move: "frame", on: ["milo"], size: "full", from: 14, height: 1.5 },
       actors: [{ who: "milo", at: "b", act: "neutral", gesture: "tickleSelf", face: "stern", facing: "camera", idle: 0.4 }],
       fx: [{ kind: "sweat", on: "milo", word: "giggle" }] },
     // Gus sneaks up from behind and really tickles him: Milo bursts out laughing, squirms, nearly falls over
@@ -36,14 +40,14 @@ export const TICKLE: Storyboard = {
         { who: "gus", at: [-1.6, 0, -0.9], act: "suspicious", walk: { to: [-0.2, 0, 0.45], t0: 0, t1: 0, from: { word: "sneaks" }, until: { word: "Milo" } },
           reach: "milo", beats: [{ word: "Milo", gesture: "tickle", face: "grin" }, { word: "over", act: "laugh" }] },
       ],
-      fx: [{ kind: "burst", on: "milo", word: "laughs" }, { kind: "stars", on: "milo", word: "falls" }] },
+      fx: [{ kind: "stars", on: "milo", word: "falls" }] },
     { say: { who: "gus", text: "Works every time!" }, set: "home", light: "interior", transition: "cut",
       camera: { move: "frame", on: ["gus"], size: "full", from: 10, height: 1.45 },
       actors: [{ who: "gus", at: "b", act: "thumbsUp" }],
       fx: [{ kind: "sparkle", on: "gus", word: "time" }] },
     // the puzzle: same hands, same armpit
     { say: "Same fingers, same armpit. So what changed?", set: "home", light: "interior", transition: "cut",
-      camera: { move: "frame", on: ["milo"], size: "medium", from: 12, height: 1.45 },
+      camera: { move: "frame", on: ["milo"], size: "full", from: 12, height: 1.45 },
       actors: [{ who: "milo", at: "a", act: "confused", facing: "camera", beats: [{ word: "fingers", gesture: "tickleSelf" }, { word: "armpit", face: "thinking" }, { word: "changed", act: "shrug" }] }],
       fx: [{ kind: "question", on: "milo", word: "changed" }] },
     { say: "Wait, is Milo secretly not ticklish?", set: "home", light: "interior", transition: "cut",
@@ -51,47 +55,48 @@ export const TICKLE: Storyboard = {
       actors: [{ who: "milo", at: "a", act: "nervous", beats: [{ word: "ticklish", act: "scared" }] }] },
     // the explanation, in the lab: Milo moves his hand as Juno says "every time you move"
     { say: "You see, every time you move, your brain quietly predicts what that movement will feel like.", set: "lab", light: "interiorCool", transition: "fade", mood: "curious",
-      camera: { move: "frame", on: ["juno", "milo"], size: "full", from: 8, height: 1.45 },
+      camera: { move: "frame", on: ["juno", "milo"], size: "medium", from: 8, height: 1.45 },
       actors: [
         { who: "juno", at: "a", act: "explain", face: "smile", facing: "camera" },
-        { who: "milo", at: "b", act: "thinking", facing: "camera", beats: [{ word: "move", gesture: "tickleSelf", face: "thinking" }] },
+        { who: "milo", at: [-2.0, 0, 0.7], act: "thinking", facing: "camera", beats: [{ word: "move", gesture: "tickleSelf", face: "thinking" }] },
       ],
       fx: [{ kind: "idea", on: "milo", word: "predicts", life: 1.8 }] },
     // the cerebellum's forecast, animated beside Juno
     { say: "A part at the back of your brain, the cerebellum, sends out a forecast: fingers arriving at the armpit, any moment now.", set: "lab", light: "interiorCool", transition: "cut",
       camera: { move: "frame", on: ["juno", "diagram"], size: "medium", from: -8, height: 1.5 },
-      actors: [{ who: "juno", at: "a", act: "explain", face: "smile", facing: "camera", beats: [{ word: "cerebellum", gesture: "present" }, { word: "fingers", gesture: "present", face: "talk" }] }],
-      diagram: { kind: "forecast", with: "juno", place: "above", size: 1.0, steps: [{ word: "brain" }, { word: "cerebellum" }, { word: "forecast" }, { word: "fingers" }, { word: "moment" }] } },
-    // predicted touch vs a surprise touch: your own hand is matched and turned down; someone else's is not
+      actors: [{ who: "juno", at: "a", act: "explain", face: "smile", facing: "camera", beats: [{ word: "cerebellum", gesture: "pointUp" }, { word: "fingers", gesture: "present", face: "talk" }] }],
+      diagram: { kind: "forecast", with: "juno", place: "above", size: 1.0, steps: [{ word: "cerebellum" }, { word: "forecast" }, { word: "fingers" }, { word: "moment" }] } },
+    // your own, predicted touch only: the hand lands in its forecast, the feeling is turned down, the meter sits at zero
+    // ("No surprise, no tickle"); the surprise comparison is shot 14
     { say: "When the touch lands exactly as predicted, your brain turns the feeling down. No surprise, no tickle.", set: "lab", light: "interiorCool", transition: "cut",
       camera: { move: "frame", on: ["juno", "diagram"], size: "medium", from: 8, height: 1.5 },
-      actors: [{ who: "juno", at: "a", act: "explain", face: "smile", facing: "camera", beats: [{ word: "down", gesture: "present" }, { word: "surprise", gesture: "stop", face: "talk" }] }],
+      actors: [{ who: "juno", at: "a", act: "explain", face: "smile", facing: "camera", beats: [{ word: "lands", gesture: "pointUp" }, { word: "down", gesture: "present" }, { word: "surprise", gesture: "stop", face: "talk" }] }],
       diagram: { kind: "prediction", with: "juno", place: "above", size: 1.0, steps: [{ word: "lands" }, { word: "predicted" }, { word: "down" }, { word: "surprise" }, { word: "tickle" }] } },
-    // the joke you wrote yourself: Gus reads his own joke book, unmoved
+    // the joke you wrote yourself: Gus reads his own joke book (held open), deadpan: he already knows the punchline
     { say: "It's like hearing a joke you wrote yourself. You already know the punchline.", set: "home", light: "interior", transition: "fade",
-      camera: { move: "frame", on: ["gus"], size: "full", from: 6, height: 1.45 },
-      actors: [{ who: "gus", at: "a", act: "happy", hold: "book", beats: [{ word: "punchline", act: "sleepy" }] }],
-      fx: [{ kind: "zzz", on: "gus", word: "punchline", life: 1.8 }] },
+      camera: { move: "frame", on: ["gus"], size: "medium", from: 6, height: 1.45 },
+      actors: [{ who: "gus", at: "a", act: "neutral", gesture: "read", hold: "openBook", face: "smile_closed", facing: "camera", beats: [{ word: "wrote", face: "neutral" }, { word: "punchline", face: "stern" }] }],
+      fx: [{ kind: "sweat", on: "gus", word: "punchline" }] },
     // the robot experiment: Gus works the control with one hand, the robot's feather tickles his other palm
     { say: "Scientists tested this with a tickling robot. People moved a robot arm with one hand, and it tickled their other palm.", set: "lab", light: "interiorCool", transition: "fade",
-      camera: { move: "frame", on: ["gus", "robotArm"], size: "full", from: 18, height: 1.35 },
+      camera: { move: "frame", on: ["gus", "robotArm"], size: "medium", from: 18, height: 1.35 },
       actors: [{ who: "gus", at: "b", act: "neutral", gesture: "operate", face: "smile", facing: "camera", hold: "joystick",
-        beats: [{ word: "palm", face: "smile_closed" }], drive: { word: "moved", hz: 1.5 } }],
-      props: [{ id: "robotArm", at: "b", offset: [-1.0, 0.3], yaw: 0, follow: { who: "gus" }, drive: { who: "gus", delay: 0 } }],
+        beats: [{ word: "palm", face: "smile_closed" }], drive: { word: "moved", hz: 1.1 } }],
+      props: [{ id: "robotArm", at: "b", offset: [-0.8, 0.25], yaw: 0, follow: { who: "gus" }, drive: { who: "gus", delay: 0 } }],
       fx: [{ kind: "sparkle", on: "gus", word: "tickled" }] },
     // in sync = barely tickles; add a delay = ticklish again (the delay is shown on the stopwatch diagram)
     { say: "When the robot copied them instantly, it barely tickled. Add a tiny delay, and it got ticklish again.", set: "lab", light: "interiorCool", transition: "cut",
-      camera: { move: "frame", on: ["gus", "robotArm", "diagram"], size: "full", from: 10, height: 1.4 },
-      actors: [{ who: "gus", at: "b", act: "neutral", gesture: "operate", face: "neutral", facing: "camera", hold: "joystick", drive: { t: 0, hz: 1.5 },
+      camera: { move: "frame", on: ["gus", "robotArm", "diagram"], size: "medium", from: 10, height: 1.4 },
+      actors: [{ who: "gus", at: "b", act: "neutral", gesture: "operate", face: "neutral", facing: "camera", hold: "joystick", drive: { t: 0, hz: 1.1 },
         beats: [{ word: "barely", face: "stern" }, { word: "delay", face: "thinking" }, { word: "ticklish", act: "laugh", gesture: "operate" }],
         moves: [{ word: "ticklish", kind: "squirm", dur: 1.5 }] }],
-      props: [{ id: "robotArm", at: "b", offset: [-1.0, 0.3], yaw: 0, follow: { who: "gus" }, drive: { who: "gus", delay: 0, changes: [{ word: "delay", delay: 0.3 }] } }],
-      diagram: { kind: "delay", with: "gus", place: "above", size: 0.95, steps: [{ word: "instantly" }, { word: "delay" }, { word: "ticklish" }] },
-      fx: [{ kind: "burst", on: "gus", word: "ticklish" }] },
+      props: [{ id: "robotArm", at: "b", offset: [-0.8, 0.25], yaw: 0, follow: { who: "gus" }, drive: { who: "gus", delay: 0, changes: [{ word: "delay", delay: 0.3 }] } }],
+      diagram: { kind: "delay", with: "gus", place: "above", size: 0.75, steps: [{ word: "instantly" }, { word: "delay" }, { word: "ticklish" }] } },
+    // the comparison: your own (predicted) touch vs someone else's (a surprise), the surprise lights up
     { say: "The surprise is the whole trick.", set: "lab", light: "interiorCool", transition: "cut",
-      camera: { move: "closeUp", on: "juno", from: -8, punch: true },
-      actors: [{ who: "juno", at: "a", act: "idea" }],
-      fx: [{ kind: "idea", on: "juno", word: "surprise" }] },
+      camera: { move: "frame", on: ["juno", "diagram"], size: "medium", from: -6, height: 1.5 },
+      actors: [{ who: "juno", at: "a", act: "explain", face: "smile", facing: "camera", beats: [{ word: "surprise", gesture: "pointUp", face: "excited" }] }],
+      diagram: { kind: "contrast", with: "juno", place: "above", size: 1.0, steps: [{ word: "surprise" }, { word: "trick" }] } },
     // the payoff: a friend tickles Milo, and he laughs
     { say: "So if you ever need a guaranteed laugh, you'll need a friend.", set: "nature", light: "golden", transition: "fade", mood: "warm",
       camera: { move: "frame", on: ["milo", "gus"], size: "full", from: 6, height: 1.45 },

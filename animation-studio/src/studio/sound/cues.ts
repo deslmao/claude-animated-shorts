@@ -4,7 +4,8 @@
 //   ambience  per shot from set + light (or the shot's `ambience`)
 //   effects   effect marks -> their sound; transitions -> swish / whoosh; punch-in close-ups and crane moves; camera
 //             kicks -> impact; jumps -> boing; falls -> thud; shock without a mark -> pop; footsteps along every
-//             walk / run (surface by set); explicit `sfx` cues. Each is panned to where its actor is on screen.
+//             walk / run (surface by set); a tickled actor's laugh -> giggle; a stagger -> stumble; a driven machine ->
+//             servo per stroke + feather swish per brush; explicit `sfx` cues. Each is panned to where its actor is on screen.
 import * as THREE from "three";
 import { runKeys } from "../camera/keys";
 import { actorPos, FPS } from "../story/compile";
@@ -98,7 +99,28 @@ export const soundPlan = (film: Film, sb0: Storyboard): SoundPlan => {
         for (const b of a.beats ?? []) if (b.act === "shock" && !fxTimes.some((t) => Math.abs(t - (b.t ?? 0)) < 0.35)) cues.push({ t: T0 + (b.t ?? 0), name: "pop", gain_db: -3, pan: panOf(a.who, b.t ?? 0), why: `${a.who} shocked, shot ${i + 1}` });
         if (a.mode === "jump") cues.push({ t: T0 + 0.1, name: "boing", pan: panOf(a.who, 0.1), why: `${a.who} jumps, shot ${i + 1}` });
         if (a.mode === "fall") cues.push({ t: T0 + 0.35, name: "thud", pan: panOf(a.who, 0.35), why: `${a.who} falls, shot ${i + 1}` });
+        // tickling: a tickled actor (someone reaches for them, or a machine follows their hand) giggles when they laugh;
+        // a stagger scuffs and thumps
+        const tickled = s.actors.some((x) => x.reach === a.who) || (s.props ?? []).some((q) => q.follow?.who === a.who);
+        if (tickled) for (const b of a.beats ?? []) if (b.act === "laugh") cues.push({ t: T0 + (b.t ?? 0) + 0.08, name: "giggle", pan: panOf(a.who, b.t ?? 0), why: `${a.who} laughs, tickled, shot ${i + 1}` });
+        for (const m of a.moves ?? []) if (m.kind === "stagger") cues.push({ t: T0 + (m.t ?? 0) + 0.15, name: "stumble", pan: panOf(a.who, m.t ?? 0), why: `${a.who} stumbles, shot ${i + 1}` });
         for (const t of steps(s.set, a, dur)) cues.push({ t: T0 + t, name: stepFor(s.set), pan: panOf(a.who, t), why: `${a.who} ${a.walk?.mode === "run" ? "runs" : "walks"}, shot ${i + 1}` });
+      }
+    }
+    // a driven machine (a prop replaying an actor's control strokes): a servo whirr each stroke cycle, and a feather
+    // swish each time it brushes across the hand it follows (the strokes the viewer sees, delay included)
+    if (auto) for (const q of s.props ?? []) {
+      const drv = q.drive ? s.actors.find((x) => x.who === q.drive!.who)?.drive : undefined;
+      if (!q.drive || !drv) continue;
+      const hz = drv.hz ?? 1.6, d0 = drv.t ?? 0, delayAt = (t: number) => { let d = q.drive!.delay ?? 0; for (const c of q.drive!.changes ?? []) if (t >= (c.t ?? 0)) d = c.delay; return d; };
+      let last = -1;
+      for (let t = d0; t < dur - 0.1; t += 1 / 120) {
+        const h = Math.floor((t - d0 - delayAt(t)) * hz * 2);
+        if (h > last && h >= 0) {
+          if (h % 2 === 0) cues.push({ t: T0 + t, name: "servo", pan: panOf(q.drive.who, t) * 0.8, why: `${q.id} stroke (servo), shot ${i + 1}` });
+          if (q.follow) cues.push({ t: T0 + t + 0.03, name: "feather_swish", pan: panOf(q.follow.who, t), why: `${q.id} brushes ${q.follow.who}'s hand, shot ${i + 1}` });
+        }
+        if (h > last) last = h;
       }
     }
     for (const x of s.sfx ?? []) cues.push({ t: T0 + (x.t ?? 0), name: x.name, gain_db: x.gain, pan: panOf(x.on, x.t ?? 0), why: `storyboard cue, shot ${i + 1}` });

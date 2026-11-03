@@ -280,6 +280,58 @@ def wave_crash(r):
     return fades(lp(nz, 2500) * env * 0.9, 0.05, 0.4)
 
 
+# ------------------------------------------------------------------ tickling, machines, bodies (stage 6 revision)
+def giggle(r):
+    """a short burst of giggles: four or five quick breathy 'hee-hee-ha' syllables, falling a little (someone tickled)"""
+    base = r.uniform(230, 290)
+    parts, t0 = [], 0.0
+    k = int(r.integers(4, 6))
+    for i in range(k):
+        d = r.uniform(0.075, 0.1)
+        n = ns(d + 0.03)
+        t = np.arange(n) / SR
+        v = "i" if i < k - 1 else "a"
+        f0 = base * (1.0 - 0.05 * i) * _track_lin(t, [(0, 1.12), (d * 0.35, 1.18), (d, 0.92)])
+        forms = G.vowel_track(n, [(0, "E"), (0.02, v), (d, v)])
+        amp = np.clip(t / 0.008, 0, 1) * np.clip((d + 0.02 - t) / 0.03, 0, 1) * (1.0 - 0.1 * i)
+        y = G.vox(f0, forms, amp, r, r.uniform(1.15, 1.25), tilt=1.1, breath=0.55)
+        h = hp(r.standard_normal(ns(0.03)), 1500) * _env(tt(0.03), 0.004, 0.012) * 0.6   # the "h" of each syllable
+        parts += [(h, t0), (y, t0 + 0.012)]
+        t0 += d + r.uniform(0.035, 0.055)
+    return fades(_sum(*parts), 0.002, 0.04) * 0.8
+
+
+def _track_lin(t, pts):
+    return np.interp(t, [p[0] for p in pts], [p[1] for p in pts])
+
+
+def feather_swish(r):
+    """a feather brushing across skin: a very soft, airy, high swish"""
+    w = G.whoosh(0.32, r, peak=0.14, f_lo=2500, f_hi=7500, width=0.7, tail=0.1, air=0.6)
+    return fades(hp(w, 1800), 0.01, 0.06) * 0.6
+
+
+def servo(r):
+    """a small robot servo whirr: a gear-toothed tone that rises then settles, with a soft click at the end"""
+    d = 0.32
+    t = tt(d)
+    f = 210 + 90 * np.sin(np.pi * np.clip(t / d, 0, 1)) ** 0.8
+    ph = phase(f)
+    tone = np.sign(np.sin(ph)) * 0.35 + 0.65 * np.sin(ph)               # buzzy: a motor, not a bell
+    teeth = 1 + 0.35 * np.sin(phase(f * 7.5))                              # gear teeth
+    body = bp(tone * teeth, 300, 3200, 1) * np.clip(t / 0.03, 0, 1) * np.clip((d - t) / 0.05, 0, 1)
+    click = G.clink(r, f0=2600, dur=0.05, bright=0.6) * 0.25
+    return fades(_sum(body * 0.7, (click, d - 0.04)), 0.003, 0.02)
+
+
+def stumble(r):
+    """a stumble: two quick shoe scuffs on the floor and a light body-weight thump"""
+    sc = [bp(colored(ns(0.12), r, 0.6), 400, 3500, 1) * _env(tt(0.12), 0.01, 0.04) for _ in range(2)]
+    t = tt(0.25)
+    thump = lp(colored(len(t), r, 1.2), 300) * _env(t, 0.003, 0.07) * 1.2 + np.sin(phase(70 + 40 * np.exp(-t / 0.03))) * _env(t, 0.002, 0.06) * 0.6
+    return fades(_sum((sc[0] * 0.8, 0.0), (sc[1] * 0.7, 0.11), (thump, 0.2)), 0.002, 0.05)
+
+
 SFX = {
     "pop": pop, "ding": ding, "blip_up": blip_up, "boing": boing, "poof": poof, "twinkle": twinkle, "impact": impact,
     "thud": thud, "party_pop": party_pop, "drip": drip, "steam": steam, "snore_soft": snore_soft, "ring_ding": ring_ding,
@@ -288,6 +340,7 @@ SFX = {
     "step_floor": step_floor, "step_grass": step_grass, "knock": knock, "clock_tick": clock_tick, "cash": cash,
     "gasp": gasp, "oof": oof, "applause": applause, "creak": creak, "crack": crack, "splash": splash, "bubbles": bubbles,
     "clink": clink, "hammer": hammer, "cannon": cannon, "bell_ring": bell_ring, "wave_crash": wave_crash,
+    "giggle": giggle, "feather_swish": feather_swish, "servo": servo, "stumble": stumble,
 }
 
 

@@ -399,12 +399,12 @@ const hat3 = (p: Pen, L: Look, H: Blob, cx: number, hc: number, light: number, f
 // ---------------- gestures ----------------
 export type Gesture = "hang" | "wave" | "point" | "pointUp" | "shrug" | "facepalm" | "chin" | "thumbsUp" | "crossArms" | "hips" | "raiseHand"
   | "cheer" | "talk" | "scratchHead" | "coverMouth" | "present" | "fists" | "clap" | "belly" | "stop" | "pump" | "spread" | "hold"
-  | "tickleSelf" | "tickle" | "operate";
+  | "tickleSelf" | "tickle" | "operate" | "read";
 export const GESTURES: Gesture[] = ["hang", "wave", "point", "pointUp", "shrug", "facepalm", "chin", "thumbsUp", "crossArms", "hips", "raiseHand",
-  "cheer", "talk", "scratchHead", "coverMouth", "present", "fists", "clap", "belly", "stop", "spread", "hold", "tickleSelf", "tickle", "operate"];
+  "cheer", "talk", "scratchHead", "coverMouth", "present", "fists", "clap", "belly", "stop", "spread", "hold", "tickleSelf", "tickle", "operate", "read"];
 /** gestures that show a held item off overhead (raise it, point it up, cheer with it); any other gesture becomes "hold"
  *  (the item at chest height, close to the body, so it stays in frame in medium shots) while something is held */
-const CARRY: Gesture[] = ["hold", "raiseHand", "pointUp", "cheer", "operate"];
+const CARRY: Gesture[] = ["hold", "raiseHand", "pointUp", "cheer", "operate", "read"];
 type Hand = "dot" | "point" | "thumb" | "open" | "fist" | "wiggle" | "palm";
 /** layer: 0 behind the torso, 1 in front of the torso, 2 over the face */
 type ArmDef = { pts: [P2, P2, P2]; layer: 0 | 1 | 2; hand: Hand; dir?: number };
@@ -523,10 +523,13 @@ export const rigFront = (L: Look, pose: Pose) => {
     }
     case "operate": { // the `hand`-side hand works a control in front of the waist; the other palm is held out
       const s = hs, o = -s, d = pose.drive ?? 0, So = S1(o);
-      add(s, [tcx + s * 1.05 * T.a, chin + 0.5 * HH], [tcx + s * (0.45 * T.a + 7 * u * d), chin + 0.62 * HH - 2 * u * Math.abs(d)], 1, "fist");
+      add(s, [tcx + s * 1.05 * T.a, chin + 0.5 * HH], [tcx + s * (0.45 * T.a + 16 * u * d), chin + 0.62 * HH - 5 * u * Math.abs(d)], 1, "fist");
       add(o, [So[0] + o * 0.32 * HH, So[1] + 0.36 * HH], [So[0] + o * 0.62 * HH, So[1] + 0.32 * HH], 0, "palm");
       break;
     }
+    case "read": // both hands hold an open item (an open book) in front of the lower chest; the eyes look down into it
+      for (const s of [-1, 1]) add(s, [tcx + s * (1.12 * T.a + 5 * u), chin + 0.5 * HH], [tcx + s * 0.78 * T.a, chin + 0.66 * HH], 1, "fist");
+      break;
     case "stop": one((s) => { const S = S1(s); add(s, [S[0] + s * 0.22 * HH, S[1] + 0.32 * HH], [S[0] + s * 0.18 * HH, S[1] - 0.12 * HH], 1, "open"); }); break;
     case "talk": for (const s of [-1, 1]) { const w = Math.sin(t * 6 + (s > 0 ? 0 : 1.7)); add(s, [tcx + s * 1.12 * T.a, chin + 0.46 * HH], [tcx + s * (0.95 * T.a + 6 * u * w), chin + 0.56 * HH - 8 * u * w], 1, "open"); } break;
     case "pump": for (const s of [-1, 1]) { const w = Math.sin(two * phase) * s; add(s, [tcx + s * 1.15 * T.a, chin + 0.42 * HH - 10 * u * w], [tcx + s * 0.9 * T.a, chin + 0.22 * HH - 22 * u * w], 0, "fist"); } break;
@@ -541,7 +544,7 @@ export const rigFront = (L: Look, pose: Pose) => {
       if (k < 0.5) { arm.hand = f0.hand; arm.dir = f0.dir; }
     }
   }
-  return { expr, mode, phase, facing, look, light, back, hs, Bd, skin, two, lid, seed, H, W, HH, u, sole, torsoBot, chin, hc, hipY, thick, ow, top, legCol, armCol, footCol, legW, footW, dress, coat, frock, A, T, tcx, tp, shY, arms, headTilt, t, jump, g };
+  return { expr, mode, phase, facing, look: (g === "read" ? [look[0] * 0.3, 1] : look) as [number, number], light, back, hs, Bd, skin, two, lid, seed, H, W, HH, u, sole, torsoBot, chin, hc, hipY, thick, ow, top, legCol, armCol, footCol, legW, footW, dress, coat, frock, A, T, tcx, tp, shY, arms, headTilt, t, jump, g };
 };
 /** where a front-view figure's head and hands are, in design units (600 x 1000 canvas, soles at y 975, before any
  *  card mirroring), exactly as figureFront draws them: the head after the body lean and head tilt, each hand after the
@@ -564,7 +567,7 @@ export const anchorsFront = (L: Look, pose: Pose): Anchors => {
   };
 };
 export const figureFront = (p: Pen, L: Look, pose: Pose) => {
-  const { expr, mode, phase, facing, look, light, back, hs, Bd, skin, two, lid, seed, H, W, HH, u, sole, torsoBot, chin, hc, hipY, thick, ow, top, legCol, armCol, footCol, legW, footW, dress, coat, frock, A, T, tcx, tp, arms, headTilt, t } = rigFront(L, pose);
+  const { expr, mode, phase, facing, look, light, back, hs, Bd, skin, two, lid, seed, H, W, HH, u, sole, torsoBot, chin, hc, hipY, thick, ow, top, legCol, armCol, footCol, legW, footW, dress, coat, frock, A, T, tcx, tp, arms, headTilt, t, g } = rigFront(L, pose);
   // ---- long hair behind everything ----
   p.rot = null;
   // ---- legs + feet ----
@@ -698,7 +701,8 @@ export const figureFront = (p: Pen, L: Look, pose: Pose) => {
   // held item: in the holding hand (the gesturing arm on the `hand` side), in front of the body, behind the head
   if (pose.hold && ITEMS[pose.hold] && mode !== "fall") {
     const hold = arms.find((a) => Math.sign(a.pts[0][0] - tcx) === hs && a.hand !== "dot") ?? arms.find((a) => Math.sign(a.pts[0][0] - tcx) === hs);
-    if (hold) { ITEMS[pose.hold].draw(p, hold.pts[2][0], hold.pts[2][1], u, hs); if (hold.layer === 0) drawArm(hold); else drawHand(hold); } // fingers over the item
+    if (g === "read") { ITEMS[pose.hold].draw(p, tcx, chin + 0.66 * HH, u, hs); for (const a of arms) drawHand(a); } // held open in both hands
+    else if (hold) { ITEMS[pose.hold].draw(p, hold.pts[2][0], hold.pts[2][1], u, hs); if (hold.layer === 0) drawArm(hold); else drawHand(hold); } // fingers over the item
   }
   // ---- head ----
   const Ah = A + headTilt, [cpx, cpy] = rotAbout([300, chin], rad(A), [300, hipY]);

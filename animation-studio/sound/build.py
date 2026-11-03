@@ -31,7 +31,8 @@ CEIL = -1.5          # true-peak target; the sample-peak limiter sits 0.5 dB low
 SFX_REL = {"step_hard": -17, "step_stone": -17, "step_floor": -17, "step_grass": -19, "swish_soft": -14, "whoosh_short": -11,
            "whoosh_long": -13, "whoosh_low": -12, "flash_swish": -10, "impact": -7, "thud": -8, "ding": -9, "pop": -9,
            "blip_up": -11, "boing": -10, "poof": -11, "twinkle": -12, "party_pop": -9, "drip": -13, "steam": -13,
-           "snore_soft": -14, "ring_ding": -10, "sting_low": -9, "clock_tick": -18}
+           "snore_soft": -14, "ring_ding": -10, "sting_low": -9, "clock_tick": -18,
+           "giggle": -13, "feather_swish": -19, "servo": -18, "stumble": -14}  # tickle-revision effects: subtle, under the voice
 SFX_DEFAULT = -10
 
 

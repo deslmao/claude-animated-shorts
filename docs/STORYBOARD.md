@@ -67,7 +67,7 @@ All times are in **seconds from the start of the shot**. Anything timed can be a
 | `fx` | reaction marks that follow a character's head (lean, tilt, laugh). `stars` orbits the crown (dizzy). The 16 kinds are listed in [LIBRARY.md](LIBRARY.md) |
 | `kicks` | impact camera shakes (times or `{ word }`) |
 | `props` | story props for this shot: `[{ id: "barrel", at: "c", offset: [0.6, 0.4], yaw: 20, scale?, variant? }]`. The ids are in `docs/ASSETS.md`. The validator stops a prop from standing on an actor, warns when one overlaps the set and fails one that is never in frame. **Animated props** (those with a rig, e.g. `robotArm`): `follow: { who }` reaches for that actor's held-out palm (gesture `operate`); `drive: { who, delay, changes: [{ word, delay }] }` replays the actor's control strokes, late by `delay` seconds |
-| `diagram` | an animated explainer panel: `{ kind: "forecast" | "prediction" | "delay", with: "juno", place?: "above" | "side", size?, steps: [{ word }, ...] }`. Each step lands on its word. `place: "above"` stacks the panel over the presenter (best for 9:16). Name `"diagram"` in the camera's `on` list to frame it. It draws on top of the set and the captions avoid it |
+| `diagram` | an animated explainer panel: `{ kind: "forecast" | "prediction" | "contrast" | "delay", with: "juno", place?: "above" | "side", size?, steps: [{ word }, ...] }`. Each step lands on its word; every diagram shows its starting picture from the shot's first frame (never a blank panel). `prediction` is your own predicted touch only (the meter ends at zero); `contrast` compares it with someone else's unexpected touch. `place: "above"` stacks the panel over the presenter (best for 9:16). Name `"diagram"` in the camera's `on` list to frame it. It draws on top of the set and the captions avoid it |
 | `crowd` | background extras: `{ count: 6, era: "medieval", around?, radius?, acts?, seed? }`. They're placed on clear floor (generated floor maps), inside the frame, behind the cast and spread out. The validator says if fewer fit |
 | `mood` / `ambience` / `sfx` | sound controls, see [SOUND.md](SOUND.md) |
 
@@ -102,7 +102,7 @@ The camera options work like this:
 |---|---|
 | `at` | a set mark (`a`, `b`, `c`, `kerb`, `sofa`...; see [LIBRARY.md](LIBRARY.md)) or `[x, floorY, z]` |
 | `act` | one of 26 acting presets (face plus body), for example `explain`, `shock`, `laugh`, `sleepy` or `idea` |
-| gestures to know | `tickleSelf` (elbow up, other hand tickling the armpit), `tickle` (reach and tickle someone, with `reach`), `operate` (one hand on a control, the other palm held out). All 25 are on the character sheet page `gestures-milo` |
+| gestures to know | `tickleSelf` (elbow up, other hand tickling the armpit), `tickle` (reach and tickle someone, with `reach`), `operate` (one hand on a control, the other palm held out), `read` (both hands hold an open item, e.g. `hold: "openBook"`, eyes down). Gesture changes ease automatically over 0.15-0.4 s. All 26 are on the character sheet page `gestures-milo` |
 | `face` / `gesture` | override the preset's expression or hands |
 | `beats` | changes during the shot: `{ t, act?, face?, gesture? }`. Expression changes hide behind an automatic blink |
 | `talk` | speaking spans `[[start, end]]` without audio. Voiced lines (`say` with `who`) set the mouth from the real words automatically |
