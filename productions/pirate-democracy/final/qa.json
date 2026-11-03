@@ -1,0 +1,61 @@
+{
+  "ok": true,
+  "frames": 1834,
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "videoSeconds": 61.13333333333333,
+  "audioSeconds": 61.133,
+  "lufs": -14.1,
+  "truePeak": -1.9,
+  "duplicates": [],
+  "black": [],
+  "frozen": [],
+  "checks": [
+    [
+      "video codec is H.264",
+      true,
+      "h264"
+    ],
+    [
+      "resolution",
+      true,
+      "1080x1920 (expected 1080x1920)"
+    ],
+    [
+      "frame rate",
+      true,
+      "30 fps (expected 30)"
+    ],
+    [
+      "frame count",
+      true,
+      "1834 frames (expected 1834) = 61.133 s"
+    ],
+    [
+      "no duplicated frames (chunk seams)",
+      true,
+      "none"
+    ],
+    [
+      "audio track present",
+      true,
+      "aac 48000 Hz 2 ch"
+    ],
+    [
+      "audio is not silent",
+      true,
+      "-14.1 LUFS integrated"
+    ],
+    [
+      "audio starts at 0",
+      true,
+      "0.000 s"
+    ],
+    [
+      "audio length matches picture (sync)",
+      true,
+      "audio 61.133 s vs picture 61.133 s (diff -0.000 s)"
+    ]
+  ]
+}

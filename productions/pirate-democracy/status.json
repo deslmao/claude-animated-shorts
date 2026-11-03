@@ -172,6 +172,18 @@
      1831
     ]
    }
+  },
+  "render": {
+   "state": "done",
+   "at": "2026-11-03T08:06:22.112Z",
+   "inputs": "0c3c33cf9b7c7d",
+   "detail": "render run #12 succeeded: https://github.com/deslmao/claude-animated-shorts/actions/runs/41599094622"
+  },
+  "final": {
+   "state": "done",
+   "at": "2026-11-03T08:06:58.168Z",
+   "inputs": "12",
+   "detail": "PUBLISHED https://github.com/deslmao/claude-animated-shorts/releases/tag/video-Short-pirate-democracy-run12 | QA passed | audio aligned (lag 0 ms, r=1)"
   }
  },
  "approval": {
@@ -189,6 +201,17 @@
   "attempt": 1,
   "runId": 41599094622,
   "runNumber": 12,
-  "url": "https://github.com/deslmao/claude-animated-shorts/actions/runs/41599094622"
+  "url": "https://github.com/deslmao/claude-animated-shorts/actions/runs/41599094622",
+  "conclusion": "success"
+ },
+ "final": {
+  "tag": "video-Short-pirate-democracy-run12",
+  "release": "https://github.com/deslmao/claude-animated-shorts/releases/tag/video-Short-pirate-democracy-run12",
+  "mp4": "productions/pirate-democracy/Short-pirate-democracy.mp4",
+  "qa": "PASSED",
+  "alignment": {
+   "lagSeconds": 0,
+   "correlation": 1
+  }
  }
 }
