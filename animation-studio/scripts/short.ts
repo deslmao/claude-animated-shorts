@@ -39,6 +39,17 @@ const proc = globalThis as unknown as { process: { argv: string[]; env: Record<s
 const argv = proc.process.argv.slice(2), id = argv.find((a) => !a.startsWith("--") && !/^\d+$/.test(a));
 const opt = (k: string) => { const i = argv.indexOf(k); return i >= 0 ? argv[i + 1] : undefined; };
 const has = (k: string) => argv.includes(k);
+/** a fingerprint of the drawing engine (every source file under src/studio and src/videos), for stale review sheets */
+const engineHash = (() => {
+  let memo: string | undefined;
+  return () => {
+    if (memo) return memo;
+    const files: string[] = [];
+    const walk = (d: string) => { for (const e of fs.readdirSync(d, { withFileTypes: true }).sort((x: { name: string }, y: { name: string }) => x.name.localeCompare(y.name))) { const p = path.join(d, e.name); if (e.isDirectory()) walk(p); else if (/\.(ts|tsx)$/.test(e.name)) files.push(p); } };
+    for (const d of ["src/studio", "src/videos"]) if (fs.existsSync(d)) walk(d);
+    return (memo = fnv(files.map((p) => p + "\n" + fs.readFileSync(p, "utf8")).join("\n")));
+  };
+})();
 const STAGES = ["validate", "assets", "approval", "narration", "sound", "checks", "review", "render", "final"] as const;
 type Stage = (typeof STAGES)[number];
 type StageState = { state: "done" | "waiting" | "failed"; at: string; inputs: string; detail: string; data?: Any };
@@ -147,7 +158,9 @@ const stages: Record<Stage, { inputs: () => string; run: () => Promise<StageStat
     },
   },
   review: {
-    inputs: () => soundtrackFingerprint(sb, narr()),
+    // the picture depends on the storyboard AND the engine that draws it: an engine change makes the sheet stale, so a
+    // sheet looked at before the change can never be passed with --reviewed
+    inputs: () => fnv(soundtrackFingerprint(sb, narr()) + "|" + engineHash()),
     run: () => {
       const f = film(), sheet = path.join(DIR, "review.jpg"), RD = path.join(DIR, "review");
       const prev = status.stages.review;
