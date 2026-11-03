@@ -4,17 +4,17 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-03T05:47:07.728Z",
-   "inputs": "17c135881972efn",
+   "at": "2026-11-03T07:38:43.625Z",
+   "inputs": "0615b038665376n",
    "detail": "valid; 0 warning(s)"
   },
   "assets": {
    "state": "done",
-   "at": "2026-11-03T05:47:07.730Z",
-   "inputs": "17c135881972ef",
-   "detail": "52 library assets reused, none missing",
+   "at": "2026-11-03T07:38:43.627Z",
+   "inputs": "0615b038665376",
+   "detail": "51 library assets reused, none missing",
    "data": {
-    "reused": 52,
+    "reused": 51,
     "missing": [],
     "byKind": {
      "character": [
@@ -88,35 +88,28 @@
       "book"
      ],
      "prop": [
-      "treasureChest",
-      "barrel"
+      "treasureChest"
      ]
     }
    }
   },
   "approval": {
    "state": "done",
-   "at": "2026-11-03T05:47:07.737Z",
+   "at": "2026-11-03T07:38:43.640Z",
    "inputs": "09424f694e1a63",
    "detail": "all narration already generated (no cost)"
   },
   "narration": {
    "state": "done",
-   "at": "2026-11-03T05:47:07.738Z",
+   "at": "2026-11-03T07:38:43.640Z",
    "inputs": "09424f694e1a63",
    "detail": "all lines already generated (cached)"
   },
   "sound": {
    "state": "done",
-   "at": "2026-11-03T05:47:23.132Z",
-   "inputs": "07d8c7127173bd",
+   "at": "2026-11-03T07:39:00.085Z",
+   "inputs": "0c3c33cf9b7c7d",
    "detail": "soundtrack built: -14.1 LUFS"
-  },
-  "checks": {
-   "state": "done",
-   "at": "2026-11-03T05:47:24.855Z",
-   "inputs": "07d8c7127173bd",
-   "detail": "preflight PASS; library intact"
   }
  },
  "approval": {

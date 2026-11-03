@@ -29,7 +29,7 @@ export const PIRATEDEMOCRACY: Storyboard = {
         { who: "captain", at: "a", act: "excited", beats: [{ word: "two", act: "proud" }, { word: "one", act: "sad" }] },
         { who: "qm", at: "b", act: "explain", hold: "scroll", beats: [{ word: "shares", hold: "coinBag" }] },
       ],
-      props: [{ id: "treasureChest", variant: "open", at: "c", offset: [0.2, 0.4], yaw: -20 }],
+      props: [{ id: "treasureChest", variant: "open", at: "a", offset: [0.6, 0.55], yaw: -10 }],
       fx: [{ kind: "sparkle", on: "captain", word: "loot" }] },
     { say: "Lose an arm in battle? The crew pays you from a shared fund.", set: "shipDeck", light: "day", transition: "cut",
       camera: { move: "frame", on: ["gus", "qm"], size: "medium", from: 8, height: 1.4 },
@@ -47,7 +47,7 @@ export const PIRATEDEMOCRACY: Storyboard = {
       camera: { move: "view", view: "helm" },
       actors: [{ who: "captain", at: "wheel", act: "nervous", beats: [{ word: "brave", act: "proud" }] }] },
     { say: "If he's a coward or a bully, the crew can vote him out and pick someone new.", set: "shipDeck", light: "day", transition: "cut",
-      camera: { move: "frame", on: ["milo", "gus", "qm"], size: "full", from: 4, height: 1.45 },
+      camera: { move: "view", view: "deck wide" },
       actors: [
         { who: "milo", at: "a", act: "suspicious", beats: [{ word: "vote", gesture: "raiseHand", face: "determined" }] },
         { who: "qm", at: "b", act: "suspicious", beats: [{ word: "vote", gesture: "raiseHand" }] },
@@ -61,7 +61,7 @@ export const PIRATEDEMOCRACY: Storyboard = {
         { who: "qm", at: "a", act: "explain", hold: "coinBag", beats: [{ word: "grab", gesture: "stop", face: "stern" }] },
         { who: "captain", at: "b", act: "happy", beats: [{ word: "grab", act: "point" }, { word: "all", act: "sad" }] },
       ],
-      props: [{ id: "treasureChest", variant: "open", at: "c", offset: [0.1, 0.3], yaw: -25 }, { id: "barrel", at: "c", offset: [0.9, -0.5] }],
+      props: [{ id: "treasureChest", variant: "open", at: "a", offset: [0.6, 0.55], yaw: 10 }],
       fx: [{ kind: "anger", on: "qm", word: "grab" }] },
     { say: "Wait, pirates were fair?", set: "shipDeck", light: "day", transition: "cut",
       camera: { move: "dutch", on: ["milo"], size: "medium", from: -12, roll: 0.09 },
@@ -69,7 +69,7 @@ export const PIRATEDEMOCRACY: Storyboard = {
       fx: [{ kind: "question", on: "milo", word: "fair" }] },
     // the explanation: Juno the navigator
     { say: "You see, merchant ships had owners on land, and their captains could beat sailors into line.", set: "shipDeck", light: "day", transition: "fade", mood: "curious",
-      camera: { move: "view", view: "at the rail" },
+      camera: { move: "frame", on: ["juno"], size: "medium", from: -35, height: 1.5 },
       actors: [{ who: "juno", at: "rail", act: "explain", face: "smile", beats: [{ word: "owners", gesture: "pointUp" }, { word: "beat", act: "angry" }, { word: "line", act: "disgusted" }] }] },
     { say: "Pirates had no owners. The crew was the company, so they wrote rules to stop anyone becoming a tyrant.", set: "shipDeck", light: "day", transition: "cut",
       camera: { move: "frame", on: ["juno", "milo"], size: "medium", from: 6, height: 1.45 },
@@ -94,7 +94,7 @@ export const PIRATEDEMOCRACY: Storyboard = {
       fx: [{ kind: "stars", on: "milo", word: "countries" }] },
     // payoff: the committee meeting
     { say: "So the scariest thing on the high seas might have been a pirate committee meeting.", set: "shipDeck", light: "golden", transition: "fade",
-      camera: { move: "frame", on: ["qm", "captain", "milo"], size: "full", from: 4, height: 1.5 },
+      camera: { move: "view", view: "deck wide" },
       actors: [
         { who: "qm", at: "a", act: "explain", hold: "scroll", beats: [{ word: "meeting", gesture: "raiseHand" }] },
         { who: "captain", at: "b", act: "nervous", beats: [{ word: "committee", act: "facepalm" }] },

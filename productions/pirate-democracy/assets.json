@@ -1,5 +1,5 @@
 {
- "reused": 52,
+ "reused": 51,
  "missing": [],
  "byKind": {
   "character": [
@@ -73,8 +73,7 @@
    "book"
   ],
   "prop": [
-   "treasureChest",
-   "barrel"
+   "treasureChest"
   ]
  }
 }
