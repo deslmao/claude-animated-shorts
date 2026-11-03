@@ -6,7 +6,7 @@
   "machine": {
     "platform": "linux",
     "osName": "linux 6.18.44-fc-v230",
-    "chip": "Intel(R) Xeon(R) Processor @ 2.30GHz",
+    "chip": "Intel(R) Xeon(R) Processor @ 2.80GHz",
     "cores": 4,
     "ramGB": 15.7,
     "gl": "swangle",
@@ -24,15 +24,15 @@
     "audio": true
   },
   "bundleSeconds": 0,
-  "renderSeconds": 281.2,
-  "secondsPerFrame": 1.042,
-  "framesPerSecond": 0.96,
+  "renderSeconds": 577.1,
+  "secondsPerFrame": 2.138,
+  "framesPerSecond": 0.47,
   "memory": {
     "peakRenderProcessesGB": 2.75,
     "macMinFreePercent": null,
-    "linuxMinAvailableGB": 12.99,
+    "linuxMinAvailableGB": 12.89,
     "macSwapUsedGBAfter": null
   },
-  "sizeMB": 1.9,
-  "finishedAt": "2026-11-03T10:28:39.074Z"
+  "sizeMB": 1.8,
+  "finishedAt": "2026-11-03T22:43:40.624Z"
 }

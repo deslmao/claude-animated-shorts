@@ -47,7 +47,10 @@ const robotRig = (a: At): PropRig => {
       // (no actor to reach for) the arm holds the pose of the static model
       const T = target ? root.worldToLocal(new THREE.Vector3(...target).addScaledVector(new THREE.Vector3().subVectors(camPos, new THREE.Vector3(...target)).setY(0).normalize(), 0.06))
         : new THREE.Vector3(0.62, 0.55, 0);
-      const phi = Math.atan2(T.x, T.z), side = new THREE.Vector3(Math.cos(phi), 0, -Math.sin(phi));
+      // the brushing direction: across the camera's view (screen left-right), so the stroke always reads on screen
+      // (perpendicular to the arm it would run toward the lens whenever the robot stands beside the actor)
+      const C = root.worldToLocal(camPos.clone()), vw = new THREE.Vector3(C.x - T.x, 0, C.z - T.z);
+      const phi = Math.atan2(T.x, T.z), side = vw.lengthSq() > 1e-6 ? new THREE.Vector3(vw.z, 0, -vw.x).normalize() : new THREE.Vector3(Math.cos(phi), 0, -Math.sin(phi));
       const r = Math.hypot(T.x, T.z), hw = T.y + FEATHER, dx = r, dy = hw - SHOULDER;
       const d = Math.min(Math.max(0.15, Math.hypot(dx, dy)), L1 + L2 - 0.005);
       const a1 = Math.atan2(dy, dx) + Math.acos(Math.min(1, Math.max(-1, (L1 * L1 + d * d - L2 * L2) / (2 * L1 * d))));
