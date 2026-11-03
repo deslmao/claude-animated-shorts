@@ -167,6 +167,12 @@
      1909
     ]
    }
+  },
+  "render": {
+   "state": "failed",
+   "at": "2026-11-03T07:21:04.551Z",
+   "inputs": "0fe947287f6e0e",
+   "detail": "render run #10 failure: join: failure (https://github.com/deslmao/claude-animated-shorts/actions/runs/41585750120)"
   }
  },
  "approval": {
@@ -183,6 +189,7 @@
   "requested": "2026-11-03T05:45:20.567Z",
   "runId": 41585750120,
   "runNumber": 10,
-  "url": "https://github.com/deslmao/claude-animated-shorts/actions/runs/41585750120"
+  "url": "https://github.com/deslmao/claude-animated-shorts/actions/runs/41585750120",
+  "conclusion": "failure"
  }
 }
