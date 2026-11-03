@@ -83,44 +83,35 @@
   },
   "sound": {
    "state": "done",
-   "at": "2026-11-03T04:00:27.017Z",
+   "at": "2026-11-03T04:15:38.258Z",
    "inputs": "1bf1d3ea75805c",
    "detail": "soundtrack up to date"
   },
   "checks": {
    "state": "done",
-   "at": "2026-11-03T04:00:28.776Z",
+   "at": "2026-11-03T04:15:40.587Z",
    "inputs": "1bf1d3ea75805c",
    "detail": "preflight PASS; library intact"
-  },
-  "review": {
-   "state": "done",
-   "at": "2026-11-03T04:06:25.255Z",
-   "inputs": "1bf1d3ea75805c",
-   "detail": "review sheet looked at and passed",
-   "data": {
-    "frames": [
-     4,
-     68,
-     133,
-     138,
-     143,
-     161,
-     185,
-     190,
-     262,
-     334,
-     339,
-     389,
-     440,
-     445,
-     491,
-     538,
-     543,
-     605,
-     666
-    ]
-   }
+  }
+ },
+ "render": {
+  "inputs": "1bf1d3ea75805c",
+  "sha": "6bf7707cc3d1c4d82a3a2788087794ca134d3cd9",
+  "branch": "claude/admiring-hopper-kbrb3d",
+  "requested": "2026-11-03T04:06:27.527Z",
+  "runId": 41576140543,
+  "runNumber": 9,
+  "url": "https://github.com/deslmao/claude-animated-shorts/actions/runs/41576140543",
+  "conclusion": "success"
+ },
+ "final": {
+  "tag": "video-Short-yawn-demo-run9",
+  "release": "https://github.com/deslmao/claude-animated-shorts/releases/tag/video-Short-yawn-demo-run9",
+  "mp4": "productions/yawn-demo/Short-yawn-demo.mp4",
+  "qa": "PASSED",
+  "alignment": {
+   "lagSeconds": 0,
+   "correlation": 1
   }
  }
 }

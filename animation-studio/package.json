@@ -53,7 +53,8 @@
     "sound": "esbuild scripts/sound.ts --bundle --platform=node --format=esm --outfile=out/sound.mjs --log-level=warning && node out/sound.mjs",
     "test:sound": "esbuild scripts/sound.ts --bundle --platform=node --format=esm --outfile=out/sound.mjs --log-level=warning && node out/sound.mjs --catalog > out/sound-catalog.json && python3 sound/check.py out/sound-catalog.json",
     "floor-map": "esbuild scripts/floor-map.ts --bundle --platform=node --format=esm --outfile=out/floor-map.mjs --log-level=warning && node out/floor-map.mjs",
-    "assets": "esbuild scripts/assets.ts --bundle --platform=node --format=esm --outfile=out/assets.mjs --log-level=warning && node out/assets.mjs"
+    "assets": "esbuild scripts/assets.ts --bundle --platform=node --format=esm --outfile=out/assets.mjs --log-level=warning && node out/assets.mjs",
+    "short": "esbuild scripts/short.ts --bundle --platform=node --format=esm --outfile=out/short.mjs --log-level=warning && NODE_USE_ENV_PROXY=1 node out/short.mjs"
   },
   "allowScripts": {
     "esbuild": false
