@@ -180,5 +180,15 @@
   "at": "2026-11-03T04:54:29.533Z",
   "by": "the owner, in the conversation",
   "script": "productions/pirate-democracy/script.md"
+ },
+ "render": {
+  "inputs": "0c3c33cf9b7c7d",
+  "sha": "b168fa2e7f9fe086dca8a29a03c3526489541d00",
+  "branch": "claude/admiring-hopper-kbrb3d",
+  "requested": "2026-11-03T07:51:25.996Z",
+  "attempt": 1,
+  "runId": 41599094622,
+  "runNumber": 12,
+  "url": "https://github.com/deslmao/claude-animated-shorts/actions/runs/41599094622"
  }
 }
