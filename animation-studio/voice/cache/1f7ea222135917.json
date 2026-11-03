@@ -1,0 +1,90 @@
+{
+ "hash": "1f7ea222135917",
+ "text": "So the most famous pirate treasure of all time was hidden by a novelist.",
+ "voice": "george",
+ "lead": 0,
+ "end": 3.762,
+ "dur": 3.787755,
+ "words": [
+  {
+   "w": "So",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "the",
+   "t0": 0.221,
+   "t1": 0.29
+  },
+  {
+   "w": "most",
+   "t0": 0.325,
+   "t1": 0.488
+  },
+  {
+   "w": "famous",
+   "t0": 0.546,
+   "t1": 0.859
+  },
+  {
+   "w": "pirate",
+   "t0": 0.917,
+   "t1": 1.289
+  },
+  {
+   "w": "treasure",
+   "t0": 1.324,
+   "t1": 1.649
+  },
+  {
+   "w": "of",
+   "t0": 1.683,
+   "t1": 1.741
+  },
+  {
+   "w": "all",
+   "t0": 1.788,
+   "t1": 1.927
+  },
+  {
+   "w": "time",
+   "t0": 1.985,
+   "t1": 2.287
+  },
+  {
+   "w": "was",
+   "t0": 2.322,
+   "t1": 2.426
+  },
+  {
+   "w": "hidden",
+   "t0": 2.485,
+   "t1": 2.694
+  },
+  {
+   "w": "by",
+   "t0": 2.74,
+   "t1": 2.844
+  },
+  {
+   "w": "a",
+   "t0": 2.902,
+   "t1": 2.926
+  },
+  {
+   "w": "novelist.",
+   "t0": 2.984,
+   "t1": 3.762
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T07:25:41.764Z"
+}

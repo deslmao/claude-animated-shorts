@@ -1,0 +1,45 @@
+{
+ "hash": "1865294933d06a",
+ "text": "Kidd was hanged in 1701.",
+ "voice": "george",
+ "lead": 0,
+ "end": 1.997,
+ "dur": 2.037551,
+ "words": [
+  {
+   "w": "Kidd",
+   "t0": 0,
+   "t1": 0.255
+  },
+  {
+   "w": "was",
+   "t0": 0.302,
+   "t1": 0.418
+  },
+  {
+   "w": "hanged",
+   "t0": 0.476,
+   "t1": 0.778
+  },
+  {
+   "w": "in",
+   "t0": 0.824,
+   "t1": 0.906
+  },
+  {
+   "w": "1701.",
+   "t0": 0.964,
+   "t1": 1.997
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T07:25:38.565Z"
+}

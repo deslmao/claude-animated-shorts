@@ -1,0 +1,120 @@
+{
+ "hash": "02089585facc87",
+ "text": "Loot was shared out straight away, and most pirates spent their share fast, on food, drink, and gambling in port.",
+ "voice": "george",
+ "lead": 0,
+ "end": 6.362,
+ "dur": 6.4,
+ "words": [
+  {
+   "w": "Loot",
+   "t0": 0,
+   "t1": 0.279
+  },
+  {
+   "w": "was",
+   "t0": 0.325,
+   "t1": 0.43
+  },
+  {
+   "w": "shared",
+   "t0": 0.476,
+   "t1": 0.755
+  },
+  {
+   "w": "out",
+   "t0": 0.813,
+   "t1": 0.975
+  },
+  {
+   "w": "straight",
+   "t0": 1.033,
+   "t1": 1.358
+  },
+  {
+   "w": "away,",
+   "t0": 1.393,
+   "t1": 1.788
+  },
+  {
+   "w": "and",
+   "t0": 1.846,
+   "t1": 1.985
+  },
+  {
+   "w": "most",
+   "t0": 2.055,
+   "t1": 2.252
+  },
+  {
+   "w": "pirates",
+   "t0": 2.31,
+   "t1": 2.682
+  },
+  {
+   "w": "spent",
+   "t0": 2.705,
+   "t1": 2.961
+  },
+  {
+   "w": "their",
+   "t0": 2.995,
+   "t1": 3.146
+  },
+  {
+   "w": "share",
+   "t0": 3.193,
+   "t1": 3.448
+  },
+  {
+   "w": "fast,",
+   "t0": 3.506,
+   "t1": 3.866
+  },
+  {
+   "w": "on",
+   "t0": 3.901,
+   "t1": 4.029
+  },
+  {
+   "w": "food,",
+   "t0": 4.11,
+   "t1": 4.458
+  },
+  {
+   "w": "drink,",
+   "t0": 4.528,
+   "t1": 4.853
+  },
+  {
+   "w": "and",
+   "t0": 4.876,
+   "t1": 4.992
+  },
+  {
+   "w": "gambling",
+   "t0": 5.05,
+   "t1": 5.468
+  },
+  {
+   "w": "in",
+   "t0": 5.526,
+   "t1": 5.619
+  },
+  {
+   "w": "port.",
+   "t0": 5.7,
+   "t1": 6.362
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T07:25:34.814Z"
+}

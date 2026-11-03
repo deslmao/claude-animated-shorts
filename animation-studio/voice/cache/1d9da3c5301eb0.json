@@ -1,0 +1,90 @@
+{
+ "hash": "1d9da3c5301eb0",
+ "text": "Picture a pirate crew after a big raid. Chests of coins, silk, and jewels.",
+ "voice": "george",
+ "lead": 0,
+ "end": 4.505,
+ "dur": 4.545306,
+ "words": [
+  {
+   "w": "Picture",
+   "t0": 0,
+   "t1": 0.395
+  },
+  {
+   "w": "a",
+   "t0": 0.43,
+   "t1": 0.453
+  },
+  {
+   "w": "pirate",
+   "t0": 0.511,
+   "t1": 0.836
+  },
+  {
+   "w": "crew",
+   "t0": 0.871,
+   "t1": 1.08
+  },
+  {
+   "w": "after",
+   "t0": 1.138,
+   "t1": 1.37
+  },
+  {
+   "w": "a",
+   "t0": 1.428,
+   "t1": 1.451
+  },
+  {
+   "w": "big",
+   "t0": 1.509,
+   "t1": 1.672
+  },
+  {
+   "w": "raid.",
+   "t0": 1.73,
+   "t1": 2.171
+  },
+  {
+   "w": "Chests",
+   "t0": 2.357,
+   "t1": 2.682
+  },
+  {
+   "w": "of",
+   "t0": 2.717,
+   "t1": 2.786
+  },
+  {
+   "w": "coins,",
+   "t0": 2.844,
+   "t1": 3.286
+  },
+  {
+   "w": "silk,",
+   "t0": 3.39,
+   "t1": 3.657
+  },
+  {
+   "w": "and",
+   "t0": 3.68,
+   "t1": 3.762
+  },
+  {
+   "w": "jewels.",
+   "t0": 3.82,
+   "t1": 4.505
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T07:25:33.384Z"
+}

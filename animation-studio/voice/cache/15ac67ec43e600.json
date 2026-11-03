@@ -1,0 +1,95 @@
+{
+ "hash": "15ac67ec43e600",
+ "text": "Hunted as a pirate, he hid gold and jewels on Gardiners Island, near New York.",
+ "voice": "george",
+ "lead": 0,
+ "end": 4.458,
+ "dur": 4.493061,
+ "words": [
+  {
+   "w": "Hunted",
+   "t0": 0,
+   "t1": 0.348
+  },
+  {
+   "w": "as",
+   "t0": 0.395,
+   "t1": 0.476
+  },
+  {
+   "w": "a",
+   "t0": 0.522,
+   "t1": 0.557
+  },
+  {
+   "w": "pirate,",
+   "t0": 0.604,
+   "t1": 1.057
+  },
+  {
+   "w": "he",
+   "t0": 1.115,
+   "t1": 1.196
+  },
+  {
+   "w": "hid",
+   "t0": 1.254,
+   "t1": 1.428
+  },
+  {
+   "w": "gold",
+   "t0": 1.486,
+   "t1": 1.753
+  },
+  {
+   "w": "and",
+   "t0": 1.8,
+   "t1": 1.881
+  },
+  {
+   "w": "jewels",
+   "t0": 1.95,
+   "t1": 2.299
+  },
+  {
+   "w": "on",
+   "t0": 2.357,
+   "t1": 2.461
+  },
+  {
+   "w": "Gardiners",
+   "t0": 2.519,
+   "t1": 2.937
+  },
+  {
+   "w": "Island,",
+   "t0": 2.995,
+   "t1": 3.402
+  },
+  {
+   "w": "near",
+   "t0": 3.46,
+   "t1": 3.646
+  },
+  {
+   "w": "New",
+   "t0": 3.692,
+   "t1": 3.796
+  },
+  {
+   "w": "York.",
+   "t0": 3.843,
+   "t1": 4.458
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T07:25:36.762Z"
+}

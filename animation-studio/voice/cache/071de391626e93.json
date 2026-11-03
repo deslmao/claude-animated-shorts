@@ -1,0 +1,70 @@
+{
+ "hash": "071de391626e93",
+ "text": "Historians have never found a single real pirate treasure map.",
+ "voice": "george",
+ "lead": 0,
+ "end": 3.344,
+ "dur": 3.369796,
+ "words": [
+  {
+   "w": "Historians",
+   "t0": 0,
+   "t1": 0.58
+  },
+  {
+   "w": "have",
+   "t0": 0.604,
+   "t1": 0.72
+  },
+  {
+   "w": "never",
+   "t0": 0.755,
+   "t1": 0.94
+  },
+  {
+   "w": "found",
+   "t0": 0.998,
+   "t1": 1.231
+  },
+  {
+   "w": "a",
+   "t0": 1.277,
+   "t1": 1.312
+  },
+  {
+   "w": "single",
+   "t0": 1.37,
+   "t1": 1.683
+  },
+  {
+   "w": "real",
+   "t0": 1.741,
+   "t1": 1.95
+  },
+  {
+   "w": "pirate",
+   "t0": 2.02,
+   "t1": 2.403
+  },
+  {
+   "w": "treasure",
+   "t0": 2.438,
+   "t1": 2.74
+  },
+  {
+   "w": "map.",
+   "t0": 2.775,
+   "t1": 3.344
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T07:25:40.645Z"
+}

@@ -1,0 +1,130 @@
+{
+ "hash": "0167020177dd7f",
+ "text": "You see, in 1883, Robert Louis Stevenson wrote Treasure Island, with a hidden hoard and a map where X marks the spot.",
+ "voice": "george",
+ "lead": 0,
+ "end": 7.012,
+ "dur": 7.053061,
+ "words": [
+  {
+   "w": "You",
+   "t0": 0,
+   "t1": 0.139
+  },
+  {
+   "w": "see,",
+   "t0": 0.197,
+   "t1": 0.372
+  },
+  {
+   "w": "in",
+   "t0": 0.406,
+   "t1": 0.488
+  },
+  {
+   "w": "1883,",
+   "t0": 0.522,
+   "t1": 1.37
+  },
+  {
+   "w": "Robert",
+   "t0": 1.533,
+   "t1": 1.8
+  },
+  {
+   "w": "Louis",
+   "t0": 1.834,
+   "t1": 2.055
+  },
+  {
+   "w": "Stevenson",
+   "t0": 2.09,
+   "t1": 2.554
+  },
+  {
+   "w": "wrote",
+   "t0": 2.601,
+   "t1": 2.81
+  },
+  {
+   "w": "Treasure",
+   "t0": 2.844,
+   "t1": 3.181
+  },
+  {
+   "w": "Island,",
+   "t0": 3.239,
+   "t1": 3.692
+  },
+  {
+   "w": "with",
+   "t0": 3.913,
+   "t1": 4.063
+  },
+  {
+   "w": "a",
+   "t0": 4.11,
+   "t1": 4.133
+  },
+  {
+   "w": "hidden",
+   "t0": 4.191,
+   "t1": 4.458
+  },
+  {
+   "w": "hoard",
+   "t0": 4.516,
+   "t1": 4.818
+  },
+  {
+   "w": "and",
+   "t0": 4.865,
+   "t1": 4.957
+  },
+  {
+   "w": "a",
+   "t0": 5.004,
+   "t1": 5.039
+  },
+  {
+   "w": "map",
+   "t0": 5.097,
+   "t1": 5.317
+  },
+  {
+   "w": "where",
+   "t0": 5.375,
+   "t1": 5.584
+  },
+  {
+   "w": "X",
+   "t0": 5.631,
+   "t1": 5.817
+  },
+  {
+   "w": "marks",
+   "t0": 5.898,
+   "t1": 6.188
+  },
+  {
+   "w": "the",
+   "t0": 6.235,
+   "t1": 6.316
+  },
+  {
+   "w": "spot.",
+   "t0": 6.362,
+   "t1": 7.012
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T07:25:40.041Z"
+}

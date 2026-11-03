@@ -1,0 +1,100 @@
+{
+ "hash": "18db82a8afce39",
+ "text": "Pirates almost never buried treasure, and one of the few who did lost all of it.",
+ "voice": "george",
+ "lead": 0,
+ "end": 4.458,
+ "dur": 4.493061,
+ "words": [
+  {
+   "w": "Pirates",
+   "t0": 0,
+   "t1": 0.476
+  },
+  {
+   "w": "almost",
+   "t0": 0.522,
+   "t1": 0.836
+  },
+  {
+   "w": "never",
+   "t0": 0.906,
+   "t1": 1.115
+  },
+  {
+   "w": "buried",
+   "t0": 1.161,
+   "t1": 1.44
+  },
+  {
+   "w": "treasure,",
+   "t0": 1.486,
+   "t1": 1.985
+  },
+  {
+   "w": "and",
+   "t0": 2.171,
+   "t1": 2.31
+  },
+  {
+   "w": "one",
+   "t0": 2.368,
+   "t1": 2.485
+  },
+  {
+   "w": "of",
+   "t0": 2.519,
+   "t1": 2.566
+  },
+  {
+   "w": "the",
+   "t0": 2.612,
+   "t1": 2.682
+  },
+  {
+   "w": "few",
+   "t0": 2.74,
+   "t1": 2.949
+  },
+  {
+   "w": "who",
+   "t0": 2.995,
+   "t1": 3.111
+  },
+  {
+   "w": "did",
+   "t0": 3.17,
+   "t1": 3.355
+  },
+  {
+   "w": "lost",
+   "t0": 3.413,
+   "t1": 3.657
+  },
+  {
+   "w": "all",
+   "t0": 3.704,
+   "t1": 3.855
+  },
+  {
+   "w": "of",
+   "t0": 3.901,
+   "t1": 3.947
+  },
+  {
+   "w": "it.",
+   "t0": 4.005,
+   "t1": 4.458
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T07:25:32.638Z"
+}

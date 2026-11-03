@@ -1,0 +1,65 @@
+{
+ "hash": "0474eef61fd250",
+ "text": "But in 1699, Captain William Kidd did it anyway.",
+ "voice": "george",
+ "lead": 0,
+ "end": 3.065,
+ "dur": 3.108571,
+ "words": [
+  {
+   "w": "But",
+   "t0": 0,
+   "t1": 0.186
+  },
+  {
+   "w": "in",
+   "t0": 0.221,
+   "t1": 0.29
+  },
+  {
+   "w": "1699,",
+   "t0": 0.348,
+   "t1": 1.091
+  },
+  {
+   "w": "Captain",
+   "t0": 1.126,
+   "t1": 1.451
+  },
+  {
+   "w": "William",
+   "t0": 1.509,
+   "t1": 1.823
+  },
+  {
+   "w": "Kidd",
+   "t0": 1.881,
+   "t1": 2.09
+  },
+  {
+   "w": "did",
+   "t0": 2.125,
+   "t1": 2.264
+  },
+  {
+   "w": "it",
+   "t0": 2.31,
+   "t1": 2.38
+  },
+  {
+   "w": "anyway.",
+   "t0": 2.426,
+   "t1": 3.065
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T07:25:36.085Z"
+}

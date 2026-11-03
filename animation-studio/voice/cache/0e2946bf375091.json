@@ -1,0 +1,95 @@
+{
+ "hash": "0e2946bf375091",
+ "text": "Burying a fortune and sailing off was a great way to never see it again.",
+ "voice": "george",
+ "lead": 0,
+ "end": 4.04,
+ "dur": 4.075102,
+ "words": [
+  {
+   "w": "Burying",
+   "t0": 0,
+   "t1": 0.441
+  },
+  {
+   "w": "a",
+   "t0": 0.488,
+   "t1": 0.511
+  },
+  {
+   "w": "fortune",
+   "t0": 0.569,
+   "t1": 1.022
+  },
+  {
+   "w": "and",
+   "t0": 1.068,
+   "t1": 1.184
+  },
+  {
+   "w": "sailing",
+   "t0": 1.254,
+   "t1": 1.579
+  },
+  {
+   "w": "off",
+   "t0": 1.637,
+   "t1": 1.8
+  },
+  {
+   "w": "was",
+   "t0": 1.985,
+   "t1": 2.125
+  },
+  {
+   "w": "a",
+   "t0": 2.171,
+   "t1": 2.194
+  },
+  {
+   "w": "great",
+   "t0": 2.241,
+   "t1": 2.45
+  },
+  {
+   "w": "way",
+   "t0": 2.496,
+   "t1": 2.647
+  },
+  {
+   "w": "to",
+   "t0": 2.694,
+   "t1": 2.763
+  },
+  {
+   "w": "never",
+   "t0": 2.833,
+   "t1": 3.042
+  },
+  {
+   "w": "see",
+   "t0": 3.1,
+   "t1": 3.251
+  },
+  {
+   "w": "it",
+   "t0": 3.297,
+   "t1": 3.367
+  },
+  {
+   "w": "again.",
+   "t0": 3.402,
+   "t1": 4.04
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T07:25:35.487Z"
+}

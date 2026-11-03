@@ -1,0 +1,65 @@
+{
+ "hash": "01e5e66310465b",
+ "text": "Bury it on a desert island? Hardly anyone did.",
+ "voice": "george",
+ "lead": 0,
+ "end": 3.111,
+ "dur": 3.160816,
+ "words": [
+  {
+   "w": "Bury",
+   "t0": 0,
+   "t1": 0.29
+  },
+  {
+   "w": "it",
+   "t0": 0.325,
+   "t1": 0.406
+  },
+  {
+   "w": "on",
+   "t0": 0.453,
+   "t1": 0.522
+  },
+  {
+   "w": "a",
+   "t0": 0.569,
+   "t1": 0.592
+  },
+  {
+   "w": "desert",
+   "t0": 0.65,
+   "t1": 0.952
+  },
+  {
+   "w": "island?",
+   "t0": 1.01,
+   "t1": 1.521
+  },
+  {
+   "w": "Hardly",
+   "t0": 1.927,
+   "t1": 2.229
+  },
+  {
+   "w": "anyone",
+   "t0": 2.276,
+   "t1": 2.554
+  },
+  {
+   "w": "did.",
+   "t0": 2.589,
+   "t1": 3.111
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T07:25:34.014Z"
+}

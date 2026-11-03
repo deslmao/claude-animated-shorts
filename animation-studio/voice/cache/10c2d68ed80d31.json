@@ -1,0 +1,45 @@
+{
+ "hash": "10c2d68ed80d31",
+ "text": "Nobody will ever find it!",
+ "voice": "george",
+ "lead": 0,
+ "end": 1.393,
+ "dur": 1.436735,
+ "words": [
+  {
+   "w": "Nobody",
+   "t0": 0,
+   "t1": 0.348
+  },
+  {
+   "w": "will",
+   "t0": 0.383,
+   "t1": 0.534
+  },
+  {
+   "w": "ever",
+   "t0": 0.592,
+   "t1": 0.766
+  },
+  {
+   "w": "find",
+   "t0": 0.824,
+   "t1": 1.057
+  },
+  {
+   "w": "it!",
+   "t0": 1.126,
+   "t1": 1.393
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T07:25:37.257Z"
+}

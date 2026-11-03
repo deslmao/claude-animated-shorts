@@ -1,0 +1,110 @@
+{
+ "hash": "19aa0152831463",
+ "text": "Soon after his arrest, the authorities dug it up and shipped it to London, as evidence against him.",
+ "voice": "george",
+ "lead": 0,
+ "end": 5.062,
+ "dur": 5.093878,
+ "words": [
+  {
+   "w": "Soon",
+   "t0": 0,
+   "t1": 0.267
+  },
+  {
+   "w": "after",
+   "t0": 0.325,
+   "t1": 0.534
+  },
+  {
+   "w": "his",
+   "t0": 0.592,
+   "t1": 0.697
+  },
+  {
+   "w": "arrest,",
+   "t0": 0.731,
+   "t1": 1.173
+  },
+  {
+   "w": "the",
+   "t0": 1.312,
+   "t1": 1.416
+  },
+  {
+   "w": "authorities",
+   "t0": 1.474,
+   "t1": 1.95
+  },
+  {
+   "w": "dug",
+   "t0": 1.997,
+   "t1": 2.159
+  },
+  {
+   "w": "it",
+   "t0": 2.206,
+   "t1": 2.276
+  },
+  {
+   "w": "up",
+   "t0": 2.334,
+   "t1": 2.461
+  },
+  {
+   "w": "and",
+   "t0": 2.519,
+   "t1": 2.601
+  },
+  {
+   "w": "shipped",
+   "t0": 2.647,
+   "t1": 2.902
+  },
+  {
+   "w": "it",
+   "t0": 2.926,
+   "t1": 2.995
+  },
+  {
+   "w": "to",
+   "t0": 3.03,
+   "t1": 3.088
+  },
+  {
+   "w": "London,",
+   "t0": 3.146,
+   "t1": 3.564
+  },
+  {
+   "w": "as",
+   "t0": 3.622,
+   "t1": 3.773
+  },
+  {
+   "w": "evidence",
+   "t0": 3.831,
+   "t1": 4.203
+  },
+  {
+   "w": "against",
+   "t0": 4.238,
+   "t1": 4.551
+  },
+  {
+   "w": "him.",
+   "t0": 4.598,
+   "t1": 5.062
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T07:25:38.041Z"
+}
