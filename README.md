@@ -9,7 +9,7 @@ Proven on **The Bridge That Fell for a Song**, a 67 s short about the 1831 Broug
 ## What's inside
 | Path | What it is |
 |---|---|
-| `SKILL.md` | The skill: the full pipeline, every rule, every fix, and the final look values |
+| `SKILL.md` | The studio skill: topic → research → script → approval → storyboard → one-command production (the creator's original skill is kept in `docs/CREATOR_SKILL.md`) |
 | `templates/bridge/` | The full source of the bridge short: world, characters, ink, lens blur, grade, story/camera |
 | `templates/audio/` | The synthesized sound: SFX, march music, the mix with ducking and loudness |
 | `templates/scripts/` | Stills, side-by-side sheets, shot merge and frame-by-frame QA helpers |
@@ -29,7 +29,7 @@ Proven on **The Bridge That Fell for a Song**, a 67 s short about the 1831 Broug
 2. You need [Remotion](https://www.remotion.dev/) with `@remotion/three`, plus Node, Python 3 and ffmpeg.
 3. In Claude Code, say: *"Use the cartoon short skill and make a short about …"*.
 
-Claude then follows `SKILL.md`: topic and facts, then script, then voice, then the shot plan in `story.ts`, then stills, then renders. Agents check your frames against the reports and the frames, and you get the final 2K render and sound mix.
+Claude then follows `SKILL.md`. It researches the topic and writes the script, and you approve the script and its narration cost. It then builds the storyboard from the reusable asset library and runs `npm run short`, which handles narration (George), captions, lip-sync, music and effects, a cloud render with QA, and publishing. You get a 1080x1920 MP4 and its QA report. Details: `docs/TOPIC_TO_VIDEO.md`, `PROJECT_STATUS.md`.
 
 ## Notes
 - Set `REMOTION_TMP` to a folder on a big drive. Every Remotion bundle copies `public/` (~1.3 GB) into the temp folder.

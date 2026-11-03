@@ -7,7 +7,7 @@
 | Voice ID | `JBFqnCBsd6RMkjVDRZzb` |
 | Model | `eleven_multilingual_v2` |
 | Settings | stability 0.50, similarity 0.75, style 0, speaker boost on, speed 1.10 |
-| Output | MP3 44.1 kHz 128 kbps per line; the soundtrack is mixed to 48 kHz stereo at −14 LUFS |
+| Output | MP3 44.1 kHz 128 kbps per line; `npm run sound` mixes the soundtrack (with music and effects) to 48 kHz stereo at −14 LUFS |
 
 **Why George was chosen** from the seven auditions:
 - ElevenLabs built it for storytelling.
@@ -24,7 +24,8 @@ storyboard "say" lines  ->  npm run voice -- <id>             (dry run: lists ne
                         ->  npm run voice -- <id> --generate  (creates ONLY new lines)
    voice/cache/<fingerprint>.mp3 + .json        one file pair per line, kept forever, never paid for twice
    src/studio/stories/voice/<id>.ts             word timings the engine uses
-   audio/Short-<id>.mp3                         full-length soundtrack (-14 LUFS); the render farm adds it automatically
+   then npm run sound -- <id>  ->  audio/Short-<id>.mp3: voice + music + ambience + effects, -14 LUFS (docs/SOUND.md)
+                                                the render farm adds it automatically; npm run short does all of this
 storyboard + word timings -> shot lengths, word-timed reactions, captions, lip-sync -> Short-<id> -> cloud render
 ```
 

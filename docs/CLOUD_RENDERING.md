@@ -40,6 +40,9 @@ Backup route: **Actions** → the run → **Artifacts** → the video zip (kept 
 | `preview` | `true` = quick half-size 540x960 check, `false` = full 1080x1920 |
 | `audio` | soundtrack file; leave `""` to use `animation-studio/audio/<composition>.wav/.mp3` automatically |
 
+## Rendering a storyboard Short
+Claude normally starts a render through `npm run short -- <id>` ([PRODUCTION.md](PRODUCTION.md)). That commits the production with a render request (20 chunks), follows the run, downloads the published video and checks it again. Measured: the 22 s yawn demo took about 9 minutes with 20 chunks (run 9). A 60 s Short is about 1,800 frames at roughly 7.5 runner-seconds each, so about 15–25 minutes when GitHub runs most chunks at once.
+
 ## Safety checks before and after a render
 Before anything is rendered, a storyboard Short (`Short-<id>`) must pass `npm run preflight -- Short-<id>`. The cloud runs it in the plan job, right after the type check. It refuses to render when:
 - the storyboard has errors (unknown names, a head out of frame, a word anchor that isn't spoken, and so on);
