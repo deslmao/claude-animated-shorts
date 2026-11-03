@@ -118,6 +118,8 @@ export type Storyboard = {
   voices?: Record<string, string>;
   /** word-by-word captions (default true) */
   captions?: boolean;
+  /** testing only: false switches gesture easing off (the validator then reports the arm snaps) */
+  ease?: boolean;
   /** background music: a mood, { mood, gain } (dB), or false for none. Default: chosen from the story's acting */
   music?: Mood | { mood: Mood; gain?: number } | false;
   /** automatic sound effects for effects marks, transitions, kicks, jumps, falls and footsteps (default true) */

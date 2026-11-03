@@ -23,6 +23,10 @@ import { resolve } from "./timing";
 import { placeCrowd } from "./crowd";
 
 export const FPS = 30;
+/** gesture easing time and the walk-end turn (seconds) */
+const EASE = 0.15, EASE_MAX = 0.4, HAND_SPEED = 3.0, WALK_TURN = 0.25;
+/** what decides where the arms are drawn (continuous fields like reach / drive / t are not part of it) */
+const armKey = (p: Pose) => `${p.gesture ?? "hang"}|${p.hold ?? ""}|${p.hand ?? 1}|${p.mode ?? "stand"}`;
 const KEEP_WHILE_TALKING = ["thumbsUp", "point", "pointUp", "hold", "tickle", "tickleSelf", "operate", "wave", "raiseHand", "cheer", "stop", "crossArms", "hips"];
 const FADE = 8;
 
@@ -199,21 +203,27 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
     }));
     for (const a of s.actors) {
       const L = lookOf(sb.cast[a.who]), seed = seedOf(a.who), p = posOf.get(a.who)!;
-      // base act, then the latest beat at or before now (act replaces, face / gesture override)
-      let base: Pose = actPose(a.act ?? "neutral", { ...(a.face ? { expr: a.face } : {}), ...(a.gesture ? { gesture: a.gesture } : {}), ...(a.mode ? { mode: a.mode } : {}) });
-      for (const bt of (a.beats ?? []).filter((x) => (x.t ?? 0) <= tt).sort((x, y) => (x.t ?? 0) - (y.t ?? 0))) base = { ...(bt.act ? actPose(bt.act) : base), ...(bt.face ? { expr: bt.face } : {}), ...(bt.gesture ? { gesture: bt.gesture } : {}) };
-      let held = a.hold;
-      for (const bt of (a.beats ?? []).filter((x) => (x.t ?? 0) <= tt && x.hold !== undefined).sort((x, y) => (x.t ?? 0) - (y.t ?? 0))) held = bt.hold ?? undefined;
-      const swaps = (a.beats ?? []).map((x) => t0 + (x.t ?? 0));
-      const life = { ...idle(t, seed, a.idle ?? 1), blink: lidAt(t, seed, swaps) };
-      // voiced lines: the mouth follows the narration's word timings; otherwise the stand-in talking rhythm
-      const talking = a.speech?.length ? speakAt(tt, a.speech, seed)
-        : (a.talk ?? []).map(([x, y]) => talkAt(t, t0 + x, t0 + y, seed, (base.expr as Expr) ?? "talk")).find((x) => Object.keys(x).length) ?? {};
-      // a speaker keeps an authored action gesture (thumbs up, pointing, holding, tickling...): the mouth talks, the
-      // hands keep doing what the storyboard asked for
-      if (talking.gesture && base.gesture && KEEP_WHILE_TALKING.includes(base.gesture)) delete talking.gesture;
-      const nodTilt = (a.nod ?? []).reduce((acc: number, x) => acc + nodAt(t, t0 + (x as number), 2), 0);
-      const shook = (a.shake ?? []).map((x) => shakeAt(t, t0 + (x as number))).find((x) => Object.keys(x).length) ?? {};
+      // the acting at shot time tq (pure): base act + beats, held item, idle life, talking, nods / shakes, reach, drive,
+      // body motion. Used for now and, for gesture easing, for the frames just before
+      const actingAt = (tq: number) => {
+        const tqa = t0 + tq;
+        let base: Pose = actPose(a.act ?? "neutral", { ...(a.face ? { expr: a.face } : {}), ...(a.gesture ? { gesture: a.gesture } : {}), ...(a.mode ? { mode: a.mode } : {}) });
+        for (const bt of (a.beats ?? []).filter((x) => (x.t ?? 0) <= tq).sort((x, y) => (x.t ?? 0) - (y.t ?? 0))) base = { ...(bt.act ? actPose(bt.act) : base), ...(bt.face ? { expr: bt.face } : {}), ...(bt.gesture ? { gesture: bt.gesture } : {}) };
+        let held = a.hold;
+        for (const bt of (a.beats ?? []).filter((x) => (x.t ?? 0) <= tq && x.hold !== undefined).sort((x, y) => (x.t ?? 0) - (y.t ?? 0))) held = bt.hold ?? undefined;
+        const swaps = (a.beats ?? []).map((x) => t0 + (x.t ?? 0));
+        const life = { ...idle(tqa, seed, a.idle ?? 1), blink: lidAt(tqa, seed, swaps) };
+        // voiced lines: the mouth follows the narration's word timings; otherwise the stand-in talking rhythm
+        const talking = a.speech?.length ? speakAt(tq, a.speech, seed)
+          : (a.talk ?? []).map(([x, y]) => talkAt(tqa, t0 + x, t0 + y, seed, (base.expr as Expr) ?? "talk")).find((x) => Object.keys(x).length) ?? {};
+        // a speaker keeps an authored action gesture (thumbs up, pointing, holding, tickling...): the mouth talks, the
+        // hands keep doing what the storyboard asked for
+        if (talking.gesture && base.gesture && KEEP_WHILE_TALKING.includes(base.gesture)) delete talking.gesture;
+        const nodTilt = (a.nod ?? []).reduce((acc: number, x) => acc + nodAt(tqa, t0 + (x as number), 2), 0);
+        const shook = (a.shake ?? []).map((x) => shakeAt(tqa, t0 + (x as number))).find((x) => Object.keys(x).length) ?? {};
+        return { base, held, life, talking, nodTilt, shook };
+      };
+      const { base, held, life, talking, nodTilt, shook } = actingAt(tt);
       // facing: explicit, or toward the nearest other actor
       let facing: -1 | 0 | 1 = 0;
       if (a.facing === undefined || (typeof a.facing === "string" && a.facing.startsWith("toward:"))) {
@@ -221,9 +231,12 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
         if (target) facing = faceToward(cam.right.x, cam.right.z, [p[0], p[2]], [target[0], target[2]]);
       } else if (typeof a.facing === "number") facing = a.facing;
       const walking = a.walk && tt >= a.walk.t0 && tt <= a.walk.t1;
+      const walkDir = a.walk ? (() => { const p1 = whereOf(s.set, a.walk!.to), p0 = whereOf(s.set, a.at); return (p1[0] - p0[0]) * cam.right.x + (p1[2] - p0[2]) * cam.right.z; })() : 0;
+      // just arrived from a profile walk: a quarter-second three-quarter view toward the walk, not an instant swap
+      if (a.walk && tt > a.walk.t1 && tt < a.walk.t1 + WALK_TURN && Math.abs(walkDir) > 0.05) facing = walkDir > 0 ? 1 : -1;
       if (walking) {
-        const p1 = whereOf(s.set, a.walk!.to), p0 = whereOf(s.set, a.at), dist = Math.hypot(p[0] - p0[0], p[2] - p0[2]);
-        const dirScreen = (p1[0] - p0[0]) * cam.right.x + (p1[2] - p0[2]) * cam.right.z;
+        const p0 = whereOf(s.set, a.at), dist = Math.hypot(p[0] - p0[0], p[2] - p0[2]);
+        const dirScreen = walkDir;
         out.places.push(lookCard(cam, L, p[0], p[1], p[2], { side: { mode: a.walk!.mode ?? "walk", phase: dist / (a.walk!.mode === "run" ? 2.08 : 1.47), ...(held ? { hold: held } : {}), expr: (talking.expr ?? base.expr ?? "neutral") as Expr, blink: life.blink }, mirror: dirScreen < 0 }));
         // profile walk: the front rig in the same stride approximates where the head and hands are
         out.anchors.set(a.who, { ...anchorOf(cam, L, p, anchorsFront(L, { mode: a.walk!.mode === "run" ? "run" : "walk", phase: dist / 1.47 }), dirScreen < 0), walking: true });
@@ -232,7 +245,34 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
         // a tickler reaches for the target's flank: hands on the target's side of the screen, reach from the distance
         if (a.reach && posOf.get(a.reach)) { const lat = lateral(p, posOf.get(a.reach)!); extra.hand = lat < 0 ? -1 : 1; extra.reach = Math.max(60, Math.min(270, Math.abs(lat) / SU - 95)); }
         if (a.drive) extra.drive = driveOf(a)(tt);
-        const pose0 = layer(base, life, talking, shook, { headTilt: nodTilt, facing, back: a.back, t, ...(held ? { hold: held } : {}), ...extra });
+        const build = (x: ReturnType<typeof actingAt>, tq: number) => layer(x.base, x.life, x.talking, x.shook, { headTilt: x.nodTilt, facing, back: a.back, t: t0 + tq, ...(x.held ? { hold: x.held } : {}), ...extra });
+        // gesture easing: if the arms' configuration changed recently, blend from what the frame before the change
+        // really drew (itself possibly mid-blend). The easing time grows with how far the hands travel (EASE for small
+        // changes, up to EASE_MAX, so a hand never moves faster than HAND_SPEED m/s). Pure: built from exact earlier
+        // frame times only, so every render chunk draws the same frame
+        const memo = new Map<number, Pose>();
+        const eased = (fq: number, depth = 0): Pose => {
+          const hit = memo.get(fq); if (hit) return hit;
+          const tq = fq / FPS, raw = build(actingAt(tq), tq), key = armKey(raw);
+          let out = raw;
+          for (let k = 1; sb.ease !== false && depth < 4 && k <= Math.ceil(EASE_MAX * FPS); k++) {
+            if (fq - k < 0) break;
+            const before = build(actingAt((fq - k) / FPS), (fq - k) / FPS);
+            if (armKey(before) === key) continue;
+            if ((before.mode ?? "stand") === (raw.mode ?? "stand")) {
+              const from = eased(fq - k, depth + 1);
+              const ha = anchorsFront(L, raw).hands, hb = anchorsFront(L, from).hands;
+              const d = Math.max(0, ...ha.map((h) => { const q = hb.find((x) => x.side === h.side); return q ? Math.hypot(h.p[0] - q.p[0], h.p[1] - q.p[1]) * SU : 0; }));
+              const dur = Math.min(EASE_MAX, Math.max(EASE, (1.5 * d) / HAND_SPEED)), el = (k - 0.5) / FPS;
+              if (el < dur) out = { ...raw, blend: { from, k: smooth(el / dur) } };
+            }
+            break;
+          }
+          memo.set(fq, out);
+          return out;
+        };
+        const blended = eased(Math.round(tt * FPS));
+        const pose0: Pose = { ...build({ base, held, life, talking, nodTilt, shook }, tt), ...(blended.blend ? { blend: blended.blend } : {}) };
         const pose: Pose = mo.tilt || mo.headTilt || mo.shrug ? { ...pose0, tilt: (pose0.tilt ?? 0) + mo.tilt, headTilt: (pose0.headTilt ?? 0) + mo.headTilt, shrug: (pose0.shrug ?? 0) + mo.shrug } : pose0;
         out.places.push(lookCard(cam, L, p[0], p[1], p[2], { pose }));
         out.anchors.set(a.who, anchorOf(cam, L, p, anchorsFront(L, pose), false));

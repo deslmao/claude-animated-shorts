@@ -424,6 +424,8 @@ export type Pose = {
   reach?: number;
   /** "operate": the control hand's stroke, -1..1 (a robot driven by it follows the same signal) */
   drive?: number;
+  /** gesture easing: the arms are drawn part-way (k 0..1) from this earlier pose's arms to this pose's */
+  blend?: { from: Pose; k: number };
   /** seen from behind (over-the-shoulder shots, walking away): no face, hair covers the back of the head */
   back?: boolean;
 };
@@ -528,6 +530,16 @@ export const rigFront = (L: Look, pose: Pose) => {
     case "stop": one((s) => { const S = S1(s); add(s, [S[0] + s * 0.22 * HH, S[1] + 0.32 * HH], [S[0] + s * 0.18 * HH, S[1] - 0.12 * HH], 1, "open"); }); break;
     case "talk": for (const s of [-1, 1]) { const w = Math.sin(t * 6 + (s > 0 ? 0 : 1.7)); add(s, [tcx + s * 1.12 * T.a, chin + 0.46 * HH], [tcx + s * (0.95 * T.a + 6 * u * w), chin + 0.56 * HH - 8 * u * w], 1, "open"); } break;
     case "pump": for (const s of [-1, 1]) { const w = Math.sin(two * phase) * s; add(s, [tcx + s * 1.15 * T.a, chin + 0.42 * HH - 10 * u * w], [tcx + s * 0.9 * T.a, chin + 0.22 * HH - 22 * u * w], 0, "fist"); } break;
+  }
+  // gesture easing: each arm moves part-way from where the earlier pose had the arm on the same side
+  if (pose.blend && pose.blend.k < 1) {
+    const from = rigFront(L, pose.blend.from).arms, k = pose.blend.k; // the earlier pose may itself be mid-blend
+    const sideOf = (a: ArmDef) => Math.sign(a.pts[0][0] - tcx) || 1;
+    for (const arm of arms) {
+      const f0 = from.find((x) => sideOf(x) === sideOf(arm)); if (!f0) continue;
+      arm.pts = arm.pts.map((q, i) => [f0.pts[i][0] + (q[0] - f0.pts[i][0]) * k, f0.pts[i][1] + (q[1] - f0.pts[i][1]) * k]) as [P2, P2, P2];
+      if (k < 0.5) { arm.hand = f0.hand; arm.dir = f0.dir; }
+    }
   }
   return { expr, mode, phase, facing, look, light, back, hs, Bd, skin, two, lid, seed, H, W, HH, u, sole, torsoBot, chin, hc, hipY, thick, ow, top, legCol, armCol, footCol, legW, footW, dress, coat, frock, A, T, tcx, tp, shY, arms, headTilt, t, jump, g };
 };

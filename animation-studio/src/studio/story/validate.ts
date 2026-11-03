@@ -156,7 +156,8 @@ export const validate = (sb0: Storyboard, narr?: Narration): Report => {
  *  - an animated prop that can't reach the hand it follows
  *  Problems become errors (warnings for the foreground size); returned entries start with "!" for the framing table */
 /** gestures whose hand IS the action (a crop at the side of the frame hides what the character is doing) */
-export const ACTION_GESTURES = ["tickle", "tickleSelf", "operate", "point", "pointUp", "wave", "raiseHand", "cheer", "thumbsUp", "stop", "hold", "facepalm", "scratchHead", "coverMouth"];
+export const SNAP = 0.22;
+const ACTION_GESTURES = ["tickle", "tickleSelf", "operate", "point", "pointUp", "wave", "raiseHand", "cheer", "thumbsUp", "stop", "hold", "facepalm", "scratchHead", "coverMouth"];
 const staging = (film: ReturnType<typeof compile>, sb: Storyboard, i: number, a: number, b: number, subj: string[], over: string | undefined, errors: string[], warnings: string[]) => {
   const s = sb.shots[i], shot = film.shots[i], at = `shot ${i + 1} (${s.set})`, out: string[] = [];
   const once = new Set<string>(), report = (key: string, msg: string, warn = false) => { if (once.has(key)) return; once.add(key); (warn ? warnings : errors).push(`${at}: ${msg}`); if (!warn) out.push(`!${msg}`); };
@@ -231,5 +232,32 @@ const staging = (film: ReturnType<typeof compile>, sb: Storyboard, i: number, a:
     }
   }
   (s.props ?? []).forEach((q, k) => { if (!seenProp.has(k)) report(`prop-${k}`, `prop "${q.id}" is never in frame (move it into the shot or drop it)`); });
+  // arm snaps: around every beat, follow each hand frame by frame; a jump of more than SNAP metres in one frame means
+  // a gesture changed without easing (cuts, walks and frames outside the shot are skipped)
+  const beats = new Set<number>();
+  for (const x of s.actors) for (const bt of x.beats ?? []) if (bt.gesture || bt.act || bt.hold !== undefined) beats.add(a + Math.round((bt.t ?? 0) * FPS));
+  for (const fb of beats) {
+    let last: Map<string, Map<number, [number, number, number]>> | null = null;
+    for (let f = Math.max(a, fb - 2); f < Math.min(b, fb + 8); f++) {
+      const cm = runKeys(shot.keys, f), cam = new THREE.PerspectiveCamera(cm.fov, 9 / 16, 0.05, 3000);
+      cam.position.set(...cm.pos); cam.up.set(0, 1, 0); cam.lookAt(...cm.look); cam.updateMatrixWorld();
+      const st: Stage = { places: [], fx: [] };
+      film.director(shot, f, { pos: cam.position, right: new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld, 0), sun: new THREE.Vector3(0.3, 0.8, 0.5).normalize() }, undefined as never, st);
+      // hands by side (gestures list their arms in different orders)
+      const now = new Map<string, Map<number, [number, number, number]>>();
+      // measured on the character's own card (lateral along the card's right, height above the floor): camera moves
+      // turn the card and must not count as arm movement
+      for (const [who, an] of (st.anchors ?? new Map()) as NonNullable<Stage["anchors"]>) if (cast.has(who) && !an.walking) {
+        const yaw = Math.atan2(cam.position.x - an.floor[0], cam.position.z - an.floor[2]), rx = Math.cos(yaw), rz = -Math.sin(yaw);
+        now.set(who, new Map(an.hands.map((h) => [h.side, [(h.p[0] - an.floor[0]) * rx + (h.p[2] - an.floor[2]) * rz, h.p[1] - an.floor[1], 0] as [number, number, number]])));
+      }
+      if (last) for (const [who, hs] of now) {
+        const prev = last.get(who); if (!prev) continue;
+        const jump = Math.max(0, ...[...hs].map(([sd, h]) => { const q = prev.get(sd); return q ? Math.hypot(h[0] - q[0], h[1] - q[1], h[2] - q[2]) : 0; }));
+        if (jump > SNAP) report(`snap-${who}-${fb}`, `${who}'s hand jumps ${jump.toFixed(2)} m in one frame @${((f - a) / FPS).toFixed(2)}s (a gesture change without easing)`);
+      }
+      last = now;
+    }
+  }
   return out;
 };
