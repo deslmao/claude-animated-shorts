@@ -4,14 +4,14 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-03T09:42:26.680Z",
-   "inputs": "13a96735c0d800n",
+   "at": "2026-11-03T10:00:52.204Z",
+   "inputs": "0c6f6a72a5a456n",
    "detail": "valid; 1 warning(s):\n  shot 6 (home): milo's hand (shrug) is out of frame @2.2s (side): widen the shot or change the gesture"
   },
   "assets": {
    "state": "done",
-   "at": "2026-11-03T09:42:26.682Z",
-   "inputs": "13a96735c0d800",
+   "at": "2026-11-03T10:00:52.207Z",
+   "inputs": "0c6f6a72a5a456",
    "detail": "42 library assets reused, none missing",
    "data": {
     "reused": 42,
@@ -84,32 +84,32 @@
   },
   "approval": {
    "state": "done",
-   "at": "2026-11-03T09:42:26.686Z",
+   "at": "2026-11-03T10:00:52.212Z",
    "inputs": "0f10927a678f2b",
    "detail": "all narration already generated (no cost)"
   },
   "narration": {
    "state": "done",
-   "at": "2026-11-03T09:42:26.686Z",
+   "at": "2026-11-03T10:00:52.215Z",
    "inputs": "0f10927a678f2b",
    "detail": "all lines already generated (cached)"
   },
   "sound": {
    "state": "done",
-   "at": "2026-11-03T09:42:43.011Z",
-   "inputs": "027988ecae2095",
+   "at": "2026-11-03T10:01:09.107Z",
+   "inputs": "054135eb2a1f73",
    "detail": "soundtrack built: -14.1 LUFS"
   },
   "checks": {
    "state": "done",
-   "at": "2026-11-03T09:42:44.909Z",
-   "inputs": "027988ecae2095",
+   "at": "2026-11-03T10:01:11.125Z",
+   "inputs": "054135eb2a1f73",
    "detail": "preflight PASS; library intact"
   },
   "review": {
    "state": "waiting",
-   "at": "2026-11-03T09:54:12.998Z",
-   "inputs": "027988ecae2095",
+   "at": "2026-11-03T10:12:37.437Z",
+   "inputs": "054135eb2a1f73",
    "detail": "WAITING FOR REVIEW: 49 frames in productions/tickle/review.jpg (determinism: identical); rerun with --reviewed once checked",
    "data": {
     "frames": [

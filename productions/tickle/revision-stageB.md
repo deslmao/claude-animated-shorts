@@ -28,8 +28,15 @@ untouched. The narration is unchanged (no ElevenLabs cost); the soundtrack was r
 | animated props (rig, follow, drive with delay) | machines, tools and experiments that act on a character |
 | staging checks (limbs, effects, faces, foreground, props, diagrams, reach, ceiling) + 7 new negative tests | every storyboard: caught before any render time is spent (they found real problems in the published pirate democracy and in buried treasure, fixed in their storyboards) |
 
-## Tests
-Filled in from the final runs (see below).
+## Tests (final runs, after the last engine change)
+| Test | Result |
+|---|---|
+| `npm test` (lint + types, framing of every designed view, all 5 storyboards with the new staging checks, 17 negative cases incl. 7 new ones, library protection incl. the new gestures / item, z-fight on all 9 sets) | pass |
+| `npm run test:regression` | all 9 reference frames identical; **BridgeShort 608 and 1417 identical** throughout (references for yawn-demo 150 / 350 / 560, MovesTest 200 and capabilities 20 / 85 / 185 were re-recorded deliberately in two inspected steps: the z-fight fix, then the head-following marks and the storyboard crop fixes) |
+| `npm run test:sound` | pass |
+| `npm run preflight -- Short-tickle` | pass: 1912 frames = 63.73 s, soundtrack fresh (-14.1 LUFS, true peak -1.5 dBFS); 1 warning (shot 6 shrug crop) |
+| review sheet | 49 frames, determinism check identical |
+| preview clips (half size, with sound) | 5 clips, audio length = picture length in each |
 
 ## Known limitations
 - Sound: there is no giggle or robot-servo sound effect in the library yet; the tickle and robot moments use the existing automatic cues (effects, footsteps) and the music.
