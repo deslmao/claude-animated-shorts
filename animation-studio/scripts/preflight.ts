@@ -4,7 +4,8 @@
 //   - the storyboard has validation errors (names, framing, timing, word anchors, speakers)
 //   - the Short has no narration, or any line has no generated audio yet (timing would be an estimate)
 //   - the soundtrack audio/Short-<id>.mp3 or its fingerprint file audio/Short-<id>.json is missing
-//   - the soundtrack was built from a different storyboard / narration (stale), or for a different length
+//   - the soundtrack was built from a different storyboard / narration (stale), for a different length, or by an older
+//     soundtrack builder
 // Other compositions (BridgeShort, test compositions) are not storyboards: nothing to check, exit 0.
 import "./lib/dom-stub";
 import fs from "node:fs";
@@ -13,7 +14,7 @@ import { STORIES } from "../src/studio/stories";
 import { NARRATION } from "../src/studio/stories/voice";
 import { validate } from "../src/studio/story/validate";
 import { compile } from "../src/studio/story/compile";
-import { soundtrackFingerprint, SoundtrackInfo } from "../src/studio/story/fingerprint";
+import { soundtrackFingerprint, SoundtrackInfo, SOUNDTRACK_ENGINE } from "../src/studio/story/fingerprint";
 
 const proc = globalThis as unknown as { process: { argv: string[]; exit(n: number): never } };
 const comp = proc.process.argv[2];
@@ -29,12 +30,13 @@ const film = compile(sb, narr), tm = film.timing, secs = film.total / 30;
 if (!tm.lines.length) problems.push("the Short has no narration (no `say` lines)");
 if (tm.missing.length) problems.push(`${tm.missing.length} of ${tm.lines.length} narration lines have no generated audio (run: npm run voice -- ${id} --generate, after approving the cost)`);
 const AUDIO = `audio/${comp}.mp3`, INFO = `audio/${comp}.json`;
-if (!fs.existsSync(AUDIO)) problems.push(`soundtrack ${AUDIO} is missing (run: npm run voice -- ${id})`);
-if (!fs.existsSync(INFO)) problems.push(`soundtrack fingerprint ${INFO} is missing (rebuild the soundtrack: npm run voice -- ${id})`);
+if (!fs.existsSync(AUDIO)) problems.push(`soundtrack ${AUDIO} is missing (run: npm run sound -- ${id})`);
+if (!fs.existsSync(INFO)) problems.push(`soundtrack fingerprint ${INFO} is missing (rebuild the soundtrack: npm run sound -- ${id})`);
 else {
   const info = JSON.parse(fs.readFileSync(INFO, "utf8")) as SoundtrackInfo;
   const want = soundtrackFingerprint(sb, narr, info.engine);
-  if (info.fingerprint !== want) problems.push(`soundtrack is STALE: built from a different storyboard or narration (rebuild: npm run voice -- ${id})`);
+  if (info.engine !== SOUNDTRACK_ENGINE) problems.push(`soundtrack was built by an older builder ("${info.engine}", current "${SOUNDTRACK_ENGINE}"): rebuild with npm run sound -- ${id}`);
+  if (info.fingerprint !== want) problems.push(`soundtrack is STALE: built from a different storyboard or narration (rebuild: npm run sound -- ${id})`);
   if (info.frames !== film.total) problems.push(`soundtrack was built for ${info.frames} frames, the film is ${film.total} frames`);
   notes.push(`soundtrack built ${info.built}, ${info.lines} lines, ${info.seconds.toFixed(3)} s${info.lufs !== undefined ? `, ${info.lufs.toFixed(1)} LUFS` : ""}`);
 }

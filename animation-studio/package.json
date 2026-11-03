@@ -49,7 +49,9 @@
     "test:regression": "node scripts/regression.mjs",
     "test:library": "esbuild scripts/library-test.ts --bundle --platform=node --format=esm --outfile=out/library-test.mjs --log-level=warning && node out/library-test.mjs",
     "preflight": "esbuild scripts/preflight.ts --bundle --platform=node --format=esm --outfile=out/preflight.mjs --log-level=warning && node out/preflight.mjs",
-    "test": "npm run lint && npm run test:framing && npm run test:story && npm run test:library"
+    "test": "npm run lint && npm run test:framing && npm run test:story && npm run test:library",
+    "sound": "esbuild scripts/sound.ts --bundle --platform=node --format=esm --outfile=out/sound.mjs --log-level=warning && node out/sound.mjs",
+    "test:sound": "esbuild scripts/sound.ts --bundle --platform=node --format=esm --outfile=out/sound.mjs --log-level=warning && node out/sound.mjs --catalog > out/sound-catalog.json && python3 sound/check.py out/sound-catalog.json"
   },
   "allowScripts": {
     "esbuild": false

@@ -13,6 +13,7 @@ import { compile, shotFrames, actorPos, FPS } from "./compile";
 import type { Storyboard, Where } from "./types";
 import type { Narration } from "../voice/narration";
 import { resolve } from "./timing";
+import { MOODS, AMBIENCES, SFX } from "../sound/catalog";
 
 export type Report = { errors: string[]; warnings: string[]; framing: string[] };
 
@@ -35,6 +36,8 @@ export const validate = (sb0: Storyboard, narr?: Narration): Report => {
   for (const l of tm.lines) if (l.who !== "narrator" && !(l.who in sb.cast)) errors.push(`shot ${l.shot + 1}: speaker "${l.who}" is not in the cast`);
   const words = tm.lines.reduce((n, l) => n + l.words.length, 0), spoken = tm.lines.reduce((n, l) => n + (l.end - l.start), 0);
   if (words && spoken > 0 && (words / spoken < 2.6 || words / spoken > 4.6)) warnings.push(`narration pace ${(words / spoken).toFixed(2)} words/s (reference 3.5-4.1)`);
+  const mood = typeof sb.music === "string" ? sb.music : sb.music ? sb.music.mood : null;
+  if (mood && !(mood in MOODS)) errors.push(`unknown music mood "${mood}" (moods: ${Object.keys(MOODS).join(", ")})`);
   const total = sb.shots.reduce((s, x) => s + (x.dur ?? 0), 0);
   if (!sb.shots.length) errors.push("no shots");
   if (total < 10 || total > 75) warnings.push(`total length ${total.toFixed(1)} s (Shorts target 55-65 s)`);
@@ -61,6 +64,12 @@ export const validate = (sb0: Storyboard, narr?: Narration): Report => {
       for (const b of a.beats ?? []) if ((b.t ?? 0) < 0 || (b.t ?? 0) > dur) warnings.push(`${at}: ${a.who}: beat at ${b.t} s is outside the shot (0-${dur.toFixed(2)} s)`);
       for (const [x, y] of a.talk ?? []) if (x < 0 || y > dur + 0.01 || y <= x) warnings.push(`${at}: ${a.who}: talk span ${x}-${y} s outside the shot`);
       if (a.walk && (a.walk.t1 > dur + 0.01 || a.walk.t1 <= a.walk.t0)) warnings.push(`${at}: ${a.who}: walk ${a.walk.t0}-${a.walk.t1} s outside the shot`);
+    }
+    if (s.mood && !(s.mood in MOODS)) errors.push(`${at}: unknown music mood "${s.mood}" (moods: ${Object.keys(MOODS).join(", ")})`);
+    if (s.ambience && !(s.ambience in AMBIENCES)) errors.push(`${at}: unknown ambience "${s.ambience}" (beds: ${Object.keys(AMBIENCES).join(", ")})`);
+    for (const x of s.sfx ?? []) {
+      if (!(x.name in SFX)) errors.push(`${at}: unknown sound effect "${x.name}" (see src/studio/sound/catalog.ts)`);
+      if (x.on && !seen.has(x.on)) errors.push(`${at}: sound "${x.name}" is placed on "${x.on}" who is not in the shot`);
     }
     for (const fx of s.fx ?? []) {
       if (!FX_KINDS.includes(fx.kind)) errors.push(`${at}: unknown effect "${fx.kind}"`);

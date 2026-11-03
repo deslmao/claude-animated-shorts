@@ -3,5 +3,5 @@
   "chunks": 10,
   "preview": false,
   "audio": "",
-  "note": "Stage 2: yawn demo narrated by George, word-timed captions and lip-sync; soundtrack at exactly -14 LUFS (re-render of run 6 with the loudness fix)."
+  "note": "Stage 3B: yawn demo with automatic music (playful), ambience per set and 12 synced sound effects; tests the CI preflight."
 }

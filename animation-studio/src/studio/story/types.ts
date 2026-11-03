@@ -5,6 +5,7 @@ import type { LightName } from "../scene/environment";
 import type { ShotSize } from "../camera/framing";
 import type { FxKind } from "../fx/effects";
 import type { Era } from "../characters/cast";
+import type { Mood, Ambience, SfxName } from "../sound/catalog";
 
 export type V3 = [number, number, number];
 /** a cast member: a lead from the library ("milo", "juno", "junoOut", "gus") or a crowd extra */
@@ -47,11 +48,14 @@ export type ActorSpec = {
   nod?: (number | WordRef)[];  // nod start times (or words)
   shake?: (number | WordRef)[]; // head-shake start times (or words)
   idle?: number;              // idle life amount (default 1, 0 = still)
-  walk?: { to: Where; t0: number; t1: number }; // walk in profile from `at` to `to`
+  walk?: { to: Where; t0: number; t1: number; mode?: "walk" | "run" }; // walk (or run) in profile from `at` to `to`
   /** set by the narration timing (story/timing.ts), not written by hand: this actor's spoken words, seconds into the shot */
   speech?: { w: string; t0: number; t1: number }[];
 };
 export type FxSpec = When & { kind: FxKind; on: string; life?: number; side?: -1 | 1 };
+/** an explicit sound cue (automatic cues already cover effects, transitions, kicks, jumps, falls and footsteps).
+ *  on = an actor (the sound is panned to where they are on screen); gain in dB on top of the kind's default level */
+export type SfxSpec = When & { name: SfxName; on?: string; gain?: number };
 export type ShotSpec = {
   /** seconds. With narration the shot lasts as long as its lines (+ hold); dur is then a minimum and may be left out */
   dur?: number;
@@ -66,6 +70,12 @@ export type ShotSpec = {
   actors: ActorSpec[];
   fx?: FxSpec[];
   kicks?: (number | WordRef)[]; // impact shakes (seconds into the shot, or on a word)
+  /** music mood from this shot on (starts a new music section, crossfaded) */
+  mood?: Mood;
+  /** ambience bed for this shot (default: from the set and light); false = none */
+  ambience?: Ambience | false;
+  /** extra sound cues */
+  sfx?: SfxSpec[];
   note?: string;              // what the shot is for (script line), ignored by the engine
 };
 export type Storyboard = {
@@ -76,4 +86,8 @@ export type Storyboard = {
   voices?: Record<string, string>;
   /** word-by-word captions (default true) */
   captions?: boolean;
+  /** background music: a mood, { mood, gain } (dB), or false for none. Default: chosen from the story's acting */
+  music?: Mood | { mood: Mood; gain?: number } | false;
+  /** automatic sound effects for effects marks, transitions, kicks, jumps, falls and footsteps (default true) */
+  autoSfx?: boolean;
 };

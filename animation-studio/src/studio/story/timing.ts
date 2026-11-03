@@ -76,6 +76,7 @@ export const resolve = (sb0: Storyboard, narr?: Narration): Timing => {
       }
     }
     for (const fx of s.fx ?? []) when(fx, `the ${fx.kind} effect`);
+    for (const x of s.sfx ?? []) when(x, `the ${x.name} sound`);
     if (s.kicks) s.kicks = s.kicks.map((x) => (typeof x === "number" ? x : at(x, "a kick")));
     for (const p of here) if (p.who !== "narrator" && !s.actors.some((x) => x.who === p.who)) problems.push(`shot ${k + 1}: "${p.who}" speaks but isn't in the shot (use who: "narrator" for voice-over)`);
     T = a + s.dur;

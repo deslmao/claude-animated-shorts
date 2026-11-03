@@ -7,7 +7,7 @@ import { fnv, Narration } from "../voice/narration";
 import { resolve } from "./timing";
 
 /** bump when the soundtrack builder produces different audio from the same inputs (forces a rebuild everywhere) */
-export const SOUNDTRACK_ENGINE = "voice-1";
+export const SOUNDTRACK_ENGINE = "sound-1"; // voice + music + ambience + effects (stage 3B); "voice-1" = narration only
 
 export type SoundtrackInfo = { composition: string; fingerprint: string; engine: string; frames: number; seconds: number; lines: number; lufs?: number; built: string };
 
