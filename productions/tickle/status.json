@@ -4,17 +4,17 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-03T10:00:52.204Z",
-   "inputs": "0c6f6a72a5a456n",
-   "detail": "valid; 1 warning(s):\n  shot 6 (home): milo's hand (shrug) is out of frame @2.2s (side): widen the shot or change the gesture"
+   "at": "2026-11-03T21:50:58.543Z",
+   "inputs": "10ef735a1cd308n",
+   "detail": "valid; 1 warning(s):\n  shot 8 (lab): juno's hand (present) is out of frame @0.0s (side): widen the shot or change the gesture"
   },
   "assets": {
    "state": "done",
-   "at": "2026-11-03T10:00:52.207Z",
-   "inputs": "0c6f6a72a5a456",
-   "detail": "42 library assets reused, none missing",
+   "at": "2026-11-03T21:50:58.546Z",
+   "inputs": "10ef735a1cd308",
+   "detail": "37 library assets reused, none missing",
    "data": {
-    "reused": 42,
+    "reused": 37,
     "missing": [],
     "byKind": {
      "character": [
@@ -33,8 +33,7 @@
      "camera": [
       "pushIn",
       "frame",
-      "dutch",
-      "closeUp"
+      "dutch"
      ],
      "light": [
       "interior",
@@ -49,11 +48,9 @@
      "effect": [
       "question",
       "sweat",
-      "burst",
       "stars",
       "sparkle",
       "idea",
-      "zzz",
       "hearts"
      ],
      "act": [
@@ -68,12 +65,10 @@
       "scared",
       "explain",
       "thinking",
-      "happy",
-      "sleepy",
-      "idea"
+      "happy"
      ],
      "item": [
-      "book",
+      "openBook",
       "joystick"
      ],
      "prop": [
@@ -84,86 +79,27 @@
   },
   "approval": {
    "state": "done",
-   "at": "2026-11-03T10:00:52.212Z",
+   "at": "2026-11-03T21:50:58.552Z",
    "inputs": "0f10927a678f2b",
    "detail": "all narration already generated (no cost)"
   },
   "narration": {
    "state": "done",
-   "at": "2026-11-03T10:00:52.215Z",
+   "at": "2026-11-03T21:50:58.553Z",
    "inputs": "0f10927a678f2b",
    "detail": "all lines already generated (cached)"
   },
   "sound": {
    "state": "done",
-   "at": "2026-11-03T10:01:09.107Z",
-   "inputs": "054135eb2a1f73",
+   "at": "2026-11-03T21:51:26.920Z",
+   "inputs": "0d6b9e2ce1c005",
    "detail": "soundtrack built: -14.1 LUFS"
   },
   "checks": {
    "state": "done",
-   "at": "2026-11-03T10:01:11.125Z",
-   "inputs": "054135eb2a1f73",
+   "at": "2026-11-03T21:51:30.625Z",
+   "inputs": "0d6b9e2ce1c005",
    "detail": "preflight PASS; library intact"
-  },
-  "review": {
-   "state": "waiting",
-   "at": "2026-11-03T10:12:37.437Z",
-   "inputs": "054135eb2a1f73",
-   "detail": "WAITING FOR REVIEW: 49 frames in productions/tickle/review.jpg (determinism: identical); rerun with --reviewed once checked",
-   "data": {
-    "frames": [
-     4,
-     61,
-     120,
-     125,
-     187,
-     249,
-     254,
-     276,
-     299,
-     304,
-     373,
-     442,
-     447,
-     451,
-     463,
-     479,
-     484,
-     522,
-     561,
-     566,
-     597,
-     628,
-     633,
-     704,
-     775,
-     780,
-     879,
-     979,
-     984,
-     1062,
-     1141,
-     1146,
-     1207,
-     1269,
-     1274,
-     1374,
-     1474,
-     1479,
-     1563,
-     1648,
-     1653,
-     1677,
-     1701,
-     1706,
-     1750,
-     1794,
-     1799,
-     1854,
-     1909
-    ]
-   }
   }
  },
  "approval": {

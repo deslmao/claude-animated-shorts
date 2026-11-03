@@ -1,5 +1,5 @@
 {
- "reused": 42,
+ "reused": 37,
  "missing": [],
  "byKind": {
   "character": [
@@ -18,8 +18,7 @@
   "camera": [
    "pushIn",
    "frame",
-   "dutch",
-   "closeUp"
+   "dutch"
   ],
   "light": [
    "interior",
@@ -34,11 +33,9 @@
   "effect": [
    "question",
    "sweat",
-   "burst",
    "stars",
    "sparkle",
    "idea",
-   "zzz",
    "hearts"
   ],
   "act": [
@@ -53,12 +50,10 @@
    "scared",
    "explain",
    "thinking",
-   "happy",
-   "sleepy",
-   "idea"
+   "happy"
   ],
   "item": [
-   "book",
+   "openBook",
    "joystick"
   ],
   "prop": [
