@@ -39,7 +39,7 @@ export const CAST = { milo: MILO, juno: JUNO, junoOut: JUNO_OUT, gus: GUS };
 
 // ---------------- crowd generator ----------------
 // Extras never borrow a lead's signature: no spiky tuft, no mustard top (Milo), no teal turtleneck under a lab coat (Juno).
-export type Era = "modern" | "fifties" | "victorian" | "medieval" | "office" | "lab";
+export type Era = "modern" | "fifties" | "victorian" | "medieval" | "office" | "lab" | "pirate";
 const SKINS = ["#ffe2c2", "#f5c9a0", "#ecd0b6", "#c99067", "#a8714c", "#e8b896"];
 const HAIRC = ["#2a201a", "#4a2f22", "#6b4226", "#a5682f", "#d9b26a", "#1f1a24", "#8c8a88", "#c94f2c"];
 const MOD_TOPS = ["#3f6fb5", "#c25a7a", "#5d8a3a", "#8c6bb1", "#2f5f6a", "#7b5ac9", "#e26d4f", "#4b4f5c", "#2a9d8f", "#b5653f"];
@@ -72,6 +72,17 @@ export const extra = (i: number, era: Era = "modern"): Look => {
     case "fifties": if (!fem) { base.top = { style: "shirt", color: pick(r, 22, ["#f4f4f0", "#e9d9b4"] as const) }; base.neck = { style: "tie", color: pick(r, 23, ["#8c3b4a", "#2f5f6a"] as const) }; if (r(24) < 0.5) base.hat = { style: "bowler", color: "#4a3f3a" }; } break;
     case "victorian": base.top = fem ? { style: "dress", color: pick(r, 25, ["#8c3b4a", "#2f5f6a", "#5d7a3a", "#7b5ac9"] as const) } : { style: "shirt", color: "#efe6d4" };
       if (!fem) { base.layer = { style: pick(r, 26, ["waistcoat", "blazer"] as const) as LayerStyle, color: pick(r, 27, ["#3f3a4f", "#5a4636", "#2f4a3a"] as const) }; if (r(28) < 0.55) base.hat = { style: "tophat", color: "#2e2a36" }; } break;
+    case "pirate": // a ship's crew around 1720: striped or loose shirts, bandanas, the odd tricorn or eyepatch, no glasses
+      base.top = r(31) < 0.55 ? { style: "stripes", color: "#f2ece0", accent: pick(r, 32, ["#2f4a7a", "#a8323a", "#3a3d47"] as const) }
+        : { style: "shirt", color: pick(r, 33, ["#efe6d4", "#d9c9a8", "#c9b79a"] as const) };
+      delete base.glasses;
+      if (r(34) < 0.3) base.layer = { style: "waistcoat", color: pick(r, 35, ["#5a3b2a", "#3f3a4f", "#6b2f2f"] as const), accent: "#c9a24a" };
+      base.legs = pick(r, 36, ["#4a4036", "#3a3d47", "#5a4636", "#6b6255"] as const); base.shoes = pick(r, 37, ["#2a201a", "#3a2b20"] as const);
+      { const h = r(38); if (h < 0.5) base.hat = { style: "bandana", color: pick(r, 39, ["#a8323a", "#2f4a7a", "#3a6b3a", "#5a3b6a"] as const), trim: "#f6efe0" };
+        else if (h < 0.65) base.hat = { style: "tricorn", color: "#2e2a2a", trim: "#c9a24a" }; }
+      if (base.hat && (base.hair.style === "afro" || base.hair.style === "bob")) base.hair = { ...base.hair, style: "curly" }; // big hair would balloon round a hat
+      if (r(40) < 0.12) base.eyepatch = { side: r(41) < 0.5 ? -1 : 1 };
+      break;
     case "medieval": base.top = { style: "sweater", color: pick(r, 29, ["#7a5a3a", "#5d6a3a", "#8c3b4a", "#6b6255"] as const) }; base.legs = pick(r, 30, ["#4a4036", "#5a4636"] as const); base.shoes = "#3a2b20"; break;
   }
   return base;

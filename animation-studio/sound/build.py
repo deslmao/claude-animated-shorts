@@ -131,9 +131,9 @@ def main(plan_path):
     back = -20 * np.log10(head)
     out = P["out"]
 
-    def encode(gain_db):
+    def encode(gain_db, lim_db=CEIL - 0.5):
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", wav, "-af",
-                        f"volume={gain_db + back:.2f}dB,alimiter=limit={dbg(CEIL - 0.5):.4f}:attack=2:release=40:level=false,atrim=end={total:.3f}",
+                        f"volume={gain_db + back:.2f}dB,alimiter=limit={dbg(lim_db):.4f}:attack=2:release=40:level=false,atrim=end={total:.3f}",
                         "-ar", str(SR), "-ac", "2", "-c:a", "libmp3lame", "-b:a", "320k", out], check=True)
         r = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", out, "-af", "ebur128=peak=true", "-f", "null", "-"], capture_output=True, text=True).stderr
         s = r[r.rfind("Summary:"):]
@@ -141,11 +141,22 @@ def main(plan_path):
         pk = float(s.split("Peak:")[1].split("dBFS")[0])
         return I_, pk
 
-    g = 0.0
-    I_, pk = encode(g)
-    if abs(I_ - TARGET) > 0.2:   # the limiter takes a little: one correction pass
-        g += TARGET - I_
-        I_, pk = encode(g)
+    # master: hit -14 LUFS (+-0.2) with the true peak at or under the ceiling. Raising the gain for loudness raises the
+    # peaks, and the MP3 encode overshoots between samples, so iterate: correct the gain, and if the encoded true peak
+    # is over the ceiling, lower the sample-peak limiter by the overshoot (+0.1 dB). A mix already in range is done
+    # on the first pass (identical output to the one-pass master).
+    g, lim = 0.0, CEIL - 0.5
+    I_, pk = encode(g, lim)
+    for _ in range(5):
+        if abs(I_ - TARGET) <= 0.2 and pk <= CEIL:
+            break
+        if pk > CEIL:
+            lim -= pk - CEIL + 0.1
+        if abs(I_ - TARGET) > 0.2:
+            g += TARGET - I_
+        I_, pk = encode(g, lim)
+    if abs(I_ - TARGET) > 0.5 or pk > CEIL + 0.2:
+        raise SystemExit(f"mastering did not converge: {I_:.1f} LUFS, true peak {pk:.1f} dBFS")
     log(f"master: {I_:.1f} LUFS, true peak {pk:.1f} dBFS -> {out}")
     stems = {"voice_lufs": round(Lv, 2), "music_vs_voice_lu": round(lu(music) - Lv, 2) if P.get("music") else None,
              "ambience_vs_voice_lu": round(lu(amb) - Lv, 2) if np.abs(amb).max() > 0 else None, "sfx_cues": len(P["cues"])}

@@ -1,7 +1,174 @@
 {
  "id": "tickle",
  "composition": "Short-tickle",
- "stages": {},
+ "stages": {
+  "validate": {
+   "state": "done",
+   "at": "2026-11-03T05:26:13.975Z",
+   "inputs": "15e27a87438466n",
+   "detail": "valid; 0 warning(s)"
+  },
+  "assets": {
+   "state": "done",
+   "at": "2026-11-03T05:26:13.977Z",
+   "inputs": "15e27a87438466",
+   "detail": "45 library assets reused, none missing",
+   "data": {
+    "reused": 45,
+    "missing": [],
+    "byKind": {
+     "character": [
+      "milo",
+      "juno",
+      "gus"
+     ],
+     "mood": [
+      "playful"
+     ],
+     "set": [
+      "home",
+      "lab",
+      "nature"
+     ],
+     "camera": [
+      "pushIn",
+      "frame",
+      "closeUp",
+      "dutch",
+      "overShoulder"
+     ],
+     "light": [
+      "interior",
+      "interiorCool",
+      "golden"
+     ],
+     "ambience": [
+      "amb_room",
+      "amb_lab",
+      "amb_nature_day"
+     ],
+     "effect": [
+      "question",
+      "sweat",
+      "burst",
+      "stars",
+      "sparkle",
+      "idea",
+      "zzz",
+      "hearts"
+     ],
+     "act": [
+      "suspicious",
+      "confused",
+      "determined",
+      "neutral",
+      "laugh",
+      "happy",
+      "thumbsUp",
+      "shrug",
+      "nervous",
+      "scared",
+      "explain",
+      "thinking",
+      "point",
+      "sleepy",
+      "idea"
+     ],
+     "prop": [
+      "board",
+      "robotArm"
+     ],
+     "item": [
+      "book",
+      "flask"
+     ]
+    }
+   }
+  },
+  "approval": {
+   "state": "done",
+   "at": "2026-11-03T05:26:13.981Z",
+   "inputs": "0f10927a678f2b",
+   "detail": "all narration already generated (no cost)"
+  },
+  "narration": {
+   "state": "done",
+   "at": "2026-11-03T05:26:13.981Z",
+   "inputs": "0f10927a678f2b",
+   "detail": "all lines already generated (cached)"
+  },
+  "sound": {
+   "state": "done",
+   "at": "2026-11-03T05:26:29.659Z",
+   "inputs": "0fe947287f6e0e",
+   "detail": "soundtrack built: -14.2 LUFS"
+  },
+  "checks": {
+   "state": "done",
+   "at": "2026-11-03T05:26:31.305Z",
+   "inputs": "0fe947287f6e0e",
+   "detail": "preflight PASS; library intact"
+  },
+  "review": {
+   "state": "waiting",
+   "at": "2026-11-03T05:38:36.397Z",
+   "inputs": "0fe947287f6e0e",
+   "detail": "WAITING FOR REVIEW: 49 frames in productions/tickle/review.jpg (determinism: identical); rerun with --reviewed once checked",
+   "data": {
+    "frames": [
+     4,
+     61,
+     120,
+     125,
+     187,
+     249,
+     254,
+     276,
+     299,
+     304,
+     373,
+     442,
+     447,
+     451,
+     463,
+     479,
+     484,
+     522,
+     561,
+     566,
+     597,
+     628,
+     633,
+     704,
+     775,
+     780,
+     879,
+     979,
+     984,
+     1062,
+     1141,
+     1146,
+     1207,
+     1269,
+     1274,
+     1374,
+     1474,
+     1479,
+     1563,
+     1648,
+     1653,
+     1677,
+     1701,
+     1706,
+     1750,
+     1794,
+     1799,
+     1854,
+     1909
+    ]
+   }
+  }
+ },
  "approval": {
   "scriptHash": "0f10927a678f2b",
   "chars": 1116,

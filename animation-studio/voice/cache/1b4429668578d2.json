@@ -1,0 +1,45 @@
+{
+ "hash": "1b4429668578d2",
+ "text": "Nothing. Not even a giggle.",
+ "voice": "george",
+ "lead": 0,
+ "end": 1.672,
+ "dur": 1.697959,
+ "words": [
+  {
+   "w": "Nothing.",
+   "t0": 0,
+   "t1": 0.453
+  },
+  {
+   "w": "Not",
+   "t0": 0.557,
+   "t1": 0.72
+  },
+  {
+   "w": "even",
+   "t0": 0.778,
+   "t1": 0.94
+  },
+  {
+   "w": "a",
+   "t0": 0.987,
+   "t1": 1.01
+  },
+  {
+   "w": "giggle.",
+   "t0": 1.057,
+   "t1": 1.672
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T05:13:15.496Z"
+}

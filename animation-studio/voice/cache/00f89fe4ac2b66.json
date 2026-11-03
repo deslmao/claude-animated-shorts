@@ -1,0 +1,105 @@
+{
+ "hash": "00f89fe4ac2b66",
+ "text": "When the touch lands exactly as predicted, your brain turns the feeling down. No surprise, no tickle.",
+ "voice": "george",
+ "lead": 0,
+ "end": 5.387,
+ "dur": 5.433469,
+ "words": [
+  {
+   "w": "When",
+   "t0": 0,
+   "t1": 0.209
+  },
+  {
+   "w": "the",
+   "t0": 0.244,
+   "t1": 0.313
+  },
+  {
+   "w": "touch",
+   "t0": 0.348,
+   "t1": 0.592
+  },
+  {
+   "w": "lands",
+   "t0": 0.65,
+   "t1": 0.94
+  },
+  {
+   "w": "exactly",
+   "t0": 0.998,
+   "t1": 1.37
+  },
+  {
+   "w": "as",
+   "t0": 1.416,
+   "t1": 1.498
+  },
+  {
+   "w": "predicted,",
+   "t0": 1.556,
+   "t1": 2.078
+  },
+  {
+   "w": "your",
+   "t0": 2.159,
+   "t1": 2.299
+  },
+  {
+   "w": "brain",
+   "t0": 2.334,
+   "t1": 2.566
+  },
+  {
+   "w": "turns",
+   "t0": 2.624,
+   "t1": 2.868
+  },
+  {
+   "w": "the",
+   "t0": 2.926,
+   "t1": 2.995
+  },
+  {
+   "w": "feeling",
+   "t0": 3.042,
+   "t1": 3.332
+  },
+  {
+   "w": "down.",
+   "t0": 3.39,
+   "t1": 3.785
+  },
+  {
+   "w": "No",
+   "t0": 3.889,
+   "t1": 4.005
+  },
+  {
+   "w": "surprise,",
+   "t0": 4.063,
+   "t1": 4.528
+  },
+  {
+   "w": "no",
+   "t0": 4.598,
+   "t1": 4.714
+  },
+  {
+   "w": "tickle.",
+   "t0": 4.772,
+   "t1": 5.387
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T05:13:20.299Z"
+}

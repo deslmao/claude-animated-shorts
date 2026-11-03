@@ -1,0 +1,50 @@
+{
+ "hash": "0375ee537d1ca6",
+ "text": "Wait, is Milo secretly not ticklish?",
+ "voice": "george",
+ "lead": 0,
+ "end": 2.229,
+ "dur": 2.272653,
+ "words": [
+  {
+   "w": "Wait,",
+   "t0": 0,
+   "t1": 0.325
+  },
+  {
+   "w": "is",
+   "t0": 0.36,
+   "t1": 0.464
+  },
+  {
+   "w": "Milo",
+   "t0": 0.522,
+   "t1": 0.813
+  },
+  {
+   "w": "secretly",
+   "t0": 0.871,
+   "t1": 1.265
+  },
+  {
+   "w": "not",
+   "t0": 1.324,
+   "t1": 1.474
+  },
+  {
+   "w": "ticklish?",
+   "t0": 1.509,
+   "t1": 2.229
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T05:13:17.992Z"
+}

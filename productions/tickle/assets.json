@@ -1,0 +1,71 @@
+{
+ "reused": 45,
+ "missing": [],
+ "byKind": {
+  "character": [
+   "milo",
+   "juno",
+   "gus"
+  ],
+  "mood": [
+   "playful"
+  ],
+  "set": [
+   "home",
+   "lab",
+   "nature"
+  ],
+  "camera": [
+   "pushIn",
+   "frame",
+   "closeUp",
+   "dutch",
+   "overShoulder"
+  ],
+  "light": [
+   "interior",
+   "interiorCool",
+   "golden"
+  ],
+  "ambience": [
+   "amb_room",
+   "amb_lab",
+   "amb_nature_day"
+  ],
+  "effect": [
+   "question",
+   "sweat",
+   "burst",
+   "stars",
+   "sparkle",
+   "idea",
+   "zzz",
+   "hearts"
+  ],
+  "act": [
+   "suspicious",
+   "confused",
+   "determined",
+   "neutral",
+   "laugh",
+   "happy",
+   "thumbsUp",
+   "shrug",
+   "nervous",
+   "scared",
+   "explain",
+   "thinking",
+   "point",
+   "sleepy",
+   "idea"
+  ],
+  "prop": [
+   "board",
+   "robotArm"
+  ],
+  "item": [
+   "book",
+   "flask"
+  ]
+ }
+}

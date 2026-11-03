@@ -1,10 +1,11 @@
 // Review sheets for the character library (flat 2D, no WebGL: renders in seconds). Pick a page with inputProps
-// { page: "cast" | "faces-milo" | "faces-juno" | "faces-gus" | "acts-milo" | "acts-juno" | "acts-gus" | "moves" | "crowd" }.
+// { page: "cast" | "roster" (themed characters + the pirate crowd) | "faces-milo" | "faces-juno" | "faces-gus" | "acts-milo" | "acts-juno" | "acts-gus" | "moves" | "crowd" }.
 import React, { useLayoutEffect, useRef } from "react";
 import { AbsoluteFill, getInputProps } from "remotion";
 import { Pen } from "../characters/toon";
 import { figureFront, figureSide, Look, Pose, SidePose, EXPRESSIONS, ACT_NAMES, act } from "../characters/figure";
-import { MILO, JUNO, JUNO_OUT, GUS, crowd, Era } from "../characters/cast";
+import { MILO, JUNO, JUNO_OUT, GUS, crowd, Era, CAST } from "../characters/cast";
+import { ROSTER } from "../characters/roster";
 
 export const SHEET_W = 2000, SHEET_H = 2800;
 type Cell = { look: Look; pose?: Pose; side?: SidePose; label: string; mirror?: boolean; silhouette?: boolean; scale?: number; crop?: "head" };
@@ -72,10 +73,19 @@ const pageOf = (page: string, g: CanvasRenderingContext2D) => {
       ], 12, y, 560, n);
       y += 20;
     }
+  } else if (page === "roster") {
+    const themed = Object.entries(ROSTER).filter(([id]) => !(id in CAST));
+    const y = grid(g, themed.flatMap(([id, l]) => [
+      { look: l, pose: act("neutral"), label: id },
+      { look: l, pose: { facing: -1, expr: "talk" }, label: "3/4 L" },
+      { look: l, side: { mode: "stand" }, label: "side" },
+      { look: l, pose: { back: true }, label: "back" },
+    ]), 8, 10, 520, "Themed characters");
+    grid(g, crowd(16, "pirate", 600).map((l, i) => ({ look: l, pose: act(["neutral", "happy", "explain", "suspicious", "shrug", "laugh"][i % 6] as "neutral", { t: 0.3 }), label: "pirate" })), 8, y, 400, "Pirate crew (extras)");
   } else if (page === "crowd") {
     let y = 10;
     for (const [era, n] of [["modern", 12], ["office", 6], ["lab", 6], ["fifties", 6], ["victorian", 6], ["medieval", 6]] as [Era, number][]) {
-      y = grid(g, crowd(n, era, { modern: 0, office: 100, lab: 200, fifties: 300, victorian: 400, medieval: 500 }[era]).map((l, i) => ({ look: l, pose: act(["neutral", "happy", "explain", "suspicious", "shrug", "laugh"][i % 6] as "neutral", { t: 0.3 }), label: era })), 12, y, 400, era === "modern" ? "Crowd generator" : undefined);
+      y = grid(g, crowd(n, era, { modern: 0, office: 100, lab: 200, fifties: 300, victorian: 400, medieval: 500, pirate: 600 }[era]).map((l, i) => ({ look: l, pose: act(["neutral", "happy", "explain", "suspicious", "shrug", "laugh"][i % 6] as "neutral", { t: 0.3 }), label: era })), 12, y, 400, era === "modern" ? "Crowd generator" : undefined);
     }
   }
 };

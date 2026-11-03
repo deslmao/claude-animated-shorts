@@ -11,13 +11,15 @@ import type { PropEntry } from "../props/registry";
 import type { ItemEntry } from "../characters/items";
 import type { SetDef } from "../sets/types";
 import type { Layout } from "../sets/layouts";
-import type { Mood } from "../sound/catalog";
+import type { Mood, Ambience } from "../sound/catalog";
 
 export type SetMeta = { name: string; desc: string; themes: string[]; tags: string[] };
 export type Theme = {
   id: string; name: string; desc: string; tags: string[];
   /** the music mood stories on this theme default to (a storyboard's own `music` wins) */
   mood?: Mood;
+  /** the ambience bed each of the theme's sets gets (day; `night` keys as "<set>:night") */
+  ambience?: Record<string, Ambience>;
   characters?: Record<string, Look>; characterMeta?: Record<string, CharacterMeta>;
   props?: Record<string, PropEntry>;
   items?: Record<string, ItemEntry>;
@@ -25,5 +27,6 @@ export type Theme = {
 };
 
 import { SCIENCE } from "./science";
+import { PIRATES } from "./pirates";
 
-export const THEMES: Theme[] = [SCIENCE];
+export const THEMES: Theme[] = [SCIENCE, PIRATES];

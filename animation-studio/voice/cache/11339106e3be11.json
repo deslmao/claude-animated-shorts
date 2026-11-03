@@ -1,0 +1,70 @@
+{
+ "hash": "11339106e3be11",
+ "text": "Milo tries every morning. Fingers ready, armpit open, total focus.",
+ "voice": "george",
+ "lead": 0,
+ "end": 4.272,
+ "dur": 4.310204,
+ "words": [
+  {
+   "w": "Milo",
+   "t0": 0,
+   "t1": 0.348
+  },
+  {
+   "w": "tries",
+   "t0": 0.406,
+   "t1": 0.697
+  },
+  {
+   "w": "every",
+   "t0": 0.755,
+   "t1": 0.94
+  },
+  {
+   "w": "morning.",
+   "t0": 0.998,
+   "t1": 1.405
+  },
+  {
+   "w": "Fingers",
+   "t0": 1.521,
+   "t1": 1.858
+  },
+  {
+   "w": "ready,",
+   "t0": 1.916,
+   "t1": 2.264
+  },
+  {
+   "w": "armpit",
+   "t0": 2.322,
+   "t1": 2.694
+  },
+  {
+   "w": "open,",
+   "t0": 2.752,
+   "t1": 3.1
+  },
+  {
+   "w": "total",
+   "t0": 3.204,
+   "t1": 3.495
+  },
+  {
+   "w": "focus.",
+   "t0": 3.564,
+   "t1": 4.272
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T05:13:14.965Z"
+}

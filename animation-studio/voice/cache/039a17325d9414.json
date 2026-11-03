@@ -1,0 +1,85 @@
+{
+ "hash": "039a17325d9414",
+ "text": "Because the one person on Earth who can never tickle you... is you.",
+ "voice": "george",
+ "lead": 0,
+ "end": 3.622,
+ "dur": 3.657143,
+ "words": [
+  {
+   "w": "Because",
+   "t0": 0,
+   "t1": 0.337
+  },
+  {
+   "w": "the",
+   "t0": 0.36,
+   "t1": 0.43
+  },
+  {
+   "w": "one",
+   "t0": 0.488,
+   "t1": 0.639
+  },
+  {
+   "w": "person",
+   "t0": 0.685,
+   "t1": 0.998
+  },
+  {
+   "w": "on",
+   "t0": 1.057,
+   "t1": 1.138
+  },
+  {
+   "w": "Earth",
+   "t0": 1.196,
+   "t1": 1.416
+  },
+  {
+   "w": "who",
+   "t0": 1.451,
+   "t1": 1.544
+  },
+  {
+   "w": "can",
+   "t0": 1.579,
+   "t1": 1.683
+  },
+  {
+   "w": "never",
+   "t0": 1.718,
+   "t1": 1.904
+  },
+  {
+   "w": "tickle",
+   "t0": 1.962,
+   "t1": 2.241
+  },
+  {
+   "w": "you...",
+   "t0": 2.276,
+   "t1": 2.589
+  },
+  {
+   "w": "is",
+   "t0": 2.879,
+   "t1": 3.03
+  },
+  {
+   "w": "you.",
+   "t0": 3.088,
+   "t1": 3.622
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T05:13:24.172Z"
+}

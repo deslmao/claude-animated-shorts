@@ -1,0 +1,130 @@
+{
+ "hash": "0cc7c2d82601ed",
+ "text": "A part at the back of your brain, the cerebellum, sends out a forecast: fingers arriving at the armpit, any moment now.",
+ "voice": "george",
+ "lead": 0,
+ "end": 6.827,
+ "dur": 6.870204,
+ "words": [
+  {
+   "w": "A",
+   "t0": 0,
+   "t1": 0.093
+  },
+  {
+   "w": "part",
+   "t0": 0.163,
+   "t1": 0.406
+  },
+  {
+   "w": "at",
+   "t0": 0.441,
+   "t1": 0.511
+  },
+  {
+   "w": "the",
+   "t0": 0.546,
+   "t1": 0.615
+  },
+  {
+   "w": "back",
+   "t0": 0.662,
+   "t1": 0.848
+  },
+  {
+   "w": "of",
+   "t0": 0.894,
+   "t1": 0.94
+  },
+  {
+   "w": "your",
+   "t0": 0.987,
+   "t1": 1.115
+  },
+  {
+   "w": "brain,",
+   "t0": 1.173,
+   "t1": 1.591
+  },
+  {
+   "w": "the",
+   "t0": 1.707,
+   "t1": 1.8
+  },
+  {
+   "w": "cerebellum,",
+   "t0": 1.846,
+   "t1": 2.45
+  },
+  {
+   "w": "sends",
+   "t0": 2.508,
+   "t1": 2.752
+  },
+  {
+   "w": "out",
+   "t0": 2.786,
+   "t1": 2.914
+  },
+  {
+   "w": "a",
+   "t0": 2.961,
+   "t1": 2.984
+  },
+  {
+   "w": "forecast:",
+   "t0": 3.042,
+   "t1": 3.715
+  },
+  {
+   "w": "fingers",
+   "t0": 4.122,
+   "t1": 4.481
+  },
+  {
+   "w": "arriving",
+   "t0": 4.516,
+   "t1": 4.888
+  },
+  {
+   "w": "at",
+   "t0": 4.934,
+   "t1": 4.992
+  },
+  {
+   "w": "the",
+   "t0": 5.027,
+   "t1": 5.097
+  },
+  {
+   "w": "armpit,",
+   "t0": 5.166,
+   "t1": 5.631
+  },
+  {
+   "w": "any",
+   "t0": 5.677,
+   "t1": 5.875
+  },
+  {
+   "w": "moment",
+   "t0": 5.933,
+   "t1": 6.223
+  },
+  {
+   "w": "now.",
+   "t0": 6.269,
+   "t1": 6.827
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T05:13:19.576Z"
+}

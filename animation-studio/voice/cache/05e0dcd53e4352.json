@@ -1,0 +1,100 @@
+{
+ "hash": "05e0dcd53e4352",
+ "text": "But the second Gus sneaks up behind him, Milo laughs so hard he nearly falls over.",
+ "voice": "george",
+ "lead": 0,
+ "end": 4.783,
+ "dur": 4.832653,
+ "words": [
+  {
+   "w": "But",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "the",
+   "t0": 0.209,
+   "t1": 0.279
+  },
+  {
+   "w": "second",
+   "t0": 0.337,
+   "t1": 0.65
+  },
+  {
+   "w": "Gus",
+   "t0": 0.708,
+   "t1": 0.929
+  },
+  {
+   "w": "sneaks",
+   "t0": 0.975,
+   "t1": 1.289
+  },
+  {
+   "w": "up",
+   "t0": 1.335,
+   "t1": 1.451
+  },
+  {
+   "w": "behind",
+   "t0": 1.509,
+   "t1": 1.8
+  },
+  {
+   "w": "him,",
+   "t0": 1.858,
+   "t1": 2.09
+  },
+  {
+   "w": "Milo",
+   "t0": 2.252,
+   "t1": 2.566
+  },
+  {
+   "w": "laughs",
+   "t0": 2.624,
+   "t1": 2.902
+  },
+  {
+   "w": "so",
+   "t0": 2.937,
+   "t1": 3.088
+  },
+  {
+   "w": "hard",
+   "t0": 3.158,
+   "t1": 3.39
+  },
+  {
+   "w": "he",
+   "t0": 3.448,
+   "t1": 3.495
+  },
+  {
+   "w": "nearly",
+   "t0": 3.553,
+   "t1": 3.773
+  },
+  {
+   "w": "falls",
+   "t0": 3.831,
+   "t1": 4.098
+  },
+  {
+   "w": "over.",
+   "t0": 4.156,
+   "t1": 4.783
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T05:13:16.274Z"
+}

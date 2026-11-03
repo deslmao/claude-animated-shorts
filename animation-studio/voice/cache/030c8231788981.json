@@ -1,0 +1,50 @@
+{
+ "hash": "030c8231788981",
+ "text": "The surprise is the whole trick.",
+ "voice": "george",
+ "lead": 0,
+ "end": 1.765,
+ "dur": 1.802449,
+ "words": [
+  {
+   "w": "The",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "surprise",
+   "t0": 0.197,
+   "t1": 0.639
+  },
+  {
+   "w": "is",
+   "t0": 0.685,
+   "t1": 0.766
+  },
+  {
+   "w": "the",
+   "t0": 0.813,
+   "t1": 0.882
+  },
+  {
+   "w": "whole",
+   "t0": 0.929,
+   "t1": 1.126
+  },
+  {
+   "w": "trick.",
+   "t0": 1.161,
+   "t1": 1.765
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T05:13:23.090Z"
+}

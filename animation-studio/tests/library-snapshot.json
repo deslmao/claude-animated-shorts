@@ -149,7 +149,31 @@
   "lab:20": "0096cd32109494",
   "lab:21": "014089d43f83ed",
   "lab:22": "1de2f7055c1f12",
-  "lab:23": "06620e0303937c"
+  "lab:23": "06620e0303937c",
+  "pirate:0": "06bc5fd8c153e8",
+  "pirate:1": "0eb411f1322932",
+  "pirate:2": "16714f91eb97dc",
+  "pirate:3": "1e8389d9694c62",
+  "pirate:4": "1423dc95a5b94b",
+  "pirate:5": "03cb414c20bc25",
+  "pirate:6": "08f0607c86ff27",
+  "pirate:7": "0f5cbfa32096d4",
+  "pirate:8": "0bfb18284bedf1",
+  "pirate:9": "0df403a487b52f",
+  "pirate:10": "143c010b3ead8f",
+  "pirate:11": "1d647541d22e14",
+  "pirate:12": "19d4ca74b0e1ca",
+  "pirate:13": "184d026ae04900",
+  "pirate:14": "01fc3960362a3a",
+  "pirate:15": "0e8f8e504fa1fe",
+  "pirate:16": "04bf277c4534ed",
+  "pirate:17": "028cdcb997934c",
+  "pirate:18": "04d25a15db685f",
+  "pirate:19": "0d1f07ef46ab05",
+  "pirate:20": "18e023385847bf",
+  "pirate:21": "0de5b79e16640d",
+  "pirate:22": "1cdb684fb73e09",
+  "pirate:23": "150823eabc28cb"
  },
  "acts": {
   "neutral": "",
@@ -259,7 +283,8 @@
   "lab": "0a009bb9f95ad4",
   "city": "147d1a7cb4c1a9",
   "oldtown": "147d1a7cb4c1a9",
-  "nature": "147d1a7cb4c1a9"
+  "nature": "147d1a7cb4c1a9",
+  "shipDeck": "1241fe42efbc0d"
  },
  "marks": {
   "home:a": "0750ac791c5d2d",
@@ -313,7 +338,17 @@
   "nature:path": "0cb560fc87f461",
   "nature:pond": "160493e5d93282",
   "nature:log": "0911b4f1266cd4",
-  "nature:forest": "017e188dda3ce6"
+  "nature:forest": "017e188dda3ce6",
+  "shipDeck:a": "0e7d6d0356d0cb",
+  "shipDeck:b": "0c70d62294fe59",
+  "shipDeck:c": "0deb715ce08d59",
+  "shipDeck:d": "019f89ef7efb7e",
+  "shipDeck:e": "0417dd8033bc81",
+  "shipDeck:rail": "0192ac749e0ef4",
+  "shipDeck:mast": "088154ed3bb28c",
+  "shipDeck:hatch": "0fc8a678c26588",
+  "shipDeck:bow": "1f7cdbaa9c34c0",
+  "shipDeck:wheel": "11b833dcc6f5fa"
  },
  "views": {
   "home:wide": "12d193f00443bb",
@@ -343,7 +378,12 @@
   "nature:path wide": "02e68e98faa766",
   "nature:pond": "026da9eed9fb1c",
   "nature:forest edge low": "045c9be45b10f6",
-  "nature:close": "1152245f36f63f"
+  "nature:close": "1152245f36f63f",
+  "shipDeck:deck wide": "17463e6e50cd3f",
+  "shipDeck:two-shot": "0ce7ccfea8be06",
+  "shipDeck:at the rail": "02c81025f6ea63",
+  "shipDeck:helm": "12f43ee1dd9938",
+  "shipDeck:close": "0f8ced7b0c8837"
  },
  "lights": {
   "day": "1c824fd62ade9f",
@@ -430,7 +470,13 @@
   "milo": "1201b9a50a434b",
   "juno": "0cf3c77d7cb9fa",
   "junoOut": "0dfd32ada54600",
-  "gus": "0382aeb1168a19"
+  "gus": "0382aeb1168a19",
+  "captain": "0a5d0e2a6af68a",
+  "quartermaster": "03efa912c15569",
+  "kidd": "1685505f33a4ec",
+  "miloPirate": "154282cb3815ce",
+  "junoPirate": "19a9dc94b7e03c",
+  "gusPirate": "1a2f79c99578b7"
  },
  "placeable": {
   "sofa": "106defb7ae552c",
@@ -476,7 +522,13 @@
   "mushroom": "13b6e3c5a9131f",
   "fence": "183c2374b0124f",
   "picket": "183c2374b0124f",
-  "robotArm": "061a26dd022e9b"
+  "robotArm": "061a26dd022e9b",
+  "cannon": "0f8f6d539c925c",
+  "treasureChest": "151bba57aa1f34",
+  "shipWheel": "0dd66ff34f527d",
+  "ropeCoil": "1c13395fdeea65",
+  "anchor": "13e699b5549a4f",
+  "jollyRoger": "105b38b310ba7d"
  },
  "items": {
   "book": "",
@@ -495,6 +547,9 @@
   "lightbulb": "",
   "compass": "",
   "bottle": "",
-  "flask": ""
+  "flask": "",
+  "scroll": "",
+  "coinBag": "",
+  "tricorn": ""
  }
 }

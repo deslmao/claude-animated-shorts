@@ -59,7 +59,7 @@ export const TICKLE: Storyboard = {
       ] },
     // the joke you wrote yourself
     { say: "It's like hearing a joke you wrote yourself. You already know the punchline.", set: "home", light: "interior", transition: "fade",
-      camera: { move: "frame", on: ["gus"], size: "medium", from: 6, height: 1.45 },
+      camera: { move: "frame", on: ["gus"], size: "full", from: 6, height: 1.45 },
       actors: [{ who: "gus", at: "a", act: "happy", hold: "book", beats: [{ word: "punchline", act: "sleepy" }] }],
       fx: [{ kind: "zzz", on: "gus", word: "punchline", life: 1.8 }] },
     // the robot experiment
@@ -89,7 +89,7 @@ export const TICKLE: Storyboard = {
       ],
       fx: [{ kind: "hearts", on: "gus", word: "friend" }] },
     { say: "Because the one person on Earth who can never tickle you... is you.", set: "nature", light: "golden", transition: "cut",
-      camera: { move: "pushIn", on: ["milo"], size: "full", to: "medium", from: -6, height: 1.4 },
-      actors: [{ who: "milo", at: "a", act: "happy", facing: "camera", beats: [{ word: "you", n: 2, act: "point" }] }] },
+      camera: { move: "frame", on: ["milo"], size: "full", from: -6, height: 1.4 },
+      actors: [{ who: "milo", at: "a", act: "happy", facing: "camera", beats: [{ word: "never", act: "thinking" }, { word: "you", n: 2, act: "shrug", face: "smile" }] }] },
   ],
 };

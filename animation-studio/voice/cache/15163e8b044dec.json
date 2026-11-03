@@ -1,0 +1,55 @@
+{
+ "hash": "15163e8b044dec",
+ "text": "Same fingers, same armpit. So what changed?",
+ "voice": "george",
+ "lead": 0,
+ "end": 2.74,
+ "dur": 2.76898,
+ "words": [
+  {
+   "w": "Same",
+   "t0": 0,
+   "t1": 0.29
+  },
+  {
+   "w": "fingers,",
+   "t0": 0.348,
+   "t1": 0.743
+  },
+  {
+   "w": "same",
+   "t0": 0.801,
+   "t1": 1.022
+  },
+  {
+   "w": "armpit.",
+   "t0": 1.068,
+   "t1": 1.509
+  },
+  {
+   "w": "So",
+   "t0": 1.695,
+   "t1": 1.8
+  },
+  {
+   "w": "what",
+   "t0": 1.858,
+   "t1": 1.997
+  },
+  {
+   "w": "changed?",
+   "t0": 2.055,
+   "t1": 2.74
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T05:13:17.413Z"
+}

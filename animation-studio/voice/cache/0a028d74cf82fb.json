@@ -1,0 +1,100 @@
+{
+ "hash": "0a028d74cf82fb",
+ "text": "You see, every time you move, your brain quietly predicts what that movement will feel like.",
+ "voice": "george",
+ "lead": 0,
+ "end": 4.923,
+ "dur": 4.963265,
+ "words": [
+  {
+   "w": "You",
+   "t0": 0,
+   "t1": 0.139
+  },
+  {
+   "w": "see,",
+   "t0": 0.197,
+   "t1": 0.395
+  },
+  {
+   "w": "every",
+   "t0": 0.43,
+   "t1": 0.65
+  },
+  {
+   "w": "time",
+   "t0": 0.708,
+   "t1": 0.917
+  },
+  {
+   "w": "you",
+   "t0": 0.952,
+   "t1": 1.045
+  },
+  {
+   "w": "move,",
+   "t0": 1.126,
+   "t1": 1.556
+  },
+  {
+   "w": "your",
+   "t0": 1.66,
+   "t1": 1.811
+  },
+  {
+   "w": "brain",
+   "t0": 1.858,
+   "t1": 2.113
+  },
+  {
+   "w": "quietly",
+   "t0": 2.183,
+   "t1": 2.554
+  },
+  {
+   "w": "predicts",
+   "t0": 2.612,
+   "t1": 3.065
+  },
+  {
+   "w": "what",
+   "t0": 3.111,
+   "t1": 3.274
+  },
+  {
+   "w": "that",
+   "t0": 3.309,
+   "t1": 3.437
+  },
+  {
+   "w": "movement",
+   "t0": 3.506,
+   "t1": 3.855
+  },
+  {
+   "w": "will",
+   "t0": 3.889,
+   "t1": 4.04
+  },
+  {
+   "w": "feel",
+   "t0": 4.098,
+   "t1": 4.296
+  },
+  {
+   "w": "like.",
+   "t0": 4.342,
+   "t1": 4.923
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T05:13:18.724Z"
+}

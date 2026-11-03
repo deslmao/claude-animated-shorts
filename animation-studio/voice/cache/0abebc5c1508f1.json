@@ -1,0 +1,110 @@
+{
+ "hash": "0abebc5c1508f1",
+ "text": "When the robot copied them instantly, it barely tickled. Add a tiny delay, and it got ticklish again.",
+ "voice": "george",
+ "lead": 0,
+ "end": 5.851,
+ "dur": 5.877551,
+ "words": [
+  {
+   "w": "When",
+   "t0": 0,
+   "t1": 0.209
+  },
+  {
+   "w": "the",
+   "t0": 0.244,
+   "t1": 0.313
+  },
+  {
+   "w": "robot",
+   "t0": 0.372,
+   "t1": 0.708
+  },
+  {
+   "w": "copied",
+   "t0": 0.766,
+   "t1": 1.068
+  },
+  {
+   "w": "them",
+   "t0": 1.091,
+   "t1": 1.207
+  },
+  {
+   "w": "instantly,",
+   "t0": 1.265,
+   "t1": 1.858
+  },
+  {
+   "w": "it",
+   "t0": 1.939,
+   "t1": 2.055
+  },
+  {
+   "w": "barely",
+   "t0": 2.113,
+   "t1": 2.415
+  },
+  {
+   "w": "tickled.",
+   "t0": 2.473,
+   "t1": 2.972
+  },
+  {
+   "w": "Add",
+   "t0": 3.379,
+   "t1": 3.587
+  },
+  {
+   "w": "a",
+   "t0": 3.622,
+   "t1": 3.657
+  },
+  {
+   "w": "tiny",
+   "t0": 3.704,
+   "t1": 3.959
+  },
+  {
+   "w": "delay,",
+   "t0": 4.017,
+   "t1": 4.377
+  },
+  {
+   "w": "and",
+   "t0": 4.412,
+   "t1": 4.528
+  },
+  {
+   "w": "it",
+   "t0": 4.574,
+   "t1": 4.632
+  },
+  {
+   "w": "got",
+   "t0": 4.679,
+   "t1": 4.818
+  },
+  {
+   "w": "ticklish",
+   "t0": 4.865,
+   "t1": 5.213
+  },
+  {
+   "w": "again.",
+   "t0": 5.259,
+   "t1": 5.851
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T05:13:22.567Z"
+}

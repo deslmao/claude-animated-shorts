@@ -3,6 +3,7 @@
 // (`npm run test:sound` proves the two lists match and every sound renders). Also the automatic choices: which bed
 // a set + light gets, which sound an effect mark / transition / footstep makes.
 import type { FxKind } from "../fx/effects";
+import { THEMES } from "../themes";
 
 export const MOODS = {
   curious: "light, inquisitive explainer bed (vibes arpeggios, plucked bass, brushes), 100 bpm major: the default",
@@ -52,7 +53,10 @@ export const ambienceFor = (set: string, light: string): Ambience | null => {
     case "lab": return "amb_lab";
     case "office": return "amb_office";
     case "home": case "classroom": return "amb_room";
-    default: return null;
+    default: { // a themed set: the theme's own bed (night variant first)
+      for (const t of THEMES) { const m = t.ambience; if (m && (m[`${set}:${light}`] || m[set])) return m[`${set}:${light}`] ?? m[set]; }
+      return null;
+    }
   }
 };
 

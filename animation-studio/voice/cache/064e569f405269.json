@@ -1,0 +1,125 @@
+{
+ "hash": "064e569f405269",
+ "text": "Scientists tested this with a tickling robot. People moved a robot arm with one hand, and it tickled their other palm.",
+ "voice": "george",
+ "lead": 0,
+ "end": 6.827,
+ "dur": 6.870204,
+ "words": [
+  {
+   "w": "Scientists",
+   "t0": 0,
+   "t1": 0.592
+  },
+  {
+   "w": "tested",
+   "t0": 0.65,
+   "t1": 0.998
+  },
+  {
+   "w": "this",
+   "t0": 1.045,
+   "t1": 1.219
+  },
+  {
+   "w": "with",
+   "t0": 1.277,
+   "t1": 1.405
+  },
+  {
+   "w": "a",
+   "t0": 1.44,
+   "t1": 1.463
+  },
+  {
+   "w": "tickling",
+   "t0": 1.521,
+   "t1": 1.858
+  },
+  {
+   "w": "robot.",
+   "t0": 1.916,
+   "t1": 2.461
+  },
+  {
+   "w": "People",
+   "t0": 2.81,
+   "t1": 3.123
+  },
+  {
+   "w": "moved",
+   "t0": 3.17,
+   "t1": 3.425
+  },
+  {
+   "w": "a",
+   "t0": 3.471,
+   "t1": 3.495
+  },
+  {
+   "w": "robot",
+   "t0": 3.553,
+   "t1": 3.889
+  },
+  {
+   "w": "arm",
+   "t0": 3.947,
+   "t1": 4.145
+  },
+  {
+   "w": "with",
+   "t0": 4.18,
+   "t1": 4.307
+  },
+  {
+   "w": "one",
+   "t0": 4.365,
+   "t1": 4.528
+  },
+  {
+   "w": "hand,",
+   "t0": 4.586,
+   "t1": 4.946
+  },
+  {
+   "w": "and",
+   "t0": 5.085,
+   "t1": 5.224
+  },
+  {
+   "w": "it",
+   "t0": 5.283,
+   "t1": 5.341
+  },
+  {
+   "w": "tickled",
+   "t0": 5.375,
+   "t1": 5.689
+  },
+  {
+   "w": "their",
+   "t0": 5.724,
+   "t1": 5.863
+  },
+  {
+   "w": "other",
+   "t0": 5.921,
+   "t1": 6.107
+  },
+  {
+   "w": "palm.",
+   "t0": 6.165,
+   "t1": 6.827
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T05:13:21.787Z"
+}

@@ -27,7 +27,7 @@ const BASE_SETS: Record<string, SetMeta> = {
   oldtown: { name: "Old town square", desc: "cobbled square: fountain, market stalls, well, cart, old houses", themes: ["history", "medieval", "victorian"], tags: ["outdoor", "market", "village", "crowd"] },
   nature: { name: "Countryside", desc: "meadow and woods: winding path, pond, log, forest edge, fence", themes: ["nature"], tags: ["outdoor", "animals", "park", "walk"] },
 };
-const ERA_DESC: Record<string, string> = { modern: "everyday people today", office: "office workers (shirts, ties, blazers)", lab: "scientists in lab coats", fifties: "1950s clothes", victorian: "19th-century dress (top hats, waistcoats, long dresses)", medieval: "medieval townsfolk (tunics, hoods)" };
+const ERA_DESC: Record<string, string> = { modern: "everyday people today", office: "office workers (shirts, ties, blazers)", lab: "scientists in lab coats", fifties: "1950s clothes", victorian: "19th-century dress (top hats, waistcoats, long dresses)", medieval: "medieval townsfolk (tunics, hoods)", pirate: "a ship's crew around 1720 (striped shirts, bandanas, tricorns, eyepatches)" };
 const CAMERA: Record<string, string> = {
   view: "a set's designed view", establish: "a designed view with a slow drift (opening a place)", frame: "frame named actors at a shot size",
   pushIn: "glide closer (full -> medium)", pullOut: "glide away", closeUp: "close-up, optional punch-in", lowHero: "low heroic angle",
@@ -40,7 +40,7 @@ const setMeta = (id: string): SetMeta => BASE_SETS[id] ?? Object.assign({}, ...T
 
 export const ASSETS: Asset[] = [
   ...Object.keys(ROSTER).map((id): Asset => { const m = CHARACTER_META[id]; return { id, kind: "character", name: m?.name ?? id, desc: m?.desc ?? "", themes: m?.themes ?? [], tags: [...(m?.tags ?? []), ...(m?.personality ? [m.personality] : [])], details: m?.outfitOf ? `outfit of ${m.outfitOf}` : undefined }; }),
-  ...Object.entries(ERA_DESC).map(([e, d]): Asset => ({ id: `extras:${e}`, kind: "extras", name: `${e} extras`, desc: `crowd generator: ${d}; extra(i, "${e}") is always the same person`, themes: e === "medieval" || e === "victorian" ? ["history", e] : ["modern", e], tags: ["crowd", "people", "background"] })),
+  ...Object.entries(ERA_DESC).map(([e, d]): Asset => ({ id: `extras:${e}`, kind: "extras", name: `${e} extras`, desc: `crowd generator: ${d}; extra(i, "${e}") is always the same person`, themes: e === "pirate" ? ["history", "pirates"] : e === "medieval" || e === "victorian" ? ["history", e] : ["modern", e], tags: ["crowd", "people", "background"] })),
   ...Object.keys(SETS).map((id): Asset => { const m = setMeta(id), L = LAYOUTS[id]; return { id, kind: "set", name: m.name, desc: m.desc, themes: m.themes, tags: [...m.tags, ...SETS[id].lights], details: L ? `marks: ${Object.keys(L.spots).join(", ")} | views: ${L.views.map((v) => v.name).join(", ")} | lights: ${SETS[id].lights.join(", ")}` : undefined }; }),
   ...Object.entries(PROPS).map(([id, p]): Asset => ({ id, kind: "prop", name: p.name, desc: p.desc, themes: p.themes, tags: [p.category, ...p.tags], details: `footprint ${p.radius} m, ${p.height} m tall${p.variants ? ` | variants: ${Object.keys(p.variants).join(", ")}` : ""}` })),
   ...Object.entries(ITEMS).map(([id, it]): Asset => ({ id, kind: "item", name: it.name, desc: it.desc, themes: it.themes, tags: ["held", ...it.tags] })),

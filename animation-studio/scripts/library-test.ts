@@ -29,7 +29,7 @@ import * as nature from "../src/studio/props/nature";
 const proc = globalThis as unknown as { process: { argv: string[]; exit(n: number): never } };
 const UPDATE = proc.process.argv.includes("--update"), SNAP = "tests/library-snapshot.json";
 const h = (x: unknown) => fnv(JSON.stringify(x));
-const ERAS: Era[] = ["modern", "fifties", "victorian", "medieval", "office", "lab"];
+const ERAS: Era[] = ["modern", "fifties", "victorian", "medieval", "office", "lab", "pirate"];
 
 /** the live inventory: category -> id -> fingerprint of the data a video depends on ("" = name only) */
 const live: Record<string, Record<string, string>> = {
