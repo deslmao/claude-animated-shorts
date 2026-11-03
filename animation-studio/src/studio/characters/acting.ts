@@ -3,7 +3,8 @@
 //   idle(t, seed)          breathing, weight shift, glances (look x / y), slow head tilts, blinks
 //   nod(t, t0, n)          head nods (agreeing) starting at t0
 //   shake(t, t0)           head shake (disagreeing)
-//   talk(t, t0, t1, seed)  mouth flaps + changing hand gestures while speaking in [t0, t1]
+//   talk(t, t0, t1, seed)  mouth flaps + changing hand gestures while speaking in [t0, t1] (no audio)
+//   speak(t, words, seed)  the same, with the mouth following real word timings (narration lines)
 //   faceToward(...)        3/4 facing toward another character as seen from the camera
 //   blend(t, a, b, t0, d)  ease between two poses' numeric fields (turns, settles)
 import type { Pose, Gesture, Expr } from "./figure";
@@ -80,4 +81,21 @@ export const layer = (...ps: Partial<Pose>[]): Pose => {
     else (out as Record<string, unknown>)[key] = v;
   }
   return out;
+};
+
+/** speaking real words (times in seconds, from the narration's word timings): the mouth opens on each syllable
+ *  (vowel groups, spread across the word) and closes between words and at the end of each syllable; hands change
+ *  gesture every ~1.2 s like talk(). Returns {} outside the speech (plus a short settle). */
+export const speak = (t: number, words: { w: string; t0: number; t1: number }[], seed: number): Partial<Pose> => {
+  if (!words.length || t < words[0].t0 - 0.04 || t > words[words.length - 1].t1 + 0.12) return {};
+  const w = words.find((x) => t >= x.t0 - 0.02 && t <= x.t1);
+  let expr: Expr = "smile";                                    // closed, relaxed: between words
+  if (w) {
+    const syl = Math.max(1, (w.w.toLowerCase().match(/[aeiouy]+/g) ?? []).length);
+    const k = Math.max(0, (t - w.t0) / Math.max(0.06, w.t1 - w.t0)) * syl, i = Math.min(syl - 1, Math.floor(k)), ph = k - Math.floor(k);
+    // open for most of each syllable; stressed / long syllables (and the first of a word, 40 %) open wide
+    if (ph < 0.72) expr = (i === 0 && hash(Math.round(w.t0 * 100), seed) < 0.4) || (w.t1 - w.t0) / syl > 0.22 ? "talk_wide" : "talk";
+  }
+  const g = TALK_GESTURES[Math.floor((t - words[0].t0) / 1.2 + seed) % TALK_GESTURES.length];
+  return { expr, gesture: g, headTilt: Math.sin((t - words[0].t0) * 3.1 + seed) * 2.5 };
 };

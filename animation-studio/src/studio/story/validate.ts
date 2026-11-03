@@ -1,4 +1,5 @@
-// Storyboard validator (stage 1E): catches mistakes before any render time is spent, and checks vertical framing.
+// Storyboard validator (stage 1E, narration in stage 2): catches mistakes before any render time or voice credits are
+// spent, and checks vertical framing. It checks the narration-timed storyboard (story/timing.ts).
 // errors = the film would be wrong (unknown names, collisions, a subject's head out of frame); warnings = worth a look.
 import * as THREE from "three";
 import { SETS } from "../sets";
@@ -10,6 +11,8 @@ import { FX_KINDS } from "../fx/effects";
 import { runKeys } from "../camera/keys";
 import { compile, shotFrames, actorPos, FPS } from "./compile";
 import type { Storyboard, Where } from "./types";
+import type { Narration } from "../voice/narration";
+import { resolve } from "./timing";
 
 export type Report = { errors: string[]; warnings: string[]; framing: string[] };
 
@@ -23,16 +26,24 @@ const headIn = (cam: THREE.PerspectiveCamera, m: [number, number, number]) => {
   return true;
 };
 
-export const validate = (sb: Storyboard): Report => {
+export const validate = (sb0: Storyboard, narr?: Narration): Report => {
   const errors: string[] = [], warnings: string[] = [], framing: string[] = [];
-  const total = sb.shots.reduce((s, x) => s + x.dur, 0);
+  // narration timing first: shot lengths and word anchors become numbers (lines not generated yet are estimated)
+  const tm = resolve(sb0, narr), sb = tm.sb;
+  errors.push(...tm.problems);
+  if (tm.missing.length) warnings.push(`${tm.missing.length} of ${tm.lines.length} lines have no narration audio yet, so their timing is estimated (run: npm run voice -- ${sb.id})`);
+  for (const l of tm.lines) if (l.who !== "narrator" && !(l.who in sb.cast)) errors.push(`shot ${l.shot + 1}: speaker "${l.who}" is not in the cast`);
+  const words = tm.lines.reduce((n, l) => n + l.words.length, 0), spoken = tm.lines.reduce((n, l) => n + (l.end - l.start), 0);
+  if (words && spoken > 0 && (words / spoken < 2.6 || words / spoken > 4.6)) warnings.push(`narration pace ${(words / spoken).toFixed(2)} words/s (reference 3.5-4.1)`);
+  const total = sb.shots.reduce((s, x) => s + (x.dur ?? 0), 0);
   if (!sb.shots.length) errors.push("no shots");
   if (total < 10 || total > 75) warnings.push(`total length ${total.toFixed(1)} s (Shorts target 55-65 s)`);
   for (const [k, ref] of Object.entries(sb.cast)) if (typeof ref === "string" && !(ref in CAST)) errors.push(`cast "${k}": unknown lead "${ref}" (use ${Object.keys(CAST).join(", ")} or { extra: n })`);
   sb.shots.forEach((s, i) => {
     const at = `shot ${i + 1} (${s.set})`;
     if (!SETS[s.set]) { errors.push(`${at}: unknown set "${s.set}" (sets: ${Object.keys(SETS).join(", ")})`); return; }
-    if (s.dur < 0.6) errors.push(`${at}: too short (${s.dur} s)`);
+    const dur = s.dur ?? 0;
+    if (dur < 0.6) errors.push(`${at}: too short (${dur.toFixed(2)} s)`);
     if (s.light && !(s.light in LIGHTS)) errors.push(`${at}: unknown light "${s.light}"`);
     const indoor = SETS[s.set].lights.includes("interior");
     if (s.light && indoor !== (s.light === "interior" || s.light === "interiorCool")) warnings.push(`${at}: light "${s.light}" on a${indoor ? "n indoor" : "n outdoor"} set`);
@@ -47,14 +58,14 @@ export const validate = (sb: Storyboard): Report => {
       for (const x of [a.act, ...(a.beats ?? []).map((b) => b.act)]) if (x && !ACT_NAMES.includes(x)) errors.push(`${at}: ${a.who}: unknown act "${x}"`);
       for (const x of [a.face, ...(a.beats ?? []).map((b) => b.face)]) if (x && !(x in FACES)) errors.push(`${at}: ${a.who}: unknown face "${x}"`);
       for (const x of [a.gesture, ...(a.beats ?? []).map((b) => b.gesture)]) if (x && !GESTURES.includes(x) && x !== "pump") errors.push(`${at}: ${a.who}: unknown gesture "${x}"`);
-      for (const b of a.beats ?? []) if (b.t < 0 || b.t > s.dur) warnings.push(`${at}: ${a.who}: beat at ${b.t} s is outside the shot (0-${s.dur} s)`);
-      for (const [x, y] of a.talk ?? []) if (x < 0 || y > s.dur + 0.01 || y <= x) warnings.push(`${at}: ${a.who}: talk span ${x}-${y} s outside the shot`);
-      if (a.walk && (a.walk.t1 > s.dur + 0.01 || a.walk.t1 <= a.walk.t0)) warnings.push(`${at}: ${a.who}: walk ${a.walk.t0}-${a.walk.t1} s outside the shot`);
+      for (const b of a.beats ?? []) if ((b.t ?? 0) < 0 || (b.t ?? 0) > dur) warnings.push(`${at}: ${a.who}: beat at ${b.t} s is outside the shot (0-${dur.toFixed(2)} s)`);
+      for (const [x, y] of a.talk ?? []) if (x < 0 || y > dur + 0.01 || y <= x) warnings.push(`${at}: ${a.who}: talk span ${x}-${y} s outside the shot`);
+      if (a.walk && (a.walk.t1 > dur + 0.01 || a.walk.t1 <= a.walk.t0)) warnings.push(`${at}: ${a.who}: walk ${a.walk.t0}-${a.walk.t1} s outside the shot`);
     }
     for (const fx of s.fx ?? []) {
       if (!FX_KINDS.includes(fx.kind)) errors.push(`${at}: unknown effect "${fx.kind}"`);
       if (!seen.has(fx.on)) errors.push(`${at}: effect on "${fx.on}" who is not in the shot`);
-      if (fx.t < 0 || fx.t > s.dur) warnings.push(`${at}: effect at ${fx.t} s is outside the shot`);
+      if ((fx.t ?? 0) < 0 || (fx.t ?? 0) > dur) warnings.push(`${at}: effect at ${fx.t} s is outside the shot`);
     }
     const names = "on" in s.camera ? (Array.isArray(s.camera.on) ? s.camera.on : [s.camera.on]) : s.camera.move === "overShoulder" ? [s.camera.over, s.camera.at] : [];
     for (const n of names) if (!seen.has(n)) errors.push(`${at}: camera aims at "${n}" who is not in the shot`);
@@ -63,7 +74,7 @@ export const validate = (sb: Storyboard): Report => {
   if (errors.length) return { errors, warnings, framing };
   // framing: solve the camera at the start, middle and end of each shot and check the subjects' heads are in frame
   // (a subject who walks in is checked from the moment they arrive)
-  const film = compile(sb), ranges = shotFrames(sb);
+  const film = compile(sb0, narr), ranges = shotFrames(sb);
   sb.shots.forEach((s, i) => {
     const c = s.camera, subj = c.move === "overShoulder" ? [c.at] : "on" in c ? (Array.isArray(c.on) ? c.on : [c.on]) : [];
     const { a, b } = ranges[i], fails: string[] = [];

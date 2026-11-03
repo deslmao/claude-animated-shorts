@@ -10,10 +10,12 @@ import type { WorldShot, Director } from "../scene/SetWorld";
 import type { Timeline } from "../look/StudioFilm";
 import { CAST, extra } from "../characters/cast";
 import { act as actPose, Look, Pose, Expr } from "../characters/figure";
-import { idle, nod as nodAt, shake as shakeAt, talk as talkAt, layer, faceToward } from "../characters/acting";
+import { idle, nod as nodAt, shake as shakeAt, talk as talkAt, speak as speakAt, layer, faceToward } from "../characters/acting";
 import { lookCard, contactShadow, lidAt } from "../cards/person";
 import { fxNear } from "../fx/effects";
 import type { Storyboard, ShotSpec, ActorSpec, Where, V3, CameraSpec } from "./types";
+import type { Narration } from "../voice/narration";
+import { resolve } from "./timing";
 
 export const FPS = 30;
 const FADE = 8;
@@ -37,14 +39,14 @@ export const restPos = (set: string, a: ActorSpec): V3 => whereOf(set, a.walk ? 
 /** frame ranges of the shots: shot k covers [a, b) */
 export const shotFrames = (sb: Storyboard) => {
   let f = 0;
-  return sb.shots.map((s) => { const a = f; f += Math.round(s.dur * FPS); return { a, b: f }; });
+  return sb.shots.map((s) => { const a = f; f += Math.round((s.dur ?? 0) * FPS); return { a, b: f }; });
 };
 
 /** camera spec -> library move, naming actors instead of coordinates (framed where they settle) */
 const moveOf = (s: ShotSpec, c: CameraSpec): Move => {
   // the slow "breathing" push of held shots totals at most 8 % of the distance however long the shot, so a fitted
   // group stays in frame to the last frame
-  const creep = Math.min(0.0022, 0.08 / Math.max(1, Math.round(s.dur * FPS)));
+  const creep = Math.min(0.0022, 0.08 / Math.max(1, Math.round((s.dur ?? 0) * FPS)));
   const pos = (who: string) => { const a = s.actors.find((x) => x.who === who); if (!a) throw new Error(`camera names "${who}" but no such actor in the shot`); return restPos(s.set, a); };
   const view = (name: string) => { const v = LAYOUTS[s.set].views.find((x) => x.name === name); if (!v) throw new Error(`set ${s.set} has no view "${name}"`); return v; };
   switch (c.move) {
@@ -62,13 +64,16 @@ const moveOf = (s: ShotSpec, c: CameraSpec): Move => {
   }
 };
 
-export const compile = (sb: Storyboard) => {
+/** storyboard (+ its narration manifest, if generated) -> film. Narration timing runs first (story/timing.ts): it
+ *  sizes shots to their lines and turns word anchors into times; everything below works on that resolved copy */
+export const compile = (sb0: Storyboard, narr?: Narration) => {
+  const timing = resolve(sb0, narr), sb = timing.sb;
   const ranges = shotFrames(sb), total = ranges[ranges.length - 1].b;
   const seedOf = (who: string) => Object.keys(sb.cast).indexOf(who) + 1;
   const shots: WorldShot[] = sb.shots.map((s, k) => {
     const { a, b } = ranges[k], pre = s.transition === "fade" ? FADE : 0;
     const p = plan(moveOf(s, s.camera), a - pre, b, { cut: true });
-    return { id: k + 1, a, b, set: s.set, light: s.light ?? SETS[s.set].lights[0], keys: [p.key], dof: p.dof, kicks: (s.kicks ?? []).map((t) => [a / FPS + t, 1] as [number, number]) };
+    return { id: k + 1, a, b, set: s.set, light: s.light ?? SETS[s.set].lights[0], keys: [p.key], dof: p.dof, kicks: (s.kicks ?? []).map((t) => [a / FPS + (t as number), 1] as [number, number]) };
   });
   const flashes = sb.shots.map((s, k) => (s.transition === "flash" ? ranges[k].a : -1)).filter((f) => f >= 0);
   const dips = sb.shots.map((s, k) => (s.transition === "dip" ? ranges[k].a : -1)).filter((f) => f >= 0);
@@ -90,12 +95,14 @@ export const compile = (sb: Storyboard) => {
       const L = lookOf(sb.cast[a.who]), seed = seedOf(a.who), p = posOf.get(a.who)!;
       // base act, then the latest beat at or before now (act replaces, face / gesture override)
       let base: Pose = actPose(a.act ?? "neutral", { ...(a.face ? { expr: a.face } : {}), ...(a.gesture ? { gesture: a.gesture } : {}), ...(a.mode ? { mode: a.mode } : {}) });
-      for (const bt of (a.beats ?? []).filter((x) => x.t <= tt).sort((x, y) => x.t - y.t)) base = { ...(bt.act ? actPose(bt.act) : base), ...(bt.face ? { expr: bt.face } : {}), ...(bt.gesture ? { gesture: bt.gesture } : {}) };
-      const swaps = (a.beats ?? []).map((x) => t0 + x.t);
+      for (const bt of (a.beats ?? []).filter((x) => (x.t ?? 0) <= tt).sort((x, y) => (x.t ?? 0) - (y.t ?? 0))) base = { ...(bt.act ? actPose(bt.act) : base), ...(bt.face ? { expr: bt.face } : {}), ...(bt.gesture ? { gesture: bt.gesture } : {}) };
+      const swaps = (a.beats ?? []).map((x) => t0 + (x.t ?? 0));
       const life = { ...idle(t, seed, a.idle ?? 1), blink: lidAt(t, seed, swaps) };
-      const talking = (a.talk ?? []).map(([x, y]) => talkAt(t, t0 + x, t0 + y, seed, (base.expr as Expr) ?? "talk")).find((x) => Object.keys(x).length) ?? {};
-      const nodTilt = (a.nod ?? []).reduce((acc, x) => acc + nodAt(t, t0 + x, 2), 0);
-      const shook = (a.shake ?? []).map((x) => shakeAt(t, t0 + x)).find((x) => Object.keys(x).length) ?? {};
+      // voiced lines: the mouth follows the narration's word timings; otherwise the stand-in talking rhythm
+      const talking = a.speech?.length ? speakAt(tt, a.speech, seed)
+        : (a.talk ?? []).map(([x, y]) => talkAt(t, t0 + x, t0 + y, seed, (base.expr as Expr) ?? "talk")).find((x) => Object.keys(x).length) ?? {};
+      const nodTilt = (a.nod ?? []).reduce((acc: number, x) => acc + nodAt(t, t0 + (x as number), 2), 0);
+      const shook = (a.shake ?? []).map((x) => shakeAt(t, t0 + (x as number))).find((x) => Object.keys(x).length) ?? {};
       // facing: explicit, or toward the nearest other actor
       let facing: -1 | 0 | 1 = 0;
       if (a.facing === undefined || (typeof a.facing === "string" && a.facing.startsWith("toward:"))) {
@@ -117,8 +124,8 @@ export const compile = (sb: Storyboard) => {
     for (const fx of s.fx ?? []) {
       const p = posOf.get(fx.on); if (!p) continue;
       const x = (p[0] - cam.pos.x) * cam.right.x + (p[2] - cam.pos.z) * cam.right.z;
-      const c = fxNear(cam, fx.kind, p, t, t0 + fx.t, fx.life ?? 1.6, fx.side ?? (x > 0 ? -1 : 1)); if (c) out.fx.push(c);
+      const c = fxNear(cam, fx.kind, p, t, t0 + (fx.t ?? 0), fx.life ?? 1.6, fx.side ?? (x > 0 ? -1 : 1)); if (c) out.fx.push(c);
     }
   };
-  return { total, shots, timeline, director };
+  return { total, shots, timeline, director, timing };
 };

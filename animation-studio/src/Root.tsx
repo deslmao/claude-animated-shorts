@@ -10,9 +10,10 @@ import { SetTour } from "./studio/checks/SetTour";
 import { MovesTest, MOVESTEST_FRAMES } from "./studio/checks/MovesTest";
 import { STORIES } from "./studio/stories";
 import { makeShort } from "./studio/story/Short";
+import { NARRATION } from "./studio/stories/voice";
 
-// one composition per storyboard: "Short-<id>"
-const SHORTS = STORIES.map((sb) => ({ id: sb.id, ...makeShort(sb) }));
+// one composition per storyboard: "Short-<id>" (with its narration timing and captions, once `npm run voice` made it)
+const SHORTS = STORIES.map((sb) => ({ id: sb.id, ...makeShort(sb, NARRATION[sb.id]) }));
 
 // Welcome to the Remotion Three Starter Kit!
 // Two compositions have been created, showing how to use

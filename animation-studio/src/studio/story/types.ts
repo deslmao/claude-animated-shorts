@@ -25,8 +25,16 @@ export type CameraSpec =
   | { move: "crane"; on: string[]; heights: [number, number]; size?: ShotSize; from?: number }
   | { move: "dutch"; on: string[]; size?: ShotSize; from?: number; roll?: number };
 
-/** a change during the shot, t seconds after the shot starts (expression swaps hide behind an automatic blink) */
-export type Beat = { t: number; act?: Act; face?: Expr; gesture?: Gesture };
+/** when something happens: t seconds after the shot starts, or on a spoken word of this shot's lines
+ *  (word: "catches" lands 2 frames before that word; "yawn" also matches "yawning"; n = which occurrence, from 1) */
+export type When = { t: number; word?: undefined } | { word: string; n?: number; t?: undefined };
+export type WordRef = { word: string; n?: number };
+/** a change during the shot (expression swaps hide behind an automatic blink) */
+export type Beat = When & { act?: Act; face?: Expr; gesture?: Gesture };
+/** a spoken line. who: "narrator" (voice-over, default) or a cast key (that actor's mouth moves with the words).
+ *  voice: a preset from voice/voices.ts (default: storyboard.voices[who], then storyboard.voice, then the narrator).
+ *  gap: extra pause before the line, seconds */
+export type Line = { text: string; who?: string; voice?: string; gap?: number };
 export type ActorSpec = {
   who: string;                // key into storyboard.cast
   at: Where;
@@ -35,22 +43,37 @@ export type ActorSpec = {
   facing?: "camera" | `toward:${string}` | -1 | 0 | 1;
   back?: boolean;             // seen from behind (the near actor in an over-the-shoulder)
   beats?: Beat[];
-  talk?: [number, number][];  // speaking spans (mouth + talking hands)
-  nod?: number[];             // nod start times
-  shake?: number[];           // head-shake start times
+  talk?: [number, number][];  // speaking spans without audio (mouth + talking hands); voiced lines set this themselves
+  nod?: (number | WordRef)[];  // nod start times (or words)
+  shake?: (number | WordRef)[]; // head-shake start times (or words)
   idle?: number;              // idle life amount (default 1, 0 = still)
   walk?: { to: Where; t0: number; t1: number }; // walk in profile from `at` to `to`
+  /** set by the narration timing (story/timing.ts), not written by hand: this actor's spoken words, seconds into the shot */
+  speech?: { w: string; t0: number; t1: number }[];
 };
-export type FxSpec = { kind: FxKind; on: string; t: number; life?: number; side?: -1 | 1 };
+export type FxSpec = When & { kind: FxKind; on: string; life?: number; side?: -1 | 1 };
 export type ShotSpec = {
-  dur: number;
+  /** seconds. With narration the shot lasts as long as its lines (+ hold); dur is then a minimum and may be left out */
+  dur?: number;
+  /** what is said over this shot (lines follow on from the previous shot's without dead air) */
+  say?: string | Line | (string | Line)[];
+  /** seconds held after this shot's last word (default 0.2; 0.45 on the last shot) */
+  hold?: number;
   set: string;
   light?: LightName;          // default: the set's first light
   camera: CameraSpec;
   transition?: "cut" | "fade" | "flash" | "dip"; // into this shot
   actors: ActorSpec[];
   fx?: FxSpec[];
-  kicks?: number[];           // impact shakes (seconds into the shot)
+  kicks?: (number | WordRef)[]; // impact shakes (seconds into the shot, or on a word)
   note?: string;              // what the shot is for (script line), ignored by the engine
 };
-export type Storyboard = { id: string; title?: string; cast: Record<string, CastRef>; shots: ShotSpec[] };
+export type Storyboard = {
+  id: string; title?: string; cast: Record<string, CastRef>; shots: ShotSpec[];
+  /** voice preset for every line (default: the channel narrator, voice/voices.ts NARRATOR) */
+  voice?: string;
+  /** per-speaker voice presets, e.g. { gus: "bill" } (default: `voice`) */
+  voices?: Record<string, string>;
+  /** word-by-word captions (default true) */
+  captions?: boolean;
+};
