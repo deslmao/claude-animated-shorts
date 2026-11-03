@@ -169,10 +169,16 @@
    }
   },
   "render": {
-   "state": "failed",
-   "at": "2026-11-03T07:21:04.551Z",
+   "state": "done",
+   "at": "2026-11-03T07:39:44.415Z",
    "inputs": "0fe947287f6e0e",
-   "detail": "render run #10 failure: join: failure (https://github.com/deslmao/claude-animated-shorts/actions/runs/41585750120)"
+   "detail": "render run #11 succeeded: https://github.com/deslmao/claude-animated-shorts/actions/runs/41595860014"
+  },
+  "final": {
+   "state": "done",
+   "at": "2026-11-03T07:40:51.814Z",
+   "inputs": "11",
+   "detail": "PUBLISHED https://github.com/deslmao/claude-animated-shorts/releases/tag/video-Short-tickle-run11 | QA passed | audio aligned (lag 0 ms, r=1)"
   }
  },
  "approval": {
@@ -190,6 +196,17 @@
   "attempt": 2,
   "runId": 41595860014,
   "runNumber": 11,
-  "url": "https://github.com/deslmao/claude-animated-shorts/actions/runs/41595860014"
+  "url": "https://github.com/deslmao/claude-animated-shorts/actions/runs/41595860014",
+  "conclusion": "success"
+ },
+ "final": {
+  "tag": "video-Short-tickle-run11",
+  "release": "https://github.com/deslmao/claude-animated-shorts/releases/tag/video-Short-tickle-run11",
+  "mp4": "productions/tickle/Short-tickle.mp4",
+  "qa": "PASSED",
+  "alignment": {
+   "lagSeconds": 0,
+   "correlation": 1
+  }
  }
 }
