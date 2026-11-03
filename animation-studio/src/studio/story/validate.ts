@@ -216,7 +216,7 @@ const staging = (film: ReturnType<typeof compile>, sb: Storyboard, i: number, a:
       for (const [dx, dz] of [[0, 0], [-1, -1], [1, -1], [1, 1], [-1, 1], [-1, 0], [1, 0], [0, -1], [0, 1]]) for (const y of [y0, (y0 + y1) / 2, y1])
         if (inFrame(P([pr.at.x + dx * r0, y, pr.at.z + dz * r0]), 1.0)) { seenProp.add(k); break; }
       if (q.follow && e.reach) {
-        const hand = anchors.get(q.follow.who)?.hands.find((h) => h.kind === "open");
+        const hand = anchors.get(q.follow.who)?.hands.find((h) => h.kind === "palm" || h.kind === "open");
         if (!hand) report(`reach-${k}`, `prop "${q.id}" follows ${q.follow.who}'s open hand, but ${q.follow.who} isn't holding one out @${tt}s (gesture "operate")`);
         else if (Math.hypot(hand.p[0] - pr.at.x, hand.p[1] + e.reach.lift - (pr.at.y ?? 0) - e.reach.shoulder, hand.p[2] - pr.at.z) > e.reach.length) report(`reach-${k}`, `prop "${q.id}" can't reach ${q.follow.who}'s hand @${tt}s: move it closer`);
       }

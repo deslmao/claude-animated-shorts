@@ -66,7 +66,9 @@ export type ActorSpec = {
   /** set by the narration timing (story/timing.ts), not written by hand: this actor's spoken words, seconds into the shot */
   speech?: { w: string; t0: number; t1: number }[];
 };
-export type DiagramSpec = { kind: DiagramKind; with: string; side?: -1 | 1; size?: number; steps?: When[] };
+/** place: "side" (beside the presenter, default) or "above" (over their head: the 9:16 frame stacks the diagram on top
+ *  and the presenter below, so both read on a phone) */
+export type DiagramSpec = { kind: DiagramKind; with: string; side?: -1 | 1; size?: number; place?: "side" | "above"; steps?: When[] };
 export type MoveKind = "squirm" | "stagger" | "hop" | "recoil";
 export type Move = When & { kind: MoveKind; dur?: number; away?: string; dir?: -1 | 1; amount?: number };
 export type FxSpec = When & { kind: FxKind; on: string; life?: number; side?: -1 | 1 };

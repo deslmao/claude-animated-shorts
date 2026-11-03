@@ -19,6 +19,8 @@ export type FitOpts = {
   from?: number; height?: number; fov?: number; roll?: number; size?: ShotSize; aspect?: number;
   /** subject half width (m) and height (m) */
   halfWidth?: number; tall?: number;
+  /** frame up to this height above the floor too (something above the subjects' heads: a diagram, a sign) */
+  top?: number;
 };
 
 export const fitShot = (marks: V3[], o: FitOpts = {}): { pos: V3; look: V3; fov: number; roll: number } => {
@@ -27,12 +29,13 @@ export const fitShot = (marks: V3[], o: FitOpts = {}): { pos: V3; look: V3; fov:
   const a = THREE.MathUtils.degToRad(o.from ?? 0), dir = new THREE.Vector3(-Math.sin(a), 0, -Math.cos(a)); // camera -> subjects
   const floor = Math.min(...marks.map((m) => m[1]));
   const cx = marks.reduce((s, m) => s + m[0], 0) / marks.length, cz = marks.reduce((s, m) => s + m[2], 0) / marks.length;
-  const y0 = floor + size.y0, y1 = floor + Math.min(size.y1, tall + 0.2);
+  const y0 = floor + size.y0, y1 = o.top !== undefined ? floor + Math.max(o.top, Math.min(size.y1, tall + 0.2)) : floor + Math.min(size.y1, tall + 0.2);
   const lookY = (y0 + y1) / 2, look = new THREE.Vector3(cx, lookY, cz);
   const camH = o.height ?? lookY;
   const pts: THREE.Vector3[] = [];
   const right = new THREE.Vector3(-dir.z, 0, dir.x);
   for (const m of marks) for (const s of [-1, 1]) for (const y of [Math.max(y0, m[1]), Math.min(y1, m[1] + tall)]) pts.push(new THREE.Vector3(m[0], y, m[2]).addScaledVector(right, s * W));
+  if (o.top !== undefined) for (const s of [-1, 1]) pts.push(new THREE.Vector3(cx, y1, cz).addScaledVector(right, s * W));
   const cam = new THREE.PerspectiveCamera(fov, aspect, 0.05, 3000);
   const fits = (d: number) => {
     cam.position.copy(look).addScaledVector(dir, -d).setY(camH);

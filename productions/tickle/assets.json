@@ -1,5 +1,5 @@
 {
- "reused": 45,
+ "reused": 42,
  "missing": [],
  "byKind": {
   "character": [
@@ -18,9 +18,8 @@
   "camera": [
    "pushIn",
    "frame",
-   "closeUp",
    "dutch",
-   "overShoulder"
+   "closeUp"
   ],
   "light": [
    "interior",
@@ -48,24 +47,22 @@
    "determined",
    "neutral",
    "laugh",
-   "happy",
    "thumbsUp",
    "shrug",
    "nervous",
    "scared",
    "explain",
    "thinking",
-   "point",
+   "happy",
    "sleepy",
    "idea"
   ],
-  "prop": [
-   "board",
-   "robotArm"
-  ],
   "item": [
    "book",
-   "flask"
+   "joystick"
+  ],
+  "prop": [
+   "robotArm"
   ]
  }
 }

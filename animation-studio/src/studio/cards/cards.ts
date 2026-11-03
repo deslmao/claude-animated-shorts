@@ -79,24 +79,27 @@ export class Actor {
 }
 /** unlit effect card: hard cut-out (ink drawings), soft see-through (dust, mist) or a multiply ground blob */
 export class Fx {
-  mesh: THREE.Mesh; mat: THREE.MeshBasicMaterial; soft: THREE.MeshBasicMaterial; blob: THREE.MeshBasicMaterial; r: Req | null = null;
+  mesh: THREE.Mesh; mat: THREE.MeshBasicMaterial; soft: THREE.MeshBasicMaterial; blob: THREE.MeshBasicMaterial; over: THREE.MeshBasicMaterial; r: Req | null = null;
+  overlay = false;
   constructor(parent: THREE.Object3D) {
     this.mat = new THREE.MeshBasicMaterial({ map: blank, alphaTest: 0.5, side: THREE.DoubleSide });
     this.mat.alphaToCoverage = false;
     this.soft = new THREE.MeshBasicMaterial({ map: blank, transparent: true, depthWrite: false, side: THREE.DoubleSide });
     this.blob = blobMaterial(blank);
+    // overlay cards (explainer diagrams) draw on top of the set: a ceiling or a shelf never cuts them
+    this.over = new THREE.MeshBasicMaterial({ map: blank, alphaTest: 0.5, side: THREE.DoubleSide, depthTest: false, depthWrite: false });
     this.mesh = new THREE.Mesh(CARD, this.mat);
     this.mesh.visible = false; this.mesh.layers.set(NOINK);
     parent.add(this.mesh);
   }
-  use(soft: boolean) { this.mesh.material = soft ? this.soft : this.mat; }
+  use(soft: boolean, overlay = false) { this.overlay = overlay; this.mesh.material = overlay ? this.over : soft ? this.soft : this.mat; }
   bind() {
     const t = this.r?.tex;
     if (!t) return;
     if (this.r!.key.includes("|blob|")) {
       if (t.generateMipmaps) { t.generateMipmaps = false; t.minFilter = THREE.LinearFilter; t.needsUpdate = true; }
       this.blob.map = t; this.mesh.material = this.blob; this.mesh.renderOrder = 0.5;
-    } else { this.mat.map = t; this.soft.map = t; this.mesh.renderOrder = 0; }
+    } else { this.mat.map = t; this.soft.map = t; this.over.map = t; this.mesh.renderOrder = this.overlay ? 10 : 0; }
   }
 }
 
@@ -108,7 +111,7 @@ export type Place = {
   scale?: number; mirror?: boolean; yaw?: number; roll?: number; size?: [number, number, number]; geo?: THREE.BufferGeometry; castShadow?: boolean;
 };
 /** an effect card: w x h metres; flat = lying on the ground; soft = see-through; keys containing "|blob|" multiply */
-export type FxPlace = { key: string; cw: number; ch: number; draw: (p: Pen) => void; x: number; y: number; z: number; w: number; h: number; flat?: boolean; rot?: number; soft?: boolean };
+export type FxPlace = { key: string; cw: number; ch: number; draw: (p: Pen) => void; x: number; y: number; z: number; w: number; h: number; flat?: boolean; rot?: number; soft?: boolean; overlay?: boolean };
 /** where an actor's head and hands are this frame, in the world (the director fills it; effects, props that touch an
  *  actor and the storyboard checks read it). headR = head half-width / half-height in metres; rot = head tilt (radians,
  *  screen-clockwise as drawn, already mirrored) */
@@ -158,7 +161,7 @@ export class CardLayer {
       if (!this.frustum.intersectsSphere(this.sph.set(this.v.set(p.x, p.y, p.z), Math.max(p.w, p.h)))) continue;
       const e = this.fx(fi++);
       e.r = this.pool.req(p.key, p.cw, p.ch, 1, p.draw);
-      e.use(!!p.soft);
+      e.use(!!p.soft, !!p.overlay);
       e.mesh.visible = true;
       e.mesh.position.set(p.x, p.y, p.z);
       if (p.flat) e.mesh.rotation.set(-Math.PI / 2, 0, p.rot ?? 0);

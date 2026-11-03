@@ -54,9 +54,12 @@ export const diagramMark = (s: ShotSpec): V3 | undefined => {
   const d = s.diagram; if (!d) return undefined;
   const a = s.actors.find((x) => x.who === d.with); if (!a) return undefined;
   const p = restPos(s.set, a), from = "from" in s.camera ? (s.camera as { from?: number }).from ?? 0 : 0, ar = (from * Math.PI) / 180;
-  const size = d.size ?? 0.95, off = (d.side ?? 1) * (size / 2 + 0.34);
+  const size = d.size ?? 0.95, off = d.place === "above" ? 0 : (d.side ?? 1) * (size / 2 + 0.34);
   return [p[0] + Math.cos(ar) * off, p[1], p[2] - Math.sin(ar) * off];
 };
+/** a diagram's centre height above its floor point: at head height beside the presenter, or just above their head */
+export const DIAGRAM_ABOVE = 1.98;
+export const diagramY = (s: ShotSpec) => (s.diagram?.place === "above" ? DIAGRAM_ABOVE + (s.diagram.size ?? 0.95) / 2 : 1.42);
 
 /** camera spec -> library move, naming actors instead of coordinates (framed where they settle) */
 const moveOf = (s: ShotSpec, c: CameraSpec, t0 = 0): Move => {
@@ -74,6 +77,7 @@ const moveOf = (s: ShotSpec, c: CameraSpec, t0 = 0): Move => {
   };
   // a diagram is wider than a person: frame both of its side edges (each fitted with a person's half-width)
   const marks = (who: string): V3[] => {
+    if (who === "diagram" && s.diagram?.place === "above") return []; // framed by `top` instead (below)
     if (who !== "diagram" || !s.diagram) {
       // an actor who staggers: frame where the lean takes them too (planned motion never leaves the frame)
       const p = pos(who), act = s.actors.find((x) => x.who === who), st = act?.moves?.find((m) => m.kind === "stagger");
@@ -90,7 +94,11 @@ const moveOf = (s: ShotSpec, c: CameraSpec, t0 = 0): Move => {
   switch (c.move) {
     case "view": return { move: "view", view: view(c.view), creep };
     case "establish": return { move: "establish", view: view(c.view) };
-    case "frame": return { move: "frame", marks: c.on.flatMap(marks), size: c.size, from: c.from, height: c.height, roll: c.roll, creep };
+    case "frame": {
+      const above = s.diagram?.place === "above" && c.on.includes("diagram"), dsz = s.diagram?.size ?? 0.95;
+      return { move: "frame", marks: c.on.flatMap(marks), size: c.size, from: c.from, height: c.height, roll: c.roll, creep,
+        ...(above ? { top: DIAGRAM_ABOVE + dsz + 0.06, halfWidth: Math.max(0.36, dsz / 2) } : {}) };
+    }
     case "pushIn": case "pullOut": return { move: c.move, marks: c.on.flatMap(marks), size: c.size, to: c.to, from: c.from, height: c.height };
     case "closeUp": return { move: "closeUp", mark: pos(c.on), from: c.from, punch: c.punch, creep: tight(0.003) };
     case "lowHero": return { move: "lowHero", mark: pos(c.on), from: c.from, creep: tight(0.0025) };
@@ -131,7 +139,7 @@ const propAnim = (s: ShotSpec, q: PropSpec): PropAnim | undefined => {
   if (!q.follow && !q.drive) return undefined;
   const drv = driveOf(s.actors.find((x) => x.who === q.drive?.who));
   const delayAt = (tt: number) => { let d = q.drive?.delay ?? 0; for (const c of q.drive?.changes ?? []) if (tt >= (c.t ?? 0)) d = c.delay; return d; };
-  return (tt, anchors) => ({ target: q.follow ? anchors.get(q.follow.who)?.hands.find((h) => h.kind === "open")?.p : undefined, stroke: q.drive ? drv(tt - delayAt(tt)) : 0 });
+  return (tt, anchors) => ({ target: q.follow ? anchors.get(q.follow.who)?.hands.find((h) => h.kind === "palm" || h.kind === "open")?.p : undefined, stroke: q.drive ? drv(tt - delayAt(tt)) : 0 });
 };
 
 /** storyboard (+ its narration manifest, if generated) -> film. Narration timing runs first (story/timing.ts): it
@@ -234,7 +242,7 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
     // effects sit beside the head on the side facing the frame centre (a character right of centre gets it on the left;
     // a centred one always on the right, so the mark never jumps sides while the camera moves)
     // the explainer diagram: a card beside the presenter at head height, steps on their words
-    if (s.diagram) { const m = diagramMark(s); if (m) out.fx.push(diagramCard(s.diagram.kind, m[0], m[1] + 1.42, m[2], s.diagram.size ?? 0.95, tt, (s.diagram.steps ?? []).map((x) => x.t ?? 0))); }
+    if (s.diagram) { const m = diagramMark(s); if (m) out.fx.push(diagramCard(s.diagram.kind, m[0], m[1] + diagramY(s), m[2], s.diagram.size ?? 0.95, tt, (s.diagram.steps ?? []).map((x) => x.t ?? 0))); }
     // marks follow the head: the mark sits where it would beside a standing head, moved by how far the drawn head is
     // from its standing position (leaning, laughing, tilting, sitting, jumping); dizzy stars orbit the crown itself
     for (const fx of s.fx ?? []) {

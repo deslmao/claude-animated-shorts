@@ -35,6 +35,12 @@ The character engine gained what the pirates needed, usable by any character: `t
 `trim` colour), an `eyepatch`, a `stripes` top and a `longcoat` (frock coat with buttons and a trimmed hem). See them
 all on the character sheet: `PROPS='{"page":"roster"}' node scripts/stills.mjs CharacterSheet <out> 0`.
 
+### Sets are checked for z-fighting
+`npm run test:zfight` (part of `npm test`) builds every set and fails if two surfaces with different materials lie in the
+same plane and overlap: that makes a wall or roof flicker between the two on camera moves (the cause of the flicker in
+Short-tickle run 11). When building geometry, keep hidden backing boxes a few millimetres behind visible faces, and give
+neighbouring buildings different offsets (the house / modern building builders take a row index for that).
+
 Registering it in `themes/index.ts` makes everything usable at once: in storyboards, in the validator, in search, in library protection and in the floor maps. The next video on the same theme finds and reuses it.
 
 ### Adding an asset (only when the search finds nothing suitable)

@@ -5,7 +5,7 @@
 // keep clear of every mouth (chin to nose). Pure: computed once from the storyboard, identical in every render chunk.
 import * as THREE from "three";
 import { runKeys } from "../camera/keys";
-import { actorPos, FPS } from "./compile";
+import { actorPos, FPS, diagramMark, diagramY } from "./compile";
 import type { compile } from "./compile";
 import type { CaptionGroup } from "./caption-timing";
 
@@ -32,6 +32,12 @@ export const captionHeights = (film: Film): number[] => film.timing.sb.shots.map
       if (ys.length < 6 || Math.max(...xs) < -1 || Math.min(...xs) > 1) continue; // behind the camera / out of frame
       faces.push([Math.min(...ys), Math.max(...ys)]);
       const my = [ys[0], ys[1], ys[3], ys[4]]; mouths.push([Math.min(...my), Math.max(...my)]); // chin (1.2 m) to nose (1.55 m)
+    }
+    // an explainer diagram is never covered either (it counts as a face and as a mouth)
+    const dm = diagramMark(s);
+    if (dm && s.diagram) {
+      const h = (s.diagram.size ?? 0.95) / 2, cy = dm[1] + diagramY(s), ys = [cy - h, cy + h].map((y) => (1 - new THREE.Vector3(dm[0], y, dm[2]).project(cam).y) / 2);
+      const box: [number, number] = [Math.min(...ys), Math.max(...ys)]; faces.push(box); mouths.push(box);
     }
   }
   const clear = (boxes: [number, number][]) => CAPTION_YS.find((y) => boxes.every(([t, b]) => y + BAND < t || y - BAND > b));

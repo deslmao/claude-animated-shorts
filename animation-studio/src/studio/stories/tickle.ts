@@ -61,12 +61,12 @@ export const TICKLE: Storyboard = {
     { say: "A part at the back of your brain, the cerebellum, sends out a forecast: fingers arriving at the armpit, any moment now.", set: "lab", light: "interiorCool", transition: "cut",
       camera: { move: "frame", on: ["juno", "diagram"], size: "medium", from: -8, height: 1.5 },
       actors: [{ who: "juno", at: "a", act: "explain", face: "smile", facing: "camera", beats: [{ word: "cerebellum", gesture: "present" }, { word: "fingers", gesture: "present", face: "talk" }] }],
-      diagram: { kind: "forecast", with: "juno", side: 1, steps: [{ word: "brain" }, { word: "cerebellum" }, { word: "forecast" }, { word: "fingers" }, { word: "moment" }] } },
+      diagram: { kind: "forecast", with: "juno", place: "above", size: 1.15, steps: [{ word: "brain" }, { word: "cerebellum" }, { word: "forecast" }, { word: "fingers" }, { word: "moment" }] } },
     // predicted touch vs a surprise touch: your own hand is matched and turned down; someone else's is not
     { say: "When the touch lands exactly as predicted, your brain turns the feeling down. No surprise, no tickle.", set: "lab", light: "interiorCool", transition: "cut",
       camera: { move: "frame", on: ["juno", "diagram"], size: "medium", from: 8, height: 1.5 },
       actors: [{ who: "juno", at: "a", act: "explain", face: "smile", facing: "camera", beats: [{ word: "down", gesture: "present" }, { word: "surprise", gesture: "stop", face: "talk" }] }],
-      diagram: { kind: "prediction", with: "juno", side: 1, steps: [{ word: "lands" }, { word: "predicted" }, { word: "down" }, { word: "surprise" }, { word: "tickle" }] } },
+      diagram: { kind: "prediction", with: "juno", place: "above", size: 1.15, steps: [{ word: "lands" }, { word: "predicted" }, { word: "down" }, { word: "surprise" }, { word: "tickle" }] } },
     // the joke you wrote yourself: Gus reads his own joke book, unmoved
     { say: "It's like hearing a joke you wrote yourself. You already know the punchline.", set: "home", light: "interior", transition: "fade",
       camera: { move: "frame", on: ["gus"], size: "full", from: 6, height: 1.45 },
@@ -86,7 +86,7 @@ export const TICKLE: Storyboard = {
         beats: [{ word: "barely", face: "stern" }, { word: "delay", face: "thinking" }, { word: "ticklish", act: "laugh", gesture: "operate" }],
         moves: [{ word: "ticklish", kind: "squirm", dur: 1.5 }] }],
       props: [{ id: "robotArm", at: "b", offset: [-1.0, 0.3], yaw: 0, follow: { who: "gus" }, drive: { who: "gus", delay: 0, changes: [{ word: "delay", delay: 0.3 }] } }],
-      diagram: { kind: "delay", with: "gus", side: 1, size: 0.8, steps: [{ word: "instantly" }, { word: "delay" }, { word: "ticklish" }] },
+      diagram: { kind: "delay", with: "gus", place: "above", size: 0.95, steps: [{ word: "instantly" }, { word: "delay" }, { word: "ticklish" }] },
       fx: [{ kind: "burst", on: "gus", word: "ticklish" }] },
     { say: "The surprise is the whole trick.", set: "lab", light: "interiorCool", transition: "cut",
       camera: { move: "closeUp", on: "juno", from: -8, punch: true },

@@ -405,7 +405,7 @@ export const GESTURES: Gesture[] = ["hang", "wave", "point", "pointUp", "shrug",
 /** gestures that show a held item off overhead (raise it, point it up, cheer with it); any other gesture becomes "hold"
  *  (the item at chest height, close to the body, so it stays in frame in medium shots) while something is held */
 const CARRY: Gesture[] = ["hold", "raiseHand", "pointUp", "cheer", "operate"];
-type Hand = "dot" | "point" | "thumb" | "open" | "fist" | "wiggle";
+type Hand = "dot" | "point" | "thumb" | "open" | "fist" | "wiggle" | "palm";
 /** layer: 0 behind the torso, 1 in front of the torso, 2 over the face */
 type ArmDef = { pts: [P2, P2, P2]; layer: 0 | 1 | 2; hand: Hand; dir?: number };
 
@@ -522,7 +522,7 @@ export const rigFront = (L: Look, pose: Pose) => {
     case "operate": { // the `hand`-side hand works a control in front of the waist; the other palm is held out
       const s = hs, o = -s, d = pose.drive ?? 0, So = S1(o);
       add(s, [tcx + s * 1.05 * T.a, chin + 0.5 * HH], [tcx + s * (0.45 * T.a + 7 * u * d), chin + 0.62 * HH - 2 * u * Math.abs(d)], 1, "fist");
-      add(o, [So[0] + o * 0.32 * HH, So[1] + 0.36 * HH], [So[0] + o * 0.62 * HH, So[1] + 0.32 * HH], 0, "open");
+      add(o, [So[0] + o * 0.32 * HH, So[1] + 0.36 * HH], [So[0] + o * 0.62 * HH, So[1] + 0.32 * HH], 0, "palm");
       break;
     }
     case "stop": one((s) => { const S = S1(s); add(s, [S[0] + s * 0.22 * HH, S[1] + 0.32 * HH], [S[0] + s * 0.18 * HH, S[1] - 0.12 * HH], 1, "open"); }); break;
@@ -592,6 +592,11 @@ export const figureFront = (p: Pen, L: Look, pose: Pose) => {
     else if (a.hand === "thumb") { taper(p, [hx, hy], [hx - 1 * u, hy - 13 * u], 4.4 * u, 3.6 * u); p.dot(hx, hy, 6 * u); }
     else if (a.hand === "open") { p.dot(hx, hy, 6.3 * u); }
     else if (a.hand === "fist") { p.dot(hx, hy, 6.8 * u); }
+    else if (a.hand === "palm") { // an open palm held out, fingers spread (something can land on it)
+      const dir = Math.sign(hx - tcx) || 1;
+      for (let k = 0; k < 4; k++) { const ang = rad(-150 + k * 32) * 1, x2 = hx + dir * Math.cos(ang + (dir < 0 ? 0 : Math.PI)) * 12 * u * -1; taper(p, [hx, hy], [x2, hy + Math.sin(ang) * 12 * u], 3.6 * u, 2.6 * u); }
+      p.ell(hx, hy, 8 * u, 6.5 * u, INK, 0);
+    }
     else if (a.hand === "wiggle") { // tickling fingers: three short strokes that flutter
       const dir = Math.sign(hx - tcx) || 1;
       for (let k = 0; k < 3; k++) { const ang = rad(-40 + k * 40 + 18 * Math.sin(t * 30 + k * 2.1)); taper(p, [hx, hy], [hx + dir * Math.cos(ang) * 14 * u, hy + Math.sin(ang) * 14 * u], 3.8 * u, 2.8 * u); }

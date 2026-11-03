@@ -16,7 +16,7 @@ export type Move =
   | { move: "establish"; view: View }                                                                      // slow creep on a wide
   | { move: "pushIn"; marks: V3[]; from?: number; height?: number; size?: ShotSize; to?: ShotSize; fov?: number }  // glide from one size to a tighter one
   | { move: "pullOut"; marks: V3[]; from?: number; height?: number; size?: ShotSize; to?: ShotSize; fov?: number } // reveal
-  | { move: "frame"; marks: V3[]; size?: ShotSize; from?: number; height?: number; fov?: number; roll?: number; creep?: number }
+  | { move: "frame"; marks: V3[]; size?: ShotSize; from?: number; height?: number; fov?: number; roll?: number; creep?: number; top?: number; halfWidth?: number }
   | { move: "closeUp"; mark: V3; from?: number; height?: number; punch?: boolean; creep?: number }
   | { move: "lowHero"; mark: V3; from?: number; creep?: number }
   | { move: "highAngle"; marks: V3[]; from?: number }
@@ -41,7 +41,7 @@ export const plan = (m: Move, f0: number, f1: number, o: { cut?: boolean; dur?: 
       return k((f) => dolly(v.pos, v.look, creep(f, rate), { fov: v.fov ?? 40, roll: v.roll ?? 0 }), v.cInf ?? 0, v.focus);
     }
     case "frame": {
-      const c = fitShot(m.marks, { size: m.size ?? "medium", from: m.from, height: m.height, fov: m.fov, roll: m.roll });
+      const c = fitShot(m.marks, { size: m.size ?? "medium", from: m.from, height: m.height, fov: m.fov, roll: m.roll, top: m.top, halfWidth: m.halfWidth });
       return k((f) => dolly(c.pos, c.look, creep(f, m.creep ?? 0.0022), { fov: c.fov, roll: c.roll }), DOF_BY_SIZE[m.size ?? "medium"], eye(m.marks[0]));
     }
     case "pushIn": case "pullOut": {

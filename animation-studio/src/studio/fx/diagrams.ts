@@ -149,5 +149,5 @@ export const drawDiagram = (p: Pen, kind: DiagramKind, tt: number, steps: number
 /** the diagram as a card in the world, centred at (x, y, z), size metres square, at shot time tt */
 export const diagramCard = (kind: DiagramKind, x: number, y: number, z: number, size: number, tt: number, steps: number[]): FxPlace => {
   const tq = Math.round(tt * 30) / 30;
-  return { key: `dg|${kind}|${cardKey({ tq, steps })}`, cw: 1000, ch: 1000, x, y, z, w: size, h: size, draw: (p) => drawDiagram(p, kind, tq, steps) };
+  return { key: `dg|${kind}|${cardKey({ tq, steps })}`, cw: 1000, ch: 1000, x, y, z, w: size, h: size, overlay: true, draw: (p) => drawDiagram(p, kind, tq, steps) };
 };
