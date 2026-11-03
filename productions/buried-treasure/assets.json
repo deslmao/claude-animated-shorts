@@ -1,0 +1,91 @@
+{
+ "reused": 63,
+ "missing": [],
+ "byKind": {
+  "character": [
+   "miloPirate",
+   "junoPirate",
+   "kidd",
+   "captain",
+   "quartermaster",
+   "gusPirate",
+   "gus",
+   "junoOut",
+   "milo"
+  ],
+  "mood": [
+   "adventure"
+  ],
+  "set": [
+   "island",
+   "shipDeck",
+   "oldtown",
+   "nature",
+   "home",
+   "classroom"
+  ],
+  "camera": [
+   "pushIn",
+   "frame",
+   "view",
+   "lowHero",
+   "closeUp"
+  ],
+  "light": [
+   "day",
+   "golden",
+   "night",
+   "interior"
+  ],
+  "ambience": [
+   "amb_sea",
+   "amb_square",
+   "amb_nature_day",
+   "amb_square_night",
+   "amb_room"
+  ],
+  "prop": [
+   "digSpot",
+   "treasureChest"
+  ],
+  "effect": [
+   "question",
+   "sparkle",
+   "stars",
+   "sweat",
+   "exclaim",
+   "idea",
+   "confetti"
+  ],
+  "act": [
+   "excited",
+   "confused",
+   "shock",
+   "proud",
+   "suspicious",
+   "thinking",
+   "shrug",
+   "happy",
+   "laugh",
+   "sad",
+   "nervous",
+   "thumbsUp",
+   "determined",
+   "explain",
+   "neutral"
+  ],
+  "item": [
+   "shovel",
+   "coinBag",
+   "bottle",
+   "coin",
+   "scroll",
+   "map",
+   "book",
+   "magnifier"
+  ],
+  "extras": [
+   "extras:pirate"
+  ]
+ }
+}

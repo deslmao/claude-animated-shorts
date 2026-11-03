@@ -1,7 +1,135 @@
 {
  "id": "buried-treasure",
  "composition": "Short-buried-treasure",
- "stages": {},
+ "stages": {
+  "validate": {
+   "state": "done",
+   "at": "2026-11-03T07:25:42.934Z",
+   "inputs": "12474b34fd9c0en",
+   "detail": "valid; 0 warning(s)"
+  },
+  "assets": {
+   "state": "done",
+   "at": "2026-11-03T07:25:42.936Z",
+   "inputs": "12474b34fd9c0e",
+   "detail": "63 library assets reused, none missing",
+   "data": {
+    "reused": 63,
+    "missing": [],
+    "byKind": {
+     "character": [
+      "miloPirate",
+      "junoPirate",
+      "kidd",
+      "captain",
+      "quartermaster",
+      "gusPirate",
+      "gus",
+      "junoOut",
+      "milo"
+     ],
+     "mood": [
+      "adventure"
+     ],
+     "set": [
+      "island",
+      "shipDeck",
+      "oldtown",
+      "nature",
+      "home",
+      "classroom"
+     ],
+     "camera": [
+      "pushIn",
+      "frame",
+      "view",
+      "lowHero",
+      "closeUp"
+     ],
+     "light": [
+      "day",
+      "golden",
+      "night",
+      "interior"
+     ],
+     "ambience": [
+      "amb_sea",
+      "amb_square",
+      "amb_nature_day",
+      "amb_square_night",
+      "amb_room"
+     ],
+     "prop": [
+      "digSpot",
+      "treasureChest"
+     ],
+     "effect": [
+      "question",
+      "sparkle",
+      "stars",
+      "sweat",
+      "exclaim",
+      "idea",
+      "confetti"
+     ],
+     "act": [
+      "excited",
+      "confused",
+      "shock",
+      "proud",
+      "suspicious",
+      "thinking",
+      "shrug",
+      "happy",
+      "laugh",
+      "sad",
+      "nervous",
+      "thumbsUp",
+      "determined",
+      "explain",
+      "neutral"
+     ],
+     "item": [
+      "shovel",
+      "coinBag",
+      "bottle",
+      "coin",
+      "scroll",
+      "map",
+      "book",
+      "magnifier"
+     ],
+     "extras": [
+      "extras:pirate"
+     ]
+    }
+   }
+  },
+  "approval": {
+   "state": "done",
+   "at": "2026-11-03T07:25:42.947Z",
+   "inputs": "01e2e497f29820",
+   "detail": "all narration already generated (no cost)"
+  },
+  "narration": {
+   "state": "done",
+   "at": "2026-11-03T07:25:42.948Z",
+   "inputs": "01e2e497f29820",
+   "detail": "all lines already generated (cached)"
+  },
+  "sound": {
+   "state": "done",
+   "at": "2026-11-03T07:26:00.024Z",
+   "inputs": "14ba253a7630d0",
+   "detail": "soundtrack built: -14 LUFS"
+  },
+  "checks": {
+   "state": "done",
+   "at": "2026-11-03T07:26:02.567Z",
+   "inputs": "14ba253a7630d0",
+   "detail": "preflight PASS; library intact"
+  }
+ },
  "approval": {
   "scriptHash": "01e2e497f29820",
   "chars": 1021,
