@@ -1,5 +1,5 @@
 {
- "reused": 63,
+ "reused": 62,
  "missing": [],
  "byKind": {
   "character": [
@@ -27,7 +27,6 @@
   "camera": [
    "pushIn",
    "frame",
-   "view",
    "lowHero",
    "closeUp"
   ],

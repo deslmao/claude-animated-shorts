@@ -4,17 +4,17 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-03T07:25:42.934Z",
-   "inputs": "12474b34fd9c0en",
+   "at": "2026-11-03T07:50:20.185Z",
+   "inputs": "06afe420d326a1n",
    "detail": "valid; 0 warning(s)"
   },
   "assets": {
    "state": "done",
-   "at": "2026-11-03T07:25:42.936Z",
-   "inputs": "12474b34fd9c0e",
-   "detail": "63 library assets reused, none missing",
+   "at": "2026-11-03T07:50:20.192Z",
+   "inputs": "06afe420d326a1",
+   "detail": "62 library assets reused, none missing",
    "data": {
-    "reused": 63,
+    "reused": 62,
     "missing": [],
     "byKind": {
      "character": [
@@ -42,7 +42,6 @@
      "camera": [
       "pushIn",
       "frame",
-      "view",
       "lowHero",
       "closeUp"
      ],
@@ -107,26 +106,26 @@
   },
   "approval": {
    "state": "done",
-   "at": "2026-11-03T07:25:42.947Z",
+   "at": "2026-11-03T07:50:20.198Z",
    "inputs": "01e2e497f29820",
    "detail": "all narration already generated (no cost)"
   },
   "narration": {
    "state": "done",
-   "at": "2026-11-03T07:25:42.948Z",
+   "at": "2026-11-03T07:50:20.198Z",
    "inputs": "01e2e497f29820",
    "detail": "all lines already generated (cached)"
   },
   "sound": {
    "state": "done",
-   "at": "2026-11-03T07:26:00.024Z",
-   "inputs": "14ba253a7630d0",
+   "at": "2026-11-03T07:50:37.249Z",
+   "inputs": "1104fe6c3d2e07",
    "detail": "soundtrack built: -14 LUFS"
   },
   "checks": {
    "state": "done",
-   "at": "2026-11-03T07:26:02.567Z",
-   "inputs": "14ba253a7630d0",
+   "at": "2026-11-03T07:50:39.393Z",
+   "inputs": "1104fe6c3d2e07",
    "detail": "preflight PASS; library intact"
   }
  },

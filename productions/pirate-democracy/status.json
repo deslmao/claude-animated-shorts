@@ -110,6 +110,12 @@
    "at": "2026-11-03T07:39:00.085Z",
    "inputs": "0c3c33cf9b7c7d",
    "detail": "soundtrack built: -14.1 LUFS"
+  },
+  "checks": {
+   "state": "done",
+   "at": "2026-11-03T07:39:02.342Z",
+   "inputs": "0c3c33cf9b7c7d",
+   "detail": "preflight PASS; library intact"
   }
  },
  "approval": {
