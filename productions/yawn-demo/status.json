@@ -1,0 +1,126 @@
+{
+ "id": "yawn-demo",
+ "composition": "Short-yawn-demo",
+ "stages": {
+  "validate": {
+   "state": "done",
+   "at": "2026-11-03T04:00:27.010Z",
+   "inputs": "0b93f4de7fa546n",
+   "detail": "valid; 0 warning(s)"
+  },
+  "assets": {
+   "state": "done",
+   "at": "2026-11-03T04:00:27.012Z",
+   "inputs": "0b93f4de7fa546",
+   "detail": "33 library assets reused, none missing",
+   "data": {
+    "reused": 33,
+    "missing": [],
+    "byKind": {
+     "character": [
+      "milo",
+      "juno",
+      "gus"
+     ],
+     "mood": [
+      "playful"
+     ],
+     "set": [
+      "city",
+      "lab",
+      "oldtown",
+      "nature"
+     ],
+     "camera": [
+      "frame",
+      "closeUp",
+      "pushIn",
+      "overShoulder",
+      "orbit",
+      "crane"
+     ],
+     "light": [
+      "day",
+      "interiorCool",
+      "golden",
+      "night"
+     ],
+     "ambience": [
+      "amb_city_day",
+      "amb_lab",
+      "amb_square",
+      "amb_nature_night"
+     ],
+     "act": [
+      "sleepy",
+      "neutral",
+      "happy",
+      "shock",
+      "explain",
+      "point",
+      "laugh"
+     ],
+     "effect": [
+      "exclaim",
+      "idea",
+      "confetti",
+      "zzz"
+     ]
+    }
+   }
+  },
+  "approval": {
+   "state": "done",
+   "at": "2026-11-03T04:00:27.015Z",
+   "inputs": "0186b797174883",
+   "detail": "all narration already generated (no cost)"
+  },
+  "narration": {
+   "state": "done",
+   "at": "2026-11-03T04:00:27.016Z",
+   "inputs": "0186b797174883",
+   "detail": "all lines already generated (cached)"
+  },
+  "sound": {
+   "state": "done",
+   "at": "2026-11-03T04:00:27.017Z",
+   "inputs": "1bf1d3ea75805c",
+   "detail": "soundtrack up to date"
+  },
+  "checks": {
+   "state": "done",
+   "at": "2026-11-03T04:00:28.776Z",
+   "inputs": "1bf1d3ea75805c",
+   "detail": "preflight PASS; library intact"
+  },
+  "review": {
+   "state": "done",
+   "at": "2026-11-03T04:06:25.255Z",
+   "inputs": "1bf1d3ea75805c",
+   "detail": "review sheet looked at and passed",
+   "data": {
+    "frames": [
+     4,
+     68,
+     133,
+     138,
+     143,
+     161,
+     185,
+     190,
+     262,
+     334,
+     339,
+     389,
+     440,
+     445,
+     491,
+     538,
+     543,
+     605,
+     666
+    ]
+   }
+  }
+ }
+}

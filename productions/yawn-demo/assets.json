@@ -1,0 +1,55 @@
+{
+ "reused": 33,
+ "missing": [],
+ "byKind": {
+  "character": [
+   "milo",
+   "juno",
+   "gus"
+  ],
+  "mood": [
+   "playful"
+  ],
+  "set": [
+   "city",
+   "lab",
+   "oldtown",
+   "nature"
+  ],
+  "camera": [
+   "frame",
+   "closeUp",
+   "pushIn",
+   "overShoulder",
+   "orbit",
+   "crane"
+  ],
+  "light": [
+   "day",
+   "interiorCool",
+   "golden",
+   "night"
+  ],
+  "ambience": [
+   "amb_city_day",
+   "amb_lab",
+   "amb_square",
+   "amb_nature_night"
+  ],
+  "act": [
+   "sleepy",
+   "neutral",
+   "happy",
+   "shock",
+   "explain",
+   "point",
+   "laugh"
+  ],
+  "effect": [
+   "exclaim",
+   "idea",
+   "confetti",
+   "zzz"
+  ]
+ }
+}

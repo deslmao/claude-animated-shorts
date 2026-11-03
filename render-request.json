@@ -1,7 +1,7 @@
 {
   "composition": "Short-yawn-demo",
-  "chunks": 10,
+  "chunks": 20,
   "preview": false,
   "audio": "",
-  "note": "Stage 3B: yawn demo with automatic music (playful), ambience per set and 12 synced sound effects; tests the CI preflight."
+  "note": "Production yawn-demo (npm run short)"
 }
