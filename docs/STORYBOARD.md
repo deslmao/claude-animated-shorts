@@ -16,7 +16,9 @@ storyboard (data)  ->  validate (npm run test:story)  ->  compile  ->  Short-<id
 | `animation-studio/src/studio/story/Short.tsx` | the one generic composition used by every storyboard |
 | `animation-studio/src/studio/stories/*.ts` | the storyboards themselves; register each one in `stories/index.ts` |
 
-The first video built this way is the "yawn" demo, `stories/yawn-demo.ts`. Run 5 produced the silent 18-second version (release `video-Short-yawn-demo-run5`); it is now narrated by George, with captions.
+The first video built this way is the "yawn" demo, `stories/yawn-demo.ts`. Run 5 produced the silent 18-second version (release `video-Short-yawn-demo-run5`). Run 7 is the narrated 22.3-second version, voiced by George, with captions and lip-sync (release `video-Short-yawn-demo-run7`).
+
+![narrated yawn demo frames](library/narrated_demo_strip.jpg)
 
 ![yawn demo frames](library/storyboard_demo_strip.jpg)
 
