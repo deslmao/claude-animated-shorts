@@ -58,6 +58,10 @@ Other compositions, such as BridgeShort and the test compositions, skip the stor
 - It's free for public repositories. GitHub may queue some chunks when it's busy: that only makes the render slower.
 - If any chunk fails, the run is red and no video is made. Claude reads the logs and fixes it.
 - Your laptop can be closed while it renders. It all happens on GitHub.
+- QA checks the exact frame count after the join. That is how a join bug was caught in Stage 6: ffmpeg's `-shortest`
+  option with stream copy ended the video early, so Short-tickle run 10 lost 3 of its 1912 frames and was not
+  published. The join and the soundtrack mux no longer use `-shortest` (the soundtrack is cut with an exact `-t`).
+- `npm run short` never reuses a failed run: after a fix, running it again files a fresh, numbered render request.
 
 ## Other options (kept as backups)
 - **Inside the Claude session**: `npm run render -- <Composition> --frames a-b` renders parts on the session's own

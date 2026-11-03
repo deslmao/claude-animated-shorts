@@ -21,7 +21,19 @@ A theme is one folder, `src/studio/themes/<id>/` (for example `pirates`). It exp
 - placeable props;
 - hand-held items;
 - sets, with their layouts and metadata;
-- a default music mood.
+- a default music mood;
+- the ambience bed and footstep sound for each of its sets.
+
+Themes so far:
+
+| Theme | Made for | Contents |
+|---|---|---|
+| `science` | Why you can't tickle yourself | robot arm (lab experiment machine) |
+| `pirates` | Pirates ran surprisingly democratic ships (+ the buried-treasure Short) | sets: `shipDeck` (main deck at sea: masts, sails, rigging, cannons, quarterdeck with the wheel), `island` (desert-island beach: palms, rocks, rowboat); characters: `captain` (Captain Redd), `quartermaster` (Mags), `kidd` (Captain William Kidd), pirate outfits `miloPirate`, `junoPirate`, `gusPirate`; the `pirate` crowd era; props: cannon, treasureChest (closed / open), shipWheel, ropeCoil, anchor, jollyRoger, palmTree, digSpot (x / dug), rowboat; items: scroll, coinBag, tricorn, shovel |
+
+The character engine gained what the pirates needed, usable by any character: `tricorn` and `bandana` hats (with a
+`trim` colour), an `eyepatch`, a `stripes` top and a `longcoat` (frock coat with buttons and a trimmed hem). See them
+all on the character sheet: `PROPS='{"page":"roster"}' node scripts/stills.mjs CharacterSheet <out> 0`.
 
 Registering it in `themes/index.ts` makes everything usable at once: in storyboards, in the validator, in search, in library protection and in the floor maps. The next video on the same theme finds and reuses it.
 

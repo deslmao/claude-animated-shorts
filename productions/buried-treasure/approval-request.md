@@ -33,6 +33,6 @@ There are very few documented cases of pirates burying treasure and no documente
 15. So the most famous pirate treasure of all time was hidden by a novelist.
 
 ## Checks
-- note: speaker "kidd" is not a library character (fine if the storyboard casts it as an extra)
+All script checks pass.
 
 To approve: tell Claude; it records `npm run script -- buried-treasure --approve 1021`.
