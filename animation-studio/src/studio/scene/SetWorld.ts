@@ -8,8 +8,13 @@ import { SETS, TEST_SETS } from "../sets";
 import type { BuiltSet, View } from "../sets/types";
 import { runKeys, Key, meanView, kickAt, withKick, V3 } from "../camera/keys";
 import type { FrameInfo, StudioWorld } from "../look/StudioFilm";
+import { PROPS } from "../props/registry";
+import { Batch } from "../materials/geo";
+import type { At } from "../props/kit";
 
-export type WorldShot = { id: number; a: number; b: number; set: string; light: LightName; keys: Key[]; dof: (f: number) => { cInf: number; focus?: V3 }; kicks?: [number, number][] };
+/** props: story props shown in this shot only (built the first time the shot is drawn) */
+export type WorldShot = { id: number; a: number; b: number; set: string; light: LightName; keys: Key[]; dof: (f: number) => { cInf: number; focus?: V3 }; kicks?: [number, number][];
+  props?: { id: string; variant?: string; at: At }[] };
 export type Director = (shot: WorldShot, f: number, cam: CamInfo, built: BuiltSet, out: Stage) => void;
 
 export class SetWorld implements StudioWorld {
@@ -18,6 +23,7 @@ export class SetWorld implements StudioWorld {
   private cards = new CardLayer(this.root);
   private sets = new Map<string, BuiltSet>();
   private suns = new Map<number, THREE.Vector3>();
+  private props = new Map<number, THREE.Group>();
   /** clearShots: keep every shot's camera path clear of props (storyboard films, whose cameras are solved, not designed) */
   constructor(private shots: WorldShot[], private director: Director, private opts: { clearShots?: boolean } = {}) { this.root.add(this.env.root); }
 
@@ -44,8 +50,18 @@ export class SetWorld implements StudioWorld {
     if (!v) { const [fx, fz] = meanView(s.keys, s.a, s.b); v = sunFor(fx, fz, s.light, built.sun); this.suns.set(s.id, v); }
     return v;
   }
+  /** this shot's story props: built once, visible only while the shot is drawn */
+  private shotProps(s: WorldShot) {
+    if (s.props?.length && !this.props.has(s.id)) {
+      const g = new THREE.Group(), b = new Batch();
+      for (const p of s.props) { const e = PROPS[p.id]; (p.variant && e.variants?.[p.variant] ? e.variants[p.variant] : e.build)(b, p.at); }
+      b.build(g, true); this.props.set(s.id, g); this.root.add(g);
+    }
+    for (const [k, g] of this.props) g.visible = k === s.id;
+  }
   update(id: number, f: number, cam: THREE.PerspectiveCamera, scene: THREE.Scene): FrameInfo {
     const s = this.shots.find((x) => x.id === id) ?? this.shots[0], built = this.use(s.set);
+    this.shotProps(s);
     const c = withKick(runKeys(s.keys, f), kickAt(s.kicks ?? [], f / 30));
     cam.position.set(...c.pos); cam.up.set(0, 1, 0); cam.lookAt(...c.look); cam.rotateZ(c.roll);
     cam.fov = c.fov; cam.near = 0.1; cam.far = 1500; cam.updateProjectionMatrix(); cam.updateMatrixWorld();

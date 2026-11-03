@@ -6,6 +6,7 @@
 // What is new here: hair / glasses / facial hair / clothing layers as data, per-side brows and more eye + mouth
 // shapes (24 expressions), arm gestures (point, shrug, facepalm, ...), run / jump, and "acting" presets that pair a
 // face with body language so reactions read at phone size.
+import { ITEMS } from "./items";
 import {
   Pen, INK, WHITE, MOUTH, TONGUE, SH_SKIN, SH_CLOTH, SH_FELT, DEF_LIGHT, P2, EyeK, MouthK, Blob,
   rad, clamp, rnd, rotPts, rotAbout, curve, ellPts, taper, eye, mouth, dmouth, lidOf, eyeKind, footStroke,
@@ -356,9 +357,12 @@ const hat3 = (p: Pen, L: Look, H: Blob, cx: number, hc: number, light: number, f
 
 // ---------------- gestures ----------------
 export type Gesture = "hang" | "wave" | "point" | "pointUp" | "shrug" | "facepalm" | "chin" | "thumbsUp" | "crossArms" | "hips" | "raiseHand"
-  | "cheer" | "talk" | "scratchHead" | "coverMouth" | "present" | "fists" | "clap" | "belly" | "stop" | "pump" | "spread";
+  | "cheer" | "talk" | "scratchHead" | "coverMouth" | "present" | "fists" | "clap" | "belly" | "stop" | "pump" | "spread" | "hold";
 export const GESTURES: Gesture[] = ["hang", "wave", "point", "pointUp", "shrug", "facepalm", "chin", "thumbsUp", "crossArms", "hips", "raiseHand",
-  "cheer", "talk", "scratchHead", "coverMouth", "present", "fists", "clap", "belly", "stop", "spread"];
+  "cheer", "talk", "scratchHead", "coverMouth", "present", "fists", "clap", "belly", "stop", "spread", "hold"];
+/** gestures that show a held item off overhead (raise it, point it up, cheer with it); any other gesture becomes "hold"
+ *  (the item at chest height, close to the body, so it stays in frame in medium shots) while something is held */
+const CARRY: Gesture[] = ["hold", "raiseHand", "pointUp", "cheer"];
 type Hand = "dot" | "point" | "thumb" | "open" | "fist";
 /** layer: 0 behind the torso, 1 in front of the torso, 2 over the face */
 type ArmDef = { pts: [P2, P2, P2]; layer: 0 | 1 | 2; hand: Hand; dir?: number };
@@ -371,6 +375,8 @@ export type Pose = {
   facing?: -1 | 0 | 1; look?: [number, number]; blink?: boolean | number;
   tilt?: number; headTilt?: number; shrug?: number; jump?: number; t?: number;
   light?: number;
+  /** a hand-held item (characters/items.ts), drawn at the holding hand */
+  hold?: string;
   /** seen from behind (over-the-shoulder shots, walking away): no face, hair covers the back of the head */
   back?: boolean;
 };
@@ -447,7 +453,8 @@ export const figureFront = (p: Pen, L: Look, pose: Pose) => {
   const sw = mode === "march" || mode === "walk" ? Math.sin(two * phase) : 0;
   const arms: ArmDef[] = [];
   const add = (side: number, E: P2, Hd: P2, layer: 0 | 1 | 2 = 0, hand: Hand = "dot", dir?: number) => arms.push({ pts: [sh(side), E, Hd], layer, hand, dir });
-  const g: Gesture = mode === "run" ? "pump" : mode === "jump" ? (gesture === "hang" ? "cheer" : gesture) : mode === "sit" || mode === "fall" ? "hang" : gesture;
+  const g0: Gesture = mode === "run" ? "pump" : mode === "jump" ? (gesture === "hang" ? "cheer" : gesture) : mode === "sit" || mode === "fall" ? "hang" : gesture;
+  const g: Gesture = pose.hold && ITEMS[pose.hold] && mode !== "fall" && !CARRY.includes(g0) ? "hold" : g0;
   const one = (fn: (s: number) => void) => { fn(hs); const o = -hs; arms.push({ pts: hang(o, -sw * o), layer: 0, hand: "dot" }); };
   const S1 = (s: number) => sh(s);
   if (mode === "sit") for (const s of [-1, 1]) add(s, [tcx + s * (1.1 * T.a + 6 * u), shY + 0.4 * HH], [tcx + s * (1.2 * T.a + 10 * u), torsoBot + 0.04 * HH]);
@@ -480,6 +487,7 @@ export const figureFront = (p: Pen, L: Look, pose: Pose) => {
     case "fists": for (const s of [-1, 1]) { const S = S1(s); add(s, [S[0] + s * 0.3 * HH, S[1] + 0.36 * HH], [tcx + s * 0.95 * T.a, chin + 0.6 * HH], 1, "fist"); } break;
     case "clap": { const c = 1 - Math.abs(Math.sin(t * 7)); for (const s of [-1, 1]) add(s, [tcx + s * 1.08 * T.a, chin + 0.48 * HH], [tcx + s * (3 + 14 * (1 - c)) * u, chin + 0.36 * HH], 1, "open"); break; }
     case "belly": for (const s of [-1, 1]) add(s, [tcx + s * 1.1 * T.a, chin + 0.5 * HH], [tcx + s * 0.35 * T.a, torsoBot - 0.3 * HH], 1, "open"); break;
+    case "hold": one((s) => { const S = S1(s); add(s, [S[0] + s * 0.3 * HH, S[1] + 0.44 * HH], [S[0] + s * 0.14 * HH, S[1] + 0.26 * HH], 1, "fist"); }); break; // item shown in front of the chest
     case "stop": one((s) => { const S = S1(s); add(s, [S[0] + s * 0.22 * HH, S[1] + 0.32 * HH], [S[0] + s * 0.18 * HH, S[1] - 0.12 * HH], 1, "open"); }); break;
     case "talk": for (const s of [-1, 1]) { const w = Math.sin(t * 6 + (s > 0 ? 0 : 1.7)); add(s, [tcx + s * 1.12 * T.a, chin + 0.46 * HH], [tcx + s * (0.95 * T.a + 6 * u * w), chin + 0.56 * HH - 8 * u * w], 1, "open"); } break;
     case "pump": for (const s of [-1, 1]) { const w = Math.sin(two * phase) * s; add(s, [tcx + s * 1.15 * T.a, chin + 0.42 * HH - 10 * u * w], [tcx + s * 0.9 * T.a, chin + 0.22 * HH - 22 * u * w], 0, "fist"); } break;
@@ -562,6 +570,11 @@ export const figureFront = (p: Pen, L: Look, pose: Pose) => {
     p.poly([[tcx - 4 * u, y], [tcx + 4 * u, y], [tcx + 6 * u, y + 0.5 * HH], [tcx, y + 0.58 * HH], [tcx - 6 * u, y + 0.5 * HH]], c, 2 * u);
   }
   for (const a of arms) if (a.layer === 1) drawArm(a);
+  // held item: in the holding hand (the gesturing arm on the `hand` side), in front of the body, behind the head
+  if (pose.hold && ITEMS[pose.hold] && mode !== "fall") {
+    const hold = arms.find((a) => Math.sign(a.pts[0][0] - tcx) === hs && a.hand !== "dot") ?? arms.find((a) => Math.sign(a.pts[0][0] - tcx) === hs);
+    if (hold) { ITEMS[pose.hold].draw(p, hold.pts[2][0], hold.pts[2][1], u, hs); if (hold.layer === 0) drawArm(hold); else drawHand(hold); } // fingers over the item
+  }
   // ---- head ----
   const Ah = A + headTilt, [cpx, cpy] = rotAbout([300, chin], rad(A), [300, hipY]);
   p.rot = Ah ? [rad(Ah), 300, chin, cpx - 300, cpy - chin] : null;
@@ -629,7 +642,7 @@ const layerDetail = (p: Pen, L: Look, tcx: number, chin: number, torsoBot: numbe
 
 // ---------------- side view ----------------
 export type SideMode = "stand" | "walk" | "run" | "sit";
-export type SidePose = { expr?: Expr; mode?: SideMode; phase?: number; blink?: boolean | number; stride?: number; point?: boolean; light?: number; talk?: number; t?: number };
+export type SidePose = { expr?: Expr; mode?: SideMode; phase?: number; blink?: boolean | number; stride?: number; point?: boolean; light?: number; talk?: number; t?: number; hold?: string };
 const ik = (hip: P2, ank: P2, l1: number, l2: number): P2 => {
   const dx = ank[0] - hip[0], dy = ank[1] - hip[1], d = clamp(Math.hypot(dx, dy), 1, l1 + l2 - 0.01);
   const A = Math.acos(clamp((l1 * l1 + d * d - l2 * l2) / (2 * l1 * d), -1, 1)), k = Math.atan2(dy, dx) - A;
@@ -692,6 +705,8 @@ export const figureSide = (p: Pen, L: Look, pose: SidePose) => {
   const far: [P2, P2, P2] | null = mode === "walk" || run ? swingArm(rad(run ? 55 : 30) * nearFwd, run ? 70 : 16) : null;
   if (pose.point) near = [S, [S[0] + 0.45 * HH, S[1] - 0.02 * HH], [S[0] + 0.9 * HH, S[1] - 0.08 * HH]];
   if (mode === "sit") near = [S, [S[0] + 0.2 * HH, S[1] + 0.4 * HH], [S[0] + 0.55 * HH, torsoBot - 0.05 * HH]];
+  const holding = !!(pose.hold && ITEMS[pose.hold]) && mode !== "sit" && !pose.point;
+  if (holding) near = [S, [S[0] + 0.24 * HH, S[1] + 0.4 * HH], [S[0] + 0.46 * HH, S[1] + 0.18 * HH]]; // item carried in front at chest height
   if (far) { p.stroke(curve(far[0], far[1], far[2]), 5.2 * u, farArm); p.dot(far[2][0], far[2][1], 5.5 * u); }
   const top = L.top.color;
   if (coat) {
@@ -713,6 +728,7 @@ export const figureSide = (p: Pen, L: Look, pose: SidePose) => {
   if (L.neck?.style === "bowtie") { const y = chin + 0.05 * HH, x = tcx + T.a * 0.95; p.poly([[x, y], [x - 4 * u, y - 7 * u], [x - 4 * u, y + 7 * u]], L.neck.color, 2 * u); }
   p.stroke(curve(near[0], near[1], near[2]), 5.2 * u, armCol);
   if (pose.point) taper(p, near[2], [near[2][0] + 13 * u, near[2][1] - 1.5 * u], 4.2 * u, 3.4 * u);
+  if (holding) ITEMS[pose.hold!].draw(p, near[2][0], near[2][1], u, 1);
   p.dot(near[2][0], near[2][1], 5.5 * u);
   // ---- head ----
   const hx = 300 + 4 * u;

@@ -5,7 +5,7 @@ import * as THREE from "three";
 import { SETS } from "../sets";
 import { LAYOUTS } from "../sets/layouts";
 import { LIGHTS } from "../look/lights";
-import { CAST } from "../characters/cast";
+import { ROSTER } from "../characters/roster";
 import { ACT_NAMES, FACES, GESTURES } from "../characters/figure";
 import { FX_KINDS } from "../fx/effects";
 import { runKeys } from "../camera/keys";
@@ -14,6 +14,10 @@ import type { Storyboard, Where } from "./types";
 import type { Narration } from "../voice/narration";
 import { resolve } from "./timing";
 import { MOODS, AMBIENCES, SFX } from "../sound/catalog";
+import { PROPS } from "../props/registry";
+import { ITEMS } from "../characters/items";
+import { clearAt, hasFloorMap } from "../sets/floor";
+import { whereOf } from "./compile";
 
 export type Report = { errors: string[]; warnings: string[]; framing: string[] };
 
@@ -41,7 +45,7 @@ export const validate = (sb0: Storyboard, narr?: Narration): Report => {
   const total = sb.shots.reduce((s, x) => s + (x.dur ?? 0), 0);
   if (!sb.shots.length) errors.push("no shots");
   if (total < 10 || total > 75) warnings.push(`total length ${total.toFixed(1)} s (Shorts target 55-65 s)`);
-  for (const [k, ref] of Object.entries(sb.cast)) if (typeof ref === "string" && !(ref in CAST)) errors.push(`cast "${k}": unknown lead "${ref}" (use ${Object.keys(CAST).join(", ")} or { extra: n })`);
+  for (const [k, ref] of Object.entries(sb.cast)) if (typeof ref === "string" && !(ref in ROSTER)) errors.push(`cast "${k}": unknown character "${ref}" (characters: ${Object.keys(ROSTER).join(", ")}; or { extra: n }; search: npm run assets -- search <words>)`);
   sb.shots.forEach((s, i) => {
     const at = `shot ${i + 1} (${s.set})`;
     if (!SETS[s.set]) { errors.push(`${at}: unknown set "${s.set}" (sets: ${Object.keys(SETS).join(", ")})`); return; }
@@ -61,12 +65,26 @@ export const validate = (sb0: Storyboard, narr?: Narration): Report => {
       for (const x of [a.act, ...(a.beats ?? []).map((b) => b.act)]) if (x && !ACT_NAMES.includes(x)) errors.push(`${at}: ${a.who}: unknown act "${x}"`);
       for (const x of [a.face, ...(a.beats ?? []).map((b) => b.face)]) if (x && !(x in FACES)) errors.push(`${at}: ${a.who}: unknown face "${x}"`);
       for (const x of [a.gesture, ...(a.beats ?? []).map((b) => b.gesture)]) if (x && !GESTURES.includes(x) && x !== "pump") errors.push(`${at}: ${a.who}: unknown gesture "${x}"`);
+      for (const x of [a.hold, ...(a.beats ?? []).map((b) => b.hold)]) if (x && !ITEMS[x]) errors.push(`${at}: ${a.who} holds unknown item "${x}" (items: ${Object.keys(ITEMS).join(", ")})`);
       for (const b of a.beats ?? []) if ((b.t ?? 0) < 0 || (b.t ?? 0) > dur) warnings.push(`${at}: ${a.who}: beat at ${b.t} s is outside the shot (0-${dur.toFixed(2)} s)`);
       for (const [x, y] of a.talk ?? []) if (x < 0 || y > dur + 0.01 || y <= x) warnings.push(`${at}: ${a.who}: talk span ${x}-${y} s outside the shot`);
       if (a.walk && (a.walk.t1 > dur + 0.01 || a.walk.t1 <= a.walk.t0)) warnings.push(`${at}: ${a.who}: walk ${a.walk.t0}-${a.walk.t1} s outside the shot`);
     }
     if (s.mood && !(s.mood in MOODS)) errors.push(`${at}: unknown music mood "${s.mood}" (moods: ${Object.keys(MOODS).join(", ")})`);
     if (s.ambience && !(s.ambience in AMBIENCES)) errors.push(`${at}: unknown ambience "${s.ambience}" (beds: ${Object.keys(AMBIENCES).join(", ")})`);
+    for (const q of s.props ?? []) {
+      const e = PROPS[q.id];
+      if (!e) { errors.push(`${at}: unknown prop "${q.id}" (search the library: npm run assets -- search <words>)`); continue; }
+      if (q.variant && !e.variants?.[q.variant]) errors.push(`${at}: prop "${q.id}" has no variant "${q.variant}" (variants: ${Object.keys(e.variants ?? {}).join(", ") || "none"})`);
+      if (typeof q.at === "string" && !LAYOUTS[s.set].spots[q.at]) continue; // reported with the marks
+      const w = whereOf(s.set, q.at), x = w[0] + (q.offset?.[0] ?? 0), z = w[2] + (q.offset?.[1] ?? 0), r = e.radius * (q.scale ?? 1);
+      for (const a of s.actors) for (const p of [a.at, ...(a.walk ? [a.walk.to] : [])]) {
+        if (typeof p === "string" && !LAYOUTS[s.set].spots[p]) continue;
+        const m = whereOf(s.set, p);
+        if (Math.hypot(m[0] - x, m[2] - z) < r + 0.3) errors.push(`${at}: prop "${q.id}" stands on ${a.who} (move it or use offset)`);
+      }
+      if (w[1] < 0.3 && hasFloorMap(s.set) && !clearAt(s.set, x, z, Math.min(r, 0.6) * 0.8)) warnings.push(`${at}: prop "${q.id}" overlaps something already in the set at [${x.toFixed(1)}, ${z.toFixed(1)}]`);
+    }
     for (const x of s.sfx ?? []) {
       if (!(x.name in SFX)) errors.push(`${at}: unknown sound effect "${x.name}" (see src/studio/sound/catalog.ts)`);
       if (x.on && !seen.has(x.on)) errors.push(`${at}: sound "${x.name}" is placed on "${x.on}" who is not in the shot`);
@@ -84,6 +102,7 @@ export const validate = (sb0: Storyboard, narr?: Narration): Report => {
   // framing: solve the camera at the start, middle and end of each shot and check the subjects' heads are in frame
   // (a subject who walks in is checked from the moment they arrive)
   const film = compile(sb0, narr), ranges = shotFrames(sb);
+  warnings.push(...film.notes);
   sb.shots.forEach((s, i) => {
     const c = s.camera, subj = c.move === "overShoulder" ? [c.at] : "on" in c ? (Array.isArray(c.on) ? c.on : [c.on]) : [];
     const { a, b } = ranges[i], fails: string[] = [];

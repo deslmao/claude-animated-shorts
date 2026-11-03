@@ -42,10 +42,10 @@ const screenX = (film: Film, i: number, f: number, m: [number, number, number]) 
   return v.z > 1 ? 0 : Math.max(-1, Math.min(1, v.x));
 };
 
-/** footstep times along a walk: one step every 0.735 m travelled (half the 1.47 m stride cycle of the walk cards) */
+/** footstep times along a walk / run: one step per half stride cycle of the profile cards */
 const steps = (set: string, a: ActorSpec, dur: number) => {
   if (!a.walk) return [];
-  const out: number[] = [], stride = a.walk.mode === "run" ? 0.95 : 0.735;
+  const out: number[] = [], stride = a.walk.mode === "run" ? 1.04 : 0.735; // half a stride cycle: 2.08 m running, 1.47 m walking
   let last = actorPos(set, a, 0), acc = 0;
   for (let t = 0; t <= Math.min(dur, a.walk.t1 + 0.05); t += 1 / 120) {
     const p = actorPos(set, a, t), d = Math.hypot(p[0] - last[0], p[2] - last[2]);

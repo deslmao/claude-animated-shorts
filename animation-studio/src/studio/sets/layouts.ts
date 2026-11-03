@@ -5,6 +5,7 @@
 import type { View } from "./types";
 import type { V3 } from "../camera/keys";
 import { fitShot, FitOpts } from "../camera/framing";
+import { THEMES } from "../themes";
 
 /** a view fitted to marks (camera distance / aim solved so the subjects fit 9:16); focus on the first mark's eyes */
 const fit = (name: string, marks: V3[], o: FitOpts, extra: Partial<View> = {}): View =>
@@ -20,7 +21,7 @@ const L_ = { a: [-1.2, 0, 0.45] as V3 };
 const CT = { a: [-0.9, 0.15, -5.7] as V3, b: [0.25, 0.15, -6.1] as V3, c: [1.35, 0.15, -5.5] as V3 };
 const OT = { a: [-0.9, 0, 3.4] as V3, b: [0.2, 0, 2.9] as V3 };
 
-export const LAYOUTS: Record<string, Layout> = {
+const BASE_LAYOUTS: Record<string, Layout> = {
   home: {
     spots: { a: [-0.75, 0, 0.35], b: [0.45, 0, -0.2], c: [1.55, 0, 0.5], d: [2.3, 0, -0.9], armchair: [-1.55, 0, 0.35], door: [-2.6, 0, 0.2], window: [1.6, 0, -1.3], kitchen: [2.3, 0, -0.9] },
     views: [
@@ -85,3 +86,6 @@ export const LAYOUTS: Record<string, Layout> = {
     ],
   },
 };
+
+/** base layouts + every themed collection's set layouts */
+export const LAYOUTS: Record<string, Layout> = { ...BASE_LAYOUTS, ...Object.assign({}, ...THEMES.map((t) => t.layouts ?? {})) };

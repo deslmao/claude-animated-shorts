@@ -8,7 +8,8 @@ import { SETS } from "../sets";
 import { LAYOUTS } from "../sets/layouts";
 import type { WorldShot, Director } from "../scene/SetWorld";
 import type { Timeline } from "../look/StudioFilm";
-import { CAST, extra } from "../characters/cast";
+import { extra } from "../characters/cast";
+import { ROSTER } from "../characters/roster";
 import { act as actPose, Look, Pose, Expr } from "../characters/figure";
 import { idle, nod as nodAt, shake as shakeAt, talk as talkAt, speak as speakAt, layer, faceToward } from "../characters/acting";
 import { lookCard, contactShadow, lidAt } from "../cards/person";
@@ -16,12 +17,13 @@ import { fxNear } from "../fx/effects";
 import type { Storyboard, ShotSpec, ActorSpec, Where, V3, CameraSpec } from "./types";
 import type { Narration } from "../voice/narration";
 import { resolve } from "./timing";
+import { placeCrowd } from "./crowd";
 
 export const FPS = 30;
 const FADE = 8;
 
 export const lookOf = (ref: Storyboard["cast"][string]): Look =>
-  typeof ref === "string" ? (CAST as Record<string, Look>)[ref] : extra(ref.extra, ref.era ?? "modern");
+  typeof ref === "string" ? ROSTER[ref] : extra(ref.extra, ref.era ?? "modern");
 export const whereOf = (set: string, w: Where): V3 => (typeof w === "string" ? LAYOUTS[set].spots[w] : w);
 const smooth = (x: number) => { const u = Math.max(0, Math.min(1, x)); return u * u * (3 - 2 * u); };
 
@@ -43,7 +45,7 @@ export const shotFrames = (sb: Storyboard) => {
 };
 
 /** camera spec -> library move, naming actors instead of coordinates (framed where they settle) */
-const moveOf = (s: ShotSpec, c: CameraSpec): Move => {
+const moveOf = (s: ShotSpec, c: CameraSpec, t0 = 0): Move => {
   // the slow "breathing" push of held shots totals at most 8 % of the distance however long the shot, so a fitted
   // group stays in frame to the last frame
   const creep = Math.min(0.0022, 0.08 / Math.max(1, Math.round((s.dur ?? 0) * FPS)));
@@ -60,6 +62,7 @@ const moveOf = (s: ShotSpec, c: CameraSpec): Move => {
     case "overShoulder": return { move: "overShoulder", over: pos(c.over), at: pos(c.at), side: c.side };
     case "orbit": return { move: "orbit", marks: c.on.map(pos), fromDeg: c.fromDeg, size: c.size, height: c.height };
     case "crane": return { move: "crane", marks: c.on.map(pos), heights: c.heights, size: c.size, from: c.from };
+    case "follow": { const a = s.actors.find((x) => x.who === c.on); if (!a) throw new Error(`camera follows "${c.on}" but no such actor in the shot`); return { move: "follow", track: (t) => actorPos(s.set, a, t - t0), size: c.size, from: c.from, height: c.height }; }
     case "dutch": return { move: "dutch", marks: c.on.map(pos), size: c.size, from: c.from, roll: c.roll };
   }
 };
@@ -72,8 +75,18 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
   const seedOf = (who: string) => Object.keys(sb.cast).indexOf(who) + 1;
   const shots: WorldShot[] = sb.shots.map((s, k) => {
     const { a, b } = ranges[k], pre = s.transition === "fade" ? FADE : 0;
-    const p = plan(moveOf(s, s.camera), a - pre, b, { cut: true });
-    return { id: k + 1, a, b, set: s.set, light: s.light ?? SETS[s.set].lights[0], keys: [p.key], dof: p.dof, kicks: (s.kicks ?? []).map((t) => [a / FPS + (t as number), 1] as [number, number]) };
+    const p = plan(moveOf(s, s.camera, a / FPS), a - pre, b, { cut: true });
+    const props = (s.props ?? []).map((q) => { const w = whereOf(s.set, q.at); return { id: q.id, variant: q.variant, at: { x: w[0] + (q.offset?.[0] ?? 0), y: w[1], z: w[2] + (q.offset?.[1] ?? 0), yaw: ((q.yaw ?? 0) * Math.PI) / 180, s: q.scale ?? 1 } }; });
+    return { id: k + 1, a, b, set: s.set, light: s.light ?? SETS[s.set].lights[0], keys: [p.key], dof: p.dof, kicks: (s.kicks ?? []).map((t) => [a / FPS + (t as number), 1] as [number, number]), ...(props.length ? { props } : {}) };
+  });
+  // crowds: extras join the shot's actors (after the cameras are planned: cameras frame the named cast only)
+  const notes: string[] = [];
+  sb.shots.forEach((s, k) => {
+    if (!s.crowd || s.crowd.count <= 0) return;
+    const rest = (a: ActorSpec): V3[] => { const p0 = whereOf(s.set, a.at); if (!a.walk) return [p0]; const p1 = whereOf(s.set, a.walk.to), out: V3[] = []; for (let i = 0; i <= 10; i++) out.push([p0[0] + ((p1[0] - p0[0]) * i) / 10, p0[1], p0[2] + ((p1[2] - p0[2]) * i) / 10]); return out; };
+    const c = placeCrowd(s, k + 1, shots[k].keys, Math.round((shots[k].a + shots[k].b) / 2), (w) => whereOf(s.set, w), rest);
+    s.actors.push(...c.actors); Object.assign(sb.cast, c.cast);
+    if (c.note) notes.push(c.note);
   });
   const flashes = sb.shots.map((s, k) => (s.transition === "flash" ? ranges[k].a : -1)).filter((f) => f >= 0);
   const dips = sb.shots.map((s, k) => (s.transition === "dip" ? ranges[k].a : -1)).filter((f) => f >= 0);
@@ -96,6 +109,8 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
       // base act, then the latest beat at or before now (act replaces, face / gesture override)
       let base: Pose = actPose(a.act ?? "neutral", { ...(a.face ? { expr: a.face } : {}), ...(a.gesture ? { gesture: a.gesture } : {}), ...(a.mode ? { mode: a.mode } : {}) });
       for (const bt of (a.beats ?? []).filter((x) => (x.t ?? 0) <= tt).sort((x, y) => (x.t ?? 0) - (y.t ?? 0))) base = { ...(bt.act ? actPose(bt.act) : base), ...(bt.face ? { expr: bt.face } : {}), ...(bt.gesture ? { gesture: bt.gesture } : {}) };
+      let held = a.hold;
+      for (const bt of (a.beats ?? []).filter((x) => (x.t ?? 0) <= tt && x.hold !== undefined).sort((x, y) => (x.t ?? 0) - (y.t ?? 0))) held = bt.hold ?? undefined;
       const swaps = (a.beats ?? []).map((x) => t0 + (x.t ?? 0));
       const life = { ...idle(t, seed, a.idle ?? 1), blink: lidAt(t, seed, swaps) };
       // voiced lines: the mouth follows the narration's word timings; otherwise the stand-in talking rhythm
@@ -113,9 +128,9 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
       if (walking) {
         const p1 = whereOf(s.set, a.walk!.to), p0 = whereOf(s.set, a.at), dist = Math.hypot(p[0] - p0[0], p[2] - p0[2]);
         const dirScreen = (p1[0] - p0[0]) * cam.right.x + (p1[2] - p0[2]) * cam.right.z;
-        out.places.push(lookCard(cam, L, p[0], p[1], p[2], { side: { mode: "walk", phase: dist / 1.47, expr: (talking.expr ?? base.expr ?? "neutral") as Expr, blink: life.blink }, mirror: dirScreen < 0 }));
+        out.places.push(lookCard(cam, L, p[0], p[1], p[2], { side: { mode: a.walk!.mode ?? "walk", phase: dist / (a.walk!.mode === "run" ? 2.08 : 1.47), ...(held ? { hold: held } : {}), expr: (talking.expr ?? base.expr ?? "neutral") as Expr, blink: life.blink }, mirror: dirScreen < 0 }));
       } else {
-        const pose = layer(base, life, talking, shook, { headTilt: nodTilt, facing, back: a.back, t });
+        const pose = layer(base, life, talking, shook, { headTilt: nodTilt, facing, back: a.back, t, ...(held ? { hold: held } : {}) });
         out.places.push(lookCard(cam, L, p[0], p[1], p[2], { pose }));
       }
       contactShadow(out, cam.sun, shot.light, p[0], p[1], p[2]);
@@ -128,5 +143,5 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
       const c = fxNear(cam, fx.kind, p, t, t0 + (fx.t ?? 0), fx.life ?? 1.6, fx.side ?? (x > 0.3 ? -1 : 1)); if (c) out.fx.push(c);
     }
   };
-  return { total, shots, timeline, director, timing };
+  return { total, shots, timeline, director, timing, notes };
 };

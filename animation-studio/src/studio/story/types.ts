@@ -6,6 +6,7 @@ import type { ShotSize } from "../camera/framing";
 import type { FxKind } from "../fx/effects";
 import type { Era } from "../characters/cast";
 import type { Mood, Ambience, SfxName } from "../sound/catalog";
+import type { CrowdSpec } from "./crowd";
 
 export type V3 = [number, number, number];
 /** a cast member: a lead from the library ("milo", "juno", "junoOut", "gus") or a crowd extra */
@@ -24,14 +25,15 @@ export type CameraSpec =
   | { move: "overShoulder"; over: string; at: string; side?: -1 | 1 }
   | { move: "orbit"; on: string[]; fromDeg: [number, number]; size?: ShotSize; height?: number }
   | { move: "crane"; on: string[]; heights: [number, number]; size?: ShotSize; from?: number }
-  | { move: "dutch"; on: string[]; size?: ShotSize; from?: number; roll?: number };
+  | { move: "dutch"; on: string[]; size?: ShotSize; from?: number; roll?: number }
+  | { move: "follow"; on: string; size?: ShotSize; from?: number; height?: number };          // tracks a walking / running actor
 
 /** when something happens: t seconds after the shot starts, or on a spoken word of this shot's lines
  *  (word: "catches" lands 2 frames before that word; "yawn" also matches "yawning"; n = which occurrence, from 1) */
 export type When = { t: number; word?: undefined } | { word: string; n?: number; t?: undefined };
 export type WordRef = { word: string; n?: number };
 /** a change during the shot (expression swaps hide behind an automatic blink) */
-export type Beat = When & { act?: Act; face?: Expr; gesture?: Gesture };
+export type Beat = When & { act?: Act; face?: Expr; gesture?: Gesture; /** pick up / swap an item; null = put it away */ hold?: string | null };
 /** a spoken line. who: "narrator" (voice-over, default) or a cast key (that actor's mouth moves with the words).
  *  voice: a preset from voice/voices.ts (default: storyboard.voices[who], then storyboard.voice, then the narrator).
  *  gap: extra pause before the line, seconds */
@@ -43,16 +45,20 @@ export type ActorSpec = {
   /** "camera", "toward:<who>", or -1 | 0 | 1. Default: toward the nearest other actor in the shot */
   facing?: "camera" | `toward:${string}` | -1 | 0 | 1;
   back?: boolean;             // seen from behind (the near actor in an over-the-shoulder)
+  hold?: string;              // a hand-held item (characters/items.ts), e.g. "map", "book", "telescope"
   beats?: Beat[];
   talk?: [number, number][];  // speaking spans without audio (mouth + talking hands); voiced lines set this themselves
   nod?: (number | WordRef)[];  // nod start times (or words)
   shake?: (number | WordRef)[]; // head-shake start times (or words)
   idle?: number;              // idle life amount (default 1, 0 = still)
   walk?: { to: Where; t0: number; t1: number; mode?: "walk" | "run" }; // walk (or run) in profile from `at` to `to`
+  /** set by the engine, not written by hand: a crowd extra (shot `crowd`) */
+  crowd?: boolean;
   /** set by the narration timing (story/timing.ts), not written by hand: this actor's spoken words, seconds into the shot */
   speech?: { w: string; t0: number; t1: number }[];
 };
 export type FxSpec = When & { kind: FxKind; on: string; life?: number; side?: -1 | 1 };
+export type PropSpec = { id: string; at: Where; yaw?: number; scale?: number; variant?: string; offset?: [number, number] };
 /** an explicit sound cue (automatic cues already cover effects, transitions, kicks, jumps, falls and footsteps).
  *  on = an actor (the sound is panned to where they are on screen); gain in dB on top of the kind's default level */
 export type SfxSpec = When & { name: SfxName; on?: string; gain?: number };
@@ -76,6 +82,11 @@ export type ShotSpec = {
   ambience?: Ambience | false;
   /** extra sound cues */
   sfx?: SfxSpec[];
+  /** story props in this shot (see props/registry.ts): at a mark or [x, y, z]; yaw in degrees; scale; variant name;
+   *  offset [dx, dz] metres from the mark */
+  props?: PropSpec[];
+  /** background extras on clear floor behind the cast: { count, era?, around?, radius?, acts?, seed? } */
+  crowd?: CrowdSpec;
   note?: string;              // what the shot is for (script line), ignored by the engine
 };
 export type Storyboard = {

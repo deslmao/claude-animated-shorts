@@ -1,6 +1,42 @@
 # Studio library: what exists and how to use it
 
 To make a video from these parts, write a storyboard: see [STORYBOARD.md](STORYBOARD.md).
+The full generated catalogue of every asset is [ASSETS.md](ASSETS.md); search it with `npm run assets -- search <words>`.
+
+## The asset library: reuse first, create only what's missing
+Every reusable asset has an id, kind, name, description, themes and tags. The kinds are characters, extras, sets, placeable props, hand-held items, effects, acting, music moods, ambience, sound effects, voices, camera moves and lights. They all live in one registry (`src/studio/library/registry.ts`), which is built from the live code, so the registry and the actual assets can't drift apart.
+
+| Command | Use |
+|---|---|
+| `npm run assets -- search pirate ship` | find reusable assets for a topic (do this before planning a storyboard) |
+| `npm run assets -- similar "spyglass"` | duplicate check before creating something new |
+| `npm run assets -- show <id>` | one asset in full: marks and views of a set, variants of a prop... |
+| `npm run assets -- check <story-id>` | every asset a storyboard uses: reused or missing |
+| `npm run assets -- themes` | themed collections and their contents |
+| `npm run assets -- doc` | regenerate `docs/ASSETS.md` |
+
+### Themed collections
+A theme is one folder, `src/studio/themes/<id>/` (for example `pirates`). It exports a `Theme` containing:
+- characters, with metadata;
+- placeable props;
+- hand-held items;
+- sets, with their layouts and metadata;
+- a default music mood.
+
+Registering it in `themes/index.ts` makes everything usable at once: in storyboards, in the validator, in search, in library protection and in the floor maps. The next video on the same theme finds and reuses it.
+
+### Adding an asset (only when the search finds nothing suitable)
+1. `npm run assets -- search ...` and `similar ...`: if a strong match exists, reuse it, or add a variant to it.
+2. Build it with the existing engine, in the house style:
+   - characters as `Look` recipes;
+   - props from `props/kit` primitives;
+   - items with the `Pen` and plum ink;
+   - sets with `buildRoom` and existing props.
+
+   Put it in its theme's folder, or in the base library if it isn't themed.
+3. Give it its metadata: name, description, themes and tags (props also need a footprint and height).
+4. Run `npm run floor-map` (for new sets), then `npm test`, and render a test still: a character sheet, a set tour, or a showcase storyboard shot. Check the look and the framing.
+5. Run `npm run test:library -- --update` so the asset is protected from now on, then `npm run assets -- doc`.
 
 Everything here lives in `animation-studio/src/studio/` and renders on GitHub Actions (no GPU, no downloads).
 The look is the creator's (ink, two-tone light, lens blur, grade): it is never re-designed per video.

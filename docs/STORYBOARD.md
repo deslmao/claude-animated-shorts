@@ -66,6 +66,9 @@ All times are in **seconds from the start of the shot**. Anything timed can be a
 | `transition` | how this shot begins: `cut` (default), `fade` (8-frame crossfade), `flash` (white flash) or `dip` (a quick dip to black) |
 | `fx` | reaction marks placed beside a character's head. The 16 kinds are listed in [LIBRARY.md](LIBRARY.md) |
 | `kicks` | impact camera shakes (times or `{ word }`) |
+| `props` | story props for this shot: `[{ id: "barrel", at: "c", offset: [0.6, 0.4], yaw: 20, scale?, variant? }]`. The ids are in `docs/ASSETS.md`. The validator stops a prop from standing on an actor and warns when one overlaps the set |
+| `crowd` | background extras: `{ count: 6, era: "medieval", around?, radius?, acts?, seed? }`. They're placed on clear floor (generated floor maps), inside the frame, behind the cast and spread out. The validator says if fewer fit |
+| `mood` / `ambience` / `sfx` | sound controls, see [SOUND.md](SOUND.md) |
 
 Story-level fields:
 - `voice` sets the voice preset for every line. The default is George, the channel narrator.
@@ -86,6 +89,7 @@ In camera moves you name **characters**, not coordinates. The engine works out t
 | orbit | `{ move: "orbit", on: ["milo","gus"], fromDeg: [-14, 14] }` |
 | crane down | `{ move: "crane", on: [...], heights: [5, 1.5] }` |
 | dutch tilt | `{ move: "dutch", on: ["gus"], roll: 0.14 }` (roll in radians) |
+| follow a walker or runner | `{ move: "follow", on: "milo", size: "full", from: 20 }` |
 
 The camera options work like this:
 - **`size`** is one of `wide`, `full`, `medium`, `close` or `extreme`.
@@ -101,7 +105,8 @@ The camera options work like this:
 | `beats` | changes during the shot: `{ t, act?, face?, gesture? }`. Expression changes hide behind an automatic blink |
 | `talk` | speaking spans `[[start, end]]` without audio. Voiced lines (`say` with `who`) set the mouth from the real words automatically |
 | `nod` / `shake` | start times of head nods and head shakes |
-| `walk` | walks in profile from `at` to `to` between `t0` and `t1` |
+| `walk` | walks in profile from `at` to `to` between `t0` and `t1`; add `mode: "run"` to run, with footsteps following automatically |
+| `hold` | a hand-held item such as `"map"`, `"book"` or `"telescope"`, drawn in the character's hand in front of the chest. Gestures that raise the hand (`raiseHand`, `pointUp`, `cheer`) show it off overhead. A beat `{ word: "facts", hold: "book" }` swaps the item, and `hold: null` puts it away |
 | `facing` | by default each character turns toward the nearest other character. Can also be `"camera"`, `"toward:gus"`, `-1`, `0` or `1` |
 | `back` | seen from behind (the near character in an over-the-shoulder shot) |
 | `idle` | how much idle life (breathing, glances): default 1; `0` keeps them still |

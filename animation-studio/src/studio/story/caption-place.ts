@@ -22,7 +22,7 @@ export const captionHeights = (film: Film): number[] => film.timing.sb.shots.map
     cam.position.set(...c.pos); cam.up.set(0, 1, 0); cam.lookAt(...c.look); cam.rotateZ(c.roll); cam.updateMatrixWorld(); cam.updateProjectionMatrix();
     const right = new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld, 0);
     for (const a of s.actors) {
-      if (a.back) continue; // seen from behind (over-the-shoulder): no face to keep clear
+      if (a.back || a.crowd) continue; // seen from behind (over-the-shoulder) / background extras: no face to keep clear
       const m = actorPos(s.set, a, (f - shot.a) / FPS), ys: number[] = [], xs: number[] = [];
       for (const dx of [-0.3, 0.3]) for (const y of [1.2, 1.55, 1.95]) {
         const v = new THREE.Vector3(m[0], m[1] + y, m[2]).addScaledVector(right, dx).project(cam);
