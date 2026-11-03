@@ -8,6 +8,7 @@ import { StudioFilm } from "../look/StudioFilm";
 import { SetWorld } from "../scene/SetWorld";
 import { compile } from "./compile";
 import { captionGroups } from "./caption-timing";
+import { placeCaptions } from "./caption-place";
 import { Captions } from "./Captions";
 import type { Storyboard } from "./types";
 import type { Narration } from "../voice/narration";
@@ -15,7 +16,7 @@ import type { Narration } from "../voice/narration";
 const load = () => Promise.resolve(true);
 export const makeShort = (sb: Storyboard, narr?: Narration) => {
   const film = compile(sb, narr);
-  const groups = sb.captions === false ? [] : captionGroups(film.timing.lines, film.total);
+  const groups = sb.captions === false ? [] : placeCaptions(film, captionGroups(film.timing.lines, film.total));
   const makeWorld = () => new SetWorld(film.shots, film.director, { clearShots: true });
   const Comp: React.FC = () => (
     <AbsoluteFill>

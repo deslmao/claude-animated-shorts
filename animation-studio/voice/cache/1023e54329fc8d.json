@@ -1,0 +1,90 @@
+{
+ "hash": "1023e54329fc8d",
+ "text": "The closer you are to someone, the more likely you are to catch theirs.",
+ "voice": "george",
+ "lead": 0,
+ "end": 3.529,
+ "dur": 3.578776,
+ "words": [
+  {
+   "w": "The",
+   "t0": 0,
+   "t1": 0.139
+  },
+  {
+   "w": "closer",
+   "t0": 0.186,
+   "t1": 0.476
+  },
+  {
+   "w": "you",
+   "t0": 0.522,
+   "t1": 0.592
+  },
+  {
+   "w": "are",
+   "t0": 0.65,
+   "t1": 0.778
+  },
+  {
+   "w": "to",
+   "t0": 0.824,
+   "t1": 0.882
+  },
+  {
+   "w": "someone,",
+   "t0": 0.94,
+   "t1": 1.335
+  },
+  {
+   "w": "the",
+   "t0": 1.44,
+   "t1": 1.533
+  },
+  {
+   "w": "more",
+   "t0": 1.579,
+   "t1": 1.718
+  },
+  {
+   "w": "likely",
+   "t0": 1.765,
+   "t1": 2.067
+  },
+  {
+   "w": "you",
+   "t0": 2.125,
+   "t1": 2.206
+  },
+  {
+   "w": "are",
+   "t0": 2.264,
+   "t1": 2.392
+  },
+  {
+   "w": "to",
+   "t0": 2.426,
+   "t1": 2.473
+  },
+  {
+   "w": "catch",
+   "t0": 2.531,
+   "t1": 2.763
+  },
+  {
+   "w": "theirs.",
+   "t0": 2.821,
+   "t1": 3.529
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T01:24:14.262Z"
+}

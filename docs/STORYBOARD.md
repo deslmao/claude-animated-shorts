@@ -16,7 +16,7 @@ storyboard (data)  ->  validate (npm run test:story)  ->  compile  ->  Short-<id
 | `animation-studio/src/studio/story/Short.tsx` | the one generic composition used by every storyboard |
 | `animation-studio/src/studio/stories/*.ts` | the storyboards themselves; register each one in `stories/index.ts` |
 
-The first video built this way is the 18-second "yawn" demo: `stories/yawn-demo.ts`, cloud render run 5, release `video-Short-yawn-demo-run5`.
+The first video built this way is the "yawn" demo, `stories/yawn-demo.ts`. Run 5 produced the silent 18-second version (release `video-Short-yawn-demo-run5`); it is now narrated by George, with captions.
 
 ![yawn demo frames](library/storyboard_demo_strip.jpg)
 
@@ -26,7 +26,9 @@ The first video built this way is the 18-second "yawn" demo: `stories/yawn-demo.
 3. Run `npm run test:story`.
    - It must print `all storyboards valid`.
    - Each error names the shot and the problem, for example `shot 3 (lab): milo stands on unknown mark "sofa" (marks: a, b, c, bench, island, hood)`.
-4. Render it in the cloud. Commit `render-request.json` with `"composition": "Short-<id>"`. See [CLOUD_RENDERING.md](CLOUD_RENDERING.md).
+4. Make the narration. Run `npm run voice -- <id>` for a dry run that lists the new lines and their credit cost, then `npm run voice -- <id> --generate`. Lines already generated are never paid for again. See [VOICE.md](VOICE.md).
+5. Run `npm run test:story` again, now with the real word timings.
+6. Render it in the cloud. Commit `render-request.json` with `"composition": "Short-<id>"`. The soundtrack `audio/Short-<id>.mp3` is added automatically. See [CLOUD_RENDERING.md](CLOUD_RENDERING.md).
 
 ## The format
 
@@ -35,31 +37,38 @@ The first video built this way is the 18-second "yawn" demo: `stories/yawn-demo.
   id: "yawn-demo",
   cast: { milo: "milo", juno: "juno", gus: "gus", waiter: { extra: 7, era: "modern" } },
   shots: [
-    { dur: 3.0, set: "city", light: "day",
+    { say: "Milo yawns, and seconds later, Gus catches it.", set: "city", light: "day",
       camera: { move: "frame", on: ["milo", "juno", "gus"], size: "full", from: 4, height: 1.5 },
       transition: "cut",
       actors: [
-        { who: "milo", at: "kerb", walk: { to: "a", t0: 0, t1: 1.3 }, beats: [{ t: 1.5, act: "sleepy" }] },
-        { who: "juno", at: "b", act: "explain", talk: [[0.3, 2.8]] },
+        { who: "milo", at: "kerb", walk: { to: "a", t0: 0, t1: 1.3 }, beats: [{ word: "yawns", act: "sleepy" }] },
+        { who: "gus", at: "c", act: "happy", beats: [{ word: "catches", act: "sleepy" }] },
       ],
-      fx: [{ kind: "idea", on: "juno", t: 1.0 }],
-      kicks: [0.35],
+      fx: [{ kind: "idea", on: "gus", word: "catches" }],
+      kicks: [{ word: "catches" }],
       note: "script line for this shot" },
   ],
 }
 ```
 
-All times are in **seconds from the start of the shot**.
+All times are in **seconds from the start of the shot**. Anything timed can be anchored to a spoken word instead: `{ word: "catches" }` lands 2 frames before that word.
 
 ### Shot fields
 | Field | Meaning |
 |---|---|
-| `dur` | length in seconds. 1.5–4 s suits Shorts |
+| `say` | what is said over the shot: a string (voice-over), or `{ text, who?, voice?, gap? }` lines. `who: "gus"` makes Gus say it, with lip-sync |
+| `dur` | length in seconds. With `say`, the shot lasts as long as its lines and `dur` is only a minimum, so you can leave it out. Without `say`, it's required. 1.5–4 s suits Shorts |
+| `hold` | seconds held after the shot's last word (default 0.2; 0.45 on the last shot) |
 | `set` | `home`, `classroom`, `office`, `lab`, `city`, `oldtown` or `nature` |
 | `light` | `day`, `golden` or `night` outdoors; `interior` or `interiorCool` indoors. If left out, the set's own default is used |
 | `transition` | how this shot begins: `cut` (default), `fade` (8-frame crossfade), `flash` (white flash) or `dip` (a quick dip to black) |
 | `fx` | reaction marks placed beside a character's head. The 16 kinds are listed in [LIBRARY.md](LIBRARY.md) |
-| `kicks` | impact camera shakes |
+| `kicks` | impact camera shakes (times or `{ word }`) |
+
+Story-level fields:
+- `voice` sets the voice preset for every line. The default is George, the channel narrator.
+- `voices` gives specific speakers their own voices, for example `{ gus: "brian" }`.
+- `captions: false` turns captions off. They are on by default.
 
 ### Camera moves
 In camera moves you name **characters**, not coordinates. The engine works out the camera position for the 9:16 frame.
@@ -88,7 +97,7 @@ The camera options work like this:
 | `act` | one of 26 acting presets (face plus body), for example `explain`, `shock`, `laugh`, `sleepy` or `idea` |
 | `face` / `gesture` | override the preset's expression or hands |
 | `beats` | changes during the shot: `{ t, act?, face?, gesture? }`. Expression changes hide behind an automatic blink |
-| `talk` | speaking spans `[[start, end]]`, which animate the mouth and talking hands |
+| `talk` | speaking spans `[[start, end]]` without audio. Voiced lines (`say` with `who`) set the mouth from the real words automatically |
 | `nod` / `shake` | start times of head nods and head shakes |
 | `walk` | walks in profile from `at` to `to` between `t0` and `t1` |
 | `facing` | by default each character turns toward the nearest other character. Can also be `"camera"`, `"toward:gus"`, `-1`, `0` or `1` |
@@ -107,10 +116,23 @@ The camera options work like this:
 - **Over-the-shoulder:** the shot is solved for the narrow vertical frame. The near character's back fills the outer third and the far character's face sits just off centre.
 - **Transitions and determinism:** the incoming shot's camera starts early under a crossfade, so both halves of the fade move. Everything is a pure function of the frame number, so chunked cloud renders join without seams.
 
+- **Narration:**
+  - Shots are sized to their lines, with no dead air between them.
+  - Captions show 1–3 words at a time, on the words.
+  - Speaking characters' mouths open on each syllable.
+  - Reactions land 2 frames before their word.
+  - Everything is timed from the real audio, within 2 frames. See [VOICE.md](VOICE.md).
+
 ## What the validator checks
 - **Unknown names:** cast, sets, lights, marks, acts, faces, gestures, effects and views.
 - **Staging conflicts:** two actors on one mark; a camera aimed at someone who isn't in the shot.
 - **Timing:** beats, talk spans, walks and effects that fall outside their shot.
+- **Narration:**
+  - unknown voice presets;
+  - a speaker who isn't in the shot or the cast;
+  - a word anchor the shot's lines don't actually say;
+  - lines not generated yet (timing estimated);
+  - a pace outside 2.6–4.6 words/s.
 - **Lighting:** an indoor light used on an outdoor set, or the reverse.
 - **Vertical framing:** it solves the real camera at the start, middle and end of every shot and checks that each subject's head is fully inside the 1080x1920 frame. Walkers are checked once they arrive. In over-the-shoulder shots, the near character's shoulder must fill at least 15% of the frame width.
 

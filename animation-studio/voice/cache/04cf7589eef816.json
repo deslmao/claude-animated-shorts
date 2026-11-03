@@ -1,0 +1,45 @@
+{
+ "hash": "04cf7589eef816",
+ "text": "Hey! I wasn't even tired!",
+ "voice": "george",
+ "lead": 0,
+ "end": 1.765,
+ "dur": 1.802449,
+ "words": [
+  {
+   "w": "Hey!",
+   "t0": 0,
+   "t1": 0.418
+  },
+  {
+   "w": "I",
+   "t0": 0.476,
+   "t1": 0.522
+  },
+  {
+   "w": "wasn't",
+   "t0": 0.592,
+   "t1": 0.836
+  },
+  {
+   "w": "even",
+   "t0": 0.882,
+   "t1": 1.057
+  },
+  {
+   "w": "tired!",
+   "t0": 1.103,
+   "t1": 1.765
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T01:24:13.130Z"
+}

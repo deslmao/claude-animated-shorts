@@ -1,0 +1,75 @@
+{
+ "hash": "0db53731906470",
+ "text": "Yawning is contagious. Milo yawns, and seconds later, Gus catches it.",
+ "voice": "george",
+ "lead": 0,
+ "end": 4.551,
+ "dur": 4.597551,
+ "words": [
+  {
+   "w": "Yawning",
+   "t0": 0,
+   "t1": 0.406
+  },
+  {
+   "w": "is",
+   "t0": 0.464,
+   "t1": 0.534
+  },
+  {
+   "w": "contagious.",
+   "t0": 0.58,
+   "t1": 1.37
+  },
+  {
+   "w": "Milo",
+   "t0": 1.776,
+   "t1": 2.09
+  },
+  {
+   "w": "yawns,",
+   "t0": 2.148,
+   "t1": 2.531
+  },
+  {
+   "w": "and",
+   "t0": 2.554,
+   "t1": 2.694
+  },
+  {
+   "w": "seconds",
+   "t0": 2.752,
+   "t1": 3.065
+  },
+  {
+   "w": "later,",
+   "t0": 3.111,
+   "t1": 3.402
+  },
+  {
+   "w": "Gus",
+   "t0": 3.448,
+   "t1": 3.669
+  },
+  {
+   "w": "catches",
+   "t0": 3.727,
+   "t1": 4.052
+  },
+  {
+   "w": "it.",
+   "t0": 4.11,
+   "t1": 4.551
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T01:24:12.599Z"
+}

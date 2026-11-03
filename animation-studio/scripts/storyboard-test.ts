@@ -8,6 +8,7 @@ import { STORIES } from "../src/studio/stories";
 import { validate } from "../src/studio/story/validate";
 import { compile } from "../src/studio/story/compile";
 import { captionGroups } from "../src/studio/story/caption-timing";
+import { captionHeights } from "../src/studio/story/caption-place";
 import { NARRATION } from "../src/studio/stories/voice";
 import type { Storyboard } from "../src/studio/story/types";
 
@@ -21,6 +22,7 @@ for (const sb of STORIES) {
     const g = captionGroups(tm.lines, film.total), nw = tm.lines.reduce((n, l) => n + l.words.length, 0), cw = g.reduce((n, x) => n + x.text.split(" ").length, 0);
     const ok = cw === nw && g.every((x, i) => x.f1 > x.f0 && (i === 0 || x.f0 >= g[i - 1].f1) && x.f1 <= film.total);
     console.log(`  captions: ${g.length} groups for ${nw} words, ${ok ? "in order, no overlaps" : "PROBLEM"}`);
+    console.log(`  caption height per shot (clear of every face): ${captionHeights(film).map((y) => `${Math.round(y * 100)}%`).join(", ")}`);
     if (!ok) bad++;
   }
   for (const l of r.framing) console.log("  " + l);

@@ -120,11 +120,12 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
       }
       contactShadow(out, cam.sun, shot.light, p[0], p[1], p[2]);
     }
-    // effects sit beside the head on the side facing the frame centre (a character right of centre gets it on the left)
+    // effects sit beside the head on the side facing the frame centre (a character right of centre gets it on the left;
+    // a centred one always on the right, so the mark never jumps sides while the camera moves)
     for (const fx of s.fx ?? []) {
       const p = posOf.get(fx.on); if (!p) continue;
       const x = (p[0] - cam.pos.x) * cam.right.x + (p[2] - cam.pos.z) * cam.right.z;
-      const c = fxNear(cam, fx.kind, p, t, t0 + (fx.t ?? 0), fx.life ?? 1.6, fx.side ?? (x > 0 ? -1 : 1)); if (c) out.fx.push(c);
+      const c = fxNear(cam, fx.kind, p, t, t0 + (fx.t ?? 0), fx.life ?? 1.6, fx.side ?? (x > 0.3 ? -1 : 1)); if (c) out.fx.push(c);
     }
   };
   return { total, shots, timeline, director, timing };

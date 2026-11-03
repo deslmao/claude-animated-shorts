@@ -1,0 +1,70 @@
+{
+ "hash": "0e5f1537146a70",
+ "text": "So if you yawned just now... congratulations, we're officially friends.",
+ "voice": "george",
+ "lead": 0,
+ "end": 4.04,
+ "dur": 4.075102,
+ "words": [
+  {
+   "w": "So",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "if",
+   "t0": 0.232,
+   "t1": 0.313
+  },
+  {
+   "w": "you",
+   "t0": 0.36,
+   "t1": 0.441
+  },
+  {
+   "w": "yawned",
+   "t0": 0.522,
+   "t1": 0.801
+  },
+  {
+   "w": "just",
+   "t0": 0.848,
+   "t1": 1.045
+  },
+  {
+   "w": "now...",
+   "t0": 1.103,
+   "t1": 1.498
+  },
+  {
+   "w": "congratulations,",
+   "t0": 1.66,
+   "t1": 2.589
+  },
+  {
+   "w": "we're",
+   "t0": 2.659,
+   "t1": 2.868
+  },
+  {
+   "w": "officially",
+   "t0": 2.891,
+   "t1": 3.286
+  },
+  {
+   "w": "friends.",
+   "t0": 3.344,
+   "t1": 4.04
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T01:24:15.590Z"
+}

@@ -3,7 +3,8 @@
 // Pure: the same words always give the same groups, so chunked renders agree.
 import type { Placed } from "./timing";
 
-export type CaptionGroup = { f0: number; f1: number; text: string; who: string };
+/** y = caption centre height as a fraction of the frame (set by caption-place.ts; default lower-middle) */
+export type CaptionGroup = { f0: number; f1: number; text: string; who: string; y?: number };
 
 const FPS = 30;
 const MAX_WORDS = 3, MAX_CHARS = 14, BREAK_GAP = 0.3, HIDE_GAP = 0.6;

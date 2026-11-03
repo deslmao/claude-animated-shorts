@@ -11,15 +11,14 @@ export type Clip = { hash: string; text: string; voice: string; lead: number; en
 /** a story's narration manifest: src/studio/stories/voice/<id>.json, written by `npm run voice` */
 export type Narration = { id: string; clips: Record<string, Clip> };
 
-/** 64-bit FNV-1a (two 32-bit halves), hex. Not cryptographic: a stable cache key that works in browser and Node */
+/** cyrb53 (a well-mixed 53-bit string hash), as 14 hex digits. Not cryptographic: a stable cache key that works in
+ *  the browser and in Node */
 export const fnv = (s: string) => {
-  let h1 = 0x811c9dc5, h2 = 0x01000193 ^ 0x5bd1e995;
-  for (let i = 0; i < s.length; i++) {
-    const c = s.charCodeAt(i);
-    h1 = Math.imul(h1 ^ c, 0x01000193) >>> 0;
-    h2 = Math.imul(h2 ^ c, 0x01000193 ^ 0x2c1b3c6d) >>> 0;
-  }
-  return h1.toString(16).padStart(8, "0") + h2.toString(16).padStart(8, "0");
+  let h1 = 0xdeadbeef, h2 = 0x41c6ce57;
+  for (let i = 0; i < s.length; i++) { const c = s.charCodeAt(i); h1 = Math.imul(h1 ^ c, 2654435761); h2 = Math.imul(h2 ^ c, 1597334677); }
+  h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+  h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+  return (4294967296 * (2097151 & h2) + (h1 >>> 0)).toString(16).padStart(14, "0");
 };
 
 /** the request body for a line (exactly what is sent to ElevenLabs, minus credentials) */

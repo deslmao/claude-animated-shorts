@@ -1,0 +1,95 @@
+{
+ "hash": "0a5f2203371d56",
+ "text": "You see, catching yawns seems linked to empathy, your brain mirroring the people around you.",
+ "voice": "george",
+ "lead": 0,
+ "end": 5.016,
+ "dur": 5.041633,
+ "words": [
+  {
+   "w": "You",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "see,",
+   "t0": 0.221,
+   "t1": 0.453
+  },
+  {
+   "w": "catching",
+   "t0": 0.522,
+   "t1": 0.894
+  },
+  {
+   "w": "yawns",
+   "t0": 0.964,
+   "t1": 1.312
+  },
+  {
+   "w": "seems",
+   "t0": 1.416,
+   "t1": 1.695
+  },
+  {
+   "w": "linked",
+   "t0": 1.753,
+   "t1": 1.962
+  },
+  {
+   "w": "to",
+   "t0": 1.985,
+   "t1": 2.043
+  },
+  {
+   "w": "empathy,",
+   "t0": 2.101,
+   "t1": 2.659
+  },
+  {
+   "w": "your",
+   "t0": 2.821,
+   "t1": 2.984
+  },
+  {
+   "w": "brain",
+   "t0": 3.042,
+   "t1": 3.32
+  },
+  {
+   "w": "mirroring",
+   "t0": 3.39,
+   "t1": 3.773
+  },
+  {
+   "w": "the",
+   "t0": 3.82,
+   "t1": 3.889
+  },
+  {
+   "w": "people",
+   "t0": 3.924,
+   "t1": 4.203
+  },
+  {
+   "w": "around",
+   "t0": 4.226,
+   "t1": 4.505
+  },
+  {
+   "w": "you.",
+   "t0": 4.563,
+   "t1": 5.016
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T01:24:13.666Z"
+}
