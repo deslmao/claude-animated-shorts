@@ -110,10 +110,10 @@
    "detail": "preflight PASS; library intact"
   },
   "review": {
-   "state": "waiting",
-   "at": "2026-11-03T05:38:36.397Z",
+   "state": "done",
+   "at": "2026-11-03T05:45:17.713Z",
    "inputs": "0fe947287f6e0e",
-   "detail": "WAITING FOR REVIEW: 49 frames in productions/tickle/review.jpg (determinism: identical); rerun with --reviewed once checked",
+   "detail": "review sheet looked at and passed",
    "data": {
     "frames": [
      4,

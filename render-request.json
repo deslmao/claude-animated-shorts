@@ -1,7 +1,7 @@
 {
-  "composition": "Short-yawn-demo",
+  "composition": "Short-tickle",
   "chunks": 20,
   "preview": false,
   "audio": "",
-  "note": "Production yawn-demo (npm run short)"
+  "note": "Production tickle (npm run short)"
 }
