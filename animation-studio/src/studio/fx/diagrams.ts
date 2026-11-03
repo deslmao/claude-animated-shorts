@@ -9,7 +9,7 @@ import { FxPlace, cardKey } from "../cards/cards";
 export type DiagramKind = "forecast" | "prediction" | "contrast" | "delay";
 export const DIAGRAM_KINDS: DiagramKind[] = ["forecast", "prediction", "contrast", "delay"];
 export const DIAGRAM_STEPS: Record<DiagramKind, string> = {
-  forecast: "the brain from the first frame; 1 the cerebellum lights up, 2 a signal runs to the forecast card, 3 the predicted hand travels to the armpit, 4 the countdown completes",
+  forecast: "the brain from the first frame; 1 the cerebellum lights up, 2 a signal runs to the forecast card, 3 the predicted hand travels to the armpit, 4 the countdown completes (0.35 s) and ticks",
   prediction: "your own touch, from the first frame (the predicted outline waiting); 1 your hand lands in it, 2 tick, 3 the tickle meter turns down, 4 + 5 it sits at zero (no surprise, no tickle)",
   contrast: "both touches from the first frame: yours (predicted, meter low) vs someone else's (unpredicted, meter high); 1 highlights the surprise, 2 sparkles it",
   delay: "control (blue) and robot (orange) strokes in sync from the first frame; 1 tick, 2 the robot's stroke slips behind (a delay), 3 a tickle burst",
@@ -112,9 +112,9 @@ export const drawDiagram = (p: Pen, kind: DiagramKind, tt: number, steps: number
         hand(p, ax + 95 + 150 * Math.cos(a), ay + 45 + 110 * Math.sin(a), 1.1);
         const cx = 835, cy = 615;
         p.ell(cx, cy, 52, 52, "#ffffff", 9);
-        const fill = t(4) >= 0 ? ease(t(4) / 0.9) : t(3) >= 0 ? 0.35 * ease(t(3) / 1.2) : 0;
+        const fill = t(4) >= 0 ? 0.35 + 0.65 * ease(t(4) / 0.35) : t(3) >= 0 ? 0.35 * ease(t(3) / 1.2) : 0; // "any moment now": completes fast
         if (fill > 0) { const pts: P2[] = [[cx, cy]]; for (let i = 0; i <= 24; i++) pts.push([cx + 44 * Math.cos(rad(-90 + 360 * fill * (i / 24))), cy + 44 * Math.sin(rad(-90 + 360 * fill * (i / 24)))]); p.poly(pts, BLUE, 0); }
-        if (t(4) > 0.9) check(p, cx, cy, 1.0 * pop(t(4) - 0.9));
+        if (t(4) > 0.35) check(p, cx, cy, 1.0 * pop(t(4) - 0.35));
       });
       p.g.restore();
     }
