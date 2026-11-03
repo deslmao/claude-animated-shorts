@@ -36,7 +36,11 @@ for (let k = 0; k < diffs.length; k++) {
   if (luma[k] < DARK && luma[k + 1] < DARK) continue;
   const nb = [diffs[k - 2], diffs[k - 1], diffs[k + 1], diffs[k + 2]].filter((x) => x !== undefined).sort((x, y) => x - y);
   const med = nb.length ? (nb[Math.floor((nb.length - 1) / 2)] + nb[Math.ceil((nb.length - 1) / 2)]) / 2 : 0;
-  if (med > 0.6 && diffs[k] < 0.3) dups.push(k + 1); // real duplicate ~0.02; slowest natural motion here >= 1.3
+  // a duplicate is an isolated stall: (almost) no change, with clear motion on BOTH sides (a repeated frame at a seam
+  // measures ~0.03 between ~5s). A camera easing into or out of a move also gets very small (~0.07), but the motion
+  // grows or fades gradually on one side, so it is not flagged.
+  const p = diffs[k - 1], n = diffs[k + 1];
+  if (med > 0.6 && diffs[k] < 0.12 && p !== undefined && n !== undefined && Math.min(p, n) > Math.max(0.3, 8 * diffs[k])) dups.push(k + 1);
 }
 const [fn, fd] = (v?.r_frame_rate ?? "0/1").split("/").map(Number);
 const fps = fn / fd;

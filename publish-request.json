@@ -1,9 +1,9 @@
 {
-  "run_id": 41538502849,
+  "run_id": 41560985986,
   "composition": "Short-yawn-demo",
-  "frames": 540,
+  "frames": 669,
   "width": 1080,
   "height": 1920,
-  "audio": "none",
-  "note": "retry after QA threshold fix"
+  "audio": "required",
+  "note": "Stage 2 narrated demo (render run 6) after the duplicate-check fix"
 }
