@@ -1,0 +1,105 @@
+{
+ "hash": "0e0c11768da3b0",
+ "text": "If he's a coward or a bully, the crew can vote him out and pick someone new.",
+ "voice": "george",
+ "lead": 0,
+ "end": 4.087,
+ "dur": 4.127347,
+ "words": [
+  {
+   "w": "If",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "he's",
+   "t0": 0.209,
+   "t1": 0.348
+  },
+  {
+   "w": "a",
+   "t0": 0.383,
+   "t1": 0.418
+  },
+  {
+   "w": "coward",
+   "t0": 0.464,
+   "t1": 0.813
+  },
+  {
+   "w": "or",
+   "t0": 0.871,
+   "t1": 0.975
+  },
+  {
+   "w": "a",
+   "t0": 1.033,
+   "t1": 1.057
+  },
+  {
+   "w": "bully,",
+   "t0": 1.103,
+   "t1": 1.521
+  },
+  {
+   "w": "the",
+   "t0": 1.66,
+   "t1": 1.765
+  },
+  {
+   "w": "crew",
+   "t0": 1.823,
+   "t1": 2.009
+  },
+  {
+   "w": "can",
+   "t0": 2.055,
+   "t1": 2.159
+  },
+  {
+   "w": "vote",
+   "t0": 2.218,
+   "t1": 2.415
+  },
+  {
+   "w": "him",
+   "t0": 2.438,
+   "t1": 2.531
+  },
+  {
+   "w": "out",
+   "t0": 2.589,
+   "t1": 2.752
+  },
+  {
+   "w": "and",
+   "t0": 2.81,
+   "t1": 2.891
+  },
+  {
+   "w": "pick",
+   "t0": 2.949,
+   "t1": 3.123
+  },
+  {
+   "w": "someone",
+   "t0": 3.181,
+   "t1": 3.483
+  },
+  {
+   "w": "new.",
+   "t0": 3.541,
+   "t1": 4.087
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T05:47:01.577Z"
+}

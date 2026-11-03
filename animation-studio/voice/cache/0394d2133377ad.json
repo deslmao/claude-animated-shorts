@@ -1,0 +1,100 @@
+{
+ "hash": "0394d2133377ad",
+ "text": "You see, merchant ships had owners on land, and their captains could beat sailors into line.",
+ "voice": "george",
+ "lead": 0,
+ "end": 4.923,
+ "dur": 4.963265,
+ "words": [
+  {
+   "w": "You",
+   "t0": 0,
+   "t1": 0.139
+  },
+  {
+   "w": "see,",
+   "t0": 0.197,
+   "t1": 0.36
+  },
+  {
+   "w": "merchant",
+   "t0": 0.395,
+   "t1": 0.766
+  },
+  {
+   "w": "ships",
+   "t0": 0.813,
+   "t1": 1.068
+  },
+  {
+   "w": "had",
+   "t0": 1.115,
+   "t1": 1.242
+  },
+  {
+   "w": "owners",
+   "t0": 1.3,
+   "t1": 1.591
+  },
+  {
+   "w": "on",
+   "t0": 1.649,
+   "t1": 1.73
+  },
+  {
+   "w": "land,",
+   "t0": 1.788,
+   "t1": 2.159
+  },
+  {
+   "w": "and",
+   "t0": 2.345,
+   "t1": 2.473
+  },
+  {
+   "w": "their",
+   "t0": 2.508,
+   "t1": 2.659
+  },
+  {
+   "w": "captains",
+   "t0": 2.705,
+   "t1": 3.123
+  },
+  {
+   "w": "could",
+   "t0": 3.181,
+   "t1": 3.332
+  },
+  {
+   "w": "beat",
+   "t0": 3.367,
+   "t1": 3.553
+  },
+  {
+   "w": "sailors",
+   "t0": 3.611,
+   "t1": 3.982
+  },
+  {
+   "w": "into",
+   "t0": 4.04,
+   "t1": 4.238
+  },
+  {
+   "w": "line.",
+   "t0": 4.296,
+   "t1": 4.923
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T05:47:03.348Z"
+}

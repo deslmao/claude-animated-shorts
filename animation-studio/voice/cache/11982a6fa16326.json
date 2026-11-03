@@ -1,0 +1,90 @@
+{
+ "hash": "11982a6fa16326",
+ "text": "But some crews paid for injuries long before most countries had anything like it.",
+ "voice": "george",
+ "lead": 0,
+ "end": 4.087,
+ "dur": 4.127347,
+ "words": [
+  {
+   "w": "But",
+   "t0": 0,
+   "t1": 0.186
+  },
+  {
+   "w": "some",
+   "t0": 0.232,
+   "t1": 0.406
+  },
+  {
+   "w": "crews",
+   "t0": 0.453,
+   "t1": 0.743
+  },
+  {
+   "w": "paid",
+   "t0": 0.801,
+   "t1": 0.998
+  },
+  {
+   "w": "for",
+   "t0": 1.033,
+   "t1": 1.126
+  },
+  {
+   "w": "injuries",
+   "t0": 1.184,
+   "t1": 1.556
+  },
+  {
+   "w": "long",
+   "t0": 1.625,
+   "t1": 1.834
+  },
+  {
+   "w": "before",
+   "t0": 1.892,
+   "t1": 2.171
+  },
+  {
+   "w": "most",
+   "t0": 2.229,
+   "t1": 2.426
+  },
+  {
+   "w": "countries",
+   "t0": 2.473,
+   "t1": 2.821
+  },
+  {
+   "w": "had",
+   "t0": 2.868,
+   "t1": 3.007
+  },
+  {
+   "w": "anything",
+   "t0": 3.053,
+   "t1": 3.367
+  },
+  {
+   "w": "like",
+   "t0": 3.425,
+   "t1": 3.634
+  },
+  {
+   "w": "it.",
+   "t0": 3.68,
+   "t1": 4.087
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T05:47:06.068Z"
+}

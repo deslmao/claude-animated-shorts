@@ -1,0 +1,115 @@
+{
+ "hash": "082bec4cd61c0d",
+ "text": "A second elected officer, the quartermaster, hands out the food and loot, so the captain can't grab it all.",
+ "voice": "george",
+ "lead": 0,
+ "end": 5.805,
+ "dur": 5.851429,
+ "words": [
+  {
+   "w": "A",
+   "t0": 0,
+   "t1": 0.081
+  },
+  {
+   "w": "second",
+   "t0": 0.163,
+   "t1": 0.453
+  },
+  {
+   "w": "elected",
+   "t0": 0.511,
+   "t1": 0.836
+  },
+  {
+   "w": "officer,",
+   "t0": 0.882,
+   "t1": 1.335
+  },
+  {
+   "w": "the",
+   "t0": 1.393,
+   "t1": 1.486
+  },
+  {
+   "w": "quartermaster,",
+   "t0": 1.533,
+   "t1": 2.299
+  },
+  {
+   "w": "hands",
+   "t0": 2.38,
+   "t1": 2.624
+  },
+  {
+   "w": "out",
+   "t0": 2.659,
+   "t1": 2.798
+  },
+  {
+   "w": "the",
+   "t0": 2.833,
+   "t1": 2.902
+  },
+  {
+   "w": "food",
+   "t0": 2.961,
+   "t1": 3.181
+  },
+  {
+   "w": "and",
+   "t0": 3.228,
+   "t1": 3.309
+  },
+  {
+   "w": "loot,",
+   "t0": 3.367,
+   "t1": 3.762
+  },
+  {
+   "w": "so",
+   "t0": 4.017,
+   "t1": 4.133
+  },
+  {
+   "w": "the",
+   "t0": 4.191,
+   "t1": 4.261
+  },
+  {
+   "w": "captain",
+   "t0": 4.307,
+   "t1": 4.621
+  },
+  {
+   "w": "can't",
+   "t0": 4.679,
+   "t1": 4.888
+  },
+  {
+   "w": "grab",
+   "t0": 4.946,
+   "t1": 5.143
+  },
+  {
+   "w": "it",
+   "t0": 5.19,
+   "t1": 5.248
+  },
+  {
+   "w": "all.",
+   "t0": 5.306,
+   "t1": 5.805
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T05:47:02.350Z"
+}

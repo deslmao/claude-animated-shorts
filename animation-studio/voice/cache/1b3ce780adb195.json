@@ -1,0 +1,85 @@
+{
+ "hash": "1b3ce780adb195",
+ "text": "Lose an arm in battle? The crew pays you from a shared fund.",
+ "voice": "george",
+ "lead": 0,
+ "end": 3.483,
+ "dur": 3.526531,
+ "words": [
+  {
+   "w": "Lose",
+   "t0": 0,
+   "t1": 0.279
+  },
+  {
+   "w": "an",
+   "t0": 0.313,
+   "t1": 0.372
+  },
+  {
+   "w": "arm",
+   "t0": 0.43,
+   "t1": 0.58
+  },
+  {
+   "w": "in",
+   "t0": 0.627,
+   "t1": 0.697
+  },
+  {
+   "w": "battle?",
+   "t0": 0.755,
+   "t1": 1.173
+  },
+  {
+   "w": "The",
+   "t0": 1.393,
+   "t1": 1.509
+  },
+  {
+   "w": "crew",
+   "t0": 1.567,
+   "t1": 1.753
+  },
+  {
+   "w": "pays",
+   "t0": 1.811,
+   "t1": 2.043
+  },
+  {
+   "w": "you",
+   "t0": 2.101,
+   "t1": 2.183
+  },
+  {
+   "w": "from",
+   "t0": 2.229,
+   "t1": 2.368
+  },
+  {
+   "w": "a",
+   "t0": 2.403,
+   "t1": 2.426
+  },
+  {
+   "w": "shared",
+   "t0": 2.485,
+   "t1": 2.775
+  },
+  {
+   "w": "fund.",
+   "t0": 2.833,
+   "t1": 3.483
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T05:46:59.884Z"
+}

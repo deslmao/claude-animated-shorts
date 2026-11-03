@@ -1,0 +1,40 @@
+{
+ "hash": "0c01033be9b346",
+ "text": "Wait, pirates were fair?",
+ "voice": "george",
+ "lead": 0,
+ "end": 1.44,
+ "dur": 1.48898,
+ "words": [
+  {
+   "w": "Wait,",
+   "t0": 0,
+   "t1": 0.29
+  },
+  {
+   "w": "pirates",
+   "t0": 0.325,
+   "t1": 0.685
+  },
+  {
+   "w": "were",
+   "t0": 0.708,
+   "t1": 0.836
+  },
+  {
+   "w": "fair?",
+   "t0": 0.871,
+   "t1": 1.44
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T05:47:02.755Z"
+}

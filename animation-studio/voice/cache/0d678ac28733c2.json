@@ -1,0 +1,95 @@
+{
+ "hash": "0d678ac28733c2",
+ "text": "Economist Peter Leeson argues it was the only way a ship of outlaws could work.",
+ "voice": "george",
+ "lead": 0,
+ "end": 4.412,
+ "dur": 4.440816,
+ "words": [
+  {
+   "w": "Economist",
+   "t0": 0,
+   "t1": 0.534
+  },
+  {
+   "w": "Peter",
+   "t0": 0.592,
+   "t1": 0.836
+  },
+  {
+   "w": "Leeson",
+   "t0": 0.894,
+   "t1": 1.219
+  },
+  {
+   "w": "argues",
+   "t0": 1.324,
+   "t1": 1.707
+  },
+  {
+   "w": "it",
+   "t0": 1.741,
+   "t1": 1.8
+  },
+  {
+   "w": "was",
+   "t0": 1.834,
+   "t1": 1.939
+  },
+  {
+   "w": "the",
+   "t0": 1.985,
+   "t1": 2.055
+  },
+  {
+   "w": "only",
+   "t0": 2.136,
+   "t1": 2.357
+  },
+  {
+   "w": "way",
+   "t0": 2.415,
+   "t1": 2.624
+  },
+  {
+   "w": "a",
+   "t0": 2.682,
+   "t1": 2.717
+  },
+  {
+   "w": "ship",
+   "t0": 2.775,
+   "t1": 2.984
+  },
+  {
+   "w": "of",
+   "t0": 3.03,
+   "t1": 3.088
+  },
+  {
+   "w": "outlaws",
+   "t0": 3.146,
+   "t1": 3.518
+  },
+  {
+   "w": "could",
+   "t0": 3.564,
+   "t1": 3.715
+  },
+  {
+   "w": "work.",
+   "t0": 3.762,
+   "t1": 4.412
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T05:47:04.801Z"
+}

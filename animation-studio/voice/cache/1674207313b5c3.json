@@ -1,0 +1,115 @@
+{
+ "hash": "1674207313b5c3",
+ "text": "It says how the loot is shared, and the captain gets at most two shares to a sailor's one.",
+ "voice": "george",
+ "lead": 0,
+ "end": 4.83,
+ "dur": 4.858776,
+ "words": [
+  {
+   "w": "It",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "says",
+   "t0": 0.197,
+   "t1": 0.406
+  },
+  {
+   "w": "how",
+   "t0": 0.464,
+   "t1": 0.557
+  },
+  {
+   "w": "the",
+   "t0": 0.604,
+   "t1": 0.673
+  },
+  {
+   "w": "loot",
+   "t0": 0.731,
+   "t1": 0.929
+  },
+  {
+   "w": "is",
+   "t0": 0.987,
+   "t1": 1.068
+  },
+  {
+   "w": "shared,",
+   "t0": 1.103,
+   "t1": 1.521
+  },
+  {
+   "w": "and",
+   "t0": 1.66,
+   "t1": 1.788
+  },
+  {
+   "w": "the",
+   "t0": 1.823,
+   "t1": 1.892
+  },
+  {
+   "w": "captain",
+   "t0": 1.927,
+   "t1": 2.252
+  },
+  {
+   "w": "gets",
+   "t0": 2.31,
+   "t1": 2.543
+  },
+  {
+   "w": "at",
+   "t0": 2.589,
+   "t1": 2.67
+  },
+  {
+   "w": "most",
+   "t0": 2.728,
+   "t1": 2.949
+  },
+  {
+   "w": "two",
+   "t0": 2.995,
+   "t1": 3.17
+  },
+  {
+   "w": "shares",
+   "t0": 3.228,
+   "t1": 3.564
+  },
+  {
+   "w": "to",
+   "t0": 3.622,
+   "t1": 3.68
+  },
+  {
+   "w": "a",
+   "t0": 3.738,
+   "t1": 3.773
+  },
+  {
+   "w": "sailor's",
+   "t0": 3.831,
+   "t1": 4.191
+  },
+  {
+   "w": "one.",
+   "t0": 4.249,
+   "t1": 4.83
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T05:46:59.262Z"
+}

@@ -1,0 +1,45 @@
+{
+ "hash": "175b42e44248ac",
+ "text": "And the captain? He's elected.",
+ "voice": "george",
+ "lead": 0,
+ "end": 1.858,
+ "dur": 1.906939,
+ "words": [
+  {
+   "w": "And",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "the",
+   "t0": 0.197,
+   "t1": 0.267
+  },
+  {
+   "w": "captain?",
+   "t0": 0.302,
+   "t1": 0.778
+  },
+  {
+   "w": "He's",
+   "t0": 0.882,
+   "t1": 1.08
+  },
+  {
+   "w": "elected.",
+   "t0": 1.126,
+   "t1": 1.858
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-03T05:47:00.300Z"
+}
