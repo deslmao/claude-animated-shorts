@@ -49,7 +49,7 @@ export const bookshelf = (b: Batch, a: At, w = 1.2, h = 2.0, seed = 0) => {
   const m = frame(a), wd = wood("#8a5a3c"), d = 0.36, shelves = 5;
   box(b, wd, m, -w / 2, w / 2, 0, 0.06, -d / 2, d / 2); box(b, wd, m, -w / 2, w / 2, h - 0.04, h, -d / 2, d / 2);
   for (const s of [-1, 1]) box(b, wd, m, s * w / 2 - 0.03, s * w / 2 + 0.03, 0, h, -d / 2, d / 2);
-  box(b, col("#5a3b2a"), m, -w / 2, w / 2, 0, h, -d / 2, -d / 2 + 0.02);
+  box(b, col("#5a3b2a"), m, -w / 2 + 0.031, w / 2 - 0.031, 0.061, h - 0.041, -d / 2 + 0.002, -d / 2 + 0.02); // back panel inside the frame (no shared planes)
   for (let i = 0; i < shelves; i++) {
     const y = 0.06 + (i * (h - 0.1)) / shelves;
     box(b, wd, m, -w / 2, w / 2, y, y + 0.03, -d / 2, d / 2);
@@ -124,7 +124,7 @@ export const stove = (b: Batch, a: At) => {
 export const desk = (b: Batch, a: At, w = 1.4, c = "#c8a272") => {
   const m = frame(a), d = 0.7;
   rbox(b, col(c), m, 0, 0.72, 0, w, 0.04, d, 0.015);
-  for (const s of [-1, 1]) box(b, col("#7d8088"), m, s * (w / 2 - 0.06) - 0.025, s * (w / 2 - 0.06) + 0.025, 0, 0.72, -d / 2 + 0.05, d / 2 - 0.05);
+  for (const s of [-1, 1]) box(b, col("#7d8088"), m, s * (w / 2 - 0.06) - 0.025, s * (w / 2 - 0.06) + 0.025, 0, 0.72, -d / 2 + 0.06, d / 2 - 0.06);
   rbox(b, col(c), m, w / 2 - 0.25, 0.12, 0, 0.42, 0.56, d - 0.1, 0.015); // drawer unit
   for (const y of [0.3, 0.5]) box(b, col("#7d8088"), m, w / 2 - 0.3, w / 2 - 0.2, y, y + 0.02, d / 2 - 0.05, d / 2 - 0.03);
 };
@@ -134,7 +134,7 @@ export const officeChair = (b: Batch, a: At, c = "#3a3d47") => {
     const t = (i / 5) * Math.PI * 2 + 0.3, sm = m.clone().multiply(new THREE.Matrix4().makeRotationY(t));
     box(b, col("#2b2d36"), sm, -0.02, 0.02, 0.05, 0.08, 0, 0.3); sph(b, col("#2b2d36"), sm, 0, 0.035, 0.3, 0.035, 0.035, 0.035, 8);
   }
-  cyl(b, col("#7d8088"), m, 0, 0.05, 0, 0.025, 0.025, 0.38, 8);
+  cyl(b, col("#7d8088"), m, 0, 0.052, 0, 0.025, 0.025, 0.378, 8); // column base clear of the spokes' underside plane
   rbox(b, fab(c), m, 0, 0.42, 0, 0.5, 0.08, 0.48, 0.04);
   rbox(b, fab(c), m, 0, 0.55, -0.24, 0.46, 0.5, 0.07, 0.05, 0, 0.12);
 };

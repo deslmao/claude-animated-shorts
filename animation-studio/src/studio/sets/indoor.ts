@@ -26,7 +26,7 @@ export const CLASSROOM: SetDef = {
         { wall: "right", at: 1.6, w: 0.95, h: 2.1, sill: 0, kind: "door" },
       ],
     });
-    board(b, { x: 0.2, z: bz + 0.02, y: 1.6 }, 3.6, 1.25, "chalk", "science");
+    board(b, { x: 0.2, z: bz + 0.023, y: 1.6 }, 3.6, 1.25, "chalk", "science"); // back clear of the wall trim plane
     clock(b, { x: 0.2, z: bz + 0.02, y: 2.62 });
     desk(b, { x: -2.6, z: bz + 1.3 }, 1.4, "#b5875a");
     globe(b, -3.0, 0.76, bz + 1.25);
@@ -60,10 +60,10 @@ export const OFFICE: SetDef = {
     });
     for (const x of [-2.2, 0, 2.2]) {
       desk(b, { x, z: -1.4 }, 1.6, "#e2d2b4");
-      monitor(b, { x: x - 0.2, z: -1.55, y: 0.74 }, x === 0 ? "code" : "chart");
+      monitor(b, { x: x - 0.2, z: -1.55, y: 0.761 }, x === 0 ? "code" : "chart"); // on the desk top (0.76), not sunk into it
       officeChair(b, { x: x - 0.15, z: -0.6, yaw: Math.PI }, ["#3a3d47", "#2f5f6a", "#8c3b4a"][Math.round(x / 2.2) + 1]);
     }
-    board(b, { x: 3.99, z: -0.2, y: 1.55, yaw: -Math.PI / 2 }, 2.4, 1.2, "white", "chart");
+    board(b, { x: 3.99, z: -0.2, y: 1.56, yaw: -Math.PI / 2 }, 2.4, 1.2, "white", "chart"); // tray clear of the chair rail
     filingCabinet(b, { x: -3.6, z: bz + 0.5 }); filingCabinet(b, { x: -3.05, z: bz + 0.5 }, "#7d8c9a");
     waterCooler(b, { x: 3.6, z: bz + 0.45 });
     plant(b, { x: 0, z: bz + 0.4 }, 1.4, "#3a3d47", 7);

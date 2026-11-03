@@ -38,10 +38,10 @@ export const CITY: SetDef = {
     for (let k = -3; k <= 3; k++) decal(b, col("#f2eee4"), frame({ x: 0, z: 0 }), 12, 0.013, k * 1.1, 3.2, 0.55, Math.PI / 2);
     // buildings: north row faces +z, south row faces -z
     for (const s of [-1, 1]) {
-      let x = -90;
+      let x = -90, k = 0;
       while (x < 90) {
         const w = 8 + Math.floor(r() * 4) * 2, h = 10 + Math.floor(r() * 5) * 3.2, st = PAL[Math.floor(r() * PAL.length)];
-        modernBuilding(b, { x: x + w / 2, z: s * (7.6 + 6), yaw: s < 0 ? 0 : Math.PI, y: 0.15 }, w, 12, h, st);
+        modernBuilding(b, { x: x + w / 2, z: s * (7.6 + 6), yaw: s < 0 ? 0 : Math.PI, y: 0.15 }, w, 12, h, st, k++);
         x += w;
       }
     }
@@ -75,7 +75,7 @@ export const OLDTOWN: SetDef = {
     b.add(quadUp(-60, 60, -60, 60, 30, 30), tex("cobbleHD", cobbleHD, 1, 1));
     b.add(quadUp(-400, 400, -400, 400, 100, 100, -0.01), lam("grassHD", () => ({ map: grassHD() })));
     // houses around the square (fronts face the centre)
-    const row = (n: number, place: (i: number, w: number) => { x: number; z: number; yaw: number }) => { for (let i = 0; i < n; i++) { const w = 7 + Math.floor(r() * 3), h = [7, 8.4, 9.8][Math.floor(r() * 3)]; const p = place(i, w); house(b, { ...p, y: 0 }, w, 8, h, Math.floor(r() * 8)); } };
+    const row = (n: number, place: (i: number, w: number) => { x: number; z: number; yaw: number }) => { for (let i = 0; i < n; i++) { const w = 7 + Math.floor(r() * 3), h = [7, 8.4, 9.8][Math.floor(r() * 3)]; const p = place(i, w); house(b, { ...p, y: 0 }, w, 8, h, Math.floor(r() * 8), i); } };
     row(5, (i) => ({ x: -18 + i * 9, z: -18, yaw: 0 }));
     row(4, (i) => ({ x: -19, z: -9 + i * 8.6, yaw: Math.PI / 2 }));
     row(4, (i) => ({ x: 19, z: -9 + i * 8.6, yaw: -Math.PI / 2 }));

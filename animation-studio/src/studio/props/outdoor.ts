@@ -58,23 +58,23 @@ export const planterTree = (b: Batch, a: At, h = 4.5, seed = 5, treeFn?: (b: Bat
 export const signPost = (b: Batch, a: At, c = "#2f6a43") => { const m = frame(a); cyl(b, col("#9aa0a6"), m, 0, 0, 0, 0.04, 0.04, 2.6, 8); rbox(b, col(c), m, 0, 2.1, 0.05, 0.9, 0.36, 0.04, 0.02); rbox(b, col("#f4f0e6"), m, 0, 2.15, 0.072, 0.8, 0.26, 0.01, 0.01); };
 export const mailbox = (b: Batch, a: At) => { const m = frame(a); rbox(b, col("#c0353a"), m, 0, 0, 0, 0.5, 1.15, 0.45, 0.2); box(b, col("#2b2d36"), m, -0.15, 0.15, 0.82, 0.86, 0.22, 0.24); };
 /** modern building: w (along local x) x d x h, facade on local +z with a shopfront; flat roof with parapet */
-export const modernBuilding = (b: Batch, a: At, w: number, d: number, h: number, st: { wall: string; trim: string; sign: string; brick?: boolean; awning?: string }) => {
+export const modernBuilding = (b: Batch, a: At, w: number, d: number, h: number, st: { wall: string; trim: string; sign: string; brick?: boolean; awning?: string }, k?: number) => {
   const m = frame(a), key = `${st.wall}${w}${h}${st.sign}`;
   const front = lam("mf" + key, () => ({ map: modernFacadeHD(key, w, h, { ...st, shop: true }) }));
   const side = lam("ms" + st.wall + h, () => ({ map: modernFacadeHD(st.wall + "s" + h, 10, h, { ...st, shop: false }) }));
-  const hw = w / 2, hd = d / 2;
+  const j = k === undefined ? zj(a) : 0.004 * (1 + (k % 3)), hw = w / 2 - j, hd = d / 2;
   b.add(quad(V(-hw, 0, hd), V(hw, 0, hd), V(hw, h, hd), V(-hw, h, hd)), front, m);
   b.add(quad(V(-hw, 0, -hd), V(-hw, 0, hd), V(-hw, h, hd), V(-hw, h, -hd), d / 10, 1), side, m);
   b.add(quad(V(hw, 0, hd), V(hw, 0, -hd), V(hw, h, -hd), V(hw, h, hd), d / 10, 1), side, m);
   b.add(quad(V(-hw, h, hd), V(hw, h, hd), V(hw, h, -hd), V(-hw, h, -hd)), col("#8d8780"), m);
-  box(b, col(st.trim), m, -hw - 0.1, hw + 0.1, h, h + 0.6, hd - 0.25, hd + 0.1); // parapet
-  box(b, col(st.trim), m, -hw - 0.05, hw + 0.05, 3.98, 4.12, hd, hd + 0.18);     // shopfront cornice
+  box(b, col(st.trim), m, -hw - 0.1, hw + 0.1, h - j, h + 0.6 + j, hd - 0.25 - j, hd + 0.1 + j); // parapet
+  box(b, col(st.trim), m, -hw - 0.05, hw + 0.05, 3.98 - j, 4.12 + j, hd + j / 2, hd + 0.18 + j); // shopfront cornice
   if (st.awning) { // striped fabric awning over the shop window
     const aw = tex("awn" + st.awning, () => fabricHD(st.awning!), 1, 1);
     b.add(quad(V(-hw + 0.3, 3.0, hd + 1.2), V(hw * 0.25, 3.0, hd + 1.2), V(hw * 0.25, 3.6, hd + 0.05), V(-hw + 0.3, 3.6, hd + 0.05)), aw, m);
     box(b, col(st.trim), m, -hw + 0.3, hw * 0.25, 2.9, 3.02, hd + 1.15, hd + 1.25);
   }
-  box(b, col("#9a948c"), m, -hw - 0.05, hw + 0.05, 0, 0.3, hd, hd + 0.08); // plinth
+  box(b, col("#9a948c"), m, -hw - 0.05, hw + 0.05, 0, 0.3 + j, hd, hd + 0.08 + j); // plinth
 };
 
 // ---------------- old town ----------------
@@ -90,13 +90,18 @@ const roofMat = (c: string) => lam("roof" + c, () => ({ map: roofHD(c, c === "#8
 const UB = new THREE.BoxGeometry(1, 1, 1);
 const ub = (b: Batch, mat: THREE.Material, m: THREE.Matrix4, x0: number, x1: number, y0: number, y1: number, z0: number, z1: number) =>
   b.add(UB, mat, m.clone().multiply(new THREE.Matrix4().compose(V((x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2), new THREE.Quaternion(), V(x1 - x0, y1 - y0, z1 - z0))));
+/** a few millimetres that differ from building to building (by position, so always the same for the same placement):
+ *  neighbouring buildings with equal sizes would otherwise put trims, roofs and walls in exactly the same planes and
+ *  z-fight (flicker) on camera moves. npm run test:zfight checks every set. */
+const zj = (a: At) => { const v = Math.sin(a.x * 12.9898 + a.z * 78.233 + (a.yaw ?? 0) * 37.719) * 43758.5453; return 0.004 * (1 + Math.floor((v - Math.floor(v)) * 6)); };
 /** gabled house (front facade on local +z), w x d, wall height h, style index si */
-export const house = (b: Batch, a: At, w: number, d: number, h: number, si: number) => {
+export const house = (b: Batch, a: At, w: number, d: number, h: number, si: number, k?: number) => {
   const st = HOUSE_STYLES[si % HOUSE_STYLES.length], m = frame(a);
   const front = lam(`hf${si}_${w}_${h}`, () => ({ map: facadeHD(`hf${si}_${w}_${h}`, w, h, { ...st, door: true }) }));
   const side = lam(`hs${si}_${h}`, () => ({ map: facadeHD(`hs${si}_${h}`, 8, h, st) }));
   const wall = lam("wall" + st.wall, () => ({ color: st.brick ? "#c8643f" : st.wall }));
-  const hw = w / 2, hd = d / 2, rh = d * 0.42, o = 0.35;
+  // k = index in a row of houses: neighbours then always get different offsets
+  const j = k === undefined ? zj(a) : 0.004 * (1 + (k % 3)), hw = w / 2 - j, hd = d / 2 - j, rh = d * 0.42, o = 0.35 + 2 * j;
   b.add(quad(V(-hw, 0, hd), V(hw, 0, hd), V(hw, h, hd), V(-hw, h, hd)), front, m);
   b.add(quad(V(hw, 0, -hd), V(-hw, 0, -hd), V(-hw, h, -hd), V(hw, h, -hd)), side, m);
   b.add(quad(V(-hw, 0, -hd), V(-hw, 0, hd), V(-hw, h, hd), V(-hw, h, -hd)), side, m);
@@ -173,14 +178,14 @@ export const fountain = (b: Batch, a: At) => {
 export const shopfront = (b: Batch, a: At, w = 7, kind: "cafe" | "books" | "grocer" = "cafe", c = "#2f5f6a", awn = "#c0353a", treeFn?: (b: Batch, x: number, y: number, z: number, h: number, seed: number) => void) => {
   const m = frame(a), frameC = col(c), trimC = col("#f2ead8"), inside = glow("shopin" + kind, () => ({ map: shopInteriorHD(kind) }));
   const hw = w / 2;
-  box(b, col("#9a948c"), m, -hw, hw, 0, 0.5, 0, 0.12);                                   // stall riser
+  box(b, col("#9a948c"), m, -hw, hw, 0, 0.5, 0.002, 0.12);                               // stall riser
   for (const [x0, x1] of [[-hw + 0.3, 0.6], [1.9, hw - 0.3]]) {                          // two windows
     b.add(new THREE.PlaneGeometry(x1 - x0, 2.3).translate((x0 + x1) / 2, 1.65, 0.05), inside, m);
-    for (const [a0, a1, b0, b1] of [[x0 - 0.12, x0, 0.5, 2.92], [x1, x1 + 0.12, 0.5, 2.92], [x0 - 0.12, x1 + 0.12, 2.8, 2.95], [x0 - 0.12, x1 + 0.12, 0.42, 0.52]]) box(b, frameC, m, a0, a1, b0, b1, 0.0, 0.16);
+    for (const [a0, a1, b0, b1] of [[x0 - 0.12, x0, 0.5, 2.92], [x1, x1 + 0.12, 0.5, 2.92], [x0 - 0.12, x1 + 0.12, 2.8, 2.95], [x0 - 0.12, x1 + 0.12, 0.42, 0.52]]) box(b, frameC, m, a0, a1, b0, b1, 0.004, 0.16);
     for (let x = x0 + (x1 - x0) / 3; x < x1 - 0.05; x += (x1 - x0) / 3) box(b, frameC, m, x - 0.03, x + 0.03, 0.5, 2.8, 0.06, 0.12);
   }
   b.add(new THREE.PlaneGeometry(1.1, 2.45).translate(1.25, 1.25, 0.04), inside, m);       // glazed door
-  for (const [a0, a1, b0, b1] of [[0.6, 0.72, 0, 2.6], [1.78, 1.9, 0, 2.6], [0.6, 1.9, 2.48, 2.6], [0.6, 1.9, 1.05, 1.13]]) box(b, frameC, m, a0, a1, b0, b1, 0.0, 0.14);
+  for (const [a0, a1, b0, b1] of [[0.6, 0.72, 0, 2.6], [1.78, 1.9, 0, 2.6], [0.6, 1.9, 2.48, 2.6], [0.6, 1.9, 1.05, 1.13]]) box(b, frameC, m, a0, a1, b0, b1, 0.004, 0.14);
   rbox(b, col(c), m, 0, 3.15, 0.12, w + 0.2, 0.75, 0.2, 0.04);                          // sign board
   for (let k = 0; k < 4; k++) rbox(b, trimC, m, -0.9 + k * 0.6, 3.32, 0.23, 0.42, 0.42, 0.03, 0.1); // painted letters (no words)
   // awning: striped, sloping out over the pavement, scalloped hem

@@ -13,6 +13,7 @@ export type RoomSpec = { w: number; d: number; h: number; floor: THREE.Material;
   trim?: string; ceiling?: string; tiles?: boolean; openings?: Opening[] };
 
 const T = 0.15; // wall thickness
+const ZF = 0.002; // gap that keeps hidden surfaces out of a visible surface's plane (depth precision at 6 m: ~0.02 mm)
 /** a wall slab along its own x (length L, height H) with rectangular holes; returns boxes in wall-local coords */
 const slabs = (L: number, H: number, holes: { x0: number; x1: number; y0: number; y1: number }[]) => {
   const out: [number, number, number, number][] = []; // x0 x1 y0 y1
@@ -51,8 +52,10 @@ export const buildRoom = (root: THREE.Object3D, s: RoomSpec) => {
         walls.add(quad(V(x0, y0, 0), V(x1, y0, 0), V(x1, Math.min(y1, lowerH), 0), V(x0, Math.min(y1, lowerH), 0), (x1 - x0) / 1, (Math.min(y1, lowerH) - y0) / 1), s.lower, sd.m);
         if (y1 > lowerH) walls.add(quad(V(x0, lowerH, 0), V(x1, lowerH, 0), V(x1, y1, 0), V(x0, y1, 0), (x1 - x0) / 2, (y1 - lowerH) / 2), s.wall, sd.m);
       } else walls.add(quad(V(x0, y0, 0), V(x1, y0, 0), V(x1, y1, 0), V(x0, y1, 0), (x1 - x0) / 2, (y1 - y0) / 2), s.wall, sd.m);
-      // wall thickness: a box behind the face so openings show depth
-      walls.add(new THREE.BoxGeometry(x1 - x0, y1 - y0, T).translate((x0 + x1) / 2, (y0 + y1) / 2, -T / 2), col("#d9d2c4"), sd.m);
+      // wall thickness: a box BEHIND the face so openings show depth. Its front stops ZF short of the face: when the two
+      // shared a plane they z-fought, and the wall flickered between wallpaper and plain beige on camera moves
+      // (Short-tickle run 11). npm run test:zfight checks every set for coplanar surfaces.
+      walls.add(new THREE.BoxGeometry(x1 - x0 - 2 * ZF, y1 - y0 - 2 * ZF, T - ZF).translate((x0 + x1) / 2, (y0 + y1) / 2, -(T + ZF) / 2), col("#d9d2c4"), sd.m);
     }
     // skirting + cornice + chair rail
     box(detail, trim, sd.m, 0, sd.L, 0, 0.12, 0, 0.025);

@@ -102,7 +102,7 @@ const cannon = (b: Batch, a: At) => {
   box(b, wood, m, -0.3, 0.3, 0.12, 0.42, -0.55, 0.45);                       // carriage
   box(b, wood, m, -0.3, 0.3, 0.42, 0.58, -0.55, -0.1);                       // stepped rear
   for (const sx of [-1, 1]) for (const z of [-0.42, 0.32]) cyl(b, dark, m, sx * 0.31, 0.14, z, 0.14, 0.14, 0.07, 14, 0, (sx * Math.PI) / 2); // wheels
-  cyl(b, iron, m, 0, 0.55, -0.55, 0.2, 0.15, 1.45, 18, Math.PI / 2);         // barrel
+  cyl(b, iron, m, 0, 0.55, -0.53, 0.2, 0.15, 1.43, 18, Math.PI / 2);         // barrel (base clear of the carriage's rear plane)
   sph(b, iron, m, 0, 0.55, -0.6, 0.19, 0.19, 0.17);                          // breech
   cyl(b, iron, m, 0, 0.55, 0.82, 0.19, 0.19, 0.1, 18, Math.PI / 2);          // muzzle ring
   cyl(b, col("#16161c"), m, 0, 0.55, 0.9, 0.1, 0.1, 0.03, 14, Math.PI / 2);  // bore
@@ -246,10 +246,10 @@ const shipDeck = (cams?: View[]) => {
   // quarterdeck: a raised stern deck with a front wall, two stairs, a balustrade and the ship's wheel
   box(b, side, I, -HB, HB, 0, QH, QZ, Z1);
   b.add(quadUp(-HB, HB, QZ, Z1, 1.2, 1.2, QH + 0.002), deck);
-  box(b, dark, I, -HB, HB, QH - 0.08, QH + 0.02, QZ - 0.06, QZ + 0.04);
+  box(b, dark, I, -HB + 0.002, HB - 0.002, QH - 0.08, QH + 0.02, QZ - 0.06, QZ + 0.04);
   for (const s of [-1, 1]) for (let k = 0; k < 5; k++) { const h = (QH * (k + 1)) / 5, z = QZ - 0.32 * (5 - k); box(b, wood, I, s * 2.2 - 0.5, s * 2.2 + 0.5, 0, h, z, z + 0.32); }
   for (let x = -HB + 0.15; x <= HB - 0.15; x += 0.3) if (Math.abs(Math.abs(x) - 2.2) > 0.6) cyl(b, wood, I, x, QH, QZ + 0.1, 0.035, 0.035, 0.75, 6);
-  for (const [x0, x1] of [[-HB, -2.8], [-1.6, 1.6], [2.8, HB]]) box(b, dark, I, x0, x1, QH + 0.75, QH + 0.83, QZ + 0.04, QZ + 0.16);
+  for (const [x0, x1] of [[-HB + 0.002, -2.8], [-1.6, 1.6], [2.8, HB - 0.002]]) box(b, dark, I, x0, x1, QH + 0.75, QH + 0.83, QZ + 0.04, QZ + 0.16);
   for (const s of [-1, 1]) { box(b, side, I, s > 0 ? HB - 0.12 : -HB, s > 0 ? HB : -HB + 0.12, QH, QH + 0.95, QZ, Z1); box(b, dark, I, s > 0 ? HB - 0.16 : -HB - 0.04, s > 0 ? HB + 0.04 : -HB + 0.16, QH + 0.95, QH + 1.03, QZ, Z1); }
   box(b, side, I, -HB, HB, QH, QH + 0.95, Z1 - 0.12, Z1);
   shipWheel(b, { x: SP.wheel[0] - 0.8, y: QH, z: SP.wheel[2] - 0.45, yaw: 0 });
@@ -336,7 +336,7 @@ const rowboat = (b: Batch, a: At) => {
   const m = frame(a), wood = col("#9a6a42"), dark = col("#6b4226"), inside = col("#b88a5a");
   for (let i = 0; i < 7; i++) {
     const t = i / 6, z = -1.3 + 2.6 * t, w = 0.62 * Math.sin(Math.PI * (0.12 + 0.82 * t)) + 0.05;
-    box(b, i % 2 ? wood : dark, m, -w, w, 0.05, 0.12, z - 0.2, z + 0.2);
+    box(b, i % 2 ? wood : dark, m, -w + 0.002, w - 0.002, 0.05, 0.12, z - 0.198, z + 0.198);
     for (const s of [-1, 1]) box(b, wood, m, s > 0 ? w - 0.05 : -w, s > 0 ? w : -w + 0.05, 0.1, 0.5, z - 0.2, z + 0.2);
   }
   box(b, inside, m, -0.5, 0.5, 0.3, 0.36, -0.15, 0.15);

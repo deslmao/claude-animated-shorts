@@ -49,13 +49,14 @@
     "test:regression": "node scripts/regression.mjs",
     "test:library": "esbuild scripts/library-test.ts --bundle --platform=node --format=esm --outfile=out/library-test.mjs --log-level=warning && esbuild scripts/floor-map.ts --bundle --platform=node --format=esm --outfile=out/floor-map.mjs --log-level=warning && esbuild scripts/assets.ts --bundle --platform=node --format=esm --outfile=out/assets.mjs --log-level=warning && node out/library-test.mjs",
     "preflight": "esbuild scripts/preflight.ts --bundle --platform=node --format=esm --outfile=out/preflight.mjs --log-level=warning && node out/preflight.mjs",
-    "test": "npm run lint && npm run test:framing && npm run test:story && npm run test:library",
+    "test": "npm run lint && npm run test:framing && npm run test:story && npm run test:library && npm run test:zfight",
     "sound": "esbuild scripts/sound.ts --bundle --platform=node --format=esm --outfile=out/sound.mjs --log-level=warning && node out/sound.mjs",
     "test:sound": "esbuild scripts/sound.ts --bundle --platform=node --format=esm --outfile=out/sound.mjs --log-level=warning && node out/sound.mjs --catalog > out/sound-catalog.json && python3 sound/check.py out/sound-catalog.json",
     "floor-map": "esbuild scripts/floor-map.ts --bundle --platform=node --format=esm --outfile=out/floor-map.mjs --log-level=warning && node out/floor-map.mjs",
     "assets": "esbuild scripts/assets.ts --bundle --platform=node --format=esm --outfile=out/assets.mjs --log-level=warning && node out/assets.mjs",
     "short": "esbuild scripts/short.ts --bundle --platform=node --format=esm --outfile=out/short.mjs --log-level=warning && NODE_USE_ENV_PROXY=1 node out/short.mjs",
-    "script": "esbuild scripts/script.ts --bundle --platform=node --format=esm --outfile=out/script.mjs --log-level=warning && node out/script.mjs"
+    "script": "esbuild scripts/script.ts --bundle --platform=node --format=esm --outfile=out/script.mjs --log-level=warning && node out/script.mjs",
+    "test:zfight": "esbuild scripts/zfight-test.ts --bundle --platform=node --format=esm --outfile=out/zfight-test.mjs --log-level=warning && node out/zfight-test.mjs"
   },
   "allowScripts": {
     "esbuild": false
