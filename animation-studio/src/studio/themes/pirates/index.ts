@@ -3,6 +3,8 @@
 // base library: a ship's deck set, a crew (captain, quartermaster, pirate outfits for the leads, the "pirate" crowd
 // era in characters/cast.ts), ship props and hand-held items. Base items already in the library and reused here:
 // treasure map, gold coin, compass, cutlass, telescope, flag, bottle; props: barrel, crate.
+// Added for "The truth about buried pirate treasure" (only what the library search showed missing): the desert
+// island set, palm tree, dig spot, rowboat and the shovel item.
 import * as THREE from "three";
 import type { Theme } from "..";
 import type { Look } from "../../characters/figure";
@@ -288,11 +290,114 @@ const shipDeck = (cams?: View[]) => {
   return { root, env: {}, spots: DECK_LAYOUT.spots, views };
 };
 
+// ---------------- desert island (added for the buried-treasure Short) ----------------
+/** a leaning palm tree: segmented trunk, drooping fronds, coconuts. lean = degrees toward local +x */
+const palm = (b: Batch, a: At, h = 5.5, lean = 14) => {
+  const m = frame(a), bark = col("#9a7448"), bark2 = col("#86643c"), leaf = col("#4f9a3a"), leaf2 = col("#3f8430"), nut = col("#6b4a2a");
+  const n = 9; let x = 0, y = 0;
+  for (let i = 0; i < n; i++) {
+    const t = i / n, ang = (lean * deg) * (0.4 + t), seg = h / n, r0 = 0.2 - 0.07 * t;
+    const nx = x + Math.sin(ang) * seg, ny = y + Math.cos(ang) * seg;
+    rod(b, i % 2 ? bark : bark2, m, [x, y, 0], [nx, ny, 0], r0, 10);
+    sph(b, i % 2 ? bark2 : bark, m, x, y + 0.02, 0, r0 * 1.12, 0.07, r0 * 1.12, 10);
+    x = nx; y = ny;
+  }
+  for (let k = 0; k < 8; k++) {
+    const az = (k / 8) * Math.PI * 2 + 0.3, L = 2.1, droop = k % 2 ? 0.75 : 0.55;
+    const ex = x + Math.cos(az) * L, ez = Math.sin(az) * L, ey = y - droop;
+    const mx = x + Math.cos(az) * L * 0.5, mz = Math.sin(az) * L * 0.5, my = y + 0.25;
+    for (const [p0, p1] of [[[x, y, 0], [mx, my, mz]], [[mx, my, mz], [ex, ey, ez]]] as [V3, V3][]) {
+      const c: V3 = [(p0[0] + p1[0]) / 2, (p0[1] + p1[1]) / 2, (p0[2] + p1[2]) / 2], len = Math.hypot(p1[0] - p0[0], p1[1] - p0[1], p1[2] - p0[2]);
+      const q = new THREE.Quaternion().setFromUnitVectors(V(1, 0, 0), V(p1[0] - p0[0], p1[1] - p0[1], p1[2] - p0[2]).normalize());
+      b.add(new THREE.SphereGeometry(1, 12, 8), k % 2 ? leaf : leaf2, m.clone().multiply(new THREE.Matrix4().compose(V(...c), q, V(len / 2, 0.05, 0.32))));
+    }
+  }
+  for (const [dx, dz] of [[0.14, 0.08], [-0.08, 0.14], [0.02, -0.15]]) sph(b, nut, m, x + dx, y - 0.2, dz, 0.13, 0.13, 0.13, 10);
+};
+/** a place to dig: variant "x" = a big X marked in the sand; "dug" = a hole with a heap of sand beside it */
+const sandTex = () => ctex("sandHD", 1024, 1024, (g, r) => {
+  g.fillStyle = "#efd59a"; g.fillRect(0, 0, 1024, 1024);
+  for (let i = 0; i < 900; i++) { g.fillStyle = r() < 0.5 ? "rgba(196,160,96,0.35)" : "rgba(255,240,200,0.45)"; g.beginPath(); g.arc(r() * 1024, r() * 1024, 1 + r() * 3.5, 0, 7); g.fill(); }
+  g.strokeStyle = "rgba(190,150,90,0.25)"; g.lineWidth = 3;
+  for (let i = 0; i < 26; i++) { const y = r() * 1024; g.beginPath(); g.moveTo(0, y); g.bezierCurveTo(340, y + 18, 680, y - 18, 1024, y + (r() - 0.5) * 10); g.stroke(); }
+});
+const digSpot = (b: Batch, a: At, kind: "x" | "dug" = "x") => {
+  const m = frame(a), mark = col("#8a5a2c"), sand = col("#e2c27f");
+  if (kind === "x") for (const t of [45, -45]) box(b, mark, m.clone().multiply(new THREE.Matrix4().makeRotationY(t * deg)), -0.55, 0.55, 0.005, 0.025, -0.07, 0.07);
+  else {
+    b.add(new THREE.CircleGeometry(0.42, 24).rotateX(-Math.PI / 2).translate(0, 0.012, 0), col("#6b4a2a"), m);
+    b.add(new THREE.CircleGeometry(0.3, 24).rotateX(-Math.PI / 2).translate(0, 0.014, 0), col("#4a3420"), m);
+    sph(b, sand, m, 0.85, 0, 0.1, 0.5, 0.32, 0.42, 14);
+    sph(b, sand, m, 0.6, 0, -0.32, 0.3, 0.18, 0.28, 12);
+  }
+};
+/** a small wooden rowboat pulled up on the shore (bow along local -z) */
+const rowboat = (b: Batch, a: At) => {
+  const m = frame(a), wood = col("#9a6a42"), dark = col("#6b4226"), inside = col("#b88a5a");
+  for (let i = 0; i < 7; i++) {
+    const t = i / 6, z = -1.3 + 2.6 * t, w = 0.62 * Math.sin(Math.PI * (0.12 + 0.82 * t)) + 0.05;
+    box(b, i % 2 ? wood : dark, m, -w, w, 0.05, 0.12, z - 0.2, z + 0.2);
+    for (const s of [-1, 1]) box(b, wood, m, s > 0 ? w - 0.05 : -w, s > 0 ? w : -w + 0.05, 0.1, 0.5, z - 0.2, z + 0.2);
+  }
+  box(b, inside, m, -0.5, 0.5, 0.3, 0.36, -0.15, 0.15);
+  box(b, inside, m, -0.42, 0.42, 0.3, 0.36, 0.7, 0.95);
+  for (const s of [-1, 1]) rod(b, col("#c8a272"), m, [s * 0.55, 0.45, -0.1], [s * 0.95, 0.05, 1.3], 0.03, 6);
+};
+const shovel = (p: Pen, x: number, y: number, u: number, s: number) => {
+  // a spade held upright at the chest: long wooden shaft, T-grip on top, iron blade below
+  const tx = x + 2 * u * s;
+  p.stroke([[tx - 2 * u * s, y - 46 * u], [tx + 4 * u * s, y + 52 * u]], 4.4 * u, "#3a2340");
+  p.stroke([[tx - 2 * u * s, y - 46 * u], [tx + 4 * u * s, y + 52 * u]], 2.4 * u, "#a8743f");
+  p.stroke([[tx - 9 * u, y - 47 * u], [tx + 5 * u, y - 46 * u]], 3.4 * u, "#a8743f");
+  const bx = tx + 4.5 * u * s, by = y + 52 * u;
+  p.poly([[bx - 9 * u, by], [bx + 9 * u, by], [bx + 8 * u, by + 16 * u], [bx, by + 22 * u], [bx - 8 * u, by + 16 * u]], "#9aa3ab", 3 * u);
+};
+const IS = { a: [-0.8, 0, 0.6] as V3, b: [0.4, 0, 0.1] as V3, c: [1.5, 0, 0.8] as V3, dig: [0.5, 0, -1.4] as V3 };
+const ISLAND_LAYOUT: Layout = {
+  spots: { a: IS.a, b: IS.b, c: IS.c, d: [-1.9, 0, -1.1], e: [2.3, 0, -1.3], dig: IS.dig, palm: [-2.1, 0, -2.0], boat: [3.2, 0, -3.3], shore: [0.2, 0, -4.6] },
+  views: [
+    { name: "beach wide", pos: [0.5, 1.75, 7.2], look: [0.2, 1.3, -8], fov: 50 },
+    fit("two-shot", [IS.a, IS.b], { size: "medium", from: 6, height: 1.45, fov: 40 }, { cInf: 10 }),
+    { name: "dig", pos: [1.7, 2.5, 2.4], look: [0.4, 0.8, -1.6], fov: 46, cInf: 8, focus: [0.5, 1.4, -1.4] },
+    fit("close", [IS.a], { size: "close", from: 12, height: 1.4, fov: 34 }, { cInf: 13 }),
+  ],
+};
+const island = (cams?: View[]) => {
+  const root = new THREE.Group(), b = new Batch(), r = rng(91), I = new THREE.Matrix4();
+  const views = ISLAND_LAYOUT.views, all = cams ? [...views, ...cams] : views;
+  // keep props off the acting marks (the place marks "palm" / "boat" stand next to their prop on purpose)
+  const marks = ["a", "b", "c", "d", "e", "dig", "shore"].map((k) => ISLAND_LAYOUT.spots[k]);
+  const free = (x: number, z: number, rad: number, near = 6) => clearOf(all, x, z, rad, near) && marks.every((p) => Math.hypot(p[0] - x, p[2] - z) > rad + 0.55);
+  // sea, then the beach: a sand bank whose shoreline runs across the frame behind the marks, wet sand and foam
+  b.add(quadUp(-900, 900, -900, 900, 1, 1, -0.06), col("#2f86b8"));
+  b.add(quadUp(-80, 80, -40, -6, 1, 1, -0.05), col("#43a3c9"));
+  b.add(quadUp(-80, 80, -8.5, -6.6, 1, 1, -0.045), col("#6cc3d8"));
+  const sand = tex("sandHD", sandTex, 6, 6);
+  b.add(quadUp(-60, 60, -7, 40, 30, 24, 0), sand);
+  b.add(quadUp(-60, 60, -7.6, -6.9, 1, 1, 0.004), col("#d8b878"));
+  for (let i = 0; i < 18; i++) { const x = -26 + i * 3 + (r() - 0.5), w = 1 + r() * 1.4; b.add(quadUp(x - w, x + w, -7.75, -7.55, 1, 1, -0.03), col("#f2fafc")); }
+  for (let i = 0; i < 40; i++) { const x = (r() - 0.5) * 120, z = -12 - r() * 60, w = 0.5 + r() * 1.3; b.add(quadUp(x - w, x + w, z - 0.06, z + 0.06, 1, 1, -0.04), col("#d9eef5")); }
+  // rocks along the shoreline
+  for (const [x, z, sx, sy] of [[-4.6, -6.4, 1.3, 0.9], [-3.4, -6.9, 0.7, 0.45], [5.2, -6.6, 1.1, 0.75], [6.3, -6.0, 0.6, 0.4], [-9, -6, 2.2, 1.6], [9.5, -5.8, 1.8, 1.2]] as const)
+    if (free(x, z, sx, 3)) sph(b, col(sx > 1.5 ? "#8c8a88" : "#9c9a96"), I, x, 0, z, sx, sy, sx * 0.8, 14);
+  // palms (kept off the views' sight lines and the marks)
+  for (const [x, z, h, lean, yaw] of [[-2.9, -2.9, 5.6, 16, 2.6], [-5.2, -0.8, 6.2, 12, 3.4], [4.6, -1.8, 5.2, 18, 0.5], [6.2, 1.2, 6.4, 10, 0.2], [-7.5, 3.5, 5.8, 14, 3.0], [8.5, -3.8, 5.0, 20, 0.8], [-11, -3, 6.6, 9, 2.4]] as const)
+    if (free(x, z, 0.4, 3)) palm(b, { x, z, yaw }, h, lean);
+  // beach clutter: shells, a driftwood log, grass tufts at the back of the beach, the rowboat
+  for (let i = 0; i < 26; i++) { const x = (r() - 0.5) * 16, z = -6 + r() * 14; if (free(x, z, 0.1)) sph(b, col(r() < 0.5 ? "#f6e6d8" : "#e8b8a8"), I, x, 0, z, 0.06, 0.03, 0.05, 8); }
+  if (free(-3.6, 1.8, 0.8)) rod(b, col("#b8a48a"), I, [-4.3, 0.12, 1.5], [-2.9, 0.12, 2.1], 0.12, 10);
+  for (const [x, z] of [[-6, 6], [-4, 9], [5, 7], [7, 4], [-9, 1]] as const) if (free(x, z, 0.6)) for (let k = 0; k < 7; k++) rod(b, col(k % 2 ? "#7aa83f" : "#5a9c43"), I, [x + (r() - 0.5) * 0.5, 0, z + (r() - 0.5) * 0.5], [x + (r() - 0.5) * 1.2, 0.5 + r() * 0.4, z + (r() - 0.5) * 1.2], 0.02, 4);
+  if (free(3.4, -4.6, 0.9, 3)) rowboat(b, { x: 3.4, z: -4.6, yaw: -0.5 });
+  b.build(root, true);
+  return { root, env: {}, spots: ISLAND_LAYOUT.spots, views };
+};
+
 export const PIRATES: Theme = {
   id: "pirates", name: "Pirates and the golden age of sail", desc: "a pirate ship's deck, a pirate crew (captain, quartermaster, Captain Kidd, pirate outfits for the leads, pirate extras), ship props and pirate hand-held items",
   tags: ["pirates", "ship", "sea", "sailing", "history", "1700s", "treasure", "navy"],
   mood: "adventure",
-  ambience: { shipDeck: "amb_sea" },
+  ambience: { shipDeck: "amb_sea", island: "amb_sea" },
+  steps: { island: "step_grass" },
   characters: { captain: CAPTAIN, quartermaster: QUARTERMASTER, kidd: KIDD, miloPirate: MILO_PIRATE, junoPirate: JUNO_PIRATE, gusPirate: GUS_PIRATE },
   characterMeta: {
     captain: { name: "Captain Redd", desc: "tall; black curls; goatee and thin moustache; gold-braided tricorn; red frock coat with brass buttons", personality: "a swaggering pirate captain who has to keep his crew's votes", themes: ["pirates", "history", "sea"], tags: ["captain", "pirate", "leader", "male"] },
@@ -309,14 +414,21 @@ export const PIRATES: Theme = {
     shipWheel: { name: "Ship's wheel", desc: "ship's wheel on its post (the helmsman stands on its +z side)", category: "theme", themes: ["pirates", "sea", "navy"], tags: ["steer", "helm", "ship", "navigate", "captain"], radius: 0.6, height: 1.7, build: shipWheel },
     ropeCoil: { name: "Rope coil", desc: "coil of rope on the deck / dock", category: "theme", themes: ["pirates", "sea", "harbour"], tags: ["rope", "ship", "dock"], radius: 0.35, height: 0.3, build: ropeCoil },
     anchor: { name: "Anchor", desc: "iron ship's anchor standing on its crown", category: "theme", themes: ["pirates", "sea", "harbour", "navy"], tags: ["ship", "dock", "harbour"], radius: 0.5, height: 1.6, build: anchor },
+    palmTree: { name: "Palm tree", desc: "leaning coconut palm, ~5.5 m", category: "theme", themes: ["pirates", "island", "tropical", "beach"], tags: ["tree", "island", "beach", "coconut", "tropical"], radius: 0.6, height: 5.5, build: (b, a) => palm(b, a) },
+    digSpot: { name: "Dig spot", desc: "a place to dig in sand (variants: x = X marks the spot, dug = hole with a heap of sand)", category: "theme", themes: ["pirates", "island", "beach", "treasure"], tags: ["dig", "bury", "x marks the spot", "hole", "sand", "treasure"], radius: 0.6, height: 0.35,
+      build: (b, a) => digSpot(b, a), variants: { x: (b, a) => digSpot(b, a, "x"), dug: (b, a) => digSpot(b, a, "dug") } },
+    rowboat: { name: "Rowboat", desc: "small wooden rowboat with oars, pulled up on a shore", category: "theme", themes: ["pirates", "sea", "harbour", "island"], tags: ["boat", "row", "shore", "landing"], radius: 1.4, height: 0.55, build: rowboat },
     jollyRoger: { name: "Jolly Roger", desc: "pirate flag (skull and crossbones) on a 3.2 m pole", category: "theme", themes: ["pirates"], tags: ["flag", "skull", "ship", "pirate"], radius: 0.3, height: 3.2, build: jollyRoger },
   },
   items: {
     scroll: { name: "Scroll", desc: "unrolled parchment with writing, signatures and a red seal (articles, a contract, a decree)", themes: ["pirates", "history", "law"], tags: ["contract", "rules", "articles", "law", "document", "vote"], draw: scroll },
     coinBag: { name: "Coin purse", desc: "tied leather purse with gold coins peeking out (a share, wages, a reward)", themes: ["pirates", "history", "money"], tags: ["money", "gold", "share", "loot", "pay"], draw: coinBag },
+    shovel: { name: "Shovel", desc: "spade held upright (dig, bury, garden)", themes: ["pirates", "treasure", "garden", "work"], tags: ["dig", "bury", "treasure", "spade", "garden"], draw: shovel },
     tricorn: { name: "Tricorn hat (in hand)", desc: "a captain's gold-braided tricorn held in the hand (doffed, humble, nervous)", themes: ["pirates", "history"], tags: ["hat", "captain", "humble", "nervous"], draw: tricornHat },
   },
-  sets: { shipDeck: { id: "shipDeck", title: "Pirate ship: main deck at sea", lights: ["day", "golden", "night"], build: shipDeck } },
-  layouts: { shipDeck: DECK_LAYOUT },
-  setMeta: { shipDeck: { name: "Pirate ship deck", desc: "main deck of a pirate ship at sea: planked deck, two masts with billowing sails and a crow's nest, rigging, cannons at the bulwarks, barrels, crates, rope, a hatch, a raised quarterdeck with the ship's wheel, open sea all round", themes: ["pirates", "sea", "history", "navy"], tags: ["ship", "deck", "ocean", "outdoor", "sailing", "crew"] } },
+  sets: { shipDeck: { id: "shipDeck", title: "Pirate ship: main deck at sea", lights: ["day", "golden", "night"], build: shipDeck },
+    island: { id: "island", title: "Desert island beach", lights: ["day", "golden", "night"], build: island } },
+  layouts: { shipDeck: DECK_LAYOUT, island: ISLAND_LAYOUT },
+  setMeta: { shipDeck: { name: "Pirate ship deck", desc: "main deck of a pirate ship at sea: planked deck, two masts with billowing sails and a crow's nest, rigging, cannons at the bulwarks, barrels, crates, rope, a hatch, a raised quarterdeck with the ship's wheel, open sea all round", themes: ["pirates", "sea", "history", "navy"], tags: ["ship", "deck", "ocean", "outdoor", "sailing", "crew"] },
+    island: { name: "Desert island beach", desc: "tropical island beach: sand, palm trees, rocks, shells, a rowboat on the shore, turquoise shallows, open sea and a far island", themes: ["pirates", "island", "tropical", "beach", "treasure"], tags: ["beach", "island", "sand", "sea", "outdoor", "palm", "shore", "desert island"] } },
 };

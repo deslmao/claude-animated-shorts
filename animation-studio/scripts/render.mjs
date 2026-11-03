@@ -70,9 +70,11 @@ export const render = async (o) => {
   if (o.audio) {
     // Remotion writes a silent audio track: take the picture from the render and the sound from the mix.
     // With --frames a-b the soundtrack starts at frame a (assumes 30 fps, the format of every short).
-    const offset = o.frames ? String(Number(o.frames.split("-")[0]) / 30) : "0";
-    const c = await remotion(["ffmpeg", "-v", "error", "-y", "-i", videoOut, "-ss", offset, "-i", path.resolve(o.audio), "-map", "0:v:0", "-map", "1:a:0",
-      "-c:v", "copy", "-c:a", "aac", "-b:a", "320k", "-shortest", "-movflags", "+faststart", out]);
+    // The audio is cut to the exact picture length with -t (not -shortest, which with stream copy drops the last video frames).
+    const [fa, fb] = o.frames ? o.frames.split("-").map(Number) : [0, null];
+    const offset = String(fa / 30), len = fb !== null ? ["-t", String((fb - fa + 1) / 30)] : [];
+    const c = await remotion(["ffmpeg", "-v", "error", "-y", "-i", videoOut, "-ss", offset, ...len, "-i", path.resolve(o.audio), "-map", "0:v:0", "-map", "1:a:0",
+      "-c:v", "copy", "-c:a", "aac", "-b:a", "320k", "-movflags", "+faststart", out]);
     if (c) throw new Error("muxing audio failed");
     fs.rmSync(videoOut);
   }

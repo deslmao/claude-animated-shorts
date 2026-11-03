@@ -11,7 +11,7 @@ import type { PropEntry } from "../props/registry";
 import type { ItemEntry } from "../characters/items";
 import type { SetDef } from "../sets/types";
 import type { Layout } from "../sets/layouts";
-import type { Mood, Ambience } from "../sound/catalog";
+import type { Mood, Ambience, SfxName } from "../sound/catalog";
 
 export type SetMeta = { name: string; desc: string; themes: string[]; tags: string[] };
 export type Theme = {
@@ -20,6 +20,8 @@ export type Theme = {
   mood?: Mood;
   /** the ambience bed each of the theme's sets gets (day; `night` keys as "<set>:night") */
   ambience?: Record<string, Ambience>;
+  /** footstep sound per set (default: wooden floor) */
+  steps?: Record<string, SfxName>;
   characters?: Record<string, Look>; characterMeta?: Record<string, CharacterMeta>;
   props?: Record<string, PropEntry>;
   items?: Record<string, ItemEntry>;

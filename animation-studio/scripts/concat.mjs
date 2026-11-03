@@ -13,7 +13,9 @@ if (!out || parts.length < 1) { console.error("usage: node scripts/concat.mjs <f
 const list = path.resolve(out.replace(/\.mp4$/, ".parts.txt"));
 fs.writeFileSync(list, parts.map((p) => `file '${path.resolve(p).replace(/'/g, "'\\''")}'`).join("\n") + "\n");
 const args = ["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", list];
-if (audio) args.push("-i", path.resolve(audio), "-map", "0:v:0", "-map", "1:a:0", "-c:v", "copy", "-c:a", "aac", "-b:a", "320k", "-shortest");
+// No -shortest: with stream copy it ends the output early and drops the last video frames (Short-tickle run 10 lost
+// 3 frames). The soundtrack is built to the picture's exact length (npm run sound) and QA checks the two match.
+if (audio) args.push("-i", path.resolve(audio), "-map", "0:v:0", "-map", "1:a:0", "-c:v", "copy", "-c:a", "aac", "-b:a", "320k");
 else args.push("-map", "0:v:0", "-c", "copy");
 args.push("-movflags", "+faststart", path.resolve(out));
 const code = await remotion(args);

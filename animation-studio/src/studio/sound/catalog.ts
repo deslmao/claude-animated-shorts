@@ -62,7 +62,7 @@ export const ambienceFor = (set: string, light: string): Ambience | null => {
 
 /** footstep surface per set */
 export const stepFor = (set: string): SfxName =>
-  set === "city" ? "step_hard" : set === "oldtown" ? "step_stone" : set === "nature" ? "step_grass" : "step_floor";
+  set === "city" ? "step_hard" : set === "oldtown" ? "step_stone" : set === "nature" ? "step_grass" : THEMES.find((t) => t.steps?.[set])?.steps?.[set] ?? "step_floor";
 
 /** the sound an effect mark makes (null = silent: music notes are already music) */
 export const FX_SOUND: Record<FxKind, SfxName | null> = {

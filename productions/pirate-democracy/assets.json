@@ -1,0 +1,80 @@
+{
+ "reused": 52,
+ "missing": [],
+ "byKind": {
+  "character": [
+   "miloPirate",
+   "junoPirate",
+   "gusPirate",
+   "captain",
+   "quartermaster"
+  ],
+  "mood": [
+   "adventure"
+  ],
+  "set": [
+   "shipDeck"
+  ],
+  "camera": [
+   "pushIn",
+   "frame",
+   "closeUp",
+   "view",
+   "dutch"
+  ],
+  "light": [
+   "day",
+   "golden"
+  ],
+  "ambience": [
+   "amb_sea"
+  ],
+  "effect": [
+   "question",
+   "exclaim",
+   "sparkle",
+   "sweat",
+   "hearts",
+   "confetti",
+   "anger",
+   "idea",
+   "stars"
+  ],
+  "extras": [
+   "extras:pirate"
+  ],
+  "act": [
+   "determined",
+   "embarrassed",
+   "excited",
+   "confused",
+   "suspicious",
+   "explain",
+   "proud",
+   "sad",
+   "scared",
+   "relief",
+   "neutral",
+   "nervous",
+   "happy",
+   "point",
+   "shock",
+   "angry",
+   "disgusted",
+   "thinking",
+   "idea",
+   "shrug",
+   "facepalm"
+  ],
+  "item": [
+   "sword",
+   "scroll",
+   "coinBag",
+   "book"
+  ],
+  "prop": [
+   "treasureChest",
+   "barrel"
+  ]
+ }
+}

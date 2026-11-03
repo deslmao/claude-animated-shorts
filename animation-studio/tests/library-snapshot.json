@@ -284,7 +284,8 @@
   "city": "147d1a7cb4c1a9",
   "oldtown": "147d1a7cb4c1a9",
   "nature": "147d1a7cb4c1a9",
-  "shipDeck": "1241fe42efbc0d"
+  "shipDeck": "1241fe42efbc0d",
+  "island": "1241fe42efbc0d"
  },
  "marks": {
   "home:a": "0750ac791c5d2d",
@@ -348,7 +349,16 @@
   "shipDeck:mast": "088154ed3bb28c",
   "shipDeck:hatch": "0fc8a678c26588",
   "shipDeck:bow": "1f7cdbaa9c34c0",
-  "shipDeck:wheel": "11b833dcc6f5fa"
+  "shipDeck:wheel": "11b833dcc6f5fa",
+  "island:a": "0a4fe5ce17bfe2",
+  "island:b": "129d55e5eab9a3",
+  "island:c": "04a23a6bd5d311",
+  "island:d": "0351ac221e3dde",
+  "island:e": "023cbe5adfe4c7",
+  "island:dig": "1c3e1f72a5c01c",
+  "island:palm": "14d3cbe46463e8",
+  "island:boat": "086260b45adde3",
+  "island:shore": "132ebfb3417ec4"
  },
  "views": {
   "home:wide": "12d193f00443bb",
@@ -383,7 +393,11 @@
   "shipDeck:two-shot": "0ce7ccfea8be06",
   "shipDeck:at the rail": "02c81025f6ea63",
   "shipDeck:helm": "12f43ee1dd9938",
-  "shipDeck:close": "0f8ced7b0c8837"
+  "shipDeck:close": "0f8ced7b0c8837",
+  "island:beach wide": "11012ca254256f",
+  "island:two-shot": "0d7c44ee8ea0b0",
+  "island:dig": "13182fb9ecb8e7",
+  "island:close": "1095a4772fb632"
  },
  "lights": {
   "day": "1c824fd62ade9f",
@@ -528,6 +542,9 @@
   "shipWheel": "0dd66ff34f527d",
   "ropeCoil": "1c13395fdeea65",
   "anchor": "13e699b5549a4f",
+  "palmTree": "0dd66ff34f527d",
+  "digSpot": "03133124459dd1",
+  "rowboat": "05b3650763e368",
   "jollyRoger": "105b38b310ba7d"
  },
  "items": {
@@ -550,6 +567,7 @@
   "flask": "",
   "scroll": "",
   "coinBag": "",
+  "shovel": "",
   "tricorn": ""
  }
 }

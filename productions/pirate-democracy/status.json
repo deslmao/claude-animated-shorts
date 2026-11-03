@@ -1,7 +1,124 @@
 {
  "id": "pirate-democracy",
  "composition": "Short-pirate-democracy",
- "stages": {},
+ "stages": {
+  "validate": {
+   "state": "done",
+   "at": "2026-11-03T05:47:07.728Z",
+   "inputs": "17c135881972efn",
+   "detail": "valid; 0 warning(s)"
+  },
+  "assets": {
+   "state": "done",
+   "at": "2026-11-03T05:47:07.730Z",
+   "inputs": "17c135881972ef",
+   "detail": "52 library assets reused, none missing",
+   "data": {
+    "reused": 52,
+    "missing": [],
+    "byKind": {
+     "character": [
+      "miloPirate",
+      "junoPirate",
+      "gusPirate",
+      "captain",
+      "quartermaster"
+     ],
+     "mood": [
+      "adventure"
+     ],
+     "set": [
+      "shipDeck"
+     ],
+     "camera": [
+      "pushIn",
+      "frame",
+      "closeUp",
+      "view",
+      "dutch"
+     ],
+     "light": [
+      "day",
+      "golden"
+     ],
+     "ambience": [
+      "amb_sea"
+     ],
+     "effect": [
+      "question",
+      "exclaim",
+      "sparkle",
+      "sweat",
+      "hearts",
+      "confetti",
+      "anger",
+      "idea",
+      "stars"
+     ],
+     "extras": [
+      "extras:pirate"
+     ],
+     "act": [
+      "determined",
+      "embarrassed",
+      "excited",
+      "confused",
+      "suspicious",
+      "explain",
+      "proud",
+      "sad",
+      "scared",
+      "relief",
+      "neutral",
+      "nervous",
+      "happy",
+      "point",
+      "shock",
+      "angry",
+      "disgusted",
+      "thinking",
+      "idea",
+      "shrug",
+      "facepalm"
+     ],
+     "item": [
+      "sword",
+      "scroll",
+      "coinBag",
+      "book"
+     ],
+     "prop": [
+      "treasureChest",
+      "barrel"
+     ]
+    }
+   }
+  },
+  "approval": {
+   "state": "done",
+   "at": "2026-11-03T05:47:07.737Z",
+   "inputs": "09424f694e1a63",
+   "detail": "all narration already generated (no cost)"
+  },
+  "narration": {
+   "state": "done",
+   "at": "2026-11-03T05:47:07.738Z",
+   "inputs": "09424f694e1a63",
+   "detail": "all lines already generated (cached)"
+  },
+  "sound": {
+   "state": "done",
+   "at": "2026-11-03T05:47:23.132Z",
+   "inputs": "07d8c7127173bd",
+   "detail": "soundtrack built: -14.1 LUFS"
+  },
+  "checks": {
+   "state": "done",
+   "at": "2026-11-03T05:47:24.855Z",
+   "inputs": "07d8c7127173bd",
+   "detail": "preflight PASS; library intact"
+  }
+ },
  "approval": {
   "scriptHash": "09424f694e1a63",
   "chars": 1099,

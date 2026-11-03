@@ -31,6 +31,6 @@ In the "golden age" of piracy (early 1700s), many pirate crews governed themselv
 15. So the scariest thing on the high seas might have been a pirate committee meeting.
 
 ## Checks
-- note: speaker "captain" is not a library character (fine if the storyboard casts it as an extra)
+All script checks pass.
 
 To approve: tell Claude; it records `npm run script -- pirate-democracy --approve 1099`.

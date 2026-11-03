@@ -194,9 +194,11 @@ o.save(out, quality=82)`, RD, sheet, ...frames.map((x) => `${x}:${picks.get(x)}`
       const branch = git("rev-parse", "--abbrev-ref", "HEAD").out.trim();
       if (branch === "main" || branch === "master") return st("failed", "refusing to render from the default branch");
       let r: Any = status.render;
-      if (!r || r.inputs !== stages.render.inputs()) {
-        const chunks = Number(opt("--chunks") ?? 20);
-        fs.writeFileSync(path.join(ROOT, "render-request.json"), JSON.stringify({ composition: COMP, chunks, preview: false, audio: "", note: `Production ${sb.id} (npm run short)` }, null, 2) + "\n");
+      // a new request when the inputs changed, or when the last run failed (a failed run is never reused: fix the cause,
+      // then this files a fresh request; the attempt number makes render-request.json change so the push triggers it)
+      if (!r || r.inputs !== stages.render.inputs() || (r.conclusion && r.conclusion !== "success")) {
+        const chunks = Number(opt("--chunks") ?? 20), attempt = (r?.inputs === stages.render.inputs() ? (r?.attempt ?? 1) : 0) + 1;
+        fs.writeFileSync(path.join(ROOT, "render-request.json"), JSON.stringify({ composition: COMP, chunks, preview: false, audio: "", note: `Production ${sb.id} (npm run short)${attempt > 1 ? `, attempt ${attempt}` : ""}` }, null, 2) + "\n");
         const paths = ["animation-studio/src", "animation-studio/voice", "animation-studio/audio", "animation-studio/tests", "animation-studio/sound", "docs", `productions/${sb.id}`, "render-request.json"];
         git("add", "-A", "--", ...paths);
         const diff = git("diff", "--cached").out;
@@ -208,7 +210,7 @@ o.save(out, quality=82)`, RD, sheet, ...frames.map((x) => `${x}:${picks.get(x)}`
         for (const wait of [0, 2000, 4000, 8000, 16000]) { await sleep(wait); if (git("push", "-u", "origin", branch).ok) { pushed = true; break; } }
         if (!pushed) return st("failed", "push failed after retries");
         const sha = git("rev-parse", "HEAD").out.trim();
-        r = status.render = { inputs: stages.render.inputs(), sha, branch, requested: now() };
+        r = status.render = { inputs: stages.render.inputs(), sha, branch, requested: now(), attempt };
         save();
       }
       // find the run for this commit, then follow it
