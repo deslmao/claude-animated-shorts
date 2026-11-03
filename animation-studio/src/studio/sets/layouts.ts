@@ -11,7 +11,8 @@ import { THEMES } from "../themes";
 const fit = (name: string, marks: V3[], o: FitOpts, extra: Partial<View> = {}): View =>
   ({ name, ...fitShot(marks, o), focus: [marks[0][0], marks[0][1] + 1.55, marks[0][2]], ...extra });
 
-export type Layout = { spots: Record<string, V3>; views: View[] };
+/** ceiling = room height (interior sets): a diagram or prop above the cast must stay below it */
+export type Layout = { spots: Record<string, V3>; views: View[]; ceiling?: number };
 const bz = -3.2;
 
 const H = { a: [-0.75, 0, 0.35] as V3, b: [0.45, 0, -0.2] as V3 };
@@ -23,6 +24,7 @@ const OT = { a: [-0.9, 0, 3.4] as V3, b: [0.2, 0, 2.9] as V3 };
 
 const BASE_LAYOUTS: Record<string, Layout> = {
   home: {
+    ceiling: 2.8,
     spots: { a: [-0.75, 0, 0.35], b: [0.45, 0, -0.2], c: [1.55, 0, 0.5], d: [2.3, 0, -0.9], armchair: [-1.55, 0, 0.35], door: [-2.6, 0, 0.2], window: [1.6, 0, -1.3], kitchen: [2.3, 0, -0.9] },
     views: [
       { name: "wide", pos: [0.45, 1.35, 5.7], look: [0.1, 0.95, -1.2], fov: 52 },
@@ -32,6 +34,7 @@ const BASE_LAYOUTS: Record<string, Layout> = {
     ],
   },
   classroom: {
+    ceiling: 3.0,
     spots: { a: [-0.45, 0, bz + 0.95], b: [0.65, 0, bz + 1.1], c: [2.9, 0, -0.4], board: [-0.45, 0, bz + 0.95], teacherDesk: [-2.0, 0, bz + 2.0], aisle: [0.5, 0, 0.35], door: [3.2, 0, 1.6] },
     views: [
       { name: "wide", pos: [3.0, 1.75, 5.0], look: [-0.4, 1.25, -2.4], fov: 50 },
@@ -41,6 +44,7 @@ const BASE_LAYOUTS: Record<string, Layout> = {
     ],
   },
   office: {
+    ceiling: 2.9,
     spots: { a: [-0.9, 0, 0.5], b: [0.6, 0, 0.2], c: [2.6, 0, 0.9], whiteboard: [2.6, 0, 0.9], cooler: [3.0, 0, bz + 1.2], door: [-3.2, 0, 0.4], window: [0.0, 0, -2.4] },
     views: [
       { name: "wide", pos: [-0.6, 1.6, 5.0], look: [0.2, 1.2, -1.8], fov: 50 },
@@ -50,6 +54,7 @@ const BASE_LAYOUTS: Record<string, Layout> = {
     ],
   },
   lab: {
+    ceiling: 3.0,
     spots: { a: [-1.2, 0, 0.45], b: [0.95, 0, 0.6], c: [2.5, 0, -1.4], bench: [-0.9, 0, bz + 1.25], island: [0.2, 0, 0.35], hood: [2.5, 0, -1.4] },
     views: [
       { name: "wide", pos: [0.6, 1.65, 5.6], look: [-0.3, 1.2, -1.8], fov: 52 },

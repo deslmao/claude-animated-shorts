@@ -58,7 +58,7 @@ export const diagramMark = (s: ShotSpec): V3 | undefined => {
   return [p[0] + Math.cos(ar) * off, p[1], p[2] - Math.sin(ar) * off];
 };
 /** a diagram's centre height above its floor point: at head height beside the presenter, or just above their head */
-export const DIAGRAM_ABOVE = 1.98;
+export const DIAGRAM_ABOVE = 1.94;
 export const diagramY = (s: ShotSpec) => (s.diagram?.place === "above" ? DIAGRAM_ABOVE + (s.diagram.size ?? 0.95) / 2 : 1.42);
 
 /** camera spec -> library move, naming actors instead of coordinates (framed where they settle) */

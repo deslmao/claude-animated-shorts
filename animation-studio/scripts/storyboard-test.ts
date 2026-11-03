@@ -58,6 +58,7 @@ const broken: [string, (sb: Storyboard) => void, string?][] = [
   ["effect off screen", (sb) => { sb.shots[0].camera = { move: "closeUp", on: "gus" }; sb.shots[0].fx = [{ kind: "idea", on: "milo", t: 0.5 }]; }, "off screen"],
   ["face hidden", (sb) => { sb.shots[0].camera = { move: "frame", on: ["gus"], size: "full" }; sb.shots[0].actors[1].at = [1.35, 0.15, -4.4]; }, "hidden"],
   ["diagram cut by frame", (sb) => { sb.shots[2].diagram = { kind: "forecast", with: "juno", side: 1 }; }, "diagram"],
+  ["diagram through ceiling", (sb) => { sb.shots[2].diagram = { kind: "forecast", with: "juno", place: "above", size: 1.5 }; sb.shots[2].camera = { move: "frame", on: ["juno", "diagram"], size: "medium" }; }, "ceiling"],
   ["robot can't reach", (sb) => { sb.shots[2].actors[0].gesture = "operate"; delete sb.shots[2].actors[0].act; sb.shots[2].props = [{ id: "robotArm", at: [-3.5, 0, -2.5], follow: { who: "juno" } }]; sb.shots[2].camera = { move: "frame", on: ["juno", "robotArm"], size: "full" }; }, "reach"],
 ];
 console.log("\n== validator catches mistakes");

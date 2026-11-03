@@ -87,7 +87,9 @@ export class Fx {
     this.soft = new THREE.MeshBasicMaterial({ map: blank, transparent: true, depthWrite: false, side: THREE.DoubleSide });
     this.blob = blobMaterial(blank);
     // overlay cards (explainer diagrams) draw on top of the set: a ceiling or a shelf never cuts them
-    this.over = new THREE.MeshBasicMaterial({ map: blank, alphaTest: 0.5, side: THREE.DoubleSide, depthTest: false, depthWrite: false });
+    // it writes its own depth (drawn last; depth test ALWAYS passes: in WebGL, turning the depth test off would also
+    // stop depth writes): the ink pass skips lines behind it and the lens blur sees the panel at its real distance
+    this.over = new THREE.MeshBasicMaterial({ map: blank, alphaTest: 0.5, side: THREE.DoubleSide, depthTest: true, depthWrite: true, depthFunc: THREE.AlwaysDepth });
     this.mesh = new THREE.Mesh(CARD, this.mat);
     this.mesh.visible = false; this.mesh.layers.set(NOINK);
     parent.add(this.mesh);

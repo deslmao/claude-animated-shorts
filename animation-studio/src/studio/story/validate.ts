@@ -17,7 +17,7 @@ import { MOODS, AMBIENCES, SFX } from "../sound/catalog";
 import { PROPS } from "../props/registry";
 import { ITEMS } from "../characters/items";
 import { clearAt, hasFloorMap } from "../sets/floor";
-import { whereOf } from "./compile";
+import { whereOf, DIAGRAM_ABOVE } from "./compile";
 import { DIAGRAM_KINDS } from "../fx/diagrams";
 import type { Stage, CamInfo } from "../cards/cards";
 
@@ -80,6 +80,8 @@ export const validate = (sb0: Storyboard, narr?: Narration): Report => {
     if (s.diagram) {
       if (!DIAGRAM_KINDS.includes(s.diagram.kind)) errors.push(`${at}: unknown diagram "${s.diagram.kind}" (diagrams: ${DIAGRAM_KINDS.join(", ")})`);
       if (!s.actors.some((x) => x.who === s.diagram!.with)) errors.push(`${at}: the diagram is presented by "${s.diagram.with}" who is not in the shot`);
+      const ceil = LAYOUTS[s.set].ceiling, top = (s.diagram.place === "above" ? DIAGRAM_ABOVE + (s.diagram.size ?? 0.95) : 1.42 + (s.diagram.size ?? 0.95) / 2);
+      if (ceil !== undefined && top > ceil - 0.04) errors.push(`${at}: the diagram reaches ${top.toFixed(2)} m, through the ${ceil} m ceiling: make it smaller (size)`);
     }
     if (s.mood && !(s.mood in MOODS)) errors.push(`${at}: unknown music mood "${s.mood}" (moods: ${Object.keys(MOODS).join(", ")})`);
     if (s.ambience && !(s.ambience in AMBIENCES)) errors.push(`${at}: unknown ambience "${s.ambience}" (beds: ${Object.keys(AMBIENCES).join(", ")})`);
