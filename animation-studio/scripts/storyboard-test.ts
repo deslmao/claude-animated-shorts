@@ -39,7 +39,8 @@ for (const sb of STORIES) {
 
 // the validator must reject broken storyboards (otherwise a typo would only show up after a long cloud render)
 const base = STORIES[0];
-const broken: [string, (sb: Storyboard) => void][] = [
+// [name, mutation, (optional) text the error must contain]
+const broken: [string, (sb: Storyboard) => void, string?][] = [
   ["unknown set", (sb) => { sb.shots[0].set = "moon"; }],
   ["unknown mark", (sb) => { sb.shots[0].actors[0].at = "nowhere"; }],
   ["unknown act", (sb) => { (sb.shots[0].actors[0] as { act: string }).act = "moonwalk"; }],
@@ -51,12 +52,19 @@ const broken: [string, (sb: Storyboard) => void][] = [
   ["anchor word not said", (sb) => { const s = sb.shots.find((x) => x.say)!; s.fx = [{ kind: "idea", on: s.actors[0].who, word: "zebra" }]; }],
   ["speaker not in shot", (sb) => { const s = sb.shots.find((x) => x.say && Object.keys(sb.cast).some((c) => !x.actors.some((a) => a.who === c)))!; const absent = Object.keys(sb.cast).find((c) => !s.actors.some((a) => a.who === c))!; const l = Array.isArray(s.say) ? s.say[0] : s.say!; s.say = { text: typeof l === "string" ? l : l.text, who: absent }; }],
   ["head out of frame", (sb) => { sb.shots[4].camera = { move: "frame", on: ["milo", "gus"], size: "extreme", roll: 0.9 }; }], // an extreme close two-shot rolled 0.9 rad cannot hold both heads
+  // staging checks (stage 6 revision): what the director really draws
+  ["raised hand cropped", (sb) => { sb.shots[1].actors[0].gesture = "pointUp"; delete sb.shots[1].actors[0].act; sb.shots[1].actors[0].beats = []; sb.shots[1].camera = { move: "closeUp", on: "gus", punch: true }; }, "hand"], // a close-up crops the pointing arm
+  ["prop never in frame", (sb) => { sb.shots[0].props = [{ id: "barrel", at: [30, 0.15, 30] }]; }, "never in frame"],
+  ["effect off screen", (sb) => { sb.shots[0].camera = { move: "closeUp", on: "gus" }; sb.shots[0].fx = [{ kind: "idea", on: "milo", t: 0.5 }]; }, "off screen"],
+  ["face hidden", (sb) => { sb.shots[0].camera = { move: "frame", on: ["gus"], size: "full" }; sb.shots[0].actors[1].at = [1.35, 0.15, -4.4]; }, "hidden"],
+  ["diagram cut by frame", (sb) => { sb.shots[2].diagram = { kind: "forecast", with: "juno", side: 1 }; }, "diagram"],
+  ["robot can't reach", (sb) => { sb.shots[2].actors[0].gesture = "operate"; delete sb.shots[2].actors[0].act; sb.shots[2].props = [{ id: "robotArm", at: [-3.5, 0, -2.5], follow: { who: "juno" } }]; sb.shots[2].camera = { move: "frame", on: ["juno", "robotArm"], size: "full" }; }, "reach"],
 ];
 console.log("\n== validator catches mistakes");
-for (const [name, mutate] of broken) {
+for (const [name, mutate, expect] of broken) {
   const sb = JSON.parse(JSON.stringify(base)) as Storyboard; mutate(sb);
   let caught: string;
-  try { const r = validate(sb, NARRATION[sb.id]); caught = r.errors[0] ?? ""; } catch (e) { caught = `threw: ${(e as Error).message}`; }
+  try { const r = validate(sb, NARRATION[sb.id]); caught = (expect ? r.errors.find((e) => e.includes(expect)) : r.errors[0]) ?? ""; } catch (e) { caught = `threw: ${(e as Error).message}`; }
   console.log(`  ${caught ? "ok  " : "MISS"} ${name.padEnd(24)} ${caught}`);
   if (!caught) bad++;
 }

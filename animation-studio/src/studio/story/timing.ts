@@ -66,6 +66,10 @@ export const resolve = (sb0: Storyboard, narr?: Narration): Timing => {
       for (const b of act.beats ?? []) when(b, `${act.who}'s beat`);
       if (act.nod) act.nod = act.nod.map((x) => (typeof x === "number" ? x : at(x, `${act.who}'s nod`)));
       if (act.shake) act.shake = act.shake.map((x) => (typeof x === "number" ? x : at(x, `${act.who}'s head shake`)));
+      for (const m of act.moves ?? []) when(m, `${act.who}'s ${m.kind}`);
+      if (act.drive) when(act.drive, `${act.who}'s control strokes`);
+      if (act.walk?.from) { act.walk.t0 = at(act.walk.from, `${act.who}'s walk`); delete act.walk.from; }
+      if (act.walk?.until) { act.walk.t1 = at(act.walk.until, `${act.who}'s walk`); delete act.walk.until; }
       // a speaking actor: mouth follows their words; talking hands over the spans they speak
       const mine = here.filter((p) => p.who === act.who).flatMap((p) => p.words.map((w) => ({ w: w.w, t0: w.t0 - a, t1: w.t1 - a })));
       if (mine.length) {
@@ -76,6 +80,8 @@ export const resolve = (sb0: Storyboard, narr?: Narration): Timing => {
       }
     }
     for (const fx of s.fx ?? []) when(fx, `the ${fx.kind} effect`);
+    for (const p of s.props ?? []) for (const c of p.drive?.changes ?? []) when(c, `the ${p.id}'s delay change`);
+    for (const st of s.diagram?.steps ?? []) when(st, `the ${s.diagram!.kind} diagram's step`);
     for (const x of s.sfx ?? []) when(x, `the ${x.name} sound`);
     if (s.kicks) s.kicks = s.kicks.map((x) => (typeof x === "number" ? x : at(x, "a kick")));
     for (const p of here) if (p.who !== "narrator" && !s.actors.some((x) => x.who === p.who)) problems.push(`shot ${k + 1}: "${p.who}" speaks but isn't in the shot (use who: "narrator" for voice-over)`);

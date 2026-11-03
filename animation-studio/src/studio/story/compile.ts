@@ -10,16 +10,20 @@ import type { WorldShot, Director } from "../scene/SetWorld";
 import type { Timeline } from "../look/StudioFilm";
 import { extra } from "../characters/cast";
 import { ROSTER } from "../characters/roster";
-import { act as actPose, Look, Pose, Expr } from "../characters/figure";
+import { act as actPose, Look, Pose, Expr, anchorsFront, Anchors } from "../characters/figure";
 import { idle, nod as nodAt, shake as shakeAt, talk as talkAt, speak as speakAt, layer, faceToward } from "../characters/acting";
-import { lookCard, contactShadow, lidAt } from "../cards/person";
-import { fxNear } from "../fx/effects";
-import type { Storyboard, ShotSpec, ActorSpec, Where, V3, CameraSpec } from "./types";
+import { lookCard, contactShadow, lidAt, cardPoint } from "../cards/person";
+import { fxNear, fxHalo, HALO_KINDS } from "../fx/effects";
+import { diagramCard } from "../fx/diagrams";
+import { SU } from "../cards/cards";
+import type { ActorAnchor, CamInfo } from "../cards/cards";
+import type { Storyboard, ShotSpec, ActorSpec, Where, V3, CameraSpec, Move as MoveSpec, PropSpec } from "./types";
 import type { Narration } from "../voice/narration";
 import { resolve } from "./timing";
 import { placeCrowd } from "./crowd";
 
 export const FPS = 30;
+const KEEP_WHILE_TALKING = ["thumbsUp", "point", "pointUp", "hold", "tickle", "tickleSelf", "operate", "wave", "raiseHand", "cheer", "stop", "crossArms", "hips"];
 const FADE = 8;
 
 export const lookOf = (ref: Storyboard["cast"][string]): Look =>
@@ -44,6 +48,16 @@ export const shotFrames = (sb: Storyboard) => {
   return sb.shots.map((s) => { const a = f; f += Math.round((s.dur ?? 0) * FPS); return { a, b: f }; });
 };
 
+/** where a shot's diagram stands (floor point under its centre): beside the presenter's resting mark, on their screen
+ *  side as seen from the camera's `from` angle, a fixed world point so the camera fit and the card agree */
+export const diagramMark = (s: ShotSpec): V3 | undefined => {
+  const d = s.diagram; if (!d) return undefined;
+  const a = s.actors.find((x) => x.who === d.with); if (!a) return undefined;
+  const p = restPos(s.set, a), from = "from" in s.camera ? (s.camera as { from?: number }).from ?? 0 : 0, ar = (from * Math.PI) / 180;
+  const size = d.size ?? 0.95, off = (d.side ?? 1) * (size / 2 + 0.34);
+  return [p[0] + Math.cos(ar) * off, p[1], p[2] - Math.sin(ar) * off];
+};
+
 /** camera spec -> library move, naming actors instead of coordinates (framed where they settle) */
 const moveOf = (s: ShotSpec, c: CameraSpec, t0 = 0): Move => {
   // the slow "breathing" push of held shots totals at most 8 % of the distance however long the shot, so a fitted
@@ -52,22 +66,72 @@ const moveOf = (s: ShotSpec, c: CameraSpec, t0 = 0): Move => {
   // tighter moves (close-up, low hero, dutch) keep their livelier creep, capped at 16 % in total so a long close shot
   // never pushes the face out of the 9:16 frame
   const tight = (rate: number) => Math.min(rate, 0.16 / frames);
-  const pos = (who: string) => { const a = s.actors.find((x) => x.who === who); if (!a) throw new Error(`camera names "${who}" but no such actor in the shot`); return restPos(s.set, a); };
+  const pos = (who: string) => {
+    if (who === "diagram") { const m = diagramMark(s); if (!m) throw new Error("camera names \"diagram\" but the shot has no diagram"); return m; }
+    const pr = (s.props ?? []).find((q) => q.id === who);
+    if (pr) { const w = whereOf(s.set, pr.at); return [w[0] + (pr.offset?.[0] ?? 0), w[1], w[2] + (pr.offset?.[1] ?? 0)] as V3; }
+    const a = s.actors.find((x) => x.who === who); if (!a) throw new Error(`camera names "${who}" but no such actor in the shot`); return restPos(s.set, a);
+  };
+  // a diagram is wider than a person: frame both of its side edges (each fitted with a person's half-width)
+  const marks = (who: string): V3[] => {
+    if (who !== "diagram" || !s.diagram) {
+      // an actor who staggers: frame where the lean takes them too (planned motion never leaves the frame)
+      const p = pos(who), act = s.actors.find((x) => x.who === who), st = act?.moves?.find((m) => m.kind === "stagger");
+      if (!act || !st) return [p];
+      const from = "from" in c ? (c as { from?: number }).from ?? 0 : 0, ar = (from * Math.PI) / 180, rx = Math.cos(ar), rz = -Math.sin(ar);
+      const away = st.away ? s.actors.find((x) => x.who === st.away) : undefined, q = away ? restPos(s.set, away) : undefined;
+      const side = st.dir ?? (q ? -Math.sign((q[0] - p[0]) * rx + (q[2] - p[2]) * rz || 1) : 1), d = 0.42 * (st.amount ?? 1);
+      return [p, [p[0] + rx * side * d, p[1], p[2] + rz * side * d]];
+    }
+    const m = pos(who), from = "from" in c ? (c as { from?: number }).from ?? 0 : 0, ar = (from * Math.PI) / 180, h = Math.max(0, (s.diagram.size ?? 0.95) / 2 - 0.3);
+    return [[m[0] - Math.cos(ar) * h, m[1], m[2] + Math.sin(ar) * h], [m[0] + Math.cos(ar) * h, m[1], m[2] - Math.sin(ar) * h]];
+  };
   const view = (name: string) => { const v = LAYOUTS[s.set].views.find((x) => x.name === name); if (!v) throw new Error(`set ${s.set} has no view "${name}"`); return v; };
   switch (c.move) {
     case "view": return { move: "view", view: view(c.view), creep };
     case "establish": return { move: "establish", view: view(c.view) };
-    case "frame": return { move: "frame", marks: c.on.map(pos), size: c.size, from: c.from, height: c.height, roll: c.roll, creep };
-    case "pushIn": case "pullOut": return { move: c.move, marks: c.on.map(pos), size: c.size, to: c.to, from: c.from, height: c.height };
+    case "frame": return { move: "frame", marks: c.on.flatMap(marks), size: c.size, from: c.from, height: c.height, roll: c.roll, creep };
+    case "pushIn": case "pullOut": return { move: c.move, marks: c.on.flatMap(marks), size: c.size, to: c.to, from: c.from, height: c.height };
     case "closeUp": return { move: "closeUp", mark: pos(c.on), from: c.from, punch: c.punch, creep: tight(0.003) };
     case "lowHero": return { move: "lowHero", mark: pos(c.on), from: c.from, creep: tight(0.0025) };
-    case "highAngle": return { move: "highAngle", marks: c.on.map(pos), from: c.from };
+    case "highAngle": return { move: "highAngle", marks: c.on.flatMap(marks), from: c.from };
     case "overShoulder": return { move: "overShoulder", over: pos(c.over), at: pos(c.at), side: c.side };
-    case "orbit": return { move: "orbit", marks: c.on.map(pos), fromDeg: c.fromDeg, size: c.size, height: c.height };
-    case "crane": return { move: "crane", marks: c.on.map(pos), heights: c.heights, size: c.size, from: c.from };
+    case "orbit": return { move: "orbit", marks: c.on.flatMap(marks), fromDeg: c.fromDeg, size: c.size, height: c.height };
+    case "crane": return { move: "crane", marks: c.on.flatMap(marks), heights: c.heights, size: c.size, from: c.from };
     case "follow": { const a = s.actors.find((x) => x.who === c.on); if (!a) throw new Error(`camera follows "${c.on}" but no such actor in the shot`); return { move: "follow", track: (t) => actorPos(s.set, a, t - t0), size: c.size, from: c.from, height: c.height }; }
-    case "dutch": return { move: "dutch", marks: c.on.map(pos), size: c.size, from: c.from, roll: c.roll, creep: tight(0.003) };
+    case "dutch": return { move: "dutch", marks: c.on.flatMap(marks), size: c.size, from: c.from, roll: c.roll, creep: tight(0.003) };
   }
+};
+
+/** body motion layered on the acting at shot time tt (all pure functions of time): lean (degrees, + = top to screen
+ *  right), head tilt, shrug, a sideways slide (metres along the card's right) and a hop (metres up). side = the screen
+ *  side to stagger toward */
+export const motionAt = (moves: MoveSpec[] | undefined, tt: number, sideOf: (m: MoveSpec) => number) => {
+  const o = { tilt: 0, headTilt: 0, shrug: 0, slide: 0, hop: 0 };
+  for (const m of moves ?? []) {
+    const d = m.dur ?? (m.kind === "squirm" ? 1.6 : m.kind === "stagger" ? 1.3 : m.kind === "hop" ? 0.45 : 0.6), k = (tt - (m.t ?? 0)) / d;
+    if (k < 0 || k > 1) continue;
+    const env = Math.sin(Math.PI * k), amt = m.amount ?? 1;
+    if (m.kind === "squirm") { const w = Math.sin(2 * Math.PI * 3.2 * (tt - (m.t ?? 0))); o.tilt += 7 * amt * w * env; o.headTilt += 5 * amt * Math.sin(2 * Math.PI * 2.3 * (tt - (m.t ?? 0)) + 1) * env; o.shrug += 0.6 * env; }
+    else if (m.kind === "stagger") {
+      // throws the body sideways (fast), overshoots back once, settles: "nearly falls over"
+      const b = k < 0.28 ? smooth(k / 0.28) : Math.cos(((k - 0.28) / 0.72) * Math.PI * 1.5) * (1 - (k - 0.28) / 0.72), s = sideOf(m);
+      o.tilt += s * 19 * amt * b; o.headTilt -= s * 7 * amt * b; o.slide += s * 0.16 * amt * Math.max(0, b); o.hop += 0.03 * amt * Math.max(0, b);
+    }
+    else if (m.kind === "hop") o.hop += 0.09 * amt * env;
+    else if (m.kind === "recoil") { const s = sideOf(m); o.tilt += s * 8 * amt * env; o.slide += s * 0.05 * amt * env; }
+  }
+  return o;
+};
+
+/** an animated prop's state at shot time tt: the open hand it reaches for and the stroke it replays */
+export type PropAnim = (tt: number, anchors: Map<string, ActorAnchor>) => { target?: V3; stroke: number };
+const driveOf = (a: ActorSpec | undefined) => (tt: number) => (a?.drive && tt >= (a.drive.t ?? 0) ? Math.sin(2 * Math.PI * (a.drive.hz ?? 1.6) * (tt - (a.drive.t ?? 0))) : 0);
+const propAnim = (s: ShotSpec, q: PropSpec): PropAnim | undefined => {
+  if (!q.follow && !q.drive) return undefined;
+  const drv = driveOf(s.actors.find((x) => x.who === q.drive?.who));
+  const delayAt = (tt: number) => { let d = q.drive?.delay ?? 0; for (const c of q.drive?.changes ?? []) if (tt >= (c.t ?? 0)) d = c.delay; return d; };
+  return (tt, anchors) => ({ target: q.follow ? anchors.get(q.follow.who)?.hands.find((h) => h.kind === "open")?.p : undefined, stroke: q.drive ? drv(tt - delayAt(tt)) : 0 });
 };
 
 /** storyboard (+ its narration manifest, if generated) -> film. Narration timing runs first (story/timing.ts): it
@@ -79,7 +143,7 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
   const shots: WorldShot[] = sb.shots.map((s, k) => {
     const { a, b } = ranges[k], pre = s.transition === "fade" ? FADE : 0;
     const p = plan(moveOf(s, s.camera, a / FPS), a - pre, b, { cut: true });
-    const props = (s.props ?? []).map((q) => { const w = whereOf(s.set, q.at); return { id: q.id, variant: q.variant, at: { x: w[0] + (q.offset?.[0] ?? 0), y: w[1], z: w[2] + (q.offset?.[1] ?? 0), yaw: ((q.yaw ?? 0) * Math.PI) / 180, s: q.scale ?? 1 } }; });
+    const props = (s.props ?? []).map((q) => { const w = whereOf(s.set, q.at); return { id: q.id, variant: q.variant, at: { x: w[0] + (q.offset?.[0] ?? 0), y: w[1], z: w[2] + (q.offset?.[1] ?? 0), yaw: ((q.yaw ?? 0) * Math.PI) / 180, s: q.scale ?? 1 }, animate: propAnim(s, q) }; });
     return { id: k + 1, a, b, set: s.set, light: s.light ?? SETS[s.set].lights[0], keys: [p.key], dof: p.dof, kicks: (s.kicks ?? []).map((t) => [a / FPS + (t as number), 1] as [number, number]), ...(props.length ? { props } : {}) };
   });
   // crowds: extras join the shot's actors (after the cameras are planned: cameras frame the named cast only)
@@ -104,9 +168,27 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
       return [{ id: (k < 0 ? ranges.length - 1 : k) + 1, alpha: 1 }];
     },
   };
+  // an actor's anchors (head, crown, hands) in the world, from the pose actually drawn this frame
+  const anchorOf = (cam: CamInfo, L: Look, p: V3, an: Anchors, mirror: boolean): ActorAnchor => {
+    const w = (q: [number, number]) => cardPoint(cam.pos, p[0], p[1], p[2], q, 1, mirror);
+    return { head: w(an.head), crown: w(an.crown), headR: [an.headR[0] * SU, an.headR[1] * SU], rot: mirror ? -an.headRot : an.headRot,
+      hands: an.hands.map((h) => ({ p: w(h.p), raised: h.raised, side: mirror ? -h.side : h.side, kind: h.kind })), chest: w(an.chest), floor: p, mirror, gesture: an.gesture };
+  };
+  const neutral = new Map<string, Anchors>();
   const director: Director = (shot, f, cam, _built, out) => {
+    out.anchors ??= new Map();
     const s = sb.shots[shot.id - 1], t = f / FPS, t0 = ranges[shot.id - 1].a / FPS, tt = t - t0;
     const posOf = new Map(s.actors.map((a) => [a.who, actorPos(s.set, a, tt)]));
+    // the card's right (CardLayer turns cards toward the camera position): screen sides, slides and reaches
+    const rightAt = (p: V3): [number, number] => { const yaw = Math.atan2(cam.pos.x - p[0], cam.pos.z - p[2]); return [Math.cos(yaw), -Math.sin(yaw)]; };
+    const lateral = (from: V3, to: V3) => { const [rx, rz] = rightAt(from); return (to[0] - from[0]) * rx + (to[2] - from[2]) * rz; };
+    // body motion first: a stagger slides the actor, so everyone else reacts to where they really are
+    const motion = new Map(s.actors.map((a) => {
+      const p = posOf.get(a.who)!;
+      const m = motionAt(a.moves, tt, (mv) => mv.dir ?? (mv.away && posOf.get(mv.away) ? -Math.sign(lateral(p, posOf.get(mv.away)!) || 1) : 1));
+      if (m.slide || m.hop) { const [rx, rz] = rightAt(p); posOf.set(a.who, [p[0] + rx * m.slide, p[1] + m.hop, p[2] + rz * m.slide]); }
+      return [a.who, m];
+    }));
     for (const a of s.actors) {
       const L = lookOf(sb.cast[a.who]), seed = seedOf(a.who), p = posOf.get(a.who)!;
       // base act, then the latest beat at or before now (act replaces, face / gesture override)
@@ -119,6 +201,9 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
       // voiced lines: the mouth follows the narration's word timings; otherwise the stand-in talking rhythm
       const talking = a.speech?.length ? speakAt(tt, a.speech, seed)
         : (a.talk ?? []).map(([x, y]) => talkAt(t, t0 + x, t0 + y, seed, (base.expr as Expr) ?? "talk")).find((x) => Object.keys(x).length) ?? {};
+      // a speaker keeps an authored action gesture (thumbs up, pointing, holding, tickling...): the mouth talks, the
+      // hands keep doing what the storyboard asked for
+      if (talking.gesture && base.gesture && KEEP_WHILE_TALKING.includes(base.gesture)) delete talking.gesture;
       const nodTilt = (a.nod ?? []).reduce((acc: number, x) => acc + nodAt(t, t0 + (x as number), 2), 0);
       const shook = (a.shake ?? []).map((x) => shakeAt(t, t0 + (x as number))).find((x) => Object.keys(x).length) ?? {};
       // facing: explicit, or toward the nearest other actor
@@ -132,18 +217,39 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
         const p1 = whereOf(s.set, a.walk!.to), p0 = whereOf(s.set, a.at), dist = Math.hypot(p[0] - p0[0], p[2] - p0[2]);
         const dirScreen = (p1[0] - p0[0]) * cam.right.x + (p1[2] - p0[2]) * cam.right.z;
         out.places.push(lookCard(cam, L, p[0], p[1], p[2], { side: { mode: a.walk!.mode ?? "walk", phase: dist / (a.walk!.mode === "run" ? 2.08 : 1.47), ...(held ? { hold: held } : {}), expr: (talking.expr ?? base.expr ?? "neutral") as Expr, blink: life.blink }, mirror: dirScreen < 0 }));
+        // profile walk: the front rig in the same stride approximates where the head and hands are
+        out.anchors.set(a.who, { ...anchorOf(cam, L, p, anchorsFront(L, { mode: a.walk!.mode === "run" ? "run" : "walk", phase: dist / 1.47 }), dirScreen < 0), walking: true });
       } else {
-        const pose = layer(base, life, talking, shook, { headTilt: nodTilt, facing, back: a.back, t, ...(held ? { hold: held } : {}) });
+        const mo = motion.get(a.who)!, extra: Partial<Pose> = {};
+        // a tickler reaches for the target's flank: hands on the target's side of the screen, reach from the distance
+        if (a.reach && posOf.get(a.reach)) { const lat = lateral(p, posOf.get(a.reach)!); extra.hand = lat < 0 ? -1 : 1; extra.reach = Math.max(60, Math.min(270, Math.abs(lat) / SU - 95)); }
+        if (a.drive) extra.drive = driveOf(a)(tt);
+        const pose0 = layer(base, life, talking, shook, { headTilt: nodTilt, facing, back: a.back, t, ...(held ? { hold: held } : {}), ...extra });
+        const pose: Pose = mo.tilt || mo.headTilt || mo.shrug ? { ...pose0, tilt: (pose0.tilt ?? 0) + mo.tilt, headTilt: (pose0.headTilt ?? 0) + mo.headTilt, shrug: (pose0.shrug ?? 0) + mo.shrug } : pose0;
         out.places.push(lookCard(cam, L, p[0], p[1], p[2], { pose }));
+        out.anchors.set(a.who, anchorOf(cam, L, p, anchorsFront(L, pose), false));
       }
       contactShadow(out, cam.sun, shot.light, p[0], p[1], p[2]);
     }
     // effects sit beside the head on the side facing the frame centre (a character right of centre gets it on the left;
     // a centred one always on the right, so the mark never jumps sides while the camera moves)
+    // the explainer diagram: a card beside the presenter at head height, steps on their words
+    if (s.diagram) { const m = diagramMark(s); if (m) out.fx.push(diagramCard(s.diagram.kind, m[0], m[1] + 1.42, m[2], s.diagram.size ?? 0.95, tt, (s.diagram.steps ?? []).map((x) => x.t ?? 0))); }
+    // marks follow the head: the mark sits where it would beside a standing head, moved by how far the drawn head is
+    // from its standing position (leaning, laughing, tilting, sitting, jumping); dizzy stars orbit the crown itself
     for (const fx of s.fx ?? []) {
-      const p = posOf.get(fx.on); if (!p) continue;
+      const p = posOf.get(fx.on), an = out.anchors.get(fx.on); if (!p) continue;
+      const t1 = t0 + (fx.t ?? 0), life = fx.life ?? (HALO_KINDS.includes(fx.kind) ? 2.2 : 1.6);
+      if (an && HALO_KINDS.includes(fx.kind)) { const c = fxHalo(cam, fx.kind, an.crown, an.headR[0], an.rot, t, t1, life); if (c) out.fx.push(c); continue; }
+      let m: V3 = p;
+      if (an) {
+        const L = lookOf(sb.cast[fx.on]);
+        let n0 = neutral.get(fx.on); if (!n0) { n0 = anchorsFront(L, {}); neutral.set(fx.on, n0); }
+        const ref = cardPoint(cam.pos, p[0], p[1], p[2], n0.head, 1, an.mirror);
+        m = [p[0] + an.head[0] - ref[0], p[1] + an.head[1] - ref[1], p[2] + an.head[2] - ref[2]];
+      }
       const x = (p[0] - cam.pos.x) * cam.right.x + (p[2] - cam.pos.z) * cam.right.z;
-      const c = fxNear(cam, fx.kind, p, t, t0 + (fx.t ?? 0), fx.life ?? 1.6, fx.side ?? (x > 0.3 ? -1 : 1)); if (c) out.fx.push(c);
+      const c = fxNear(cam, fx.kind, m, t, t1, life, fx.side ?? (x > 0.3 ? -1 : 1)); if (c) out.fx.push(c);
     }
   };
   return { total, shots, timeline, director, timing, notes };

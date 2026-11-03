@@ -18,7 +18,7 @@ export const PIRATEDEMOCRACY: Storyboard = {
     { say: "Picture a pirate crew in the early 1700s. Before anyone touches a sword, they sign a contract.", set: "shipDeck", light: "day", transition: "flash",
       camera: { move: "frame", on: ["milo", "qm"], size: "full", from: 6, height: 1.4 },
       actors: [
-        { who: "milo", at: "a", act: "excited", hold: "sword", beats: [{ word: "contract", act: "confused" }] },
+        { who: "milo", at: "a", act: "happy", hold: "sword", beats: [{ word: "contract", act: "confused" }] },
         { who: "qm", at: "b", act: "suspicious", beats: [{ word: "sign", act: "explain", hold: "scroll" }] },
       ],
       crowd: { count: 4, era: "pirate" },
@@ -59,7 +59,7 @@ export const PIRATEDEMOCRACY: Storyboard = {
       camera: { move: "frame", on: ["qm", "captain"], size: "full", from: 6, height: 1.4 },
       actors: [
         { who: "qm", at: "a", act: "explain", hold: "coinBag", beats: [{ word: "grab", gesture: "stop", face: "stern" }] },
-        { who: "captain", at: "b", act: "happy", beats: [{ word: "grab", act: "point" }, { word: "all", act: "sad" }] },
+        { who: "captain", at: "b", act: "happy", beats: [{ word: "grab", gesture: "present", face: "grin" }, { word: "all", act: "sad" }] },
       ],
       props: [{ id: "treasureChest", variant: "open", at: "a", offset: [0.6, 0.55], yaw: 10 }],
       fx: [{ kind: "anger", on: "qm", word: "grab" }] },

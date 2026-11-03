@@ -4,6 +4,7 @@ import type { Act, Expr, Gesture, Mode } from "../characters/figure";
 import type { LightName } from "../scene/environment";
 import type { ShotSize } from "../camera/framing";
 import type { FxKind } from "../fx/effects";
+import type { DiagramKind } from "../fx/diagrams";
 import type { Era } from "../characters/cast";
 import type { Mood, Ambience, SfxName } from "../sound/catalog";
 import type { CrowdSpec } from "./crowd";
@@ -51,14 +52,29 @@ export type ActorSpec = {
   nod?: (number | WordRef)[];  // nod start times (or words)
   shake?: (number | WordRef)[]; // head-shake start times (or words)
   idle?: number;              // idle life amount (default 1, 0 = still)
-  walk?: { to: Where; t0: number; t1: number; mode?: "walk" | "run" }; // walk (or run) in profile from `at` to `to`
+  /** walk (or run) in profile from `at` to `to`, between t0 and t1 seconds (or from / until spoken words) */
+  walk?: { to: Where; t0: number; t1: number; mode?: "walk" | "run"; from?: WordRef; until?: WordRef };
+  /** the "tickle" gesture reaches for this actor: the hands land on their flank, wherever they stand */
+  reach?: string;
+  /** timed body motion on top of the acting: squirm (wriggling with laughter), stagger (nearly falls over, away from
+   *  `away` or to `dir`), hop (a little jump), recoil (pulls back). dur in seconds */
+  moves?: Move[];
+  /** the "operate" gesture's control hand strokes at hz from the given moment (a robot can follow it: PropSpec.drive) */
+  drive?: When & { hz?: number };
   /** set by the engine, not written by hand: a crowd extra (shot `crowd`) */
   crowd?: boolean;
   /** set by the narration timing (story/timing.ts), not written by hand: this actor's spoken words, seconds into the shot */
   speech?: { w: string; t0: number; t1: number }[];
 };
+export type DiagramSpec = { kind: DiagramKind; with: string; side?: -1 | 1; size?: number; steps?: When[] };
+export type MoveKind = "squirm" | "stagger" | "hop" | "recoil";
+export type Move = When & { kind: MoveKind; dur?: number; away?: string; dir?: -1 | 1; amount?: number };
 export type FxSpec = When & { kind: FxKind; on: string; life?: number; side?: -1 | 1 };
-export type PropSpec = { id: string; at: Where; yaw?: number; scale?: number; variant?: string; offset?: [number, number] };
+/** a story prop. Animated props (a registry entry with a rig, e.g. robotArm) can reach for an actor's open hand
+ *  (follow) and replay an actor's control strokes (drive), late by `delay` seconds, changed at moments */
+export type PropSpec = { id: string; at: Where; yaw?: number; scale?: number; variant?: string; offset?: [number, number];
+  follow?: { who: string };
+  drive?: { who: string; delay?: number; changes?: (When & { delay: number })[] } };
 /** an explicit sound cue (automatic cues already cover effects, transitions, kicks, jumps, falls and footsteps).
  *  on = an actor (the sound is panned to where they are on screen); gain in dB on top of the kind's default level */
 export type SfxSpec = When & { name: SfxName; on?: string; gain?: number };
@@ -85,6 +101,9 @@ export type ShotSpec = {
   /** story props in this shot (see props/registry.ts): at a mark or [x, y, z]; yaw in degrees; scale; variant name;
    *  offset [dx, dz] metres from the mark */
   props?: PropSpec[];
+  /** an explainer diagram (fx/diagrams.ts) beside the presenter `with`, on their screen side `side` (default: right):
+   *  steps land on words. Name "diagram" in the camera's `on` list to frame it with the presenter */
+  diagram?: DiagramSpec;
   /** background extras on clear floor behind the cast: { count, era?, around?, radius?, acts?, seed? } */
   crowd?: CrowdSpec;
   note?: string;              // what the shot is for (script line), ignored by the engine

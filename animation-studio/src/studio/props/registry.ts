@@ -3,6 +3,7 @@
 // this registry gives each a stable id, a footprint (metres, used to keep it on clear floor and off the cast), its
 // height, themes and tags (asset search: `npm run assets -- search ...`), and named variants.
 import type { Batch } from "../materials/geo";
+import type * as THREE from "three";
 import type { At } from "./kit";
 import * as I from "./interior";
 import * as O from "./outdoor";
@@ -14,7 +15,14 @@ export type PropEntry = {
   themes: string[]; tags: string[]; radius: number; height: number;
   build: (b: Batch, a: At) => void;
   variants?: Record<string, (b: Batch, a: At) => void>;
+  /** an animated version (moving parts, posed every frame as a pure function of the inputs): used when a storyboard
+   *  prop has follow / drive. target = the open hand it reaches for (world), stroke = the replayed control stroke */
+  rig?: (a: At) => PropRig;
+  /** how far a rig reaches (checked by the validator): from its shoulder height, the length of the arm; lift = how
+   *  far above the hand its effector stays (a feather hanging down) */
+  reach?: { shoulder: number; length: number; lift: number };
 };
+export type PropRig = { root: THREE.Object3D; update: (st: { target?: [number, number, number]; stroke: number; camPos: THREE.Vector3 }) => void };
 
 export const PROPS: Record<string, PropEntry> = {
   // furniture / home / school / office

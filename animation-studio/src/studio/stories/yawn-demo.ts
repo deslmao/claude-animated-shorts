@@ -30,7 +30,7 @@ export const YAWN_DEMO: Storyboard = {
       camera: { move: "overShoulder", over: "milo", at: "juno", side: 1 },
       actors: [
         { who: "milo", at: "b", back: true, nod: [{ word: "closer" }] },
-        { who: "juno", at: "a", act: "point", face: "smile" },
+        { who: "juno", at: "a", act: "explain", face: "smile" },
       ] },
     { say: "Friends catch each other's yawns far more than strangers do.", set: "oldtown", light: "golden", transition: "fade",
       camera: { move: "orbit", on: ["milo", "gus"], fromDeg: [-14, 14], size: "medium", height: 1.45 },

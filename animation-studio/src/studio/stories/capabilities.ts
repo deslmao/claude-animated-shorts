@@ -11,10 +11,9 @@ export const CAPABILITIES: Storyboard = {
     { say: "Gus found an old map in the market square.", set: "oldtown", light: "day",
       camera: { move: "frame", on: ["gus", "milo"], size: "full", from: 6, height: 1.5 },
       actors: [
-        { who: "gus", at: "a", act: "excited", hold: "map" },
+        { who: "gus", at: "a", act: "excited", gesture: "raiseHand", hold: "map" },
         { who: "milo", at: "b", act: "confused", beats: [{ word: "map", act: "excited" }] },
       ],
-      props: [{ id: "barrel", at: "c", offset: [0.6, 0.4] }, { id: "crate", at: "c", offset: [1.4, -0.2], yaw: 20 }],
       crowd: { count: 6, era: "medieval" } },
     { say: "Milo grabbed the telescope and ran!", set: "city", light: "day", transition: "fade",
       camera: { move: "follow", on: "milo", size: "full", from: 20, height: 1.4 },

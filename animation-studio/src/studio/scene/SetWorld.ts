@@ -3,18 +3,18 @@
 // Shots choose set + light + camera; a director callback stages the cast and effects for each frame.
 import * as THREE from "three";
 import { Environment, sunFor, LightName } from "./environment";
-import { CardLayer, Stage, CamInfo } from "../cards/cards";
+import { CardLayer, Stage, CamInfo, ActorAnchor } from "../cards/cards";
 import { SETS, TEST_SETS } from "../sets";
 import type { BuiltSet, View } from "../sets/types";
 import { runKeys, Key, meanView, kickAt, withKick, V3 } from "../camera/keys";
 import type { FrameInfo, StudioWorld } from "../look/StudioFilm";
-import { PROPS } from "../props/registry";
+import { PROPS, PropRig } from "../props/registry";
 import { Batch } from "../materials/geo";
 import type { At } from "../props/kit";
 
 /** props: story props shown in this shot only (built the first time the shot is drawn) */
 export type WorldShot = { id: number; a: number; b: number; set: string; light: LightName; keys: Key[]; dof: (f: number) => { cInf: number; focus?: V3 }; kicks?: [number, number][];
-  props?: { id: string; variant?: string; at: At }[] };
+  props?: { id: string; variant?: string; at: At; animate?: (tt: number, anchors: Map<string, ActorAnchor>) => { target?: V3; stroke: number } }[] };
 export type Director = (shot: WorldShot, f: number, cam: CamInfo, built: BuiltSet, out: Stage) => void;
 
 export class SetWorld implements StudioWorld {
@@ -50,12 +50,18 @@ export class SetWorld implements StudioWorld {
     if (!v) { const [fx, fz] = meanView(s.keys, s.a, s.b); v = sunFor(fx, fz, s.light, built.sun); this.suns.set(s.id, v); }
     return v;
   }
-  /** this shot's story props: built once, visible only while the shot is drawn */
+  /** this shot's story props: built once, visible only while the shot is drawn. A prop with a rig (registry) that the
+   *  storyboard animates (follow / drive) is built as moving parts instead and posed every frame */
+  private rigs = new Map<number, { inst: PropRig; animate: NonNullable<NonNullable<WorldShot["props"]>[number]["animate"]> }[]>();
   private shotProps(s: WorldShot) {
     if (s.props?.length && !this.props.has(s.id)) {
-      const g = new THREE.Group(), b = new Batch();
-      for (const p of s.props) { const e = PROPS[p.id]; (p.variant && e.variants?.[p.variant] ? e.variants[p.variant] : e.build)(b, p.at); }
-      b.build(g, true); this.props.set(s.id, g); this.root.add(g);
+      const g = new THREE.Group(), b = new Batch(), rigs: { inst: PropRig; animate: NonNullable<NonNullable<WorldShot["props"]>[number]["animate"]> }[] = [];
+      for (const p of s.props) {
+        const e = PROPS[p.id];
+        if (p.animate && e.rig) { const inst = e.rig(p.at); g.add(inst.root); rigs.push({ inst, animate: p.animate }); }
+        else (p.variant && e.variants?.[p.variant] ? e.variants[p.variant] : e.build)(b, p.at);
+      }
+      b.build(g, true); this.props.set(s.id, g); this.rigs.set(s.id, rigs); this.root.add(g);
     }
     for (const [k, g] of this.props) g.visible = k === s.id;
   }
@@ -67,9 +73,12 @@ export class SetWorld implements StudioWorld {
     cam.fov = c.fov; cam.near = 0.1; cam.far = 1500; cam.updateProjectionMatrix(); cam.updateMatrixWorld();
     const focus = new THREE.Vector3(...c.look), sun = this.sunOf(s, built);
     const L = this.env.apply(s.light, cam, focus, sun, scene);
-    const info: CamInfo = { pos: cam.position, right: new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld, 0), sun };
+    const pv = new THREE.Vector3();
+    const info: CamInfo = { pos: cam.position, right: new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld, 0), sun, project: (p) => { pv.set(...p).project(cam); return [pv.x, pv.y]; } };
     const st: Stage = { places: [], fx: [] };
     this.director(s, f, info, built, st);
+    // animated props pose AFTER the actors: they reach for where the hands really are this frame
+    for (const r of this.rigs.get(s.id) ?? []) r.inst.update({ ...r.animate((f - s.a) / 30, st.anchors ?? new Map()), camPos: cam.position });
     this.cards.render(st, cam, L.actorShadow);
     const d = s.dof(f);
     return { target: focus, cInf: d.cInf, focus: d.focus ? new THREE.Vector3(...d.focus) : undefined, grade: s.light };

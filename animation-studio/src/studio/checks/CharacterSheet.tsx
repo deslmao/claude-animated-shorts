@@ -1,9 +1,9 @@
 // Review sheets for the character library (flat 2D, no WebGL: renders in seconds). Pick a page with inputProps
-// { page: "cast" | "roster" (themed characters + the pirate crowd) | "faces-milo" | "faces-juno" | "faces-gus" | "acts-milo" | "acts-juno" | "acts-gus" | "moves" | "crowd" }.
+// { page: "cast" | "roster" (themed characters + the pirate crowd) | "gestures-milo" | "faces-milo" | "faces-juno" | "faces-gus" | "acts-milo" | "acts-juno" | "acts-gus" | "moves" | "crowd" }.
 import React, { useLayoutEffect, useRef } from "react";
 import { AbsoluteFill, getInputProps } from "remotion";
 import { Pen } from "../characters/toon";
-import { figureFront, figureSide, Look, Pose, SidePose, EXPRESSIONS, ACT_NAMES, act } from "../characters/figure";
+import { figureFront, figureSide, Look, Pose, SidePose, EXPRESSIONS, ACT_NAMES, GESTURES, act } from "../characters/figure";
 import { MILO, JUNO, JUNO_OUT, GUS, crowd, Era, CAST } from "../characters/cast";
 import { ROSTER } from "../characters/roster";
 
@@ -55,6 +55,9 @@ const pageOf = (page: string, g: CanvasRenderingContext2D) => {
     LEADS.forEach(([n, l], i) => drawCell(g, { look: l, pose: act(["hello", "thinking", "laugh"][i] as "hello"), label: n.split(" ").pop()! }, 60 + i * 200, y + 60, 190, 260));
   } else if (page.startsWith("faces")) {
     grid(g, EXPRESSIONS.map((e) => ({ look: L, pose: { expr: e, facing: 0 }, label: e, crop: "head" as const })), 6, 10, 380, `${L.name}: expressions (${EXPRESSIONS.length})`);
+  } else if (page.startsWith("gestures")) {
+    // every gesture at two moments (t = 0.2 s and 0.45 s: wiggling / waving hands move); reach = a target 1.1 m away
+    grid(g, GESTURES.flatMap((ge) => [0.2, 0.45].map((t) => ({ look: L, pose: { gesture: ge, t, expr: "smile" as const, reach: ge === "tickle" ? 420 : undefined, drive: ge === "operate" ? Math.sin(t * 9) : undefined }, label: `${ge} ${t}` }))), 10, 10, 540, `${L.name}: gestures (${GESTURES.length})`);
   } else if (page.startsWith("acts")) {
     grid(g, ACT_NAMES.map((a) => ({ look: L, pose: act(a, { t: 0.4 }), label: a })), 6, 10, 520, `${L.name}: acting presets (${ACT_NAMES.length})`);
   } else if (page === "moves") {

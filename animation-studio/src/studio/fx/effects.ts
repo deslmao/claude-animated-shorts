@@ -2,7 +2,7 @@
 // reaction marks (? ! sweat, anger, idea bulb, hearts, zzz), motion marks (speed lines, puffs, impact stars), and
 // celebration (confetti, sparkles, music notes). Every effect is animated by t (seconds since it started): pop-in
 // with overshoot over ~6 frames, a little life while it holds, fade at the end. Drawn on a 400 x 400 canvas.
-import { Pen, INK, P2, rad, fxBurst, fxSplash, fxPuff, fxStars, fxNote, fxRing } from "../characters/toon";
+import { Pen, INK, P2, rad, fxBurst, fxSplash, fxPuff, fxNote, fxRing } from "../characters/toon";
 import { FxPlace, cardKey, CamInfo } from "../cards/cards";
 
 export type FxKind = "question" | "exclaim" | "sweat" | "anger" | "idea" | "hearts" | "zzz" | "speed" | "puff" | "stars" | "burst" | "confetti" | "sparkle" | "notes" | "splash" | "ring";
@@ -61,7 +61,15 @@ export const drawFx = (p: Pen, kind: FxKind, t: number, seed = 1) => {
     }); break;
     case "speed": for (let i = 0; i < 6; i++) { const y = 90 + i * 45, len = 120 + ((i * 53 + q(t) * 300) % 120); p.stroke([[60 + (i % 2) * 40, y], [60 + (i % 2) * 40 + len, y]], 9, INK); } break;
     case "puff": fxPuff(p, Math.min(1, t / 0.6)); break;
-    case "stars": fxStars(p, (t * 0.7) % 1); break;
+    case "stars": { // dizzy stars: five stars orbiting the crown on a tilted ring, the far side smaller and fainter
+      for (let i = 0; i < 5; i++) {
+        const a = t * Math.PI * 2 * 0.9 + (i * Math.PI * 2) / 5, x = 200 + 165 * Math.cos(a), depth = Math.sin(a), y = 200 + 48 * depth;
+        const r = 30 * (0.72 + 0.28 * (depth + 1) / 2), spin = t * 6 + i, pts: P2[] = [];
+        for (let k = 0; k < 10; k++) { const rr = k % 2 ? r * 0.42 : r, b = rad(k * 36 - 90) + spin; pts.push([x + rr * Math.cos(b), y + rr * Math.sin(b)]); }
+        g.globalAlpha = depth < 0 ? 0.65 : 1; p.poly(pts, "#ffd84a", depth < 0 ? 5 : 7); g.globalAlpha = 1;
+      }
+      break;
+    }
     case "burst": fxBurst(p, Math.min(1, t / 0.5), "#fff3b0", 10, 40, 180); break;
     case "confetti": for (let i = 0; i < 26; i++) {
       const a = (i * 137.5) % 360, sp = 60 + (i * 31) % 90, x = 200 + Math.cos(rad(a)) * sp * Math.min(1.6, t * 3), y = 200 + Math.sin(rad(a)) * sp * Math.min(1.6, t * 3) - 60 * t + 160 * t * t;
@@ -96,5 +104,21 @@ export const fxNear = (cam: CamInfo, kind: FxKind, mark: [number, number, number
   // inside the frame, beside the head, scaled down in close-ups
   const d = Math.hypot(cam.pos.x - mark[0], cam.pos.z - mark[2]) || 1, halfW = 0.2 * d;
   const lat = Math.min(0.42, 0.62 * halfW), sz = Math.min(size, 0.5 * halfW), y = mark[1] + 1.72 + Math.min(0.22, 0.06 * d);
-  return fxCard(kind, mark[0] + cam.right.x * lat * side, y, mark[2] + cam.right.z * lat * side, sz, t, t0, life, seed);
+  // keep it on screen: if the preferred side would put the mark past the frame edge, use the other side of the head
+  const at = (sd: number): [number, number, number] => [mark[0] + cam.right.x * lat * sd, y, mark[2] + cam.right.z * lat * sd];
+  if (cam.project) { const [x] = cam.project(at(side)), [xo] = cam.project(at(-side)); if (Math.abs(x) > 0.86 && Math.abs(xo) < Math.abs(x)) side = (-side) as -1 | 1; }
+  const p = at(side);
+  return fxCard(kind, p[0], p[1], p[2], sz, t, t0, life, seed);
+};
+
+/** effects drawn AROUND the head (not beside it): dizzy stars orbit the crown */
+export const HALO_KINDS: FxKind[] = ["stars"];
+/** a halo effect centred just above the crown, as wide as ~2 heads, tilted with the head and nudged toward the lens so
+ *  it draws over the head card: it follows every lean, tilt and bob of the drawing */
+export const fxHalo = (cam: CamInfo, kind: FxKind, crown: [number, number, number], headHalfW: number, rot: number, t: number, t0: number, life = 2.2, seed = 1) => {
+  const d = Math.hypot(cam.pos.x - crown[0], cam.pos.z - crown[2]) || 1, tx = (cam.pos.x - crown[0]) / d, tz = (cam.pos.z - crown[2]) / d;
+  // the head's "up" leans with it: sideways along the card's right (tz, 0, -tx), up by cos
+  const up = 0.035 + headHalfW * 0.15, lat = Math.sin(rot) * up;
+  const c = fxCard(kind, crown[0] + tx * 0.12 + tz * lat, crown[1] + Math.cos(rot) * up, crown[2] + tz * 0.12 - tx * lat, headHalfW * 4.6, t, t0, life, seed);
+  return c ? { ...c, rot: -rot } : null;
 };

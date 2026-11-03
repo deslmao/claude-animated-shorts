@@ -256,7 +256,10 @@
   "belly": "",
   "stop": "",
   "spread": "",
-  "hold": ""
+  "hold": "",
+  "tickleSelf": "",
+  "tickle": "",
+  "operate": ""
  },
  "effects": {
   "question": "",
@@ -565,6 +568,7 @@
   "compass": "",
   "bottle": "",
   "flask": "",
+  "joystick": "",
   "scroll": "",
   "coinBag": "",
   "shovel": "",

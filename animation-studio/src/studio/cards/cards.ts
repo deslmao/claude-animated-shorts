@@ -109,9 +109,15 @@ export type Place = {
 };
 /** an effect card: w x h metres; flat = lying on the ground; soft = see-through; keys containing "|blob|" multiply */
 export type FxPlace = { key: string; cw: number; ch: number; draw: (p: Pen) => void; x: number; y: number; z: number; w: number; h: number; flat?: boolean; rot?: number; soft?: boolean };
-export type Stage = { places: Place[]; fx: FxPlace[] };
+/** where an actor's head and hands are this frame, in the world (the director fills it; effects, props that touch an
+ *  actor and the storyboard checks read it). headR = head half-width / half-height in metres; rot = head tilt (radians,
+ *  screen-clockwise as drawn, already mirrored) */
+export type ActorAnchor = { head: [number, number, number]; crown: [number, number, number]; headR: [number, number]; rot: number;
+  hands: { p: [number, number, number]; raised: boolean; side: number; kind: string }[]; chest: [number, number, number]; floor: [number, number, number]; mirror: boolean; gesture: string; walking?: boolean };
+export type Stage = { places: Place[]; fx: FxPlace[]; anchors?: Map<string, ActorAnchor> };
 /** what a stage builder needs to know about the camera and light this frame (sun = world direction TOWARD the sun) */
-export type CamInfo = { pos: THREE.Vector3; right: THREE.Vector3; sun: THREE.Vector3 };
+/** project = world point -> normalised screen x / y (-1..1 inside the 9:16 frame), when the camera is known */
+export type CamInfo = { pos: THREE.Vector3; right: THREE.Vector3; sun: THREE.Vector3; project?: (p: [number, number, number]) => [number, number] };
 
 /** draws a Stage: reuses card meshes, culls off-screen cards, then draws only the canvases that changed */
 export class CardLayer {

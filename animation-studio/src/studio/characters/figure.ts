@@ -398,13 +398,14 @@ const hat3 = (p: Pen, L: Look, H: Blob, cx: number, hc: number, light: number, f
 
 // ---------------- gestures ----------------
 export type Gesture = "hang" | "wave" | "point" | "pointUp" | "shrug" | "facepalm" | "chin" | "thumbsUp" | "crossArms" | "hips" | "raiseHand"
-  | "cheer" | "talk" | "scratchHead" | "coverMouth" | "present" | "fists" | "clap" | "belly" | "stop" | "pump" | "spread" | "hold";
+  | "cheer" | "talk" | "scratchHead" | "coverMouth" | "present" | "fists" | "clap" | "belly" | "stop" | "pump" | "spread" | "hold"
+  | "tickleSelf" | "tickle" | "operate";
 export const GESTURES: Gesture[] = ["hang", "wave", "point", "pointUp", "shrug", "facepalm", "chin", "thumbsUp", "crossArms", "hips", "raiseHand",
-  "cheer", "talk", "scratchHead", "coverMouth", "present", "fists", "clap", "belly", "stop", "spread", "hold"];
+  "cheer", "talk", "scratchHead", "coverMouth", "present", "fists", "clap", "belly", "stop", "spread", "hold", "tickleSelf", "tickle", "operate"];
 /** gestures that show a held item off overhead (raise it, point it up, cheer with it); any other gesture becomes "hold"
  *  (the item at chest height, close to the body, so it stays in frame in medium shots) while something is held */
-const CARRY: Gesture[] = ["hold", "raiseHand", "pointUp", "cheer"];
-type Hand = "dot" | "point" | "thumb" | "open" | "fist";
+const CARRY: Gesture[] = ["hold", "raiseHand", "pointUp", "cheer", "operate"];
+type Hand = "dot" | "point" | "thumb" | "open" | "fist" | "wiggle";
 /** layer: 0 behind the torso, 1 in front of the torso, 2 over the face */
 type ArmDef = { pts: [P2, P2, P2]; layer: 0 | 1 | 2; hand: Hand; dir?: number };
 
@@ -418,6 +419,11 @@ export type Pose = {
   light?: number;
   /** a hand-held item (characters/items.ts), drawn at the holding hand */
   hold?: string;
+  /** "tickle": how far the hands reach toward the screen-`hand` side, in design units from the body centre (the
+   *  director sets it from the target's position so the fingers land on the target's flank) */
+  reach?: number;
+  /** "operate": the control hand's stroke, -1..1 (a robot driven by it follows the same signal) */
+  drive?: number;
   /** seen from behind (over-the-shoulder shots, walking away): no face, hair covers the back of the head */
   back?: boolean;
 };
@@ -428,7 +434,9 @@ const armColOf = (c: string) => {
 };
 
 // ---------------- front view ----------------
-export const figureFront = (p: Pen, L: Look, pose: Pose) => {
+/** the front view's rig: every position figureFront draws from (body, head, arms and hands in design units), for a
+ *  look + pose. Pure, and shared by the drawing and by anchorsFront (heads and hands for effects, contact and checks). */
+export const rigFront = (L: Look, pose: Pose) => {
   const { expr = "neutral", gesture = "hang", mode = "stand", phase = 0, facing = 0, look = [0, 0], blink = false, tilt = 0, headTilt = 0,
     shrug = 0, jump = 0, t = 0, light = DEF_LIGHT } = pose;
   const back = !!pose.back;
@@ -447,41 +455,9 @@ export const figureFront = (p: Pen, L: Look, pose: Pose) => {
   const legW = 5.8 * u, footW = 7.5 * u;
   const dress = L.top.style === "dress" && mode !== "sit" && mode !== "fall";
   const coat = L.layer?.style === "labcoat" || L.layer?.style === "longcoat", frock = L.layer?.style === "longcoat";
-  // ---- long hair behind everything ----
-  p.rot = null;
-  // ---- legs + feet ----
-  if (mode === "sit") {
-    for (const side of [-1, 1]) {
-      const h: P2 = [300 + side * 15 * u, hipY], k: P2 = [300 + side * 36 * u, hipY + 0.2 * HH], f: P2 = [300 + side * 44 * u, sole - 8 * u];
-      p.stroke(curve(h, k, f), legW, legCol); footStroke(p, [f[0] - side * 2 * u, f[1]], [f[0] + side * 12 * u, f[1] - 5 * u], footW, footCol);
-    }
-  } else if (mode === "fall") {
-    const legs: [P2, P2, P2][] = [[[300 - 15 * u, hipY], [300 - 46 * u, hipY + 0.5 * HH], [300 - 70 * u, hipY + 0.72 * HH]], [[300 + 15 * u, hipY], [300 + 50 * u, hipY + 0.45 * HH], [300 + 76 * u, hipY + 0.22 * HH]]];
-    legs.forEach(([h, k, f], i) => { p.stroke(curve(h, k, f), legW, legCol); footStroke(p, f, [f[0] + (i ? 14 : -14) * u, f[1] + (i ? -6 : 4) * u], footW, footCol); });
-  } else if (mode === "jump") {
-    // knees out, feet tucked under (a frog jump reads at any size)
-    for (const side of [-1, 1]) {
-      const h: P2 = [300 + side * 15 * u, hipY], fy = hipY + (Bd.legs * 0.62) * HH, f: P2 = [300 + side * 20 * u, fy], k: P2 = [300 + side * 46 * u, (hipY + fy) / 2 + 0.05 * HH];
-      p.stroke([h, k, f], legW, legCol); footStroke(p, [f[0] - side * 3 * u, f[1]], [f[0] + side * 13 * u, f[1] + 2 * u], footW, footCol);
-    }
-  } else if (dress) {
-    for (const side of [-1, 1]) {
-      const fx = 300 + side * 12 * u, fy = sole - 4 * u;
-      p.stroke([[fx, sole - 0.4 * HH], [fx + side * u, fy]], legW, legCol); footStroke(p, [fx - side * 3 * u, fy], [fx + side * 12 * u, fy + u], footW, footCol);
-    }
-  } else {
-    const Lf = mode === "march" ? 75 : mode === "walk" ? 33 : mode === "run" ? 110 : 0;
-    for (const [side, ph] of [[-1, 0], [1, 0.5]] as const) {
-      const up = Math.max(0, Math.sin(two * (phase + ph))) * Lf;
-      const hx = 300 + side * 15 * u, fx = 300 + side * (mode === "run" ? 26 : 22) * u, fy = sole - 4 * u - up;
-      const k: P2 = [(hx + fx) / 2 + side * (1.5 * u + up * 0.16), (hipY + fy) / 2 - up * 0.08];
-      p.stroke(curve([hx, hipY], k, [fx, fy]), legW, legCol); footStroke(p, [fx - side * 3 * u, fy], [fx + side * 13 * u, fy + 0.5 * u], footW, footCol);
-    }
-  }
   // ---- upper body rotates about the hips ----
   const sway = mode === "march" ? 1.6 * Math.sin(two * phase) : mode === "walk" ? 1.0 * Math.sin(two * phase) : mode === "run" ? 2.2 * Math.sin(two * phase) : 0;
   const A = tilt + sway;
-  p.rot = A ? [rad(A), 300, hipY] : null;
   const T: Blob = { a: ((Bd.tw / 2) * W) / 1.06, b: 0.5 * (torsoBot - (chin - 0.25 * HH)), nTop: 2.2, nBot: 2.6, egg: Bd.egg, asym: 0.04 * facing, rot: 0, noise: 0.006, seed: seed + 7 };
   const tcx = 300 + 3 * u * facing, tcy = torsoBot - T.b, tp = blobPts(tcx, tcy, T);
   const shY = chin + 0.12 * HH - shrug * 0.07 * HH;
@@ -529,16 +505,98 @@ export const figureFront = (p: Pen, L: Look, pose: Pose) => {
     case "clap": { const c = 1 - Math.abs(Math.sin(t * 7)); for (const s of [-1, 1]) add(s, [tcx + s * 1.08 * T.a, chin + 0.48 * HH], [tcx + s * (3 + 14 * (1 - c)) * u, chin + 0.36 * HH], 1, "open"); break; }
     case "belly": for (const s of [-1, 1]) add(s, [tcx + s * 1.1 * T.a, chin + 0.5 * HH], [tcx + s * 0.35 * T.a, torsoBot - 0.3 * HH], 1, "open"); break;
     case "hold": one((s) => { const S = S1(s); add(s, [S[0] + s * 0.3 * HH, S[1] + 0.44 * HH], [S[0] + s * 0.14 * HH, S[1] + 0.26 * HH], 1, "fist"); }); break; // item shown in front of the chest
+    case "tickleSelf": { // one elbow up with the hand behind the head (armpit open), the other hand tickling that armpit
+      const s = hs, o = -s, S = S1(s), w = Math.sin(t * 26), w2 = Math.cos(t * 33);
+      add(s, [S[0] + s * 0.5 * HH, S[1] - 0.44 * HH], [300 + s * 0.12 * W, hc - 0.2 * HH], 0, "open");
+      add(o, [tcx + o * 0.5 * T.a, chin + 0.5 * HH], [tcx + s * (0.92 * T.a + 3 * u * w), shY + 0.15 * HH + 2.5 * u * w2], 1, "wiggle");
+      break;
+    }
+    case "tickle": { // both hands reach to the `hand` side at chest height, fingers wiggling
+      // capped inside the 600-unit card (a hand beyond the canvas edge would be clipped): stand the tickler close
+      const s = hs, o = -s, reach = Math.min(pose.reach ?? 0.95 * HH, 270 - s * (tcx - 300)), w = Math.sin(t * 24), w2 = Math.sin(t * 29 + 1.3);
+      const S = S1(s), Ho: P2 = [tcx + s * (reach - 0.1 * HH), chin + 0.5 * HH + 3 * u * w2];
+      add(s, [S[0] + s * reach * 0.42, S[1] + 0.3 * HH], [tcx + s * reach, chin + 0.36 * HH + 3 * u * w], 1, "wiggle");
+      add(o, [tcx + s * 0.25 * T.a, chin + 0.62 * HH], Ho, 1, "wiggle");
+      break;
+    }
+    case "operate": { // the `hand`-side hand works a control in front of the waist; the other palm is held out
+      const s = hs, o = -s, d = pose.drive ?? 0, So = S1(o);
+      add(s, [tcx + s * 1.05 * T.a, chin + 0.5 * HH], [tcx + s * (0.45 * T.a + 7 * u * d), chin + 0.62 * HH - 2 * u * Math.abs(d)], 1, "fist");
+      add(o, [So[0] + o * 0.32 * HH, So[1] + 0.36 * HH], [So[0] + o * 0.62 * HH, So[1] + 0.32 * HH], 0, "open");
+      break;
+    }
     case "stop": one((s) => { const S = S1(s); add(s, [S[0] + s * 0.22 * HH, S[1] + 0.32 * HH], [S[0] + s * 0.18 * HH, S[1] - 0.12 * HH], 1, "open"); }); break;
     case "talk": for (const s of [-1, 1]) { const w = Math.sin(t * 6 + (s > 0 ? 0 : 1.7)); add(s, [tcx + s * 1.12 * T.a, chin + 0.46 * HH], [tcx + s * (0.95 * T.a + 6 * u * w), chin + 0.56 * HH - 8 * u * w], 1, "open"); } break;
     case "pump": for (const s of [-1, 1]) { const w = Math.sin(two * phase) * s; add(s, [tcx + s * 1.15 * T.a, chin + 0.42 * HH - 10 * u * w], [tcx + s * 0.9 * T.a, chin + 0.22 * HH - 22 * u * w], 0, "fist"); } break;
   }
+  return { expr, mode, phase, facing, look, light, back, hs, Bd, skin, two, lid, seed, H, W, HH, u, sole, torsoBot, chin, hc, hipY, thick, ow, top, legCol, armCol, footCol, legW, footW, dress, coat, frock, A, T, tcx, tp, shY, arms, headTilt, t, jump, g };
+};
+/** where a front-view figure's head and hands are, in design units (600 x 1000 canvas, soles at y 975, before any
+ *  card mirroring), exactly as figureFront draws them: the head after the body lean and head tilt, each hand after the
+ *  body lean. raised = the hand is above the shoulders (a gesture that can leave the top of the frame). */
+export type Anchors = { head: P2; headR: [number, number]; headRot: number; crown: P2; hands: { p: P2; raised: boolean; side: number; kind: string }[]; chest: P2; gesture: Gesture };
+export const anchorsFront = (L: Look, pose: Pose): Anchors => {
+  const r = rigFront(L, pose), hip: P2 = [300, r.hipY];
+  const body = (q: P2): P2 => (r.A ? rotAbout(q, rad(r.A), hip) : q);
+  const Ah = r.A + r.headTilt, [cpx, cpy] = rotAbout([300, r.chin], rad(r.A), hip);
+  const headPt = (q: P2): P2 => {
+    if (!Ah) return q; // figureFront draws the head unrotated when the total angle is 0
+    const c = Math.cos(rad(Ah)), sn = Math.sin(rad(Ah)), dx = q[0] - 300, dy = q[1] - r.chin;
+    return [300 + dx * c - dy * sn + (cpx - 300), r.chin + dx * sn + dy * c + (cpy - r.chin)];
+  };
+  const shoulderY = r.chin + 0.12 * r.HH;
+  return {
+    head: headPt([300, r.hc]), crown: headPt([300, r.hc - r.H.b]), headR: [r.H.a, r.H.b], headRot: rad(Ah),
+    hands: r.arms.map((a) => ({ p: body(a.pts[2]), raised: a.pts[2][1] < shoulderY - 0.1 * r.HH, side: Math.sign(a.pts[0][0] - r.tcx), kind: a.hand })),
+    chest: body([r.tcx, r.chin + 0.4 * r.HH]), gesture: r.g,
+  };
+};
+export const figureFront = (p: Pen, L: Look, pose: Pose) => {
+  const { expr, mode, phase, facing, look, light, back, hs, Bd, skin, two, lid, seed, H, W, HH, u, sole, torsoBot, chin, hc, hipY, thick, ow, top, legCol, armCol, footCol, legW, footW, dress, coat, frock, A, T, tcx, tp, arms, headTilt, t } = rigFront(L, pose);
+  // ---- long hair behind everything ----
+  p.rot = null;
+  // ---- legs + feet ----
+  if (mode === "sit") {
+    for (const side of [-1, 1]) {
+      const h: P2 = [300 + side * 15 * u, hipY], k: P2 = [300 + side * 36 * u, hipY + 0.2 * HH], f: P2 = [300 + side * 44 * u, sole - 8 * u];
+      p.stroke(curve(h, k, f), legW, legCol); footStroke(p, [f[0] - side * 2 * u, f[1]], [f[0] + side * 12 * u, f[1] - 5 * u], footW, footCol);
+    }
+  } else if (mode === "fall") {
+    const legs: [P2, P2, P2][] = [[[300 - 15 * u, hipY], [300 - 46 * u, hipY + 0.5 * HH], [300 - 70 * u, hipY + 0.72 * HH]], [[300 + 15 * u, hipY], [300 + 50 * u, hipY + 0.45 * HH], [300 + 76 * u, hipY + 0.22 * HH]]];
+    legs.forEach(([h, k, f], i) => { p.stroke(curve(h, k, f), legW, legCol); footStroke(p, f, [f[0] + (i ? 14 : -14) * u, f[1] + (i ? -6 : 4) * u], footW, footCol); });
+  } else if (mode === "jump") {
+    // knees out, feet tucked under (a frog jump reads at any size)
+    for (const side of [-1, 1]) {
+      const h: P2 = [300 + side * 15 * u, hipY], fy = hipY + (Bd.legs * 0.62) * HH, f: P2 = [300 + side * 20 * u, fy], k: P2 = [300 + side * 46 * u, (hipY + fy) / 2 + 0.05 * HH];
+      p.stroke([h, k, f], legW, legCol); footStroke(p, [f[0] - side * 3 * u, f[1]], [f[0] + side * 13 * u, f[1] + 2 * u], footW, footCol);
+    }
+  } else if (dress) {
+    for (const side of [-1, 1]) {
+      const fx = 300 + side * 12 * u, fy = sole - 4 * u;
+      p.stroke([[fx, sole - 0.4 * HH], [fx + side * u, fy]], legW, legCol); footStroke(p, [fx - side * 3 * u, fy], [fx + side * 12 * u, fy + u], footW, footCol);
+    }
+  } else {
+    const Lf = mode === "march" ? 75 : mode === "walk" ? 33 : mode === "run" ? 110 : 0;
+    for (const [side, ph] of [[-1, 0], [1, 0.5]] as const) {
+      const up = Math.max(0, Math.sin(two * (phase + ph))) * Lf;
+      const hx = 300 + side * 15 * u, fx = 300 + side * (mode === "run" ? 26 : 22) * u, fy = sole - 4 * u - up;
+      const k: P2 = [(hx + fx) / 2 + side * (1.5 * u + up * 0.16), (hipY + fy) / 2 - up * 0.08];
+      p.stroke(curve([hx, hipY], k, [fx, fy]), legW, legCol); footStroke(p, [fx - side * 3 * u, fy], [fx + side * 13 * u, fy + 0.5 * u], footW, footCol);
+    }
+  }
+  // ---- upper body rotates about the hips ----
+  p.rot = A ? [rad(A), 300, hipY] : null;
   const drawHand = (a: ArmDef) => {
     const [hx, hy] = a.pts[2];
     if (a.hand === "point") { const d = a.dir ?? 0; taper(p, [hx, hy], [hx + Math.cos(d) * 13 * u, hy + Math.sin(d) * 13 * u], 4.2 * u, 3.4 * u); p.dot(hx, hy, 5.5 * u); }
     else if (a.hand === "thumb") { taper(p, [hx, hy], [hx - 1 * u, hy - 13 * u], 4.4 * u, 3.6 * u); p.dot(hx, hy, 6 * u); }
     else if (a.hand === "open") { p.dot(hx, hy, 6.3 * u); }
     else if (a.hand === "fist") { p.dot(hx, hy, 6.8 * u); }
+    else if (a.hand === "wiggle") { // tickling fingers: three short strokes that flutter
+      const dir = Math.sign(hx - tcx) || 1;
+      for (let k = 0; k < 3; k++) { const ang = rad(-40 + k * 40 + 18 * Math.sin(t * 30 + k * 2.1)); taper(p, [hx, hy], [hx + dir * Math.cos(ang) * 14 * u, hy + Math.sin(ang) * 14 * u], 3.8 * u, 2.8 * u); }
+      p.dot(hx, hy, 5.8 * u);
+    }
     else p.dot(hx, hy, 5.5 * u);
   };
   const drawArm = (a: ArmDef) => {

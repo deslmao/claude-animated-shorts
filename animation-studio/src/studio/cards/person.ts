@@ -4,7 +4,7 @@
 import * as THREE from "three";
 import { bodyFront, bodySide, fxShadow, fxContact, Outfit, FrontOpts, SideOpts } from "../characters/toon";
 import { figureFront, figureSide, Look, Pose, SidePose } from "../characters/figure";
-import { Place, Stage, CamInfo, cardKey, cardOpts } from "./cards";
+import { Place, Stage, CamInfo, cardKey, cardOpts, SU } from "./cards";
 import type { LightName } from "../scene/environment";
 
 const tmp = new THREE.Vector3();
@@ -72,6 +72,13 @@ export const contactShadow = (out: Stage, sun: THREE.Vector3, light: LightName, 
   const cc = hexOf(CONTACT[light] ?? CONTACT.day, k);
   out.fx.push({ key: `blob|contact|${cc}`, cw: 128, ch: 128, draw: (p) => fxContact(p, cc), x: x + ox * 0.03 * sc, y: y + 0.022, z: z + oz * 0.03 * sc,
     w: 0.52 * sc, h: 0.4 * sc, flat: true, rot });
+};
+
+/** a point of a character drawing (design units: 600 x 1000, soles at y 975) in the world, for a card standing at
+ *  (x, y, z) facing the camera the way CardLayer turns it (yaw toward the camera position; mirror flips the drawing) */
+export const cardPoint = (camPos: THREE.Vector3, x: number, y: number, z: number, q: [number, number], scale = 1, mirror = false): [number, number, number] => {
+  const yaw = Math.atan2(camPos.x - x, camPos.z - z), dx = (q[0] - 300) * SU * scale * (mirror ? -1 : 1);
+  return [x + Math.cos(yaw) * dx, y + (975 - q[1]) * SU * scale, z - Math.sin(yaw) * dx];
 };
 
 /** a library character (characters/figure.ts) as a card. side = profile drawing (mirror = facing screen-left).
