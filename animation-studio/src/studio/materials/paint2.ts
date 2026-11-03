@@ -199,7 +199,7 @@ export const modernFacadeHD = (key: string, wm: number, hm: number, o: { wall: s
     if (o.shop) {
       const y0 = H - m(4);
       g.fillStyle = o.sign; g.fillRect(0, y0, W, m(0.9));
-      g.fillStyle = "rgba(255,255,255,0.85)"; for (let k = 0; k < 5; k++) rr(g, W * 0.25 + k * m(0.55), y0 + m(0.25), m(0.4), m(0.4), m(0.08)), g.fill();
+      g.fillStyle = "rgba(255,255,255,0.85)"; for (let k = 0; k < 5; k++) { rr(g, W * 0.25 + k * m(0.55), y0 + m(0.25), m(0.4), m(0.4), m(0.08)); g.fill(); }
       g.fillStyle = jit(r, o.wall, 0.06, 2, 0.05); g.fillRect(0, y0 + m(0.9), W, H - y0);
       g.fillStyle = o.trim; g.fillRect(0, H - m(0.25), W, m(0.25));
       glass(m(0.4), y0 + m(1.2), W * 0.55, m(2.5));

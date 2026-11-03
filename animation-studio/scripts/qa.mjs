@@ -3,7 +3,7 @@
 // Writes <outDir>/qa.md, qa.json and contact_sheet.jpg. Exits 1 if a hard check fails.
 // Hard checks: codec, resolution, fps, exact frame count, no duplicated consecutive frames (chunk seams; frames held
 // dark by a dip to black are exempt), audio present
-// and the same length as the picture (sync), audio starting at 0. Soft (reported): loudness, black and frozen spans.
+// and the same length as the picture (sync), audio starting at 0, audio not silent (> -40 LUFS) when required. Soft (reported): loudness, black and frozen spans.
 import fs from "node:fs";
 import path from "node:path";
 import { execFileSync, spawnSync } from "node:child_process";
@@ -77,6 +77,8 @@ const checks = [
 ];
 if (audioMode !== "none") {
   checks.push(["audio track present", audioMode === "any" || !!a, a ? `${a.codec_name} ${a.sample_rate} Hz ${a.channels} ch` : "missing"]);
+  // a present but silent (or nearly silent) track is a broken soundtrack, not audio
+  if (audioMode === "required") checks.push(["audio is not silent", lufs !== null && Number.isFinite(lufs) && lufs > -40, lufs === null || !Number.isFinite(lufs) ? "no measurable loudness" : `${lufs} LUFS integrated`]);
   if (a) {
     checks.push(["audio starts at 0", Math.abs(Number(a.start_time ?? 0)) < 0.05, `${Number(a.start_time ?? 0).toFixed(3)} s`]);
     checks.push(["audio length matches picture (sync)", Math.abs(aDur - vDur) < 0.1, `audio ${aDur.toFixed(3)} s vs picture ${vDur.toFixed(3)} s (diff ${(aDur - vDur).toFixed(3)} s)`]);

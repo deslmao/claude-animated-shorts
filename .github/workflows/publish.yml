@@ -38,6 +38,8 @@ jobs:
           echo "width=$(jq -r '.width // 1080' req.json)" >> "$GITHUB_OUTPUT"
           echo "height=$(jq -r '.height // 1920' req.json)" >> "$GITHUB_OUTPUT"
           echo "audio=$(jq -r '.audio // "required"' req.json)" >> "$GITHUB_OUTPUT"
+          # a storyboard Short is never published without its soundtrack
+          if [[ "$(jq -r '.composition' req.json)" == Short-* && "$(jq -r '.audio // "required"' req.json)" != "required" ]]; then echo "::error::Short compositions must be published with audio: required"; exit 1; fi
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
       - name: Download the render's video

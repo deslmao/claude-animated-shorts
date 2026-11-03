@@ -65,6 +65,9 @@ jobs:
           # default soundtrack location if none given
           if [ -z "$AUDIO" ]; then for f in "animation-studio/audio/$COMP.wav" "animation-studio/audio/$COMP.mp3"; do [ -f "$f" ] && AUDIO="$f"; done; fi
           [[ "$COMP" =~ ^[A-Za-z0-9_-]+$ ]] || { echo "bad composition id"; exit 1; }
+          # a storyboard Short is never rendered or published without its narrated soundtrack
+          if [[ "$COMP" == Short-* && -z "$AUDIO" ]]; then echo "::error::$COMP has no soundtrack (animation-studio/audio/$COMP.mp3): run npm run voice first"; exit 1; fi
+          if [[ "$COMP" == Short-* && "$AUDIO" != "animation-studio/audio/$COMP.mp3" ]]; then echo "::error::$COMP must use its own fingerprinted soundtrack animation-studio/audio/$COMP.mp3, not '$AUDIO'"; exit 1; fi
           echo "composition=$COMP" >> "$GITHUB_OUTPUT"; echo "chunks=$CHUNKS" >> "$GITHUB_OUTPUT"
           echo "preview=$PREVIEW" >> "$GITHUB_OUTPUT"; echo "audio=$AUDIO" >> "$GITHUB_OUTPUT"
           echo "Render $COMP, $CHUNKS chunks, preview=$PREVIEW, audio='$AUDIO'"
@@ -72,6 +75,9 @@ jobs:
         with: { node-version: 22, cache: npm, cache-dependency-path: animation-studio/package-lock.json }
       - run: npm ci --no-fund --no-audit --loglevel=error
       - run: npx tsc --noEmit
+      # storyboard Shorts: validation + narration complete + soundtrack present and built from THIS storyboard
+      - name: Preflight (storyboard, narration, soundtrack)
+        run: npm run preflight -- "${{ steps.req.outputs.composition }}"
       - run: npx remotion browser ensure
       - run: npx remotion bundle --out-dir build --log warn
       - id: plan

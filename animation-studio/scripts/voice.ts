@@ -17,6 +17,7 @@ import { STORIES } from "../src/studio/stories";
 import { lineList, resolve, FPS } from "../src/studio/story/timing";
 import { VOICES } from "../src/studio/voice/voices";
 import { requestOf, wordsFromAlignment, clipHash, Narration, Clip } from "../src/studio/voice/narration";
+import { soundtrackFingerprint, SOUNDTRACK_ENGINE, SoundtrackInfo } from "../src/studio/story/fingerprint";
 
 const proc = globalThis as unknown as { process: { argv: string[]; env: Record<string, string | undefined>; exit(n: number): never } };
 const args = proc.process.argv.slice(2), id = args.find((a) => !a.startsWith("--")), GENERATE = args.includes("--generate");
@@ -131,6 +132,10 @@ encode(gain, limit);
 let done = r128(["-i", OUT], "[0:a]anull");
 if (Math.abs(done.I + 14) > 0.2) { gain += -14 - done.I; encode(gain, limit); done = r128(["-i", OUT], "[0:a]anull"); } // the limiter takes a little
 console.log(`loudness  raw mix ${raw.I.toFixed(1)} LUFS -> gain ${gain >= 0 ? "+" : ""}${gain.toFixed(1)} dB${limit ? " + peak limiter" : ""} -> ${done.I.toFixed(1)} LUFS, peak ${done.peak.toFixed(1)} dBFS`);
+// the fingerprint file: ties this soundtrack to the exact storyboard + narration (checked by npm run preflight)
+const info: SoundtrackInfo = { composition: `Short-${sb.id}`, fingerprint: soundtrackFingerprint(sb, narr), engine: SOUNDTRACK_ENGINE, frames: tm.total,
+  seconds: T, lines: tm.lines.length, lufs: done.I, built: new Date().toISOString() };
+fs.writeFileSync(OUT.replace(/\.mp3$/, ".json"), JSON.stringify(info, null, 1) + "\n");
 const words = tm.lines.reduce((n, l) => n + l.words.length, 0), spoken = tm.lines.reduce((n, l) => n + l.end - l.start, 0);
 console.log(`\nmanifest  ${MANIFESTS}/${sb.id}.ts  (${unique.length} lines)`);
 console.log(`soundtrack ${OUT}  ${durOf(OUT).toFixed(3)} s for a ${tm.total}-frame film (${T.toFixed(3)} s), voice from ${tm.lines[0].start.toFixed(3)} s, ${(words / spoken).toFixed(2)} words/s while speaking`);

@@ -10,6 +10,8 @@ import { compile } from "../src/studio/story/compile";
 import { captionGroups } from "../src/studio/story/caption-timing";
 import { captionHeights } from "../src/studio/story/caption-place";
 import { NARRATION } from "../src/studio/stories/voice";
+import fs from "node:fs";
+import { soundtrackFingerprint, SoundtrackInfo } from "../src/studio/story/fingerprint";
 import type { Storyboard } from "../src/studio/story/types";
 
 let bad = 0;
@@ -25,6 +27,10 @@ for (const sb of STORIES) {
     console.log(`  caption height per shot (clear of every face): ${captionHeights(film).map((y) => `${Math.round(y * 100)}%`).join(", ")}`);
     if (!ok) bad++;
   }
+  // soundtrack status (information; npm run preflight makes it a hard requirement before rendering)
+  const info = `audio/Short-${sb.id}.json`;
+  if (!fs.existsSync(info)) console.log("  soundtrack: none yet");
+  else { const j = JSON.parse(fs.readFileSync(info, "utf8")) as SoundtrackInfo; console.log(`  soundtrack: ${j.fingerprint === soundtrackFingerprint(sb, narr, j.engine) && j.frames === film.total ? "up to date" : "STALE (rebuild before rendering)"}`); }
   for (const l of r.framing) console.log("  " + l);
   for (const w of r.warnings) console.log("  WARN  " + w);
   for (const e of r.errors) console.log("  ERROR " + e);

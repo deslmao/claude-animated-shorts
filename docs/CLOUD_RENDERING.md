@@ -40,6 +40,17 @@ Backup route: **Actions** → the run → **Artifacts** → the video zip (kept 
 | `preview` | `true` = quick half-size 540x960 check, `false` = full 1080x1920 |
 | `audio` | soundtrack file; leave `""` to use `animation-studio/audio/<composition>.wav/.mp3` automatically |
 
+## Safety checks before and after a render
+Before anything is rendered, a storyboard Short (`Short-<id>`) must pass `npm run preflight -- Short-<id>`. The cloud runs it in the plan job, right after the type check. It refuses to render when:
+- the storyboard has errors (unknown names, a head out of frame, a word anchor that isn't spoken, and so on);
+- the Short has no narration, or a line has no generated audio yet;
+- the soundtrack `animation-studio/audio/Short-<id>.mp3`, or its fingerprint file `.json`, is missing;
+- the soundtrack was built from a different storyboard or narration (stale), or for a different length.
+
+A Short is also never paired with any soundtrack other than its own fingerprinted one. `publish.yml` refuses to publish a Short without `audio: required`. QA fails a soundtrack that is present but silent (quieter than −40 LUFS).
+
+Other compositions, such as BridgeShort and the test compositions, skip the storyboard checks and work exactly as before.
+
 ## Good to know
 - It's free for public repositories. GitHub may queue some chunks when it's busy: that only makes the render slower.
 - If any chunk fails, the run is red and no video is made. Claude reads the logs and fixes it.

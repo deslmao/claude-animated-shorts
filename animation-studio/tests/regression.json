@@ -1,0 +1,10 @@
+{
+  "frames": [
+    { "composition": "BridgeShort", "frame": 608, "why": "the creator's original: crowd on the bridge, day" },
+    { "composition": "BridgeShort", "frame": 1417, "why": "the creator's original: golden light" },
+    { "composition": "Short-yawn-demo", "frame": 150, "why": "storyboard Short: close-up, caption above the head, Gus speaking" },
+    { "composition": "Short-yawn-demo", "frame": 350, "why": "storyboard Short: over-the-shoulder in the lab, caption" },
+    { "composition": "Short-yawn-demo", "frame": 560, "why": "storyboard Short: night crane, zzz effect" },
+    { "composition": "MovesTest", "frame": 200, "why": "library motion test: camera moves and acting" }
+  ]
+}
