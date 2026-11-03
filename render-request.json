@@ -3,5 +3,5 @@
   "chunks": 10,
   "preview": false,
   "audio": "",
-  "note": "Stage 2: yawn demo narrated by George (ElevenLabs), word-timed captions and lip-sync; soundtrack audio/Short-yawn-demo.mp3 picked up automatically."
+  "note": "Stage 2: yawn demo narrated by George, word-timed captions and lip-sync; soundtrack at exactly -14 LUFS (re-render of run 6 with the loudness fix)."
 }

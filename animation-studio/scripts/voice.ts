@@ -113,11 +113,24 @@ if (tm.problems.length) fail(`storyboard problems:\n  ${tm.problems.join("\n  ")
 const inputs = tm.lines.flatMap((p) => ["-i", `${CACHE}/${p.hash}.mp3`]);
 const chain = tm.lines.map((p, i) => `[${i}:a]aresample=48000,aformat=channel_layouts=mono,adelay=${Math.max(0, Math.round(p.fileAt * 1000))}:all=1[a${i}]`).join(";")
   + `;${tm.lines.map((_, i) => `[a${i}]`).join("")}amix=inputs=${tm.lines.length}:normalize=0:dropout_transition=0,apad=whole_dur=${T.toFixed(3)},atrim=end=${T.toFixed(3)}`;
-const measure = run("ffmpeg", ["-hide_banner", "-nostats", ...inputs, "-filter_complex", `${chain},loudnorm=I=-14:TP=-1.5:LRA=11:print_format=json`, "-f", "null", "-"]).stderr.toString();
-const m = JSON.parse(measure.slice(measure.lastIndexOf("{"), measure.lastIndexOf("}") + 1));
-const norm = `loudnorm=I=-14:TP=-1.5:LRA=11:measured_I=${m.input_i}:measured_TP=${m.input_tp}:measured_LRA=${m.input_lra}:measured_thresh=${m.input_thresh}:offset=${m.target_offset}:linear=true`;
+// loudness: measure the raw mix (EBU R128), apply exactly the gain to -14 LUFS, and limit only if a peak would pass
+// -1.5 dBFS. (Speech this even, LRA ~2, needs no compression; ffmpeg's loudnorm overshoots on short, pause-rich mixes.)
+const r128 = (a: string[], f: string) => {
+  const out = run("ffmpeg", ["-hide_banner", "-nostats", ...a, "-filter_complex", `${f},ebur128=peak=true`, "-f", "null", "-"]).stderr.toString();
+  const sum = out.slice(out.lastIndexOf("Summary:"));
+  return { I: Number(sum.match(/I:\s+(-?[\d.]+) LUFS/)![1]), peak: Number(sum.match(/Peak:\s+(-?[\d.]+) dBFS/)![1]) };
+};
+// measured as the viewer hears it: the mono voice copied to both stereo channels (R128 sums channels: +3 dB vs mono)
+const stereo = `${chain},aresample=48000,pan=stereo|c0=c0|c1=c0`;
+const raw = r128(inputs, stereo);
+const master = (g: number, lim: boolean) => `${stereo},volume=${g.toFixed(2)}dB${lim ? ",alimiter=limit=0.84:attack=2:release=40:level=false" : ""},atrim=end=${T.toFixed(3)}`;
+const encode = (g: number, lim: boolean) => run("ffmpeg", ["-v", "error", "-y", ...inputs, "-filter_complex", master(g, lim), "-c:a", "libmp3lame", "-b:a", "320k", OUT]);
 fs.mkdirSync(path.dirname(OUT), { recursive: true });
-run("ffmpeg", ["-v", "error", "-y", ...inputs, "-filter_complex", `${chain},${norm},aresample=48000,pan=stereo|c0=c0|c1=c0,atrim=end=${T.toFixed(3)}`, "-c:a", "libmp3lame", "-b:a", "320k", OUT]);
+let gain = -14 - raw.I; const limit = raw.peak + gain > -1.5;
+encode(gain, limit);
+let done = r128(["-i", OUT], "[0:a]anull");
+if (Math.abs(done.I + 14) > 0.2) { gain += -14 - done.I; encode(gain, limit); done = r128(["-i", OUT], "[0:a]anull"); } // the limiter takes a little
+console.log(`loudness  raw mix ${raw.I.toFixed(1)} LUFS -> gain ${gain >= 0 ? "+" : ""}${gain.toFixed(1)} dB${limit ? " + peak limiter" : ""} -> ${done.I.toFixed(1)} LUFS, peak ${done.peak.toFixed(1)} dBFS`);
 const words = tm.lines.reduce((n, l) => n + l.words.length, 0), spoken = tm.lines.reduce((n, l) => n + l.end - l.start, 0);
 console.log(`\nmanifest  ${MANIFESTS}/${sb.id}.ts  (${unique.length} lines)`);
 console.log(`soundtrack ${OUT}  ${durOf(OUT).toFixed(3)} s for a ${tm.total}-frame film (${T.toFixed(3)} s), voice from ${tm.lines[0].start.toFixed(3)} s, ${(words / spoken).toFixed(2)} words/s while speaking`);
