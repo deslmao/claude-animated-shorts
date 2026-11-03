@@ -103,9 +103,9 @@
   },
   "review": {
    "state": "waiting",
-   "at": "2026-11-03T22:12:07.591Z",
+   "at": "2026-11-03T23:28:56.018Z",
    "inputs": "0d6b9e2ce1c005",
-   "detail": "WAITING FOR REVIEW: 49 frames in productions/tickle/review.jpg (determinism: identical); rerun with --reviewed once checked",
+   "detail": "WAITING FOR REVIEW: look at productions/tickle/review.jpg, then rerun with --reviewed",
    "data": {
     "frames": [
      4,
