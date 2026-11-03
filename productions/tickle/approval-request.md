@@ -1,6 +1,6 @@
 # Why you can't tickle yourself: script approval
 
-**Estimated length:** 63.4 s · **Words:** 198 · **Narration:** George - Warm, Captivating Storyteller · **Cost:** 1110 characters (about 1110 ElevenLabs credits)
+**Estimated length:** 63.7 s · **Words:** 199 · **Narration:** George - Warm, Captivating Storyteller · **Cost:** 1116 characters (about 1116 ElevenLabs credits)
 
 ## Research summary
 Your brain predicts the sensory result of your own movements and turns down the response when the touch arrives as predicted, so self-touch doesn't tickle. Brain-imaging work by Sarah-Jayne Blakemore, Daniel Wolpert and Chris Frith (1998) found that self-produced touch was rated less ticklish than the same touch from a robot, and that the cerebellum (at the back of the brain) responds differently to self-produced touch. In a robot experiment (1999), adding a delay or changing the direction between a person's own movement and the touch made it feel more ticklish. People who experience hallucinations or the feeling that others control their actions can find self-produced touch as ticklish as external touch (2000).
@@ -25,7 +25,7 @@ Your brain predicts the sensory result of your own movements and turns down the 
 10. When the touch lands exactly as predicted, your brain turns the feeling down. No surprise, no tickle.
 11. It's like hearing a joke you wrote yourself. You already know the punchline.
 12. Scientists tested this with a tickling robot. People moved a robot arm with one hand, and it tickled their other palm.
-13. When the robot copied them instantly, it barely tickled. Add a tiny delay, and suddenly it did.
+13. When the robot copied them instantly, it barely tickled. Add a tiny delay, and it got ticklish again.
 14. The surprise is the whole trick.
 15. So if you ever need a guaranteed laugh, you'll need a friend.
 16. Because the one person on Earth who can never tickle you... is you.
@@ -33,4 +33,4 @@ Your brain predicts the sensory result of your own movements and turns down the 
 ## Checks
 All script checks pass.
 
-To approve: tell Claude; it records `npm run script -- tickle --approve 1110`.
+To approve: tell Claude; it records `npm run script -- tickle --approve 1116`.

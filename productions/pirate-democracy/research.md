@@ -29,3 +29,16 @@ In the "golden age" of piracy (early 1700s), many pirate crews governed themselv
 ## Claims NOT used
 - The exact limb-payout figure (often quoted as 800 dollars / pieces of eight, not confirmed here).
 - "Pirates invented democracy" or that every pirate ship worked this way.
+
+## Claim check (every factual line of the script -> its source)
+| Script claim | Supported by | Verdict |
+|---|---|---|
+| Crews signed a written contract (articles) before a voyage | [Wikipedia: Pirate code](https://en.wikipedia.org/wiki/Pirate_code), [Historic UK](https://www.historic-uk.com/HistoryUK/HistoryofEngland/Roberts-Democracy-Medical-Insurance-Piracy) | supported |
+| The captain got at most two shares to a sailor's one | [Wikipedia: Pirate code](https://en.wikipedia.org/wiki/Pirate_code) (captain and quartermaster 1.5-2 shares, crew 1; Phillips's and Roberts's articles) | supported (corrected from "only a little more") |
+| Lose an arm: paid from a shared fund | Roberts's articles (compensation from the common stock for lost limbs), [Historic UK](https://www.historic-uk.com/HistoryUK/HistoryofEngland/Roberts-Democracy-Medical-Insurance-Piracy) | supported (no amount claimed) |
+| The captain was elected; a coward or bully could be voted out by the crew | [Wikipedia: Governance in 18th-century piracy](https://en.wikipedia.org/wiki/Governance_in_18th-century_piracy), [Time](https://time.com/3728421/pirate-democracy/) | supported |
+| An elected quartermaster handed out food and loot, a check on the captain | [Wikipedia: Governance in 18th-century piracy](https://en.wikipedia.org/wiki/Governance_in_18th-century_piracy), [CORE Econ](https://books.core-econ.org/the-economy/microeconomics/05-the-rules-of-the-game-01-pirate-economics.html) | supported |
+| Merchant ships had owners on land; their captains could beat sailors into line; pirates had no owners | Leeson 2007, "An-arrgh-chy" (J. Political Economy), summarised by [CORE Econ](https://books.core-econ.org/the-economy/microeconomics/05-the-rules-of-the-game-01-pirate-economics.html) and [JSTOR Daily](https://daily.jstor.org/the-pirate-creed/) | supported |
+| Leeson argues the rules were the way a ship of outlaws could work | same | supported (paraphrase, not a quote) |
+| Rules varied from ship to ship | [Wikipedia: Pirate code](https://en.wikipedia.org/wiki/Pirate_code) | supported |
+| Some crews paid for injuries long before most countries had anything like it | Roberts's articles (1720s) vs national workers' compensation laws from the 1880s; [Historic UK](https://www.historic-uk.com/HistoryUK/HistoryofEngland/Roberts-Democracy-Medical-Insurance-Piracy) ("medical insurance") | supported (hedged: "some crews", "most countries") |

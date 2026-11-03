@@ -3,7 +3,7 @@ mood: adventure
 
 - Some of history's most feared pirates ran their ships like tiny democracies.
 - Picture a pirate crew in the early 1700s. Before anyone touches a sword, they sign a contract.
-- It says how the loot is shared, and the captain gets only a little more than everyone else.
+- It says how the loot is shared, and the captain gets at most two shares to a sailor's one.
 - Lose an arm in battle? The crew pays you from a shared fund.
 - And the captain? He's elected.
 - captain: I'd like to remind everyone that I'm very brave.

@@ -1,0 +1,12 @@
+{
+ "id": "pirate-democracy",
+ "composition": "Short-pirate-democracy",
+ "stages": {},
+ "approval": {
+  "scriptHash": "09424f694e1a63",
+  "chars": 1099,
+  "at": "2026-11-03T04:54:29.533Z",
+  "by": "the owner, in the conversation",
+  "script": "productions/pirate-democracy/script.md"
+ }
+}

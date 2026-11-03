@@ -1,0 +1,12 @@
+{
+ "id": "tickle",
+ "composition": "Short-tickle",
+ "stages": {},
+ "approval": {
+  "scriptHash": "0f10927a678f2b",
+  "chars": 1116,
+  "at": "2026-11-03T04:54:29.402Z",
+  "by": "the owner, in the conversation",
+  "script": "productions/tickle/script.md"
+ }
+}

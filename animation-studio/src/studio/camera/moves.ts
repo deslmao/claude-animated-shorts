@@ -17,14 +17,14 @@ export type Move =
   | { move: "pushIn"; marks: V3[]; from?: number; height?: number; size?: ShotSize; to?: ShotSize; fov?: number }  // glide from one size to a tighter one
   | { move: "pullOut"; marks: V3[]; from?: number; height?: number; size?: ShotSize; to?: ShotSize; fov?: number } // reveal
   | { move: "frame"; marks: V3[]; size?: ShotSize; from?: number; height?: number; fov?: number; roll?: number; creep?: number }
-  | { move: "closeUp"; mark: V3; from?: number; height?: number; punch?: boolean }
-  | { move: "lowHero"; mark: V3; from?: number }
+  | { move: "closeUp"; mark: V3; from?: number; height?: number; punch?: boolean; creep?: number }
+  | { move: "lowHero"; mark: V3; from?: number; creep?: number }
   | { move: "highAngle"; marks: V3[]; from?: number }
   | { move: "overShoulder"; over: V3; at: V3; side?: -1 | 1 }
   | { move: "orbit"; marks: V3[]; fromDeg: [number, number]; size?: ShotSize; height?: number }
   | { move: "crane"; marks: V3[]; heights: [number, number]; size?: ShotSize; from?: number }
   | { move: "follow"; track: (t: number) => V3; size?: ShotSize; from?: number; height?: number }
-  | { move: "dutch"; marks: V3[]; size?: ShotSize; from?: number; roll?: number };
+  | { move: "dutch"; marks: V3[]; size?: ShotSize; from?: number; roll?: number; creep?: number };
 
 export type ShotPlan = { key: Key; dof: (f: number) => { cInf: number; focus?: V3 } };
 
@@ -52,11 +52,11 @@ export const plan = (m: Move, f0: number, f1: number, o: { cut?: boolean; dur?: 
     }
     case "closeUp": {
       const c = fitShot([m.mark], { size: "close", from: m.from ?? 0, height: m.height ?? m.mark[1] + 1.5, fov: 34 });
-      return k((f) => dolly(c.pos, c.look, pushK(f, f0, 0.003, m.punch ? 0.007 : 0, 30), { fov: 34 }), DOF_BY_SIZE.close, eye(m.mark));
+      return k((f) => dolly(c.pos, c.look, pushK(f, f0, m.creep ?? 0.003, m.punch ? 0.007 : 0, 30), { fov: 34 }), DOF_BY_SIZE.close, eye(m.mark));
     }
     case "lowHero": {
       const c = fitShot([m.mark], { size: "medium", from: m.from ?? 10, height: m.mark[1] + 0.75, fov: 38, roll: 0.045 });
-      return k((f) => dolly(c.pos, c.look, creep(f, 0.0025), { fov: 38, roll: 0.045 }), 12, eye(m.mark));
+      return k((f) => dolly(c.pos, c.look, creep(f, m.creep ?? 0.0025), { fov: 38, roll: 0.045 }), 12, eye(m.mark));
     }
     case "highAngle": {
       const c = fitShot(m.marks, { size: "wide", from: m.from ?? 0, height: m.marks[0][1] + 5.5, fov: 42 });
@@ -85,7 +85,7 @@ export const plan = (m: Move, f0: number, f1: number, o: { cut?: boolean; dur?: 
     }
     case "dutch": {
       const c = fitShot(m.marks, { size: m.size ?? "medium", from: m.from, roll: m.roll ?? 0.08 });
-      return k((f) => dolly(c.pos, c.look, creep(f, 0.003), { fov: c.fov, roll: c.roll }), DOF_BY_SIZE[m.size ?? "medium"], eye(m.marks[0]));
+      return k((f) => dolly(c.pos, c.look, creep(f, m.creep ?? 0.003), { fov: c.fov, roll: c.roll }), DOF_BY_SIZE[m.size ?? "medium"], eye(m.marks[0]));
     }
   }
 };

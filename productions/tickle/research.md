@@ -26,3 +26,12 @@ Your brain predicts the sensory result of your own movements and turns down the 
 ## Claims NOT used
 - Exact delay figures (popular accounts disagree: 0.2 s, a third of a second, 2 s).
 - Self-tickling in psychiatric conditions (true, but sensitive and not needed for the story).
+
+## Claim check (every factual line of the script -> its source)
+| Script claim | Supported by | Verdict |
+|---|---|---|
+| You can't tickle yourself; the brain predicts the feeling of your own movement | [Scientific American](https://www.scientificamerican.com/article/why-cant-a-person-tickle/), [ScienceAlert](https://www.sciencealert.com/the-scientific-reason-you-can-t-tickle-yourself) | supported |
+| The cerebellum, at the back of the brain, makes that prediction | Blakemore, Wolpert & Frith 1998 (Nature Neuroscience), via [Scientific American](https://www.scientificamerican.com/article/why-cant-a-person-tickle/) | supported (simplified as "a forecast") |
+| Predicted touch is turned down: no surprise, no tickle | [ScienceAlert](https://www.sciencealert.com/the-scientific-reason-you-can-t-tickle-yourself); 1998 study: self-touch rated less ticklish than identical robot touch | supported |
+| People moved a robot arm with one hand, and it tickled their other palm | [Blakemore, Frith & Wolpert 1999, J. Cogn. Neurosci. 11(5)](https://columbia.demo.elsevierpure.com/en/publications/spatio-temporal-prediction-modulates-the-perception-of-self-produ-3) ([paper](https://Gwern.net/doc/psychology/neuroscience/1999-blakemore.pdf)) | supported |
+| Instant copy barely tickled; a tiny delay made it ticklish again | same 1999 study: ticklishness rose as the delay increased | supported ("got ticklish again" rather than "suddenly"; no exact delay is claimed) |

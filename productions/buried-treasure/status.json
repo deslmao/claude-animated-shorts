@@ -1,0 +1,12 @@
+{
+ "id": "buried-treasure",
+ "composition": "Short-buried-treasure",
+ "stages": {},
+ "approval": {
+  "scriptHash": "01e2e497f29820",
+  "chars": 1021,
+  "at": "2026-11-03T04:54:29.757Z",
+  "by": "the owner, in the conversation",
+  "script": "productions/buried-treasure/script.md"
+ }
+}

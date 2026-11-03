@@ -50,7 +50,7 @@ const broken: [string, (sb: Storyboard) => void][] = [
   ["unknown voice", (sb) => { sb.voice = "gandalf"; }],
   ["anchor word not said", (sb) => { const s = sb.shots.find((x) => x.say)!; s.fx = [{ kind: "idea", on: s.actors[0].who, word: "zebra" }]; }],
   ["speaker not in shot", (sb) => { const s = sb.shots.find((x) => x.say && Object.keys(sb.cast).some((c) => !x.actors.some((a) => a.who === c)))!; const absent = Object.keys(sb.cast).find((c) => !s.actors.some((a) => a.who === c))!; const l = Array.isArray(s.say) ? s.say[0] : s.say!; s.say = { text: typeof l === "string" ? l : l.text, who: absent }; }],
-  ["head out of frame", (sb) => { sb.shots[4].camera = { move: "dutch", on: ["milo", "gus"], size: "close", roll: 0.5 }; }],
+  ["head out of frame", (sb) => { sb.shots[4].camera = { move: "frame", on: ["milo", "gus"], size: "extreme", roll: 0.9 }; }], // an extreme close two-shot rolled 0.9 rad cannot hold both heads
 ];
 console.log("\n== validator catches mistakes");
 for (const [name, mutate] of broken) {

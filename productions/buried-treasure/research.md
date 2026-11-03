@@ -29,3 +29,15 @@ There are very few documented cases of pirates burying treasure and no documente
 ## Claims NOT used
 - Kidd's threat to the Gardiner family (contested).
 - The value of the treasure in today's money (single unreliable source).
+
+## Claim check (every factual line of the script -> its source)
+| Script claim | Supported by | Verdict |
+|---|---|---|
+| Pirates almost never buried treasure | [Wikipedia: Treasure](https://en.wikipedia.org/wiki/Treasure) ("very few documented cases"), [Straight Dope](https://www.straightdope.com/columns/read/2728/did-pirates-bury-their-treasure), [History.com](https://www.history.com/articles/did-pirates-really-bury-their-treasure) | supported |
+| One of the few who did lost all of it | Kidd's cache was recovered by the authorities: [Atlas Obscura](https://www.atlasobscura.com/articles/2657), [Wikipedia: Gardiners Island](https://en.wikipedia.org/wiki/Gardiners_Island) | supported (corrected from "the one famous pirate who did") |
+| Loot was shared straight away and spent fast in port | [History Revealed](https://historyrevealed.com/period/stuart/x-marks-spot-did-pirates-bury-treasure), [History.com](https://www.history.com/articles/did-pirates-really-bury-their-treasure) | supported |
+| In 1699, hunted as a pirate, Kidd hid gold and jewels on Gardiners Island near New York | [Wikipedia: Gardiners Island](https://en.wikipedia.org/wiki/Gardiners_Island), [Atlas Obscura](https://www.atlasobscura.com/articles/2657) | supported |
+| After his arrest, it was dug up and shipped to London as evidence | [Atlas Obscura](https://www.atlasobscura.com/articles/2657) (used as evidence at his trial), [AM Digital](https://amdigital.co.uk/insights/blog/captain-kidds-lost-treasure) | supported ("dug it up", not "all": a later account suggests something went missing) |
+| Kidd was hanged in 1701 | [1911 Britannica (Wikisource)](https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Kidd,_William): hanged at Execution Dock, London, 23 May 1701 | supported |
+| Stevenson's Treasure Island (1883) has a hidden hoard and an X-marked map | [History.com](https://www.history.com/articles/did-pirates-really-bury-their-treasure), [Wikipedia: Treasure](https://en.wikipedia.org/wiki/Treasure) | supported |
+| Historians have never found a real pirate treasure map | [Wikipedia: Treasure](https://en.wikipedia.org/wiki/Treasure) ("no documented cases of a historical pirate treasure map"), [Straight Dope](https://www.straightdope.com/columns/read/2728/did-pirates-bury-their-treasure) | supported |

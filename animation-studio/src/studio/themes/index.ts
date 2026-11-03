@@ -24,4 +24,6 @@ export type Theme = {
   sets?: Record<string, SetDef>; layouts?: Record<string, Layout>; setMeta?: Record<string, SetMeta>;
 };
 
-export const THEMES: Theme[] = [];
+import { SCIENCE } from "./science";
+
+export const THEMES: Theme[] = [SCIENCE];

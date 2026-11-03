@@ -48,7 +48,10 @@ export const shotFrames = (sb: Storyboard) => {
 const moveOf = (s: ShotSpec, c: CameraSpec, t0 = 0): Move => {
   // the slow "breathing" push of held shots totals at most 8 % of the distance however long the shot, so a fitted
   // group stays in frame to the last frame
-  const creep = Math.min(0.0022, 0.08 / Math.max(1, Math.round((s.dur ?? 0) * FPS)));
+  const frames = Math.max(1, Math.round((s.dur ?? 0) * FPS)), creep = Math.min(0.0022, 0.08 / frames);
+  // tighter moves (close-up, low hero, dutch) keep their livelier creep, capped at 16 % in total so a long close shot
+  // never pushes the face out of the 9:16 frame
+  const tight = (rate: number) => Math.min(rate, 0.16 / frames);
   const pos = (who: string) => { const a = s.actors.find((x) => x.who === who); if (!a) throw new Error(`camera names "${who}" but no such actor in the shot`); return restPos(s.set, a); };
   const view = (name: string) => { const v = LAYOUTS[s.set].views.find((x) => x.name === name); if (!v) throw new Error(`set ${s.set} has no view "${name}"`); return v; };
   switch (c.move) {
@@ -56,14 +59,14 @@ const moveOf = (s: ShotSpec, c: CameraSpec, t0 = 0): Move => {
     case "establish": return { move: "establish", view: view(c.view) };
     case "frame": return { move: "frame", marks: c.on.map(pos), size: c.size, from: c.from, height: c.height, roll: c.roll, creep };
     case "pushIn": case "pullOut": return { move: c.move, marks: c.on.map(pos), size: c.size, to: c.to, from: c.from, height: c.height };
-    case "closeUp": return { move: "closeUp", mark: pos(c.on), from: c.from, punch: c.punch };
-    case "lowHero": return { move: "lowHero", mark: pos(c.on), from: c.from };
+    case "closeUp": return { move: "closeUp", mark: pos(c.on), from: c.from, punch: c.punch, creep: tight(0.003) };
+    case "lowHero": return { move: "lowHero", mark: pos(c.on), from: c.from, creep: tight(0.0025) };
     case "highAngle": return { move: "highAngle", marks: c.on.map(pos), from: c.from };
     case "overShoulder": return { move: "overShoulder", over: pos(c.over), at: pos(c.at), side: c.side };
     case "orbit": return { move: "orbit", marks: c.on.map(pos), fromDeg: c.fromDeg, size: c.size, height: c.height };
     case "crane": return { move: "crane", marks: c.on.map(pos), heights: c.heights, size: c.size, from: c.from };
     case "follow": { const a = s.actors.find((x) => x.who === c.on); if (!a) throw new Error(`camera follows "${c.on}" but no such actor in the shot`); return { move: "follow", track: (t) => actorPos(s.set, a, t - t0), size: c.size, from: c.from, height: c.height }; }
-    case "dutch": return { move: "dutch", marks: c.on.map(pos), size: c.size, from: c.from, roll: c.roll };
+    case "dutch": return { move: "dutch", marks: c.on.map(pos), size: c.size, from: c.from, roll: c.roll, creep: tight(0.003) };
   }
 };
 

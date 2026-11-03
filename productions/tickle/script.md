@@ -13,7 +13,7 @@ mood: playful
 - When the touch lands exactly as predicted, your brain turns the feeling down. No surprise, no tickle.
 - It's like hearing a joke you wrote yourself. You already know the punchline.
 - Scientists tested this with a tickling robot. People moved a robot arm with one hand, and it tickled their other palm.
-- When the robot copied them instantly, it barely tickled. Add a tiny delay, and suddenly it did.
+- When the robot copied them instantly, it barely tickled. Add a tiny delay, and it got ticklish again.
 - The surprise is the whole trick.
 - So if you ever need a guaranteed laugh, you'll need a friend.
 - Because the one person on Earth who can never tickle you... is you.

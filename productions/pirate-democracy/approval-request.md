@@ -1,6 +1,6 @@
 # Pirates ran surprisingly democratic ships: script approval
 
-**Estimated length:** 61.5 s · **Words:** 204 · **Narration:** George - Warm, Captivating Storyteller · **Cost:** 1100 characters (about 1100 ElevenLabs credits)
+**Estimated length:** 61.4 s · **Words:** 205 · **Narration:** George - Warm, Captivating Storyteller · **Cost:** 1099 characters (about 1099 ElevenLabs credits)
 
 ## Research summary
 In the "golden age" of piracy (early 1700s), many pirate crews governed themselves with written articles that every member agreed to before a voyage. The articles set how loot was shared (the captain and quartermaster received only somewhat larger shares), let the crew elect the captain and remove him by majority vote, created an elected quartermaster who distributed food and loot and handled minor discipline, and paid compensation from a common fund to men injured in service. Economist Peter Leeson ("An-arrgh-chy", Journal of Political Economy, 2007) argues this system was rational: unlike merchant ships, pirate ships had no absentee owners, so crews needed rules that stopped a captain from abusing power. Bartholomew Roberts' articles are the best-known example. Practices varied from ship to ship.
@@ -16,7 +16,7 @@ In the "golden age" of piracy (early 1700s), many pirate crews governed themselv
 ## Script
 1. Some of history's most feared pirates ran their ships like tiny democracies.
 2. Picture a pirate crew in the early 1700s. Before anyone touches a sword, they sign a contract.
-3. It says how the loot is shared, and the captain gets only a little more than everyone else.
+3. It says how the loot is shared, and the captain gets at most two shares to a sailor's one.
 4. Lose an arm in battle? The crew pays you from a shared fund.
 5. And the captain? He's elected.
 6. **captain:** I'd like to remind everyone that I'm very brave.
@@ -33,4 +33,4 @@ In the "golden age" of piracy (early 1700s), many pirate crews governed themselv
 ## Checks
 - note: speaker "captain" is not a library character (fine if the storyboard casts it as an extra)
 
-To approve: tell Claude; it records `npm run script -- pirate-democracy --approve 1100`.
+To approve: tell Claude; it records `npm run script -- pirate-democracy --approve 1099`.
