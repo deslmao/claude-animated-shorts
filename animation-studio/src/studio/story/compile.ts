@@ -97,7 +97,7 @@ export const guidedPoint = (s: ShotSpec, pr: PropSpec, tq: number): V3 => {
  *  table counts the table: its base height is part of its `at`), or follow its guide (a pen along a signature).
  *  lateral(from, to) = the screen-sideways distance, actorAt(who) = where another actor is. Shared by the director
  *  and the camera (inserts on hands), so both see the same hand */
-export const reachExtra = (s: ShotSpec, a: ActorSpec, p: V3, tq: number, lateral: (from: V3, to: V3) => number, actorAt: (who: string) => V3 | undefined, camPos?: V3): Partial<Pose> => {
+export const reachExtra = (s: ShotSpec, a: ActorSpec, p: V3, tq: number, lateral: (from: V3, to: V3) => number, actorAt: (who: string) => V3 | undefined, camPos?: V3, writing = false): Partial<Pose> => {
   const extra: Partial<Pose> = {}; if (!a.reach) return extra;
   const q = actorAt(a.reach), pr = q ? undefined : (s.props ?? []).find((x) => x.id === a.reach);
   let tp: V3 | undefined = q ?? (pr ? propWorld(s.set, pr) : undefined);
@@ -107,7 +107,7 @@ export const reachExtra = (s: ShotSpec, a: ActorSpec, p: V3, tq: number, lateral
   // a guided pen: the hand goes where the camera's line of sight to the writing crosses the writer's card (cards face
   // the camera), so pen and ink coincide on screen from any camera that sees the writer's near side
   const top = tp[1] + (e?.height ?? 0.6) * (pr?.scale ?? 1);
-  if (pr && e?.guide && camPos) {
+  if (pr && e?.guide && camPos && writing) {
     const yaw = Math.atan2(camPos[0] - p[0], camPos[2] - p[2]), n: V3 = [Math.sin(yaw), 0, Math.cos(yaw)], T: V3 = [tp[0], top, tp[2]];
     const d: V3 = [T[0] - camPos[0], T[1] - camPos[1], T[2] - camPos[2]], den = d[0] * n[0] + d[2] * n[2];
     if (Math.abs(den) > 1e-6) {
@@ -139,7 +139,7 @@ export const detailOf = (cast: Storyboard["cast"], s: ShotSpec, name: string, tq
   const ar = (from * Math.PI) / 180, eye = new THREE.Vector3(p[0] + Math.sin(ar) * 6, p[1] + 1.4, p[2] + Math.cos(ar) * 6);
   const { base, held } = basePoseAt(a, tq);
   const ta = a.reach ? s.actors.find((x) => x.who === a.reach) : undefined, tw: V3 | undefined = ta ? restPos(s.set, ta) : a.reach && (s.props ?? []).some((q) => q.id === a.reach) ? propWorld(s.set, (s.props ?? []).find((q) => q.id === a.reach)!) : undefined;
-  const extra = reachExtra(s, a, p, tq, (from, to) => (to[0] - from[0]) * Math.cos(ar) - (to[2] - from[2]) * Math.sin(ar), (w) => { const x = s.actors.find((y) => y.who === w); return x ? restPos(s.set, x) : undefined; }, [eye.x, eye.y, eye.z]);
+  const extra = reachExtra(s, a, p, tq, (from, to) => (to[0] - from[0]) * Math.cos(ar) - (to[2] - from[2]) * Math.sin(ar), (w) => { const x = s.actors.find((y) => y.who === w); return x ? restPos(s.set, x) : undefined; }, [eye.x, eye.y, eye.z], base.gesture === "write");
   const hs = anchorsFront(L, { ...base, ...(held ? { hold: held } : {}), ...extra }).hands, side = extra.hand ?? base.hand ?? 1;
   const w = (q: [number, number]): V3 => cardPoint(eye, p[0], p[1], p[2], q, 1, false);
   if (part === "held") { // the holding hand (what it holds is drawn there)
@@ -368,7 +368,7 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
   const flashes = sb.shots.map((s, k) => (s.transition === "flash" ? ranges[k].a : -1)).filter((f) => f >= 0);
   const dips = sb.shots.map((s, k) => (s.transition === "dip" ? ranges[k].a : -1)).filter((f) => f >= 0);
   const timeline: Timeline = {
-    total, flashes, dips, motionBlur: !!sb.motionBlur,
+    total, flashes, dips, motionBlur: !!sb.motionBlur, stableInk: sb.engine === 2,
     layersAt: (f) => {
       for (let k = 1; k < sb.shots.length; k++) {
         const tr = sb.shots[k].transition, F = tr === "fade" ? FADE : tr === "zoom" || tr === "whip" ? ZFADE : 0; if (!F) continue;
@@ -440,7 +440,7 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
         const mo = motion.get(a.who)!, extra: Partial<Pose> = {};
         // a reach: for another actor the hands land on their flank (tickle) or meet theirs half-way (offer, write); for
         // a story prop they go to its middle, just over its top (grab into a chest, block a grab). Target's screen side
-        Object.assign(extra, reachExtra(s, a, p, tt, lateral, (w) => posOf.get(w), [cam.pos.x, cam.pos.y, cam.pos.z]));
+        Object.assign(extra, reachExtra(s, a, p, tt, lateral, (w) => posOf.get(w), [cam.pos.x, cam.pos.y, cam.pos.z], basePoseAt(a, tt).base.gesture === "write"));
         if (a.drive) extra.drive = driveOf(a)(tt);
         const build = (x: ReturnType<typeof actingAt>, tq: number) => layer(x.base, x.life, x.talking, x.shook, { headTilt: x.nodTilt, facing, back: a.back, t: t0 + tq, ...(x.held ? { hold: x.held } : {}), ...extra });
         // gesture easing: if the arms' configuration changed recently, blend from what the frame before the change

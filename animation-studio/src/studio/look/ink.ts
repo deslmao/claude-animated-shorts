@@ -44,6 +44,11 @@ export type InkOptions = {
   farOpacity?: number; // opacity multiplier reached at distFar
   fadeNear?: number; // m: start of the far fade-out
   fadeFar?: number; // m: lines gone
+  /** Visual Storytelling 2.0 (storyboard engine 2): stable lines under camera motion. A crease drawn from a face
+   *  narrower than ~2 px (a 1 cm band's side at distance) fades out instead of dashing on and off (minimum feature
+   *  width), and the mask is smoothed with a 5x5 binomial instead of the 3x3 tent, so lines move in smaller steps.
+   *  Off by default: every existing film (BridgeShort included) renders exactly as before */
+  stable?: boolean;
 };
 
 const DEF: Required<InkOptions> = {
@@ -52,7 +57,7 @@ const DEF: Required<InkOptions> = {
   color: "#030303", strength: 1.0,
   widthNear: 5.1, widthFar: 3.3, distNear: 6, distFar: 90, creaseScale: 0.8, // round 3: creases 0.64 -> 0.8 (building corners)
   depthLo: 0.01, depthHi: 0.03, angleLo: 35, angleHi: 50, concaveGain: 0.7, // depth jumps from 1 %; creases from 35 deg (roof eaves)
-  farOpacity: 0.95, fadeNear: 150, fadeFar: 450,
+  farOpacity: 0.95, fadeNear: 150, fadeFar: 450, stable: false,
 };
 
 const FS_VERT = /* glsl */ `
@@ -128,37 +133,57 @@ const float SLEN[4] = float[4](1.0, 1.0, 1.41421, 1.41421);
 // textureLod: explicit LOD inside loops (nearest-filtered targets, no derivatives needed)
 float dist(sampler2D t, vec2 uv) { return -perspectiveDepthToViewZ(textureLod(t, uv, 0.0).x, cNear, cFar); }
 vec3 viewPos(vec2 uv, float d) { vec2 n = uv * 2.0 - 1.0; return vec3(n.x * d / p00, n.y * d / p11, -d); }
+bool covered(vec4 v) { return v.a >= 0.5; }
+float zOf(vec2 uv) { return dist(tDepth, uv); }
+vec3 nrm(vec4 v) { return v.xyz; }
+// the pixel being evaluated: the pixel centre, or (engine 2) one of four sub-pixel positions in a 2x buffer
+vec2 U;
 
-// crease strength between this pixel (n0, P0) and a neighbour
-float crease(vec3 n0, vec3 P0, float zc, vec2 uq, float zq) {
-  vec4 nq = textureLod(tNormal, uq, 0.0);
-  if (nq.a < 0.5 || abs(zq - zc) > zc * depthLo) return 0.0;       // sky / depth jump: not a crease
-  float k = 1.0 - smoothstep(cosHi, cosLo, dot(n0, nq.xyz));
+// crease strength between this pixel (n0, P0) and a neighbour uq; st = one pixel step from here toward uq
+float crease(vec3 n0, vec3 P0, float zc, vec2 uq, float zq, vec2 st) {
+  vec4 nq4 = textureLod(tNormal, uq, 0.0);
+  if (!covered(nq4) || abs(zq - zc) > zc * depthLo) return 0.0;    // sky / depth jump: not a crease
+  vec3 nqv = nrm(nq4);
+  float k = 1.0 - smoothstep(cosHi, cosLo, dot(n0, nqv));
   if (dot(viewPos(uq, zq) - P0, n0) > 0.0) k *= concaveGain;        // neighbour in front of our tangent plane: concave
+#ifdef STABLE
+  // minimum feature width: both faces of the crease must span at least ~2 px across it (the turned face beyond uq,
+  // our own face back from here); a sliver face would switch on and off with sub-pixel camera motion
+  if (k > 0.0) {
+    float run = 1.0, own = 1.0;
+    for (int i = 1; i <= 2; i++) { vec4 n2 = textureLod(tNormal, uq + st * float(i), 0.0); if (!covered(n2) || dot(nrm(n2), nqv) < cosLo) break; run += 1.0; }
+    for (int i = 1; i <= 2; i++) { vec4 n2 = textureLod(tNormal, U - st * float(i), 0.0); if (!covered(n2) || dot(nrm(n2), n0) < cosLo) break; own += 1.0; }
+    k *= smoothstep(1.0, 3.0, run) * smoothstep(1.0, 3.0, own);
+  }
+#endif
   return k;
 }
 
-void main() {
-  vec4 nc = textureLod(tNormal, vUv, 0.0);
-  if (nc.a < 0.5) { gl_FragColor = vec4(0.0); return; }          // sky / empty: ink lives on the near object only
-  float zc = dist(tDepth, vUv);
+// the pixel's ink and fog amount at position U. near: set > 0 when any depth jump or crease lies within reach of
+// a position up to ext px away (engine 2: if nothing is near the first sub-pixel position, the others see nothing)
+float near;
+vec2 evalInk(float ext) {
+  near = 0.0;
+  vec4 nc = textureLod(tNormal, U, 0.0);
+  if (!covered(nc)) { near = 1.0; return vec2(0.0); }  // sky / empty: ink lives on the near object only (can't skip)
+  float zc = zOf(U);
 
   // characters, cards etc. (not in the world buffer) in front of this pixel: no world ink over them
   if (useMain > 0.5) {
-    float zm = dist(tMainDepth, vUv);
-    zm = min(zm, dist(tMainDepth, vUv + vec2(texel.x, 0.0)));
-    zm = min(zm, dist(tMainDepth, vUv - vec2(texel.x, 0.0)));
-    zm = min(zm, dist(tMainDepth, vUv + vec2(0.0, texel.y)));
-    zm = min(zm, dist(tMainDepth, vUv - vec2(0.0, texel.y)));
-    if (zm < zc * 0.985 - 0.03) { gl_FragColor = vec4(0.0); return; }
+    float zm = dist(tMainDepth, U);
+    zm = min(zm, dist(tMainDepth, U + vec2(texel.x, 0.0)));
+    zm = min(zm, dist(tMainDepth, U - vec2(texel.x, 0.0)));
+    zm = min(zm, dist(tMainDepth, U + vec2(0.0, texel.y)));
+    zm = min(zm, dist(tMainDepth, U - vec2(0.0, texel.y)));
+    if (zm < zc * 0.985 - 0.03) { near = 1.0; return vec2(0.0); }
   }
 
   float t = clamp(log(zc / dNear) / log(dFar / dNear), 0.0, 1.0);
   float w = mix(wNear, wFar, t) * pxScale;           // silhouette line width (output px) at this distance, near side only
   float hc = 0.5 * w * creaseScale;                  // crease line half width (px), drawn on both faces
   float Wc = 1.0 / zc;
-  vec3 n0 = nc.xyz;
-  vec3 P0 = viewPos(vUv, zc);
+  vec3 n0 = nrm(nc);
+  vec3 P0 = viewPos(U, zc);
   float eD = 0.0, eN = 0.0;
   for (int a = 0; a < 4; a++) {
     for (int r = 1; r <= RMAX; r++) {
@@ -166,20 +191,41 @@ void main() {
       float d = (float(r) - 0.5) * SLEN[a];          // distance of this pixel's centre to an edge first seen at r
       float cw = clamp(w + 0.5 - d, 0.0, 1.0);       // continuous coverage -> no width popping, built-in AA
       float ch = clamp(hc + 0.5 - d, 0.0, 1.0);
-      if (cw <= 0.0 && ch <= 0.0) break;
-      float z1 = dist(tDepth, vUv - o), z2 = dist(tDepth, vUv + o);
+      bool reachD = w + 0.5 + ext - d > 0.0, reachC = hc + 0.5 + ext - d > 0.0;
+      if (!reachD && !reachC) break;
+      float z1 = zOf(U - o), z2 = zOf(U + o);
       // depth jump: this pixel is in front of its neighbours (2nd difference of 1/z < 0; exactly 0 on planes)
       float s = (1.0 / z1 + 1.0 / z2 - 2.0 * Wc) / Wc;
-      eD = max(eD, smoothstep(depthLo, depthHi, -s) * cw);
+      float sd = smoothstep(depthLo, depthHi, -s);
+      eD = max(eD, sd * cw);
+      if (reachD) near = max(near, sd);
       // crease: normal turns towards a neighbour at the same depth
-      if (ch > 0.0) eN = max(eN, max(crease(n0, P0, zc, vUv - o, z1), crease(n0, P0, zc, vUv + o, z2)) * ch);
+      if (reachC) { float sc = max(crease(n0, P0, zc, U - o, z1, -STEP[a] * texel), crease(n0, P0, zc, U + o, z2, STEP[a] * texel)); eN = max(eN, sc * ch); near = max(near, sc); }
     }
   }
 
   float ink = max(eD, eN) * strength * mix(1.0, farOpacity, t) * (1.0 - smoothstep(fadeNear, fadeFar, zc));
   float f0 = max(fogRange.x, fogStart);
   float fogK = fogRange.y > f0 ? clamp((zc - f0) / (fogRange.y - f0), 0.0, 1.0) : 0.0;
-  gl_FragColor = vec4(ink, fogK, 0.0, 1.0);
+  return vec2(ink, fogK);
+}
+
+void main() {
+#ifdef STABLE
+  // engine 2: the world buffers are rendered at 2x2 the output size; the edge test runs at the four sub-pixel
+  // positions of this pixel and is averaged: a line's coverage follows sub-pixel camera motion (no 1-px stepping)
+  // the first position looks 1 px further: no edge within reach of it means none for the other three (exact skip)
+  vec2 acc = vec2(0.0);
+  for (int k = 0; k < 4; k++) {
+    U = vUv + vec2(k == 0 || k == 2 ? -0.25 : 0.25, k < 2 ? -0.25 : 0.25) * texel;
+    vec2 e = evalInk(k == 0 ? 1.0 : 0.0); acc.x += e.x * 0.25; acc.y = max(acc.y, e.y);
+    if (k == 0 && near <= 0.0) { acc = vec2(0.0, e.y); break; }
+  }
+  gl_FragColor = vec4(acc, 0.0, 1.0);
+#else
+  U = vUv;
+  gl_FragColor = vec4(evalInk(0.0), 0.0, 1.0);
+#endif
 }`;
 
 const COMP_FRAG = /* glsl */ `
@@ -194,9 +240,19 @@ uniform int debug;
 varying vec2 vUv;
 float m(float x, float y) { return texture2D(tMask, vUv + vec2(x, y) * texel).r; }
 void main() {
+#ifdef WIDE_AA
+  // 5x5 binomial (1 4 6 4 1)^2 / 256: lines move in smaller steps as the camera moves
+  float a = 0.0;
+  for (int j = -2; j <= 2; j++) for (int i = -2; i <= 2; i++) {
+    float wx = i == 0 ? 6.0 : (i == 1 || i == -1) ? 4.0 : 1.0, wy = j == 0 ? 6.0 : (j == 1 || j == -1) ? 4.0 : 1.0;
+    a += wx * wy * m(float(i), float(j));
+  }
+  a /= 256.0;
+#else
   float a = (4.0 * m(0.0, 0.0)
     + 2.0 * (m(1.0, 0.0) + m(-1.0, 0.0) + m(0.0, 1.0) + m(0.0, -1.0))
     + m(1.0, 1.0) + m(-1.0, 1.0) + m(1.0, -1.0) + m(-1.0, -1.0)) / 16.0;   // 1-2-1 tent = anti-aliasing
+#endif
   vec4 c = texture2D(inputBuffer, vUv);
   if (debug == 1) { gl_FragColor = vec4(vec3(1.0 - a), 1.0); return; }               // mask only
   if (debug == 2) { gl_FragColor = vec4(texture2D(tNormal, vUv).xyz * 0.5 + 0.5, 1.0); return; } // world normals
@@ -234,6 +290,7 @@ export class InkPass extends Pass {
   private fsCam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
   private quad: THREE.Mesh;
   private clearCol = new THREE.Color();
+  private ss = 1;
 
   constructor(scene: THREE.Scene, camera: THREE.PerspectiveCamera, options: InkOptions = {}) {
     super("InkPass");
@@ -241,6 +298,7 @@ export class InkPass extends Pass {
     this.world = scene;
     this.cam = camera;
     this.cam.layers.enable(NOINK); // the main render still shows the NOINK layer (and its shadows)
+    this.ss = o.stable ? 2 : 1;
     this.needsSwap = false; // writes back into the input buffer (keeps the composer's depth texture intact)
     this.needsDepthTexture = true;
 
@@ -274,7 +332,7 @@ export class InkPass extends Pass {
       this.normalMat.uniformsNeedUpdate = true;
     };
     const fs = (fragmentShader: string, uniforms: Record<string, THREE.IUniform>) =>
-      new THREE.ShaderMaterial({ vertexShader: FS_VERT, fragmentShader, uniforms, depthTest: false, depthWrite: false });
+      new THREE.ShaderMaterial({ vertexShader: FS_VERT, fragmentShader, uniforms, depthTest: false, depthWrite: false, ...(o.stable ? { defines: { STABLE: "" } } : {}) });
     const texel = new THREE.Vector2(1, 1);
     this.maskMat = fs(MASK_FRAG, {
       tNormal: { value: this.rt.texture }, tDepth: { value: this.rt.depthTexture }, tMainDepth: { value: null },
@@ -314,7 +372,7 @@ export class InkPass extends Pass {
   }
 
   override setSize(width: number, height: number) {
-    this.rt.setSize(width, height);
+    this.rt.setSize(width * this.ss, height * this.ss); // engine 2: world buffers at 2x2 (sub-pixel edge positions)
     this.maskRT.setSize(width, height);
     this.tmpRT.setSize(width, height);
     (this.maskMat.uniforms.texel.value as THREE.Vector2).set(1 / width, 1 / height);

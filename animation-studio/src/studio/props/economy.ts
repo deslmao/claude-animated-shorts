@@ -16,10 +16,10 @@ export const sharesOf = (variant?: string) => (variant ?? "2-1").split("-").map(
 
 /** gold that reads as metal in the house style: three slightly different golds (Phong, a warm highlight, the
  *  two-tone shade), so a heap and its stacks aren't one flat yellow */
-const GOLDS = [["goldA", "#eab53c"], ["goldB", "#f2c451"], ["goldC", "#d9a330"]].map(([k, c]) => metal(k, c, "#fff1b8", 46, 0.22));
+export const GOLDS = [["goldA", "#eab53c"], ["goldB", "#f2c451"], ["goldC", "#d9a330"]].map(([k, c]) => metal(k, c, "#fff1b8", 46, 0.22));
 /** a coin: a lathe with a raised rim around a slightly sunk face and a bevelled edge, so it has an edge highlight, a
  *  rim line and a face, not a flat disc */
-const COIN = (() => {
+export const COIN = (() => {
   const t = H / 2, pts = [[0, t - 0.002], [R * 0.74, t - 0.002], [R * 0.8, t], [R * 0.94, t], [R, t - 0.004], [R, -t + 0.004], [R * 0.94, -t], [0, -t]]
     .map(([x, y]) => new THREE.Vector2(x, y));
   return new THREE.LatheGeometry(pts, 28);

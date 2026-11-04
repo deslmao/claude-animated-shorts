@@ -313,12 +313,14 @@ const staging = (film: ReturnType<typeof compile>, sb: Storyboard, i: number, a:
   }
   (s.props ?? []).forEach((q, k) => { if (!seenProp.has(k)) report(`prop-${k}`, `prop "${q.id}" is never in frame (move it into the shot or drop it)`); });
   // arm snaps: around every beat, follow each hand frame by frame; a jump of more than SNAP metres in one frame means
-  // a gesture changed without easing (cuts, walks and frames outside the shot are skipped)
+  // a gesture changed without easing (cuts, walks and frames outside the shot are skipped; so is a hard camera cut
+  // inside the shot: cards turn to the new camera, so the frame after a cut is never compared with the one before)
   const beats = new Set<number>();
   for (const x of s.actors) for (const bt of x.beats ?? []) if (bt.gesture || bt.act || bt.hold !== undefined) beats.add(a + Math.round((bt.t ?? 0) * FPS));
   for (const fb of beats) {
     let last: Map<string, Map<number, [number, number, number]>> | null = null;
     for (let f = Math.max(a, fb - 2); f < Math.min(b, fb + 8); f++) {
+      if (shot.keys.some((k, j) => j > 0 && k.cut && k.f === f)) last = null;
       const cm = runKeys(shot.keys, f), cam = new THREE.PerspectiveCamera(cm.fov, 9 / 16, 0.05, 3000);
       cam.position.set(...cm.pos); cam.up.set(0, 1, 0); cam.lookAt(...cm.look); cam.updateMatrixWorld();
       const st: Stage = { places: [], fx: [] };

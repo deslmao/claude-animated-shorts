@@ -5,5 +5,6 @@ import { PIRATEDEMOCRACY } from "./pirate-democracy";
 import { TICKLE } from "./tickle";
 import { YAWN_DEMO } from "./yawn-demo";
 import { CAPABILITIES } from "./capabilities";
+import { INK_ORBIT } from "./ink-orbit";
 
-export const STORIES: Storyboard[] = [YAWN_DEMO, CAPABILITIES, TICKLE, PIRATEDEMOCRACY, BURIEDTREASURE];
+export const STORIES: Storyboard[] = [YAWN_DEMO, CAPABILITIES, TICKLE, PIRATEDEMOCRACY, BURIEDTREASURE, INK_ORBIT];

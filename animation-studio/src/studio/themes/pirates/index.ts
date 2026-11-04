@@ -15,7 +15,9 @@ import type { Layout } from "../../sets/layouts";
 import type { V3 } from "../../camera/keys";
 import { V, lam, quadUp, tri } from "../../materials/geo";
 import { planksHD, ctex, rng } from "../../materials/paint";
-import { At, frame, col, tex, box, cyl, sph, panel } from "../../props/kit";
+import { At, frame, col, tex, box, cyl, sph, panel, rbox } from "../../props/kit";
+import { metal } from "../../materials/geo";
+import { COIN, GOLDS } from "../../props/economy";
 import { barrel, crate } from "../../props/outdoor";
 import { clearOf } from "../../sets/clear";
 import { fitShot, FitOpts } from "../../camera/framing";
@@ -160,6 +162,32 @@ const countingDesk = (b: Batch, a: At) => {
   for (let i = 0; i < 6; i++) for (const x0 of [0.11, 0.42]) box(b, col("#6a5a48"), m, x0, x0 + 0.2, 0.929, 0.931, -0.12 + i * 0.04, -0.11 + i * 0.04);
   cyl(b, col("#2b2433"), m, 0.6, 0.92, -0.25, 0.04, 0.035, 0.07, 12); cyl(b, col("#f6f1e6"), m, 0.61, 0.97, -0.25, 0.005, 0.016, 0.18, 8, 0, -0.45); // inkstand + quill
 };
+/** the hero treasure chest (Visual Storytelling 2.0, for close shots and inserts): built for stable outlines. A
+ *  rounded plank-grain body (no hairline facets), brass bands and lock plate as real metal with a highlight (they read
+ *  by colour and shine, so no sliver faces), and, open, ONE smooth gold mound with a few big turned coins and two
+ *  gems on it, instead of dozens of small intersecting blobs (those crawl under camera motion) */
+const heroChest = (b: Batch, a: At, open = false) => {
+  const m = frame(a), wood = tex("planksHD", planksHD, 0.9, 0.6), dark = col("#5a321c");
+  const brass = metal("chestBrass", "#c9a24a", "#fff1b8", 40, 0.2), iron = col("#2a2430");
+  rbox(b, wood, m, 0, 0, 0, 0.84, 0.42, 0.54, 0.025);                                   // body, rounded edges
+  box(b, dark, m, -0.4, 0.4, 0.0, 0.03, -0.26, 0.26);                                   // plinth shadow line
+  for (const x of [-0.29, 0.29]) rbox(b, brass, m, x, -0.005, 0, 0.085, 0.43, 0.58, 0.012); // bands, 2 cm proud all round
+  rbox(b, brass, m, 0, 0.27, 0.27, 0.15, 0.15, 0.04, 0.01);                             // lock plate
+  box(b, iron, m, -0.012, 0.012, 0.31, 0.36, 0.288, 0.294);                             // keyhole
+  const lidM = (ang: number) => m.clone().multiply(new THREE.Matrix4().compose(V(0, 0.42, -0.27), new THREE.Quaternion().setFromEuler(new THREE.Euler(ang, 0, 0)), V(1, 1, 1)));
+  const lid = lidM(open ? -105 * deg : 0);
+  cyl(b, wood, lid, -0.42, 0, 0.27, 0.27, 0.27, 0.84, 24, 0, -Math.PI / 2);
+  for (const x of [-0.29, 0.29]) cyl(b, brass, lid, x - 0.0425, 0, 0.27, 0.29, 0.29, 0.085, 24, 0, -Math.PI / 2);
+  if (!open) return;
+  // the hoard: one smooth mound (32 segments) and nine big coins lying on it, tilted with its slope; two gems
+  sph(b, GOLDS[2], m, 0, 0.4, 0, 0.37, 0.12, 0.23, 32);
+  for (let i = 0; i < 9; i++) {
+    const r = rng(i + 41), x = (r() - 0.5) * 0.52, z = (r() - 0.5) * 0.3, d = Math.min(0.95, Math.hypot(x / 0.37, z / 0.23));
+    const y = 0.4 + 0.12 * Math.sqrt(1 - d * d), tilt = 0.5 * d, ang = Math.atan2(z, x);
+    b.add(COIN, GOLDS[i % 3], m.clone().multiply(new THREE.Matrix4().compose(V(x, y + 0.008, z), new THREE.Quaternion().setFromEuler(new THREE.Euler(Math.sin(ang) * tilt, 0, -Math.cos(ang) * tilt)), V(1.15, 1.15, 1.15))));
+  }
+  sph(b, col("#c0353a"), m, 0.12, 0.52, 0.05, 0.055, 0.055, 0.055, 18); sph(b, col("#2a9d8f"), m, -0.16, 0.51, -0.04, 0.05, 0.05, 0.05, 18);
+};
 const chest = (b: Batch, a: At, open = false) => {
   const m = frame(a), wood = col("#8a4f2c"), band = col("#c9a24a"), gold = col("#f0c040");
   box(b, wood, m, -0.42, 0.42, 0, 0.42, -0.27, 0.27);
@@ -289,12 +317,30 @@ const DECK_LAYOUT: Layout = {
   ],
 };
 const HB = 3.4, Z0 = -15, Z1 = 11, QZ = 5.4, QH = 1.3; // half beam, deck from bow Z0 to stern Z1, quarterdeck from QZ, its height
-const shipDeck = (cams?: View[]) => {
+/** the red ensign of a British merchant ship (1707-1801): a red field with the Union (St George and St Andrew) in
+ *  the canton. Merchant ships flew it; pirates flew their own colours */
+const ensignTex = () => ctex("redEnsign", 512, 340, (g) => {
+  g.fillStyle = "#b8282e"; g.fillRect(0, 0, 512, 340);
+  g.fillStyle = "#1f3a7a"; g.fillRect(0, 0, 236, 160);                                       // canton: St Andrew's blue
+  g.strokeStyle = "#f4eee0"; g.lineWidth = 26; g.beginPath(); g.moveTo(0, 0); g.lineTo(236, 160); g.moveTo(236, 0); g.lineTo(0, 160); g.stroke(); // saltire
+  g.fillStyle = "#f4eee0"; g.fillRect(92, 0, 52, 160); g.fillRect(0, 54, 236, 52);           // St George: white border
+  g.fillStyle = "#c8262c"; g.fillRect(104, 0, 28, 160); g.fillRect(0, 66, 236, 28);          // red cross
+});
+const ensign = (b: Batch, a: At) => {
+  const m = frame(a);
+  cyl(b, col("#6b4a2a"), m, 0, 0, 0, 0.04, 0.035, 3.2, 8);
+  panel(b, lam("redEnsign", () => ({ map: ensignTex(), side: THREE.DoubleSide })), m, 0.62, 2.7, 0, 1.2, 0.8);
+};
+/** a sack of trade goods (grain, sugar, cotton) */
+const sack = (b: Batch, a: At) => { const m = frame(a); sph(b, col("#c9a878"), m, 0, 0.27, 0, 0.28, 0.27, 0.22, 14); sph(b, col("#b08f62"), m, 0, 0.55, 0, 0.09, 0.07, 0.08, 10); };
+
+const shipDeck = (cams?: View[], merchant = false) => {
   const root = new THREE.Group(), b = new Batch(), r = rng(73), I = new THREE.Matrix4();
   const views = DECK_LAYOUT.views, all = cams ? [...views, ...cams] : views;
   const ok = (x: number, z: number, rad = 0.5) => clearOf(all, x, z, rad);
   const deck = tex("deckPlanks", planksHD, 1.2, 4), side = tex("hullPlanks", planksHD, 3, 0.4), dark = col("#5a3b2a"), wood = col("#8a5a3c");
-  const sail = lam("sail", () => ({ color: "#f6ecd2", emissive: "#3a3326", side: THREE.DoubleSide })), rope = col("#b89a6a"), mastC = col("#9a6a42");
+  // a merchant ship (merchantDeck): weathered tan canvas instead of the pirates' bright sails
+  const sail = merchant ? lam("sailMerchant", () => ({ color: "#ddc9a2", emissive: "#3a3020", side: THREE.DoubleSide })) : lam("sail", () => ({ color: "#f6ecd2", emissive: "#3a3326", side: THREE.DoubleSide })), rope = col("#b89a6a"), mastC = col("#9a6a42");
   // the sea all around (a flat painted sea; horizon fog blends it into the sky) and foam along the hull
   b.add(quadUp(-900, 900, -900, 900, 1, 1, -2.4), col("#2f7fae"));
   b.add(quadUp(-60, 60, -60, 60, 1, 1, -2.39), col("#3a8fbd"));
@@ -352,11 +398,17 @@ const shipDeck = (cams?: View[]) => {
   }
   rod(b, rope, I, [0, 15.5, -4.2], [0, 12.5, -11.2], 0.02, 4);
   rod(b, rope, I, [0, 12.6, -11.2], [0, 3.1, tip - 6.3], 0.02, 4);
-  jollyRoger(b, { x: 0, y: 15.5, z: -4.2 });
+  if (merchant) ensign(b, { x: 0, y: 15.5, z: -4.2 }); else jollyRoger(b, { x: 0, y: 15.5, z: -4.2 });
   // deck clutter, kept clear of every view's sight line and of the marks
   const marks = Object.values(DECK_LAYOUT.spots);
   const free = (x: number, z: number, rad: number) => ok(x, z, rad) && marks.every((p) => Math.hypot(p[0] - x, p[2] - z) > rad + 0.55);
-  for (const [s, z] of [[1, -7.6], [-1, -7.6], [1, -1.6], [-1, -1.6], [1, 2.4], [-1, 2.4], [1, -13], [-1, -13]] as const) if (free(s * (HB - 0.75), z, 0.6)) cannon(b, { x: s * (HB - 0.75), z, yaw: (s * Math.PI) / 2 });
+  // pirates mount guns along the bulwarks; a merchant ship carries cargo there instead (crates, barrels, sacks)
+  for (const [s, z] of [[1, -7.6], [-1, -7.6], [1, -1.6], [-1, -1.6], [1, 2.4], [-1, 2.4], [1, -13], [-1, -13]] as const) {
+    if (!free(s * (HB - 0.75), z, 0.6)) continue;
+    if (!merchant) { cannon(b, { x: s * (HB - 0.75), z, yaw: (s * Math.PI) / 2 }); continue; }
+    const x = s * (HB - 0.7);
+    crate(b, { x, z: z - 0.25, yaw: 0.2 * s }); crate(b, { x: x - s * 0.05, y: 0.6, z: z - 0.2, yaw: -0.15 * s }); sack(b, { x, z: z + 0.45 }); barrel(b, { x: x - s * 0.55, z: z + 0.5 });
+  }
   for (const [x, z, k] of [[1.5, -5.4, 0], [1.95, -5.9, 0], [-1.6, -5.8, 0], [-2.4, 3.8, 1], [2.5, 4.3, 1], [-1.7, -10.4, 1], [1.4, -12.2, 0]] as const)
     if (free(x, z, 0.45)) { if (k) crate(b, { x, z, yaw: x * 0.7 }); else barrel(b, { x, z }); }
   for (const [x, z] of [[0.6, -4.9], [-0.7, -11.9], [-2.6, -3.2]] as const) if (free(x, z, 0.35)) ropeCoil(b, { x, z });
@@ -493,6 +545,8 @@ export const PIRATES: Theme = {
     deckBoard: { name: "Deck board", desc: "the deck table cleared: a plank board on two barrels (0.96 m high), nothing on it (put loot piles or other props on top)", category: "theme", themes: ["pirates", "history", "navy"], tags: ["table", "board", "loot", "sharing", "counting"], radius: 0.95, height: 0.96, box: [0.86, 0.43], build: (b, a) => deckTable(b, a, true) },
     treasureChest: { name: "Treasure chest", desc: "banded wooden chest (variants: closed, open = heaped with gold and gems)", category: "theme", themes: ["pirates", "history", "adventure"], tags: ["treasure", "gold", "loot", "money", "chest"], radius: 0.5, height: 0.7, box: [0.43, 0.29],
       build: (b, a) => chest(b, a), variants: { closed: (b, a) => chest(b, a), open: (b, a) => chest(b, a, true) } },
+    heroChest: { name: "Treasure chest (hero)", desc: "the treasure chest for close shots and inserts (Visual Storytelling 2.0): plank-grain wood, brass bands and lock plate with a metal shine, open = one smooth gold mound with big turned coins and two gems; built so its outlines stay stable under camera motion (variants: closed, open)", category: "theme", themes: ["pirates", "history", "adventure"], tags: ["treasure", "gold", "loot", "money", "chest", "hero"], radius: 0.5, height: 0.7, box: [0.43, 0.29],
+      build: (b, a) => heroChest(b, a), variants: { closed: (b, a) => heroChest(b, a), open: (b, a) => heroChest(b, a, true) } },
     shipWheel: { name: "Ship's wheel", desc: "ship's wheel on its post (the helmsman stands on its +z side)", category: "theme", themes: ["pirates", "sea", "navy"], tags: ["steer", "helm", "ship", "navigate", "captain"], radius: 0.6, height: 1.7, build: shipWheel },
     ropeCoil: { name: "Rope coil", desc: "coil of rope on the deck / dock", category: "theme", themes: ["pirates", "sea", "harbour"], tags: ["rope", "ship", "dock"], radius: 0.35, height: 0.3, build: ropeCoil },
     anchor: { name: "Anchor", desc: "iron ship's anchor standing on its crown", category: "theme", themes: ["pirates", "sea", "harbour", "navy"], tags: ["ship", "dock", "harbour"], radius: 0.5, height: 1.6, build: anchor },
@@ -500,6 +554,7 @@ export const PIRATES: Theme = {
     digSpot: { name: "Dig spot", desc: "a place to dig in sand (variants: x = X marks the spot, dug = hole with a heap of sand)", category: "theme", themes: ["pirates", "island", "beach", "treasure"], tags: ["dig", "bury", "x marks the spot", "hole", "sand", "treasure"], radius: 0.6, height: 0.35,
       build: (b, a) => digSpot(b, a), variants: { x: (b, a) => digSpot(b, a, "x"), dug: (b, a) => digSpot(b, a, "dug") } },
     rowboat: { name: "Rowboat", desc: "small wooden rowboat with oars, pulled up on a shore", category: "theme", themes: ["pirates", "sea", "harbour", "island"], tags: ["boat", "row", "shore", "landing"], radius: 1.4, height: 0.55, build: rowboat },
+    redEnsign: { name: "Red ensign", desc: "a British merchant ship's flag (red, the Union in the canton, 1707-1801) on a 3.2 m pole: a merchant ship, a trading company, not pirates", category: "theme", themes: ["history", "trade", "sea", "navy", "pirates"], tags: ["flag", "merchant", "ship", "britain", "trade", "ensign"], radius: 0.3, height: 3.2, build: ensign },
     jollyRoger: { name: "Jolly Roger", desc: "pirate flag (skull and crossbones) on a 3.2 m pole", category: "theme", themes: ["pirates"], tags: ["flag", "skull", "ship", "pirate"], radius: 0.3, height: 3.2, build: jollyRoger },
   },
   items: {
@@ -512,8 +567,10 @@ export const PIRATES: Theme = {
     tricorn: { name: "Tricorn hat (in hand)", desc: "a captain's gold-braided tricorn held in the hand (doffed, humble, nervous)", themes: ["pirates", "history"], tags: ["hat", "captain", "humble", "nervous"], draw: tricornHat },
   },
   sets: { shipDeck: { id: "shipDeck", title: "Pirate ship: main deck at sea", lights: ["day", "golden", "night"], build: shipDeck },
+    merchantDeck: { id: "merchantDeck", title: "Merchant ship: main deck at sea", lights: ["day", "golden", "night"], build: (cams?: View[]) => shipDeck(cams, true) },
     island: { id: "island", title: "Desert island beach", lights: ["day", "golden", "night"], build: island } },
-  layouts: { shipDeck: DECK_LAYOUT, island: ISLAND_LAYOUT },
-  setMeta: { shipDeck: { name: "Pirate ship deck", desc: "main deck of a pirate ship at sea: planked deck, two masts with billowing sails and a crow's nest, rigging, cannons at the bulwarks, barrels, crates, rope, a hatch, a raised quarterdeck with the ship's wheel, open sea all round", themes: ["pirates", "sea", "history", "navy"], tags: ["ship", "deck", "ocean", "outdoor", "sailing", "crew"] },
+  layouts: { shipDeck: DECK_LAYOUT, merchantDeck: DECK_LAYOUT, island: ISLAND_LAYOUT },
+  setMeta: { merchantDeck: { name: "Merchant ship deck", desc: "the same ship's deck as a merchant trader at sea: the British red ensign at the masthead instead of the Jolly Roger, cargo (crates, barrels, sacks of goods) where the pirate ship has cannons, weathered tan sails; same marks and views as shipDeck", themes: ["history", "trade", "sea", "navy", "pirates"], tags: ["ship", "deck", "merchant", "trade", "cargo", "ocean", "outdoor", "sailing", "crew"] },
+    shipDeck: { name: "Pirate ship deck", desc: "main deck of a pirate ship at sea: planked deck, two masts with billowing sails and a crow's nest, rigging, cannons at the bulwarks, barrels, crates, rope, a hatch, a raised quarterdeck with the ship's wheel, open sea all round", themes: ["pirates", "sea", "history", "navy"], tags: ["ship", "deck", "ocean", "outdoor", "sailing", "crew"] },
     island: { name: "Desert island beach", desc: "tropical island beach: sand, palm trees, rocks, shells, a rowboat on the shore, turquoise shallows, open sea and a far island", themes: ["pirates", "island", "tropical", "beach", "treasure"], tags: ["beach", "island", "sand", "sea", "outdoor", "palm", "shore", "desert island"] } },
 };

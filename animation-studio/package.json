@@ -56,7 +56,8 @@
     "assets": "esbuild scripts/assets.ts --bundle --platform=node --format=esm --outfile=out/assets.mjs --log-level=warning && node out/assets.mjs",
     "short": "esbuild scripts/short.ts --bundle --platform=node --format=esm --outfile=out/short.mjs --log-level=warning && NODE_USE_ENV_PROXY=1 node out/short.mjs",
     "script": "esbuild scripts/script.ts --bundle --platform=node --format=esm --outfile=out/script.mjs --log-level=warning && node out/script.mjs",
-    "test:zfight": "esbuild scripts/zfight-test.ts --bundle --platform=node --format=esm --outfile=out/zfight-test.mjs --log-level=warning && node out/zfight-test.mjs"
+    "test:zfight": "esbuild scripts/zfight-test.ts --bundle --platform=node --format=esm --outfile=out/zfight-test.mjs --log-level=warning && node out/zfight-test.mjs",
+    "stability": "node scripts/stability.mjs"
   },
   "allowScripts": {
     "esbuild": false

@@ -81,9 +81,16 @@ Story-level fields:
 - `voice` sets the voice preset for every line. The default is George, the channel narrator.
 - `voices` gives specific speakers their own voices, for example `{ gus: "brian" }`.
 - `captions: false` turns captions off. They are on by default.
-- `engine: 2` turns on the Visual Storytelling 2.0 render behaviours. Character cards then draw identically whatever a
-  render worker drew before, so chunk seams are exact even on fast flights. Use it for every new production;
-  storyboards without it render exactly as they were approved.
+- `engine: 2` turns on the Visual Storytelling 2.0 render behaviours. Use it for every new production; storyboards
+  without it render exactly as they were approved.
+  - **Exact chunk seams:** character cards draw identically whatever a render worker drew before, even on fast
+    flights.
+  - **Stable outlines:** the world ink's edge test runs on a 2 × 2 supersampled normal / depth buffer, so lines glide
+    with the camera instead of stepping a pixel. A crease drawn from a face thinner than about 2 px (a 1 cm band
+    seen nearly edge-on) fades out instead of dashing on and off.
+  - **Cost:** about +12-16 % per frame, measured.
+  - **Checking it:** `npm run stability -- <Comp> <a-b> [--roi x,y,w,h] [--reference]` measures flicker and crawl on
+    lossless frames. `--max-flicker` turns it into a QA gate.
 - `motionBlur: true` turns on camera motion blur for fast moves. Slow creeps stay sharp, and storyboards without it
   render exactly as before. The blur depends on the camera beat:
   - full on flights, whips and zoom-throughs;
