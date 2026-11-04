@@ -6,8 +6,8 @@
   "height": 1920,
   "videoSeconds": 63.733333333333334,
   "audioSeconds": 63.733,
-  "lufs": -14.2,
-  "truePeak": -1.5,
+  "lufs": -14.1,
+  "truePeak": -1.7,
   "duplicates": [],
   "black": [],
   "frozen": [],
@@ -45,7 +45,7 @@
     [
       "audio is not silent",
       true,
-      "-14.2 LUFS integrated"
+      "-14.1 LUFS integrated"
     ],
     [
       "audio starts at 0",
