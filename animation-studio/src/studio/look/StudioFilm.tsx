@@ -2,30 +2,35 @@
 //   InkPass (world ink, own pass) -> lens blur pre + main (thin-lens DOF) -> bloom (emissive only) -> NEUTRAL tone
 //   map -> colour grade, MSAA 4. Crossfades stack a second canvas; flashes are 4-frame white fades.
 // Every pixel-sized parameter is specified at 1080x1920 and scales with the output size (previews at --scale 0.5 match).
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { AbsoluteFill, continueRender, delayRender, getInputProps, useCurrentFrame } from "remotion";
 import { ThreeCanvas } from "@remotion/three";
-import { useThree } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { EffectComposer } from "@react-three/postprocessing";
 import { BlendFunction, BloomEffect, ToneMappingEffect, ToneMappingMode } from "postprocessing";
+import type { EffectComposer as PPComposer } from "postprocessing";
 import { InkPass, noInkFallback } from "./ink";
 import { LensBlur, GrainEffect } from "./lensblur";
+import { MotionBlurEffect, shutterTravel, THRESH_PX } from "./motionblur";
 import { GradeEffect, GRADES, GRADE_STRENGTH, gradeFor } from "./grade";
 
 export type GradeName = keyof typeof GRADES;
 /** what a world reports after posing frame f: the camera's look target, lens blur and which grade to use */
 /** grade: any light name; golden / night -> their grades, everything else -> the day grade */
-export type FrameInfo = { target: THREE.Vector3; cInf: number; focus?: THREE.Vector3; grade: GradeName | string };
+/** shutter: the camera's view-projection at the shutter's open and close (camera motion blur), when the frame has one */
+export type ShutterEnd = { view: THREE.Matrix4; fov: number };
+export type FrameInfo = { target: THREE.Vector3; cInf: number; focus?: THREE.Vector3; grade: GradeName | string; shutter?: { open: ShutterEnd; close: ShutterEnd } };
 /** anything that can pose a three.js scene for (shot, frame) as a PURE function of those two numbers */
 export interface StudioWorld { root: THREE.Object3D; update(shot: number, f: number, cam: THREE.PerspectiveCamera, scene: THREE.Scene): FrameInfo }
 /** which shot(s) to draw at frame f (two layers during a crossfade) and where the white flashes are */
 /** flashes: 4-frame white fades starting at each frame; dips: 12-frame dips to black centred on each frame (the cut) */
-export interface Timeline { total: number; layersAt(f: number): { id: number; alpha: number }[]; flashes?: number[]; dips?: number[] }
+/** motionBlur: the film uses camera motion blur (look/motionblur.ts); without it the post chain is unchanged */
+export interface Timeline { total: number; layersAt(f: number): { id: number; alpha: number }[]; flashes?: number[]; dips?: number[]; motionBlur?: boolean }
 
 /** A/B switches for test stills only (inputProps `{ post: { ink: false, ... } }`); everything is on by default */
-type PostToggles = { ink: boolean; lens: boolean; pre: boolean; bloom: boolean; grade: boolean; grain: boolean };
-const toggles = (): PostToggles => ({ ink: true, lens: true, pre: true, bloom: true, grade: true, grain: false, ...((getInputProps() as { post?: Partial<PostToggles> }).post ?? {}) });
+type PostToggles = { ink: boolean; lens: boolean; pre: boolean; bloom: boolean; grade: boolean; grain: boolean; motion: boolean };
+const toggles = (): PostToggles => ({ ink: true, lens: true, pre: true, bloom: true, grade: true, grain: false, motion: true, ...((getInputProps() as { post?: Partial<PostToggles> }).post ?? {}) });
 
 /** bloom for emissive sources only; its MIP chain always starts at half of 1080x1920 so the glow keeps its size */
 const makeBloom = () => {
@@ -36,13 +41,26 @@ const makeBloom = () => {
   return b;
 };
 
-const fwd = new THREE.Vector3(), fpt = new THREE.Vector3();
+const fwd = new THREE.Vector3(), fpt = new THREE.Vector3(), ivp = new THREE.Matrix4(), mOpen = new THREE.Matrix4(), mClose = new THREE.Matrix4(), pcam = new THREE.PerspectiveCamera();
 
-function Inner<K>({ id, kit, makeWorld }: { id: number; kit: K; makeWorld: (kit: K) => StudioWorld }) {
+function Inner<K>({ id, kit, makeWorld, blur }: { id: number; kit: K; makeWorld: (kit: K) => StudioWorld; blur: boolean }) {
   const f = useCurrentFrame();
   const { camera, scene } = useThree();
   const world = useMemo(() => makeWorld(kit), [kit, makeWorld]);
   const on = useMemo(toggles, []);
+  const composer = useRef<PPComposer | null>(null), shut = useRef<FrameInfo["shutter"]>(undefined);
+  // camera motion blur, set just before the composer draws (priority 0 runs before its priority-1 render), with the
+  // camera exactly as it is drawn (the canvas's real aspect: on a render worker's first frame it is only set after
+  // this component renders). Frames that move less than THRESH_PX skip the pass entirely (no cost, no change)
+  useFrame(({ camera: c }) => {
+    if (!blur || !on.motion) return;
+    const cam = c as THREE.PerspectiveCamera, sh = shut.current, pass = composer.current?.passes.find((p) => (p as unknown as { effects?: unknown[] }).effects?.includes(fx.motion));
+    const vp = (e: { view: THREE.Matrix4; fov: number }, out: THREE.Matrix4) => { pcam.copy(cam); pcam.fov = e.fov; pcam.updateProjectionMatrix(); return out.multiplyMatrices(pcam.projectionMatrix, e.view); };
+    const ends = sh ? { open: vp(sh.open, mOpen), close: vp(sh.close, mClose) } : undefined;
+    const moving = !!ends && shutterTravel(cam, ends) >= THRESH_PX;
+    fx.motion.set(ivp.multiplyMatrices(cam.matrixWorld, cam.projectionMatrixInverse), moving ? ends : undefined);
+    if (pass) pass.enabled = moving;
+  }, 0);
   const fx = useMemo(() => ({
     ink: new InkPass(scene, camera as THREE.PerspectiveCamera),
     lens: new LensBlur({ maxCoC: 24, nearScale: 1.2 }),
@@ -50,12 +68,14 @@ function Inner<K>({ id, kit, makeWorld }: { id: number; kit: K; makeWorld: (kit:
     tone: new ToneMappingEffect({ mode: ToneMappingMode.NEUTRAL }),
     grade: new GradeEffect(GRADES.day, GRADE_STRENGTH.day),
     grain: new GrainEffect({ amount: 0.025, cellPx: 1.5 }), // OFF by default: the reference has no grain
+    motion: new MotionBlurEffect(),
   }), [camera, scene]);
   useEffect(() => () => fx.ink.dispose(), [fx]);
   const post = useMemo(() => (
-    <EffectComposer multisampling={4}>
+    <EffectComposer multisampling={4} ref={composer}>
       {[
         on.ink && <primitive key="ink" object={fx.ink} dispose={null} />,
+        blur && on.motion && <primitive key="motion" object={fx.motion} dispose={null} />,
         on.lens && on.pre && <primitive key="pre" object={fx.lens.pre} dispose={null} />,
         on.lens && <primitive key="lens" object={fx.lens.main} dispose={null} />,
         on.bloom && <primitive key="bloom" object={fx.bloom} dispose={null} />,
@@ -64,7 +84,7 @@ function Inner<K>({ id, kit, makeWorld }: { id: number; kit: K; makeWorld: (kit:
         on.grain && <primitive key="grain" object={fx.grain} dispose={null} />,
       ].filter((x): x is React.JSX.Element => !!x)}
     </EffectComposer>
-  ), [fx, on]);
+  ), [fx, on, blur]);
   const cam = camera as THREE.PerspectiveCamera;
   const info = world.update(id, f, cam, scene);
   noInkFallback(world.root);
@@ -73,6 +93,7 @@ function Inner<K>({ id, kit, makeWorld }: { id: number; kit: K; makeWorld: (kit:
   fpt.copy(info.focus ?? info.target);
   fx.lens.focus = Math.max(0.3, fpt.sub(cam.position).dot(fwd));
   fx.lens.cInf = info.cInf;
+  shut.current = blur && on.motion ? info.shutter : undefined;
   gradeFor(fx.grade, info.grade === "golden" || info.grade === "night" ? info.grade : "day");
   fx.grain.seed = f;
   return (
@@ -105,7 +126,7 @@ export function StudioFilm<K>({ timeline, makeWorld, load, background = "#cfe3f2
           <ThreeCanvas width={1080} height={1920} {...(dprOverride() ? { dpr: dprOverride() } : {})} shadows
             gl={{ antialias: false, stencil: false, powerPreference: "high-performance", toneMappingExposure: 1.0 }}
             camera={{ fov: 40, near: 0.2, far: 1500 }}>
-            <Inner id={l.id} kit={kit} makeWorld={makeWorld} />
+            <Inner id={l.id} kit={kit} makeWorld={makeWorld} blur={!!timeline.motionBlur} />
           </ThreeCanvas>
         </AbsoluteFill>
       ))}

@@ -62,6 +62,10 @@ const broken: [string, (sb: Storyboard) => void, string?][] = [
   ["diagram through ceiling", (sb) => { sb.shots[2].diagram = { kind: "forecast", with: "juno", place: "above", size: 1.5 }; sb.shots[2].camera = { move: "frame", on: ["juno", "diagram"], size: "medium" }; }, "ceiling"],
   ["reach unknown target", (sb) => { sb.shots[2].actors[0].reach = "nobody"; }, "neither an actor nor a prop"],
   ["hand stops short", (sb) => { const j = sb.shots[2].actors[0]; j.gesture = "grab"; delete j.act; j.reach = "treasureChest"; sb.shots[2].props = [{ id: "treasureChest", at: j.at, offset: [-2.4, -0.6] }]; sb.shots[2].camera = { move: "frame", on: [j.who, "treasureChest"], size: "full" }; }, "short of"],
+  ["insert on unknown part", (sb) => { sb.shots[2].cams = [{ t: 0.5, move: "insert", on: "juno.elbow" }]; }, "face, held or hands"],
+  ["camera beat on unsaid word", (sb) => { sb.shots[2].cams = [{ word: "zebra", move: "closeUp", on: "juno" }]; }, "zebra"],
+  ["cont without until", (sb) => { sb.shots[2].cont = true; }, "doesn't end with `until`"],
+  ["until without cont", (sb) => { const w = String(sb.shots[2].say ?? "").split(/\s+/)[1].replace(/[^A-Za-z']/g, ""); sb.shots[2].until = { word: w }; }, "must have cont: true"],
   ["robot can't reach", (sb) => { sb.shots[2].actors[0].gesture = "operate"; delete sb.shots[2].actors[0].act; sb.shots[2].props = [{ id: "robotArm", at: [-3.5, 0, -2.5], follow: { who: "juno" } }]; sb.shots[2].camera = { move: "frame", on: ["juno", "robotArm"], size: "full" }; }, "reach"],
 ];
 console.log("\n== validator catches mistakes");

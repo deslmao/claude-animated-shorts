@@ -20,7 +20,12 @@ const makeEntry = (w: number, h: number): Entry => {
   tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 8;
   return { cv, tex, w, h };
 };
+/** stable = draw every card on a CPU canvas (engine 2). Chrome may move a reused canvas between GPU and CPU
+ *  drawing depending on its history, which changes the antialiasing slightly: then a frame's cards depend on what
+ *  the render worker drew before it (seen on a fast camera flight, where cards change size tier often). CPU canvases
+ *  draw the same whatever came before, so chunked renders match exactly. Off by default: existing videos unchanged */
 export class Pool {
+  constructor(private stable = false) {}
   private live = new Map<string, Entry>();
   private free: Entry[] = [];
   private reqs: Req[] = [];
@@ -38,7 +43,7 @@ export class Pool {
       if (!e) {
         const r = rs[0], i = this.free.findIndex((x) => x.w === r.w && x.h === r.h);
         e = i >= 0 ? this.free.splice(i, 1)[0] : makeEntry(r.w, r.h);
-        const g = e.cv.getContext("2d")!;
+        const g = (this.stable ? e.cv.getContext("2d", { willReadFrequently: true }) : e.cv.getContext("2d"))!;
         g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, e.w, e.h); g.setTransform(r.k, 0, 0, r.k, 0, 0);
         r.draw(new Pen(g));
         e.tex.needsUpdate = true;
@@ -126,13 +131,13 @@ export type CamInfo = { pos: THREE.Vector3; right: THREE.Vector3; sun: THREE.Vec
 
 /** draws a Stage: reuses card meshes, culls off-screen cards, then draws only the canvases that changed */
 export class CardLayer {
-  private pool = new Pool();
+  private pool: Pool;
   private actors: Actor[] = [];
   private custom = new Map<THREE.BufferGeometry, Actor>();
   private fxs: Fx[] = [];
   private frustum = new THREE.Frustum();
   private m4 = new THREE.Matrix4(); private v = new THREE.Vector3(); private sph = new THREE.Sphere();
-  constructor(private root: THREE.Object3D) {}
+  constructor(private root: THREE.Object3D, opts: { stable?: boolean } = {}) { this.pool = new Pool(!!opts.stable); }
   private actor(i: number) { while (this.actors.length <= i) this.actors.push(new Actor(this.root)); return this.actors[i]; }
   private fx(i: number) { while (this.fxs.length <= i) this.fxs.push(new Fx(this.root)); return this.fxs[i]; }
   private customActor(geo: THREE.BufferGeometry) { let a = this.custom.get(geo); if (!a) { a = new Actor(this.root, geo); this.custom.set(geo, a); } return a; }

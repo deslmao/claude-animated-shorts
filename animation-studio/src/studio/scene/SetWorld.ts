@@ -13,19 +13,21 @@ import { Batch } from "../materials/geo";
 import type { At } from "../props/kit";
 
 /** props: story props shown in this shot only (built the first time the shot is drawn) */
-export type WorldShot = { id: number; a: number; b: number; set: string; light: LightName; keys: Key[]; dof: (f: number) => { cInf: number; focus?: V3 }; kicks?: [number, number][];
-  props?: { id: string; variant?: string; at: At; animate?: (tt: number, anchors: Map<string, ActorAnchor>) => { target?: V3; stroke: number } }[] };
+/** shutter: camera motion blur exposure in frames (0.5 = a 180-degree shutter); absent = none */
+export type WorldShot = { id: number; a: number; b: number; set: string; light: LightName; keys: Key[]; dof: (f: number) => { cInf: number; focus?: V3 }; kicks?: [number, number][]; shutter?: number;
+  props?: { id: string; variant?: string; at: At; animate?: (tt: number, anchors: Map<string, ActorAnchor>) => { target?: V3; stroke: number; step?: number } }[] };
 export type Director = (shot: WorldShot, f: number, cam: CamInfo, built: BuiltSet, out: Stage) => void;
 
 export class SetWorld implements StudioWorld {
   root = new THREE.Group();
   private env = new Environment();
-  private cards = new CardLayer(this.root);
+  private cards: CardLayer;
   private sets = new Map<string, BuiltSet>();
   private suns = new Map<number, THREE.Vector3>();
   private props = new Map<number, THREE.Group>();
   /** clearShots: keep every shot's camera path clear of props (storyboard films, whose cameras are solved, not designed) */
-  constructor(private shots: WorldShot[], private director: Director, private opts: { clearShots?: boolean } = {}) { this.root.add(this.env.root); }
+  /** stable: engine 2 card canvases (cards.ts Pool) */
+  constructor(private shots: WorldShot[], private director: Director, private opts: { clearShots?: boolean; stable?: boolean } = {}) { this.cards = new CardLayer(this.root, { stable: opts.stable }); this.root.add(this.env.root); }
 
   /** this film's camera positions on a set, sampled along each shot's move, as views the set keeps clear of props
    *  up to just short of what the camera looks at (a lamp post between lens and cast is left out of the build) */
@@ -58,7 +60,7 @@ export class SetWorld implements StudioWorld {
       const g = new THREE.Group(), b = new Batch(), rigs: { inst: PropRig; animate: NonNullable<NonNullable<WorldShot["props"]>[number]["animate"]> }[] = [];
       for (const p of s.props) {
         const e = PROPS[p.id];
-        if (p.animate && e.rig) { const inst = e.rig(p.at); g.add(inst.root); rigs.push({ inst, animate: p.animate }); }
+        if (p.animate && e.rig) { const inst = e.rig(p.at, p.variant); g.add(inst.root); rigs.push({ inst, animate: p.animate }); }
         else (p.variant && e.variants?.[p.variant] ? e.variants[p.variant] : e.build)(b, p.at);
       }
       b.build(g, true); this.props.set(s.id, g); this.rigs.set(s.id, rigs); this.root.add(g);
@@ -81,6 +83,22 @@ export class SetWorld implements StudioWorld {
     for (const r of this.rigs.get(s.id) ?? []) r.inst.update({ ...r.animate((f - s.a) / 30, st.anchors ?? new Map()), camPos: cam.position });
     this.cards.render(st, cam, L.actorShadow);
     const d = s.dof(f);
-    return { target: focus, cInf: d.cInf, focus: d.focus ? new THREE.Vector3(...d.focus) : undefined, grade: s.light };
+    return { target: focus, cInf: d.cInf, focus: d.focus ? new THREE.Vector3(...d.focus) : undefined, grade: s.light, ...(s.shutter ? { shutter: this.shutterOf(s, f) } : {}) };
   }
+  /** the camera's view matrix and fov at the shutter's open and close around frame f (the projection is built at
+   *  draw time with the canvas's real aspect). A hard cut inside the shutter closes it at the cut (never a smear
+   *  between two framings); the shot's edges likewise */
+  private shutterOf(s: WorldShot, f: number) {
+    const h = (s.shutter ?? 0) / 2;
+    let lo = Math.max(s.a, f - h), hi = Math.min(s.b - 1, f + h);
+    for (const k of s.keys.slice(1)) if (k.cut) { if (k.f > lo && k.f <= f) lo = k.f; if (k.f > f && k.f <= hi) hi = k.f - 1e-3; }
+    const vp = (fr: number) => {
+      const c = withKick(runKeys(s.keys, fr), kickAt(s.kicks ?? [], f / 30)), m = this.shutCam;
+      m.position.set(...c.pos); m.up.set(0, 1, 0); m.lookAt(...c.look); m.rotateZ(c.roll);
+      m.updateMatrixWorld();
+      return { view: m.matrixWorldInverse.clone(), fov: c.fov };
+    };
+    return { open: vp(lo), close: vp(hi) };
+  }
+  private shutCam = new THREE.PerspectiveCamera(40, 9 / 16, 0.1, 1500);
 }

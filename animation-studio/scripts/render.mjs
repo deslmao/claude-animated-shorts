@@ -8,6 +8,7 @@
 //   --audio <file>        mux this soundtrack (wav/mp3) into the final MP4 (replaces Remotion's silent track)
 //   --concurrency <n>     frames rendered in parallel (default: chosen for this machine)
 //   --no-bundle           reuse the last bundle in build/ (faster repeat renders of an unchanged project)
+//   --post <json>         A/B post-chain switches for measurements only, e.g. '{"motion":false}' (StudioFilm toggles)
 //
 // The machine is detected automatically: macOS and GPU PCs render with the GPU ("angle"); the GPU-less cloud
 // container renders on the CPU ("swangle") with its pre-installed Chrome. Override with REMOTION_GL / REMOTION_BROWSER.
@@ -18,7 +19,7 @@ import { spawn } from "node:child_process";
 import { detect, defaultConcurrency, remotion, memorySampler, swapUsedGB, probe, fmtDur } from "./lib/machine.mjs";
 
 export const parseArgs = (argv) => {
-  const o = { comp: null, out: null, preview: false, frames: null, audio: null, concurrency: null, bundle: true };
+  const o = { comp: null, out: null, preview: false, frames: null, audio: null, concurrency: null, bundle: true, post: null };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === "--preview") o.preview = true;
@@ -26,6 +27,7 @@ export const parseArgs = (argv) => {
     else if (a === "--out") o.out = argv[++i];
     else if (a === "--frames") o.frames = argv[++i];
     else if (a === "--audio") o.audio = argv[++i];
+    else if (a === "--post") o.post = JSON.parse(argv[++i]);
     else if (a === "--concurrency") o.concurrency = Number(argv[++i]);
     else if (!a.startsWith("--") && !o.comp) o.comp = a;
     else throw new Error(`unknown option ${a}`);
@@ -57,8 +59,10 @@ export const render = async (o) => {
     "--gl", m.gl, "--concurrency", String(concurrency), "--timeout", "300000", "--log", "warn"];
   if (m.browser) args.push("--browser-executable", m.browser);
   if (o.frames) args.push("--frames", o.frames);
-  if (o.preview) args.push("--scale", "0.5", "--jpeg-quality", "80", "--crf", "23", "--props", JSON.stringify({ post: { dpr: 0.5 } }));
+  const post = { ...(o.preview ? { dpr: 0.5 } : {}), ...(o.post ?? {}) };
+  if (o.preview) args.push("--scale", "0.5", "--jpeg-quality", "80", "--crf", "23");
   else args.push("--jpeg-quality", "92", "--crf", "18");
+  if (Object.keys(post).length) args.push("--props", JSON.stringify({ post }));
 
   const stop = memorySampler();
   const tr = Date.now();

@@ -113,11 +113,12 @@ const cannon = (b: Batch, a: At) => {
 /** treasure chest: banded wooden chest; open = lid up and heaped with gold */
 /** a deck table: a thick plank board on two barrels, with the ship's articles spread on it, an inkpot and quill and a
  *  few coins (meetings, votes, sharing out loot) */
-const deckTable = (b: Batch, a: At) => {
+const deckTable = (b: Batch, a: At, bare = false) => {
   const m = frame(a), dark = col("#6e4a30"), paper = col("#efdcae");
   for (const x of [-0.55, 0.55]) barrel(b, { x: a.x + Math.cos(a.yaw ?? 0) * x, z: a.z - Math.sin(a.yaw ?? 0) * x, yaw: a.yaw });
   box(b, tex("planksHD", planksHD, 0.5, 0.25), m, -0.85, 0.85, 0.9, 0.96, -0.42, 0.42);       // board on the barrels (0.9 m)
   box(b, dark, m, -0.86, 0.86, 0.88, 0.9, -0.43, 0.43);                                         // its underside edge
+  if (bare) return;                                                                             // a clear board (loot piles on it)
   box(b, paper, m, -0.32, 0.22, 0.961, 0.966, -0.2, 0.18);                                      // the articles, spread out
   cyl(b, col("#2b2433"), m, 0.42, 0.96, -0.12, 0.05, 0.045, 0.08, 12);                          // inkpot
   cyl(b, col("#f6f1e6"), m, 0.44, 1.02, -0.12, 0.006, 0.02, 0.2, 8, 0, -0.5);                   // quill in it
@@ -433,6 +434,7 @@ export const PIRATES: Theme = {
   props: {
     cannon: { name: "Cannon", desc: "ship's cannon on a wooden carriage (muzzle along +z: yaw it)", category: "theme", themes: ["pirates", "history", "navy"], tags: ["gun", "battle", "ship", "weapon", "fort"], radius: 0.7, height: 0.8, build: cannon },
     deckTable: { name: "Deck table", desc: "a plank board on two barrels (0.96 m high) with the ship's articles, inkpot, quill and coins on it: a crew meeting, a vote, sharing out loot", category: "theme", themes: ["pirates", "history", "navy"], tags: ["table", "meeting", "vote", "articles", "contract", "committee"], radius: 0.95, height: 0.96, box: [0.86, 0.43], build: (b, a) => deckTable(b, a) },
+    deckBoard: { name: "Deck board", desc: "the deck table cleared: a plank board on two barrels (0.96 m high), nothing on it (put loot piles or other props on top)", category: "theme", themes: ["pirates", "history", "navy"], tags: ["table", "board", "loot", "sharing", "counting"], radius: 0.95, height: 0.96, box: [0.86, 0.43], build: (b, a) => deckTable(b, a, true) },
     treasureChest: { name: "Treasure chest", desc: "banded wooden chest (variants: closed, open = heaped with gold and gems)", category: "theme", themes: ["pirates", "history", "adventure"], tags: ["treasure", "gold", "loot", "money", "chest"], radius: 0.5, height: 0.7, box: [0.43, 0.29],
       build: (b, a) => chest(b, a), variants: { closed: (b, a) => chest(b, a), open: (b, a) => chest(b, a, true) } },
     shipWheel: { name: "Ship's wheel", desc: "ship's wheel on its post (the helmsman stands on its +z side)", category: "theme", themes: ["pirates", "sea", "navy"], tags: ["steer", "helm", "ship", "navigate", "captain"], radius: 0.6, height: 1.7, build: shipWheel },

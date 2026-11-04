@@ -105,6 +105,7 @@ export const resolve = (sb0: Storyboard, narr?: Narration): Timing => {
     for (const c of s.cams ?? []) when(c, `a camera beat (${c.move})`);
     for (const fx of s.fx ?? []) when(fx, `the ${fx.kind} effect`);
     for (const p of s.props ?? []) for (const c of p.drive?.changes ?? []) when(c, `the ${p.id}'s delay change`);
+    for (const p of s.props ?? []) for (const c of p.steps ?? []) when(c, `the ${p.id}'s step`);
     for (const st of s.diagram?.steps ?? []) when(st, `the ${s.diagram!.kind} diagram's step`);
     if (s.diagram?.place === "above" && s.diagram.base === undefined) { const b = aboveBase(sb, s); if (b !== undefined) s.diagram.base = b; }
     for (const x of s.sfx ?? []) when(x, `the ${x.name} sound`);

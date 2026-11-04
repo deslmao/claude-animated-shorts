@@ -15,7 +15,11 @@ export type CastRef = string | { extra: number; era?: Era };
 /** where: a set's named mark ("a", "sofa", "kerb"...), or explicit [x, floorY, z] */
 export type Where = string | V3;
 
-export type CameraBeat = CameraSpec & When & { cut?: boolean; glide?: number; whip?: boolean; rack?: boolean };
+/** a camera beat inside a shot, on a word: a new framing. Default: a hard cut. glide = seconds to move there from the
+ *  previous framing; whip = a 6-frame whip pan; rack = only the focus moves; fly = part of one continuous flight: the
+ *  camera travels without stopping from the previous framing through every consecutive fly beat, ARRIVING at each on
+ *  its word (a reveal, a fly-over, a pull-back) */
+export type CameraBeat = CameraSpec & When & { cut?: boolean; glide?: number; whip?: boolean; rack?: boolean; fly?: boolean };
 export type CameraSpec =
   | { move: "view"; view: string }                                                                // a set's designed view by name
   | { move: "establish"; view: string }
@@ -33,7 +37,9 @@ export type CameraSpec =
    *  filling most of the frame; size close (default) or extreme */
   | { move: "insert"; on: string; size?: ShotSize; from?: number; height?: number; push?: number }
   /** a point of view: from an actor's eyes toward another actor, a prop or a part ("milo.hands") */
-  | { move: "pov"; from: string; at: string };
+  | { move: "pov"; from: string; at: string }
+  /** an authored camera position in set coordinates: the start or a waypoint of a flight (an aerial over the set) */
+  | { move: "at"; pos: V3; look: V3; fov?: number };
 
 /** when something happens: t seconds after the shot starts, or on a spoken word of this shot's lines
  *  (word: "catches" lands 2 frames before that word; "yawn" also matches "yawning"; n = which occurrence, from 1) */
@@ -85,6 +91,8 @@ export type FxSpec = When & { kind: FxKind; on: string; life?: number; side?: -1
  *  (follow) and replay an actor's control strokes (drive), late by `delay` seconds, changed at moments */
 export type PropSpec = { id: string; at: Where; yaw?: number; scale?: number; variant?: string; offset?: [number, number];
   follow?: { who: string };
+  /** a stepped prop (a registry entry with `steps`, e.g. lootPiles): each step plays on its word, in order */
+  steps?: When[];
   drive?: { who: string; delay?: number; changes?: (When & { delay: number })[] } };
 /** an explicit sound cue (automatic cues already cover effects, transitions, kicks, jumps, falls and footsteps).
  *  on = an actor (the sound is panned to where they are on screen); gain in dB on top of the kind's default level */
@@ -143,4 +151,11 @@ export type Storyboard = {
   music?: Mood | { mood: Mood; gain?: number } | false;
   /** automatic sound effects for effects marks, transitions, kicks, jumps, falls and footsteps (default true) */
   autoSfx?: boolean;
+  /** camera motion blur on fast moves (flights, whips, zoom-throughs): true = a 180-degree shutter, or the exposure in
+   *  frames. Slow creeps stay sharp. Default off */
+  motionBlur?: boolean | number;
+  /** render engine generation. 2 = Visual Storytelling 2.0 render behaviours: card canvases that draw identically
+   *  whatever the render worker drew before (exact chunk seams on fast camera flights). Default 1: storyboards made
+   *  before 2.0 render exactly as they were approved */
+  engine?: 1 | 2;
 };

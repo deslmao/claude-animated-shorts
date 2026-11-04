@@ -89,8 +89,15 @@ export const validate = (sb0: Storyboard, narr?: Narration): Report => {
     for (const q of s.props ?? []) {
       const e = PROPS[q.id];
       if (!e) { errors.push(`${at}: unknown prop "${q.id}" (search the library: npm run assets -- search <words>)`); continue; }
-      if (q.variant && !e.variants?.[q.variant]) errors.push(`${at}: prop "${q.id}" has no variant "${q.variant}" (variants: ${Object.keys(e.variants ?? {}).join(", ") || "none"})`);
+      if (q.variant && e.param && !e.param.ok(q.variant)) errors.push(`${at}: prop "${q.id}": "${q.variant}" is not a valid ${e.param.desc}`);
+      if (q.variant && !e.param && !e.variants?.[q.variant]) errors.push(`${at}: prop "${q.id}" has no variant "${q.variant}" (variants: ${Object.keys(e.variants ?? {}).join(", ") || "none"})`);
       if ((q.follow || q.drive) && !e.rig) errors.push(`${at}: prop "${q.id}" can't move (no rig), so it can't follow or be driven`);
+      if (q.steps && !e.steps) errors.push(`${at}: prop "${q.id}" has no steps (stepped props: ${Object.keys(PROPS).filter((k) => PROPS[k].steps).join(", ")})`);
+      else if (q.steps && e.steps) {
+        const n = e.stepCount ? e.stepCount(q.variant) : e.steps.length;
+        if (q.steps.length > n) warnings.push(`${at}: prop "${q.id}" has ${q.steps.length} steps but only ${n} do anything`);
+        const ts = q.steps.map((c) => c.t ?? 0); if (ts.some((t, i) => i && t < ts[i - 1])) errors.push(`${at}: prop "${q.id}"'s steps are out of order`);
+      }
       for (const w of [q.follow?.who, q.drive?.who]) if (w && !s.actors.some((x) => x.who === w)) errors.push(`${at}: prop "${q.id}" follows / is driven by "${w}" who is not in the shot`);
       if (typeof q.at === "string" && !LAYOUTS[s.set].spots[q.at]) continue; // reported with the marks
       const w = whereOf(s.set, q.at), x = w[0] + (q.offset?.[0] ?? 0), z = w[2] + (q.offset?.[1] ?? 0), r = e.radius * (q.scale ?? 1);
@@ -119,6 +126,12 @@ export const validate = (sb0: Storyboard, narr?: Narration): Report => {
         if (!seen.has(n) && !(n === "diagram" && s.diagram) && !(s.props ?? []).some((q) => q.id === n0)) errors.push(`${at}: camera aims at "${n0}" ${n === "diagram" ? "but the shot has no diagram" : "who is not in the shot"}`); }
     }
     for (const c of s.cams ?? []) if ((c.t ?? 0) < 0 || (c.t ?? 0) > dur) warnings.push(`${at}: a camera beat at ${c.t} s is outside the shot`);
+    // an insert / POV names an actor's part: face, held (what they hold) or hands (where their reach lands)
+    for (const cam of [s.camera, ...(s.cams ?? [])]) {
+      const parts = cam.move === "insert" ? [cam.on] : cam.move === "pov" ? [cam.from, cam.at] : [];
+      for (const n of parts) { const p = n.split(".")[1]; if (p !== undefined && !["face", "held", "hands"].includes(p)) errors.push(`${at}: camera detail "${n}": an actor's part is face, held or hands`); }
+    }
+    for (const c of s.cams ?? []) if (c.fly && c.move === "insert") warnings.push(`${at}: a fly beat into an insert flies through the set to a detail: check the path is clear`);
     if ((s.camera.move === "view" || s.camera.move === "establish") && !LAYOUTS[s.set].views.some((v) => v.name === (s.camera as { view: string }).view)) errors.push(`${at}: set has no view "${(s.camera as { view: string }).view}"`);
   });
   if (errors.length) return { errors, warnings, framing };
@@ -133,8 +146,11 @@ export const validate = (sb0: Storyboard, narr?: Narration): Report => {
     const { a, b } = ranges[i], fails: string[] = [];
     // each camera beat is checked over its own frames, with its own subjects (an insert or POV frames a detail, not heads)
     const segs = [{ cam: c, f0: a }, ...(s.cams ?? []).filter((x) => !x.rack).map((x) => ({ cam: x as typeof c, f0: a + Math.round((x.t ?? 0) * FPS) }))].sort((p, q) => p.f0 - q.f0);
-    segs.forEach((sg, j) => { const f1 = j + 1 < segs.length ? segs[j + 1].f0 : b, mine = subjOf(sg.cam);
-    for (const f of [...new Set([sg.f0, Math.round((sg.f0 + f1) / 2), f1 - 1])]) {
+    // a glide or whip is checked from the moment it arrives (on its way it is between two framings); a fly beat's
+    // framing is where the flight arrives, so it is checked on its own word and after
+    const settle = (cam: typeof c) => { const x = cam as { glide?: number; whip?: boolean }; return x.whip ? 6 : x.glide ? Math.round(x.glide * FPS) : 0; };
+    segs.forEach((sg, j) => { const f1 = j + 1 < segs.length ? segs[j + 1].f0 : b, mine = subjOf(sg.cam), g0 = Math.min(f1 - 1, sg.f0 + settle(sg.cam));
+    for (const f of [...new Set([g0, Math.round((g0 + f1) / 2), f1 - 1])]) {
       const subj = mine;
       const cm = runKeys(film.shots[i].keys, f), cam = new THREE.PerspectiveCamera(cm.fov, 9 / 16, 0.05, 3000);
       cam.position.set(...cm.pos); cam.up.set(0, 1, 0); cam.lookAt(...cm.look); cam.rotateZ(cm.roll); cam.updateMatrixWorld(); cam.updateProjectionMatrix();

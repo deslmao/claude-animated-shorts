@@ -5,7 +5,7 @@ import * as THREE from "three";
 // hands, nods / shakes, facing the nearest other actor, profile walks between marks, contact shadows and effect cards.
 // Everything is a pure function of the frame number -> deterministic for chunked cloud renders.
 import { plan, Move } from "../camera/moves";
-import { runKeys, glide, dolly, type Key, type Shot, type Cam } from "../camera/keys";
+import { runKeys, glide, dolly, flyPath, camOf, type Key, type Shot, type Cam } from "../camera/keys";
 import { SETS } from "../sets";
 import { LAYOUTS } from "../sets/layouts";
 import type { WorldShot, Director } from "../scene/SetWorld";
@@ -175,6 +175,7 @@ const moveOf = (s: ShotSpec, c: CameraSpec, t0 = 0, cast: Storyboard["cast"] = {
       const pos: V3 = [d.c[0] + Math.sin(ar) * dist, c.height ?? d.c[1] + dist * 0.2, d.c[2] + Math.cos(ar) * dist];
       return { move: "aim", pos, look: d.c, fov, push: c.push ?? 0.06, cInf: c.size === "extreme" ? 15 : 13, focus: d.c };
     }
+    case "at": return { move: "aim", pos: c.pos, look: c.look, fov: c.fov ?? 40, cInf: 0, focus: c.look };
     case "pov": {
       // from the actor's eyes (a step toward the target, so their own card is behind the lens), a light hand-held bob
       const a = s.actors.find((x) => x.who === c.from.split(".")[0]); if (!a) throw new Error(`POV from "${c.from}", who is not in the shot`);
@@ -189,12 +190,32 @@ const moveOf = (s: ShotSpec, c: CameraSpec, t0 = 0, cast: Storyboard["cast"] = {
  *  cut = a hard cut; glide / whip = a move from the previous framing (whip: 6 frames); rack = only the focus moves.
  *  Lens blur cross-fades over a glide, so focus never pops */
 const cameraOf = (s: ShotSpec, cast: Storyboard["cast"], a: number, b: number, pre: number) => {
-  type Beat = { spec: CameraSpec; f0: number; cut: boolean; dur?: number; rack?: boolean };
+  type Beat = { spec: CameraSpec; f0: number; cut: boolean; dur?: number; rack?: boolean; fly?: boolean };
   const beats: Beat[] = [{ spec: s.camera, f0: a - pre, cut: true },
-    ...(s.cams ?? []).map((c) => ({ spec: c as CameraSpec, f0: a + Math.round((c.t ?? 0) * FPS), cut: !(c.glide || c.whip || c.rack), dur: c.whip ? 6 : c.glide ? Math.round(c.glide * FPS) : undefined, rack: c.rack }))]
+    ...(s.cams ?? []).map((c) => ({ spec: c as CameraSpec, f0: a + Math.round((c.t ?? 0) * FPS), cut: !(c.glide || c.whip || c.rack || c.fly), dur: c.whip ? 6 : c.glide ? Math.round(c.glide * FPS) : undefined, rack: c.rack, fly: c.fly }))]
     .sort((x, y) => x.f0 - y.f0);
-  const keys: Key[] = [], dofs: { f0: number; dof: (f: number) => { cInf: number; focus?: V3 } }[] = [];
+  // a flight: the framing before the first fly beat and every consecutive fly beat become one key whose path passes
+  // through each framing on its beat's frame; lens blur blends knot to knot along it
+  type Dof = (f: number) => { cInf: number; focus?: V3 };
+  const flown = new Set<number>(), flights = new Map<number, { key: Key; dof: Dof }>();
+  for (let j = 1; j < beats.length; j++) {
+    if (!beats[j].fly || !beats[j - 1] || beats[j - 1].fly || beats[j - 1].rack) continue;
+    let e = j; while (e + 1 < beats.length && beats[e + 1].fly) e++;
+    const run = beats.slice(j - 1, e + 1), ps = run.map((bt, k) => plan(moveOf(s, bt.spec, a / FPS, cast), bt.f0, k + 1 < run.length ? run[k + 1].f0 : (e + 1 < beats.length ? beats[e + 1].f0 : b), { cut: true }));
+    const T = run.map((bt) => bt.f0), last = ps[ps.length - 1];
+    // the departure framing is where the camera is when the flight leaves (its key evaluated on the frame it starts)
+    const path = flyPath(run.map((bt, k) => ({ f: bt.f0, c: camOf(ps[k].key.s(bt.f0)) })), (f) => last.key.s(f));
+    run.forEach((_, k) => flown.add(j - 1 + k));
+    flights.set(j - 1, { key: { f: T[0], cut: run[0].cut, ...(run[0].dur ? { dur: run[0].dur } : {}), s: path } as Key,
+      dof: (f: number) => { let k = 0; while (k + 1 < T.length && f >= T[k + 1]) k++; if (k + 1 >= T.length) return last.dof(f);
+        const pd = ps[k].dof(f), nd = ps[k + 1].dof(f), u = glide((f - T[k]) / (T[k + 1] - T[k]));
+        return { cInf: pd.cInf + (nd.cInf - pd.cInf) * u, focus: pd.focus && nd.focus ? lerp3(pd.focus, nd.focus, u) : nd.focus ?? pd.focus }; } });
+  }
+  const keys: Key[] = [], dofs: { f0: number; dof: Dof }[] = [];
   beats.forEach((bt, j) => {
+    const fl = flights.get(j);
+    if (fl) { keys.push(fl.key); dofs.push({ f0: bt.f0, dof: fl.dof }); return; }
+    if (flown.has(j)) return;
     const f1 = j + 1 < beats.length ? beats[j + 1].f0 : b;
     const p = plan(moveOf(s, bt.spec, a / FPS, cast), bt.f0, f1, { cut: bt.cut, dur: bt.dur });
     const prev = dofs[dofs.length - 1];
@@ -236,13 +257,17 @@ export const motionAt = (moves: MoveSpec[] | undefined, tt: number, sideOf: (m: 
 };
 
 /** an animated prop's state at shot time tt: the open hand it reaches for and the stroke it replays */
-export type PropAnim = (tt: number, anchors: Map<string, ActorAnchor>) => { target?: V3; stroke: number };
+export type PropAnim = (tt: number, anchors: Map<string, ActorAnchor>) => { target?: V3; stroke: number; step?: number };
+/** a stepped prop's progress at shot time tt: steps done + the eased fraction of the one playing (STEP_DUR s each) */
+export const STEP_DUR = 0.7;
+export const stepAt = (steps: { t?: number }[], tt: number) => steps.reduce((n, c) => n + glide((tt - (c.t ?? 0)) / STEP_DUR), 0);
 const driveOf = (a: ActorSpec | undefined) => (tt: number) => (a?.drive && tt >= (a.drive.t ?? 0) ? Math.sin(2 * Math.PI * (a.drive.hz ?? 1.6) * (tt - (a.drive.t ?? 0))) : 0);
 const propAnim = (s: ShotSpec, q: PropSpec): PropAnim | undefined => {
-  if (!q.follow && !q.drive) return undefined;
+  if (!q.follow && !q.drive && !q.steps) return undefined;
   const drv = driveOf(s.actors.find((x) => x.who === q.drive?.who));
   const delayAt = (tt: number) => { let d = q.drive?.delay ?? 0; for (const c of q.drive?.changes ?? []) if (tt >= (c.t ?? 0)) d = c.delay; return d; };
-  return (tt, anchors) => ({ target: q.follow ? anchors.get(q.follow.who)?.hands.find((h) => h.kind === "palm" || h.kind === "open")?.p : undefined, stroke: q.drive ? drv(tt - delayAt(tt)) : 0 });
+  return (tt, anchors) => ({ target: q.follow ? anchors.get(q.follow.who)?.hands.find((h) => h.kind === "palm" || h.kind === "open")?.p : undefined, stroke: q.drive ? drv(tt - delayAt(tt)) : 0,
+    ...(q.steps ? { step: stepAt(q.steps, tt) } : {}) });
 };
 
 /** storyboard (+ its narration manifest, if generated) -> film. Narration timing runs first (story/timing.ts): it
@@ -255,7 +280,7 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
     const { a, b } = ranges[k], pre = s.transition === "fade" ? FADE : s.transition === "zoom" || s.transition === "whip" ? ZFADE : 0;
     const p = cameraOf(s, sb.cast, a, b, pre);
     const props = (s.props ?? []).map((q) => { const w = whereOf(s.set, q.at); return { id: q.id, variant: q.variant, at: { x: w[0] + (q.offset?.[0] ?? 0), y: w[1], z: w[2] + (q.offset?.[1] ?? 0), yaw: ((q.yaw ?? 0) * Math.PI) / 180, s: q.scale ?? 1 }, animate: propAnim(s, q) }; });
-    return { id: k + 1, a, b, set: s.set, light: s.light ?? SETS[s.set].lights[0], keys: p.keys, dof: p.dof, kicks: (s.kicks ?? []).map((t) => [a / FPS + (t as number), 1] as [number, number]), ...(props.length ? { props } : {}) };
+    return { id: k + 1, a, b, set: s.set, light: s.light ?? SETS[s.set].lights[0], keys: p.keys, dof: p.dof, kicks: (s.kicks ?? []).map((t) => [a / FPS + (t as number), 1] as [number, number]), ...(props.length ? { props } : {}), ...(sb.motionBlur ? { shutter: sb.motionBlur === true ? 0.5 : sb.motionBlur } : {}) };
   });
   // crowds: extras join the shot's actors (after the cameras are planned: cameras frame the named cast only)
   const notes: string[] = [];
@@ -282,7 +307,7 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
   const flashes = sb.shots.map((s, k) => (s.transition === "flash" ? ranges[k].a : -1)).filter((f) => f >= 0);
   const dips = sb.shots.map((s, k) => (s.transition === "dip" ? ranges[k].a : -1)).filter((f) => f >= 0);
   const timeline: Timeline = {
-    total, flashes, dips,
+    total, flashes, dips, motionBlur: !!sb.motionBlur,
     layersAt: (f) => {
       for (let k = 1; k < sb.shots.length; k++) {
         const tr = sb.shots[k].transition, F = tr === "fade" ? FADE : tr === "zoom" || tr === "whip" ? ZFADE : 0; if (!F) continue;

@@ -13,7 +13,7 @@ import type { Storyboard } from "../story/types";
 export const PIRATEDEMOCRACY: Storyboard = {
   id: "pirate-democracy", title: "Pirates ran surprisingly democratic ships",
   cast: { milo: "miloPirate", juno: "junoPirate", gus: "gusPirate", gusHurt: "gusSling", captain: "captain", qm: "quartermaster" },
-  music: "adventure",
+  music: "adventure", motionBlur: true, engine: 2,
   shots: [
     // hook: feared pirates, cutlasses out and scowling; on "feared" the blades go up with a roar and the crew shakes
     // fists... and on "democracies" the blades are gone and every hand goes up for a vote
@@ -29,8 +29,11 @@ export const PIRATEDEMOCRACY: Storyboard = {
       crowd: { count: 6, era: "pirate", acts: ["angry", "determined"], beats: [{ word: "feared", gesture: "fists", face: "angry" }, { word: "democracies", gesture: "raiseHand", face: "smile" }] } },
     // the articles: Mags holds out the scroll, Milo puts down the cutlass and signs it with a quill
     { say: "Picture a pirate crew in the early 1700s. Before anyone touches a sword, they sign a contract.", set: "shipDeck", light: "day", transition: "flash",
-      camera: { move: "frame", on: ["milo", "qm"], size: "wide", from: 14, height: 2.1 },
+      // "Picture a pirate crew": from high over the stern, the camera flies down to the crew, arriving on "1700s"
+      camera: { move: "at", pos: [8.5, 7.5, 13], look: [0, 2.2, -3.5], fov: 50 },
       cams: [
+        { word: "crew", move: "at", pos: [3.2, 3.6, 5.2], look: [0.1, 1.5, -1.6], fov: 46, fly: true },
+        { word: "1700s", move: "frame", on: ["milo", "qm"], size: "wide", from: 14, height: 2.1, fly: true },
         { word: "Before", move: "insert", on: "milo.held", size: "close", from: 6 },
         { word: "sign", move: "insert", on: "milo.hands", size: "extreme", from: -10, height: 1.35 },
         { word: "contract", move: "insert", on: "qm.face", size: "close", from: -10 },
@@ -42,12 +45,24 @@ export const PIRATEDEMOCRACY: Storyboard = {
           beats: [{ word: "Before", gesture: "offer", face: "stern" }, { word: "contract", face: "smile" }] },
       ],
       crowd: { count: 3, era: "pirate" } },
-    // the shares: two purses for the captain, one for a sailor (panel above Mags)
+    // the shares, in the world: on a table on deck the loot heap streams into three equal stacks ("shared"); two slide
+    // to the captain ("two"), one to Milo the sailor ("sailor's"). Top-down on the heap, then each end of the table
     { say: "It says how the loot is shared, and the captain gets at most two shares to a sailor's one.", set: "shipDeck", light: "day", transition: "cut",
-      camera: { move: "frame", on: ["qm", "diagram"], size: "full", from: -6, height: 1.45 },
-      actors: [{ who: "qm", at: "b", act: "explain", face: "smile", facing: "camera", hold: "scroll",
-        beats: [{ word: "two", gesture: "pointUp", hold: null }, { word: "one", face: "stern" }] }],
-      diagram: { kind: "shares", with: "qm", place: "above", size: 1.0, steps: [{ word: "shared" }, { word: "two" }, { word: "one" }] } },
+      camera: { move: "insert", on: "lootPiles", size: "close", from: 4, height: 1.95 },
+      cams: [
+        // across the table from Milo's end: the stacks in the foreground, the captain behind them as two slide to him
+        { word: "captain", move: "at", pos: [1.15, 1.42, -1.42], look: [-1.0, 1.1, -1.6], fov: 44, glide: 0.6 },
+        // whip to the reverse from the captain's end: the sailor's one stack slides to Milo
+        { word: "sailor's", move: "at", pos: [-0.75, 1.42, -1.42], look: [1.45, 1.1, -1.6], fov: 44, whip: true },
+      ],
+      props: [
+        { id: "deckBoard", at: [0.2, 0, -1.6] },
+        { id: "lootPiles", variant: "2-1", at: [0.2, 0.966, -1.6], steps: [{ word: "shared" }, { word: "two" }, { word: "sailor's" }] },
+      ],
+      actors: [
+        { who: "captain", at: [-1.08, 0, -1.55], act: "happy", facing: "toward:milo", beats: [{ word: "two", face: "grin", gesture: "cheer" }] },
+        { who: "milo", at: [1.48, 0, -1.55], act: "neutral", facing: "toward:captain", beats: [{ word: "one", face: "smile", gesture: "thumbsUp" }] },
+      ] },
     // the injury fund: Gus, arm in a sling, is paid from the crew's purse
     { say: "Lose an arm in battle? The crew pays you from a shared fund.", set: "shipDeck", light: "day", transition: "cut",
       camera: { move: "frame", on: ["gusHurt", "qm"], size: "medium", from: 8, height: 1.4 },

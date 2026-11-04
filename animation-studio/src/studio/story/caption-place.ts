@@ -7,7 +7,7 @@
 // and an explainer diagram are kept clear too. Pure: computed once from the storyboard, identical in every chunk.
 import * as THREE from "three";
 import { runKeys } from "../camera/keys";
-import { actorPos, FPS, diagramMark, diagramY, lookOf, whereOf } from "./compile";
+import { actorPos, FPS, detailOf, diagramMark, diagramY, lookOf, whereOf } from "./compile";
 import { PROPS } from "../props/registry";
 import { SU } from "../cards/cards";
 import { anchorsFront } from "../characters/figure";
@@ -71,6 +71,14 @@ export const captionHeights = (film: Film): { f0: number; f1: number; y: number 
       if (!s.actors.some((x) => x.reach === q.id)) continue;
       const w = whereOf(s.set, q.at), x = w[0] + (q.offset?.[0] ?? 0), z = w[2] + (q.offset?.[1] ?? 0), h = (PROPS[q.id]?.height ?? 0.6) * (q.scale ?? 1);
       const ys = [h - 0.15, h + 0.45].map((y) => (1 - new THREE.Vector3(x, w[1] + y, z).project(cam).y) / 2);
+      faces.push([Math.min(...ys), Math.max(...ys)]);
+    }
+    // an insert's detail (the loot, a signature, a held item) is the subject of its beat: kept clear like a face
+    const beat = [{ spec: s.camera, f0: shot.a }, ...(s.cams ?? []).filter((x) => !x.rack).map((x) => ({ spec: x as typeof s.camera, f0: shot.a + Math.round((x.t ?? 0) * FPS) }))]
+      .filter((x) => x.f0 <= f).sort((p, q) => q.f0 - p.f0)[0]?.spec;
+    if (beat?.move === "insert") {
+      const d = detailOf(film.timing.sb.cast, s, beat.on, (f - shot.a) / FPS, beat.from ?? 0);
+      const ys = [-0.5, 0.5].map((k) => (1 - new THREE.Vector3(d.c[0], d.c[1] + k * d.span * 0.8, d.c[2]).project(cam).y) / 2);
       faces.push([Math.min(...ys), Math.max(...ys)]);
     }
     // an explainer diagram is never covered either (it counts as a face and as a mouth)

@@ -63,10 +63,12 @@ All times are in **seconds from the start of the shot**. Anything timed can be a
 | `hold` | seconds held after the shot's last word (default 0.2; 0.45 on the last shot) |
 | `set` | `home`, `classroom`, `office`, `lab`, `city`, `oldtown`, `nature`, or a theme's set (`shipDeck`, `island`) |
 | `light` | `day`, `golden` or `night` outdoors; `interior` or `interiorCool` indoors. If left out, the set's own default is used |
-| `transition` | how this shot begins: `cut` (default), `fade` (8-frame crossfade), `flash` (white flash) or `dip` (a quick dip to black) |
+| `transition` | how this shot begins: `cut` (default), `fade` (8-frame crossfade), `flash` (white flash), `dip` (a quick dip to black), `zoom` (the outgoing camera rushes into its subject and the new shot settles out of it, with a whoosh) or `whip` (a whip pan between the shots, with a swish) |
+| `cams` | **camera beats**: new framings on words inside the shot (see [Camera beats](#camera-beats-visual-storytelling-20)) |
+| `until` / `cont` | **split a line across shots**: `until: { word }` ends the shot ON that word, and the next shot (`cont: true`, no `say` of its own) carries on the same line, even on another set |
 | `fx` | reaction marks that follow a character's head (lean, tilt, laugh). `stars` orbits the crown (dizzy). The 16 kinds are listed in [LIBRARY.md](LIBRARY.md) |
 | `kicks` | impact camera shakes (times or `{ word }`) |
-| `props` | story props for this shot: `[{ id: "barrel", at: "c", offset: [0.6, 0.4], yaw: 20, scale?, variant? }]`. The ids are in `docs/ASSETS.md`. The validator stops a prop from standing on an actor, warns when one overlaps the set and fails one that is never in frame. **Animated props** (those with a rig, e.g. `robotArm`): `follow: { who }` reaches for that actor's held-out palm (gesture `operate`); `drive: { who, delay, changes: [{ word, delay }] }` replays the actor's control strokes, late by `delay` seconds |
+| `props` | story props for this shot: `[{ id: "barrel", at: "c", offset: [0.6, 0.4], yaw: 20, scale?, variant? }]`. The ids are in `docs/ASSETS.md`. The validator stops a prop from standing on an actor, warns when one overlaps the set and fails one that is never in frame. **Animated props** (those with a rig, e.g. `robotArm`): `follow: { who }` reaches for that actor's held-out palm (gesture `operate`); `drive: { who, delay, changes: [{ word, delay }] }` replays the actor's control strokes, late by `delay` seconds. **Stepped props** (explanation kits, e.g. `lootPiles`): `steps: [{ word }, ...]` play the prop's steps on words, in order. `at` may be `[x, y, z]` to stand a prop on a table top |
 | `diagram` | an animated explainer panel: `{ kind: "forecast" | "prediction" | "contrast" | "delay" | "shares" | "merchant" | "crew" | "timeline", with: "juno", place?: "above" | "side", size?, steps: [{ word }, ...] }`. Each step lands on its word; every diagram shows its starting picture from the shot's first frame (never a blank panel). `prediction` is your own predicted touch only (the meter ends at zero); `contrast` compares it with someone else's unexpected touch. `place: "above"` stacks the panel over the presenter (best for 9:16), 0.14 m over their head whatever their height. Name `"diagram"` in the camera's `on` list to frame it. It draws on top of the set and the captions avoid it |
 | `crowd` | background extras: `{ count: 6, era: "medieval", around?, radius?, acts?, seed?, beats?, toward? }`; `beats` make the whole crowd act on words (e.g. `[{ word: "vote", gesture: "raiseHand" }]`, a small ripple from extra to extra, with an automatic "aye!"), `toward` names who they face. They're placed on clear floor (generated floor maps), inside the frame, behind the cast and spread out. The validator says if fewer fit |
 | `mood` / `ambience` / `sfx` | sound controls, see [SOUND.md](SOUND.md) |
@@ -75,6 +77,11 @@ Story-level fields:
 - `voice` sets the voice preset for every line. The default is George, the channel narrator.
 - `voices` gives specific speakers their own voices, for example `{ gus: "brian" }`.
 - `captions: false` turns captions off. They are on by default.
+- `engine: 2` turns on the Visual Storytelling 2.0 render behaviours. Character cards then draw identically whatever a
+  render worker drew before, so chunk seams are exact even on fast flights. Use it for every new production;
+  storyboards without it render exactly as they were approved.
+- `motionBlur: true` turns on camera motion blur for fast moves (flights, whips, zoom-throughs). Slow creeps stay sharp,
+  and storyboards without it render exactly as before.
 
 ### Camera moves
 In camera moves you name **characters**, not coordinates. The engine works out the camera position for the 9:16 frame.
@@ -96,6 +103,47 @@ The camera options work like this:
 - **`size`** is one of `wide`, `full`, `medium`, `close` or `extreme`.
 - **`from`** is the camera angle around the characters, in degrees.
 - **`height`** is the camera height in metres.
+
+### Camera beats (Visual Storytelling 2.0)
+One line of narration can carry several camera set-ups. `camera` is the opening framing, and each beat in `cams` takes
+over on its word:
+
+```ts
+camera: { move: "at", pos: [8.5, 7.5, 13], look: [0, 2.2, -3.5], fov: 50 },        // high over the stern
+cams: [
+  { word: "crew", move: "at", pos: [3.2, 3.6, 5.2], look: [0.1, 1.5, -1.6], fly: true },  // fly down...
+  { word: "1700s", move: "frame", on: ["milo", "qm"], size: "wide", from: 14, fly: true }, // ...arriving on "1700s"
+  { word: "Before", move: "insert", on: "milo.held", size: "close" },             // cut: the cutlass
+  { word: "sign", move: "insert", on: "milo.hands", size: "extreme" },            // the signature
+  { word: "contract", move: "insert", on: "qm.face", size: "close" },             // Mags's reaction
+],
+```
+
+**How a beat arrives:**
+- a hard cut (the default);
+- `glide: 0.6`, a move over 0.6 s from the previous framing;
+- `whip: true`, a 6-frame whip pan;
+- `rack: true`, where only the focus moves;
+- `fly: true`, one **continuous flight**: the camera travels without stopping from the previous framing through every
+  consecutive fly beat, arriving at each on its word. Use it for reveals, fly-overs and pull-backs. The reference
+  Shorts keep the camera moving like this, and use far fewer cuts.
+
+**Beat-only moves:**
+- `insert`, a close look at a detail: `{ move: "insert", on: "lootPiles" | "milo.held" | "milo.hands" | "qm.face",
+  size: "close" | "extreme", from?, height?, push? }`.
+  - `held` is the holding hand.
+  - `hands` is where the actor's `reach` lands: a handover, a signature or a grab. Both are read from the rig's drawn
+    pose at that word.
+  - The background goes soft.
+- `pov`, through an actor's eyes: `{ move: "pov", from: "milo", at: "qm.face" }`, with a light hand-held bob.
+- `at`, an authored camera position in set coordinates (`{ pos, look, fov? }`), for aerials and the waypoints of a
+  flight.
+
+**What the checks cover:**
+- Captions are placed per beat: a close-up beat moves them off the face it brings in, and an insert keeps its detail
+  clear.
+- The validator checks framing per beat, from the moment a glide or whip arrives.
+- It fails an insert on an unknown part, or a beat on a word that isn't said.
 
 ### Actor fields
 | Field | Meaning |

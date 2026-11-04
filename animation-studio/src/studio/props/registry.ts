@@ -8,6 +8,7 @@ import type { At } from "./kit";
 import * as I from "./interior";
 import * as O from "./outdoor";
 import * as N from "./nature";
+import { lootPilesRig, lootHeap, sharesOf } from "./economy";
 import { THEMES } from "../themes";
 
 export type PropEntry = {
@@ -20,12 +21,19 @@ export type PropEntry = {
   variants?: Record<string, (b: Batch, a: At) => void>;
   /** an animated version (moving parts, posed every frame as a pure function of the inputs): used when a storyboard
    *  prop has follow / drive. target = the open hand it reaches for (world), stroke = the replayed control stroke */
-  rig?: (a: At) => PropRig;
+  rig?: (a: At, variant?: string) => PropRig;
+  /** a stepped rig: what its steps do, in order (story PropSpec.steps play them on words) */
+  steps?: string[];
+  /** how many steps a variant has (when it depends on the parameter) */
+  stepCount?: (variant?: string) => number;
+  /** a rig whose variant is a parameter (lootPiles "2-1"), not a named look: what it means and which values are valid */
+  param?: { desc: string; ok: (v: string) => boolean };
   /** how far a rig reaches (checked by the validator): from its shoulder height, the length of the arm; lift = how
    *  far above the hand its effector stays (a feather hanging down) */
   reach?: { shoulder: number; length: number; lift: number };
 };
-export type PropRig = { root: THREE.Object3D; update: (st: { target?: [number, number, number]; stroke: number; camPos: THREE.Vector3 }) => void };
+/** step = a stepped prop's progress: n + the eased fraction of step n+1 (0 = before the first step) */
+export type PropRig = { root: THREE.Object3D; update: (st: { target?: [number, number, number]; stroke: number; step?: number; camPos: THREE.Vector3 }) => void };
 
 export const PROPS: Record<string, PropEntry> = {
   // furniture / home / school / office
@@ -80,6 +88,10 @@ export const PROPS: Record<string, PropEntry> = {
   mushroom: { name: "Mushroom", desc: "spotted toadstool", category: "nature", themes: ["nature"], tags: ["fungus", "forest"], radius: 0.2, height: 0.3, build: (b, a) => N.mushroom(b, a) },
   fence: { name: "Wooden fence", desc: "rail fence, 6 m", category: "nature", themes: ["nature", "farm"], tags: ["boundary"], radius: 3.0, height: 1.0, build: (b, a) => N.fence(b, a) },
   picket: { name: "Picket fence", desc: "white picket fence, 6 m", category: "nature", themes: ["home", "farm"], tags: ["boundary"], radius: 3.0, height: 0.9, build: (b, a) => N.picket(b, a) },
+  // economy kit (props/economy.ts): money explained in the world, stepped on words
+  lootPiles: { name: "Loot piles", desc: "a heap of gold coins that streams into share stacks, then slides to who gets them (variant \"2-1\" = two shares to the first, one to the second; stands on a table top: at [x, 0.966, z])", category: "market",
+    themes: ["money", "economy", "pirates", "history"], tags: ["money", "gold", "coins", "shares", "split", "pay", "wages", "loot", "economy"], radius: 0.3, height: 0.15,
+    build: lootHeap, rig: lootPilesRig, stepCount: (v) => 1 + sharesOf(v).length, param: { desc: "shares per recipient, e.g. 2-1", ok: (v) => /^[1-4](-[1-4]){1,2}$/.test(v) }, steps: ["the heap streams into equal share stacks", "the first recipient's stacks slide to its -x end", "the second recipient's slide to +x"] },
 };
 
 // every themed collection's props join the registry

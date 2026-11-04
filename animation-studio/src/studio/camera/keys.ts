@@ -64,3 +64,22 @@ export const meanView = (keys: Key[], a: number, b: number): [number, number] =>
   }
   return [fx, fz];
 };
+
+/** a continuous camera flight through framings (knots: frame + framing), arriving at each on its frame: a cubic
+ *  Hermite path with time-aware tangents (C1: no stop at the inner knots), at rest at the first and last knot. Position,
+ *  look point, fov and roll all follow it. After the last knot `after` takes over (it starts from that knot's framing) */
+export const flyPath = (knots: { f: number; c: Cam }[], after: (f: number) => Shot) => {
+  const n = knots.length, vec = (c: Cam) => [...c.pos, ...c.look, c.fov, c.roll];
+  const P = knots.map((k) => vec(k.c)), T = knots.map((k) => k.f);
+  const M = P.map((p, i) => (i === 0 || i === n - 1 ? p.map(() => 0) : p.map((_, j) => (P[i + 1][j] - P[i - 1][j]) / (T[i + 1] - T[i - 1]))));
+  return (f: number): Shot => {
+    if (f >= T[n - 1]) return after(f);
+    if (f <= T[0]) return knots[0].c;
+    let i = 0; while (f >= T[i + 1]) i++;
+    const h = T[i + 1] - T[i], u = (f - T[i]) / h, u2 = u * u, u3 = u2 * u;
+    const h00 = 2 * u3 - 3 * u2 + 1, h10 = u3 - 2 * u2 + u, h01 = -2 * u3 + 3 * u2, h11 = u3 - u2;
+    const v = P[i].map((p, j) => h00 * p + h10 * h * M[i][j] + h01 * P[i + 1][j] + h11 * h * M[i + 1][j]);
+    return { pos: [v[0], v[1], v[2]], look: [v[3], v[4], v[5]], fov: v[6], roll: v[7] };
+  };
+};
+export const camOf = (c: Shot): Cam => full(c);
