@@ -1,0 +1,38 @@
+{
+  "composition": "Short-pirate-democracy",
+  "out": "/home/user/claude-animated-shorts/productions/pirate-democracy/preview/clip3-fund-election-vote.mp4",
+  "preview": true,
+  "frames": "456-832",
+  "machine": {
+    "platform": "linux",
+    "osName": "linux 6.18.44-fc-v233",
+    "chip": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+    "cores": 4,
+    "ramGB": 15.7,
+    "gl": "swangle",
+    "browser": "/opt/pw-browsers/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell",
+    "node": "v22.23.4",
+    "where": "cloud-cpu"
+  },
+  "concurrency": 4,
+  "video": {
+    "width": 540,
+    "height": 960,
+    "fps": "30/1",
+    "frames": 377,
+    "codec": "h264",
+    "audio": true
+  },
+  "bundleSeconds": 0,
+  "renderSeconds": 920.9,
+  "secondsPerFrame": 2.443,
+  "framesPerSecond": 0.41,
+  "memory": {
+    "peakRenderProcessesGB": 3.03,
+    "macMinFreePercent": null,
+    "linuxMinAvailableGB": 12.68,
+    "macSwapUsedGBAfter": null
+  },
+  "sizeMB": 2.5,
+  "finishedAt": "2026-11-04T03:30:44.631Z"
+}

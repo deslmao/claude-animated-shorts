@@ -60,10 +60,10 @@ export const PIRATEDEMOCRACY: Storyboard = {
       actors: [{ who: "captain", at: "wheel", act: "nervous", gesture: "hips", facing: "camera", beats: [{ word: "remind", gesture: "pointUp" }, { word: "brave", act: "proud", gesture: "hips" }] }] },
     // the vote: the crew faces the captain and raises their hands; he recoils on "out"
     { say: "If he's a coward or a bully, the crew can vote him out and pick someone new.", set: "shipDeck", light: "day", transition: "cut",
-      camera: { move: "frame", on: ["milo", "captain"], size: "medium", from: 10, height: 1.5 },
+      camera: { move: "frame", on: ["milo", "captain"], size: "medium", from: 8, height: 1.45 },
       actors: [
-        { who: "milo", at: "a", act: "suspicious", facing: "toward:captain", beats: [{ word: "vote", gesture: "raiseHand", face: "determined" }, { word: "new", act: "happy" }] },
-        { who: "captain", at: "b", act: "nervous", facing: "camera", beats: [{ word: "coward", face: "scared" }, { word: "out", face: "shock", gesture: "coverMouth" }, { word: "new", act: "sad" }],
+        { who: "milo", at: [-0.25, 0, -1.05], act: "suspicious", facing: "toward:captain", beats: [{ word: "vote", gesture: "raiseHand", face: "determined" }, { word: "new", act: "happy" }] },
+        { who: "captain", at: [0.5, 0, -1.4], act: "nervous", facing: "camera", beats: [{ word: "coward", face: "scared" }, { word: "out", face: "shock", gesture: "coverMouth" }, { word: "new", act: "sad" }],
           moves: [{ word: "out", kind: "recoil", away: "milo", dur: 0.9 }] },
       ],
       crowd: { count: 5, era: "pirate", acts: ["suspicious", "neutral"], toward: "captain", beats: [{ word: "vote", gesture: "raiseHand", face: "determined" }] } },
