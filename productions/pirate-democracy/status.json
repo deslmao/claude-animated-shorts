@@ -4,14 +4,14 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-04T05:19:09.741Z",
-   "inputs": "0eabf4bfbd24a8n",
+   "at": "2026-11-04T05:34:36.306Z",
+   "inputs": "0f56debd204e0bn",
    "detail": "valid; 0 warning(s)"
   },
   "assets": {
    "state": "done",
-   "at": "2026-11-04T05:19:09.745Z",
-   "inputs": "0eabf4bfbd24a8",
+   "at": "2026-11-04T05:34:36.309Z",
+   "inputs": "0f56debd204e0b",
    "detail": "41 library assets reused, none missing",
    "data": {
     "reused": 41,
@@ -87,27 +87,15 @@
   },
   "approval": {
    "state": "done",
-   "at": "2026-11-04T05:19:09.754Z",
+   "at": "2026-11-04T05:34:36.318Z",
    "inputs": "0ce7e46909f6b8",
    "detail": "all narration already generated (no cost)"
   },
   "narration": {
    "state": "done",
-   "at": "2026-11-04T05:19:09.756Z",
+   "at": "2026-11-04T05:34:36.319Z",
    "inputs": "0ce7e46909f6b8",
    "detail": "all lines already generated (cached)"
-  },
-  "sound": {
-   "state": "done",
-   "at": "2026-11-04T05:19:38.296Z",
-   "inputs": "1f54d1e44d6666",
-   "detail": "soundtrack built: -14.1 LUFS"
-  },
-  "checks": {
-   "state": "done",
-   "at": "2026-11-04T05:19:41.794Z",
-   "inputs": "1f54d1e44d6666",
-   "detail": "preflight PASS; library intact"
   }
  },
  "approval": {
