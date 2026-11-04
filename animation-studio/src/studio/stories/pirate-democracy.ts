@@ -15,16 +15,18 @@ export const PIRATEDEMOCRACY: Storyboard = {
   cast: { milo: "miloPirate", juno: "junoPirate", gus: "gusPirate", gusHurt: "gusSling", captain: "captain", qm: "quartermaster" },
   music: "adventure",
   shots: [
-    // hook: feared pirates, cutlasses up and scowling... and on "democracies" every hand goes up for a vote
+    // hook: feared pirates, cutlasses out and scowling; on "feared" the blades go up with a roar and the crew shakes
+    // fists... and on "democracies" the blades are gone and every hand goes up for a vote
     { say: "Some of history's most feared pirates ran their ships like tiny democracies.", set: "shipDeck", light: "day",
-      camera: { move: "pushIn", on: ["milo", "captain"], size: "medium", to: "medium", from: 6, height: 1.5 },
+      camera: { move: "pushIn", on: ["milo", "captain"], size: "full", to: "medium", from: 6, height: 1.5 },
       actors: [
-        { who: "milo", at: "a", act: "angry", hold: "sword", gesture: "hold", facing: "camera",
-          beats: [{ word: "democracies", hold: null, gesture: "raiseHand", face: "grin" }] },
-        { who: "captain", at: "b", act: "angry", hold: "sword", gesture: "hold", facing: "camera",
-          beats: [{ word: "pirates", face: "determined" }, { word: "democracies", hold: null, gesture: "raiseHand", face: "smile" }] },
+        { who: "milo", at: [-0.35, 0, -1.0], act: "angry", hold: "sword", gesture: "hold", facing: "camera",
+          beats: [{ word: "feared", gesture: "raiseHand", face: "angry" }, { word: "democracies", hold: null, gesture: "raiseHand", face: "grin" }] },
+        { who: "captain", at: [0.4, 0, -1.3], act: "angry", hold: "sword", gesture: "hold", facing: "camera",
+          beats: [{ word: "feared", gesture: "raiseHand", face: "determined" }, { word: "democracies", hold: null, gesture: "raiseHand", face: "smile" }],
+          moves: [{ word: "feared", kind: "hop", dur: 0.5 }] },
       ],
-      crowd: { count: 6, era: "pirate", acts: ["angry", "determined"], beats: [{ word: "democracies", gesture: "raiseHand", face: "smile" }] } },
+      crowd: { count: 6, era: "pirate", acts: ["angry", "determined"], beats: [{ word: "feared", gesture: "fists", face: "angry" }, { word: "democracies", gesture: "raiseHand", face: "smile" }] } },
     // the articles: Mags holds out the scroll, Milo puts down the cutlass and signs it with a quill
     { say: "Picture a pirate crew in the early 1700s. Before anyone touches a sword, they sign a contract.", set: "shipDeck", light: "day", transition: "flash",
       camera: { move: "frame", on: ["milo", "qm"], size: "medium", from: 6, height: 1.45 },
