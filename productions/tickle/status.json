@@ -169,15 +169,11 @@
   "script": "productions/tickle/script.md"
  },
  "render": {
-  "inputs": "0fe947287f6e0e",
-  "sha": "2e2cfd898cd390f9a34f689da9c632ec32a488ee",
+  "inputs": "0d6b9e2ce1c005",
+  "sha": "462ba9c2c019ab65adb373cd91b17efbb8178f72",
   "branch": "claude/admiring-hopper-kbrb3d",
-  "requested": "2026-11-03T07:22:10.977Z",
-  "attempt": 2,
-  "runId": 41595860014,
-  "runNumber": 11,
-  "url": "https://github.com/deslmao/claude-animated-shorts/actions/runs/41595860014",
-  "conclusion": "success"
+  "requested": "2026-11-04T00:06:12.003Z",
+  "attempt": 1
  },
  "final": {
   "tag": "video-Short-tickle-run11",
