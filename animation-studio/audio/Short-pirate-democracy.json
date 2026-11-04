@@ -1,17 +1,17 @@
 {
  "composition": "Short-pirate-democracy",
- "fingerprint": "004634a089f792",
+ "fingerprint": "1d04f503def11b",
  "engine": "sound-2",
  "frames": 1850,
  "seconds": 61.666666666666664,
  "lines": 15,
  "lufs": -14.1,
- "truePeak": -1.7,
+ "truePeak": -1.8,
  "stems": {
   "voice_lufs": -19.45,
   "music_vs_voice_lu": -10.0,
   "ambience_vs_voice_lu": -20.0,
   "sfx_cues": 20
  },
- "built": "2026-11-04T02:37:41Z"
+ "built": "2026-11-04T04:04:57Z"
 }
