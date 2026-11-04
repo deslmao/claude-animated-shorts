@@ -23,16 +23,16 @@
     "codec": "h264",
     "audio": true
   },
-  "bundleSeconds": 3.8,
-  "renderSeconds": 431.5,
-  "secondsPerFrame": 3.127,
+  "bundleSeconds": 3.6,
+  "renderSeconds": 436.8,
+  "secondsPerFrame": 3.165,
   "framesPerSecond": 0.32,
   "memory": {
-    "peakRenderProcessesGB": 2.8,
+    "peakRenderProcessesGB": 2.91,
     "macMinFreePercent": null,
-    "linuxMinAvailableGB": 12.94,
+    "linuxMinAvailableGB": 12.68,
     "macSwapUsedGBAfter": null
   },
-  "sizeMB": 0.5,
-  "finishedAt": "2026-11-04T04:30:28.744Z"
+  "sizeMB": 1.1,
+  "finishedAt": "2026-11-04T06:00:05.538Z"
 }
