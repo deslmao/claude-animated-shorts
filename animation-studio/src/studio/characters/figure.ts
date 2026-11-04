@@ -741,7 +741,8 @@ export const figureFront = (p: Pen, L: Look, pose: Pose) => {
   if (pose.hold && ITEMS[pose.hold] && mode !== "fall") {
     const hold = arms.find((a) => Math.sign(a.pts[0][0] - tcx) === hs && a.hand !== "dot") ?? arms.find((a) => Math.sign(a.pts[0][0] - tcx) === hs);
     if (g === "read") { ITEMS[pose.hold].draw(p, tcx, chin + 0.66 * HH, u, hs); for (const a of arms) drawHand(a); } // held open in both hands
-    else if (hold) { ITEMS[pose.hold].draw(p, hold.pts[2][0], hold.pts[2][1], u, hs); if (hold.layer === 0) drawArm(hold); else drawHand(hold); } // fingers over the item
+    // an item held out to someone (offer) or written with (write) is drawn larger, so the handed-over thing reads
+    else if (hold) { ITEMS[pose.hold].draw(p, hold.pts[2][0], hold.pts[2][1], u * (g === "offer" ? 1.5 : g === "write" ? 1.3 : 1), hs); if (hold.layer === 0) drawArm(hold); else drawHand(hold); } // fingers over the item
   }
   // ---- head ----
   const Ah = A + headTilt, [cpx, cpy] = rotAbout([300, chin], rad(A), [300, hipY]);

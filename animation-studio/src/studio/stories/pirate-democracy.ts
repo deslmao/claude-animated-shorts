@@ -29,9 +29,9 @@ export const PIRATEDEMOCRACY: Storyboard = {
     { say: "Picture a pirate crew in the early 1700s. Before anyone touches a sword, they sign a contract.", set: "shipDeck", light: "day", transition: "flash",
       camera: { move: "frame", on: ["milo", "qm"], size: "medium", from: 6, height: 1.45 },
       actors: [
-        { who: "milo", at: [-0.3, 0, -1.15], act: "happy", hold: "sword", reach: "qm",
+        { who: "milo", at: [-0.18, 0, -1.15], act: "happy", hold: "sword", reach: "qm",
           beats: [{ word: "sword", face: "suspicious" }, { word: "sign", hold: "quill", gesture: "write", face: "determined" }] },
-        { who: "qm", at: [0.45, 0, -1.3], act: "explain", hold: "scroll", reach: "milo",
+        { who: "qm", at: [0.42, 0, -1.3], act: "explain", hold: "scroll", reach: "milo",
           beats: [{ word: "Before", gesture: "offer", face: "stern" }, { word: "contract", face: "smile" }] },
       ],
       crowd: { count: 3, era: "pirate" } },
