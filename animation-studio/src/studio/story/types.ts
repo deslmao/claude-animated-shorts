@@ -15,6 +15,7 @@ export type CastRef = string | { extra: number; era?: Era };
 /** where: a set's named mark ("a", "sofa", "kerb"...), or explicit [x, floorY, z] */
 export type Where = string | V3;
 
+export type CameraBeat = CameraSpec & When & { cut?: boolean; glide?: number; whip?: boolean; rack?: boolean };
 export type CameraSpec =
   | { move: "view"; view: string }                                                                // a set's designed view by name
   | { move: "establish"; view: string }
@@ -27,7 +28,12 @@ export type CameraSpec =
   | { move: "orbit"; on: string[]; fromDeg: [number, number]; size?: ShotSize; height?: number }
   | { move: "crane"; on: string[]; heights: [number, number]; size?: ShotSize; from?: number }
   | { move: "dutch"; on: string[]; size?: ShotSize; from?: number; roll?: number }
-  | { move: "follow"; on: string; size?: ShotSize; from?: number; height?: number };          // tracks a walking / running actor
+  | { move: "follow"; on: string; size?: ShotSize; from?: number; height?: number }           // tracks a walking / running actor
+  /** a detail: a prop ("treasureChest"), an actor's face / hands / held item ("qm.hands", "milo.face", "gus.held"),
+   *  filling most of the frame; size close (default) or extreme */
+  | { move: "insert"; on: string; size?: ShotSize; from?: number; height?: number; push?: number }
+  /** a point of view: from an actor's eyes toward another actor, a prop or a part ("milo.hands") */
+  | { move: "pov"; from: string; at: string };
 
 /** when something happens: t seconds after the shot starts, or on a spoken word of this shot's lines
  *  (word: "catches" lands 2 frames before that word; "yawn" also matches "yawning"; n = which occurrence, from 1) */
@@ -86,6 +92,16 @@ export type SfxSpec = When & { name: SfxName; on?: string; gain?: number };
 export type ShotSpec = {
   /** seconds. With narration the shot lasts as long as its lines (+ hold); dur is then a minimum and may be left out */
   dur?: number;
+  /** split shot: this shot ends ON this word of its line (a cut or transition mid-sentence); the next shot carries on
+   *  with the same line and must have `cont: true` */
+  until?: WordRef;
+  /** this shot continues the previous shot's line (which ended with `until`): no new narration, its word anchors are
+   *  the rest of that line, and it may be another set (an environment transition mid-sentence) */
+  cont?: boolean;
+  /** camera beats after the opening `camera`: on words (or seconds), each a new set-up. cut (default) = a hard cut;
+   *  glide = a move from the previous framing over `dur` seconds; whip = a fast 0.2 s pan; rack = only the focus
+   *  moves (to the new subject) */
+  cams?: CameraBeat[];
   /** what is said over this shot (lines follow on from the previous shot's without dead air) */
   say?: string | Line | (string | Line)[];
   /** seconds held after this shot's last word (default 0.2; 0.45 on the last shot) */
@@ -93,7 +109,7 @@ export type ShotSpec = {
   set: string;
   light?: LightName;          // default: the set's first light
   camera: CameraSpec;
-  transition?: "cut" | "fade" | "flash" | "dip"; // into this shot
+  transition?: "cut" | "fade" | "flash" | "dip" | "zoom" | "whip"; // into this shot (zoom: through the outgoing subject into this shot; whip: a fast pan)
   actors: ActorSpec[];
   fx?: FxSpec[];
   kicks?: (number | WordRef)[]; // impact shakes (seconds into the shot, or on a word)

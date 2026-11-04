@@ -1,9 +1,11 @@
+import * as THREE from "three";
 // Storyboard -> film (stage 1E). Turns plain storyboard data into SetWorld shots (camera keys from named moves, lens
 // blur, impact kicks), a timeline (cuts, crossfades, white flashes, dips to black) and a director that stages every
 // actor each frame: acting preset + timed beats, idle life, blinks hidden behind expression swaps, talking mouths and
 // hands, nods / shakes, facing the nearest other actor, profile walks between marks, contact shadows and effect cards.
 // Everything is a pure function of the frame number -> deterministic for chunked cloud renders.
 import { plan, Move } from "../camera/moves";
+import { runKeys, glide, dolly, type Key, type Shot, type Cam } from "../camera/keys";
 import { SETS } from "../sets";
 import { LAYOUTS } from "../sets/layouts";
 import type { WorldShot, Director } from "../scene/SetWorld";
@@ -32,6 +34,8 @@ export const propWorld = (set: string, q: PropSpec): V3 => { const w = whereOf(s
 const armKey = (p: Pose) => `${p.gesture ?? "hang"}|${p.hold ?? ""}|${p.hand ?? 1}|${p.mode ?? "stand"}`;
 const KEEP_WHILE_TALKING = ["thumbsUp", "point", "pointUp", "hold", "tickle", "tickleSelf", "operate", "wave", "raiseHand", "cheer", "stop", "crossArms", "hips", "offer", "write", "grab", "block", "read"];
 const FADE = 8;
+/** zoom-through / whip transitions: a short dissolve (frames) hides the join while the cameras carry the motion */
+const ZFADE = 6;
 
 export const lookOf = (ref: Storyboard["cast"][string]): Look =>
   typeof ref === "string" ? ROSTER[ref] : extra(ref.extra, ref.era ?? "modern");
@@ -71,7 +75,51 @@ export const diagramBase = (s: ShotSpec) => s.diagram?.base ?? DIAGRAM_ABOVE;
 export const diagramY = (s: ShotSpec) => (s.diagram?.place === "above" ? diagramBase(s) + (s.diagram.size ?? 0.95) / 2 : 1.42);
 
 /** camera spec -> library move, naming actors instead of coordinates (framed where they settle) */
-const moveOf = (s: ShotSpec, c: CameraSpec, t0 = 0): Move => {
+/** an actor's authored pose at shot time tq: the act, face, gesture and mode with every beat up to tq applied, and the
+ *  held item (the director's acting starts from this; camera inserts use it to find the hands) */
+export const basePoseAt = (a: ActorSpec, tq: number): { base: Pose; held: string | undefined } => {
+  let base: Pose = actPose(a.act ?? "neutral", { ...(a.face ? { expr: a.face } : {}), ...(a.gesture ? { gesture: a.gesture } : {}), ...(a.mode ? { mode: a.mode } : {}) });
+  for (const bt of (a.beats ?? []).filter((x) => (x.t ?? 0) <= tq).sort((x, y) => (x.t ?? 0) - (y.t ?? 0))) base = { ...(bt.act ? actPose(bt.act) : base), ...(bt.face ? { expr: bt.face } : {}), ...(bt.gesture ? { gesture: bt.gesture } : {}) };
+  let held = a.hold;
+  for (const bt of (a.beats ?? []).filter((x) => (x.t ?? 0) <= tq && x.hold !== undefined).sort((x, y) => (x.t ?? 0) - (y.t ?? 0))) held = bt.hold ?? undefined;
+  return { base, held };
+};
+
+/** a camera detail (inserts, POV targets): a prop ("treasureChest"), or an actor ("qm", "qm.face", "qm.hands",
+ *  "qm.held"): its centre in the world and the size (m) an insert frames. "hands" = where the actor's hands meet
+ *  their `reach` target (a handover, a signature, a grab); "held" = in front of their own chest (what they hold) */
+export const detailOf = (cast: Storyboard["cast"], s: ShotSpec, name: string, tq = 0, from = 0): { c: V3; span: number } => {
+  const pr = (s.props ?? []).find((q) => q.id === name);
+  if (pr) { const w = propWorld(s.set, pr), e = PROPS[pr.id], h = (e?.height ?? 0.6) * (pr.scale ?? 1); return { c: [w[0], w[1] + h * 0.6, w[2]], span: Math.max(h, (e?.radius ?? 0.4) * 1.3) }; }
+  const [who, part] = name.split("."), a = s.actors.find((x) => x.who === who);
+  if (!a || !cast[who]) throw new Error(`camera names "${name}" but there is no such actor or prop in the shot`);
+  const L = lookOf(cast[who]), p = restPos(s.set, a), an = anchorsFront(L, {}), y = (d: number) => p[1] + (975 - d) * SU;
+  // a face: head and shoulders (the drawn head is about a third of the frame height in a "close" insert)
+  if (!part || part === "face") return { c: [p[0], y(an.head[1]) - 0.08, p[2]], span: 2 * an.headR[1] * SU * 1.9 };
+  // the hands as the rig draws them at that moment: the authored pose (act, gesture, beats up to tq, the held item and
+  // the reach, set as the director sets it), mapped onto the card as seen from the insert's side
+  const ar = (from * Math.PI) / 180, eye = new THREE.Vector3(p[0] + Math.sin(ar) * 6, p[1] + 1.4, p[2] + Math.cos(ar) * 6);
+  const { base, held } = basePoseAt(a, tq), extra: Partial<Pose> = {};
+  const ta = a.reach ? s.actors.find((x) => x.who === a.reach) : undefined, tp = a.reach ? (s.props ?? []).find((q) => q.id === a.reach) : undefined;
+  const tw: V3 | undefined = ta ? restPos(s.set, ta) : tp ? propWorld(s.set, tp) : undefined;
+  if (tw) {
+    const lat = (tw[0] - p[0]) * Math.cos(ar) - (tw[2] - p[2]) * Math.sin(ar);
+    extra.hand = lat < 0 ? -1 : 1; extra.reach = Math.max(60, Math.min(270, Math.abs(lat) / SU - (ta ? 95 : 0)));
+    if (ta) extra.reachMid = Math.max(60, Math.abs(lat) / SU / 2);
+    if (tp) extra.reachY = 975 - ((PROPS[tp.id]?.height ?? 0.6) * (tp.scale ?? 1)) / SU;
+  }
+  const hs = anchorsFront(L, { ...base, ...(held ? { hold: held } : {}), ...extra }).hands, side = extra.hand ?? base.hand ?? 1;
+  const w = (q: [number, number]): V3 => cardPoint(eye, p[0], p[1], p[2], q, 1, false);
+  if (part === "held") { // the holding hand (what it holds is drawn there)
+    const h = hs.find((x) => x.side === side && x.kind !== "dot") ?? hs.find((x) => x.kind !== "dot") ?? hs[0];
+    return { c: h ? w(h.p) : [p[0], y(an.chest[1]), p[2]], span: 0.45 };
+  }
+  // "hands": the reaching hand, or where the two meet (a handover, a signature); a prop's top for a grab
+  const h = hs.find((x) => x.side === side && x.kind !== "dot") ?? hs[0], c = h ? w(h.p) : [p[0], y(an.chest[1]), p[2]] as V3;
+  return { c, span: ta ? 0.55 : tw ? 0.6 : 0.45 };
+};
+
+const moveOf = (s: ShotSpec, c: CameraSpec, t0 = 0, cast: Storyboard["cast"] = {}): Move => {
   // the slow "breathing" push of held shots totals at most 8 % of the distance however long the shot, so a fitted
   // group stays in frame to the last frame
   const frames = Math.max(1, Math.round((s.dur ?? 0) * FPS)), creep = Math.min(0.0022, 0.08 / frames);
@@ -117,7 +165,53 @@ const moveOf = (s: ShotSpec, c: CameraSpec, t0 = 0): Move => {
     case "crane": return { move: "crane", marks: c.on.flatMap(marks), heights: c.heights, size: c.size, from: c.from };
     case "follow": { const a = s.actors.find((x) => x.who === c.on); if (!a) throw new Error(`camera follows "${c.on}" but no such actor in the shot`); return { move: "follow", track: (t) => actorPos(s.set, a, t - t0), size: c.size, from: c.from, height: c.height }; }
     case "dutch": return { move: "dutch", marks: c.on.flatMap(marks), size: c.size, from: c.from, roll: c.roll, creep: tight(0.003) };
+    case "insert": {
+      // the detail fills ~62 % (close) / ~85 % (extreme) of the frame height, seen from the shot's own side, slightly
+      // from above; a gentle push; the background goes soft (focus on the detail)
+      // the detail as it is a moment into the beat (a gesture that starts on the beat's word has landed)
+      const from = c.from ?? ("from" in s.camera ? (s.camera as { from?: number }).from ?? 0 : 0), ar = (from * Math.PI) / 180;
+      const d = detailOf(cast, s, c.on, ((c as { t?: number }).t ?? 0) + 0.25, from);
+      const fov = 30, fill = c.size === "extreme" ? 0.85 : 0.62, dist = d.span / fill / (2 * Math.tan((fov * Math.PI) / 360));
+      const pos: V3 = [d.c[0] + Math.sin(ar) * dist, c.height ?? d.c[1] + dist * 0.2, d.c[2] + Math.cos(ar) * dist];
+      return { move: "aim", pos, look: d.c, fov, push: c.push ?? 0.06, cInf: c.size === "extreme" ? 15 : 13, focus: d.c };
+    }
+    case "pov": {
+      // from the actor's eyes (a step toward the target, so their own card is behind the lens), a light hand-held bob
+      const a = s.actors.find((x) => x.who === c.from.split(".")[0]); if (!a) throw new Error(`POV from "${c.from}", who is not in the shot`);
+      const eye = detailOf(cast, s, a.who).c, t = detailOf(cast, s, c.at).c, dx = t[0] - eye[0], dz = t[2] - eye[2], L = Math.hypot(dx, dz) || 1;
+      const pos: V3 = [eye[0] + (dx / L) * 0.3, eye[1] - 0.05, eye[2] + (dz / L) * 0.3];
+      return { move: "aim", pos, look: t, fov: 50, push: 0.02, bob: 0.006, cInf: 8, focus: t };
+    }
   }
+};
+
+/** a shot's camera: the opening set-up plus its word-timed beats (cams), as a key list and a lens-blur function.
+ *  cut = a hard cut; glide / whip = a move from the previous framing (whip: 6 frames); rack = only the focus moves.
+ *  Lens blur cross-fades over a glide, so focus never pops */
+const cameraOf = (s: ShotSpec, cast: Storyboard["cast"], a: number, b: number, pre: number) => {
+  type Beat = { spec: CameraSpec; f0: number; cut: boolean; dur?: number; rack?: boolean };
+  const beats: Beat[] = [{ spec: s.camera, f0: a - pre, cut: true },
+    ...(s.cams ?? []).map((c) => ({ spec: c as CameraSpec, f0: a + Math.round((c.t ?? 0) * FPS), cut: !(c.glide || c.whip || c.rack), dur: c.whip ? 6 : c.glide ? Math.round(c.glide * FPS) : undefined, rack: c.rack }))]
+    .sort((x, y) => x.f0 - y.f0);
+  const keys: Key[] = [], dofs: { f0: number; dof: (f: number) => { cInf: number; focus?: V3 } }[] = [];
+  beats.forEach((bt, j) => {
+    const f1 = j + 1 < beats.length ? beats[j + 1].f0 : b;
+    const p = plan(moveOf(s, bt.spec, a / FPS, cast), bt.f0, f1, { cut: bt.cut, dur: bt.dur });
+    const prev = dofs[dofs.length - 1];
+    if (bt.rack && prev) { // focus pull to the new subject, camera unchanged
+      dofs.push({ f0: bt.f0, dof: (f) => { const pd = prev.dof(f), nd = p.dof(f), k = glide((f - bt.f0) / 14); return { cInf: pd.cInf, focus: pd.focus && nd.focus ? lerp3(pd.focus, nd.focus, k) : nd.focus ?? pd.focus }; } });
+      return;
+    }
+    keys.push(p.key);
+    dofs.push({ f0: bt.f0, dof: bt.cut || !prev ? p.dof : (f) => { const pd = prev.dof(f), nd = p.dof(f), k = glide((f - bt.f0) / (bt.dur ?? 24)); return { cInf: pd.cInf + (nd.cInf - pd.cInf) * k, focus: pd.focus && nd.focus ? lerp3(pd.focus, nd.focus, k) : nd.focus }; } });
+  });
+  return { keys, dof: (f: number) => { let d = dofs[0]; for (const x of dofs) if (f >= x.f0) d = x; return d.dof(f); } };
+};
+const lerp3 = (p: V3, q: V3, k: number): V3 => [p[0] + (q[0] - p[0]) * k, p[1] + (q[1] - p[1]) * k, p[2] + (q[2] - p[2]) * k];
+/** a camera turned sideways about its own position (a whip pan): angle in radians */
+const swing = (c: Cam, ang: number): Shot => {
+  const dx = c.look[0] - c.pos[0], dz = c.look[2] - c.pos[2], co = Math.cos(ang), si = Math.sin(ang);
+  return { pos: c.pos, look: [c.pos[0] + dx * co - dz * si, c.look[1], c.pos[2] + dx * si + dz * co], fov: c.fov, roll: c.roll };
 };
 
 /** body motion layered on the acting at shot time tt (all pure functions of time): lean (degrees, + = top to screen
@@ -158,28 +252,42 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
   const ranges = shotFrames(sb), total = ranges[ranges.length - 1].b;
   const seedOf = (who: string) => Object.keys(sb.cast).indexOf(who) + 1;
   const shots: WorldShot[] = sb.shots.map((s, k) => {
-    const { a, b } = ranges[k], pre = s.transition === "fade" ? FADE : 0;
-    const p = plan(moveOf(s, s.camera, a / FPS), a - pre, b, { cut: true });
+    const { a, b } = ranges[k], pre = s.transition === "fade" ? FADE : s.transition === "zoom" || s.transition === "whip" ? ZFADE : 0;
+    const p = cameraOf(s, sb.cast, a, b, pre);
     const props = (s.props ?? []).map((q) => { const w = whereOf(s.set, q.at); return { id: q.id, variant: q.variant, at: { x: w[0] + (q.offset?.[0] ?? 0), y: w[1], z: w[2] + (q.offset?.[1] ?? 0), yaw: ((q.yaw ?? 0) * Math.PI) / 180, s: q.scale ?? 1 }, animate: propAnim(s, q) }; });
-    return { id: k + 1, a, b, set: s.set, light: s.light ?? SETS[s.set].lights[0], keys: [p.key], dof: p.dof, kicks: (s.kicks ?? []).map((t) => [a / FPS + (t as number), 1] as [number, number]), ...(props.length ? { props } : {}) };
+    return { id: k + 1, a, b, set: s.set, light: s.light ?? SETS[s.set].lights[0], keys: p.keys, dof: p.dof, kicks: (s.kicks ?? []).map((t) => [a / FPS + (t as number), 1] as [number, number]), ...(props.length ? { props } : {}) };
   });
   // crowds: extras join the shot's actors (after the cameras are planned: cameras frame the named cast only)
   const notes: string[] = [];
   sb.shots.forEach((s, k) => {
     if (!s.crowd || s.crowd.count <= 0) return;
     const rest = (a: ActorSpec): V3[] => { const p0 = whereOf(s.set, a.at); if (!a.walk) return [p0]; const p1 = whereOf(s.set, a.walk.to), out: V3[] = []; for (let i = 0; i <= 10; i++) out.push([p0[0] + ((p1[0] - p0[0]) * i) / 10, p0[1], p0[2] + ((p1[2] - p0[2]) * i) / 10]); return out; };
-    const c = placeCrowd(s, k + 1, shots[k].keys, Math.round((shots[k].a + shots[k].b) / 2), (w) => whereOf(s.set, w), rest);
+    // placed for the opening set-up (where the crowd is seen), not for a later insert or close-up
+    const firstBeat = Math.min(shots[k].b, ...(s.cams ?? []).filter((c) => !c.rack).map((c) => shots[k].a + Math.round((c.t ?? 0) * FPS)));
+    const c = placeCrowd(s, k + 1, shots[k].keys, Math.round((shots[k].a + firstBeat) / 2), (w) => whereOf(s.set, w), rest);
     s.actors.push(...c.actors); Object.assign(sb.cast, c.cast);
     if (c.note) notes.push(c.note);
+  });
+  // zoom-through / whip transitions: the outgoing camera accelerates into its subject (zoom) or pans away (whip) over
+  // its last frames, the incoming one starts from inside / beside its subject and settles; a ZFADE dissolve joins them
+  sb.shots.forEach((s, k) => {
+    if (k === 0 || (s.transition !== "zoom" && s.transition !== "whip")) return;
+    const prev = shots[k - 1], pk = [...prev.keys], cur = shots[k], c0 = cur.keys[0], n = 10, bp = prev.b, a = cur.a - ZFADE;
+    const zoom = s.transition === "zoom";
+    const out = (f: number): Shot => { const c = runKeys(pk, f), u = glide((f - (bp - n)) / n); return zoom ? dolly(c.pos, c.look, 1 - 0.72 * u, { fov: c.fov, roll: c.roll }) : swing(c, 0.55 * u * u); };
+    prev.keys = [...pk, { f: bp - n, cut: true, s: out }];
+    const s0 = c0.s, into = (f: number): Shot => { const c = { fov: 40, roll: 0, ...s0(f) }, u = glide((f - a) / 14); return zoom ? dolly(c.pos, c.look, 0.3 + 0.7 * u, { fov: c.fov, roll: c.roll }) : swing(c as Cam, -0.55 * (1 - u) * (1 - u)); };
+    cur.keys = [{ ...c0, s: into }, ...cur.keys.slice(1)];
   });
   const flashes = sb.shots.map((s, k) => (s.transition === "flash" ? ranges[k].a : -1)).filter((f) => f >= 0);
   const dips = sb.shots.map((s, k) => (s.transition === "dip" ? ranges[k].a : -1)).filter((f) => f >= 0);
   const timeline: Timeline = {
     total, flashes, dips,
     layersAt: (f) => {
-      for (let k = 1; k < sb.shots.length; k++) if (sb.shots[k].transition === "fade") {
+      for (let k = 1; k < sb.shots.length; k++) {
+        const tr = sb.shots[k].transition, F = tr === "fade" ? FADE : tr === "zoom" || tr === "whip" ? ZFADE : 0; if (!F) continue;
         const c = ranges[k].a;
-        if (f >= c - FADE / 2 && f < c + FADE / 2) return [{ id: k, alpha: 1 }, { id: k + 1, alpha: (f - (c - FADE / 2) + 1) / (FADE + 1) }];
+        if (f >= c - F / 2 && f < c + F / 2) return [{ id: k, alpha: 1 }, { id: k + 1, alpha: (f - (c - F / 2) + 1) / (F + 1) }];
       }
       const k = ranges.findIndex((r) => f >= r.a && f < r.b);
       return [{ id: (k < 0 ? ranges.length - 1 : k) + 1, alpha: 1 }];
@@ -212,10 +320,7 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
       // body motion. Used for now and, for gesture easing, for the frames just before
       const actingAt = (tq: number) => {
         const tqa = t0 + tq;
-        let base: Pose = actPose(a.act ?? "neutral", { ...(a.face ? { expr: a.face } : {}), ...(a.gesture ? { gesture: a.gesture } : {}), ...(a.mode ? { mode: a.mode } : {}) });
-        for (const bt of (a.beats ?? []).filter((x) => (x.t ?? 0) <= tq).sort((x, y) => (x.t ?? 0) - (y.t ?? 0))) base = { ...(bt.act ? actPose(bt.act) : base), ...(bt.face ? { expr: bt.face } : {}), ...(bt.gesture ? { gesture: bt.gesture } : {}) };
-        let held = a.hold;
-        for (const bt of (a.beats ?? []).filter((x) => (x.t ?? 0) <= tq && x.hold !== undefined).sort((x, y) => (x.t ?? 0) - (y.t ?? 0))) held = bt.hold ?? undefined;
+        const { base, held } = basePoseAt(a, tq);
         const swaps = (a.beats ?? []).map((x) => t0 + (x.t ?? 0));
         const life = { ...idle(tqa, seed, a.idle ?? 1), blink: lidAt(tqa, seed, swaps) };
         // voiced lines: the mouth follows the narration's word timings; otherwise the stand-in talking rhythm

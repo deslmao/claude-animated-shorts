@@ -113,8 +113,12 @@ export const validate = (sb0: Storyboard, narr?: Narration): Report => {
       if (!seen.has(fx.on)) errors.push(`${at}: effect on "${fx.on}" who is not in the shot`);
       if ((fx.t ?? 0) < 0 || (fx.t ?? 0) > dur) warnings.push(`${at}: effect at ${fx.t} s is outside the shot`);
     }
-    const names = "on" in s.camera ? (Array.isArray(s.camera.on) ? s.camera.on : [s.camera.on]) : s.camera.move === "overShoulder" ? [s.camera.over, s.camera.at] : [];
-    for (const n of names) if (!seen.has(n) && !(n === "diagram" && s.diagram) && !(s.props ?? []).some((q) => q.id === n)) errors.push(`${at}: camera aims at "${n}" ${n === "diagram" ? "but the shot has no diagram" : "who is not in the shot"}`);
+    for (const cam of [s.camera, ...(s.cams ?? [])]) {
+      const names = cam.move === "pov" ? [cam.from, cam.at] : "on" in cam ? (Array.isArray(cam.on) ? cam.on : [cam.on]) : cam.move === "overShoulder" ? [cam.over, cam.at] : [];
+      for (const n0 of names) { const n = cam.move === "insert" || cam.move === "pov" ? n0.split(".")[0] : n0;
+        if (!seen.has(n) && !(n === "diagram" && s.diagram) && !(s.props ?? []).some((q) => q.id === n0)) errors.push(`${at}: camera aims at "${n0}" ${n === "diagram" ? "but the shot has no diagram" : "who is not in the shot"}`); }
+    }
+    for (const c of s.cams ?? []) if ((c.t ?? 0) < 0 || (c.t ?? 0) > dur) warnings.push(`${at}: a camera beat at ${c.t} s is outside the shot`);
     if ((s.camera.move === "view" || s.camera.move === "establish") && !LAYOUTS[s.set].views.some((v) => v.name === (s.camera as { view: string }).view)) errors.push(`${at}: set has no view "${(s.camera as { view: string }).view}"`);
   });
   if (errors.length) return { errors, warnings, framing };
@@ -124,13 +128,19 @@ export const validate = (sb0: Storyboard, narr?: Narration): Report => {
   warnings.push(...film.notes);
   sb.shots.forEach((s, i) => {
     // camera subjects = the named ACTORS (a camera may also frame the diagram or a prop)
-    const c = s.camera, subj = (c.move === "overShoulder" ? [c.at] : "on" in c ? (Array.isArray(c.on) ? c.on : [c.on]) : []).filter((w) => s.actors.some((x) => x.who === w));
+    const c = s.camera, subjOf = (cc: typeof c) => (cc.move === "overShoulder" ? [cc.at] : cc.move === "insert" || cc.move === "pov" ? [] : "on" in cc ? (Array.isArray(cc.on) ? cc.on : [cc.on]) : []).filter((w) => s.actors.some((x) => x.who === w));
+    const subj = [...new Set([c, ...(s.cams ?? [])].flatMap(subjOf))];
     const { a, b } = ranges[i], fails: string[] = [];
-    for (const f of [a, Math.round((a + b) / 2), b - 1]) {
+    // each camera beat is checked over its own frames, with its own subjects (an insert or POV frames a detail, not heads)
+    const segs = [{ cam: c, f0: a }, ...(s.cams ?? []).filter((x) => !x.rack).map((x) => ({ cam: x as typeof c, f0: a + Math.round((x.t ?? 0) * FPS) }))].sort((p, q) => p.f0 - q.f0);
+    segs.forEach((sg, j) => { const f1 = j + 1 < segs.length ? segs[j + 1].f0 : b, mine = subjOf(sg.cam);
+    for (const f of [...new Set([sg.f0, Math.round((sg.f0 + f1) / 2), f1 - 1])]) {
+      const subj = mine;
       const cm = runKeys(film.shots[i].keys, f), cam = new THREE.PerspectiveCamera(cm.fov, 9 / 16, 0.05, 3000);
       cam.position.set(...cm.pos); cam.up.set(0, 1, 0); cam.lookAt(...cm.look); cam.rotateZ(cm.roll); cam.updateMatrixWorld(); cam.updateProjectionMatrix();
       for (const who of subj) { const act = s.actors.find((x) => x.who === who)!; const tt = (f - a) / FPS; if (act.walk && tt < act.walk.t1) continue; /* walking in: checked once arrived */ if (!headIn(cam, actorPos(s.set, act, (f - a) / FPS))) fails.push(`${who} @${((f - a) / FPS).toFixed(1)}s`); }
     }
+    });
     // over-the-shoulder: the near character's back must actually be in the frame (at shoulder height)
     if (c.move === "overShoulder") for (const f of [a, b - 1]) {
       const cm = runKeys(film.shots[i].keys, f), cam = new THREE.PerspectiveCamera(cm.fov, 9 / 16, 0.05, 3000);

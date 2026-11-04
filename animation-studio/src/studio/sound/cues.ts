@@ -88,6 +88,9 @@ export const soundPlan = (film: Film, sb0: Storyboard): SoundPlan => {
       if (i > 0 && s.transition === "fade") cues.push({ t: T0 - 0.2, name: "swish_soft", why: `crossfade into shot ${i + 1}` });
       if (i > 0 && s.transition === "flash") cues.push({ t: T0 - 0.05, name: "flash_swish", why: `white flash into shot ${i + 1}` });
       if (i > 0 && s.transition === "dip") cues.push({ t: T0 - 0.35, name: "whoosh_low", why: `dip to black into shot ${i + 1}` });
+      if (i > 0 && s.transition === "zoom") cues.push({ t: T0 - 0.3, name: "whoosh_long", gain_db: -4, why: `zoom-through into shot ${i + 1}` });
+      if (i > 0 && s.transition === "whip") cues.push({ t: T0 - 0.15, name: "whoosh_short", gain_db: -3, why: `whip pan into shot ${i + 1}` });
+      for (const c of s.cams ?? []) if (c.whip) cues.push({ t: T0 + (c.t ?? 0), name: "whoosh_short", gain_db: -6, why: `whip pan, shot ${i + 1}` });
       if (s.camera.move === "closeUp" && s.camera.punch) cues.push({ t: T0 - 0.04, name: "whoosh_short", gain_db: -2, why: `punch-in close-up, shot ${i + 1}` });
       if (s.camera.move === "crane") cues.push({ t: T0 + 0.05, name: "whoosh_long", gain_db: -3, why: `crane move, shot ${i + 1}` });
       for (const fx of s.fx ?? []) {

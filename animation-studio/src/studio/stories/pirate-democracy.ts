@@ -29,7 +29,12 @@ export const PIRATEDEMOCRACY: Storyboard = {
       crowd: { count: 6, era: "pirate", acts: ["angry", "determined"], beats: [{ word: "feared", gesture: "fists", face: "angry" }, { word: "democracies", gesture: "raiseHand", face: "smile" }] } },
     // the articles: Mags holds out the scroll, Milo puts down the cutlass and signs it with a quill
     { say: "Picture a pirate crew in the early 1700s. Before anyone touches a sword, they sign a contract.", set: "shipDeck", light: "day", transition: "flash",
-      camera: { move: "frame", on: ["milo", "qm"], size: "medium", from: 6, height: 1.45 },
+      camera: { move: "frame", on: ["milo", "qm"], size: "wide", from: 14, height: 2.1 },
+      cams: [
+        { word: "Before", move: "insert", on: "milo.held", size: "close", from: 6 },
+        { word: "sign", move: "insert", on: "milo.hands", size: "extreme", from: -10, height: 1.35 },
+        { word: "contract", move: "insert", on: "qm.face", size: "close", from: -10 },
+      ],
       actors: [
         { who: "milo", at: [-0.18, 0, -1.15], act: "happy", hold: "sword", reach: "qm",
           beats: [{ word: "sword", face: "suspicious" }, { word: "sign", hold: "quill", gesture: "write", face: "determined" }] },

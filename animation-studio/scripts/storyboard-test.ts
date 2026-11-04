@@ -24,7 +24,7 @@ for (const sb of STORIES) {
     const g = captionGroups(tm.lines, film.total), nw = tm.lines.reduce((n, l) => n + l.words.length, 0), cw = g.reduce((n, x) => n + x.text.split(" ").length, 0);
     const ok = cw === nw && g.every((x, i) => x.f1 > x.f0 && (i === 0 || x.f0 >= g[i - 1].f1) && x.f1 <= film.total);
     console.log(`  captions: ${g.length} groups for ${nw} words, ${ok ? "in order, no overlaps" : "PROBLEM"}`);
-    console.log(`  caption height per shot (clear of every face): ${captionHeights(film).map((y) => `${Math.round(y * 100)}%`).join(", ")}`);
+    console.log(`  caption height per shot (clear of every face): ${captionHeights(film).map((sg) => sg.map((x) => `${Math.round(x.y * 100)}%`).join("/")).join(", ")}`);
     if (!ok) bad++;
   }
   // soundtrack status (information; npm run preflight makes it a hard requirement before rendering)

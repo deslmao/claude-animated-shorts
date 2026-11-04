@@ -1,5 +1,5 @@
-// Caption placement (stage 2): captions never cover a face. For every shot the camera is solved at its start, middle
-// and end, every actor's head (chin to crown) is projected into the 9:16 frame, and the captions take the first
+// Caption placement (stage 2): captions never cover a face. For every shot (and each camera beat within it) the camera
+// is solved at its start, middle and end, every actor's head (chin to crown) is projected into the 9:16 frame, and the captions take the first
 // standard height that clears all of them: lower-middle (the reference position), a little lower, a little higher,
 // then above the heads, then low over the body. If no height clears every head (an extreme close-up, a presenter under
 // a diagram), the captions keep clear of every face as drawn (brows to chin: eyes and mouth) and take the height that
@@ -19,8 +19,16 @@ type Film = ReturnType<typeof compile>;
 export const CAPTION_YS = [0.643, 0.72, 0.57, 0.3, 0.22, 0.15, 0.8];
 const BAND = 0.04; // half-height of a caption line incl. outline + margin, fraction of the frame height
 
-/** per shot: the caption centre height (fraction of the frame height) */
-export const captionHeights = (film: Film): number[] => {
+/** a shot's camera segments: its opening set-up and each camera beat (story `cams`) as [first frame, end frame).
+ *  A shot without beats is one segment. A key in a shot's last 12 frames (a zoom / whip out) belongs to the one before */
+export const camSegments = (shot: Film["shots"][number]): [number, number][] => {
+  const cuts = shot.keys.slice(1).map((k) => k.f).filter((f) => f > shot.a && f < shot.b - 12);
+  const edges = [shot.a, ...cuts, shot.b];
+  return edges.slice(0, -1).map((f, i) => [f, edges[i + 1]] as [number, number]);
+};
+
+/** per shot and camera segment: the caption centre height (fraction of the frame height) */
+export const captionHeights = (film: Film): { f0: number; f1: number; y: number }[][] => {
   // each character's head as drawn (brows, chin, crown heights in metres, from the neutral pose)
   const heads = new Map<string, { brow: number; chin: number; crown: number }>();
   const headOf = (who: string) => {
@@ -32,9 +40,9 @@ export const captionHeights = (film: Film): number[] => {
     }
     return v;
   };
-  return film.timing.sb.shots.map((s, i) => {
+  return film.timing.sb.shots.map((s, i) => camSegments(film.shots[i]).map(([f0, f1]) => {
   const shot = film.shots[i], faces: [number, number][] = [], mouths: [number, number][] = [], drawn: [number, number][] = [];
-  for (const f of [shot.a, Math.round((shot.a + shot.b) / 2), shot.b - 1]) {
+  for (const f of [f0, Math.round((f0 + f1) / 2), f1 - 1]) {
     const c = runKeys(shot.keys, f), cam = new THREE.PerspectiveCamera(c.fov, 9 / 16, 0.05, 3000);
     cam.position.set(...c.pos); cam.up.set(0, 1, 0); cam.lookAt(...c.look); cam.rotateZ(c.roll); cam.updateMatrixWorld(); cam.updateProjectionMatrix();
     const right = new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld, 0);
@@ -80,12 +88,13 @@ export const captionHeights = (film: Film): number[] => {
   // of the heights clear of every eye and mouth, the one that covers the least of the drawn heads (a forehead is
   // better left clear too); if none clears them, the one that covers the least of them
   const okMouth = CAPTION_YS.filter((y) => mouths.every(([t, b]) => y + BAND < t || y - BAND > b));
-  return clear(faces) ?? (okMouth.length ? least(okMouth, drawn) : least(CAPTION_YS, mouths));
-  });
+  return { f0, f1, y: clear(faces) ?? (okMouth.length ? least(okMouth, drawn) : least(CAPTION_YS, mouths)) };
+  }));
 };
 
-/** give every caption group the height of the shot it starts in */
+/** give every caption group the height of the shot and camera segment it starts in (a close-up beat inside a wide
+ *  shot moves the captions off the face it brings in) */
 export const placeCaptions = (film: Film, groups: CaptionGroup[]): CaptionGroup[] => {
-  const hs = captionHeights(film);
-  return groups.map((g) => ({ ...g, y: hs[Math.max(0, film.shots.findIndex((s) => g.f0 >= s.a && g.f0 < s.b))] }));
+  const hs = captionHeights(film).flat();
+  return groups.map((g) => ({ ...g, y: (hs.find((x) => g.f0 >= x.f0 && g.f0 < x.f1) ?? hs[0]).y }));
 };

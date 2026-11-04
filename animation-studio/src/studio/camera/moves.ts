@@ -24,7 +24,10 @@ export type Move =
   | { move: "orbit"; marks: V3[]; fromDeg: [number, number]; size?: ShotSize; height?: number }
   | { move: "crane"; marks: V3[]; heights: [number, number]; size?: ShotSize; from?: number }
   | { move: "follow"; track: (t: number) => V3; size?: ShotSize; from?: number; height?: number }
-  | { move: "dutch"; marks: V3[]; size?: ShotSize; from?: number; roll?: number; creep?: number };
+  | { move: "dutch"; marks: V3[]; size?: ShotSize; from?: number; roll?: number; creep?: number }
+  /** an explicit camera (inserts, POV): pos / look / fov, an optional push (fraction of the distance closed over the
+   *  set-up, eased) and a deterministic hand-held bob (amplitude in metres), lens blur cInf focused on `focus` */
+  | { move: "aim"; pos: V3; look: V3; fov: number; push?: number; bob?: number; cInf: number; focus: V3 };
 
 export type ShotPlan = { key: Key; dof: (f: number) => { cInf: number; focus?: V3 } };
 
@@ -82,6 +85,10 @@ export const plan = (m: Move, f0: number, f1: number, o: { cut?: boolean; dur?: 
     case "follow": {
       return { key: { f: f0, cut: o.cut, dur: o.dur, s: (f) => toShot(fitShot([m.track(f / 30)], { size: m.size ?? "full", from: m.from, height: m.height })) },
         dof: (f) => ({ cInf: DOF_BY_SIZE[m.size ?? "full"], focus: eye(m.track(f / 30)) }) };
+    }
+    case "aim": {
+      const bob = (f: number): V3 => (m.bob ? [Math.sin(f * 0.21) * m.bob, Math.sin(f * 0.17 + 1.3) * m.bob * 0.7, 0] : [0, 0, 0]);
+      return k((f) => { const b = bob(f), d = dolly(m.pos, m.look, 1 - (m.push ?? 0.04) * u(f)); return { ...d, pos: [d.pos[0] + b[0], d.pos[1] + b[1], d.pos[2] + b[2]], fov: m.fov }; }, m.cInf, m.focus);
     }
     case "dutch": {
       const c = fitShot(m.marks, { size: m.size ?? "medium", from: m.from, roll: m.roll ?? 0.08 });

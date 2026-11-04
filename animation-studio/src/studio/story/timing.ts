@@ -43,8 +43,11 @@ export const resolve = (sb0: Storyboard, narr?: Narration): Timing => {
   const sb: Storyboard = JSON.parse(JSON.stringify(sb0));
   const lines: Placed[] = [], problems: string[] = [];
   let T = 0, cursor = 0;
+  let carry: Placed[] = []; // a split line continuing into the next (cont) shot
   sb.shots.forEach((s, k) => {
-    const a = T, ls = linesOf(s), here: Placed[] = [];
+    const a = T, ls = linesOf(s), here: Placed[] = s.cont ? [...carry] : [];
+    if (s.cont && !carry.length) problems.push(`shot ${k + 1}: cont: true, but the shot before doesn't end with \`until\` mid-line`);
+    if (s.cont && ls.length) problems.push(`shot ${k + 1}: a cont shot carries on the previous line; it can't have its own say`);
     cursor = Math.max(cursor, a + LEAD);
     for (const l of ls) {
       const voice = voiceOf(sb, l);
@@ -58,12 +61,21 @@ export const resolve = (sb0: Storyboard, narr?: Narration): Timing => {
       cursor = p.end + LINE_GAP;
     }
     const last = k === sb.shots.length - 1;
-    const natural = here.length ? here[here.length - 1].end + (s.hold ?? (last ? END_HOLD : HOLD)) - a : 0;
+    let natural = here.length ? here[here.length - 1].end + (s.hold ?? (last ? END_HOLD : HOLD)) - a : 0;
+    carry = [];
+    if (s.until) { // split: the shot ends on this word (the next shot carries on with the line)
+      const all = here.flatMap((p) => p.words), key = norm(s.until.word), n = s.until.n ?? 1;
+      const w = (all.filter((x) => norm(x.w) === key).length >= n ? all.filter((x) => norm(x.w) === key) : all.filter((x) => norm(x.w).startsWith(key)))[n - 1];
+      if (!w) problems.push(`shot ${k + 1}: until "${s.until.word}", which this shot's lines don't say`);
+      else { natural = Math.max(0.3, w.t0 - ANCHOR - a); carry = here; }
+      if (last || !sb.shots[k + 1]?.cont) problems.push(`shot ${k + 1}: ends with until, so shot ${k + 2} must have cont: true`);
+    }
     if (!here.length && s.dur === undefined) problems.push(`shot ${k + 1}: needs a dur (it has no lines to time it)`);
-    const frames = Math.max(1, Math.round(Math.max(s.dur ?? 0, natural) * FPS));
+    const frames = Math.max(1, Math.round((s.until ? natural : Math.max(s.dur ?? 0, natural)) * FPS));
     s.dur = frames / FPS;
     // word anchors -> seconds into this shot
-    const words = here.flatMap((p) => p.words);
+    // word anchors: this shot's words (a cont shot: only those after its start, the rest of the split line)
+    const words = here.flatMap((p) => p.words).filter((w) => !s.cont || w.t0 >= a - 0.05);
     const at = (r: WordRef, what: string) => {
       const n = r.n ?? 1, key = norm(r.word);
       const exact = words.filter((w) => norm(w.w) === key), pre = words.filter((w) => norm(w.w).startsWith(key));
@@ -90,6 +102,7 @@ export const resolve = (sb0: Storyboard, narr?: Narration): Timing => {
       }
     }
     for (const b of s.crowd?.beats ?? []) when(b, "the crowd's beat");
+    for (const c of s.cams ?? []) when(c, `a camera beat (${c.move})`);
     for (const fx of s.fx ?? []) when(fx, `the ${fx.kind} effect`);
     for (const p of s.props ?? []) for (const c of p.drive?.changes ?? []) when(c, `the ${p.id}'s delay change`);
     for (const st of s.diagram?.steps ?? []) when(st, `the ${s.diagram!.kind} diagram's step`);
