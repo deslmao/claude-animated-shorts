@@ -1,0 +1,95 @@
+{
+ "hash": "0635f9cf9ef6a5",
+ "text": "So the scariest thing on the high seas might have been a pirate committee meeting.",
+ "voice": "georgeLively",
+ "lead": 0,
+ "end": 4.04,
+ "dur": 4.075102,
+ "words": [
+  {
+   "w": "So",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "the",
+   "t0": 0.221,
+   "t1": 0.29
+  },
+  {
+   "w": "scariest",
+   "t0": 0.325,
+   "t1": 0.789
+  },
+  {
+   "w": "thing",
+   "t0": 0.836,
+   "t1": 1.033
+  },
+  {
+   "w": "on",
+   "t0": 1.091,
+   "t1": 1.161
+  },
+  {
+   "w": "the",
+   "t0": 1.196,
+   "t1": 1.265
+  },
+  {
+   "w": "high",
+   "t0": 1.324,
+   "t1": 1.498
+  },
+  {
+   "w": "seas",
+   "t0": 1.556,
+   "t1": 1.892
+  },
+  {
+   "w": "might",
+   "t0": 2.078,
+   "t1": 2.276
+  },
+  {
+   "w": "have",
+   "t0": 2.31,
+   "t1": 2.403
+  },
+  {
+   "w": "been",
+   "t0": 2.426,
+   "t1": 2.566
+  },
+  {
+   "w": "a",
+   "t0": 2.589,
+   "t1": 2.612
+  },
+  {
+   "w": "pirate",
+   "t0": 2.67,
+   "t1": 3.007
+  },
+  {
+   "w": "committee",
+   "t0": 3.042,
+   "t1": 3.355
+  },
+  {
+   "w": "meeting.",
+   "t0": 3.39,
+   "t1": 4.04
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.35,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-04T01:32:40.798Z"
+}

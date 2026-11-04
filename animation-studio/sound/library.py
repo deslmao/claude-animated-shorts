@@ -332,6 +332,59 @@ def stumble(r):
     return fades(_sum((sc[0] * 0.8, 0.0), (sc[1] * 0.7, 0.11), (thump, 0.2)), 0.002, 0.05)
 
 
+# ------------------------------------------------------------------ crews, votes, writing, money (pirate democracy revision)
+def _aye(r, base, scale):
+    """one voice shouting 'aye!' (a -> i), falling at the end"""
+    d = r.uniform(0.32, 0.45)
+    n = ns(d + 0.05)
+    t = np.arange(n) / SR
+    f0 = base * _track_lin(t, [(0, 1.45), (0.06, 1.6), (d, 1.2)])
+    forms = G.vowel_track(n, [(0, "a"), (d * 0.45, "A"), (d, "i")])
+    amp = np.clip(t / 0.025, 0, 1) * np.clip((d + 0.04 - t) / 0.09, 0, 1)
+    return G.vox(f0, forms, amp, r, scale, tilt=0.95, breath=0.3)
+
+
+def crowd_aye(r):
+    """a crew voting: a ragged chorus of 'aye!' from about eight voices, then a short cheer"""
+    parts = []
+    for i in range(8):
+        base, scale = r.uniform(95, 175), r.uniform(0.9, 1.15)
+        parts.append((_aye(r, base, scale) * r.uniform(0.5, 1.0), r.uniform(0.0, 0.22)))
+    for i in range(5):
+        parts.append((G.hurrah(r, r.uniform(100, 170), r.uniform(0.9, 1.15)) * r.uniform(0.25, 0.45), r.uniform(0.35, 0.6)))
+    y = _sum(*parts)
+    return fades(lp(y, 6000), 0.005, 0.15) * 0.2
+
+
+def crowd_murmur(r):
+    """a crew meeting: a low murmur of several people talking at once (3 s)"""
+    dur = 3.0
+    y = sum(G.babble(dur, r, r.uniform(95, 180), r.uniform(0.9, 1.15), rate=3.8, active=0.7) * r.uniform(0.5, 1.0) for _ in range(6))
+    return fades(lp(y, 2600), 0.4, 0.6) * 0.35
+
+
+def quill_scratch(r):
+    """a quill signing: quick scratchy strokes on parchment (about 1 s)"""
+    out = np.zeros(ns(1.0))
+    tm = 0.0
+    while tm < 0.9:
+        L = r.uniform(0.06, 0.16)
+        x = bp(r.standard_normal(ns(L)), 2200, 7000, 1) * np.sin(np.pi * np.clip(tt(L) / L, 0, 1)) * r.uniform(0.5, 1.0)
+        x *= 1 + 0.6 * (r.standard_normal(len(x)) > 1.6)   # paper grain ticks
+        i = ns(tm); out[i:i + len(x)] += x[: len(out) - i]
+        tm += L + r.uniform(0.02, 0.07)
+    return fades(out, 0.005, 0.05) * 0.5
+
+
+def coins_pour(r):
+    """a handful of coins poured into a hand: a quick cascade of clinks and a settling jingle"""
+    parts = []
+    for i in range(14):
+        tm = 0.03 * i + r.uniform(0, 0.03) + (0.25 if i > 9 else 0)
+        parts.append((G.clink(r, f0=r.uniform(2600, 5200), dur=0.12, bright=0.8) * r.uniform(0.3, 0.8), tm))
+    return fades(_sum(*parts), 0.002, 0.08) * 0.7
+
+
 SFX = {
     "pop": pop, "ding": ding, "blip_up": blip_up, "boing": boing, "poof": poof, "twinkle": twinkle, "impact": impact,
     "thud": thud, "party_pop": party_pop, "drip": drip, "steam": steam, "snore_soft": snore_soft, "ring_ding": ring_ding,
@@ -341,6 +394,7 @@ SFX = {
     "gasp": gasp, "oof": oof, "applause": applause, "creak": creak, "crack": crack, "splash": splash, "bubbles": bubbles,
     "clink": clink, "hammer": hammer, "cannon": cannon, "bell_ring": bell_ring, "wave_crash": wave_crash,
     "giggle": giggle, "feather_swish": feather_swish, "servo": servo, "stumble": stumble,
+    "crowd_aye": crowd_aye, "crowd_murmur": crowd_murmur, "quill_scratch": quill_scratch, "coins_pour": coins_pour,
 }
 
 

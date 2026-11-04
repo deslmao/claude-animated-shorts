@@ -5,7 +5,8 @@
 //   effects   effect marks -> their sound; transitions -> swish / whoosh; punch-in close-ups and crane moves; camera
 //             kicks -> impact; jumps -> boing; falls -> thud; shock without a mark -> pop; footsteps along every
 //             walk / run (surface by set); a tickled actor's laugh -> giggle; a stagger -> stumble; a driven machine ->
-//             servo per stroke + feather swish per brush; explicit `sfx` cues. Each is panned to where its actor is on screen.
+//             servo per stroke + feather swish per brush; a crowd raising hands -> "aye!"; a "write" beat -> quill;
+//             coins handed over or picked up -> coins; explicit `sfx` cues. Each is panned to where its actor is on screen.
 import * as THREE from "three";
 import { runKeys } from "../camera/keys";
 import { actorPos, FPS } from "../story/compile";
@@ -103,10 +104,18 @@ export const soundPlan = (film: Film, sb0: Storyboard): SoundPlan => {
         // a stagger scuffs and thumps
         const tickled = s.actors.some((x) => x.reach === a.who) || (s.props ?? []).some((q) => q.follow?.who === a.who);
         if (tickled) for (const b of a.beats ?? []) if (b.act === "laugh") cues.push({ t: T0 + (b.t ?? 0) + 0.08, name: "giggle", pan: panOf(a.who, b.t ?? 0), why: `${a.who} laughs, tickled, shot ${i + 1}` });
+        // signing, paying: a quill on a "write" beat; coins when a purse is handed over ("offer" holding coins) or picked up
+        for (const b of a.beats ?? []) {
+          if (b.gesture === "write") cues.push({ t: T0 + (b.t ?? 0) + 0.12, name: "quill_scratch", pan: panOf(a.who, b.t ?? 0), why: `${a.who} signs, shot ${i + 1}` });
+          if ((b.hold === "coinBag" || b.hold === "coin") && !a.crowd) cues.push({ t: T0 + (b.t ?? 0) + 0.05, name: "coins_pour", pan: panOf(a.who, b.t ?? 0), why: `${a.who} takes the coins, shot ${i + 1}` });
+          if (b.gesture === "offer" && (b.hold ?? a.hold) === "coinBag") cues.push({ t: T0 + (b.t ?? 0) + 0.2, name: "coins_pour", pan: panOf(a.who, b.t ?? 0), why: `${a.who} hands over coins, shot ${i + 1}` });
+        }
         for (const m of a.moves ?? []) if (m.kind === "stagger") cues.push({ t: T0 + (m.t ?? 0) + 0.15, name: "stumble", pan: panOf(a.who, m.t ?? 0), why: `${a.who} stumbles, shot ${i + 1}` });
         for (const t of steps(s.set, a, dur)) cues.push({ t: T0 + t, name: stepFor(s.set), pan: panOf(a.who, t), why: `${a.who} ${a.walk?.mode === "run" ? "runs" : "walks"}, shot ${i + 1}` });
       }
     }
+    // a crowd voting (raising hands on a word): a chorus of "aye!"
+    if (auto) for (const b of s.crowd?.beats ?? []) if (b.gesture === "raiseHand" || b.gesture === "cheer") cues.push({ t: T0 + (b.t ?? 0) + 0.12, name: "crowd_aye", why: `the crowd votes, shot ${i + 1}` });
     // a driven machine (a prop replaying an actor's control strokes): a servo whirr each stroke cycle, and a feather
     // swish each time it brushes across the hand it follows (the strokes the viewer sees, delay included)
     if (auto) for (const q of s.props ?? []) {

@@ -68,7 +68,10 @@ export type ActorSpec = {
 };
 /** place: "side" (beside the presenter, default) or "above" (over their head: the 9:16 frame stacks the diagram on top
  *  and the presenter below, so both read on a phone) */
-export type DiagramSpec = { kind: DiagramKind; with: string; side?: -1 | 1; size?: number; place?: "side" | "above"; steps?: When[] };
+export type DiagramSpec = { kind: DiagramKind; with: string; side?: -1 | 1; size?: number; place?: "side" | "above"; steps?: When[];
+  /** set by the engine (story/timing.ts), not written by hand: for place "above", the panel's lower edge height in
+   *  metres: 0.14 m over the presenter's crown (1.94 m for Juno), so a short presenter isn't left far below it */
+  base?: number };
 export type MoveKind = "squirm" | "stagger" | "hop" | "recoil";
 export type Move = When & { kind: MoveKind; dur?: number; away?: string; dir?: -1 | 1; amount?: number };
 export type FxSpec = When & { kind: FxKind; on: string; life?: number; side?: -1 | 1 };

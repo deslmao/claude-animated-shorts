@@ -25,7 +25,7 @@ export const BURIEDTREASURE: Storyboard = {
         { who: "captain", at: "a", act: "excited", beats: [{ word: "jewels", act: "proud" }] },
         { who: "qm", at: "b", act: "suspicious", hold: "coinBag" },
       ],
-      props: [{ id: "treasureChest", variant: "open", at: "a", offset: [0.6, 0.55], yaw: -10 }],
+      props: [{ id: "treasureChest", variant: "open", at: "a", offset: [0.62, 0.58], yaw: -10 }],
       crowd: { count: 5, era: "pirate" },
       fx: [{ kind: "sparkle", on: "captain", word: "coins" }] },
     { say: "Bury it on a desert island? Hardly anyone did.", set: "island", light: "day", transition: "cut",
@@ -98,7 +98,7 @@ export const BURIEDTREASURE: Storyboard = {
         { who: "milo", at: "a", act: "happy", hold: "shovel", beats: [{ word: "novelist", act: "laugh" }] },
         { who: "juno", at: "b", act: "neutral", face: "smile", hold: "book", beats: [{ word: "novelist", act: "proud" }] },
       ],
-      props: [{ id: "treasureChest", variant: "open", at: "a", offset: [0.6, 0.55], yaw: -10 }],
+      props: [{ id: "treasureChest", variant: "open", at: "a", offset: [0.62, 0.58], yaw: -10 }],
       fx: [{ kind: "confetti", on: "juno", word: "novelist" }] },
   ],
 };

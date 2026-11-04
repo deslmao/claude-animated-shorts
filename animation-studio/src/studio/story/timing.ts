@@ -2,10 +2,20 @@
 // starts on frame 2), sizes every shot to its lines, turns word anchors ({ word: "catches" }) into times 2 frames
 // before that word, and gives speaking actors their word timings (for the mouth). Lines not generated yet use an
 // estimate, so a storyboard validates and previews before any credits are spent. Pure: same input -> same timing.
+import { ROSTER } from "../characters/roster";
+import { extra } from "../characters/cast";
+import { anchorsFront } from "../characters/figure";
+import { SU } from "../cards/cards";
 import type { Storyboard, ShotSpec, Line, WordRef } from "./types";
 import { Narration, Clip, Word, clipHash, estimateClip, norm } from "../voice/narration";
 import { NARRATOR, VOICES } from "../voice/voices";
 
+/** an "above" panel's lower edge: 0.14 m over its presenter's crown (1.94 m for Juno) */
+export const aboveBase = (sb: Storyboard, s: ShotSpec): number | undefined => {
+  const ref = s.diagram ? sb.cast[s.diagram.with] : undefined; if (!ref) return undefined;
+  const L = typeof ref === "string" ? ROSTER[ref] : extra(ref.extra, ref.era ?? "modern");
+  return Math.round(((975 - anchorsFront(L, {}).crown[1]) * SU + 0.14) * 1000) / 1000;
+};
 export const FPS = 30;
 export const LEAD = 2 / FPS;      // a cut lands 2 frames before its first word; the voice starts on frame 2
 export const LINE_GAP = 0.08;     // breath between consecutive lines (the audio already holds the natural pauses)
@@ -79,9 +89,11 @@ export const resolve = (sb0: Storyboard, narr?: Narration): Timing => {
         act.talk = [...(act.talk ?? []), ...spans];
       }
     }
+    for (const b of s.crowd?.beats ?? []) when(b, "the crowd's beat");
     for (const fx of s.fx ?? []) when(fx, `the ${fx.kind} effect`);
     for (const p of s.props ?? []) for (const c of p.drive?.changes ?? []) when(c, `the ${p.id}'s delay change`);
     for (const st of s.diagram?.steps ?? []) when(st, `the ${s.diagram!.kind} diagram's step`);
+    if (s.diagram?.place === "above" && s.diagram.base === undefined) { const b = aboveBase(sb, s); if (b !== undefined) s.diagram.base = b; }
     for (const x of s.sfx ?? []) when(x, `the ${x.name} sound`);
     if (s.kicks) s.kicks = s.kicks.map((x) => (typeof x === "number" ? x : at(x, "a kick")));
     for (const p of here) if (p.who !== "narrator" && !s.actors.some((x) => x.who === p.who)) problems.push(`shot ${k + 1}: "${p.who}" speaks but isn't in the shot (use who: "narrator" for voice-over)`);

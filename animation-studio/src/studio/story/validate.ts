@@ -17,7 +17,8 @@ import { MOODS, AMBIENCES, SFX } from "../sound/catalog";
 import { PROPS } from "../props/registry";
 import { ITEMS } from "../characters/items";
 import { clearAt, hasFloorMap } from "../sets/floor";
-import { whereOf, DIAGRAM_ABOVE } from "./compile";
+import { whereOf, diagramBase } from "./compile";
+import { aboveBase } from "./timing";
 import { DIAGRAM_KINDS } from "../fx/diagrams";
 import type { Stage, CamInfo } from "../cards/cards";
 
@@ -71,7 +72,7 @@ export const validate = (sb0: Storyboard, narr?: Narration): Report => {
       for (const b of a.beats ?? []) if ((b.t ?? 0) < 0 || (b.t ?? 0) > dur) warnings.push(`${at}: ${a.who}: beat at ${b.t} s is outside the shot (0-${dur.toFixed(2)} s)`);
       for (const [x, y] of a.talk ?? []) if (x < 0 || y > dur + 0.01 || y <= x) warnings.push(`${at}: ${a.who}: talk span ${x}-${y} s outside the shot`);
       if (a.walk && (a.walk.t1 > dur + 0.01 || a.walk.t1 <= a.walk.t0)) warnings.push(`${at}: ${a.who}: walk ${a.walk.t0}-${a.walk.t1} s outside the shot`);
-      if (a.reach && !s.actors.some((x) => x.who === a.reach)) errors.push(`${at}: ${a.who} reaches for "${a.reach}" who is not in the shot`);
+      if (a.reach && !s.actors.some((x) => x.who === a.reach) && !(s.props ?? []).some((q) => q.id === a.reach)) errors.push(`${at}: ${a.who} reaches for "${a.reach}", which is neither an actor nor a prop in the shot`);
       for (const m of a.moves ?? []) {
         if (!["squirm", "stagger", "hop", "recoil"].includes(m.kind)) errors.push(`${at}: ${a.who}: unknown move "${m.kind}" (squirm, stagger, hop, recoil)`);
         if (m.away && !s.actors.some((x) => x.who === m.away)) errors.push(`${at}: ${a.who}'s ${m.kind} is away from "${m.away}" who is not in the shot`);
@@ -80,7 +81,7 @@ export const validate = (sb0: Storyboard, narr?: Narration): Report => {
     if (s.diagram) {
       if (!DIAGRAM_KINDS.includes(s.diagram.kind)) errors.push(`${at}: unknown diagram "${s.diagram.kind}" (diagrams: ${DIAGRAM_KINDS.join(", ")})`);
       if (!s.actors.some((x) => x.who === s.diagram!.with)) errors.push(`${at}: the diagram is presented by "${s.diagram.with}" who is not in the shot`);
-      const ceil = LAYOUTS[s.set].ceiling, top = (s.diagram.place === "above" ? DIAGRAM_ABOVE + (s.diagram.size ?? 0.95) : 1.42 + (s.diagram.size ?? 0.95) / 2);
+      const ceil = LAYOUTS[s.set].ceiling, top = (s.diagram.place === "above" ? (s.diagram.base ?? aboveBase(sb, s) ?? diagramBase(s)) + (s.diagram.size ?? 0.95) : 1.42 + (s.diagram.size ?? 0.95) / 2);
       if (ceil !== undefined && top > ceil - 0.04) errors.push(`${at}: the diagram reaches ${top.toFixed(2)} m, through the ${ceil} m ceiling: make it smaller (size)`);
     }
     if (s.mood && !(s.mood in MOODS)) errors.push(`${at}: unknown music mood "${s.mood}" (moods: ${Object.keys(MOODS).join(", ")})`);
@@ -96,7 +97,10 @@ export const validate = (sb0: Storyboard, narr?: Narration): Report => {
       for (const a of s.actors) for (const p of [a.at, ...(a.walk ? [a.walk.to] : [])]) {
         if (typeof p === "string" && !LAYOUTS[s.set].spots[p]) continue;
         const m = whereOf(s.set, p);
-        if (Math.hypot(m[0] - x, m[2] - z) < r + 0.3) errors.push(`${at}: prop "${q.id}" stands on ${a.who} (move it or use offset)`);
+        // distance from the actor's mark to the prop's footprint (its box, turned by its yaw, or its circle)
+        const yaw = ((q.yaw ?? 0) * Math.PI) / 180, lx = (m[0] - x) * Math.cos(yaw) - (m[2] - z) * Math.sin(yaw), lz = (m[0] - x) * Math.sin(yaw) + (m[2] - z) * Math.cos(yaw);
+        const gap = e.box ? Math.hypot(Math.max(0, Math.abs(lx) - e.box[0] * (q.scale ?? 1)), Math.max(0, Math.abs(lz) - e.box[1] * (q.scale ?? 1))) : Math.hypot(lx, lz) - r;
+        if (gap < 0.3) errors.push(`${at}: prop "${q.id}" stands on ${a.who} (move it or use offset)`);
       }
       if (w[1] < 0.3 && hasFloorMap(s.set) && !clearAt(s.set, x, z, Math.min(r, 0.6) * 0.8)) warnings.push(`${at}: prop "${q.id}" overlaps something already in the set at [${x.toFixed(1)}, ${z.toFixed(1)}]`);
     }
@@ -153,15 +157,18 @@ export const validate = (sb0: Storyboard, narr?: Narration): Report => {
  *  - a reaction effect off screen
  *  - a camera subject's face hidden behind a nearer character; a non-subject foreground figure filling > 25 % of the frame
  *  - a story prop that is never in frame during the shot; a diagram cut by the frame edge
- *  - an animated prop that can't reach the hand it follows
+ *  - an animated prop that can't reach the hand it follows; a reaching gesture whose hand stops short of its target
  *  Problems become errors (warnings for the foreground size); returned entries start with "!" for the framing table */
 /** gestures whose hand IS the action (a crop at the side of the frame hides what the character is doing) */
 export const SNAP = 0.22;
-const ACTION_GESTURES = ["tickle", "tickleSelf", "operate", "point", "pointUp", "wave", "raiseHand", "cheer", "thumbsUp", "stop", "hold", "facepalm", "scratchHead", "coverMouth"];
+const ACTION_GESTURES = ["tickle", "tickleSelf", "operate", "point", "pointUp", "wave", "raiseHand", "cheer", "thumbsUp", "stop", "hold", "facepalm", "scratchHead", "coverMouth", "offer", "write", "grab", "block"];
+/** gestures that reach a `reach` target: the hand must actually get there */
+const REACHING = ["tickle", "offer", "write", "grab", "block"];
 const staging = (film: ReturnType<typeof compile>, sb: Storyboard, i: number, a: number, b: number, subj: string[], over: string | undefined, errors: string[], warnings: string[]) => {
   const s = sb.shots[i], shot = film.shots[i], at = `shot ${i + 1} (${s.set})`, out: string[] = [];
   const once = new Set<string>(), report = (key: string, msg: string, warn = false) => { if (once.has(key)) return; once.add(key); (warn ? warnings : errors).push(`${at}: ${msg}`); if (!warn) out.push(`!${msg}`); };
   const seenProp = new Set<number>(), cast = new Set(s.actors.filter((x) => !x.crowd).map((x) => x.who));
+  const short = new Map<string, number>(); // consecutive samples a reaching hand is short of its target
   for (let f = a; f < b; f += 6) {
     const cm = runKeys(shot.keys, f), cam = new THREE.PerspectiveCamera(cm.fov, 9 / 16, 0.05, 3000);
     cam.position.set(...cm.pos); cam.up.set(0, 1, 0); cam.lookAt(...cm.look); cam.rotateZ(cm.roll); cam.updateMatrixWorld(); cam.updateProjectionMatrix();
@@ -184,6 +191,19 @@ const staging = (film: ReturnType<typeof compile>, sb: Storyboard, i: number, a:
         const action = v.y > 1 || ACTION_GESTURES.includes(an.gesture);
         report(`hand-${who}`, `${who}'s ${h.raised ? "raised " : ""}hand (${an.gesture}) is out of frame @${tt}s (${v.y > 1 ? "top" : "side"}): widen the shot or change the gesture`, !action);
       }
+    }
+    // a reaching hand (tickle, offer, write, grab, block) must get to its target: another actor's flank or a prop.
+    // Judged on a held reach (three samples = 0.6 s in a row, longer than gesture easing): a hand still on its way in
+    // is not short
+    for (const act of s.actors) {
+      const an = anchors.get(act.who); if (!act.reach || !an || an.walking || !REACHING.includes(an.gesture)) { short.delete(act.who); continue; }
+      const tgtA = anchors.get(act.reach), q = (s.props ?? []).findIndex((x) => x.id === act.reach), pr = q >= 0 ? shot.props?.[q] : undefined;
+      const tgt: [number, number, number] | undefined = tgtA ? tgtA.chest : pr ? [pr.at.x, pr.at.y ?? 0, pr.at.z] : undefined; if (!tgt) continue;
+      const lat = (p: [number, number, number]) => (p[0] - an.floor[0]) * info.right.x + (p[2] - an.floor[2]) * info.right.z;
+      const mid = tgtA && (an.gesture === "offer" || an.gesture === "write"); // handing over: the hands meet half-way
+      const want = mid ? lat(tgt) / 2 : lat(tgt) - Math.sign(lat(tgt)) * (tgtA ? 0.2 : 0), best = Math.max(...an.hands.map((h) => Math.sign(want) * lat(h.p)));
+      const n = Math.abs(want) - best > 0.22 ? (short.get(act.who) ?? 0) + 1 : 0; short.set(act.who, n);
+      if (n >= 3) report(`reachgap-${act.who}`, `${act.who}'s hand (${an.gesture}) stops ${(Math.abs(want) - best).toFixed(2)} m short of ${act.reach} @${tt}s: stand closer`);
     }
     // effects (not ground blobs or diagrams): centre on screen
     for (const x of st.fx) {

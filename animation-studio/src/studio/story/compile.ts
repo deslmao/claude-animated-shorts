@@ -21,13 +21,16 @@ import type { Storyboard, ShotSpec, ActorSpec, Where, V3, CameraSpec, Move as Mo
 import type { Narration } from "../voice/narration";
 import { resolve } from "./timing";
 import { placeCrowd } from "./crowd";
+import { PROPS } from "../props/registry";
 
 export const FPS = 30;
 /** gesture easing time and the walk-end turn (seconds) */
 const EASE = 0.15, EASE_MAX = 0.4, HAND_SPEED = 3.0, WALK_TURN = 0.25;
+/** a story prop's floor position in the world (its mark plus offset) */
+export const propWorld = (set: string, q: PropSpec): V3 => { const w = whereOf(set, q.at); return [w[0] + (q.offset?.[0] ?? 0), w[1], w[2] + (q.offset?.[1] ?? 0)]; };
 /** what decides where the arms are drawn (continuous fields like reach / drive / t are not part of it) */
 const armKey = (p: Pose) => `${p.gesture ?? "hang"}|${p.hold ?? ""}|${p.hand ?? 1}|${p.mode ?? "stand"}`;
-const KEEP_WHILE_TALKING = ["thumbsUp", "point", "pointUp", "hold", "tickle", "tickleSelf", "operate", "wave", "raiseHand", "cheer", "stop", "crossArms", "hips"];
+const KEEP_WHILE_TALKING = ["thumbsUp", "point", "pointUp", "hold", "tickle", "tickleSelf", "operate", "wave", "raiseHand", "cheer", "stop", "crossArms", "hips", "offer", "write", "grab", "block", "read"];
 const FADE = 8;
 
 export const lookOf = (ref: Storyboard["cast"][string]): Look =>
@@ -63,7 +66,9 @@ export const diagramMark = (s: ShotSpec): V3 | undefined => {
 };
 /** a diagram's centre height above its floor point: at head height beside the presenter, or just above their head */
 export const DIAGRAM_ABOVE = 1.94;
-export const diagramY = (s: ShotSpec) => (s.diagram?.place === "above" ? DIAGRAM_ABOVE + (s.diagram.size ?? 0.95) / 2 : 1.42);
+/** the lower edge of an "above" panel: over the presenter's head (story/timing.ts sets it), 1.94 m by default */
+export const diagramBase = (s: ShotSpec) => s.diagram?.base ?? DIAGRAM_ABOVE;
+export const diagramY = (s: ShotSpec) => (s.diagram?.place === "above" ? diagramBase(s) + (s.diagram.size ?? 0.95) / 2 : 1.42);
 
 /** camera spec -> library move, naming actors instead of coordinates (framed where they settle) */
 const moveOf = (s: ShotSpec, c: CameraSpec, t0 = 0): Move => {
@@ -101,7 +106,7 @@ const moveOf = (s: ShotSpec, c: CameraSpec, t0 = 0): Move => {
     case "frame": {
       const above = s.diagram?.place === "above" && c.on.includes("diagram"), dsz = s.diagram?.size ?? 0.95;
       return { move: "frame", marks: c.on.flatMap(marks), size: c.size, from: c.from, height: c.height, roll: c.roll, creep,
-        ...(above ? { top: DIAGRAM_ABOVE + dsz + 0.06, halfWidth: Math.max(0.36, dsz / 2) } : {}) };
+        ...(above ? { top: diagramBase(s) + dsz + 0.06, halfWidth: Math.max(0.36, dsz / 2) } : {}) };
     }
     case "pushIn": case "pullOut": return { move: c.move, marks: c.on.flatMap(marks), size: c.size, to: c.to, from: c.from, height: c.height };
     case "closeUp": return { move: "closeUp", mark: pos(c.on), from: c.from, punch: c.punch, creep: tight(0.003) };
@@ -223,7 +228,7 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
         const shook = (a.shake ?? []).map((x) => shakeAt(tqa, t0 + (x as number))).find((x) => Object.keys(x).length) ?? {};
         return { base, held, life, talking, nodTilt, shook };
       };
-      const { base, held, life, talking, nodTilt, shook } = actingAt(tt);
+      const { base, held, life, talking } = actingAt(tt);
       // facing: explicit, or toward the nearest other actor
       let facing: -1 | 0 | 1 = 0;
       if (a.facing === undefined || (typeof a.facing === "string" && a.facing.startsWith("toward:"))) {
@@ -242,8 +247,17 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
         out.anchors.set(a.who, { ...anchorOf(cam, L, p, anchorsFront(L, { mode: a.walk!.mode === "run" ? "run" : "walk", phase: dist / 1.47 }), dirScreen < 0), walking: true });
       } else {
         const mo = motion.get(a.who)!, extra: Partial<Pose> = {};
-        // a tickler reaches for the target's flank: hands on the target's side of the screen, reach from the distance
-        if (a.reach && posOf.get(a.reach)) { const lat = lateral(p, posOf.get(a.reach)!); extra.hand = lat < 0 ? -1 : 1; extra.reach = Math.max(60, Math.min(270, Math.abs(lat) / SU - 95)); }
+        // a reach: for another actor the hands land on their flank (tickle) or meet theirs half-way (offer, write); for
+        // a story prop they go to its middle, just over its top (grab into a chest, block a grab). Target's screen side
+        if (a.reach) {
+          const q = posOf.get(a.reach), pr = q ? undefined : (s.props ?? []).find((x) => x.id === a.reach);
+          const tp: V3 | undefined = q ?? (pr ? propWorld(s.set, pr) : undefined);
+          if (tp) {
+            const lat = lateral(p, tp); extra.hand = lat < 0 ? -1 : 1; extra.reach = Math.max(60, Math.min(270, Math.abs(lat) / SU - (q ? 95 : 0)));
+            if (q) extra.reachMid = Math.max(60, Math.abs(lat) / SU / 2);
+            if (pr) extra.reachY = 975 - ((PROPS[pr.id]?.height ?? 0.6) * (pr.scale ?? 1)) / SU;
+          }
+        }
         if (a.drive) extra.drive = driveOf(a)(tt);
         const build = (x: ReturnType<typeof actingAt>, tq: number) => layer(x.base, x.life, x.talking, x.shook, { headTilt: x.nodTilt, facing, back: a.back, t: t0 + tq, ...(x.held ? { hold: x.held } : {}), ...extra });
         // gesture easing: if the arms' configuration changed recently, blend from what the frame before the change
@@ -271,8 +285,10 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
           memo.set(fq, out);
           return out;
         };
-        const blended = eased(Math.round(tt * FPS));
-        const pose0: Pose = { ...build({ base, held, life, talking, nodTilt, shook }, tt), ...(blended.blend ? { blend: blended.blend } : {}) };
+        // the drawn pose IS the eased pose at this frame's exact time: building it from the unrounded shot time instead
+        // could put a beat that falls on a frame boundary on the other side of the change (the new pose drawn without
+        // its blend for one frame: an arm snap)
+        const pose0: Pose = eased(Math.round(tt * FPS));
         const pose: Pose = mo.tilt || mo.headTilt || mo.shrug ? { ...pose0, tilt: (pose0.tilt ?? 0) + mo.tilt, headTilt: (pose0.headTilt ?? 0) + mo.headTilt, shrug: (pose0.shrug ?? 0) + mo.shrug } : pose0;
         out.places.push(lookCard(cam, L, p[0], p[1], p[2], { pose }));
         out.anchors.set(a.who, anchorOf(cam, L, p, anchorsFront(L, pose), false));

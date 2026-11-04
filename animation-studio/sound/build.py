@@ -32,7 +32,8 @@ SFX_REL = {"step_hard": -17, "step_stone": -17, "step_floor": -17, "step_grass":
            "whoosh_long": -13, "whoosh_low": -12, "flash_swish": -10, "impact": -7, "thud": -8, "ding": -9, "pop": -9,
            "blip_up": -11, "boing": -10, "poof": -11, "twinkle": -12, "party_pop": -9, "drip": -13, "steam": -13,
            "snore_soft": -14, "ring_ding": -10, "sting_low": -9, "clock_tick": -18,
-           "giggle": -13, "feather_swish": -19, "servo": -18, "stumble": -14}  # tickle-revision effects: subtle, under the voice
+           "giggle": -13, "feather_swish": -19, "servo": -18, "stumble": -14,
+           "crowd_aye": -10, "crowd_murmur": -18, "quill_scratch": -17, "coins_pour": -15}  # tickle-revision effects: subtle, under the voice
 SFX_DEFAULT = -10
 
 

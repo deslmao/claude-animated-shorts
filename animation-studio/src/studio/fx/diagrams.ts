@@ -6,13 +6,17 @@
 import { Pen, INK, P2, rad } from "../characters/toon";
 import { FxPlace, cardKey } from "../cards/cards";
 
-export type DiagramKind = "forecast" | "prediction" | "contrast" | "delay";
-export const DIAGRAM_KINDS: DiagramKind[] = ["forecast", "prediction", "contrast", "delay"];
+export type DiagramKind = "forecast" | "prediction" | "contrast" | "delay" | "shares" | "merchant" | "crew" | "timeline";
+export const DIAGRAM_KINDS: DiagramKind[] = ["forecast", "prediction", "contrast", "delay", "shares", "merchant", "crew", "timeline"];
 export const DIAGRAM_STEPS: Record<DiagramKind, string> = {
   forecast: "the brain from the first frame; 1 the cerebellum lights up, 2 a signal runs to the forecast card, 3 the predicted hand travels to the armpit, 4 the countdown completes (0.35 s) and ticks",
   prediction: "your own touch, from the first frame (the predicted outline waiting); 1 your hand lands in it, 2 tick, 3 the tickle meter turns down, 4 + 5 it sits at zero (no surprise, no tickle)",
   contrast: "both touches from the first frame: yours (predicted, meter low) vs someone else's (unpredicted, meter high); 1 highlights the surprise, 2 sparkles it",
   delay: "control (blue) and robot (orange) strokes in sync from the first frame; 1 tick, 2 the robot's stroke slips behind (a delay), 3 a tickle burst",
+  shares: "a heap of loot between a captain and a sailor from the first frame; 1 the coins stream out to both, 2 the captain's two purses pop in, 3 the sailor's one",
+  merchant: "two chains of command side by side, the merchant one lit: 1 the owner on land (house), 2 the arrow down to the captain, 3 the captain's raised stick and the cowering sailors",
+  crew: "the same two chains, the pirate one lit: 1 the owner is crossed out (no owners), 2 the crew on top lights up, 3 their raised hands elect captain and quartermaster, 4 a crossed-out crown (no tyrant)",
+  timeline: "a timeline 1700-1900 from the first frame; 1 the 1720s pirate marker (flag, purse, sling) pops in, 2 a bar sweeps 'long before' along to 1884, 3 the 1884 country marker (a state building) pops in",
 };
 
 const PINK = "#f4a6b8", PINK_D = "#d97b93", ORANGE = "#ff9f43", BLUE = "#3f8fd8", GREEN = "#4fbf7a", RED = "#e2453c", PAPER = "#fffaf0", SKIN = "#f5c9a0";
@@ -85,6 +89,83 @@ const touchRow = (p: Pen, y: number, s: number, who: "self" | "other", landed: n
   bigMeter(p, 470, y + 150 * s - 120, 300, meterV, glow);
 };
 
+// ---- people and things for the history panels (front-facing icons in the house style) ----
+const SKIN2 = "#f2c7a0", CRIMSON = "#c0353a";
+/** a person icon: torso + head; hat "tricorn" | "bandana" | "top" | none; coat colour; stripes for a sailor shirt */
+const person = (p: Pen, cx: number, cy: number, s: number, o: { coat: string; hat?: "tricorn" | "bandana" | "top"; stripes?: boolean; face?: "smile" | "sad" | "stern" | "grin" }) => {
+  p.poly([[cx - 58 * s, cy + 8 * s], [cx + 58 * s, cy + 8 * s], [cx + 72 * s, cy + 150 * s], [cx - 72 * s, cy + 150 * s]], o.coat, 9 * s);
+  if (o.stripes) for (let k = 0; k < 4; k++) p.stroke([[cx - 60 * s + k * 2 * s, cy + 34 * s + k * 30 * s], [cx + 60 * s + k * 2 * s, cy + 34 * s + k * 30 * s]], 9 * s, CRIMSON);
+  p.ell(cx, cy - 52 * s, 52 * s, 50 * s, SKIN2, 9 * s);
+  const f = o.face ?? "smile";
+  for (const dx of [-17, 17]) { if (f === "grin") p.arc(cx + dx * s, cy - 58 * s, 8 * s, 6 * s, 200, 340, 6 * s); else p.dot(cx + dx * s, cy - 58 * s, 6.5 * s); }
+  if (f === "sad") p.arc(cx, cy - 22 * s, 16 * s, 10 * s, 200, 340, 6 * s); else if (f === "stern") p.stroke([[cx - 16 * s, cy - 30 * s], [cx + 16 * s, cy - 30 * s]], 6 * s); else p.arc(cx, cy - 40 * s, 16 * s, 12 * s, 20, 160, 6 * s);
+  if (f === "stern") { p.stroke([[cx - 30 * s, cy - 78 * s], [cx - 8 * s, cy - 70 * s]], 6 * s); p.stroke([[cx + 30 * s, cy - 78 * s], [cx + 8 * s, cy - 70 * s]], 6 * s); }
+  if (o.hat === "tricorn") { p.poly([[cx - 74 * s, cy - 82 * s], [cx, cy - 126 * s], [cx + 74 * s, cy - 82 * s], [cx, cy - 94 * s]], "#2a2230", 8 * s); p.stroke([[cx - 60 * s, cy - 86 * s], [cx + 60 * s, cy - 86 * s]], 5 * s, "#e8c45a"); }
+  else if (o.hat === "bandana") { p.poly([[cx - 50 * s, cy - 70 * s], [cx + 50 * s, cy - 70 * s], [cx + 40 * s, cy - 100 * s], [cx - 40 * s, cy - 100 * s]], CRIMSON, 7 * s); p.poly([[cx + 46 * s, cy - 78 * s], [cx + 74 * s, cy - 66 * s], [cx + 60 * s, cy - 92 * s]], CRIMSON, 6 * s); }
+  else if (o.hat === "top") { p.poly([[cx - 40 * s, cy - 92 * s], [cx + 40 * s, cy - 92 * s], [cx + 36 * s, cy - 160 * s], [cx - 36 * s, cy - 160 * s]], "#2a2230", 8 * s); p.poly([[cx - 64 * s, cy - 86 * s], [cx + 64 * s, cy - 86 * s], [cx + 64 * s, cy - 98 * s], [cx - 64 * s, cy - 98 * s]], "#2a2230", 6 * s); }
+};
+const purse = (p: Pen, x: number, y: number, s: number) => {
+  p.ell(x, y, 40 * s, 36 * s, "#a8743f", 8 * s);
+  p.poly([[x - 16 * s, y - 30 * s], [x + 16 * s, y - 30 * s], [x + 24 * s, y - 52 * s], [x - 24 * s, y - 52 * s]], "#a8743f", 7 * s);
+  p.stroke([[x - 18 * s, y - 30 * s], [x + 18 * s, y - 30 * s]], 6 * s, "#5a3b2a");
+  p.ell(x - 8 * s, y - 54 * s, 11 * s, 8 * s, "#f0c040", 5 * s); p.ell(x + 10 * s, y - 56 * s, 11 * s, 8 * s, "#f0c040", 5 * s);
+};
+const coin = (p: Pen, x: number, y: number, s: number) => { p.ell(x, y, 22 * s, 22 * s, "#f0c040", 6 * s); p.ell(x, y, 12 * s, 12 * s, null, 4 * s, 0, 360); };
+const arrow = (p: Pen, a: P2, b: P2, w: number, col = INK, k = 1) => {
+  if (k <= 0) return; const e: P2 = [a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k], ang = Math.atan2(e[1] - a[1], e[0] - a[0]);
+  p.stroke([a, e], w, col); p.poly([[e[0] + Math.cos(ang) * 3 * w, e[1] + Math.sin(ang) * 3 * w], [e[0] + Math.cos(ang + 2.4) * 3 * w, e[1] + Math.sin(ang + 2.4) * 3 * w], [e[0] + Math.cos(ang - 2.4) * 3 * w, e[1] + Math.sin(ang - 2.4) * 3 * w]], col, 0);
+};
+const cross = (p: Pen, x: number, y: number, r: number, k = 1) => { if (k <= 0) return; p.stroke([[x - r, y - r], [x - r + 2 * r * k, y - r + 2 * r * k]], r * 0.28, CRIMSON); if (k > 0.5) p.stroke([[x + r, y - r], [x + r - 2 * r * (k - 0.5) * 2, y - r + 2 * r * (k - 0.5) * 2]], r * 0.28, CRIMSON); };
+/** stroke digits (0-9 and "s"): drawn, not typeset, so every machine and render chunk draws them identically */
+const DIGITS: Record<string, number[][]> = {
+  "0":[[0.5,0.0,0.629,0.034,0.75,0.134,0.854,0.293,0.933,0.5,0.983,0.741,1.0,1.0,0.983,1.259,0.933,1.5,0.854,1.707,0.75,1.866,0.629,1.966,0.5,2.0,0.371,1.966,0.25,1.866,0.146,1.707,0.067,1.5,0.017,1.259,0.0,1.0,0.017,0.741,0.067,0.5,0.146,0.293,0.25,0.134,0.371,0.034,0.5,0.0]], "1": [[0.2, 0.4, 0.6, 0, 0.6, 2]], "2": [[0, 0.3, 0.3, 0, 0.8, 0, 1, 0.4, 0, 2, 1, 2]], "3": [[0, 0, 1, 0, 0.4, 0.9, 1, 1.4, 0.7, 2, 0, 1.9]],
+  "4": [[0.8, 2, 0.8, 0, 0, 1.4, 1.1, 1.4]], "5": [[1, 0, 0.1, 0, 0, 0.9, 0.8, 0.9, 1, 1.4, 0.7, 2, 0, 1.9]], "6": [[0.9, 0, 0.2, 0.6, 0, 1.5, 0.4, 2, 1, 1.6, 0.8, 1.1, 0, 1.3]],
+  "7": [[0, 0, 1, 0, 0.4, 2]], "8": [[0.5, 1, 0.1, 0.5, 0.5, 0, 0.9, 0.5, 0.5, 1, 1, 1.5, 0.5, 2, 0, 1.5, 0.5, 1]], "9": [[1, 0.7, 0.6, 1, 0, 0.6, 0.4, 0, 1, 0.3, 0.9, 2]], s: [[0.8, 1, 0.2, 1, 0.1, 1.4, 0.8, 1.6, 0.7, 2, 0, 2]],
+};
+const digits = (p: Pen, str: string, cx: number, y: number, h: number, col = INK) => {
+  const w = h * 0.5, gap = h * 0.22, tot = str.length * w + (str.length - 1) * gap; let x = cx - tot / 2;
+  for (const ch of str) { for (const seg of DIGITS[ch] ?? []) { const pts: P2[] = []; for (let i = 0; i < seg.length; i += 2) pts.push([x + seg[i] * w, y + (seg[i + 1] / 2) * h]); p.stroke(pts, h * 0.13, col); } x += w + gap; }
+};
+/** the two chains of command (merchant left, pirate right); lit = which column is in focus */
+const chains = (p: Pen, tt: number, t: (k: number) => number, lit: "merchant" | "crew") => {
+  const dim = (on: boolean, fn: () => void) => { p.g.save(); p.g.globalAlpha = on ? 1 : 0.28; fn(); p.g.restore(); };
+  const M = lit === "merchant", L = 270, R = 730;
+  p.stroke([[500, 90], [500, 910]], 7, "#e2d6c4");
+  // merchant: owner on land (house) -> captain -> sailors
+  dim(M, () => {
+    const s1 = M ? (t(1) >= 0 ? 1 : 0.45) : 1;
+    p.g.save(); p.g.globalAlpha *= s1;
+    p.poly([[L + 60, 250], [L + 130, 250], [L + 130, 180], [L + 95, 145], [L + 60, 180]], "#f6e3b4", 7); p.poly([[L + 85, 250], [L + 105, 250], [L + 105, 215], [L + 85, 215]], "#8a4f2c", 4);
+    person(p, L - 45, 215, 0.72, { coat: "#3d3a52", hat: "top", face: "stern" });
+    p.g.restore();
+    const k2 = M ? (t(2) >= 0 ? ease(t(2) / 0.5) : 0) : 1;
+    arrow(p, [L, 320], [L, 440], 10, INK, k2);
+    person(p, L, 520, 0.72, { coat: RED, hat: "tricorn", face: M && t(3) >= 0 ? "stern" : "smile" });
+    if (M && t(3) >= 0) { const sw = Math.sin(tt * 9) * 0.3; p.g.save(); p.g.translate(L + 62, 575); p.g.rotate(0.75 + sw); p.stroke([[0, 0], [0, -130]], 13, "#7a4f33"); p.g.restore(); }
+    arrow(p, [L, 640], [L, 740], 10, INK, M ? (t(2) >= 0 ? ease((t(2) - 0.3) / 0.5) : 0) : 1);
+    const sad = M && t(3) >= 0, dy = sad ? 6 * Math.abs(Math.sin(tt * 10)) : 0;
+    for (const dx of [-125, 0, 125]) person(p, L + dx, 815 + dy, 0.5, { coat: "#f2e6c8", hat: "bandana", stripes: true, face: sad ? "sad" : "smile" });
+  });
+  // pirate: no owner; the crew on top elects the captain and the quartermaster below
+  dim(!M, () => {
+    p.g.save(); p.g.globalAlpha *= 0.55; p.poly([[R + 60, 250], [R + 130, 250], [R + 130, 180], [R + 95, 145], [R + 60, 180]], "#f6e3b4", 7); person(p, R - 45, 215, 0.72, { coat: "#3d3a52", hat: "top", face: "stern" }); p.g.restore();
+    if (!M) cross(p, R + 20, 200, 110, t(1) >= 0 ? ease(t(1) / 0.5) : 0);
+    const glow = !M && t(2) >= 0 ? ease(t(2) / 0.4) : 0;
+    if (glow > 0) { p.g.save(); p.g.globalAlpha *= 0.3 * glow; p.ell(R, 420, 220, 100, "#f4d24a", 0); p.g.restore(); }
+    const up = !M && t(3) >= 0 ? ease(t(3) / 0.4) : 0;
+    for (const dx of [-150, -50, 50, 150]) {
+      person(p, R + dx, 430, 0.42, { coat: "#f2e6c8", hat: "bandana", stripes: true, face: "grin" });
+      if (up > 0) { p.stroke([[R + dx + 30, 448], [R + dx + 42, 448 - 70 * up]], 10, SKIN2); p.ell(R + dx + 42, 440 - 76 * up, 11, 11, SKIN2, 4); }
+    }
+    const ka = !M ? (t(3) >= 0 ? ease((t(3) - 0.2) / 0.5) : 0) : 1;
+    arrow(p, [R - 60, 520], [R - 110, 640], 10, "#2a9d8f", ka); arrow(p, [R + 60, 520], [R + 110, 640], 10, "#2a9d8f", ka);
+    person(p, R - 115, 745, 0.6, { coat: RED, hat: "tricorn", face: "smile" });
+    person(p, R + 115, 745, 0.6, { coat: "#2f6e4f", hat: "bandana", face: "smile" });
+    // no tyrant: a crown beside the elected captain, crossed out
+    if (!M && t(4) >= 0) { const k = pop(t(4)), cx = R - 205, cy = 640; scaled(p, cx, cy, k, () => { p.poly([[cx - 45, cy + 25], [cx - 35, cy - 25], [cx - 15, cy + 5], [cx, cy - 35], [cx + 15, cy + 5], [cx + 35, cy - 25], [cx + 45, cy + 25]], "#f0c040", 6); }); cross(p, cx, cy, 50, ease(t(4) / 0.4)); }
+  });
+};
+
 export const drawDiagram = (p: Pen, kind: DiagramKind, tt: number, steps: number[]) => {
   panel(p);
   const t = (k: number) => since(tt, steps, k);
@@ -142,6 +223,42 @@ export const drawDiagram = (p: Pen, kind: DiagramKind, tt: number, steps: number
     touchRow(p, 670, 1.05, "other", 1, false, 0.95);
     ask(p, 470, 540, 0.9); bang(p, 880, 560, 0.85);
     if (t(2) >= 0) for (const [x, y, ph] of [[150, 560, 0], [860, 880, 1.3], [520, 900, 2.1]]) { const s2 = 0.6 + 0.4 * Math.abs(Math.sin(tt * 8 + ph)); p.poly([[x, y - 40 * s2], [x + 10 * s2, y - 10 * s2], [x + 40 * s2, y], [x + 10 * s2, y + 10 * s2], [x, y + 40 * s2], [x - 10 * s2, y + 10 * s2], [x - 40 * s2, y], [x - 10 * s2, y - 10 * s2]], "#fff6c8", 6); }
+  } else if (kind === "shares") {
+    // the loot heap between a captain (left) and a sailor (right), from the first frame; 1 coins stream out to both,
+    // 2 the captain's two purses, 3 the sailor's one (at most two shares to a sailor's one)
+    p.ell(500, 290, 230, 70, "#c9932f", 9);
+    for (let i = 0; i < 18; i++) { const a = i * 2.4, r = 40 + (i * 37) % 150; coin(p, 500 + Math.cos(a) * r, 250 + Math.sin(a) * 28 - (i % 3) * 18, 1.05); }
+    person(p, 250, 600, 1.0, { coat: RED, hat: "tricorn", face: t(2) >= 0 ? "grin" : "smile" });
+    person(p, 750, 600, 1.0, { coat: "#f2e6c8", hat: "bandana", stripes: true, face: t(3) >= 0 ? "grin" : "smile" });
+    // coins arc from the heap out to the floor in front of each (outside the figures), where the purses land
+    if (t(1) >= 0 && t(1) < 1.4) for (let k = 0; k < 6; k++) { const u = ((t(1) * 1.6 + k / 6) % 1), side = k % 2 ? 1 : -1; coin(p, 500 + side * (120 + 330 * u), 340 + 520 * u * u, 0.8); }
+    const bagY = 880;
+    if (t(2) >= 0) for (const [i, dx] of [[0, -55], [1, 55]] as const) scaled(p, 250 + dx, bagY, pop(t(2) - 0.15 * i), () => purse(p, 250 + dx, bagY, 1.1));
+    if (t(3) >= 0) scaled(p, 750, bagY, pop(t(3)), () => purse(p, 750, bagY, 1.1));
+  } else if (kind === "merchant" || kind === "crew") {
+    chains(p, tt, t, kind);
+  } else if (kind === "timeline") {
+    // 1700 -> 1900 from the first frame; 1 the 1720s pirates' injury pay, 2 'long before' sweeps on, 3 1884: a country
+    const X = (y: number) => 130 + ((y - 1700) / 200) * 740, Y = 640;
+    arrow(p, [100, Y], [915, Y], 12);
+    for (const y of [1700, 1800, 1900]) { p.stroke([[X(y), Y - 22], [X(y), Y + 22]], 9); digits(p, String(y), X(y), Y + 44, 40, "#a89a86"); }
+    if (t(2) >= 0) { const k = ease(t(2) / 1.0); p.g.save(); p.g.globalAlpha = 0.85; p.poly([[X(1722), Y - 16], [X(1722) + (X(1884) - X(1722)) * k, Y - 16], [X(1722) + (X(1884) - X(1722)) * k, Y + 16], [X(1722), Y + 16]], "#f4b23a", 0); p.g.restore(); }
+    if (t(1) >= 0) scaled(p, X(1722), 400, pop(t(1)), () => {
+      const x = X(1722);
+      p.stroke([[x, 540], [x, Y - 20]], 7);
+      person(p, x + 30, 350, 0.95, { coat: "#f2e6c8", hat: "bandana", stripes: true, face: "grin" });
+      p.poly([[x - 32, 380], [x + 62, 380], [x + 80, 420], [x - 22, 432]], "#fbf6ea", 7);   // the sling
+      purse(p, x + 160, 470, 1.0);
+      digits(p, "1720s", x + 40, Y + 110, 64, INK);
+    });
+    if (t(3) >= 0) scaled(p, X(1884), 400, pop(t(3)), () => {
+      const x = X(1884);
+      p.stroke([[x, 540], [x, Y - 20]], 7);
+      p.poly([[x - 140, 380], [x, 270], [x + 140, 380]], "#e9e2d0", 9);                                  // a state building
+      p.poly([[x - 128, 380], [x + 128, 380], [x + 128, 530], [x - 128, 530]], "#f6f1e6", 9);
+      for (const dx of [-88, -30, 30, 88]) p.poly([[x + dx - 12, 392], [x + dx + 12, 392], [x + dx + 12, 518], [x + dx - 12, 518]], "#d8ccb4", 4);
+      digits(p, "1884", x - 30, Y + 110, 64, INK);
+    });
   } else {
     // delay: the control's stroke (blue) and the robot's (orange), in sync from the first frame; 1 a tick (in sync),
     // 2 the robot's stroke slips behind (the delay, stopwatch), 3 a tickle burst

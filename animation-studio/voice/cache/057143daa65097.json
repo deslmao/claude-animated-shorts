@@ -1,0 +1,80 @@
+{
+ "hash": "057143daa65097",
+ "text": "Some of history's most feared pirates ran their ships like tiny democracies.",
+ "voice": "georgeLively",
+ "lead": 0,
+ "end": 4.18,
+ "dur": 4.205714,
+ "words": [
+  {
+   "w": "Some",
+   "t0": 0,
+   "t1": 0.232
+  },
+  {
+   "w": "of",
+   "t0": 0.267,
+   "t1": 0.313
+  },
+  {
+   "w": "history's",
+   "t0": 0.372,
+   "t1": 0.743
+  },
+  {
+   "w": "most",
+   "t0": 0.813,
+   "t1": 1.033
+  },
+  {
+   "w": "feared",
+   "t0": 1.103,
+   "t1": 1.393
+  },
+  {
+   "w": "pirates",
+   "t0": 1.451,
+   "t1": 1.858
+  },
+  {
+   "w": "ran",
+   "t0": 1.927,
+   "t1": 2.136
+  },
+  {
+   "w": "their",
+   "t0": 2.194,
+   "t1": 2.357
+  },
+  {
+   "w": "ships",
+   "t0": 2.403,
+   "t1": 2.659
+  },
+  {
+   "w": "like",
+   "t0": 2.705,
+   "t1": 2.879
+  },
+  {
+   "w": "tiny",
+   "t0": 2.926,
+   "t1": 3.216
+  },
+  {
+   "w": "democracies.",
+   "t0": 3.262,
+   "t1": 4.18
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.35,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-04T01:32:38.727Z"
+}

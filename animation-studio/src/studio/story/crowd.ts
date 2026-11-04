@@ -7,6 +7,7 @@ import { runKeys, Key } from "../camera/keys";
 import { clearAt } from "../sets/floor";
 import type { ActorSpec, ShotSpec, V3, Where } from "./types";
 import type { Act } from "../characters/figure";
+import type { Beat } from "./types";
 import type { Era } from "../characters/cast";
 
 export type CrowdSpec = {
@@ -16,6 +17,11 @@ export type CrowdSpec = {
   radius?: number;            // metres around the centre (default 6)
   acts?: Act[];               // acting presets handed out in turn (default neutral, with idle life)
   seed?: number;              // which extras (default: per shot)
+  /** what the whole crowd does on words (e.g. everyone raises a hand to vote); each extra starts a moment after the
+   *  one before (a ripple, not a drill), deterministic per extra */
+  beats?: Beat[];
+  /** who the crowd faces (default: the shot's first actor) */
+  toward?: string;
 };
 
 const h = (n: number) => { const x = Math.sin(n * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
@@ -50,9 +56,10 @@ export const placeCrowd = (s: ShotSpec, shotNo: number, keys: Key[], fMid: numbe
     if (picked.length >= c.count) break;
     if (picked.every((q) => Math.hypot(q[0] - p[0], q[2] - p[2]) >= 1.1)) picked.push(p);
   }
-  const look = main[0]?.who;
+  const look = c.toward ?? main[0]?.who;
   const actors: ActorSpec[] = picked.map((p, i) => ({
     who: `crowd${shotNo}_${i}`, at: p, crowd: true, act: c.acts?.length ? c.acts[i % c.acts.length] : "neutral",
+    ...(c.beats?.length ? { beats: c.beats.map((b) => ({ ...b, t: (b.t ?? 0) + 0.06 * ((i * 3) % 5) }) as Beat) } : {}),
     ...(look ? { facing: `toward:${look}` as const } : {}),
   }));
   const cast = Object.fromEntries(actors.map((a, i) => [a.who, { extra: seed + i, era }]));

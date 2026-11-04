@@ -47,6 +47,9 @@ export type Look = {
   eyepatch?: { side: -1 | 1; color?: string };
   /** expression quirks: wider shock eyes, resting lid */
   eyes?: { shock?: number };
+  /** an injured arm in a sling (side = design side, as `hand`): that arm stays bent across the belly in a cloth sling
+   *  whatever the gesture; the other arm acts as usual (front view) */
+  sling?: -1 | 1;
 };
 
 // ---------------- faces ----------------
@@ -399,12 +402,12 @@ const hat3 = (p: Pen, L: Look, H: Blob, cx: number, hc: number, light: number, f
 // ---------------- gestures ----------------
 export type Gesture = "hang" | "wave" | "point" | "pointUp" | "shrug" | "facepalm" | "chin" | "thumbsUp" | "crossArms" | "hips" | "raiseHand"
   | "cheer" | "talk" | "scratchHead" | "coverMouth" | "present" | "fists" | "clap" | "belly" | "stop" | "pump" | "spread" | "hold"
-  | "tickleSelf" | "tickle" | "operate" | "read";
+  | "tickleSelf" | "tickle" | "operate" | "read" | "offer" | "write" | "grab" | "block";
 export const GESTURES: Gesture[] = ["hang", "wave", "point", "pointUp", "shrug", "facepalm", "chin", "thumbsUp", "crossArms", "hips", "raiseHand",
-  "cheer", "talk", "scratchHead", "coverMouth", "present", "fists", "clap", "belly", "stop", "spread", "hold", "tickleSelf", "tickle", "operate", "read"];
+  "cheer", "talk", "scratchHead", "coverMouth", "present", "fists", "clap", "belly", "stop", "spread", "hold", "tickleSelf", "tickle", "operate", "read", "offer", "write", "grab", "block"];
 /** gestures that show a held item off overhead (raise it, point it up, cheer with it); any other gesture becomes "hold"
  *  (the item at chest height, close to the body, so it stays in frame in medium shots) while something is held */
-const CARRY: Gesture[] = ["hold", "raiseHand", "pointUp", "cheer", "operate", "read"];
+const CARRY: Gesture[] = ["hold", "raiseHand", "pointUp", "cheer", "operate", "read", "offer", "write", "grab"];
 type Hand = "dot" | "point" | "thumb" | "open" | "fist" | "wiggle" | "palm";
 /** layer: 0 behind the torso, 1 in front of the torso, 2 over the face */
 type ArmDef = { pts: [P2, P2, P2]; layer: 0 | 1 | 2; hand: Hand; dir?: number };
@@ -422,6 +425,11 @@ export type Pose = {
   /** "tickle": how far the hands reach toward the screen-`hand` side, in design units from the body centre (the
    *  director sets it from the target's position so the fingers land on the target's flank) */
   reach?: number;
+  /** "grab" / "block" / "offer" / "write" at a prop: the prop's top (design y, soles at 975); the hand goes just over it */
+  reachY?: number;
+  /** "offer" / "write" to another actor: half the distance to them (design units), so the two hands meet between them
+   *  instead of ending at (and behind) the other's body */
+  reachMid?: number;
   /** "operate": the control hand's stroke, -1..1 (a robot driven by it follows the same signal) */
   drive?: number;
   /** gesture easing: the arms are drawn part-way (k 0..1) from this earlier pose's arms to this pose's */
@@ -483,7 +491,7 @@ export const rigFront = (L: Look, pose: Pose) => {
     case "wave": one((s) => { const S = S1(s), w = Math.sin(t * 9); add(s, [S[0] + s * (0.3 * HH + 3 * u * w), S[1] - 0.2 * HH], [S[0] + s * (0.38 * HH + 12 * u * w), S[1] - 0.62 * HH], 0, "open"); }); break;
     case "point": one((s) => { const S = S1(s); add(s, [S[0] + s * 0.42 * HH, S[1] + 0.03 * HH], [S[0] + s * 0.86 * HH, S[1] - 0.04 * HH], 0, "point", s > 0 ? 0 : Math.PI); }); break;
     case "pointUp": one((s) => { const S = S1(s); add(s, [S[0] + s * 0.34 * HH, S[1] - 0.3 * HH], [S[0] + s * 0.44 * HH, S[1] - 0.76 * HH], 0, "point", -Math.PI / 2); }); break; // angled out, clear of the head and long hair
-    case "raiseHand": one((s) => { const S = S1(s); add(s, [S[0] + s * 0.14 * HH, S[1] - 0.42 * HH], [S[0] + s * 0.16 * HH, S[1] - 0.88 * HH], 0, "open"); }); break;
+    case "raiseHand": one((s) => { const S = S1(s); add(s, [S[0] + s * 0.36 * HH, S[1] - 0.34 * HH], [S[0] + s * 0.46 * HH, S[1] - 0.86 * HH], 0, "open"); }); break; // angled out, clear of the head (a vote reads)
     case "thumbsUp": one((s) => { const S = S1(s); add(s, [S[0] + s * 0.26 * HH, S[1] + 0.4 * HH], [S[0] + s * 0.4 * HH, S[1] + 0.04 * HH], 1, "thumb"); }); break;
     case "present": one((s) => { const S = S1(s); add(s, [S[0] + s * 0.32 * HH, S[1] + 0.38 * HH], [S[0] + s * 0.66 * HH, S[1] + 0.24 * HH], 0, "open"); }); break;
     case "chin": {
@@ -527,12 +535,33 @@ export const rigFront = (L: Look, pose: Pose) => {
       add(o, [So[0] + o * 0.32 * HH, So[1] + 0.36 * HH], [So[0] + o * 0.62 * HH, So[1] + 0.32 * HH], 0, "palm");
       break;
     }
+    // reaching gestures (the director sets `reach` / `hand` from a target actor or prop, and `reachY` for a prop): the
+    // `hand`-side arm goes out to the target; capped inside the 600-unit card like "tickle"
+    case "offer": case "write": case "grab": case "block": {
+      const s = hs, S = S1(s), cap = 270 - s * (tcx - 300);
+      const want = (g === "offer" || g === "write") && pose.reachMid !== undefined ? pose.reachMid + 12 * u : pose.reach ?? 0.9 * HH, reach = Math.min(want, cap);
+      const yAt = g === "offer" ? chin + 0.5 * HH : g === "write" ? chin + 0.56 * HH : g === "grab" ? chin + 0.78 * HH : chin + 0.62 * HH;
+      // at a prop: just over its top (grab), a little higher to hand something over, highest to block the grab
+      const over = g === "grab" ? 0.04 : g === "write" ? 0.12 : g === "offer" ? 0.2 : 0.32;
+      const wob = g === "write" ? 2.2 * u * Math.sin(t * 17) : g === "grab" ? 1.5 * u * Math.sin(t * 9) : 0;
+      const hy = Math.max(chin + 0.3 * HH, Math.min(pose.reachY !== undefined ? pose.reachY - over * HH : yAt, torsoBot - 0.05 * HH)) + (g === "write" ? 1.6 * u * Math.cos(t * 23) : 0);
+      const hx = tcx + s * reach + wob;
+      add(s, [S[0] + s * Math.max(0.24 * HH, (hx - S[0]) * s * 0.45), (S[1] + hy) / 2 + 0.12 * HH], [hx, hy], 1, g === "grab" ? "open" : g === "block" ? "palm" : "fist");
+      arms.push({ pts: hang(-s, 0), layer: 0, hand: "dot" });
+      break;
+    }
     case "read": // both hands hold an open item (an open book) in front of the lower chest; the eyes look down into it
       for (const s of [-1, 1]) add(s, [tcx + s * (1.12 * T.a + 5 * u), chin + 0.5 * HH], [tcx + s * 0.78 * T.a, chin + 0.66 * HH], 1, "fist");
       break;
     case "stop": one((s) => { const S = S1(s); add(s, [S[0] + s * 0.22 * HH, S[1] + 0.32 * HH], [S[0] + s * 0.18 * HH, S[1] - 0.12 * HH], 1, "open"); }); break;
     case "talk": for (const s of [-1, 1]) { const w = Math.sin(t * 6 + (s > 0 ? 0 : 1.7)); add(s, [tcx + s * 1.12 * T.a, chin + 0.46 * HH], [tcx + s * (0.95 * T.a + 6 * u * w), chin + 0.56 * HH - 8 * u * w], 1, "open"); } break;
     case "pump": for (const s of [-1, 1]) { const w = Math.sin(two * phase) * s; add(s, [tcx + s * 1.15 * T.a, chin + 0.42 * HH - 10 * u * w], [tcx + s * 0.9 * T.a, chin + 0.22 * HH - 22 * u * w], 0, "fist"); } break;
+  }
+  // an arm in a sling: bent across the belly whatever the gesture (mode sit / fall keep their own arms)
+  if (L.sling && mode !== "sit" && mode !== "fall") {
+    const s = L.sling, k = arms.findIndex((a) => Math.sign(a.pts[0][0] - tcx) === s);
+    const bent: ArmDef = { pts: [sh(s), [tcx + s * (1.08 * T.a + 2 * u), chin + 0.5 * HH], [tcx - s * 0.18 * T.a, chin + 0.52 * HH]], layer: 1, hand: "dot" };
+    if (k >= 0) arms[k] = bent; else arms.push(bent);
   }
   // gesture easing: each arm moves part-way from where the earlier pose had the arm on the same side
   if (pose.blend && pose.blend.k < 1) {
@@ -621,8 +650,9 @@ export const figureFront = (p: Pen, L: Look, pose: Pose) => {
   };
   const drawArm = (a: ArmDef) => {
     const c = curve(a.pts[0], a.pts[1], a.pts[2]);
-    // arms crossing in front of the body get a thin ink rim so they separate from the clothes (like held props)
-    if (a.layer > 0) p.stroke(c, 5.2 * u + 3.2 * u, INK);
+    // arms crossing in front of the body get a thin ink rim so they separate from the clothes (like held props); so
+    // does a raised arm (hand above the shoulder: a vote, a wave, a point up), so it reads against sky and sails
+    if (a.layer > 0 || a.pts[2][1] < a.pts[0][1] - 0.2 * HH) p.stroke(c, 5.2 * u + 3.2 * u, INK);
     p.stroke(c, 5.2 * u, armCol); drawHand(a);
   };
   for (const a of arms) if (a.layer === 0) drawArm(a);
@@ -698,6 +728,15 @@ export const figureFront = (p: Pen, L: Look, pose: Pose) => {
     p.poly([[tcx - 4 * u, y], [tcx + 4 * u, y], [tcx + 6 * u, y + 0.5 * HH], [tcx, y + 0.58 * HH], [tcx - 6 * u, y + 0.5 * HH]], c, 2 * u);
   }
   for (const a of arms) if (a.layer === 1) drawArm(a);
+  // the sling: a cloth cradle under the bent forearm, its strap up to the opposite shoulder
+  if (L.sling && !back && mode !== "sit" && mode !== "fall") {
+    const arm = arms.find((x) => Math.sign(x.pts[0][0] - tcx) === L.sling);
+    if (arm) {
+      const [, E, H] = arm.pts, mid: P2 = [(E[0] + H[0]) / 2, (E[1] + H[1]) / 2 + 9 * u], o = -L.sling;
+      p.stroke([[H[0], H[1] - 2 * u], [tcx + o * 0.62 * T.a, chin + 0.1 * HH]], 4.2 * u, "#e9e2d0");
+      p.poly([[E[0] - L.sling * 2 * u, E[1] - 4 * u], [H[0] + o * 3 * u, H[1] - 4 * u], [H[0] + o * 2 * u, H[1] + 5 * u], mid, [E[0], E[1] + 6 * u]], "#f1ebdb", 2.6 * u);
+    }
+  }
   // held item: in the holding hand (the gesturing arm on the `hand` side), in front of the body, behind the head
   if (pose.hold && ITEMS[pose.hold] && mode !== "fall") {
     const hold = arms.find((a) => Math.sign(a.pts[0][0] - tcx) === hs && a.hand !== "dot") ?? arms.find((a) => Math.sign(a.pts[0][0] - tcx) === hs);

@@ -260,7 +260,11 @@
   "tickleSelf": "",
   "tickle": "",
   "operate": "",
-  "read": ""
+  "read": "",
+  "offer": "",
+  "write": "",
+  "grab": "",
+  "block": ""
  },
  "effects": {
   "question": "",
@@ -417,7 +421,9 @@
   "chris": "085e700d8e2769",
   "jessica": "0cc244fc327bca",
   "alice": "18b02ddedb476f",
-  "matilda": "1da9a2d078716a"
+  "matilda": "1da9a2d078716a",
+  "georgeLively": "1f1d08f9ab4c99",
+  "captainRedd": "14f9b973718a92"
  },
  "props": {
   "armchair": "",
@@ -494,7 +500,8 @@
   "kidd": "1685505f33a4ec",
   "miloPirate": "154282cb3815ce",
   "junoPirate": "19a9dc94b7e03c",
-  "gusPirate": "1a2f79c99578b7"
+  "gusPirate": "1a2f79c99578b7",
+  "gusSling": "1dc7bed626793d"
  },
  "placeable": {
   "sofa": "106defb7ae552c",
@@ -542,6 +549,7 @@
   "picket": "183c2374b0124f",
   "robotArm": "061a26dd022e9b",
   "cannon": "0f8f6d539c925c",
+  "deckTable": "0e5c8e7152eac3",
   "treasureChest": "151bba57aa1f34",
   "shipWheel": "0dd66ff34f527d",
   "ropeCoil": "1c13395fdeea65",
@@ -572,6 +580,7 @@
   "flask": "",
   "joystick": "",
   "scroll": "",
+  "quill": "",
   "coinBag": "",
   "shovel": "",
   "tricorn": ""

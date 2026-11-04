@@ -13,6 +13,9 @@ import { THEMES } from "../themes";
 export type PropEntry = {
   name: string; desc: string; category: "furniture" | "lab" | "street" | "market" | "nature" | "theme";
   themes: string[]; tags: string[]; radius: number; height: number;
+  /** a rectangular footprint, half-sizes [x, z] in metres before yaw (long tables, chests): actors may stand close to
+   *  its edges; without it the prop's footprint is the circle of `radius` */
+  box?: [number, number];
   build: (b: Batch, a: At) => void;
   variants?: Record<string, (b: Batch, a: At) => void>;
   /** an animated version (moving parts, posed every frame as a pure function of the inputs): used when a storyboard

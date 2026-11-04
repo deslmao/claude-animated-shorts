@@ -60,6 +60,8 @@ const broken: [string, (sb: Storyboard) => void, string?][] = [
   ["diagram cut by frame", (sb) => { sb.shots[2].diagram = { kind: "forecast", with: "juno", side: 1 }; }, "diagram"],
   ["arm snaps (no easing)", (sb) => { sb.ease = false; }, "jumps"],
   ["diagram through ceiling", (sb) => { sb.shots[2].diagram = { kind: "forecast", with: "juno", place: "above", size: 1.5 }; sb.shots[2].camera = { move: "frame", on: ["juno", "diagram"], size: "medium" }; }, "ceiling"],
+  ["reach unknown target", (sb) => { sb.shots[2].actors[0].reach = "nobody"; }, "neither an actor nor a prop"],
+  ["hand stops short", (sb) => { const j = sb.shots[2].actors[0]; j.gesture = "grab"; delete j.act; j.reach = "treasureChest"; sb.shots[2].props = [{ id: "treasureChest", at: j.at, offset: [-2.4, -0.6] }]; sb.shots[2].camera = { move: "frame", on: [j.who, "treasureChest"], size: "full" }; }, "short of"],
   ["robot can't reach", (sb) => { sb.shots[2].actors[0].gesture = "operate"; delete sb.shots[2].actors[0].act; sb.shots[2].props = [{ id: "robotArm", at: [-3.5, 0, -2.5], follow: { who: "juno" } }]; sb.shots[2].camera = { move: "frame", on: ["juno", "robotArm"], size: "full" }; }, "reach"],
 ];
 console.log("\n== validator catches mistakes");

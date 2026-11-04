@@ -7,7 +7,8 @@
 // and an explainer diagram are kept clear too. Pure: computed once from the storyboard, identical in every chunk.
 import * as THREE from "three";
 import { runKeys } from "../camera/keys";
-import { actorPos, FPS, diagramMark, diagramY, lookOf } from "./compile";
+import { actorPos, FPS, diagramMark, diagramY, lookOf, whereOf } from "./compile";
+import { PROPS } from "../props/registry";
 import { SU } from "../cards/cards";
 import { anchorsFront } from "../characters/figure";
 import type { compile } from "./compile";
@@ -50,12 +51,19 @@ export const captionHeights = (film: Film): number[] => {
       const hd = headOf(a.who), at = (y: number) => (1 - new THREE.Vector3(m[0], m[1] + y, m[2]).project(cam).y) / 2;
       mouths.push([at(hd.brow), at(hd.chin)]);   // the face as drawn, brows to chin: eyes and mouth
       drawn.push([at(hd.crown), at(hd.chin)]);   // the head as drawn, crown to chin
-      // the point of contact when someone is tickled (another actor reaches for them, or a machine follows their hand)
-      // is the action of the shot: captions keep clear of it too (when they can)
+      // the point of contact when someone reaches for an actor (tickles them, hands them something) or a machine follows
+      // their hand is the action of the shot: captions keep clear of it too (when they can)
       if (s.actors.some((x) => x.reach === a.who) || (s.props ?? []).some((q) => q.follow?.who === a.who)) {
         const cs = [0.8, 1.3].map((y) => (1 - new THREE.Vector3(m[0], m[1] + y, m[2]).project(cam).y) / 2);
         faces.push([Math.min(...cs), Math.max(...cs)]);
       }
+    }
+    // a prop someone reaches for (a chest grabbed, a table written on): its top, where the hands meet, is kept clear too
+    for (const q of s.props ?? []) {
+      if (!s.actors.some((x) => x.reach === q.id)) continue;
+      const w = whereOf(s.set, q.at), x = w[0] + (q.offset?.[0] ?? 0), z = w[2] + (q.offset?.[1] ?? 0), h = (PROPS[q.id]?.height ?? 0.6) * (q.scale ?? 1);
+      const ys = [h - 0.15, h + 0.45].map((y) => (1 - new THREE.Vector3(x, w[1] + y, z).project(cam).y) / 2);
+      faces.push([Math.min(...ys), Math.max(...ys)]);
     }
     // an explainer diagram is never covered either (it counts as a face and as a mouth)
     const dm = diagramMark(s);

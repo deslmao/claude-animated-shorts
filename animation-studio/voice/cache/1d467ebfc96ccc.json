@@ -1,0 +1,65 @@
+{
+ "hash": "1d467ebfc96ccc",
+ "text": "I'd like to remind everyone that I'm very brave.",
+ "voice": "captainRedd",
+ "lead": 0,
+ "end": 3.483,
+ "dur": 3.526531,
+ "words": [
+  {
+   "w": "I'd",
+   "t0": 0,
+   "t1": 0.209
+  },
+  {
+   "w": "like",
+   "t0": 0.232,
+   "t1": 0.406
+  },
+  {
+   "w": "to",
+   "t0": 0.441,
+   "t1": 0.499
+  },
+  {
+   "w": "remind",
+   "t0": 0.569,
+   "t1": 0.94
+  },
+  {
+   "w": "everyone",
+   "t0": 0.998,
+   "t1": 1.405
+  },
+  {
+   "w": "that",
+   "t0": 1.44,
+   "t1": 1.567
+  },
+  {
+   "w": "I'm",
+   "t0": 1.614,
+   "t1": 1.753
+  },
+  {
+   "w": "very",
+   "t0": 1.834,
+   "t1": 2.218
+  },
+  {
+   "w": "brave.",
+   "t0": 2.334,
+   "t1": 3.483
+  }
+ ],
+ "voiceId": "JhRIeE4Nad3PERzselQS",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.8,
+  "style": 0.35,
+  "use_speaker_boost": true,
+  "speed": 1
+ },
+ "created": "2026-11-04T01:32:39.760Z"
+}
