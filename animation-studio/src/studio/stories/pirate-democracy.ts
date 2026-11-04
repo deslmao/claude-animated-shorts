@@ -106,14 +106,14 @@ export const PIRATEDEMOCRACY: Storyboard = {
       diagram: { kind: "timeline", with: "gusHurt", place: "above", size: 1.0, steps: [{ word: "paid" }, { word: "long" }, { word: "countries" }] } },
     // payoff: a committee meeting round the deck table; everyone votes, the captain facepalms
     { say: "So the scariest thing on the high seas might have been a pirate committee meeting.", set: "shipDeck", light: "day", transition: "fade",
-      camera: { move: "frame", on: ["milo", "qm", "captain"], size: "full", from: 4, height: 1.75 },
+      camera: { move: "frame", on: ["milo", "qm", "captain"], size: "medium", from: 4, height: 1.55 },
       actors: [
-        { who: "milo", at: [-0.6, 0, -2.32], act: "happy", facing: "camera", beats: [{ word: "meeting", gesture: "raiseHand", face: "grin" }] },
-        { who: "qm", at: [0.25, 0, -2.45], act: "explain", hold: "scroll", facing: "camera", beats: [{ word: "committee", gesture: "raiseHand", face: "smile" }] },
+        { who: "milo", at: [-0.6, 0, -2.32], act: "happy", facing: "camera", beats: [{ word: "might", gesture: "raiseHand", face: "grin" }] },
+        { who: "qm", at: [0.25, 0, -2.45], act: "explain", hold: "scroll", facing: "camera", beats: [{ word: "pirate", gesture: "raiseHand", face: "smile" }] },
         { who: "captain", at: [1.1, 0, -2.32], act: "nervous", facing: "camera", beats: [{ word: "committee", act: "facepalm" }] },
       ],
       props: [{ id: "deckTable", at: [0.25, 0, -1.55], yaw: 0 }],
-      crowd: { count: 5, era: "pirate", acts: ["happy", "neutral"], beats: [{ word: "meeting", gesture: "raiseHand", face: "grin" }] },
+      crowd: { count: 5, era: "pirate", acts: ["happy", "neutral"], beats: [{ word: "might", gesture: "raiseHand", face: "grin" }] },
       sfx: [{ name: "crowd_murmur", t: 0.1 }],
       fx: [{ kind: "sweat", on: "captain", word: "committee" }] },
   ],

@@ -4,14 +4,14 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-04T02:37:11.390Z",
-   "inputs": "1092cc5c1b8005n",
+   "at": "2026-11-04T04:04:26.284Z",
+   "inputs": "0e454d6337e784n",
    "detail": "valid; 0 warning(s)"
   },
   "assets": {
    "state": "done",
-   "at": "2026-11-04T02:37:11.393Z",
-   "inputs": "1092cc5c1b8005",
+   "at": "2026-11-04T04:04:26.288Z",
+   "inputs": "0e454d6337e784",
    "detail": "41 library assets reused, none missing",
    "data": {
     "reused": 41,
@@ -87,83 +87,15 @@
   },
   "approval": {
    "state": "done",
-   "at": "2026-11-04T02:37:11.405Z",
+   "at": "2026-11-04T04:04:26.301Z",
    "inputs": "0ce7e46909f6b8",
    "detail": "all narration already generated (no cost)"
   },
   "narration": {
    "state": "done",
-   "at": "2026-11-04T02:37:11.408Z",
+   "at": "2026-11-04T04:04:26.302Z",
    "inputs": "0ce7e46909f6b8",
    "detail": "all lines already generated (cached)"
-  },
-  "sound": {
-   "state": "done",
-   "at": "2026-11-04T02:37:41.244Z",
-   "inputs": "004634a089f792",
-   "detail": "soundtrack built: -14.1 LUFS"
-  },
-  "checks": {
-   "state": "done",
-   "at": "2026-11-04T02:37:44.659Z",
-   "inputs": "004634a089f792",
-   "detail": "preflight PASS; library intact"
-  },
-  "review": {
-   "state": "waiting",
-   "at": "2026-11-04T02:55:13.679Z",
-   "inputs": "1f2e3e52c495d0",
-   "detail": "WAITING FOR REVIEW: 46 frames in productions/pirate-democracy/review.jpg (determinism: identical); rerun with --reviewed once checked",
-   "data": {
-    "frames": [
-     4,
-     69,
-     136,
-     141,
-     225,
-     310,
-     315,
-     384,
-     454,
-     459,
-     508,
-     557,
-     562,
-     587,
-     612,
-     617,
-     619,
-     662,
-     707,
-     712,
-     771,
-     831,
-     836,
-     920,
-     1005,
-     1010,
-     1029,
-     1049,
-     1054,
-     1125,
-     1197,
-     1202,
-     1285,
-     1369,
-     1374,
-     1437,
-     1501,
-     1506,
-     1553,
-     1600,
-     1605,
-     1663,
-     1721,
-     1726,
-     1787,
-     1847
-    ]
-   }
   }
  },
  "approval": {
