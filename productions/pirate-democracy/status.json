@@ -4,23 +4,24 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-03T07:38:43.625Z",
-   "inputs": "0615b038665376n",
+   "at": "2026-11-04T02:37:11.390Z",
+   "inputs": "1092cc5c1b8005n",
    "detail": "valid; 0 warning(s)"
   },
   "assets": {
    "state": "done",
-   "at": "2026-11-03T07:38:43.627Z",
-   "inputs": "0615b038665376",
-   "detail": "51 library assets reused, none missing",
+   "at": "2026-11-04T02:37:11.393Z",
+   "inputs": "1092cc5c1b8005",
+   "detail": "41 library assets reused, none missing",
    "data": {
-    "reused": 51,
+    "reused": 41,
     "missing": [],
     "byKind": {
      "character": [
       "miloPirate",
       "junoPirate",
       "gusPirate",
+      "gusSling",
       "captain",
       "quartermaster"
      ],
@@ -34,156 +35,67 @@
       "pushIn",
       "frame",
       "closeUp",
-      "view",
       "dutch"
      ],
      "light": [
-      "day",
-      "golden"
+      "day"
      ],
      "ambience": [
       "amb_sea"
-     ],
-     "effect": [
-      "question",
-      "exclaim",
-      "sparkle",
-      "sweat",
-      "hearts",
-      "confetti",
-      "anger",
-      "idea",
-      "stars"
      ],
      "extras": [
       "extras:pirate"
      ],
      "act": [
-      "determined",
-      "embarrassed",
-      "excited",
-      "confused",
-      "suspicious",
+      "angry",
+      "happy",
       "explain",
-      "proud",
       "sad",
-      "scared",
       "relief",
       "neutral",
+      "suspicious",
+      "proud",
       "nervous",
-      "happy",
-      "point",
-      "shock",
-      "angry",
-      "disgusted",
+      "confused",
       "thinking",
-      "idea",
       "shrug",
       "facepalm"
      ],
      "item": [
       "sword",
+      "quill",
       "scroll",
       "coinBag",
       "book"
      ],
+     "effect": [
+      "sweat",
+      "hearts",
+      "confetti",
+      "question",
+      "sparkle"
+     ],
      "prop": [
-      "treasureChest"
+      "treasureChest",
+      "deckTable"
+     ],
+     "sfx": [
+      "crowd_murmur"
      ]
     }
    }
   },
   "approval": {
    "state": "done",
-   "at": "2026-11-03T07:38:43.640Z",
-   "inputs": "09424f694e1a63",
+   "at": "2026-11-04T02:37:11.405Z",
+   "inputs": "0ce7e46909f6b8",
    "detail": "all narration already generated (no cost)"
   },
   "narration": {
    "state": "done",
-   "at": "2026-11-03T07:38:43.640Z",
-   "inputs": "09424f694e1a63",
+   "at": "2026-11-04T02:37:11.408Z",
+   "inputs": "0ce7e46909f6b8",
    "detail": "all lines already generated (cached)"
-  },
-  "sound": {
-   "state": "done",
-   "at": "2026-11-03T07:39:00.085Z",
-   "inputs": "0c3c33cf9b7c7d",
-   "detail": "soundtrack built: -14.1 LUFS"
-  },
-  "checks": {
-   "state": "done",
-   "at": "2026-11-03T07:39:02.342Z",
-   "inputs": "0c3c33cf9b7c7d",
-   "detail": "preflight PASS; library intact"
-  },
-  "review": {
-   "state": "done",
-   "at": "2026-11-03T07:51:23.423Z",
-   "inputs": "0c3c33cf9b7c7d",
-   "detail": "review sheet looked at and passed",
-   "data": {
-    "frames": [
-     4,
-     69,
-     136,
-     141,
-     225,
-     310,
-     315,
-     384,
-     454,
-     459,
-     508,
-     557,
-     562,
-     587,
-     612,
-     617,
-     619,
-     654,
-     692,
-     697,
-     756,
-     816,
-     821,
-     905,
-     990,
-     995,
-     1014,
-     1033,
-     1038,
-     1109,
-     1181,
-     1186,
-     1269,
-     1353,
-     1358,
-     1421,
-     1485,
-     1490,
-     1537,
-     1584,
-     1589,
-     1647,
-     1705,
-     1710,
-     1771,
-     1831
-    ]
-   }
-  },
-  "render": {
-   "state": "done",
-   "at": "2026-11-03T08:06:22.112Z",
-   "inputs": "0c3c33cf9b7c7d",
-   "detail": "render run #12 succeeded: https://github.com/deslmao/claude-animated-shorts/actions/runs/41599094622"
-  },
-  "final": {
-   "state": "done",
-   "at": "2026-11-03T08:06:58.168Z",
-   "inputs": "12",
-   "detail": "PUBLISHED https://github.com/deslmao/claude-animated-shorts/releases/tag/video-Short-pirate-democracy-run12 | QA passed | audio aligned (lag 0 ms, r=1)"
   }
  },
  "approval": {

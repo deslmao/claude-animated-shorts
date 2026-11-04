@@ -1,11 +1,12 @@
 {
- "reused": 51,
+ "reused": 41,
  "missing": [],
  "byKind": {
   "character": [
    "miloPirate",
    "junoPirate",
    "gusPirate",
+   "gusSling",
    "captain",
    "quartermaster"
   ],
@@ -19,61 +20,52 @@
    "pushIn",
    "frame",
    "closeUp",
-   "view",
    "dutch"
   ],
   "light": [
-   "day",
-   "golden"
+   "day"
   ],
   "ambience": [
    "amb_sea"
-  ],
-  "effect": [
-   "question",
-   "exclaim",
-   "sparkle",
-   "sweat",
-   "hearts",
-   "confetti",
-   "anger",
-   "idea",
-   "stars"
   ],
   "extras": [
    "extras:pirate"
   ],
   "act": [
-   "determined",
-   "embarrassed",
-   "excited",
-   "confused",
-   "suspicious",
+   "angry",
+   "happy",
    "explain",
-   "proud",
    "sad",
-   "scared",
    "relief",
    "neutral",
+   "suspicious",
+   "proud",
    "nervous",
-   "happy",
-   "point",
-   "shock",
-   "angry",
-   "disgusted",
+   "confused",
    "thinking",
-   "idea",
    "shrug",
    "facepalm"
   ],
   "item": [
    "sword",
+   "quill",
    "scroll",
    "coinBag",
    "book"
   ],
+  "effect": [
+   "sweat",
+   "hearts",
+   "confetti",
+   "question",
+   "sparkle"
+  ],
   "prop": [
-   "treasureChest"
+   "treasureChest",
+   "deckTable"
+  ],
+  "sfx": [
+   "crowd_murmur"
   ]
  }
 }
