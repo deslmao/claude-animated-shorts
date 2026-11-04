@@ -1,7 +1,7 @@
 {
-  "composition": "Short-pirate-democracy",
+  "composition": "Short-tickle",
   "chunks": 20,
   "preview": false,
   "audio": "",
-  "note": "Production pirate-democracy (npm run short)"
+  "note": "Production tickle (npm run short)"
 }
