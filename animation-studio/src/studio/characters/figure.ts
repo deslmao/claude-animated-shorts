@@ -491,7 +491,7 @@ export const rigFront = (L: Look, pose: Pose) => {
     case "wave": one((s) => { const S = S1(s), w = Math.sin(t * 9); add(s, [S[0] + s * (0.3 * HH + 3 * u * w), S[1] - 0.2 * HH], [S[0] + s * (0.38 * HH + 12 * u * w), S[1] - 0.62 * HH], 0, "open"); }); break;
     case "point": one((s) => { const S = S1(s); add(s, [S[0] + s * 0.42 * HH, S[1] + 0.03 * HH], [S[0] + s * 0.86 * HH, S[1] - 0.04 * HH], 0, "point", s > 0 ? 0 : Math.PI); }); break;
     case "pointUp": one((s) => { const S = S1(s); add(s, [S[0] + s * 0.34 * HH, S[1] - 0.3 * HH], [S[0] + s * 0.44 * HH, S[1] - 0.76 * HH], 0, "point", -Math.PI / 2); }); break; // angled out, clear of the head and long hair
-    case "raiseHand": one((s) => { const S = S1(s); add(s, [S[0] + s * 0.36 * HH, S[1] - 0.34 * HH], [S[0] + s * 0.46 * HH, S[1] - 0.86 * HH], 0, "open"); }); break; // angled out, clear of the head (a vote reads)
+    case "raiseHand": one((s) => { const S = S1(s); add(s, [S[0] + s * 0.34 * HH, S[1] - 0.6 * HH], [S[0] + s * 0.42 * HH, S[1] - 1.35 * HH], 0, "open"); }); break; // angled out, the hand well above the head (a vote reads)
     case "thumbsUp": one((s) => { const S = S1(s); add(s, [S[0] + s * 0.26 * HH, S[1] + 0.4 * HH], [S[0] + s * 0.4 * HH, S[1] + 0.04 * HH], 1, "thumb"); }); break;
     case "present": one((s) => { const S = S1(s); add(s, [S[0] + s * 0.32 * HH, S[1] + 0.38 * HH], [S[0] + s * 0.66 * HH, S[1] + 0.24 * HH], 0, "open"); }); break;
     case "chin": {

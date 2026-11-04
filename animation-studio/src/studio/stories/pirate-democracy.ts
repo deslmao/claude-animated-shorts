@@ -71,7 +71,7 @@ export const PIRATEDEMOCRACY: Storyboard = {
       crowd: { count: 5, era: "pirate", acts: ["suspicious", "neutral"], toward: "captain", beats: [{ word: "vote", gesture: "raiseHand", face: "determined" }] } },
     // the quartermaster: hands the captain his share over the chest... and blocks his grab for the rest
     { say: "A second elected officer, the quartermaster, hands out the food and loot, so the captain can't grab it all.", set: "shipDeck", light: "day", transition: "cut",
-      camera: { move: "frame", on: ["qm", "captain", "treasureChest"], size: "medium", from: 4, height: 1.45 },
+      camera: { move: "frame", on: ["qm", "captain"], size: "medium", from: 4, height: 1.4 },
       actors: [
         { who: "qm", at: [-0.6, 0, -1.05], act: "explain", face: "smile", reach: "treasureChest",
           beats: [{ word: "hands", hold: "coinBag", gesture: "offer" }, { word: "loot", hold: null, gesture: "present" }, { word: "grab", gesture: "block", face: "stern" }] },
