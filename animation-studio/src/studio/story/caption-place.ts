@@ -66,11 +66,20 @@ export const captionHeights = (film: Film): { f0: number; f1: number; y: number 
         faces.push([Math.min(...cs), Math.max(...cs)]);
       }
     }
-    // a prop someone reaches for (a chest grabbed, a table written on): its top, where the hands meet, is kept clear too
+    // a prop someone reaches for (a chest grabbed, a table written on): its top, where the hands meet, is kept clear too;
+    // and a stepped prop (an explanation playing out on it: loot dividing, a signature) over its whole top surface
     for (const q of s.props ?? []) {
-      if (!s.actors.some((x) => x.reach === q.id)) continue;
-      const w = whereOf(s.set, q.at), x = w[0] + (q.offset?.[0] ?? 0), z = w[2] + (q.offset?.[1] ?? 0), h = (PROPS[q.id]?.height ?? 0.6) * (q.scale ?? 1);
+      const reached = s.actors.some((x) => x.reach === q.id), e = PROPS[q.id];
+      if (!reached && !q.steps) continue;
+      const w = whereOf(s.set, q.at), x = w[0] + (q.offset?.[0] ?? 0), z = w[2] + (q.offset?.[1] ?? 0), h = (e?.height ?? 0.6) * (q.scale ?? 1);
       const ys = [h - 0.15, h + 0.45].map((y) => (1 - new THREE.Vector3(x, w[1] + y, z).project(cam).y) / 2);
+      if (q.steps) {
+        const [bx, bz] = e?.box ?? [e?.radius ?? 0.3, e?.radius ?? 0.3], yaw = ((q.yaw ?? 0) * Math.PI) / 180, k = q.scale ?? 1;
+        for (const [sx, sz] of [[-1, -1], [1, -1], [-1, 1], [1, 1]]) {
+          const lx = sx * bx * k, lz = sz * bz * k, v = new THREE.Vector3(x + Math.cos(yaw) * lx + Math.sin(yaw) * lz, w[1] + h, z - Math.sin(yaw) * lx + Math.cos(yaw) * lz).project(cam);
+          if (v.z < 1) ys.push((1 - v.y) / 2);
+        }
+      }
       faces.push([Math.min(...ys), Math.max(...ys)]);
     }
     // an insert's detail (the loot, a signature, a held item) is the subject of its beat: kept clear like a face

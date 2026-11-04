@@ -1,0 +1,38 @@
+{
+  "composition": "Short-pirate-democracy",
+  "out": "/home/user/claude-animated-shorts/productions/pirate-democracy/vs2/B-shots02-03.mp4",
+  "preview": true,
+  "frames": "138-476",
+  "machine": {
+    "platform": "linux",
+    "osName": "linux 6.18.44-fc-v233",
+    "chip": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "cores": 4,
+    "ramGB": 15.7,
+    "gl": "swangle",
+    "browser": "/opt/pw-browsers/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell",
+    "node": "v22.23.4",
+    "where": "cloud-cpu"
+  },
+  "concurrency": 4,
+  "video": {
+    "width": 540,
+    "height": 960,
+    "fps": "30/1",
+    "frames": 339,
+    "codec": "h264",
+    "audio": true
+  },
+  "bundleSeconds": 3.8,
+  "renderSeconds": 830.6,
+  "secondsPerFrame": 2.45,
+  "framesPerSecond": 0.41,
+  "memory": {
+    "peakRenderProcessesGB": 7.05,
+    "macMinFreePercent": null,
+    "linuxMinAvailableGB": 9.47,
+    "macSwapUsedGBAfter": null
+  },
+  "sizeMB": 2.8,
+  "finishedAt": "2026-11-04T11:47:33.653Z"
+}

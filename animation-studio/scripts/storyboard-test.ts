@@ -66,6 +66,10 @@ const broken: [string, (sb: Storyboard) => void, string?][] = [
   ["camera beat on unsaid word", (sb) => { sb.shots[2].cams = [{ word: "zebra", move: "closeUp", on: "juno" }]; }, "zebra"],
   ["cont without until", (sb) => { sb.shots[2].cont = true; }, "doesn't end with `until`"],
   ["until without cont", (sb) => { const w = String(sb.shots[2].say ?? "").split(/\s+/)[1].replace(/[^A-Za-z']/g, ""); sb.shots[2].until = { word: w }; }, "must have cont: true"],
+  ["pen in the air", (sb) => { const j = sb.shots[2].actors[0]; const w = j.at as [number, number, number] | string; const p = typeof w === "string" ? [0, 0, 0] : w; j.gesture = "write"; j.hold = "quill"; delete j.act; j.reach = "parchment";
+    sb.shots[2].props = [{ id: "parchment", at: [p[0] + 0.42, 0.25, p[2]], steps: [{ t: 0.2 }] }]; sb.shots[2].camera = { move: "frame", on: [j.who], size: "full" }; }, "writes"],
+  ["pen under the page", (sb) => { const j = sb.shots[2].actors[0]; const w = j.at as [number, number, number] | string; const p = typeof w === "string" ? [0, 0, 0] : w; j.gesture = "write"; j.hold = "quill"; delete j.act; j.reach = "parchment";
+    sb.shots[2].props = [{ id: "parchment", at: [p[0] + 0.42, 1.55, p[2]], steps: [{ t: 0.2 }] }]; sb.shots[2].camera = { move: "frame", on: [j.who], size: "full" }; }, "hidden under"],
   ["robot can't reach", (sb) => { sb.shots[2].actors[0].gesture = "operate"; delete sb.shots[2].actors[0].act; sb.shots[2].props = [{ id: "robotArm", at: [-3.5, 0, -2.5], follow: { who: "juno" } }]; sb.shots[2].camera = { move: "frame", on: ["juno", "robotArm"], size: "full" }; }, "reach"],
 ];
 console.log("\n== validator catches mistakes");

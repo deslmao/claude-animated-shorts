@@ -68,7 +68,11 @@ All times are in **seconds from the start of the shot**. Anything timed can be a
 | `until` / `cont` | **split a line across shots**: `until: { word }` ends the shot ON that word, and the next shot (`cont: true`, no `say` of its own) carries on the same line, even on another set |
 | `fx` | reaction marks that follow a character's head (lean, tilt, laugh). `stars` orbits the crown (dizzy). The 16 kinds are listed in [LIBRARY.md](LIBRARY.md) |
 | `kicks` | impact camera shakes (times or `{ word }`) |
-| `props` | story props for this shot: `[{ id: "barrel", at: "c", offset: [0.6, 0.4], yaw: 20, scale?, variant? }]`. The ids are in `docs/ASSETS.md`. The validator stops a prop from standing on an actor, warns when one overlaps the set and fails one that is never in frame. **Animated props** (those with a rig, e.g. `robotArm`): `follow: { who }` reaches for that actor's held-out palm (gesture `operate`); `drive: { who, delay, changes: [{ word, delay }] }` replays the actor's control strokes, late by `delay` seconds. **Stepped props** (explanation kits, e.g. `lootPiles`): `steps: [{ word }, ...]` play the prop's steps on words, in order. `at` may be `[x, y, z]` to stand a prop on a table top |
+| `props` | story props for this shot: `[{ id: "barrel", at: "c", offset: [0.6, 0.4], yaw: 20, scale?, variant? }]`. The ids are in `docs/ASSETS.md`. The validator stops a prop from standing on an actor, warns when one overlaps the set and fails one that is never in frame. **Animated props** (those with a rig, e.g. `robotArm`): `follow: { who }` reaches for that actor's held-out palm (gesture `operate`); `drive: { who, delay, changes: [{ word, delay }] }` replays the actor's control strokes, late by `delay` seconds. **Stepped props** (explanation kits): `steps: [{ word }, ...]` play the prop's steps on words, in order, with their sound (coins for the loot).
+- `lootPiles`: a gold heap streams into share stacks, which slide to who gets them (`"2-1"`).
+- `parchment`: lies on a table; each step writes a signature. Reach it with gesture `write` and the parchment guides the pen along the signature as it appears.
+
+`at` may be `[x, y, z]` to stand a prop on a table top: it then has no floor footprint, and reaches count the table's height |
 | `diagram` | an animated explainer panel: `{ kind: "forecast" | "prediction" | "contrast" | "delay" | "shares" | "merchant" | "crew" | "timeline", with: "juno", place?: "above" | "side", size?, steps: [{ word }, ...] }`. Each step lands on its word; every diagram shows its starting picture from the shot's first frame (never a blank panel). `prediction` is your own predicted touch only (the meter ends at zero); `contrast` compares it with someone else's unexpected touch. `place: "above"` stacks the panel over the presenter (best for 9:16), 0.14 m over their head whatever their height. Name `"diagram"` in the camera's `on` list to frame it. It draws on top of the set and the captions avoid it |
 | `crowd` | background extras: `{ count: 6, era: "medieval", around?, radius?, acts?, seed?, beats?, toward? }`; `beats` make the whole crowd act on words (e.g. `[{ word: "vote", gesture: "raiseHand" }]`, a small ripple from extra to extra, with an automatic "aye!"), `toward` names who they face. They're placed on clear floor (generated floor maps), inside the frame, behind the cast and spread out. The validator says if fewer fit |
 | `mood` / `ambience` / `sfx` | sound controls, see [SOUND.md](SOUND.md) |
@@ -80,8 +84,12 @@ Story-level fields:
 - `engine: 2` turns on the Visual Storytelling 2.0 render behaviours. Character cards then draw identically whatever a
   render worker drew before, so chunk seams are exact even on fast flights. Use it for every new production;
   storyboards without it render exactly as they were approved.
-- `motionBlur: true` turns on camera motion blur for fast moves (flights, whips, zoom-throughs). Slow creeps stay sharp,
-  and storyboards without it render exactly as before.
+- `motionBlur: true` turns on camera motion blur for fast moves. Slow creeps stay sharp, and storyboards without it
+  render exactly as before. The blur depends on the camera beat:
+  - full on flights, whips and zoom-throughs;
+  - light on faces (close-ups, face inserts, POV), so the eyes and expressions stay readable;
+  - light on object inserts;
+  - medium on framed glides.
 
 ### Camera moves
 In camera moves you name **characters**, not coordinates. The engine works out the camera position for the 9:16 frame.
@@ -142,7 +150,13 @@ cams: [
 **What the checks cover:**
 - Captions are placed per beat: a close-up beat moves them off the face it brings in, and an insert keeps its detail
   clear.
-- The validator checks framing per beat, from the moment a glide or whip arrives.
+- The validator checks framing per beat, from the moment a glide or whip arrives. The frames a zoom-through or whip
+  transition spends rushing in or out are judged on either side of the rush.
+- Writing is checked strictly:
+  - a pen more than 8 cm above its page fails ("writes in the air");
+  - a pen more than 4 cm below the page fails (hidden under the table);
+  - a pen more than 6 cm along the page from the writing fails.
+- A crowd is placed for the first camera beat that frames people, not for an opening aerial or insert.
 - It fails an insert on an unknown part, or a beat on a word that isn't said.
 
 ### Actor fields

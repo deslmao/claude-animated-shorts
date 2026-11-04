@@ -85,6 +85,29 @@ const GUS_PIRATE: Look = {
   layer: { style: "waistcoat", color: "#5a3b2a", accent: "#e8c45a" },
   legs: "#4a4036", shoes: "#3a2b20",
 };
+/** a merchant shipowner (absentee owner of a trading ship, 1700s: London, Bristol), for "owners on land": stout,
+ *  powdered wig, spectacles, plum velvet coat, white cravat. Not a real person */
+const SHIP_OWNER: Look = {
+  name: "Shipowner", build: "stout", skin: "#f3c9a8", seed: 31,
+  hair: { style: "curly", color: "#ece6da" },
+  brow: { color: "#8a8378", k: 1.1 },
+  glasses: { style: "round", color: "#b08a3a" },
+  top: { style: "shirt", color: "#f6f1e6" },
+  layer: { style: "longcoat", color: "#6a2f5a", accent: "#e8c45a" },
+  neck: { style: "bowtie", color: "#f6f1e6" },
+  legs: "#3a2b2b", shoes: "#2a201a",
+};
+/** a merchant ship's captain (1700s): tall, heavy stern brows, grey queue, plain black tricorn, navy coat with
+ *  silver buttons: the harsh master answerable to the owners, for "captains could beat sailors into line" */
+const MERCHANT_CAPTAIN: Look = {
+  name: "Merchant captain", build: "tall", skin: "#e9bf9a", seed: 33,
+  hair: { style: "ponytail", color: "#3a3532" },
+  brow: { color: "#3a3532", k: 1.8 },
+  top: { style: "shirt", color: "#ece6da" },
+  layer: { style: "longcoat", color: "#1f2c4a", accent: "#c9c4b8" },
+  legs: "#2a2a30", shoes: "#1f1a16",
+  hat: { style: "tricorn", color: "#22202a", trim: "#22202a" },
+};
 /** Gus (pirate) with an injured arm in a sling (revision of "Pirates ran surprisingly democratic ships"): the crew's
  *  injury fund pays him */
 const GUS_SLING: Look = { ...GUS_PIRATE, sling: -1 };
@@ -123,6 +146,19 @@ const deckTable = (b: Batch, a: At, bare = false) => {
   cyl(b, col("#2b2433"), m, 0.42, 0.96, -0.12, 0.05, 0.045, 0.08, 12);                          // inkpot
   cyl(b, col("#f6f1e6"), m, 0.44, 1.02, -0.12, 0.006, 0.02, 0.2, 8, 0, -0.5);                   // quill in it
   for (let i = 0; i < 5; i++) cyl(b, col("#f0c040"), m, 0.5 + 0.06 * (i % 3), 0.962 + 0.012 * (i % 2), 0.16 - 0.05 * i, 0.04, 0.04, 0.012, 12);
+};
+/** a merchant's tall counting-house desk (1600s-1800s clerks and owners stood at them): dark polished wood on turned
+ *  legs, a sloped writing top with a ledger open on it, an inkstand; its flat shelf (0.92 m) takes a gold heap */
+const countingDesk = (b: Batch, a: At) => {
+  const m = frame(a), wood = col("#5a3424"), dark = col("#3a2018"), page = col("#f3e6c4");
+  for (const sx of [-0.62, 0.62]) for (const sz of [-0.26, 0.26]) cyl(b, dark, m, sx, 0, sz, 0.035, 0.045, 0.9, 10);    // legs
+  box(b, wood, m, -0.7, 0.7, 0.86, 0.92, -0.32, 0.32);                                                              // top
+  box(b, dark, m, -0.68, 0.68, 0.6, 0.66, -0.3, 0.3);                                                               // lower shelf
+  box(b, wood, m, -0.7, 0.7, 0.92, 1.06, -0.32, -0.2);                                                              // back rail
+  // the ledger: two open pages on the right half, ruled lines of figures
+  box(b, page, m, 0.08, 0.38, 0.921, 0.928, -0.15, 0.12); box(b, page, m, 0.39, 0.66, 0.921, 0.928, -0.15, 0.12);
+  for (let i = 0; i < 6; i++) for (const x0 of [0.11, 0.42]) box(b, col("#6a5a48"), m, x0, x0 + 0.2, 0.929, 0.931, -0.12 + i * 0.04, -0.11 + i * 0.04);
+  cyl(b, col("#2b2433"), m, 0.6, 0.92, -0.25, 0.04, 0.035, 0.07, 12); cyl(b, col("#f6f1e6"), m, 0.61, 0.97, -0.25, 0.005, 0.016, 0.18, 8, 0, -0.45); // inkstand + quill
 };
 const chest = (b: Batch, a: At, open = false) => {
   const m = frame(a), wood = col("#8a4f2c"), band = col("#c9a24a"), gold = col("#f0c040");
@@ -212,6 +248,23 @@ const coinBag = (p: Pen, x: number, y: number, u: number, s: number) => {
   p.stroke([[cx - 7 * u, cy - 11 * u], [cx + 7 * u, cy - 11 * u]], 2.4 * u, "#5a3b2a");
   p.ell(cx - 3 * u * s, cy - 20 * u, 4 * u, 3 * u, "#f0c040", 1.6 * u); p.ell(cx + 4 * u * s, cy - 21 * u, 4 * u, 3 * u, "#f0c040", 1.6 * u);
   p.stroke([[cx - 2 * u, cy + 2 * u], [cx + 4 * u, cy - 2 * u]], 1.4 * u, "#7a4f33");
+};
+const cane = (p: Pen, x: number, y: number, u: number, s: number) => {
+  // a dark wooden cane gripped below its crook handle (a harsh master's stick: discipline, no blow shown). The hooked
+  // handle, the brown wood and the brass ferrule make it read as a cane, never a blade
+  const tip: P2 = [x - 14 * u * s, y + 34 * u], top: P2 = [x + 10 * u * s, y - 40 * u];
+  p.stroke([tip, top], 8 * u, INK); p.stroke([tip, top], 5 * u, "#6b3f22");
+  const hook: P2[] = [top, [top[0] + 4 * u * s, top[1] - 12 * u], [top[0] + 16 * u * s, top[1] - 16 * u], [top[0] + 24 * u * s, top[1] - 8 * u], [top[0] + 22 * u * s, top[1] + 2 * u]];
+  p.stroke(hook, 8 * u, INK); p.stroke(hook, 5 * u, "#6b3f22");
+  p.stroke([[tip[0] - 1 * u * s, tip[1] - 4 * u], tip], 7 * u, "#c9a24a");
+};
+const crown = (p: Pen, x: number, y: number, u: number, s: number) => {
+  // a gold crown with red and teal jewels, held up in the hand (a would-be tyrant, a king)
+  const cx = x + 2 * u * s, cy = y - 26 * u, w = 30 * u; u *= 1.5;
+  p.poly([[cx - w, cy + 8 * u], [cx - w, cy - 8 * u], [cx - w * 0.5, cy + 1 * u], [cx, cy - 12 * u], [cx + w * 0.5, cy + 1 * u], [cx + w, cy - 8 * u], [cx + w, cy + 8 * u]], "#f0c040", 3 * u);
+  p.stroke([[cx - w, cy + 3 * u], [cx + w, cy + 3 * u]], 1.8 * u, "#c9902a");
+  for (const [dx, c] of [[-0.55, "#c0353a"], [0, "#2a9d8f"], [0.55, "#c0353a"]] as const) p.ell(cx + dx * w, cy + 5.5 * u, 2.6 * u, 2.6 * u, c, 1.2 * u);
+  for (const dx of [-1, 0, 1]) p.ell(cx + dx * w, cy + (dx ? -9 : -13) * u, 2.4 * u, 2.4 * u, "#f6e08a", 1.2 * u);
 };
 const tricornHat = (p: Pen, x: number, y: number, u: number, s: number) => {
   // a captain's tricorn held in the hand (doffed, nervous, humble)
@@ -421,8 +474,10 @@ export const PIRATES: Theme = {
   mood: "adventure",
   ambience: { shipDeck: "amb_sea", island: "amb_sea" },
   steps: { island: "step_grass" },
-  characters: { captain: CAPTAIN, quartermaster: QUARTERMASTER, kidd: KIDD, miloPirate: MILO_PIRATE, junoPirate: JUNO_PIRATE, gusPirate: GUS_PIRATE, gusSling: GUS_SLING },
+  characters: { captain: CAPTAIN, quartermaster: QUARTERMASTER, kidd: KIDD, miloPirate: MILO_PIRATE, junoPirate: JUNO_PIRATE, gusPirate: GUS_PIRATE, gusSling: GUS_SLING , shipOwner: SHIP_OWNER, merchantCaptain: MERCHANT_CAPTAIN },
   characterMeta: {
+    shipOwner: { name: "Shipowner", desc: "stout; powdered-wig curls; round gold spectacles; plum velvet frock coat; white cravat", personality: "a comfortable merchant who owns ships he never sails on: counts the profits on land", themes: ["pirates", "history", "money", "trade"], tags: ["owner", "merchant", "rich", "boss", "investor", "trade", "male"] },
+    merchantCaptain: { name: "Merchant captain", desc: "tall; heavy stern brows; grey ponytail; plain black tricorn; navy frock coat with silver buttons", personality: "a harsh master who answers to the owners, not the crew", themes: ["pirates", "history", "sea", "trade"], tags: ["captain", "merchant", "strict", "harsh", "navy", "boss", "male"] },
     captain: { name: "Captain Redd", desc: "tall; black curls; goatee and thin moustache; gold-braided tricorn; red frock coat with brass buttons", personality: "a swaggering pirate captain who has to keep his crew's votes", themes: ["pirates", "history", "sea"], tags: ["captain", "pirate", "leader", "male"] },
     quartermaster: { name: "Mags the quartermaster", desc: "petite; red polka-dot bandana; eyepatch; blue-striped shirt; green waistcoat; ponytail", personality: "sharp, fair and unimpressed: shares out the food and the loot", themes: ["pirates", "history", "sea"], tags: ["quartermaster", "pirate", "officer", "female"] },
     kidd: { name: "Captain William Kidd", desc: "white periwig curls; tricorn; blue frock coat with gold buttons; white cravat", personality: "a proud privateer turned accused pirate (1645-1701)", themes: ["pirates", "history"], tags: ["captain", "pirate", "real person", "kidd", "treasure", "male"] },
@@ -434,6 +489,7 @@ export const PIRATES: Theme = {
   props: {
     cannon: { name: "Cannon", desc: "ship's cannon on a wooden carriage (muzzle along +z: yaw it)", category: "theme", themes: ["pirates", "history", "navy"], tags: ["gun", "battle", "ship", "weapon", "fort"], radius: 0.7, height: 0.8, build: cannon },
     deckTable: { name: "Deck table", desc: "a plank board on two barrels (0.96 m high) with the ship's articles, inkpot, quill and coins on it: a crew meeting, a vote, sharing out loot", category: "theme", themes: ["pirates", "history", "navy"], tags: ["table", "meeting", "vote", "articles", "contract", "committee"], radius: 0.95, height: 0.96, box: [0.86, 0.43], build: (b, a) => deckTable(b, a) },
+    countingDesk: { name: "Counting desk", desc: "a merchant's tall counting-house desk (1700s): dark wood, an open ledger of figures and an inkstand on the right half, the left half clear for a gold heap (top 0.92 m: lootPiles at [x - 0.35, 0.92, z])", category: "theme", themes: ["history", "money", "trade", "pirates"], tags: ["desk", "merchant", "owner", "office", "ledger", "accounts", "money", "counting house", "bank"], radius: 0.75, height: 0.92, box: [0.72, 0.34], build: countingDesk },
     deckBoard: { name: "Deck board", desc: "the deck table cleared: a plank board on two barrels (0.96 m high), nothing on it (put loot piles or other props on top)", category: "theme", themes: ["pirates", "history", "navy"], tags: ["table", "board", "loot", "sharing", "counting"], radius: 0.95, height: 0.96, box: [0.86, 0.43], build: (b, a) => deckTable(b, a, true) },
     treasureChest: { name: "Treasure chest", desc: "banded wooden chest (variants: closed, open = heaped with gold and gems)", category: "theme", themes: ["pirates", "history", "adventure"], tags: ["treasure", "gold", "loot", "money", "chest"], radius: 0.5, height: 0.7, box: [0.43, 0.29],
       build: (b, a) => chest(b, a), variants: { closed: (b, a) => chest(b, a), open: (b, a) => chest(b, a, true) } },
@@ -451,6 +507,8 @@ export const PIRATES: Theme = {
     quill: { name: "Quill pen", desc: "white feather quill (writing, signing the articles, a contract)", themes: ["pirates", "history", "school", "law"], tags: ["write", "sign", "pen", "contract"], draw: quill },
     coinBag: { name: "Coin purse", desc: "tied leather purse with gold coins peeking out (a share, wages, a reward)", themes: ["pirates", "history", "money"], tags: ["money", "gold", "share", "loot", "pay"], draw: coinBag },
     shovel: { name: "Shovel", desc: "spade held upright (dig, bury, garden)", themes: ["pirates", "treasure", "garden", "work"], tags: ["dig", "bury", "treasure", "spade", "garden"], draw: shovel },
+    cane: { name: "Cane", desc: "a rattan cane gripped and raised (a harsh captain or master: discipline; no blow shown)", themes: ["pirates", "history", "school"], tags: ["stick", "cane", "discipline", "punish", "harsh", "strict"], draw: cane },
+    crown: { name: "Crown", desc: "a jewelled gold crown held up in the hand (a king, a would-be tyrant, crowning oneself)", themes: ["history", "pirates", "royalty"], tags: ["crown", "king", "queen", "tyrant", "royal", "power"], draw: crown },
     tricorn: { name: "Tricorn hat (in hand)", desc: "a captain's gold-braided tricorn held in the hand (doffed, humble, nervous)", themes: ["pirates", "history"], tags: ["hat", "captain", "humble", "nervous"], draw: tricornHat },
   },
   sets: { shipDeck: { id: "shipDeck", title: "Pirate ship: main deck at sea", lights: ["day", "golden", "night"], build: shipDeck },

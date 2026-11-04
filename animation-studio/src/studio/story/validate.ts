@@ -9,7 +9,7 @@ import { ROSTER } from "../characters/roster";
 import { ACT_NAMES, FACES, GESTURES } from "../characters/figure";
 import { FX_KINDS } from "../fx/effects";
 import { runKeys } from "../camera/keys";
-import { compile, shotFrames, actorPos, FPS } from "./compile";
+import { compile, shotFrames, actorPos, FPS, stepAt } from "./compile";
 import type { Storyboard, Where } from "./types";
 import type { Narration } from "../voice/narration";
 import { resolve } from "./timing";
@@ -104,6 +104,9 @@ export const validate = (sb0: Storyboard, narr?: Narration): Report => {
       for (const a of s.actors) for (const p of [a.at, ...(a.walk ? [a.walk.to] : [])]) {
         if (typeof p === "string" && !LAYOUTS[s.set].spots[p]) continue;
         const m = whereOf(s.set, p);
+        // a prop standing on another (a parchment or loot on a table: its `at` 0.3 m+ above the actor's floor) has no
+        // footprint on that floor
+        if (w[1] - m[1] > 0.3) continue;
         // distance from the actor's mark to the prop's footprint (its box, turned by its yaw, or its circle)
         const yaw = ((q.yaw ?? 0) * Math.PI) / 180, lx = (m[0] - x) * Math.cos(yaw) - (m[2] - z) * Math.sin(yaw), lz = (m[0] - x) * Math.sin(yaw) + (m[2] - z) * Math.cos(yaw);
         const gap = e.box ? Math.hypot(Math.max(0, Math.abs(lx) - e.box[0] * (q.scale ?? 1)), Math.max(0, Math.abs(lz) - e.box[1] * (q.scale ?? 1))) : Math.hypot(lx, lz) - r;
@@ -149,8 +152,14 @@ export const validate = (sb0: Storyboard, narr?: Narration): Report => {
     // a glide or whip is checked from the moment it arrives (on its way it is between two framings); a fly beat's
     // framing is where the flight arrives, so it is checked on its own word and after
     const settle = (cam: typeof c) => { const x = cam as { glide?: number; whip?: boolean }; return x.whip ? 6 : x.glide ? Math.round(x.glide * FPS) : 0; };
-    segs.forEach((sg, j) => { const f1 = j + 1 < segs.length ? segs[j + 1].f0 : b, mine = subjOf(sg.cam), g0 = Math.min(f1 - 1, sg.f0 + settle(sg.cam));
-    for (const f of [...new Set([g0, Math.round((g0 + f1) / 2), f1 - 1])]) {
+    // a zoom-through or whip transition owns the frames it spends rushing in or out (by design off the subject): the
+    // framing is judged on the frames either side of it
+    const [lo, hi] = transitionClear(sb, i, a, b);
+    segs.forEach((sg, j) => { const f1 = Math.min(j + 1 < segs.length ? segs[j + 1].f0 : b, hi), mine = subjOf(sg.cam), g0 = Math.max(lo, Math.min(f1 - 1, sg.f0 + settle(sg.cam)));
+    // a framing a flight departs from (the next beat flies) holds only where the flight leaves it: its first frame
+    const departs = j + 1 < segs.length && (segs[j + 1].cam as { fly?: boolean }).fly;
+    for (const f of departs ? [g0] : [...new Set([g0, Math.round((g0 + f1) / 2), f1 - 1])]) {
+      if (f < lo || f >= hi) continue;
       const subj = mine;
       const cm = runKeys(film.shots[i].keys, f), cam = new THREE.PerspectiveCamera(cm.fov, 9 / 16, 0.05, 3000);
       cam.position.set(...cm.pos); cam.up.set(0, 1, 0); cam.lookAt(...cm.look); cam.rotateZ(cm.roll); cam.updateMatrixWorld(); cam.updateProjectionMatrix();
@@ -177,6 +186,11 @@ export const validate = (sb0: Storyboard, narr?: Narration): Report => {
   return { errors, warnings, framing };
 };
 
+/** the frames of shot i outside a zoom-through / whip transition's rush (in: the first 9 frames, out: the last 10) */
+const transitionClear = (sb: Storyboard, i: number, a: number, b: number): [number, number] => {
+  const rush = (t?: string) => t === "zoom" || t === "whip";
+  return [a + (i > 0 && rush(sb.shots[i].transition) ? 9 : 0), b - (rush(sb.shots[i + 1]?.transition) ? 10 : 0)];
+};
 /** staging checks for one shot, run on the director's real output (the poses, effects and props that will be drawn):
  *  - a hand out of the top or side of the frame while its owner is in shot (a cropped arm); hands below the bottom
  *    edge are normal in medium shots
@@ -195,7 +209,9 @@ const staging = (film: ReturnType<typeof compile>, sb: Storyboard, i: number, a:
   const once = new Set<string>(), report = (key: string, msg: string, warn = false) => { if (once.has(key)) return; once.add(key); (warn ? warnings : errors).push(`${at}: ${msg}`); if (!warn) out.push(`!${msg}`); };
   const seenProp = new Set<number>(), cast = new Set(s.actors.filter((x) => !x.crowd).map((x) => x.who));
   const short = new Map<string, number>(); // consecutive samples a reaching hand is short of its target
-  for (let f = a; f < b; f += 6) {
+  const hover = new Map<string, number>(); // consecutive samples a writing hand is above its page
+  const [lo, hi] = transitionClear(sb, i, a, b);
+  for (let f = lo; f < hi; f += 6) {
     const cm = runKeys(shot.keys, f), cam = new THREE.PerspectiveCamera(cm.fov, 9 / 16, 0.05, 3000);
     cam.position.set(...cm.pos); cam.up.set(0, 1, 0); cam.lookAt(...cm.look); cam.rotateZ(cm.roll); cam.updateMatrixWorld(); cam.updateProjectionMatrix();
     const pv = new THREE.Vector3();
@@ -224,11 +240,29 @@ const staging = (film: ReturnType<typeof compile>, sb: Storyboard, i: number, a:
     for (const act of s.actors) {
       const an = anchors.get(act.who); if (!act.reach || !an || an.walking || !REACHING.includes(an.gesture)) { short.delete(act.who); continue; }
       const tgtA = anchors.get(act.reach), q = (s.props ?? []).findIndex((x) => x.id === act.reach), pr = q >= 0 ? shot.props?.[q] : undefined;
-      const tgt: [number, number, number] | undefined = tgtA ? tgtA.chest : pr ? [pr.at.x, pr.at.y ?? 0, pr.at.z] : undefined; if (!tgt) continue;
-      const lat = (p: [number, number, number]) => (p[0] - an.floor[0]) * info.right.x + (p[2] - an.floor[2]) * info.right.z;
+      let tgt: [number, number, number] | undefined = tgtA ? tgtA.chest : pr ? [pr.at.x, pr.at.y ?? 0, pr.at.z] : undefined; if (!tgt) continue;
+      // a prop that guides the hand (a pen along a signature): the target is where the guide is at this moment
+      const spec = q >= 0 ? s.props![q] : undefined, ge = spec ? PROPS[spec.id] : undefined;
+      if (spec && pr && ge?.guide) {
+        const [gx, gz] = ge.guide(spec.steps ? stepAt(spec.steps, (f - a) / FPS) : 0, spec.variant), yaw = pr.at.yaw ?? 0, k = pr.at.s ?? 1;
+        tgt = [tgt[0] + (Math.cos(yaw) * gx + Math.sin(yaw) * gz) * k, tgt[1], tgt[2] + (-Math.sin(yaw) * gx + Math.cos(yaw) * gz) * k];
+      }
+      // a pen must touch what it writes on: a writing hand more than 8 cm above the surface writes in the air, one
+      // more than 4 cm below it is hidden under the table
+      if (spec && pr && an.gesture === "write") {
+        const top = (pr.at.y ?? 0) + (ge?.height ?? 0.6) * (pr.at.s ?? 1), low = Math.min(...an.hands.filter((h) => h.kind !== "dot").map((h) => h.p[1]));
+        const n = low - top > 0.08 || top - low > 0.04 ? (hover.get(act.who) ?? 0) + 1 : 0; hover.set(act.who, n);
+        if (n >= 3) report(`hover-${act.who}`, low > top ? `${act.who} writes ${(low - top).toFixed(2)} m above ${act.reach} @${tt}s (the pen must touch the page: a lower surface or a taller writer)`
+          : `${act.who}'s writing hand is ${(top - low).toFixed(2)} m below ${act.reach} @${tt}s, hidden under it (a lower surface or a taller writer)`);
+      }
+      // sideways along the actor's own card (cards turn to face the camera position, as the director's reach does)
+      const yawC = Math.atan2(cam.position.x - an.floor[0], cam.position.z - an.floor[2]), rx = Math.cos(yawC), rz = -Math.sin(yawC);
+      const lat = (p: [number, number, number]) => (p[0] - an.floor[0]) * rx + (p[2] - an.floor[2]) * rz;
       const mid = tgtA && (an.gesture === "offer" || an.gesture === "write"); // handing over: the hands meet half-way
       const want = mid ? lat(tgt) / 2 : lat(tgt) - Math.sign(lat(tgt)) * (tgtA ? 0.2 : 0), best = Math.max(...an.hands.map((h) => Math.sign(want) * lat(h.p)));
-      const n = Math.abs(want) - best > 0.22 ? (short.get(act.who) ?? 0) + 1 : 0; short.set(act.who, n);
+      // a pen on a page must be ON the writing (6 cm); a handover or grab may stop a little short (22 cm)
+      const tol = spec && an.gesture === "write" ? 0.06 : 0.22;
+      const n = Math.abs(want) - best > tol ? (short.get(act.who) ?? 0) + 1 : 0; short.set(act.who, n);
       if (n >= 3) report(`reachgap-${act.who}`, `${act.who}'s hand (${an.gesture}) stops ${(Math.abs(want) - best).toFixed(2)} m short of ${act.reach} @${tt}s: stand closer`);
     }
     // effects (not ground blobs or diagrams): centre on screen

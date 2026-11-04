@@ -85,6 +85,44 @@ export const basePoseAt = (a: ActorSpec, tq: number): { base: Pose; held: string
   return { base, held };
 };
 
+/** where a story prop is reached for at shot time tq: its floor point, or, for a prop that guides the hand (a pen
+ *  along a signature), where its guide is at that moment (world [x, base y, z]) */
+export const guidedPoint = (s: ShotSpec, pr: PropSpec, tq: number): V3 => {
+  const w = propWorld(s.set, pr), e = PROPS[pr.id]; if (!e?.guide) return w;
+  const [gx, gz] = e.guide(pr.steps ? stepAt(pr.steps, tq) : 0, pr.variant), yaw = ((pr.yaw ?? 0) * Math.PI) / 180, k = pr.scale ?? 1;
+  return [w[0] + (Math.cos(yaw) * gx + Math.sin(yaw) * gz) * k, w[1], w[2] + (-Math.sin(yaw) * gx + Math.cos(yaw) * gz) * k];
+};
+/** a reach's arm settings (story ActorSpec.reach): for another actor the hands land on their flank (tickle) or meet
+ *  theirs half-way (offer, write); for a story prop they go to its middle, just over its top (a prop standing on a
+ *  table counts the table: its base height is part of its `at`), or follow its guide (a pen along a signature).
+ *  lateral(from, to) = the screen-sideways distance, actorAt(who) = where another actor is. Shared by the director
+ *  and the camera (inserts on hands), so both see the same hand */
+export const reachExtra = (s: ShotSpec, a: ActorSpec, p: V3, tq: number, lateral: (from: V3, to: V3) => number, actorAt: (who: string) => V3 | undefined, camPos?: V3): Partial<Pose> => {
+  const extra: Partial<Pose> = {}; if (!a.reach) return extra;
+  const q = actorAt(a.reach), pr = q ? undefined : (s.props ?? []).find((x) => x.id === a.reach);
+  let tp: V3 | undefined = q ?? (pr ? propWorld(s.set, pr) : undefined);
+  if (!tp) return extra;
+  const e = pr ? PROPS[pr.id] : undefined;
+  if (pr) tp = guidedPoint(s, pr, tq);
+  // a guided pen: the hand goes where the camera's line of sight to the writing crosses the writer's card (cards face
+  // the camera), so pen and ink coincide on screen from any camera that sees the writer's near side
+  const top = tp[1] + (e?.height ?? 0.6) * (pr?.scale ?? 1);
+  if (pr && e?.guide && camPos) {
+    const yaw = Math.atan2(camPos[0] - p[0], camPos[2] - p[2]), n: V3 = [Math.sin(yaw), 0, Math.cos(yaw)], T: V3 = [tp[0], top, tp[2]];
+    const d: V3 = [T[0] - camPos[0], T[1] - camPos[1], T[2] - camPos[2]], den = d[0] * n[0] + d[2] * n[2];
+    if (Math.abs(den) > 1e-6) {
+      const k = ((p[0] - camPos[0]) * n[0] + (p[2] - camPos[2]) * n[2]) / den, X: V3 = [camPos[0] + d[0] * k, camPos[1] + d[1] * k, camPos[2] + d[2] * k];
+      const lx = (X[0] - p[0]) * Math.cos(yaw) - (X[2] - p[2]) * Math.sin(yaw);
+      extra.hand = lx < 0 ? -1 : 1; extra.reach = Math.max(60, Math.min(270, Math.abs(lx) / SU)); extra.reachY = 975 - (X[1] - p[1]) / SU;
+      return extra;
+    }
+  }
+  const lat = lateral(p, tp); extra.hand = lat < 0 ? -1 : 1; extra.reach = Math.max(60, Math.min(270, Math.abs(lat) / SU - (q ? 95 : 0)));
+  if (q) extra.reachMid = Math.max(60, Math.abs(lat) / SU / 2);
+  if (pr) extra.reachY = 975 - (top - p[1]) / SU;
+  return extra;
+};
+
 /** a camera detail (inserts, POV targets): a prop ("treasureChest"), or an actor ("qm", "qm.face", "qm.hands",
  *  "qm.held"): its centre in the world and the size (m) an insert frames. "hands" = where the actor's hands meet
  *  their `reach` target (a handover, a signature, a grab); "held" = in front of their own chest (what they hold) */
@@ -99,15 +137,9 @@ export const detailOf = (cast: Storyboard["cast"], s: ShotSpec, name: string, tq
   // the hands as the rig draws them at that moment: the authored pose (act, gesture, beats up to tq, the held item and
   // the reach, set as the director sets it), mapped onto the card as seen from the insert's side
   const ar = (from * Math.PI) / 180, eye = new THREE.Vector3(p[0] + Math.sin(ar) * 6, p[1] + 1.4, p[2] + Math.cos(ar) * 6);
-  const { base, held } = basePoseAt(a, tq), extra: Partial<Pose> = {};
-  const ta = a.reach ? s.actors.find((x) => x.who === a.reach) : undefined, tp = a.reach ? (s.props ?? []).find((q) => q.id === a.reach) : undefined;
-  const tw: V3 | undefined = ta ? restPos(s.set, ta) : tp ? propWorld(s.set, tp) : undefined;
-  if (tw) {
-    const lat = (tw[0] - p[0]) * Math.cos(ar) - (tw[2] - p[2]) * Math.sin(ar);
-    extra.hand = lat < 0 ? -1 : 1; extra.reach = Math.max(60, Math.min(270, Math.abs(lat) / SU - (ta ? 95 : 0)));
-    if (ta) extra.reachMid = Math.max(60, Math.abs(lat) / SU / 2);
-    if (tp) extra.reachY = 975 - ((PROPS[tp.id]?.height ?? 0.6) * (tp.scale ?? 1)) / SU;
-  }
+  const { base, held } = basePoseAt(a, tq);
+  const ta = a.reach ? s.actors.find((x) => x.who === a.reach) : undefined, tw: V3 | undefined = ta ? restPos(s.set, ta) : a.reach && (s.props ?? []).some((q) => q.id === a.reach) ? propWorld(s.set, (s.props ?? []).find((q) => q.id === a.reach)!) : undefined;
+  const extra = reachExtra(s, a, p, tq, (from, to) => (to[0] - from[0]) * Math.cos(ar) - (to[2] - from[2]) * Math.sin(ar), (w) => { const x = s.actors.find((y) => y.who === w); return x ? restPos(s.set, x) : undefined; }, [eye.x, eye.y, eye.z]);
   const hs = anchorsFront(L, { ...base, ...(held ? { hold: held } : {}), ...extra }).hands, side = extra.hand ?? base.hand ?? 1;
   const w = (q: [number, number]): V3 => cardPoint(eye, p[0], p[1], p[2], q, 1, false);
   if (part === "held") { // the holding hand (what it holds is drawn there)
@@ -115,7 +147,15 @@ export const detailOf = (cast: Storyboard["cast"], s: ShotSpec, name: string, tq
     return { c: h ? w(h.p) : [p[0], y(an.chest[1]), p[2]], span: 0.45 };
   }
   // "hands": the reaching hand, or where the two meet (a handover, a signature); a prop's top for a grab
-  const h = hs.find((x) => x.side === side && x.kind !== "dot") ?? hs[0], c = h ? w(h.p) : [p[0], y(an.chest[1]), p[2]] as V3;
+  const h = hs.find((x) => x.side === side && x.kind !== "dot") ?? hs[0];
+  let c = h ? w(h.p) : [p[0], y(an.chest[1]), p[2]] as V3;
+  // writing on a prop: centred between the hand and the writing on the page, tight (hand, quill and words together)
+  const tpr = a.reach ? (s.props ?? []).find((q) => q.id === a.reach) : undefined;
+  if (tpr && base.gesture === "write") {
+    const g = guidedPoint(s, tpr, tq), top = g[1] + (PROPS[tpr.id]?.height ?? 0) * (tpr.scale ?? 1);
+    c = [c[0] * 0.55 + g[0] * 0.45, c[1] * 0.55 + top * 0.45, c[2] * 0.55 + g[2] * 0.45];
+    return { c, span: 0.4 };
+  }
   return { c, span: ta ? 0.55 : tw ? 0.6 : 0.45 };
 };
 
@@ -228,6 +268,24 @@ const cameraOf = (s: ShotSpec, cast: Storyboard["cast"], a: number, b: number, p
   });
   return { keys, dof: (f: number) => { let d = dofs[0]; for (const x of dofs) if (f >= x.f0) d = x; return d.dof(f); } };
 };
+/** motion blur by camera beat (Visual Storytelling 2.0): full on flights and while a whip pans or a zoom-through
+ *  rushes, light on faces (close-ups, face inserts, POV: the eyes and expression stay readable) and on object inserts,
+ *  medium on framed glides. Returns the shutter (frames) at frame f */
+export const BLUR_SCALE = { flight: 1, whip: 1, face: 0.15, insert: 0.3, framed: 0.6 };
+const shutterOf = (s: ShotSpec, a: number, b: number, full: number, rushOut: boolean) => {
+  const beats = [{ spec: s.camera as CameraSpec & { fly?: boolean; whip?: boolean }, f0: a }, ...(s.cams ?? []).filter((c) => !c.rack).map((c) => ({ spec: c as CameraSpec & { fly?: boolean; whip?: boolean }, f0: a + Math.round((c.t ?? 0) * FPS) }))].sort((x, y) => x.f0 - y.f0);
+  const scale = (c: CameraSpec & { fly?: boolean }) => c.fly ? BLUR_SCALE.flight
+    : c.move === "closeUp" || c.move === "lowHero" || c.move === "pov" || (c.move === "insert" && (!c.on.includes(".") || c.on.endsWith(".face")) && !(s.props ?? []).some((q) => q.id === c.on)) ? BLUR_SCALE.face
+    : c.move === "insert" ? BLUR_SCALE.insert : BLUR_SCALE.framed;
+  return (f: number) => {
+    if (rushOut && f >= b - 10) return full;                          // a zoom-through / whip out of the shot rushes
+    let k = 0; for (let j = 0; j < beats.length; j++) if (f >= beats[j].f0) k = j;
+    const bt = beats[k];
+    if (bt.spec.whip && f < bt.f0 + 6) return full;                    // the whip itself
+    if (k + 1 < beats.length && beats[k + 1].spec.fly) return full;    // flying on to the next waypoint
+    return full * scale(bt.spec);
+  };
+};
 const lerp3 = (p: V3, q: V3, k: number): V3 => [p[0] + (q[0] - p[0]) * k, p[1] + (q[1] - p[1]) * k, p[2] + (q[2] - p[2]) * k];
 /** a camera turned sideways about its own position (a whip pan): angle in radians */
 const swing = (c: Cam, ang: number): Shot => {
@@ -280,16 +338,19 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
     const { a, b } = ranges[k], pre = s.transition === "fade" ? FADE : s.transition === "zoom" || s.transition === "whip" ? ZFADE : 0;
     const p = cameraOf(s, sb.cast, a, b, pre);
     const props = (s.props ?? []).map((q) => { const w = whereOf(s.set, q.at); return { id: q.id, variant: q.variant, at: { x: w[0] + (q.offset?.[0] ?? 0), y: w[1], z: w[2] + (q.offset?.[1] ?? 0), yaw: ((q.yaw ?? 0) * Math.PI) / 180, s: q.scale ?? 1 }, animate: propAnim(s, q) }; });
-    return { id: k + 1, a, b, set: s.set, light: s.light ?? SETS[s.set].lights[0], keys: p.keys, dof: p.dof, kicks: (s.kicks ?? []).map((t) => [a / FPS + (t as number), 1] as [number, number]), ...(props.length ? { props } : {}), ...(sb.motionBlur ? { shutter: sb.motionBlur === true ? 0.5 : sb.motionBlur } : {}) };
+    return { id: k + 1, a, b, set: s.set, light: s.light ?? SETS[s.set].lights[0], keys: p.keys, dof: p.dof, kicks: (s.kicks ?? []).map((t) => [a / FPS + (t as number), 1] as [number, number]), ...(props.length ? { props } : {}), ...(sb.motionBlur ? { shutter: shutterOf(s, a, b, sb.motionBlur === true ? 0.5 : sb.motionBlur, ["zoom", "whip"].includes(sb.shots[k + 1]?.transition ?? "")) } : {}) };
   });
   // crowds: extras join the shot's actors (after the cameras are planned: cameras frame the named cast only)
   const notes: string[] = [];
   sb.shots.forEach((s, k) => {
     if (!s.crowd || s.crowd.count <= 0) return;
     const rest = (a: ActorSpec): V3[] => { const p0 = whereOf(s.set, a.at); if (!a.walk) return [p0]; const p1 = whereOf(s.set, a.walk.to), out: V3[] = []; for (let i = 0; i <= 10; i++) out.push([p0[0] + ((p1[0] - p0[0]) * i) / 10, p0[1], p0[2] + ((p1[2] - p0[2]) * i) / 10]); return out; };
-    // placed for the opening set-up (where the crowd is seen), not for a later insert or close-up
-    const firstBeat = Math.min(shots[k].b, ...(s.cams ?? []).filter((c) => !c.rack).map((c) => shots[k].a + Math.round((c.t ?? 0) * FPS)));
-    const c = placeCrowd(s, k + 1, shots[k].keys, Math.round((shots[k].a + firstBeat) / 2), (w) => whereOf(s.set, w), rest);
+    // placed for the first set-up that frames people (where the crowd is seen): the opening one, or, after an opening
+    // aerial or insert, the first beat that frames the cast; never for a later insert or close-up
+    const segs = [{ c: s.camera as CameraSpec, f0: shots[k].a }, ...(s.cams ?? []).filter((c) => !c.rack).map((c) => ({ c: c as CameraSpec, f0: shots[k].a + Math.round((c.t ?? 0) * FPS) }))].sort((x, y) => x.f0 - y.f0);
+    const peopleAt = segs.findIndex((x) => Array.isArray((x.c as { on?: unknown }).on)), j = peopleAt < 0 ? 0 : peopleAt;
+    const seg0 = segs[j].f0, seg1 = j + 1 < segs.length ? segs[j + 1].f0 : shots[k].b;
+    const c = placeCrowd(s, k + 1, shots[k].keys, Math.round((seg0 + seg1) / 2), (w) => whereOf(s.set, w), rest);
     s.actors.push(...c.actors); Object.assign(sb.cast, c.cast);
     if (c.note) notes.push(c.note);
   });
@@ -379,15 +440,7 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
         const mo = motion.get(a.who)!, extra: Partial<Pose> = {};
         // a reach: for another actor the hands land on their flank (tickle) or meet theirs half-way (offer, write); for
         // a story prop they go to its middle, just over its top (grab into a chest, block a grab). Target's screen side
-        if (a.reach) {
-          const q = posOf.get(a.reach), pr = q ? undefined : (s.props ?? []).find((x) => x.id === a.reach);
-          const tp: V3 | undefined = q ?? (pr ? propWorld(s.set, pr) : undefined);
-          if (tp) {
-            const lat = lateral(p, tp); extra.hand = lat < 0 ? -1 : 1; extra.reach = Math.max(60, Math.min(270, Math.abs(lat) / SU - (q ? 95 : 0)));
-            if (q) extra.reachMid = Math.max(60, Math.abs(lat) / SU / 2);
-            if (pr) extra.reachY = 975 - ((PROPS[pr.id]?.height ?? 0.6) * (pr.scale ?? 1)) / SU;
-          }
-        }
+        Object.assign(extra, reachExtra(s, a, p, tt, lateral, (w) => posOf.get(w), [cam.pos.x, cam.pos.y, cam.pos.z]));
         if (a.drive) extra.drive = driveOf(a)(tt);
         const build = (x: ReturnType<typeof actingAt>, tq: number) => layer(x.base, x.life, x.talking, x.shook, { headTilt: x.nodTilt, facing, back: a.back, t: t0 + tq, ...(x.held ? { hold: x.held } : {}), ...extra });
         // gesture easing: if the arms' configuration changed recently, blend from what the frame before the change

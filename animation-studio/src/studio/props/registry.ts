@@ -9,6 +9,7 @@ import * as I from "./interior";
 import * as O from "./outdoor";
 import * as N from "./nature";
 import { lootPilesRig, lootHeap, sharesOf } from "./economy";
+import { parchmentRig, parchmentStatic, parchmentGuide, signaturesOf } from "./documents";
 import { THEMES } from "../themes";
 
 export type PropEntry = {
@@ -24,6 +25,11 @@ export type PropEntry = {
   rig?: (a: At, variant?: string) => PropRig;
   /** a stepped rig: what its steps do, in order (story PropSpec.steps play them on words) */
   steps?: string[];
+  /** a stepped prop that guides a reaching hand (a pen along a signature): where the hand is at step progress
+   *  `step`, in the prop's local [x, z] metres on its top surface */
+  guide?: (step: number, variant?: string) => [number, number];
+  /** the sound effect each step makes (sound/catalog.ts), cued automatically */
+  stepSfx?: string;
   /** how many steps a variant has (when it depends on the parameter) */
   stepCount?: (variant?: string) => number;
   /** a rig whose variant is a parameter (lootPiles "2-1"), not a named look: what it means and which values are valid */
@@ -90,8 +96,12 @@ export const PROPS: Record<string, PropEntry> = {
   picket: { name: "Picket fence", desc: "white picket fence, 6 m", category: "nature", themes: ["home", "farm"], tags: ["boundary"], radius: 3.0, height: 0.9, build: (b, a) => N.picket(b, a) },
   // economy kit (props/economy.ts): money explained in the world, stepped on words
   lootPiles: { name: "Loot piles", desc: "a heap of gold coins that streams into share stacks, then slides to who gets them (variant \"2-1\" = two shares to the first, one to the second; stands on a table top: at [x, 0.966, z])", category: "market",
-    themes: ["money", "economy", "pirates", "history"], tags: ["money", "gold", "coins", "shares", "split", "pay", "wages", "loot", "economy"], radius: 0.3, height: 0.15,
-    build: lootHeap, rig: lootPilesRig, stepCount: (v) => 1 + sharesOf(v).length, param: { desc: "shares per recipient, e.g. 2-1", ok: (v) => /^[1-4](-[1-4]){1,2}$/.test(v) }, steps: ["the heap streams into equal share stacks", "the first recipient's stacks slide to its -x end", "the second recipient's slide to +x"] },
+    themes: ["money", "economy", "pirates", "history"], tags: ["money", "gold", "coins", "shares", "split", "pay", "wages", "loot", "economy"], radius: 0.3, height: 0.15, box: [0.62, 0.3],
+    build: lootHeap, rig: lootPilesRig, stepSfx: "coins_pour", stepCount: (v) => 1 + sharesOf(v).length, param: { desc: "shares per recipient, e.g. 2-1", ok: (v) => /^[1-4](-[1-4]){1,2}$/.test(v) }, steps: ["the heap streams into equal share stacks", "the first recipient's stacks slide to its -x end", "the second recipient's slide to +x"] },
+  // documents kit (props/documents.ts): a contract signed in the world, the writer's pen guided along each signature
+  parchment: { name: "Parchment", desc: "a parchment lying flat on a table (articles, a contract, a charter): rolled ends, a heading, lines of writing, a red seal and signature lines; steps write the signatures one by one and guide the writer's hand (reach it with gesture \"write\"; variant \"1\"-\"3\" = signatures; at [x, table height, z])", category: "market",
+    themes: ["history", "law", "pirates", "politics"], tags: ["contract", "articles", "sign", "signature", "document", "law", "rules", "charter", "treaty"], radius: 0.25, height: 0.02,
+    build: parchmentStatic, rig: parchmentRig, guide: parchmentGuide, stepCount: (v) => signaturesOf(v), param: { desc: "number of signatures, 1-3", ok: (v) => /^[1-3]$/.test(v) }, steps: ["writes the first signature", "the second", "the third"] },
 };
 
 // every themed collection's props join the registry

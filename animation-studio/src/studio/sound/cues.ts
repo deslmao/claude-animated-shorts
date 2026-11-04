@@ -10,6 +10,7 @@
 import * as THREE from "three";
 import { runKeys } from "../camera/keys";
 import { actorPos, FPS } from "../story/compile";
+import { PROPS } from "../props/registry";
 import type { compile } from "../story/compile";
 import type { Storyboard, ActorSpec } from "../story/types";
 import { Mood, MOODS, SfxName, ambienceFor, stepFor, FX_SOUND } from "./catalog";
@@ -98,6 +99,8 @@ export const soundPlan = (film: Film, sb0: Storyboard): SoundPlan => {
         if (n) cues.push({ t: T0 + (fx.t ?? 0), name: n, pan: panOf(fx.on, fx.t ?? 0), why: `${fx.kind} mark on ${fx.on}, shot ${i + 1}` });
       }
       for (const k of s.kicks ?? []) cues.push({ t: T0 + (k as number), name: "impact", why: `camera kick, shot ${i + 1}` });
+      // a stepped prop sounds each step (loot streaming into stacks and sliding to its owners: coins)
+      for (const q of s.props ?? []) { const snd = PROPS[q.id]?.stepSfx; if (snd) for (const st of q.steps ?? []) cues.push({ t: T0 + (st.t ?? 0) + 0.05, name: snd as SfxName, gain_db: -4, why: `the ${q.id} step, shot ${i + 1}` }); }
       for (const a of s.actors) {
         const fxTimes = (s.fx ?? []).filter((f) => f.on === a.who).map((f) => f.t ?? 0);
         for (const b of a.beats ?? []) if (b.act === "shock" && !fxTimes.some((t) => Math.abs(t - (b.t ?? 0)) < 0.35)) cues.push({ t: T0 + (b.t ?? 0), name: "pop", gain_db: -3, pan: panOf(a.who, b.t ?? 0), why: `${a.who} shocked, shot ${i + 1}` });

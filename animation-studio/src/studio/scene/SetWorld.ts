@@ -13,8 +13,9 @@ import { Batch } from "../materials/geo";
 import type { At } from "../props/kit";
 
 /** props: story props shown in this shot only (built the first time the shot is drawn) */
-/** shutter: camera motion blur exposure in frames (0.5 = a 180-degree shutter); absent = none */
-export type WorldShot = { id: number; a: number; b: number; set: string; light: LightName; keys: Key[]; dof: (f: number) => { cInf: number; focus?: V3 }; kicks?: [number, number][]; shutter?: number;
+/** shutter: camera motion blur exposure in frames (0.5 = a 180-degree shutter), or a function of the frame (less on
+ *  close-ups, full on flights); absent = none */
+export type WorldShot = { id: number; a: number; b: number; set: string; light: LightName; keys: Key[]; dof: (f: number) => { cInf: number; focus?: V3 }; kicks?: [number, number][]; shutter?: number | ((f: number) => number);
   props?: { id: string; variant?: string; at: At; animate?: (tt: number, anchors: Map<string, ActorAnchor>) => { target?: V3; stroke: number; step?: number } }[] };
 export type Director = (shot: WorldShot, f: number, cam: CamInfo, built: BuiltSet, out: Stage) => void;
 
@@ -83,13 +84,14 @@ export class SetWorld implements StudioWorld {
     for (const r of this.rigs.get(s.id) ?? []) r.inst.update({ ...r.animate((f - s.a) / 30, st.anchors ?? new Map()), camPos: cam.position });
     this.cards.render(st, cam, L.actorShadow);
     const d = s.dof(f);
-    return { target: focus, cInf: d.cInf, focus: d.focus ? new THREE.Vector3(...d.focus) : undefined, grade: s.light, ...(s.shutter ? { shutter: this.shutterOf(s, f) } : {}) };
+    const exp = typeof s.shutter === "function" ? s.shutter(f) : s.shutter ?? 0;
+    return { target: focus, cInf: d.cInf, focus: d.focus ? new THREE.Vector3(...d.focus) : undefined, grade: s.light, ...(exp > 0 ? { shutter: this.shutterOf(s, f, exp) } : {}) };
   }
   /** the camera's view matrix and fov at the shutter's open and close around frame f (the projection is built at
    *  draw time with the canvas's real aspect). A hard cut inside the shutter closes it at the cut (never a smear
    *  between two framings); the shot's edges likewise */
-  private shutterOf(s: WorldShot, f: number) {
-    const h = (s.shutter ?? 0) / 2;
+  private shutterOf(s: WorldShot, f: number, exp: number) {
+    const h = exp / 2;
     let lo = Math.max(s.a, f - h), hi = Math.min(s.b - 1, f + h);
     for (const k of s.keys.slice(1)) if (k.cut) { if (k.f > lo && k.f <= f) lo = k.f; if (k.f > f && k.f <= hi) hi = k.f - 1e-3; }
     const vp = (fr: number) => {

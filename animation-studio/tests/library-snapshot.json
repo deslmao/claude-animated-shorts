@@ -501,7 +501,9 @@
   "miloPirate": "154282cb3815ce",
   "junoPirate": "19a9dc94b7e03c",
   "gusPirate": "1a2f79c99578b7",
-  "gusSling": "1dc7bed626793d"
+  "gusSling": "1dc7bed626793d",
+  "shipOwner": "088afaa4818591",
+  "merchantCaptain": "0520d07c0979dc"
  },
  "placeable": {
   "sofa": "106defb7ae552c",
@@ -548,9 +550,11 @@
   "fence": "183c2374b0124f",
   "picket": "183c2374b0124f",
   "lootPiles": "105b38b310ba7d",
+  "parchment": "02bc146b1f84c1",
   "robotArm": "061a26dd022e9b",
   "cannon": "0f8f6d539c925c",
   "deckTable": "0e5c8e7152eac3",
+  "countingDesk": "02cbd778baa75f",
   "deckBoard": "0e5c8e7152eac3",
   "treasureChest": "151bba57aa1f34",
   "shipWheel": "0dd66ff34f527d",
@@ -585,6 +589,8 @@
   "quill": "",
   "coinBag": "",
   "shovel": "",
+  "cane": "",
+  "crown": "",
   "tricorn": ""
  }
 }

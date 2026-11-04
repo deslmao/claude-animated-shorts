@@ -542,9 +542,11 @@ export const rigFront = (L: Look, pose: Pose) => {
       const want = (g === "offer" || g === "write") && pose.reachMid !== undefined ? pose.reachMid + 12 * u : pose.reach ?? 0.9 * HH, reach = Math.min(want, cap);
       const yAt = g === "offer" ? chin + 0.5 * HH : g === "write" ? chin + 0.56 * HH : g === "grab" ? chin + 0.78 * HH : chin + 0.62 * HH;
       // at a prop: just over its top (grab), a little higher to hand something over, highest to block the grab
-      const over = g === "grab" ? 0.04 : g === "write" ? 0.12 : g === "offer" ? 0.2 : 0.32;
+      const over = g === "grab" ? 0.04 : g === "write" ? 0.035 : g === "offer" ? 0.2 : 0.32; // write: the nib on the page
       const wob = g === "write" ? 2.2 * u * Math.sin(t * 17) : g === "grab" ? 1.5 * u * Math.sin(t * 9) : 0;
-      const hy = Math.max(chin + 0.3 * HH, Math.min(pose.reachY !== undefined ? pose.reachY - over * HH : yAt, torsoBot - 0.05 * HH)) + (g === "write" ? 1.6 * u * Math.cos(t * 23) : 0);
+      // writing at a surface may lift the hand to just under the chin (a short writer at a high table)
+      const top = g === "write" && pose.reachY !== undefined ? chin + 0.06 * HH : chin + 0.3 * HH;
+      const hy = Math.max(top, Math.min(pose.reachY !== undefined ? pose.reachY - over * HH : yAt, torsoBot - 0.05 * HH)) + (g === "write" ? 1.6 * u * Math.cos(t * 23) : 0);
       const hx = tcx + s * reach + wob;
       add(s, [S[0] + s * Math.max(0.24 * HH, (hx - S[0]) * s * 0.45), (S[1] + hy) / 2 + 0.12 * HH], [hx, hy], 1, g === "grab" ? "open" : g === "block" ? "palm" : "fist");
       arms.push({ pts: hang(-s, 0), layer: 0, hand: "dot" });

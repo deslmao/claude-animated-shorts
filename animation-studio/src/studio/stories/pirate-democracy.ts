@@ -12,7 +12,8 @@ import type { Storyboard } from "../story/types";
 
 export const PIRATEDEMOCRACY: Storyboard = {
   id: "pirate-democracy", title: "Pirates ran surprisingly democratic ships",
-  cast: { milo: "miloPirate", juno: "junoPirate", gus: "gusPirate", gusHurt: "gusSling", captain: "captain", qm: "quartermaster" },
+  cast: { milo: "miloPirate", juno: "junoPirate", gus: "gusPirate", gusHurt: "gusSling", captain: "captain", qm: "quartermaster",
+    owner: "shipOwner", master: "merchantCaptain", sailorA: { extra: 2, era: "pirate" }, sailorB: { extra: 5, era: "pirate" }, sailorC: { extra: 9, era: "pirate" } },
   music: "adventure", motionBlur: true, engine: 2,
   shots: [
     // hook: feared pirates, cutlasses out and scowling; on "feared" the blades go up with a roar and the crew shakes
@@ -27,41 +28,47 @@ export const PIRATEDEMOCRACY: Storyboard = {
           moves: [{ word: "feared", kind: "hop", dur: 0.5 }] },
       ],
       crowd: { count: 6, era: "pirate", acts: ["angry", "determined"], beats: [{ word: "feared", gesture: "fists", face: "angry" }, { word: "democracies", gesture: "raiseHand", face: "smile" }] } },
-    // the articles: Mags holds out the scroll, Milo puts down the cutlass and signs it with a quill
+    // the articles, signed in the world: the crew round a deck table, the parchment lying on it; the captain lays down
+    // his cutlass and signs, his quill travelling along the signature as it is written (the parchment guides his hand)
     { say: "Picture a pirate crew in the early 1700s. Before anyone touches a sword, they sign a contract.", set: "shipDeck", light: "day", transition: "flash",
       // "Picture a pirate crew": from high over the stern, the camera flies down to the crew, arriving on "1700s"
       camera: { move: "at", pos: [8.5, 7.5, 13], look: [0, 2.2, -3.5], fov: 50 },
       cams: [
         { word: "crew", move: "at", pos: [3.2, 3.6, 5.2], look: [0.1, 1.5, -1.6], fov: 46, fly: true },
-        { word: "1700s", move: "frame", on: ["milo", "qm"], size: "wide", from: 14, height: 2.1, fly: true },
-        { word: "Before", move: "insert", on: "milo.held", size: "close", from: 6 },
-        { word: "sign", move: "insert", on: "milo.hands", size: "extreme", from: -10, height: 1.35 },
-        { word: "contract", move: "insert", on: "qm.face", size: "close", from: -10 },
+        { word: "1700s", move: "frame", on: ["captain", "qm", "milo"], size: "wide", from: 10, height: 2.1, fly: true },
+        { word: "Before", move: "insert", on: "captain.held", size: "close", from: 8 },
+        // an angled close-up down onto the page: the hand, the quill and the signature all over the parchment
+        { word: "sign", move: "insert", on: "captain.hands", size: "extreme", from: -30, height: 1.45 },
+      ],
+      props: [
+        { id: "deckBoard", at: [0.1, 0, -1.4] },
+        { id: "parchment", variant: "1", at: [-0.56, 0.966, -1.4], steps: [{ word: "sign" }] },
       ],
       actors: [
-        { who: "milo", at: [-0.18, 0, -1.15], act: "happy", hold: "sword", reach: "qm",
+        { who: "captain", at: [-1.07, 0, -1.4], act: "proud", hold: "sword", reach: "parchment",
           beats: [{ word: "sword", face: "suspicious" }, { word: "sign", hold: "quill", gesture: "write", face: "determined" }] },
-        { who: "qm", at: [0.42, 0, -1.3], act: "explain", hold: "scroll", reach: "milo",
-          beats: [{ word: "Before", gesture: "offer", face: "stern" }, { word: "contract", face: "smile" }] },
+        { who: "qm", at: [0.25, 0, -2.15], act: "neutral", face: "stern", facing: "toward:captain", beats: [{ word: "contract", face: "smile" }] },
+        { who: "milo", at: [1.3, 0, -1.35], act: "happy", facing: "toward:captain" },
       ],
       crowd: { count: 3, era: "pirate" } },
     // the shares, in the world: on a table on deck the loot heap streams into three equal stacks ("shared"); two slide
     // to the captain ("two"), one to Milo the sailor ("sailor's"). Top-down on the heap, then each end of the table
-    { say: "It says how the loot is shared, and the captain gets at most two shares to a sailor's one.", set: "shipDeck", light: "day", transition: "cut",
+    { say: "It says how the loot is shared, and the captain gets at most two shares to a sailor's one.", set: "shipDeck", light: "day", transition: "cut", hold: 0.9,
       camera: { move: "insert", on: "lootPiles", size: "close", from: 4, height: 1.95 },
       cams: [
         // across the table from Milo's end: the stacks in the foreground, the captain behind them as two slide to him
-        { word: "captain", move: "at", pos: [1.15, 1.42, -1.42], look: [-1.0, 1.1, -1.6], fov: 44, glide: 0.6 },
-        // whip to the reverse from the captain's end: the sailor's one stack slides to Milo
-        { word: "sailor's", move: "at", pos: [-0.75, 1.42, -1.42], look: [1.45, 1.1, -1.6], fov: 44, whip: true },
+        { word: "captain", move: "at", pos: [1.05, 1.42, -1.3], look: [-1.0, 1.1, -1.6], fov: 44, glide: 0.8 },
+        // pull back and up to an overhead of the whole table as the sailor's one stack slides to Milo's end: two
+        // stacks at the captain's end, one at Milo's, every stack separate (held 0.9 s to read)
+        { word: "sailor's", move: "at", pos: [1.05, 3.3, -1.6], look: [0.12, 0.97, -1.6], fov: 40, glide: 0.7 },
       ],
       props: [
         { id: "deckBoard", at: [0.2, 0, -1.6] },
         { id: "lootPiles", variant: "2-1", at: [0.2, 0.966, -1.6], steps: [{ word: "shared" }, { word: "two" }, { word: "sailor's" }] },
       ],
       actors: [
-        { who: "captain", at: [-1.08, 0, -1.55], act: "happy", facing: "toward:milo", beats: [{ word: "two", face: "grin", gesture: "cheer" }] },
-        { who: "milo", at: [1.48, 0, -1.55], act: "neutral", facing: "toward:captain", beats: [{ word: "one", face: "smile", gesture: "thumbsUp" }] },
+        { who: "captain", at: [-1.08, 0, -1.55], act: "happy", facing: "toward:milo", beats: [{ word: "two", face: "grin", gesture: "cheer" }, { word: "sailor's", gesture: "hips", face: "proud" }] },
+        { who: "milo", at: [1.62, 0, -1.55], act: "neutral", facing: "toward:captain", beats: [{ word: "one", face: "smile", gesture: "thumbsUp" }] },
       ] },
     // the injury fund: Gus, arm in a sling, is paid from the crew's purse
     { say: "Lose an arm in battle? The crew pays you from a shared fund.", set: "shipDeck", light: "day", transition: "cut",
@@ -103,17 +110,64 @@ export const PIRATEDEMOCRACY: Storyboard = {
       camera: { move: "dutch", on: ["milo"], size: "medium", from: -12, roll: 0.09 },
       actors: [{ who: "milo", at: "a", act: "confused", beats: [{ word: "fair", gesture: "scratchHead", face: "shock" }] }],
       fx: [{ kind: "question", on: "milo", word: "fair" }] },
-    // the explanation: Juno the navigator with the chain-of-command panel (merchant side, then pirate side)
-    { say: "You see, merchant ships had owners on land, and their captains could beat sailors into line.", set: "shipDeck", light: "day", transition: "fade", mood: "curious",
-      camera: { move: "frame", on: ["juno", "diagram"], size: "medium", from: -8, height: 1.5 },
-      actors: [{ who: "juno", at: "a", act: "explain", face: "smile", facing: "camera",
-        beats: [{ word: "owners", gesture: "pointUp" }, { word: "beat", gesture: "present", face: "stern" }, { word: "line", face: "disgusted" }] }],
-      diagram: { kind: "merchant", with: "juno", place: "above", size: 1.0, steps: [{ word: "owners" }, { word: "captains" }, { word: "beat" }] } },
-    { say: "Pirates had no owners. The crew was the company, so they wrote rules to stop anyone becoming a tyrant.", set: "shipDeck", light: "day", transition: "cut",
-      camera: { move: "frame", on: ["juno", "diagram"], size: "medium", from: -8, height: 1.5 },
-      actors: [{ who: "juno", at: "a", act: "explain", face: "smile", facing: "camera",
-        beats: [{ word: "company", gesture: "pointUp" }, { word: "rules", hold: "scroll", face: "talk" }, { word: "tyrant", face: "stern" }] }],
-      diagram: { kind: "crew", with: "juno", place: "above", size: 1.0, steps: [{ word: "owners" }, { word: "company" }, { word: "rules" }, { word: "tyrant" }] } },
+    // OWNERS ON LAND (Visual Storytelling 2.0): the explanation happens in the world, one line across three places.
+    // "merchant ships": a merchant deck, cargo crates, a stern master; the camera rises off the ship...
+    { say: "You see, merchant ships had owners on land, and their captains could beat sailors into line.", until: { word: "owners" },
+      set: "shipDeck", light: "day", transition: "whip", mood: "curious",
+      camera: { move: "frame", on: ["master", "sailorA", "sailorB"], size: "full", from: -8, height: 1.9 },
+      // rising off the deck and turning to the horizon: the zoom-through then flies on over the sea toward land
+      cams: [
+        { word: "merchant", move: "frame", on: ["master", "sailorA", "sailorB"], size: "full", from: -8, height: 1.9 }, // held until "merchant", then...
+        { word: "had", move: "at", pos: [3.4, 6.8, 7.5], look: [-8, 6.0, -40], fov: 50, fly: true },
+      ],
+      props: [{ id: "crate", at: [-0.1, 0, -2.6] }, { id: "crate", at: [0.55, 0, -2.75], yaw: 20 }, { id: "barrel", at: [1.25, 0, -2.5] }],
+      actors: [
+        { who: "master", at: [-0.9, 0, -1.15], act: "angry", hold: "cane", facing: "toward:sailorA" },
+        { who: "sailorA", at: [0.45, 0, -1.6], act: "nervous", facing: "toward:master" },
+        { who: "sailorB", at: [1.15, 0, -1.75], act: "sad", facing: "toward:master" },
+      ] },
+    // ...and zooms through into the old town: "owners on land", the shipowner at his counting desk with the profits
+    { cont: true, until: { word: "their" }, set: "oldtown", light: "day", transition: "zoom",
+      camera: { move: "at", pos: [2.8, 8.5, 9.5], look: [0.2, 1.0, 1.2], fov: 46 },
+      cams: [{ word: "land", move: "frame", on: ["owner"], size: "medium", from: 0, height: 1.55, fly: true }],
+      props: [{ id: "countingDesk", at: [0.2, 0, 2.2] }, { id: "lootPiles", at: [-0.15, 0.92, 2.2] }],
+      actors: [{ who: "owner", at: [0.2, 0, 1.5], act: "proud", hold: "coinBag", facing: "camera", beats: [{ word: "land", face: "smile_closed" }, { word: "and", face: "grin" }] }] },
+    // match cut: the owner's framing becomes the master's (same size, same angle): the chain of command. On "beat" the
+    // cane comes up with a crack (no blow shown); whip to the sailors, who flinch and then stand rigid in a line
+    { cont: true, set: "shipDeck", light: "day", transition: "cut",
+      camera: { move: "frame", on: ["master"], size: "medium", from: 0, height: 1.55 },
+      cams: [{ word: "sailors", move: "frame", on: ["sailorA", "sailorB", "sailorC"], size: "full", from: -6, height: 1.45, whip: true }],
+      kicks: [{ word: "beat" }],
+      props: [{ id: "crate", at: [-0.1, 0, -2.6] }, { id: "crate", at: [0.55, 0, -2.75], yaw: 20 }, { id: "barrel", at: [1.25, 0, -2.5] }],
+      actors: [
+        { who: "master", at: [-0.9, 0, -1.15], act: "angry", hold: "cane", facing: "camera", beats: [{ word: "beat", gesture: "pointUp", face: "angry" }] },
+        { who: "sailorA", at: [0.35, 0, -1.6], act: "nervous", facing: "camera", beats: [{ word: "beat", act: "scared" }, { word: "line", act: "neutral", face: "scared" }] },
+        { who: "sailorB", at: [1.05, 0, -1.65], act: "nervous", facing: "camera", beats: [{ word: "beat", act: "scared" }, { word: "line", act: "neutral", face: "scared" }] },
+        { who: "sailorC", at: [1.75, 0, -1.7], act: "nervous", facing: "camera", beats: [{ word: "beat", act: "scared" }, { word: "line", act: "neutral", face: "scared" }] },
+      ] },
+    // PIRATES: no owner's flag but their own; the camera tilts down the Jolly Roger to the crew, who raise every hand
+    // (the crew is the company); Mags writes the rules down; the captain lifts a crown... and the crew's glare makes
+    // him lower it (rules against a tyrant)
+    { say: "Pirates had no owners. The crew was the company, so they wrote rules to stop anyone becoming a tyrant.", set: "shipDeck", light: "day", transition: "whip", mood: "adventure",
+      camera: { move: "at", pos: [-0.9, 3.0, 1.0], look: [-2.3, 3.0, -3.0], fov: 42 },
+      cams: [
+        { word: "crew", move: "frame", on: ["qm", "captain"], size: "full", from: 0, height: 3.6, fly: true },
+        { word: "wrote", move: "insert", on: "qm.hands", size: "extreme", from: -30, height: 1.7 },
+        { word: "anyone", move: "frame", on: ["captain"], size: "medium", from: -6, height: 1.5 },
+        { word: "tyrant", move: "closeUp", on: "captain", from: -4 },
+      ],
+      props: [
+        { id: "jollyRoger", at: [-2.3, 0, -3.0] },
+        { id: "deckBoard", at: [0.1, 0, -1.4] },
+        { id: "parchment", variant: "1", at: [-0.56, 0.966, -1.4], steps: [{ word: "wrote" }] },
+      ],
+      actors: [
+        { who: "qm", at: [-1.07, 0, -1.4], act: "determined", reach: "parchment", hold: "quill", facing: "camera", beats: [{ word: "wrote", gesture: "write" }, { word: "anyone", gesture: "crossArms", hold: null }, { word: "tyrant", face: "stern" }] },
+        { who: "captain", at: [1.3, 0, -1.35], act: "happy", facing: "camera",
+          beats: [{ word: "company", gesture: "raiseHand" }, { word: "anyone", hold: "crown", gesture: "raiseHand", face: "grin" }, { word: "tyrant", hold: null, act: "embarrassed", face: "nervous" }] },
+      ],
+      fx: [{ kind: "sweat", on: "captain", word: "tyrant" }],
+      crowd: { count: 6, era: "pirate", beats: [{ word: "company", gesture: "raiseHand", face: "smile" }, { word: "tyrant", gesture: "crossArms", face: "angry" }] } },
     { say: "Economist Peter Leeson argues it was the only way a ship of outlaws could work.", set: "shipDeck", light: "day", transition: "cut",
       camera: { move: "pushIn", on: ["juno"], size: "full", to: "medium", from: -10, height: 1.45 },
       actors: [{ who: "juno", at: "b", act: "explain", hold: "book", face: "smile", beats: [{ word: "only", face: "talk" }] }],
