@@ -173,7 +173,10 @@
   "sha": "462ba9c2c019ab65adb373cd91b17efbb8178f72",
   "branch": "claude/admiring-hopper-kbrb3d",
   "requested": "2026-11-04T00:06:12.003Z",
-  "attempt": 1
+  "attempt": 1,
+  "runId": 41744276526,
+  "runNumber": 13,
+  "url": "https://github.com/deslmao/claude-animated-shorts/actions/runs/41744276526"
  },
  "final": {
   "tag": "video-Short-tickle-run11",
