@@ -1,0 +1,12 @@
+{
+  "video": { "release": "video-Short-tickle-run13", "file": "Short-tickle.mp4", "sha256": "9a8ec9e9c37995389a7ea0a9414a77c03ad4bfb52661dc8167efba677b8f1afb", "bytes": 34114677, "width": 1080, "height": 1920, "fps": 30, "seconds": 63.733 },
+  "title": "Why Can't You Tickle Yourself? 🧠",
+  "title_alternatives": ["Your Brain Won't Let You Tickle Yourself 🤔", "Why Tickling Yourself Never Works"],
+  "description": "Why can't you tickle yourself? Your brain predicts it.\n\nEvery time you move, your cerebellum (at the back of your brain) forecasts what the movement will feel like. When the touch lands exactly as predicted, your brain turns the feeling down. No surprise, no tickle.\n\nScientists tested this with a tickling robot: people moved it with one hand and it tickled their other palm. In sync, it barely tickled. Add a tiny delay, and it got ticklish again.\n\nSources:\n• Blakemore, Wolpert & Frith (1998), \"Central cancellation of self-produced tickle sensation\", Nature Neuroscience\n• Blakemore, Frith & Wolpert (1999), \"Spatio-temporal prediction modulates the perception of self-produced stimuli\", Journal of Cognitive Neuroscience 11(5)\n\n#shorts #science #brain #funfacts #tickle",
+  "hashtags": ["#shorts", "#science", "#brain", "#funfacts", "#tickle"],
+  "tags": ["why can't you tickle yourself", "tickle yourself", "tickling", "brain facts", "cerebellum", "science shorts", "fun facts", "neuroscience", "tickling robot", "animated science"],
+  "category": "Education",
+  "language": "en",
+  "thumbnail": { "file": "thumbnail.jpg", "width": 1080, "height": 1920, "source_frame": 420, "app_frame_time": "0:14.0" },
+  "uploaded": false
+}
