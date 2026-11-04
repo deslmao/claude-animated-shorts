@@ -17,11 +17,11 @@ export const PIRATEDEMOCRACY: Storyboard = {
   shots: [
     // hook: feared pirates, cutlasses up and scowling... and on "democracies" every hand goes up for a vote
     { say: "Some of history's most feared pirates ran their ships like tiny democracies.", set: "shipDeck", light: "day",
-      camera: { move: "pushIn", on: ["milo", "captain"], size: "full", to: "medium", from: 6, height: 1.45 },
+      camera: { move: "pushIn", on: ["milo", "captain"], size: "medium", to: "medium", from: 6, height: 1.5 },
       actors: [
-        { who: "milo", at: "a", act: "angry", hold: "sword", gesture: "raiseHand", facing: "camera",
+        { who: "milo", at: "a", act: "angry", hold: "sword", gesture: "hold", facing: "camera",
           beats: [{ word: "democracies", hold: null, gesture: "raiseHand", face: "grin" }] },
-        { who: "captain", at: "b", act: "angry", hold: "sword", gesture: "raiseHand", facing: "camera",
+        { who: "captain", at: "b", act: "angry", hold: "sword", gesture: "hold", facing: "camera",
           beats: [{ word: "pirates", face: "determined" }, { word: "democracies", hold: null, gesture: "raiseHand", face: "smile" }] },
       ],
       crowd: { count: 6, era: "pirate", acts: ["angry", "determined"], beats: [{ word: "democracies", gesture: "raiseHand", face: "smile" }] } },
