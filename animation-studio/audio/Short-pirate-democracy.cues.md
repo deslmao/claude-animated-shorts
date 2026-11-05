@@ -21,7 +21,7 @@ Voice -19.5 LUFS; music -10.0 LU and ambience -20.04 LU relative to the voice.
 |  18.78 s |  563 | sfx coins_pour: gusHurt takes the coins, shot 4 |
 |  19.18 s |  576 | sfx whoosh_short: whip pan into shot 5 |
 |  20.46 s |  614 | sfx party_pop: confetti mark on captain, shot 5 |
-|  26.67 s |  800 | sfx crowd_aye: the crowd votes, shot 7 |
+|  26.51 s |  795 | sfx crowd_aye: the crowd votes, shot 7 |
 |  28.98 s |  869 | sfx twinkle: sparkle mark on qm, shot 8 |
 |  30.90 s |  927 | sfx coins_pour: qm takes the coins, shot 8 |
 |  31.05 s |  931 | sfx coins_pour: qm hands over coins, shot 8 |
