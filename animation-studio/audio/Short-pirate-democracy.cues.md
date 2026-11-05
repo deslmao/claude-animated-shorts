@@ -7,22 +7,26 @@ Voice -19.5 LUFS; music -10.0 LU and ambience -20.04 LU relative to the voice.
 |---|---|---|
 |   0.00 s |    0 | music: adventure (120 bpm) |
 |   0.00 s |    0 | ambience: amb_sea |
+|   1.18 s |   36 | sfx impact: camera kick, shot 1 |
 |   3.78 s |  113 | sfx crowd_aye: the crowd votes, shot 1 |
 |   4.55 s |  136 | sfx flash_swish: white flash into shot 2 |
 |   9.41 s |  282 | sfx quill_scratch: captain signs, shot 2 |
 |  11.55 s |  347 | sfx coins_pour: the lootPiles step, shot 3 |
 |  13.45 s |  403 | sfx coins_pour: the lootPiles step, shot 3 |
 |  14.28 s |  428 | sfx coins_pour: the lootPiles step, shot 3 |
+|  15.75 s |  472 | sfx whoosh_short: whip pan into shot 4 |
 |  16.65 s |  500 | sfx drip: sweat mark on gusHurt, shot 4 |
 |  17.91 s |  537 | sfx coins_pour: qm hands over coins, shot 4 |
 |  18.73 s |  562 | sfx twinkle: hearts mark on gusHurt, shot 4 |
 |  18.78 s |  563 | sfx coins_pour: gusHurt takes the coins, shot 4 |
-|  19.29 s |  579 | sfx whoosh_short: punch-in close-up, shot 5 |
+|  19.18 s |  576 | sfx whoosh_short: whip pan into shot 5 |
 |  20.46 s |  614 | sfx party_pop: confetti mark on captain, shot 5 |
 |  26.67 s |  800 | sfx crowd_aye: the crowd votes, shot 7 |
+|  28.98 s |  869 | sfx twinkle: sparkle mark on qm, shot 8 |
 |  30.90 s |  927 | sfx coins_pour: qm takes the coins, shot 8 |
 |  31.05 s |  931 | sfx coins_pour: qm hands over coins, shot 8 |
 |  31.88 s |  957 | sfx coins_pour: captain takes the coins, shot 8 |
+|  34.12 s | 1024 | sfx whoosh_short: whip pan into shot 9 |
 |  35.14 s | 1054 | sfx blip_up: question mark on milo, shot 9 |
 |  35.58 s | 1068 | sfx whoosh_short: whip pan into shot 10 |
 |  35.73 s | 1072 | music: curious (100 bpm) |
@@ -37,6 +41,8 @@ Voice -19.5 LUFS; music -10.0 LU and ambience -20.04 LU relative to the voice.
 |  43.95 s | 1319 | sfx quill_scratch: qm signs, shot 13 |
 |  45.65 s | 1369 | sfx drip: sweat mark on captain, shot 13 |
 |  47.29 s | 1419 | sfx twinkle: sparkle mark on juno, shot 14 |
+|  52.25 s | 1568 | sfx whoosh_short: whip pan, shot 15 |
+|  53.18 s | 1595 | sfx whoosh_short: whip pan, shot 15 |
 |  57.93 s | 1738 | sfx swish_soft: crossfade into shot 17 |
 |  58.23 s | 1747 | sfx crowd_murmur: storyboard cue, shot 17 |
 |  60.32 s | 1810 | sfx crowd_aye: the crowd votes, shot 17 |

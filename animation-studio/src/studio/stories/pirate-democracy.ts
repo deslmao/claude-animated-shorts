@@ -16,10 +16,15 @@ export const PIRATEDEMOCRACY: Storyboard = {
     owner: "shipOwner", master: "merchantCaptain", sailorA: { extra: 2, era: "pirate" }, sailorB: { extra: 5, era: "pirate" }, sailorC: { extra: 9, era: "pirate" } },
   music: "adventure", motionBlur: true, engine: 2,
   shots: [
-    // hook: feared pirates, cutlasses out and scowling; on "feared" the blades go up with a roar and the crew shakes
-    // fists... and on "democracies" the blades are gone and every hand goes up for a vote
+    // HOOK: low and menacing on the cutlass-waving crew (an impact on "feared")... then the camera pulls back and rises
+    // over the whole crew as every blade becomes a raised hand on "democracies": the twist, told by the camera
     { say: "Some of history's most feared pirates ran their ships like tiny democracies.", set: "shipDeck", light: "day",
-      camera: { move: "pushIn", on: ["milo", "captain"], size: "full", to: "medium", from: 6, height: 1.5 },
+      camera: { move: "frame", on: ["milo", "captain"], size: "medium", from: 6, height: 0.95 },
+      cams: [
+        { word: "ships", move: "frame", on: ["milo", "captain"], size: "medium", from: 6, height: 0.95 },
+        { word: "democracies", move: "at", pos: [2.0, 3.3, 3.4], look: [0.0, 1.35, -1.8], fov: 50, fly: true },
+      ],
+      kicks: [{ word: "feared" }],
       actors: [
         { who: "milo", at: [-0.35, 0, -1.0], act: "angry", hold: "sword", gesture: "hold", facing: "camera",
           beats: [{ word: "feared", gesture: "raiseHand", face: "angry" }, { word: "democracies", hold: null, gesture: "raiseHand", face: "grin" }] },
@@ -70,43 +75,66 @@ export const PIRATEDEMOCRACY: Storyboard = {
         { who: "captain", at: [-1.08, 0, -1.55], act: "happy", facing: "toward:milo", beats: [{ word: "two", face: "grin", gesture: "cheer" }, { word: "sailor's", gesture: "hips", face: "proud" }] },
         { who: "milo", at: [1.62, 0, -1.55], act: "neutral", facing: "toward:captain", beats: [{ word: "one", face: "smile", gesture: "thumbsUp" }] },
       ] },
-    // the injury fund: Gus, arm in a sling, is paid from the crew's purse
-    { say: "Lose an arm in battle? The crew pays you from a shared fund.", set: "shipDeck", light: "day", transition: "cut",
-      camera: { move: "frame", on: ["gusHurt", "qm"], size: "medium", from: 8, height: 1.4 },
+    // the injury fund: Gus winces in his sling ("battle?"); a glide to Mags as she hands him the crew's purse on "pays";
+    // his relief, close, on "fund"
+    { say: "Lose an arm in battle? The crew pays you from a shared fund.", set: "shipDeck", light: "day", transition: "whip",
+      camera: { move: "frame", on: ["gusHurt"], size: "medium", from: 14, height: 1.35 },
+      cams: [
+        { word: "crew", move: "frame", on: ["gusHurt", "qm"], size: "medium", from: 8, height: 1.4, glide: 0.4 },
+        { word: "fund", move: "closeUp", on: "gusHurt", from: 10 },
+      ],
       actors: [
-        { who: "gusHurt", at: [-0.35, 0, -1.1], act: "sad", face: "pained", beats: [{ word: "fund", hold: "coinBag", act: "relief" }] },
+        { who: "gusHurt", at: [-0.35, 0, -1.1], act: "sad", face: "pained", facing: "toward:qm", beats: [{ word: "fund", hold: "coinBag", act: "relief" }] },
         { who: "qm", at: [0.45, 0, -1.35], act: "neutral", face: "smile", hold: "coinBag", reach: "gusHurt",
           beats: [{ word: "pays", gesture: "offer" }, { word: "fund", hold: null, gesture: "present" }] },
       ],
       fx: [{ kind: "sweat", on: "gusHurt", word: "battle" }, { kind: "hearts", on: "gusHurt", word: "fund" }] },
-    { say: "And the captain? He's elected.", set: "shipDeck", light: "day", transition: "cut",
+    { say: "And the captain? He's elected.", set: "shipDeck", light: "day", transition: "whip",
       camera: { move: "closeUp", on: "captain", from: -8, punch: true },
       actors: [{ who: "captain", at: "b", act: "suspicious", beats: [{ word: "elected", act: "proud" }] }],
       fx: [{ kind: "confetti", on: "captain", word: "elected" }] },
-    // the captain at the helm, campaigning (his own voice)
+    // the captain campaigns at the helm, heroic from below (his own voice)... cut on "brave" to Mags and Milo below,
+    // arms folded and unimpressed (a reaction shot)
     { say: { who: "captain", text: "I'd like to remind everyone that I'm very brave.", voice: "captainRedd" }, set: "shipDeck", light: "day", transition: "cut",
-      camera: { move: "frame", on: ["captain"], size: "full", from: 12, height: 2.75 },
-      actors: [{ who: "captain", at: "wheel", act: "nervous", gesture: "hips", facing: "camera", beats: [{ word: "remind", gesture: "pointUp" }, { word: "brave", act: "proud", gesture: "hips" }] }] },
-    // the vote: the crew faces the captain and raises their hands; he recoils on "out"
-    { say: "If he's a coward or a bully, the crew can vote him out and pick someone new.", set: "shipDeck", light: "day", transition: "cut",
-      camera: { move: "frame", on: ["milo", "captain"], size: "medium", from: 8, height: 1.45 },
+      camera: { move: "lowHero", on: "captain", from: 192 },
+      cams: [{ word: "brave", move: "frame", on: ["qm", "milo"], size: "medium", from: 180, height: 1.5 }],
       actors: [
-        { who: "milo", at: [-0.25, 0, -1.05], act: "suspicious", facing: "toward:captain", beats: [{ word: "vote", gesture: "raiseHand", face: "determined" }, { word: "new", act: "happy" }] },
-        { who: "captain", at: [0.5, 0, -1.4], act: "nervous", facing: "camera", beats: [{ word: "coward", face: "scared" }, { word: "out", face: "shock", gesture: "coverMouth" }, { word: "new", act: "sad" }],
+        { who: "captain", at: "wheel", act: "nervous", gesture: "hips", facing: "camera", beats: [{ word: "remind", gesture: "pointUp" }, { word: "brave", act: "proud", gesture: "hips" }] },
+        { who: "qm", at: [-0.5, 0, 4.3], act: "neutral", gesture: "crossArms", face: "suspicious", facing: "toward:captain" },
+        { who: "milo", at: [0.45, 0, 4.15], act: "neutral", face: "suspicious", facing: "toward:captain", beats: [{ word: "brave", gesture: "facepalm" }] },
+      ] },
+    // the vote: "coward" (he cowers), "bully" (he bullies)... on "vote" we see what he sees: the crew's raised hands,
+    // aimed at him (his point of view); on "out", his shock, close
+    { say: "If he's a coward or a bully, the crew can vote him out and pick someone new.", set: "shipDeck", light: "day", transition: "cut",
+      camera: { move: "frame", on: ["captain", "milo"], size: "medium", from: -10, height: 1.45 },
+      cams: [
+        { word: "vote", move: "pov", from: "captain", at: "milo.face" },
+        { word: "out", move: "closeUp", on: "captain", from: -6, punch: true },
+      ],
+      actors: [
+        { who: "milo", at: [-1.35, 0, -0.55], act: "suspicious", facing: "toward:captain", beats: [{ word: "vote", gesture: "raiseHand", face: "determined" }, { word: "new", act: "happy" }] },
+        { who: "captain", at: [0.5, 0, -1.4], act: "nervous", facing: "camera",
+          beats: [{ word: "coward", act: "scared" }, { word: "bully", act: "angry", gesture: "fists" }, { word: "out", face: "shock", gesture: "coverMouth" }, { word: "new", act: "sad" }],
           moves: [{ word: "out", kind: "recoil", away: "milo", dur: 0.9 }] },
       ],
-      crowd: { count: 5, era: "pirate", acts: ["suspicious", "neutral"], toward: "captain", beats: [{ word: "vote", gesture: "raiseHand", face: "determined" }] } },
-    // the quartermaster: hands the captain his share over the chest... and blocks his grab for the rest
+      crowd: { count: 5, era: "pirate", acts: ["suspicious", "neutral"], toward: "captain", forBeat: 1, beats: [{ word: "vote", gesture: "raiseHand", face: "determined" }] } },
+    // the quartermaster: Mags, heroic from below ("a second elected officer"); the handover over the chest, close; on
+    // "grab" the camera pushes down onto the chest as his hand dives for the gold and hers blocks it; he sulks
     { say: "A second elected officer, the quartermaster, hands out the food and loot, so the captain can't grab it all.", set: "shipDeck", light: "day", transition: "cut",
-      camera: { move: "frame", on: ["qm", "captain"], size: "medium", from: 4, height: 1.4 },
-      actors: [
-        { who: "qm", at: [-0.6, 0, -1.05], act: "explain", face: "smile", reach: "heroChest",
-          beats: [{ word: "hands", hold: "coinBag", gesture: "offer" }, { word: "loot", hold: null, gesture: "present" }, { word: "grab", gesture: "block", face: "stern" }] },
-        { who: "captain", at: [0.9, 0, -1.05], act: "happy", reach: "heroChest",
-          beats: [{ word: "loot", hold: "coinBag", face: "grin" }, { word: "captain", hold: null, face: "suspicious" }, { word: "grab", gesture: "grab", face: "grin" }, { word: "all", act: "sad" }] },
+      camera: { move: "lowHero", on: "qm", from: -8 },
+      cams: [
+        { word: "hands", move: "frame", on: ["qm", "captain"], size: "medium", from: 4, height: 1.4, glide: 0.4 },
+        { word: "grab", move: "frame", on: ["qm", "captain"], size: "medium", from: 4, height: 1.2, glide: 0.3 },
       ],
+      actors: [
+        { who: "qm", at: [-0.6, 0, -1.05], act: "proud", face: "smile", reach: "heroChest",
+          beats: [{ word: "hands", hold: "coinBag", gesture: "offer", face: "smile" }, { word: "loot", hold: null, gesture: "present" }, { word: "grab", gesture: "block", face: "stern" }] },
+        { who: "captain", at: [0.9, 0, -1.05], act: "happy", reach: "heroChest",
+          beats: [{ word: "loot", hold: "coinBag", face: "grin" }, { word: "captain", hold: null, face: "suspicious" }, { word: "grab", gesture: "grab", face: "grin" }, { word: "all", face: "sad" }] },
+      ],
+      fx: [{ kind: "sparkle", on: "qm", word: "elected" }],
       props: [{ id: "heroChest", variant: "open", at: [0.15, 0, -1.05], yaw: 0 }] },
-    { say: { text: "Wait, pirates were fair?", voice: "georgeLively" }, set: "shipDeck", light: "day", transition: "cut",
+    { say: { text: "Wait, pirates were fair?", voice: "georgeLively" }, set: "shipDeck", light: "day", transition: "whip",
       camera: { move: "dutch", on: ["milo"], size: "medium", from: -12, roll: 0.09 },
       actors: [{ who: "milo", at: "a", act: "confused", beats: [{ word: "fair", gesture: "scratchHead", face: "shock" }] }],
       fx: [{ kind: "question", on: "milo", word: "fair" }] },
@@ -158,7 +186,7 @@ export const PIRATEDEMOCRACY: Storyboard = {
       cams: [
         { word: "crew", move: "frame", on: ["qm", "captain"], size: "full", from: 0, height: 4.8, fly: true },
         // the vote, close: a camera among the crew as every hat goes up (big shapes that read on a phone)
-        { word: "company", move: "at", pos: [0.1, 2.3, 1.9], look: [0.0, 1.55, -2.2], fov: 50 },
+        { word: "company", move: "at", pos: [0.1, 2.9, 1.9], look: [0.0, 1.45, -2.6], fov: 50 },
         { word: "wrote", move: "insert", on: "qm.hands", size: "extreme", from: -30, height: 1.85 },
         { word: "anyone", move: "frame", on: ["captain"], size: "medium", from: -6, height: 1.5 },
         { word: "tyrant", move: "closeUp", on: "captain", from: -4 },
@@ -175,22 +203,46 @@ export const PIRATEDEMOCRACY: Storyboard = {
       ],
       fx: [{ kind: "sweat", on: "captain", word: "tyrant" }],
       // the vote: every pirate raises a hat (a big shape that reads on a phone, where a thin raised arm doesn't)
-      crowd: { count: 6, era: "pirate", around: [0.0, 0, -2.0], radius: 3.0, beats: [{ word: "company", gesture: "raiseHand", hold: "tricorn", face: "smile" }, { word: "tyrant", gesture: "crossArms", hold: null, face: "angry" }] } },
+      crowd: { count: 6, era: "pirate", around: [0.0, 0, -2.4], radius: 2.8, beats: [{ word: "company", gesture: "raiseHand", hold: "tricorn", face: "smile" }, { word: "tyrant", gesture: "crossArms", hold: null, face: "angry" }] } },
+    // Leeson's argument: Juno with his book... on "only way" the camera rises off her to the whole crew running the
+    // ship together ("a ship of outlaws could work")
     { say: "Economist Peter Leeson argues it was the only way a ship of outlaws could work.", set: "shipDeck", light: "day", transition: "cut",
-      camera: { move: "pushIn", on: ["juno"], size: "full", to: "medium", from: -10, height: 1.45 },
-      actors: [{ who: "juno", at: "b", act: "explain", hold: "book", face: "smile", beats: [{ word: "only", face: "talk" }] }],
+      camera: { move: "pushIn", on: ["juno"], size: "medium", to: "close", from: -10, height: 1.5 },
+      cams: [
+        { word: "only", move: "frame", on: ["juno"], size: "medium", from: -10, height: 1.5, glide: 0.3 },
+        { word: "work", move: "at", pos: [-3.4, 7.2, 6.5], look: [0.2, 1.6, -4.0], fov: 52, fly: true },
+      ],
+      actors: [{ who: "juno", at: "b", act: "explain", hold: "openBook", gesture: "read", face: "smile", beats: [{ word: "argues", gesture: "present", hold: "book" }, { word: "only", face: "talk" }] }],
+      crowd: { count: 6, era: "pirate", acts: ["determined", "happy"], forBeat: 2 }, // staged for the rise on "work"
       fx: [{ kind: "sparkle", on: "juno", word: "Leeson" }] },
+    // "rules varied from ship to ship": three pirates in a row along the deck, each with a different rule book; the
+    // camera whips sideways from one to the next
     { say: "It wasn't perfect, and the rules varied from ship to ship.", set: "shipDeck", light: "day", transition: "cut",
-      camera: { move: "frame", on: ["gus"], size: "full", from: 10, height: 1.4 },
-      actors: [{ who: "gus", at: "c", act: "thinking", hold: "scroll", beats: [{ word: "varied", act: "shrug", hold: null }] }] },
-    // "long before": the timeline panel above Gus, his arm in a sling, proudly holding his purse
+      camera: { move: "frame", on: ["gus"], size: "full", from: 0, height: 1.45 },
+      cams: [
+        { word: "rules", move: "frame", on: ["juno"], size: "medium", from: 0, height: 1.5, whip: true },
+        { word: "ship", move: "frame", on: ["milo"], size: "medium", from: 0, height: 1.45, whip: true },
+      ],
+      actors: [
+        { who: "gus", at: [-2.3, 0, -1.2], act: "thinking", hold: "scroll", facing: "camera", beats: [{ word: "perfect", act: "shrug", hold: null }] },
+        { who: "juno", at: [0, 0, -1.2], act: "explain", hold: "openBook", gesture: "read", facing: "camera" },
+        { who: "milo", at: [2.3, 0, -1.2], act: "confused", hold: "scroll", gesture: "hold", facing: "camera", beats: [{ word: "ship", face: "suspicious" }] },
+      ] },
+    // "long before": the timeline panel above Gus with his injury purse (a short comparison, where a panel is the
+    // clearest picture: 1720s pirate payouts vs Germany's 1884 accident insurance law)
     { say: "But some crews paid for injuries long before most countries had anything like it.", set: "shipDeck", light: "day", transition: "cut", mood: "adventure",
       camera: { move: "frame", on: ["gusHurt", "diagram"], size: "full", from: 8, height: 1.45 },
       actors: [{ who: "gusHurt", at: "c", act: "proud", hold: "coinBag", facing: "camera", beats: [{ word: "long", face: "grin" }] }],
       diagram: { kind: "timeline", with: "gusHurt", place: "above", size: 1.0, steps: [{ word: "paid" }, { word: "long" }, { word: "countries" }] } },
-    // payoff: a committee meeting round the deck table; everyone votes, the captain facepalms
+    // payoff: "the scariest thing on the high seas" (the ship at sea, from high)... the camera flies down into a
+    // committee meeting as every hand goes up on "might"; the captain facepalms on "committee"
     { say: "So the scariest thing on the high seas might have been a pirate committee meeting.", set: "shipDeck", light: "day", transition: "fade",
-      camera: { move: "frame", on: ["milo", "qm", "captain"], size: "medium", from: 4, height: 1.55 },
+      camera: { move: "at", pos: [9.5, 8.5, 12], look: [0, 3.0, -3.5], fov: 52 },
+      cams: [
+        { word: "seas", move: "at", pos: [9.5, 8.5, 12], look: [0, 3.0, -3.5], fov: 52 },
+        { word: "pirate", move: "frame", on: ["milo", "qm", "captain"], size: "medium", from: 4, height: 1.55, fly: true },
+        { word: "committee", move: "closeUp", on: "captain", from: 6 },
+      ],
       actors: [
         { who: "milo", at: [-0.6, 0, -2.32], act: "happy", facing: "camera", beats: [{ word: "might", gesture: "raiseHand", face: "grin" }] },
         { who: "qm", at: [0.25, 0, -2.45], act: "explain", hold: "scroll", facing: "camera", beats: [{ word: "pirate", gesture: "raiseHand", face: "smile" }] },

@@ -22,6 +22,9 @@ export type CrowdSpec = {
   beats?: Beat[];
   /** who the crowd faces (default: the shot's first actor) */
   toward?: string;
+  /** which camera set-up the crowd is staged for: 0 = the opening camera, 1 = the first camera beat (cams), ...
+   *  Default: the first set-up that frames people (a reveal at the end of a shot names its own beat) */
+  forBeat?: number;
 };
 
 const h = (n: number) => { const x = Math.sin(n * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };

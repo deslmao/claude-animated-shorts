@@ -176,7 +176,12 @@ export const validate = (sb0: Storyboard, narr?: Narration): Report => {
       if (shown < 0.15) fails.push(`${c.over}'s shoulder ${(shown * 100).toFixed(0)}% of frame @${((f - a) / FPS).toFixed(1)}s`);
     }
     // staging checks on what the director actually draws (every ~0.2 s): limbs, effects, faces, props, diagrams
-    fails.push(...staging(film, sb, i, a, b, subj, c.move === "overShoulder" ? c.over : undefined, errors, warnings));
+    // the subjects on screen at frame f: those of the camera beat in force (an insert or POV has none: no faces to keep
+    // clear, and a figure filling an insert is its point)
+    // (while a glide or whip is still travelling to its framing, nothing is judged: the camera is between subjects)
+    const subjAt = (f: number) => { let sg0 = segs[0]; for (const sg of segs) if (f >= sg.f0) sg0 = sg; const cam = sg0.cam, moving = f < sg0.f0 + settle(cam);
+      return { who: moving ? [] : subjOf(cam), detail: moving || cam.move === "insert" || cam.move === "pov" }; };
+    fails.push(...staging(film, sb, i, a, b, subjAt, c.move === "overShoulder" ? c.over : undefined, errors, warnings));
     const line = `shot ${String(i + 1).padStart(2)} ${s.set.padEnd(9)} ${c.move.padEnd(12)} subjects: ${subj.join(", ") || "(place shot)"}`;
     const heads = fails.filter((x) => !x.startsWith("!"));
     if (heads.length) errors.push(`shot ${i + 1}: subject head out of frame: ${heads.join(", ")}`);
@@ -204,7 +209,7 @@ export const SNAP = 0.22;
 const ACTION_GESTURES = ["tickle", "tickleSelf", "operate", "point", "pointUp", "wave", "raiseHand", "cheer", "thumbsUp", "stop", "hold", "facepalm", "scratchHead", "coverMouth", "offer", "write", "grab", "block"];
 /** gestures that reach a `reach` target: the hand must actually get there */
 const REACHING = ["tickle", "offer", "write", "grab", "block"];
-const staging = (film: ReturnType<typeof compile>, sb: Storyboard, i: number, a: number, b: number, subj: string[], over: string | undefined, errors: string[], warnings: string[]) => {
+const staging = (film: ReturnType<typeof compile>, sb: Storyboard, i: number, a: number, b: number, subjAt: (f: number) => { who: string[]; detail: boolean }, over: string | undefined, errors: string[], warnings: string[]) => {
   const s = sb.shots[i], shot = film.shots[i], at = `shot ${i + 1} (${s.set})`, out: string[] = [];
   const once = new Set<string>(), report = (key: string, msg: string, warn = false) => { if (once.has(key)) return; once.add(key); (warn ? warnings : errors).push(`${at}: ${msg}`); if (!warn) out.push(`!${msg}`); };
   const seenProp = new Set<number>(), cast = new Set(s.actors.filter((x) => !x.crowd).map((x) => x.who));
@@ -271,7 +276,8 @@ const staging = (film: ReturnType<typeof compile>, sb: Storyboard, i: number, a:
       const v = P([x.x, x.y, x.z]);
       if (!inFrame(v, 1.0)) report(`fx-${x.key.split("|")[1]}`, `the ${x.key.split("|")[1]} effect is off screen @${tt}s`);
     }
-    // faces: a subject's head covered by a nearer character's body
+    // faces: a subject's head covered by a nearer character's body (subjects of the camera beat on screen)
+    const { who: subj, detail } = subjAt(f);
     for (const who of subj) {
       const an = anchors.get(who); if (!an || an.walking) continue; // sneaking past behind someone is allowed
       const hd = cam.position.distanceTo(new THREE.Vector3(...an.head)), hv = P(an.head), hr = Math.abs(P([an.head[0] + info.right.x * an.headR[0], an.head[1], an.head[2] + info.right.z * an.headR[0]]).x - hv.x);
@@ -286,7 +292,7 @@ const staging = (film: ReturnType<typeof compile>, sb: Storyboard, i: number, a:
     }
     // a big foreground figure that isn't a subject (the over-the-shoulder near figure included: it's a warning)
     for (const [o, on] of anchors) {
-      if (subj.includes(o) || !cast.has(o)) continue;
+      if (detail || subj.includes(o) || !cast.has(o)) continue;
       const l = P([on.floor[0] - info.right.x * 0.3, on.floor[1], on.floor[2] - info.right.z * 0.3]), r = P([on.floor[0] + info.right.x * 0.3, on.crown[1], on.floor[2] + info.right.z * 0.3]);
       const w = Math.max(0, Math.min(1, Math.max(l.x, r.x)) - Math.max(-1, Math.min(l.x, r.x))) / 2, h = Math.max(0, Math.min(1, Math.max(l.y, r.y)) - Math.max(-1, Math.min(l.y, r.y))) / 2;
       if (l.z < 1 && w * h > 0.25) report(`fg-${o}`, `${o} fills ${Math.round(w * h * 100)} % of the frame in the foreground @${tt}s (is it hiding the action?)`, true);

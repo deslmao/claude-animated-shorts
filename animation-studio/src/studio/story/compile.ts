@@ -348,7 +348,8 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
     // placed for the first set-up that frames people (where the crowd is seen): the opening one, or, after an opening
     // aerial or insert, the first beat that frames the cast; never for a later insert or close-up
     const segs = [{ c: s.camera as CameraSpec, f0: shots[k].a }, ...(s.cams ?? []).filter((c) => !c.rack).map((c) => ({ c: c as CameraSpec, f0: shots[k].a + Math.round((c.t ?? 0) * FPS) }))].sort((x, y) => x.f0 - y.f0);
-    const peopleAt = segs.findIndex((x) => Array.isArray((x.c as { on?: unknown }).on)), j = peopleAt < 0 ? 0 : peopleAt;
+    const peopleAt = segs.findIndex((x) => Array.isArray((x.c as { on?: unknown }).on));
+    const j = s.crowd.forBeat !== undefined ? Math.min(segs.length - 1, Math.max(0, s.crowd.forBeat)) : peopleAt < 0 ? 0 : peopleAt;
     const seg0 = segs[j].f0, seg1 = j + 1 < segs.length ? segs[j + 1].f0 : shots[k].b;
     const c = placeCrowd(s, k + 1, shots[k].keys, Math.round((seg0 + seg1) / 2), (w) => whereOf(s.set, w), rest);
     s.actors.push(...c.actors); Object.assign(sb.cast, c.cast);
