@@ -54,10 +54,63 @@
   −2 % more). I kept the original 3 × 3 to preserve the crisp Thinkora line.
 
 ## Measurements (lossless full-resolution PNGs, this cloud CPU)
-MEASUREMENTS
+**Stability.** Lower is better, except sharpness. Each row has the same frames and the same camera.
+
+The chest region in Pirate shot 8 (32 frames of slow camera creep; Mags's reaching hand inside the region is real
+motion, which no fix can or should remove):
+
+| Version | Flicker | Crawl (popping px, per mille) | Worst 1 % of pixels | Sharpness |
+|---|---|---|---|---|
+| Before: old chest, old ink | 2.62 | 24.9 | 53.8 | 3.85 |
+| Old chest, stable ink (first version: feature width + wide filter) | 2.21 | 19.1 | 38.6 | 3.69 |
+| Hero chest, old ink | 2.82 | 21.8 | 47.1 | 5.48 |
+| **After: hero chest, stable ink** | **2.44** | **13.9** | **31.7** | **5.35** |
+
+Notes on the table:
+- The hero chest's wood grain and metal add real detail, so sharpness is +39 % over the old chest.
+- On the same hero chest, the stable ink removes **36 % of the crawl** and **33 % of the worst flicker**, for 2 %
+  less sharpness.
+- The heat maps show the band and lid flicker is **gone**. What remains is mostly the moving hand.
+
+The orbit QA scene, scored against a 2 × supersampled reference of the new ink (which separates crawl from the
+camera's own motion):
+
+| Version | Error vs reference | Crawl (error jitter) | Popping px (per mille) |
+|---|---|---|---|
+| Old ink | 1.19 | 2.72 | 23.8 |
+| **Stable ink** | **1.17** | **2.50** | **20.0** (−16 %) |
+
+In the orbit, the world ink is only part of the motion crawl. The rest is:
+- on the character cards' drawn strokes;
+- on texture detail (the deck planks).
+
+Both are the same in the old and new versions, and they don't come from the outline pass.
+
+**Render cost and memory.** Full resolution, 4 workers on this 4-core, 16 GB container, which is the same class as a
+GitHub runner:
+
+| Scene | Old | New | Change | Peak memory |
+|---|---|---|---|---|
+| Chest scene, shot 8 (91 frames; hero chest and stable ink) | 4.58 s / frame | 5.39 s / frame | **+18 %** | 3.78 → 4.08 GB |
+| Orbit QA scene (120 frames; ink only) | 4.31 | 4.96 | **+15 %** | 3.64 → 3.92 GB |
+| **Cloud chunk 8, frames 997-1121** (the heaviest: three sets, two new characters, the match cut; ink only) | 5.68 | 6.84 | **+20 %** | 7.19 → 7.70 GB |
+
+What this means for the full film (15 chunks on GitHub Actions):
+- The slowest chunk goes from 11.8 to 14.3 min, so about +2.5 min of wall time per render.
+- About +35 runner-minutes in total (free).
+- Peak memory stays under 8 GB of the runner's 16.
+- The +0.3-0.5 GB is the 2 × 2 outline buffer per worker.
+
+**Determinism.** DETERMINISM
 
 ## Checkpoint B carry-overs
-CARRY
+| Checkpoint B note | Change | Result |
+|---|---|---|
+| Mags's writing hand hidden | She stands a step further from the page, so her arm reaches past her ponytail; the close-up looks down from higher | Her white sleeve reaches across the page and her fist sits at the quill on the signature. It reads, though her hand is still small in the frame |
+| The crew's raised hands are thin on a phone | The crew raises **hats** (big shapes); a new camera beat on "company" goes close and high on the crew; the crew is staged in front of the mainmast (it was among them) | The vote reads as a wave of raised hats |
+| The merchant ship looks like the pirate ship | A new **`merchantDeck`** set from the same builder: the British **red ensign** at the masthead instead of the Jolly Roger, **cargo** (crates, barrels, sacks) where the pirates have cannons, weathered tan sails. Plus a **red ensign** prop behind the master in the opening | The first thing you see is the red ensign beside the master, then tan sails |
+| The cane gesture is weak | On "beat" the cane goes **up high** (`raiseHand`) while the camera eases back to a full shot, so the whole raise is in frame. The whip to the sailors moves to "into", so the raised cane holds through "beat sailors" | A clear, menacing raise; still no blow shown |
+| Foreground obstruction at the merchant opening | Closer medium framing of the master and a sailor, from the other side (the old angle was behind the quarterdeck rail posts) | A clean opening: the master, a sailor, the red ensign |
 
 ## Tests and safeguards
 TESTS
