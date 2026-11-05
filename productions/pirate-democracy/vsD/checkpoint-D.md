@@ -79,7 +79,7 @@ This score is from the half-size previews with sound and full-size stills. The w
   protection and z-fighting.
 - **`npm run test:sound`:** passes. The soundtrack was rebuilt by free synthesis: -14.1 LUFS, true peak -1.8 dBFS.
 - **`npm run test:regression`:** **9 / 9 reference frames identical, BridgeShort included.**
-- **Determinism:** DETERMINISM
+- **Determinism:** I rendered lossless PNGs of the reworked shots with 1 worker and with 2 (the vote from the captain's eyeline, the moved shot 13 vote and the Leeson rise). **All 9 frames are bit-identical.** A heavier 4-range run was cut off by a container restart, not a render error, so this is the lighter version.
 - **Library protection:** no protected asset changed, and the snapshot is unchanged in this checkpoint. The captain's
   goatee problem (issue 3) was worked around in the storyboard, not by editing the character.
 - **Validator:** never weakened. The per-beat checks are narrower and so stricter, and every negative test is still
