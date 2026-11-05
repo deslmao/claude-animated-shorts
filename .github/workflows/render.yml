@@ -41,6 +41,8 @@ jobs:
       composition: ${{ steps.req.outputs.composition }}
       preview: ${{ steps.req.outputs.preview }}
       audio: ${{ steps.req.outputs.audio }}
+      reuse: ${{ steps.req.outputs.reuse }}
+      publish: ${{ steps.req.outputs.publish }}
       matrix: ${{ steps.plan.outputs.matrix }}
       total: ${{ steps.plan.outputs.total }}
       width: ${{ steps.plan.outputs.width }}
@@ -61,7 +63,14 @@ jobs:
           else
             COMP=$(jq -r '.composition' render-request.json); CHUNKS=$(jq -r '.chunks // 15' render-request.json)
             PREVIEW=$(jq -r '.preview // false' render-request.json); AUDIO=$(jq -r '.audio // ""' render-request.json)
+            # optional: render only frames FROM.. (earlier frames come as finished chunks committed in REUSE), and
+            # publish=false to skip the GitHub Release (the video stays a downloadable run artifact)
+            FROM=$(jq -r '.from // 0' render-request.json); REUSE=$(jq -r '.reuse // ""' render-request.json)
+            PUBLISH=$(jq -r 'if .publish == false then "false" else "true" end' render-request.json)
           fi
+          FROM=${FROM:-0}; PUBLISH=${PUBLISH:-true}
+          [[ "$FROM" =~ ^[0-9]+$ ]] || { echo "bad from"; exit 1; }
+          [[ -z "$REUSE" || ( "$REUSE" =~ ^[A-Za-z0-9_./-]+$ && -d "$REUSE" ) ]] || { echo "bad reuse dir"; exit 1; }
           # default soundtrack location if none given
           if [ -z "$AUDIO" ]; then for f in "animation-studio/audio/$COMP.wav" "animation-studio/audio/$COMP.mp3"; do [ -f "$f" ] && AUDIO="$f"; done; fi
           [[ "$COMP" =~ ^[A-Za-z0-9_-]+$ ]] || { echo "bad composition id"; exit 1; }
@@ -70,6 +79,7 @@ jobs:
           if [[ "$COMP" == Short-* && "$AUDIO" != "animation-studio/audio/$COMP.mp3" ]]; then echo "::error::$COMP must use its own fingerprinted soundtrack animation-studio/audio/$COMP.mp3, not '$AUDIO'"; exit 1; fi
           echo "composition=$COMP" >> "$GITHUB_OUTPUT"; echo "chunks=$CHUNKS" >> "$GITHUB_OUTPUT"
           echo "preview=$PREVIEW" >> "$GITHUB_OUTPUT"; echo "audio=$AUDIO" >> "$GITHUB_OUTPUT"
+          echo "from=$FROM" >> "$GITHUB_OUTPUT"; echo "reuse=$REUSE" >> "$GITHUB_OUTPUT"; echo "publish=$PUBLISH" >> "$GITHUB_OUTPUT"
           echo "Render $COMP, $CHUNKS chunks, preview=$PREVIEW, audio='$AUDIO'"
       - uses: actions/setup-node@v4
         with: { node-version: 22, cache: npm, cache-dependency-path: animation-studio/package-lock.json }
@@ -85,6 +95,12 @@ jobs:
         run: |
           P=$(node scripts/plan-chunks.mjs "${{ steps.req.outputs.composition }}" "${{ steps.req.outputs.chunks }}" build | tail -1)
           echo "$P"
+          FROM=${{ steps.req.outputs.from }}; N=${{ steps.req.outputs.chunks }}
+          if [ "$FROM" -gt 0 ]; then
+            # only frames FROM..total-1, numbered from 100 so they sort after the reused chunks
+            P=$(echo "$P" | jq -c --argjson f "$FROM" --argjson n "$N" '.total as $t | .chunks = [range(0; $n) as $j | {i: (100 + $j), frames: "\(($f + (($t - $f) * $j / $n | floor)))-\(($f + (($t - $f) * ($j + 1) / $n | floor) - 1))"}]')
+            echo "$P"
+          fi
           echo "matrix=$(echo "$P" | jq -c '.chunks')" >> "$GITHUB_OUTPUT"
           echo "total=$(echo "$P" | jq -r '.total')" >> "$GITHUB_OUTPUT"
           W=$(echo "$P" | jq -r '.width'); H=$(echo "$P" | jq -r '.height')
@@ -138,6 +154,9 @@ jobs:
           SUFFIX=$([ "${{ needs.plan.outputs.preview }}" = "true" ] && echo "_preview" || echo "")
           OUT="out/final/${COMP}${SUFFIX}.mp4"
           mkdir -p out/final
+          REUSE="${{ needs.plan.outputs.reuse }}"
+          if [ -n "$REUSE" ]; then cp "../$REUSE"/part_*.mp4 out/parts/; echo "reused: $(ls ../$REUSE/part_*.mp4 | wc -l) chunks from $REUSE"; fi
+          ls out/parts/
           AUDIO_ARGS=()
           if [ -n "${{ needs.plan.outputs.audio }}" ]; then AUDIO_ARGS=(--audio "../${{ needs.plan.outputs.audio }}"); fi
           node scripts/concat.mjs "$OUT" $(ls out/parts/part_*.mp4 | sort) "${AUDIO_ARGS[@]}"
@@ -157,5 +176,6 @@ jobs:
           height: ${{ needs.plan.outputs.height }}
           audio: ${{ needs.plan.outputs.audio != '' && 'required' || 'none' }}
           tag: video-${{ steps.join.outputs.name }}
+          publish: ${{ needs.plan.outputs.publish }}
           title: "${{ steps.join.outputs.name }}"
           notes: "Composition **${{ needs.plan.outputs.composition }}**, ${{ needs.plan.outputs.preview == 'true' && 'half-size preview' || 'full quality' }}, soundtrack: `${{ needs.plan.outputs.audio || 'none' }}`."
