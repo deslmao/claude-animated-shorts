@@ -48,10 +48,31 @@ The approved shots are kept as they were and have their own earlier previews:
   - They skip frames while a glide or whip is still travelling, as head framing already did.
 
 ## Honest score (the same 100-point rubric as Stage C)
-SCORE
+| Category | Stage C | Now | Why |
+|---|---|---|---|
+| Hook and retention (15) | 13 | **13** | Blades and fists up from 0.6 s, an impact on "feared", and the twist told by the camera: it rises on "democracies" to show the whole crew voting. Not higher: the twist still lands at about 3.5 s, and from the rising camera the crew's raised hands are small on a phone |
+| Storytelling (15) | 13 | **14** | Every phrase now has its own picture, and the captain's comic arc carries through: he campaigns, Milo facepalms, he is voted out from his own eyeline, Mags blocks his grab, he is caught with the crown, then facepalms at the committee. Leeson and "the rules varied" were talking figures in Stage C; now they are actions (the book, the rise to the ship, three rule books) |
+| Accuracy (15) | 14 | **14** | Unchanged, sourced and hedged. One point off, as before: "the only way" is a little stronger than Leeson's argument (kept, as you decided) |
+| Character animation (15) | 13 | **13** | More active performances: cowering, fists, the vote, recoil, the handover / grab / block, the crown, reactions on cue. Deductions: the hands are simple dots and the arms are thin; the captain's dark goatee hides thin-line mouths, so his key beats now use faces with teeth or wide eyes, which limits his range |
+| Visual storytelling (15) | 13 | **14** | Explanation happens in the world: the shares as stacks, the owners on land as places, the vote as raised hands and hats, three different rule books. Only the 1720s → 1884 comparison stays a panel, because a timeline is clearest there |
+| Cinematography (10) | 8 | **9** | Every move has a job: a reveal for the twist, a reaction shot, the captain's eyeline for the vote, whip pans that literally go from ship to ship, a rise off Juno onto the working ship, flights between places. Deductions: the rise on "could work" ends wide with small figures, and in the shot 13 vote a pirate near the camera still sits partly mid-frame (reduced, not gone) |
+| Audio and narration (10) | 8 | **8** | The same 15 narration lines (no regeneration) with a rebuilt soundtrack: whips, zoom-throughs, the impact on "beat", coins, quills, "aye!" on each vote. Not higher until a person has listened: the synthesised crowd sounds are measured, not heard |
+| Brand (5) | 5 | **5** | Same cast, palette, stable ink and captions as the rest of Thinkora |
+| **Total** | **86** | **90 / 100** | (critical failures: none) |
+
+This score is from the half-size previews with sound and full-size stills. The whole film has not been rendered, as you asked; the cloud render could still turn up a problem the clips don't show (memory, a chunk seam).
 
 ## What's still not right
-ISSUES
+| # | Time | Shot | Issue | Severity |
+|---|---|---|---|---|
+| 1 | 3.4, 26.4, 43.0, 59.9 s | 1, 7, 13, 17 | The synthesised crowd "aye!" and meeting murmur, the whips and the zoom-throughs have only been measured (-14.1 LUFS, true peak -1.8 dBFS), not heard by a person. Any that sound artificial can be turned down or off at no cost | moderate (risk) |
+| 2 | 3.4-4.6 s | 1 | At the end of the reveal the crew's raised hands are small; the twist is carried by the rising camera and the cheer more than by the hands | minor |
+| 3 | 24.3-28.5 s, 45.8 s | 7, 13 | The captain's near-black goatee (protected asset, unchanged) hides thin-line mouths: a frown, a smirk or a nervous wave reads as an open grin. I found this in this checkpoint's review (his "sad" read as smug) and switched his key beats to faces with teeth or wide eyes. A real fix would draw mouths in a lighter line over dark beards, but that changes a protected character's look, so it needs your go-ahead | minor (worked around) |
+| 4 | 49.6-50.8 s | 14 | The rise on "could work" ends on the whole ship: deliberate, but the figures are small | minor |
+| 5 | about 43 s | 13 | A pirate near the camera still partly covers the middle of the vote, though far less than in Checkpoint C | minor |
+| 6 | 54.1-58.1 s | 16 | The timeline is a static panel shot. It is kept on purpose, because it's the clearest way to compare the 1720s with 1884 | minor |
+| 7 | 16-19 s, 29-34 s | 4, 8 | The dot hands make the purse handover and the share / grab / block read best on a larger phone | minor |
+| 8 | — | — | `D-shots04-09.mp4` still has the earlier shots 7-8 (before the eyeline vote and the face fixes); `D-shots07-08.mp4` is current | note |
 
 ## Tests and safeguards
 TESTS

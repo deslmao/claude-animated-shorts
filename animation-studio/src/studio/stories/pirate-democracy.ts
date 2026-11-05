@@ -103,6 +103,7 @@ export const PIRATEDEMOCRACY: Storyboard = {
         { who: "qm", at: [-0.5, 0, 4.3], act: "neutral", gesture: "crossArms", face: "suspicious", facing: "toward:captain" },
         { who: "milo", at: [0.45, 0, 4.15], act: "neutral", face: "suspicious", facing: "toward:captain", beats: [{ word: "brave", gesture: "facepalm" }] },
       ] },
+    // (the captain's dark goatee hides thin-line mouths: his key beats use faces with teeth or wide eyes, which read)
     // the vote: "coward" (he cowers), "bully" (he bullies)... on "vote" we see what he sees: the crew's raised hands,
     // aimed at him (his point of view); on "out", his shock, close
     { say: "If he's a coward or a bully, the crew can vote him out and pick someone new.", set: "shipDeck", light: "day", transition: "cut",
@@ -114,7 +115,7 @@ export const PIRATEDEMOCRACY: Storyboard = {
       actors: [
         { who: "milo", at: [-1.35, 0, -0.55], act: "suspicious", facing: "toward:captain", beats: [{ word: "can", gesture: "raiseHand", face: "determined" }, { word: "new", act: "happy" }] },
         { who: "captain", at: [0.5, 0, -1.4], act: "nervous", facing: "camera",
-          beats: [{ word: "coward", act: "scared" }, { word: "bully", act: "angry", gesture: "fists" }, { word: "out", face: "shock", gesture: "coverMouth" }, { word: "pick", act: "sad", face: "sad" }],
+          beats: [{ word: "coward", act: "scared" }, { word: "bully", act: "angry", gesture: "fists" }, { word: "out", face: "shock", gesture: "coverMouth" }, { word: "pick", act: "sad", face: "pained" }],
           moves: [{ word: "out", kind: "recoil", away: "milo", dur: 0.9 }] },
       ],
       crowd: { count: 5, era: "pirate", acts: ["suspicious", "neutral"], toward: "captain", forBeat: 1, beats: [{ word: "can", gesture: "raiseHand", face: "determined" }] } },
@@ -130,7 +131,7 @@ export const PIRATEDEMOCRACY: Storyboard = {
         { who: "qm", at: [-0.6, 0, -1.05], act: "proud", face: "smile", reach: "heroChest",
           beats: [{ word: "hands", hold: "coinBag", gesture: "offer", face: "smile" }, { word: "loot", hold: null, gesture: "present" }, { word: "grab", gesture: "block", face: "stern" }] },
         { who: "captain", at: [0.9, 0, -1.05], act: "happy", reach: "heroChest",
-          beats: [{ word: "loot", hold: "coinBag", face: "grin" }, { word: "captain", hold: null, face: "suspicious" }, { word: "grab", gesture: "grab", face: "grin" }, { word: "all", face: "sad" }] },
+          beats: [{ word: "loot", hold: "coinBag", face: "grin" }, { word: "captain", hold: null, face: "suspicious" }, { word: "grab", gesture: "grab", face: "grin" }, { word: "all", face: "pained" }] },
       ],
       fx: [{ kind: "sparkle", on: "qm", word: "elected" }],
       props: [{ id: "heroChest", variant: "open", at: [0.15, 0, -1.05], yaw: 0 }] },
@@ -199,7 +200,7 @@ export const PIRATEDEMOCRACY: Storyboard = {
       actors: [
         { who: "qm", at: [-1.17, 0, 0.2], act: "determined", reach: "parchment", hold: "quill", facing: "camera", beats: [{ word: "wrote", gesture: "write" }, { word: "anyone", gesture: "crossArms", hold: null }, { word: "tyrant", face: "stern" }] },
         { who: "captain", at: [1.3, 0, 0.25], act: "happy", facing: "camera",
-          beats: [{ word: "company", gesture: "raiseHand" }, { word: "anyone", hold: "crown", gesture: "raiseHand", face: "grin" }, { word: "tyrant", hold: null, act: "embarrassed", face: "nervous" }] },
+          beats: [{ word: "company", gesture: "raiseHand" }, { word: "anyone", hold: "crown", gesture: "raiseHand", face: "grin" }, { word: "tyrant", hold: null, act: "embarrassed", face: "scared" }] },
       ],
       fx: [{ kind: "sweat", on: "captain", word: "tyrant" }],
       // the vote: every pirate raises a hat (a big shape that reads on a phone, where a thin raised arm doesn't)
