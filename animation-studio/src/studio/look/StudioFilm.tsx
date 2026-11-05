@@ -20,14 +20,14 @@ export type GradeName = keyof typeof GRADES;
 /** grade: any light name; golden / night -> their grades, everything else -> the day grade */
 /** shutter: the camera's view-projection at the shutter's open and close (camera motion blur), when the frame has one */
 export type ShutterEnd = { view: THREE.Matrix4; fov: number };
-export type FrameInfo = { target: THREE.Vector3; cInf: number; focus?: THREE.Vector3; grade: GradeName | string; shutter?: { open: ShutterEnd; close: ShutterEnd } };
+export type FrameInfo = { target: THREE.Vector3; cInf: number; focus?: THREE.Vector3; grade: GradeName | string; shutter?: { open: ShutterEnd; close: ShutterEnd; cap?: number } };
 /** anything that can pose a three.js scene for (shot, frame) as a PURE function of those two numbers */
 export interface StudioWorld { root: THREE.Object3D; update(shot: number, f: number, cam: THREE.PerspectiveCamera, scene: THREE.Scene): FrameInfo }
 /** which shot(s) to draw at frame f (two layers during a crossfade) and where the white flashes are */
 /** flashes: 4-frame white fades starting at each frame; dips: 12-frame dips to black centred on each frame (the cut) */
 /** motionBlur: the film uses camera motion blur (look/motionblur.ts); without it the post chain is unchanged */
 /** stableInk: engine-2 world ink (look/ink.ts `stable`: minimum feature width, wider anti-aliasing) */
-export interface Timeline { total: number; layersAt(f: number): { id: number; alpha: number }[]; flashes?: number[]; dips?: number[]; motionBlur?: boolean; stableInk?: boolean }
+export interface Timeline { total: number; layersAt(f: number): { id: number; alpha: number }[]; flashes?: number[]; dips?: number[]; motionBlur?: boolean; controlledBlur?: boolean; stableInk?: boolean }
 
 /** A/B switches for test stills only (inputProps `{ post: { ink: false, ... } }`); everything is on by default */
 type PostToggles = { ink: boolean; ink2: boolean; lens: boolean; pre: boolean; bloom: boolean; grade: boolean; grain: boolean; motion: boolean };
@@ -44,7 +44,7 @@ const makeBloom = () => {
 
 const fwd = new THREE.Vector3(), fpt = new THREE.Vector3(), ivp = new THREE.Matrix4(), mOpen = new THREE.Matrix4(), mClose = new THREE.Matrix4(), pcam = new THREE.PerspectiveCamera();
 
-function Inner<K>({ id, kit, makeWorld, blur, stableInk }: { id: number; kit: K; makeWorld: (kit: K) => StudioWorld; blur: boolean; stableInk: boolean }) {
+function Inner<K>({ id, kit, makeWorld, blur, stableInk, controlledBlur = false }: { id: number; kit: K; makeWorld: (kit: K) => StudioWorld; blur: boolean; stableInk: boolean; controlledBlur?: boolean }) {
   const f = useCurrentFrame();
   const { camera, scene } = useThree();
   const world = useMemo(() => makeWorld(kit), [kit, makeWorld]);
@@ -59,7 +59,7 @@ function Inner<K>({ id, kit, makeWorld, blur, stableInk }: { id: number; kit: K;
     const vp = (e: { view: THREE.Matrix4; fov: number }, out: THREE.Matrix4) => { pcam.copy(cam); pcam.fov = e.fov; pcam.updateProjectionMatrix(); return out.multiplyMatrices(pcam.projectionMatrix, e.view); };
     const ends = sh ? { open: vp(sh.open, mOpen), close: vp(sh.close, mClose) } : undefined;
     const moving = !!ends && shutterTravel(cam, ends) >= THRESH_PX;
-    fx.motion.set(ivp.multiplyMatrices(cam.matrixWorld, cam.projectionMatrixInverse), moving ? ends : undefined);
+    fx.motion.set(ivp.multiplyMatrices(cam.matrixWorld, cam.projectionMatrixInverse), moving ? ends : undefined, sh?.cap);
     if (pass) pass.enabled = moving;
   }, 0);
   const fx = useMemo(() => ({
@@ -69,23 +69,29 @@ function Inner<K>({ id, kit, makeWorld, blur, stableInk }: { id: number; kit: K;
     tone: new ToneMappingEffect({ mode: ToneMappingMode.NEUTRAL }),
     grade: new GradeEffect(GRADES.day, GRADE_STRENGTH.day),
     grain: new GrainEffect({ amount: 0.025, cellPx: 1.5 }), // OFF by default: the reference has no grain
-    motion: new MotionBlurEffect(),
-  }), [camera, scene, stableInk, on]);
+    motion: new MotionBlurEffect({ controlled: controlledBlur }),
+  }), [camera, scene, stableInk, on, controlledBlur]);
   useEffect(() => () => fx.ink.dispose(), [fx]);
   const post = useMemo(() => (
     <EffectComposer multisampling={4} ref={composer}>
       {[
         on.ink && <primitive key="ink" object={fx.ink} dispose={null} />,
-        blur && on.motion && <primitive key="motion" object={fx.motion} dispose={null} />,
+        // controlled blur: depth of field BEFORE motion blur. The composer ping-pongs two buffers and the scene depth
+        // is attached to one of them: switching the motion pass on in front of the lens passes (it is enabled only on
+        // moving frames) flips which buffer each lens pass draws into, so one of them reads the depth it is writing
+        // over and defocuses the whole frame (the "blurry transition frames"). After the lens passes, the motion pass
+        // can switch on and off without moving them. Films made before keep their order (and their pixels).
+        blur && on.motion && !controlledBlur && <primitive key="motion" object={fx.motion} dispose={null} />,
         on.lens && on.pre && <primitive key="pre" object={fx.lens.pre} dispose={null} />,
         on.lens && <primitive key="lens" object={fx.lens.main} dispose={null} />,
+        blur && on.motion && controlledBlur && <primitive key="motion" object={fx.motion} dispose={null} />,
         on.bloom && <primitive key="bloom" object={fx.bloom} dispose={null} />,
         <primitive key="tone" object={fx.tone} dispose={null} />,
         on.grade && <primitive key="grade" object={fx.grade} dispose={null} />,
         on.grain && <primitive key="grain" object={fx.grain} dispose={null} />,
       ].filter((x): x is React.JSX.Element => !!x)}
     </EffectComposer>
-  ), [fx, on, blur]);
+  ), [fx, on, blur, controlledBlur]);
   const cam = camera as THREE.PerspectiveCamera;
   const info = world.update(id, f, cam, scene);
   noInkFallback(world.root);
@@ -93,6 +99,7 @@ function Inner<K>({ id, kit, makeWorld, blur, stableInk }: { id: number; kit: K;
   cam.getWorldDirection(fwd);
   fpt.copy(info.focus ?? info.target);
   fx.lens.focus = Math.max(0.3, fpt.sub(cam.position).dot(fwd));
+  fx.motion.setSubject(cam.position, fwd, fx.lens.focus);
   fx.lens.cInf = info.cInf;
   shut.current = blur && on.motion ? info.shutter : undefined;
   gradeFor(fx.grade, info.grade === "golden" || info.grade === "night" ? info.grade : "day");
@@ -127,7 +134,7 @@ export function StudioFilm<K>({ timeline, makeWorld, load, background = "#cfe3f2
           <ThreeCanvas width={1080} height={1920} {...(dprOverride() ? { dpr: dprOverride() } : {})} shadows
             gl={{ antialias: false, stencil: false, powerPreference: "high-performance", toneMappingExposure: 1.0 }}
             camera={{ fov: 40, near: 0.2, far: 1500 }}>
-            <Inner id={l.id} kit={kit} makeWorld={makeWorld} blur={!!timeline.motionBlur} stableInk={!!timeline.stableInk} />
+            <Inner id={l.id} kit={kit} makeWorld={makeWorld} blur={!!timeline.motionBlur} stableInk={!!timeline.stableInk} controlledBlur={!!timeline.controlledBlur} />
           </ThreeCanvas>
         </AbsoluteFill>
       ))}

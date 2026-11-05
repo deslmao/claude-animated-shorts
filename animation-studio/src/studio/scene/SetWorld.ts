@@ -15,7 +15,7 @@ import type { At } from "../props/kit";
 /** props: story props shown in this shot only (built the first time the shot is drawn) */
 /** shutter: camera motion blur exposure in frames (0.5 = a 180-degree shutter), or a function of the frame (less on
  *  close-ups, full on flights); absent = none */
-export type WorldShot = { id: number; a: number; b: number; set: string; light: LightName; keys: Key[]; dof: (f: number) => { cInf: number; focus?: V3 }; kicks?: [number, number][]; shutter?: number | ((f: number) => number);
+export type WorldShot = { id: number; a: number; b: number; set: string; light: LightName; keys: Key[]; dof: (f: number) => { cInf: number; focus?: V3 }; kicks?: [number, number][]; shutter?: number | ((f: number) => number); shutterCap?: (f: number) => number;
   props?: { id: string; variant?: string; at: At; animate?: (tt: number, anchors: Map<string, ActorAnchor>) => { target?: V3; stroke: number; step?: number } }[] };
 export type Director = (shot: WorldShot, f: number, cam: CamInfo, built: BuiltSet, out: Stage) => void;
 
@@ -85,7 +85,7 @@ export class SetWorld implements StudioWorld {
     this.cards.render(st, cam, L.actorShadow);
     const d = s.dof(f);
     const exp = typeof s.shutter === "function" ? s.shutter(f) : s.shutter ?? 0;
-    return { target: focus, cInf: d.cInf, focus: d.focus ? new THREE.Vector3(...d.focus) : undefined, grade: s.light, ...(exp > 0 ? { shutter: this.shutterOf(s, f, exp) } : {}) };
+    return { target: focus, cInf: d.cInf, focus: d.focus ? new THREE.Vector3(...d.focus) : undefined, grade: s.light, ...(exp > 0 ? { shutter: { ...this.shutterOf(s, f, exp), ...(s.shutterCap ? { cap: s.shutterCap(f) } : {}) } } : {}) };
   }
   /** the camera's view matrix and fov at the shutter's open and close around frame f (the projection is built at
    *  draw time with the canvas's real aspect). A hard cut inside the shutter closes it at the cut (never a smear

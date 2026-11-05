@@ -272,11 +272,35 @@ const cameraOf = (s: ShotSpec, cast: Storyboard["cast"], a: number, b: number, p
  *  rushes, light on faces (close-ups, face inserts, POV: the eyes and expression stay readable) and on object inserts,
  *  medium on framed glides. Returns the shutter (frames) at frame f */
 export const BLUR_SCALE = { flight: 1, whip: 1, face: 0.15, insert: 0.3, framed: 0.6 };
-const shutterOf = (s: ShotSpec, a: number, b: number, full: number, rushOut: boolean) => {
+/** controlled blur (Storyboard.controlledBlur): lighter on everything the viewer is meant to read */
+export const BLUR_SCALE_CONTROLLED = { flight: 1, whip: 1, face: 0.1, insert: 0.2, framed: 0.35 };
+/** controlled blur: frames of full smear while a whip / zoom-through rushes out of a shot and into the next, and the
+ *  frames over which it ramps back to the beat's level (the reference's whips smear ~4-6 frames, not ~24) */
+export const RUSH_OUT = 5, RUSH_IN = 4, RUSH_RAMP = 3;
+/** controlled blur: the longest smear (px at 1080x1920) by beat. Short glides travel 100+ px a frame, so shortening
+ *  the exposure alone changes nothing: the smear has to be capped where the viewer reads the picture */
+export const SMEAR_CAP = { rush: 40, flight: 28, framed: 10, insert: 6, face: 4 };
+export const shutterOf = (s: ShotSpec, a: number, b: number, full: number, rushOut: boolean, controlled = false, rushIn = false) => {
+  const S = controlled ? BLUR_SCALE_CONTROLLED : BLUR_SCALE;
   const beats = [{ spec: s.camera as CameraSpec & { fly?: boolean; whip?: boolean }, f0: a }, ...(s.cams ?? []).filter((c) => !c.rack).map((c) => ({ spec: c as CameraSpec & { fly?: boolean; whip?: boolean }, f0: a + Math.round((c.t ?? 0) * FPS) }))].sort((x, y) => x.f0 - y.f0);
-  const scale = (c: CameraSpec & { fly?: boolean }) => c.fly ? BLUR_SCALE.flight
-    : c.move === "closeUp" || c.move === "lowHero" || c.move === "pov" || (c.move === "insert" && (!c.on.includes(".") || c.on.endsWith(".face")) && !(s.props ?? []).some((q) => q.id === c.on)) ? BLUR_SCALE.face
-    : c.move === "insert" ? BLUR_SCALE.insert : BLUR_SCALE.framed;
+  const scale = (c: CameraSpec & { fly?: boolean }) => c.fly ? S.flight
+    : c.move === "closeUp" || c.move === "lowHero" || c.move === "pov" || (c.move === "insert" && (!c.on.includes(".") || c.on.endsWith(".face")) && !(s.props ?? []).some((q) => q.id === c.on)) ? S.face
+    : c.move === "insert" ? S.insert : S.framed;
+  if (controlled) {
+    const capOf = (c: CameraSpec & { fly?: boolean }) => { const x = scale(c); return x === S.face ? SMEAR_CAP.face : x === S.insert ? SMEAR_CAP.insert : x === S.flight ? SMEAR_CAP.flight : SMEAR_CAP.framed; };
+    // rush = 1 while a whip / zoom-through really rushes, 0 once it has landed (a linear ramp between)
+    const at = (f: number) => {
+      let k = 0; for (let j = 0; j < beats.length; j++) if (f >= beats[j].f0) k = j;
+      const bt = beats[k], cl = (x: number) => Math.max(0, Math.min(1, x));
+      const rush = rushOut && f >= b - RUSH_OUT - RUSH_RAMP ? cl((f - (b - RUSH_OUT - RUSH_RAMP)) / RUSH_RAMP)
+        : rushIn && f < a + RUSH_IN + RUSH_RAMP ? cl(1 - (f - a - RUSH_IN + 1) / RUSH_RAMP)
+        : bt.spec.whip && f < bt.f0 + RUSH_IN + RUSH_RAMP ? cl(1 - (f - bt.f0 - RUSH_IN + 1) / RUSH_RAMP) : 0;
+      const flying = k + 1 < beats.length && !!beats[k + 1].spec.fly;
+      const base = flying ? 1 : scale(bt.spec), cap = flying ? SMEAR_CAP.flight : capOf(bt.spec);
+      return { exp: full * (base + (1 - base) * rush), cap: cap + (SMEAR_CAP.rush - cap) * rush };
+    };
+    return Object.assign((f: number) => at(f).exp, { cap: (f: number) => at(f).cap });
+  }
   return (f: number) => {
     if (rushOut && f >= b - 10) return full;                          // a zoom-through / whip out of the shot rushes
     let k = 0; for (let j = 0; j < beats.length; j++) if (f >= beats[j].f0) k = j;
@@ -338,7 +362,7 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
     const { a, b } = ranges[k], pre = s.transition === "fade" ? FADE : s.transition === "zoom" || s.transition === "whip" ? ZFADE : 0;
     const p = cameraOf(s, sb.cast, a, b, pre);
     const props = (s.props ?? []).map((q) => { const w = whereOf(s.set, q.at); return { id: q.id, variant: q.variant, at: { x: w[0] + (q.offset?.[0] ?? 0), y: w[1], z: w[2] + (q.offset?.[1] ?? 0), yaw: ((q.yaw ?? 0) * Math.PI) / 180, s: q.scale ?? 1 }, animate: propAnim(s, q) }; });
-    return { id: k + 1, a, b, set: s.set, light: s.light ?? SETS[s.set].lights[0], keys: p.keys, dof: p.dof, kicks: (s.kicks ?? []).map((t) => [a / FPS + (t as number), 1] as [number, number]), ...(props.length ? { props } : {}), ...(sb.motionBlur ? { shutter: shutterOf(s, a, b, sb.motionBlur === true ? 0.5 : sb.motionBlur, ["zoom", "whip"].includes(sb.shots[k + 1]?.transition ?? "")) } : {}) };
+    return { id: k + 1, a, b, set: s.set, light: s.light ?? SETS[s.set].lights[0], keys: p.keys, dof: p.dof, kicks: (s.kicks ?? []).map((t) => [a / FPS + (t as number), 1] as [number, number]), ...(props.length ? { props } : {}), ...(sb.motionBlur ? { ...(() => { const sh = shutterOf(s, a, b, sb.motionBlur === true ? 0.5 : sb.motionBlur, ["zoom", "whip"].includes(sb.shots[k + 1]?.transition ?? ""), !!sb.controlledBlur, ["zoom", "whip"].includes(s.transition ?? "")) as ((f: number) => number) & { cap?: (f: number) => number }; return { shutter: sh, ...(sh.cap ? { shutterCap: sh.cap } : {}) }; })() } : {}) };
   });
   // crowds: extras join the shot's actors (after the cameras are planned: cameras frame the named cast only)
   const notes: string[] = [];
@@ -369,7 +393,7 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
   const flashes = sb.shots.map((s, k) => (s.transition === "flash" ? ranges[k].a : -1)).filter((f) => f >= 0);
   const dips = sb.shots.map((s, k) => (s.transition === "dip" ? ranges[k].a : -1)).filter((f) => f >= 0);
   const timeline: Timeline = {
-    total, flashes, dips, motionBlur: !!sb.motionBlur, stableInk: sb.engine === 2,
+    total, flashes, dips, motionBlur: !!sb.motionBlur, controlledBlur: !!(sb.motionBlur && sb.controlledBlur), stableInk: sb.engine === 2,
     layersAt: (f) => {
       for (let k = 1; k < sb.shots.length; k++) {
         const tr = sb.shots[k].transition, F = tr === "fade" ? FADE : tr === "zoom" || tr === "whip" ? ZFADE : 0; if (!F) continue;

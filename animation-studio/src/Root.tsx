@@ -14,6 +14,10 @@ import { NARRATION } from "./studio/stories/voice";
 
 // one composition per storyboard: "Short-<id>" (with its narration timing and captions, once `npm run voice` made it)
 const SHORTS = STORIES.map((sb) => ({ id: sb.id, ...makeShort(sb, NARRATION[sb.id]) }));
+// QA only (not a production): Pirate Democracy with the 2.0 blur correction, for before / after measurements of the
+// transition blur on the same frames (same narration, so the same timing)
+const PIRATE = STORIES.find((sb) => sb.id === "pirate-democracy")!;
+SHORTS.push({ id: "pirate-blurqa", ...makeShort({ ...PIRATE, id: "pirate-blurqa", controlledBlur: true }, NARRATION["pirate-democracy"]) });
 
 // Welcome to the Remotion Three Starter Kit!
 // Two compositions have been created, showing how to use

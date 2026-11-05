@@ -154,6 +154,11 @@ export type Storyboard = {
   /** camera motion blur on fast moves (flights, whips, zoom-throughs): true = a 180-degree shutter, or the exposure in
    *  frames. Slow creeps stay sharp. Default off */
   motionBlur?: boolean | number;
+  /** controlled motion blur (2.0 blur correction, needs motionBlur): heavy smear only on the frames a whip or
+   *  zoom-through actually rushes (5 out, 4 in) and then a ramp down, so a move lands sharp; lighter blur on framed
+   *  glides, inserts and faces; whatever sits at the focus distance (the subject) smears far less than the background;
+   *  a centre-weighted, shorter smear. Default off: films approved before it render exactly as they were */
+  controlledBlur?: boolean;
   /** render engine generation. 2 = Visual Storytelling 2.0 render behaviours: card canvases that draw identically
    *  whatever the render worker drew before (exact chunk seams on fast camera flights). Default 1: storyboards made
    *  before 2.0 render exactly as they were approved */
