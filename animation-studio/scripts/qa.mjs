@@ -30,6 +30,13 @@ const diffs = [...diffOut.matchAll(/YAVG=([\d.]+)/g)].map((m) => Number(m[1])); 
 // per-frame brightness: a fade / dip to black is meant to hold nearly identical dark frames, which is not a seam bug
 const lumaOut = spawnSync(FF, ["-v", "error", "-i", video, "-map", "0:v:0", "-vf", "scale=270:-2,signalstats,metadata=print:key=lavfi.signalstats.YAVG:file=-", "-f", "null", "-"], { maxBuffer: 1 << 28 }).stdout.toString();
 const luma = [...lumaOut.matchAll(/YAVG=([\d.]+)/g)].map((m) => Number(m[1])); // luma[k] = mean brightness of frame k (0-255)
+// --seams a,b,...: the first frame of every chunk after the first (where a seam repeat can happen). When given, a
+// stall right next to a hard cut and away from every seam is a hold settling before / after the cut, reported as a
+// note; any stall at or beside a seam still fails. Without --seams every stall fails, as before.
+const seamArg = argv.indexOf("--seams") >= 0 ? argv[argv.indexOf("--seams") + 1] : null;
+const seams = seamArg ? seamArg.split(",").map(Number).filter((x) => Number.isFinite(x)) : null;
+const CUT = 20; // a mean luma change this big between two frames is a hard cut, not motion
+const holds = [];
 const DARK = 32; // video luma is TV range (16 = black): both frames this dark (a dip to black, ~7 % grey) -> not a duplicate
 const dups = [];
 for (let k = 0; k < diffs.length; k++) {
@@ -40,7 +47,10 @@ for (let k = 0; k < diffs.length; k++) {
   // measures ~0.03 between ~5s). A camera easing into or out of a move also gets very small (~0.07), but the motion
   // grows or fades gradually on one side, so it is not flagged.
   const p = diffs[k - 1], n = diffs[k + 1];
-  if (med > 0.6 && diffs[k] < 0.12 && p !== undefined && n !== undefined && Math.min(p, n) > Math.max(0.3, 8 * diffs[k])) dups.push(k + 1);
+  if (med > 0.6 && diffs[k] < 0.12 && p !== undefined && n !== undefined && Math.min(p, n) > Math.max(0.3, 8 * diffs[k])) {
+    const atCut = p > CUT || n > CUT, nearSeam = !seams || seams.some((s) => Math.abs(s - (k + 1)) <= 1);
+    if (atCut && !nearSeam) holds.push(k + 1); else dups.push(k + 1);
+  }
 }
 const [fn, fd] = (v?.r_frame_rate ?? "0/1").split("/").map(Number);
 const fps = fn / fd;
@@ -87,6 +97,7 @@ if (audioMode !== "none") {
 const soft = [
   ["loudness", lufs === null ? "no audio" : `${lufs} LUFS integrated, true peak ${tp} dBFS (YouTube normalises to about -14 LUFS)`],
   ["black spans ≥ 0.1 s", black.length ? black.map(([s, e]) => `${s.toFixed(2)}-${e.toFixed(2)} s`).join(", ") : "none"],
+  ["holds settling at a hard cut (away from seams)", holds.length ? `frames ${holds.slice(0, 10).join(", ")}` : "none"],
   ["frozen spans ≥ 0.5 s", frozen.length ? frozen.map(([s, e]) => `${s.toFixed(2)}-${e.toFixed(2)} s`).join(", ") : "none"],
   ["file size", `${(fs.statSync(video).size / 1024 ** 2).toFixed(1)} MB`],
 ];
@@ -104,6 +115,6 @@ ${checks.map(([k, pass, d]) => `| ${k} | ${pass ? "✅" : "❌"} | ${d} |`).join
 ${soft.map(([k, d]) => `| ${k} | ${d} |`).join("\n")}
 `;
 fs.writeFileSync(path.join(outDir, "qa.md"), md);
-fs.writeFileSync(path.join(outDir, "qa.json"), JSON.stringify({ ok, frames: md5.length, fps, width: v?.width, height: v?.height, videoSeconds: vDur, audioSeconds: aDur, lufs, truePeak: tp, duplicates: dups, black, frozen, checks }, null, 2));
+fs.writeFileSync(path.join(outDir, "qa.json"), JSON.stringify({ ok, frames: md5.length, fps, width: v?.width, height: v?.height, videoSeconds: vDur, audioSeconds: aDur, lufs, truePeak: tp, duplicates: dups, holds, seams, black, frozen, checks }, null, 2));
 console.log(md);
 process.exit(ok ? 0 : 1);

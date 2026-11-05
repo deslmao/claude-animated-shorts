@@ -1,0 +1,11 @@
+{
+  "run_id": "42109159198",
+  "artifact": "Short-pirate-democracy-run15",
+  "frames": 1871,
+  "width": 1080,
+  "height": 1920,
+  "audio": "required",
+  "seams": "156,312,468,624,780,936,1092,1248,1404,1560,1611,1663,1715,1767,1819",
+  "keep": "productions/pirate-democracy/final/Short-pirate-democracy.mp4",
+  "note": "Re-check of render run 15 with seam-aware duplicate detection (frame 278: a settle before a hard cut, mid-chunk)"
+}

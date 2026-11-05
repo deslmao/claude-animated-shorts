@@ -1,0 +1,54 @@
+# Re-check a finished render without rendering anything: downloads a render run's MP4 artifact, runs the full QA
+# (scripts/qa.mjs) and, if it passes and keep is set, commits the MP4 to the repo at `keep` (no GitHub Release).
+# Start it by editing qa-request.json and committing it.
+name: QA rendered video
+
+on:
+  push:
+    paths: [qa-request.json]
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - id: req
+        name: Read QA request
+        run: |
+          for k in run_id artifact frames width height audio seams keep; do echo "$k=$(jq -r ".$k // \"\"" qa-request.json)" >> "$GITHUB_OUTPUT"; done
+          cat qa-request.json
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ steps.req.outputs.artifact }}
+          run-id: ${{ steps.req.outputs.run_id }}
+          github-token: ${{ github.token }}
+          path: dl
+      - name: Install ffmpeg
+        run: command -v ffprobe >/dev/null || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg >/dev/null)
+      - id: qa
+        name: Quality check
+        run: |
+          V=$(ls dl/*.mp4 | head -1); echo "video=$V" >> "$GITHUB_OUTPUT"
+          set +e
+          node animation-studio/scripts/qa.mjs "$V" qa --frames "${{ steps.req.outputs.frames }}" --width "${{ steps.req.outputs.width }}" \
+            --height "${{ steps.req.outputs.height }}" --fps 30 --audio "${{ steps.req.outputs.audio }}" --seams "${{ steps.req.outputs.seams }}"
+          code=$?
+          cat qa/qa.md >> "$GITHUB_STEP_SUMMARY"
+          exit $code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: "qa-recheck-${{ steps.req.outputs.artifact }}", path: qa/, retention-days: 30 }
+      - name: Keep the checked MP4 in the repo
+        if: steps.req.outputs.keep != ''
+        run: |
+          K="${{ steps.req.outputs.keep }}"
+          [[ "$K" =~ ^productions/[A-Za-z0-9_./-]+\.mp4$ ]] || { echo "bad keep path"; exit 1; }
+          mkdir -p "$(dirname "$K")"; cp "${{ steps.qa.outputs.video }}" "$K"; cp qa/qa.md "${K%.mp4}.qa.md"
+          [ -f qa/contact_sheet.jpg ] && cp qa/contact_sheet.jpg "${K%.mp4}.contact.jpg"
+          git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$K" "${K%.mp4}".*; git commit -m "Final video (QA passed): $K"; git push
