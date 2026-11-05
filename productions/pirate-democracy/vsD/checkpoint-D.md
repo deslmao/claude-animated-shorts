@@ -67,7 +67,7 @@ This score is from the half-size previews with sound and full-size stills. The w
 |---|---|---|---|---|
 | 1 | 3.4, 26.4, 43.0, 59.9 s | 1, 7, 13, 17 | The synthesised crowd "aye!" and meeting murmur, the whips and the zoom-throughs have only been measured (-14.1 LUFS, true peak -1.8 dBFS), not heard by a person. Any that sound artificial can be turned down or off at no cost | moderate (risk) |
 | 2 | 3.4-4.6 s | 1 | At the end of the reveal the crew's raised hands are small; the twist is carried by the rising camera and the cheer more than by the hands | minor |
-| 3 | 24.3-28.5 s, 45.8 s | 7, 13 | The captain's near-black goatee (protected asset, unchanged) hides thin-line mouths: a frown, a smirk or a nervous wave reads as an open grin. I found this in this checkpoint's review (his "sad" read as smug) and switched his key beats to faces with teeth or wide eyes. A real fix would draw mouths in a lighter line over dark beards, but that changes a protected character's look, so it needs your go-ahead | minor (worked around) |
+| 3 | 24.3-28.5 s, 45.8 s | 7, 13 | The captain's near-black goatee (protected asset, unchanged) hides thin-line mouths: a frown, a smirk or a nervous wave reads as an open grin. I found this in this checkpoint's review (his "sad" read as smug, his "nervous" on "tyrant" as a happy grin). Now he holds his shock, hands over mouth, through "pick someone new", and shows scared gritted teeth on "tyrant". A real fix would draw mouths in a lighter line over dark beards, but that changes a protected character's look, so it needs your go-ahead | minor (worked around) |
 | 4 | 49.6-50.8 s | 14 | The rise on "could work" ends on the whole ship: deliberate, but the figures are small | minor |
 | 5 | about 43 s | 13 | A pirate near the camera still partly covers the middle of the vote, though far less than in Checkpoint C | minor |
 | 6 | 54.1-58.1 s | 16 | The timeline is a static panel shot. It is kept on purpose, because it's the clearest way to compare the 1720s with 1884 | minor |
@@ -75,4 +75,26 @@ This score is from the half-size previews with sound and full-size stills. The w
 | 8 | — | — | `D-shots04-09.mp4` still has the earlier shots 7-8 (before the eyeline vote and the face fixes); `D-shots07-08.mp4` is current | note |
 
 ## Tests and safeguards
-TESTS
+- **`npm test`:** passes. This covers lint, typecheck, framing, every storyboard plus every negative test, library
+  protection and z-fighting.
+- **`npm run test:sound`:** passes. The soundtrack was rebuilt by free synthesis: -14.1 LUFS, true peak -1.8 dBFS.
+- **`npm run test:regression`:** **9 / 9 reference frames identical, BridgeShort included.**
+- **Determinism:** DETERMINISM
+- **Library protection:** no protected asset changed, and the snapshot is unchanged in this checkpoint. The captain's
+  goatee problem (issue 3) was worked around in the storyboard, not by editing the character.
+- **Validator:** never weakened. The per-beat checks are narrower and so stricter, and every negative test is still
+  caught.
+- **Render cost (half-size previews, 4 workers, this 4-core cloud container, one job at a time):**
+
+  | Clip | Frames | s / frame | Peak memory |
+  |---|---|---|---|
+  | Shot 1 | 138 | 1.80 | 3.6 GB |
+  | Shots 4-9 | 595 | 1.65 | 5.1 GB |
+  | Shots 7-8 | 298 | 1.60 | 4.7 GB |
+  | Shots 13-17 | 651 | 1.54 | 5.2 GB |
+
+  - No render jobs overlapped.
+  - When only part of a clip changed, I re-rendered just that part and spliced it in: 172 frames of shot 13 and the
+    last 42 frames of shot 7.
+- **Not touched:** Tickle, runs #11-#13, every release, BridgeShort, the narration (no paid regeneration).
+- **Not done, as you asked:** no full Pirate Democracy render, no release, no upload.
