@@ -11,8 +11,8 @@
 | File | Shots |
 |---|---|
 | `D-shot01-hook.mp4` | 1: the hook |
-| `D-shots04-09.mp4` | 4-9: the injury fund, the captain elected, the helm, the vote him out, the quartermaster, "Wait, pirates were fair?" (shots 7-8 updated in `D-shots07-08.mp4`) |
-| `D-shots07-08.mp4` | 7-8 after their final fixes |
+| `D-shots04-09.mp4` | 4-9: the injury fund, the captain elected, the helm, the vote him out, the quartermaster, "Wait, pirates were fair?" (shots 7-8 here are an earlier version) |
+| `D-shots07-08.mp4` | **7-8 as they are now**: the vote from the captain's eyeline, the quartermaster at the chest |
 | `D-shots13-17.mp4` | 13-17: the pirate vote, Leeson, the rules varied, the timeline, the payoff |
 
 The approved shots are kept as they were and have their own earlier previews:
@@ -22,13 +22,13 @@ The approved shots are kept as they were and have their own earlier previews:
 ## The storyboard, shot by shot
 | # | Line | What you see | Camera |
 |---|---|---|---|
-| 1 | "...most feared pirates... tiny democracies" | Scowling crew, fists and blades up from 0.4 s; on "democracies" every blade becomes a raised hand | low and menacing, an impact on "feared"; a rising **reveal** on "democracies" (the twist told by the camera) |
+| 1 | "...most feared pirates... tiny democracies" | Scowling Milo and the captain, blades and fists up from "history's" (0.6 s); on "democracies" the crew's blades become raised hands | a low medium two-shot, an impact on "feared"; a rising **reveal** on "democracies" (the twist told by the camera) |
 | 2 | "...they sign a contract" (approved) | The ship under sail; the captain lays down his cutlass and signs the parchment on the table | aerial flight down to the crew; a cutlass close-up; an angled close-up on the pen and signature |
 | 3 | "...two shares to a sailor's one" (approved) | Loot streams into stacks; two slide to the captain, one to Milo | top-down; a glide across the table; an overhead pull-back that reads 2 : 1 |
 | 4 | "Lose an arm in battle? The crew pays you..." | Gus winces in his sling; Mags hands him the crew's purse; relief, hearts | whip in; a glide to the two-shot on "crew"; a relief close-up |
 | 5 | "And the captain? He's elected." | Suspicious, then proud; confetti | whip in; punch-in close-up |
 | 6 | Captain: "...I'm very brave" | The captain campaigns at the helm; on "brave", Milo facepalms and Mags folds her arms below | low hero angle; a **reaction shot** with the captain in the background |
-| 7 | "If he's a coward or a bully... vote him out" | He cowers ("coward"), then shakes his fists ("bully"); the crew's raised hands are aimed at **him**; his shock | medium; the **captain's point of view** on "vote"; a punch-in on "out" |
+| 7 | "If he's a coward or a bully... vote him out" | He cowers ("coward"), then shakes his fists ("bully"); from his eyeline, Milo and the crew glare and raise their hands; his shock, then dejection on "pick someone new" | medium on him alone; the **captain's eyeline** on "vote"; a punch-in on "out" |
 | 8 | "...the quartermaster... can't grab it all" | Mags, heroic; she hands out the share over the hero chest; his grab, her block; his sulk | low hero; angled glides onto the chest |
 | 9 | "Wait, pirates were fair?" | Milo, baffled | whip in; dutch angle |
 | 10-12 | "merchant ships had owners on land..." (approved) | The merchant ship (red ensign, cargo); the shipowner in the old town; the master's cane; sailors into line | a flight and zoom-through to land; a match cut; whips |

@@ -108,16 +108,16 @@ export const PIRATEDEMOCRACY: Storyboard = {
     { say: "If he's a coward or a bully, the crew can vote him out and pick someone new.", set: "shipDeck", light: "day", transition: "cut",
       camera: { move: "frame", on: ["captain"], size: "medium", from: -10, height: 1.45 },
       cams: [
-        { word: "vote", move: "pov", from: "captain", at: "milo.face" },
+        { word: "vote", move: "at", pos: [0.23, 1.4, -1.28], look: [-1.35, 1.45, -0.55], fov: 62 }, // his eyeline, wide enough for the raised hands
         { word: "out", move: "closeUp", on: "captain", from: -6, punch: true },
       ],
       actors: [
-        { who: "milo", at: [-1.35, 0, -0.55], act: "suspicious", facing: "toward:captain", beats: [{ word: "vote", gesture: "raiseHand", face: "determined" }, { word: "new", act: "happy" }] },
+        { who: "milo", at: [-1.35, 0, -0.55], act: "suspicious", facing: "toward:captain", beats: [{ word: "can", gesture: "raiseHand", face: "determined" }, { word: "new", act: "happy" }] },
         { who: "captain", at: [0.5, 0, -1.4], act: "nervous", facing: "camera",
-          beats: [{ word: "coward", act: "scared" }, { word: "bully", act: "angry", gesture: "fists" }, { word: "out", face: "shock", gesture: "coverMouth" }, { word: "new", act: "sad" }],
+          beats: [{ word: "coward", act: "scared" }, { word: "bully", act: "angry", gesture: "fists" }, { word: "out", face: "shock", gesture: "coverMouth" }, { word: "pick", act: "sad", face: "sad" }],
           moves: [{ word: "out", kind: "recoil", away: "milo", dur: 0.9 }] },
       ],
-      crowd: { count: 5, era: "pirate", acts: ["suspicious", "neutral"], toward: "captain", forBeat: 1, beats: [{ word: "vote", gesture: "raiseHand", face: "determined" }] } },
+      crowd: { count: 5, era: "pirate", acts: ["suspicious", "neutral"], toward: "captain", forBeat: 1, beats: [{ word: "can", gesture: "raiseHand", face: "determined" }] } },
     // the quartermaster: Mags, heroic from below ("a second elected officer"); the handover over the chest, close; on
     // "grab" the camera pushes down onto the chest as his hand dives for the gold and hers blocks it; he sulks
     { say: "A second elected officer, the quartermaster, hands out the food and loot, so the captain can't grab it all.", set: "shipDeck", light: "day", transition: "cut",
