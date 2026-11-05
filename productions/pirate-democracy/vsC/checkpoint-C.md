@@ -101,7 +101,9 @@ What this means for the full film (15 chunks on GitHub Actions):
 - Peak memory stays under 8 GB of the runner's 16.
 - The +0.3-0.5 GB is the 2 × 2 outline buffer per worker.
 
-**Determinism.** DETERMINISM
+**Determinism.** Lossless PNGs rendered with 1 worker and with 2 are **bit-identical: 18 of 18 frames**. They cover the stable ink on
+the orbit, the hero chest in shot 8, and the merchant deck with the cane. A 4-worker run was killed by two container
+restarts (not a render error), so I ran this lighter version, which still compares different worker counts.
 
 ## Checkpoint B carry-overs
 | Checkpoint B note | Change | Result |
@@ -113,7 +115,38 @@ What this means for the full film (15 chunks on GitHub Actions):
 | Foreground obstruction at the merchant opening | Closer medium framing of the master and a sailor, from the other side (the old angle was behind the quarterdeck rail posts) | A clean opening: the master, a sailor, the red ensign |
 
 ## Tests and safeguards
-TESTS
+- **`npm test`:** passes. This covers lint, typecheck, framing, every storyboard plus every negative test, library
+  protection and z-fighting.
+- **`npm run test:sound`:** passes.
+- **`npm run test:regression`:** **9 / 9 reference frames identical, BridgeShort included.** The engine 1 ink path is
+  unchanged to the pixel; the new ink is engine 2 only.
+- **Library protection:**
+  - No protected asset changed: the old `treasureChest`, the `shipDeck` set and its marks / views are all untouched.
+  - The snapshot only gained 18 entries: `heroChest`, `redEnsign`, and `merchantDeck` with its marks and views.
+  - The asset docs and floor maps were regenerated.
+- **Validator:** never weakened.
+  - New: a hand jump across a *hard camera cut inside a shot* is no longer compared. Cards turn to face each new
+    camera, so there is nothing a viewer could see. Glides and whips are still checked.
+  - Pen aiming applies only while actually writing.
+  - All negative tests are still caught.
+- **Not touched:** Tickle, every release, the narration. No full Pirate render; nothing uploaded.
 
 ## Honest assessment
-ISSUES
+1. **The flicker is greatly reduced, not eliminated everywhere.**
+   - The chest's dashed band and lid lines are **gone**, and crawl on the chest is down 36 %.
+   - Under a continuous camera orbit, world-outline crawl is down 16 %. The remaining motion crawl sits mostly on the
+     character cards' drawn strokes and on texture detail, which are the same in old and new.
+   - A further step would be supersampling the card strokes, which is a separate, larger change.
+2. **Cost: +15-20 % per frame** at full resolution (+0.3-0.5 GB). In the cloud, that's about +2.5 min of wall time per
+   full render. My recommendation is to keep it, because this is the visible quality problem you raised. If you'd
+   rather save the time, engine 2 could use stable ink only on close shots.
+3. **The vote** now reads as raised hats, but a pirate near the camera partly covers the middle of the shot.
+4. **Mags's writing hand** is visible (sleeve to fist at the nib) but small in the frame.
+5. **The hero chest's look** is a deliberate change: pale plank grain and brass, where the old chest was flat
+   purple-brown. It's the same house style, with more detail.
+6. **Not yet done from the 2.0 slice:**
+   - in-world labels;
+   - engine support for match cuts;
+   - the variety / rhythm checks;
+   - the remaining Pirate shots in the 2.0 style, with an honest score (Checkpoint D).
+7. **The full video is not rendered.** Everything here is footage of single scenes.
