@@ -27,12 +27,12 @@ export const PIRATEDEMOCRACY: Storyboard = {
       kicks: [{ word: "feared" }],
       actors: [
         { who: "milo", at: [-0.35, 0, -1.0], act: "angry", hold: "sword", gesture: "hold", facing: "camera",
-          beats: [{ word: "feared", gesture: "raiseHand", face: "angry" }, { word: "democracies", hold: null, gesture: "raiseHand", face: "grin" }] },
+          beats: [{ word: "history's", gesture: "raiseHand", face: "angry" }, { word: "democracies", hold: null, gesture: "raiseHand", face: "grin" }] },
         { who: "captain", at: [0.4, 0, -1.3], act: "angry", hold: "sword", gesture: "hold", facing: "camera",
           beats: [{ word: "feared", gesture: "raiseHand", face: "determined" }, { word: "democracies", hold: null, gesture: "raiseHand", face: "smile" }],
           moves: [{ word: "feared", kind: "hop", dur: 0.5 }] },
       ],
-      crowd: { count: 6, era: "pirate", acts: ["angry", "determined"], beats: [{ word: "feared", gesture: "fists", face: "angry" }, { word: "democracies", gesture: "raiseHand", face: "smile" }] } },
+      crowd: { count: 6, era: "pirate", acts: ["angry", "determined"], beats: [{ word: "history's", gesture: "fists", face: "angry" }, { word: "democracies", gesture: "raiseHand", face: "smile" }] } },
     // the articles, signed in the world: the crew round a deck table, the parchment lying on it; the captain lays down
     // his cutlass and signs, his quill travelling along the signature as it is written (the parchment guides his hand)
     { say: "Picture a pirate crew in the early 1700s. Before anyone touches a sword, they sign a contract.", set: "shipDeck", light: "day", transition: "flash",
@@ -106,7 +106,7 @@ export const PIRATEDEMOCRACY: Storyboard = {
     // the vote: "coward" (he cowers), "bully" (he bullies)... on "vote" we see what he sees: the crew's raised hands,
     // aimed at him (his point of view); on "out", his shock, close
     { say: "If he's a coward or a bully, the crew can vote him out and pick someone new.", set: "shipDeck", light: "day", transition: "cut",
-      camera: { move: "frame", on: ["captain", "milo"], size: "medium", from: -10, height: 1.45 },
+      camera: { move: "frame", on: ["captain"], size: "medium", from: -10, height: 1.45 },
       cams: [
         { word: "vote", move: "pov", from: "captain", at: "milo.face" },
         { word: "out", move: "closeUp", on: "captain", from: -6, punch: true },
@@ -123,8 +123,8 @@ export const PIRATEDEMOCRACY: Storyboard = {
     { say: "A second elected officer, the quartermaster, hands out the food and loot, so the captain can't grab it all.", set: "shipDeck", light: "day", transition: "cut",
       camera: { move: "lowHero", on: "qm", from: -8 },
       cams: [
-        { word: "hands", move: "frame", on: ["qm", "captain"], size: "medium", from: 4, height: 1.4, glide: 0.4 },
-        { word: "grab", move: "frame", on: ["qm", "captain"], size: "medium", from: 4, height: 1.2, glide: 0.3 },
+        { word: "hands", move: "frame", on: ["qm", "captain"], size: "medium", from: 30, height: 1.4, glide: 0.4 },
+        { word: "grab", move: "frame", on: ["qm", "captain"], size: "medium", from: 34, height: 1.2, glide: 0.3 },
       ],
       actors: [
         { who: "qm", at: [-0.6, 0, -1.05], act: "proud", face: "smile", reach: "heroChest",
