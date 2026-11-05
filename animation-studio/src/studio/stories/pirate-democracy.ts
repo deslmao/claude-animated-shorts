@@ -115,7 +115,7 @@ export const PIRATEDEMOCRACY: Storyboard = {
       actors: [
         { who: "milo", at: [-1.35, 0, -0.55], act: "suspicious", facing: "toward:captain", beats: [{ word: "can", gesture: "raiseHand", face: "determined" }, { word: "new", act: "happy" }] },
         { who: "captain", at: [0.5, 0, -1.4], act: "nervous", facing: "camera",
-          beats: [{ word: "coward", act: "scared" }, { word: "bully", act: "angry", gesture: "fists" }, { word: "out", face: "shock", gesture: "coverMouth" }, { word: "pick", act: "sad", face: "pained" }],
+          beats: [{ word: "coward", act: "scared" }, { word: "bully", act: "angry", gesture: "fists" }, { word: "out", face: "shock", gesture: "coverMouth" }],
           moves: [{ word: "out", kind: "recoil", away: "milo", dur: 0.9 }] },
       ],
       crowd: { count: 5, era: "pirate", acts: ["suspicious", "neutral"], toward: "captain", forBeat: 1, beats: [{ word: "can", gesture: "raiseHand", face: "determined" }] } },
