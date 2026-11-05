@@ -2,8 +2,9 @@
 // lines). Do not edit by hand; regenerate instead. Stories without narration render with estimated timing.
 import type { Narration } from "../../voice/narration";
 import { N_buried_treasure } from "./buried-treasure";
+import { N_doorway_effect } from "./doorway-effect";
 import { N_pirate_democracy } from "./pirate-democracy";
 import { N_tickle } from "./tickle";
 import { N_yawn_demo } from "./yawn-demo";
 
-export const NARRATION: Record<string, Narration> = { "buried-treasure": N_buried_treasure, "pirate-democracy": N_pirate_democracy, "tickle": N_tickle, "yawn-demo": N_yawn_demo };
+export const NARRATION: Record<string, Narration> = { "buried-treasure": N_buried_treasure, "doorway-effect": N_doorway_effect, "pirate-democracy": N_pirate_democracy, "tickle": N_tickle, "yawn-demo": N_yawn_demo };

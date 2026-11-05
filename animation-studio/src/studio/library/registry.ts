@@ -34,7 +34,7 @@ const CAMERA: Record<string, string> = {
   highAngle: "looking down on actors", overShoulder: "over one actor's shoulder at another", orbit: "circle around actors",
   crane: "crane down from height", dutch: "tilted frame (drama, unease)", follow: "track a walking / running actor",
 };
-const FX_DESC: Record<string, string> = { question: "yellow question mark", exclaim: "red exclamation mark", sweat: "sweat drops", anger: "anger vein mark", idea: "light bulb", hearts: "floating hearts", zzz: "sleep zzz", speed: "speed lines", puff: "dust puff", stars: "dizzy stars", burst: "impact burst", confetti: "confetti", sparkle: "sparkles", notes: "music notes", splash: "water splash", ring: "ringing marks" };
+const FX_DESC: Record<string, string> = { question: "yellow question mark", exclaim: "red exclamation mark", sweat: "sweat drops", anger: "anger vein mark", idea: "light bulb", hearts: "floating hearts", zzz: "sleep zzz", speed: "speed lines", puff: "dust puff", stars: "dizzy stars", burst: "impact burst", confetti: "confetti", sparkle: "sparkles", notes: "music notes", splash: "water splash", ring: "ringing marks", thought: "thought bubble holding a set of keys (a plan in mind)", thoughtPop: "the thought bubble bursting into puffs (a plan forgotten)" };
 
 const setMeta = (id: string): SetMeta => BASE_SETS[id] ?? Object.assign({}, ...THEMES.map((t) => t.setMeta ?? {}))[id] ?? { name: id, desc: SETS[id]?.title ?? id, themes: [], tags: [] };
 

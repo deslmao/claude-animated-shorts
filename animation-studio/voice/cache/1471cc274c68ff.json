@@ -1,0 +1,50 @@
+{
+ "hash": "1471cc274c68ff",
+ "text": "Wait, a door made me forget?",
+ "voice": "liam",
+ "lead": 0,
+ "end": 1.533,
+ "dur": 1.567347,
+ "words": [
+  {
+   "w": "Wait,",
+   "t0": 0,
+   "t1": 0.279
+  },
+  {
+   "w": "a",
+   "t0": 0.313,
+   "t1": 0.36
+  },
+  {
+   "w": "door",
+   "t0": 0.418,
+   "t1": 0.592
+  },
+  {
+   "w": "made",
+   "t0": 0.639,
+   "t1": 0.766
+  },
+  {
+   "w": "me",
+   "t0": 0.789,
+   "t1": 0.859
+  },
+  {
+   "w": "forget?",
+   "t0": 0.906,
+   "t1": 1.533
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-05T23:09:07.690Z"
+}

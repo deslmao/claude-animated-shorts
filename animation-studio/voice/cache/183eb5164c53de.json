@@ -1,0 +1,95 @@
+{
+ "hash": "183eb5164c53de",
+ "text": "It doesn't happen every time. Later studies found it mostly when people's minds were busy.",
+ "voice": "george",
+ "lead": 0,
+ "end": 4.783,
+ "dur": 4.832653,
+ "words": [
+  {
+   "w": "It",
+   "t0": 0,
+   "t1": 0.139
+  },
+  {
+   "w": "doesn't",
+   "t0": 0.174,
+   "t1": 0.43
+  },
+  {
+   "w": "happen",
+   "t0": 0.464,
+   "t1": 0.72
+  },
+  {
+   "w": "every",
+   "t0": 0.778,
+   "t1": 1.022
+  },
+  {
+   "w": "time.",
+   "t0": 1.08,
+   "t1": 1.498
+  },
+  {
+   "w": "Later",
+   "t0": 1.683,
+   "t1": 1.939
+  },
+  {
+   "w": "studies",
+   "t0": 1.985,
+   "t1": 2.322
+  },
+  {
+   "w": "found",
+   "t0": 2.38,
+   "t1": 2.577
+  },
+  {
+   "w": "it",
+   "t0": 2.624,
+   "t1": 2.694
+  },
+  {
+   "w": "mostly",
+   "t0": 2.752,
+   "t1": 3.053
+  },
+  {
+   "w": "when",
+   "t0": 3.088,
+   "t1": 3.216
+  },
+  {
+   "w": "people's",
+   "t0": 3.262,
+   "t1": 3.599
+  },
+  {
+   "w": "minds",
+   "t0": 3.657,
+   "t1": 3.947
+  },
+  {
+   "w": "were",
+   "t0": 3.982,
+   "t1": 4.098
+  },
+  {
+   "w": "busy.",
+   "t0": 4.133,
+   "t1": 4.783
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-05T23:09:10.331Z"
+}

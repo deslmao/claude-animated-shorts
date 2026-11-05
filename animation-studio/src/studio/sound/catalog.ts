@@ -70,5 +70,5 @@ export const stepFor = (set: string): SfxName =>
 export const FX_SOUND: Record<FxKind, SfxName | null> = {
   question: "blip_up", exclaim: "pop", sweat: "drip", anger: "steam", idea: "ding", hearts: "twinkle", zzz: "snore_soft",
   speed: "whoosh_short", puff: "poof", stars: "twinkle", burst: "impact", confetti: "party_pop", sparkle: "twinkle", notes: null,
-  splash: "splash", ring: "ring_ding",
+  splash: "splash", ring: "ring_ding", thought: "blip_up", thoughtPop: "pop",
 };

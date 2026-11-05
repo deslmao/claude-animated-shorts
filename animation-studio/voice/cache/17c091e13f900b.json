@@ -1,0 +1,125 @@
+{
+ "hash": "17c091e13f900b",
+ "text": "Psychologist Gabriel Radvansky put this to the test. People carried objects through rooms, then were quizzed on what they were carrying.",
+ "voice": "george",
+ "lead": 0,
+ "end": 7.523,
+ "dur": 7.549388,
+ "words": [
+  {
+   "w": "Psychologist",
+   "t0": 0,
+   "t1": 0.673
+  },
+  {
+   "w": "Gabriel",
+   "t0": 0.731,
+   "t1": 1.126
+  },
+  {
+   "w": "Radvansky",
+   "t0": 1.196,
+   "t1": 1.811
+  },
+  {
+   "w": "put",
+   "t0": 1.916,
+   "t1": 2.078
+  },
+  {
+   "w": "this",
+   "t0": 2.113,
+   "t1": 2.252
+  },
+  {
+   "w": "to",
+   "t0": 2.299,
+   "t1": 2.368
+  },
+  {
+   "w": "the",
+   "t0": 2.426,
+   "t1": 2.496
+  },
+  {
+   "w": "test.",
+   "t0": 2.531,
+   "t1": 3.03
+  },
+  {
+   "w": "People",
+   "t0": 3.576,
+   "t1": 3.866
+  },
+  {
+   "w": "carried",
+   "t0": 3.901,
+   "t1": 4.214
+  },
+  {
+   "w": "objects",
+   "t0": 4.272,
+   "t1": 4.632
+  },
+  {
+   "w": "through",
+   "t0": 4.667,
+   "t1": 4.899
+  },
+  {
+   "w": "rooms,",
+   "t0": 4.957,
+   "t1": 5.399
+  },
+  {
+   "w": "then",
+   "t0": 5.561,
+   "t1": 5.735
+  },
+  {
+   "w": "were",
+   "t0": 5.782,
+   "t1": 5.898
+  },
+  {
+   "w": "quizzed",
+   "t0": 5.933,
+   "t1": 6.223
+  },
+  {
+   "w": "on",
+   "t0": 6.258,
+   "t1": 6.327
+  },
+  {
+   "w": "what",
+   "t0": 6.374,
+   "t1": 6.502
+  },
+  {
+   "w": "they",
+   "t0": 6.525,
+   "t1": 6.618
+  },
+  {
+   "w": "were",
+   "t0": 6.653,
+   "t1": 6.757
+  },
+  {
+   "w": "carrying.",
+   "t0": 6.792,
+   "t1": 7.523
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-05T23:09:06.542Z"
+}

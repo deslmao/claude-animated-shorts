@@ -1,0 +1,90 @@
+{
+ "hash": "09485bfe5f246e",
+ "text": "Meet Milo. He needs his keys. He heads to the kitchen to grab them.",
+ "voice": "george",
+ "lead": 0,
+ "end": 4.18,
+ "dur": 4.205714,
+ "words": [
+  {
+   "w": "Meet",
+   "t0": 0,
+   "t1": 0.244
+  },
+  {
+   "w": "Milo.",
+   "t0": 0.302,
+   "t1": 0.778
+  },
+  {
+   "w": "He",
+   "t0": 0.836,
+   "t1": 0.929
+  },
+  {
+   "w": "needs",
+   "t0": 0.987,
+   "t1": 1.196
+  },
+  {
+   "w": "his",
+   "t0": 1.219,
+   "t1": 1.324
+  },
+  {
+   "w": "keys.",
+   "t0": 1.382,
+   "t1": 1.881
+  },
+  {
+   "w": "He",
+   "t0": 2.345,
+   "t1": 2.45
+  },
+  {
+   "w": "heads",
+   "t0": 2.508,
+   "t1": 2.705
+  },
+  {
+   "w": "to",
+   "t0": 2.752,
+   "t1": 2.821
+  },
+  {
+   "w": "the",
+   "t0": 2.879,
+   "t1": 2.949
+  },
+  {
+   "w": "kitchen",
+   "t0": 2.984,
+   "t1": 3.274
+  },
+  {
+   "w": "to",
+   "t0": 3.32,
+   "t1": 3.379
+  },
+  {
+   "w": "grab",
+   "t0": 3.437,
+   "t1": 3.646
+  },
+  {
+   "w": "them.",
+   "t0": 3.704,
+   "t1": 4.18
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-05T23:09:04.658Z"
+}

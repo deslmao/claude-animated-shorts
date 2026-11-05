@@ -1,10 +1,8 @@
 {
-  "composition": "Short-pirate-democracy",
-  "chunks": 6,
-  "preview": false,
-  "audio": "animation-studio/audio/Short-pirate-democracy.mp3",
-  "from": 1560,
-  "reuse": "productions/pirate-democracy/final/parts",
+  "composition": "Short-doorway-effect",
+  "chunks": 15,
+  "preview": true,
+  "audio": "animation-studio/audio/Short-doorway-effect.mp3",
   "publish": false,
-  "note": "Pirate Democracy final (Checkpoint D storyboard): frames 0-1559 reused from finished full-res chunks, 1560-1870 rendered here; no release (retry after soundtrack fingerprint refresh)"
+  "note": "Video 03 (doorway effect): half-size preview for the review checkpoint; no release"
 }

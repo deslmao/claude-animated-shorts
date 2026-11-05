@@ -1,0 +1,50 @@
+{
+ "hash": "091b95341f264a",
+ "text": "Wait... why am I in here?",
+ "voice": "liam",
+ "lead": 0,
+ "end": 1.625,
+ "dur": 1.671837,
+ "words": [
+  {
+   "w": "Wait...",
+   "t0": 0,
+   "t1": 0.372
+  },
+  {
+   "w": "why",
+   "t0": 0.453,
+   "t1": 0.615
+  },
+  {
+   "w": "am",
+   "t0": 0.673,
+   "t1": 0.755
+  },
+  {
+   "w": "I",
+   "t0": 0.813,
+   "t1": 0.848
+  },
+  {
+   "w": "in",
+   "t0": 0.952,
+   "t1": 1.057
+  },
+  {
+   "w": "here?",
+   "t0": 1.115,
+   "t1": 1.625
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-05T23:09:05.203Z"
+}

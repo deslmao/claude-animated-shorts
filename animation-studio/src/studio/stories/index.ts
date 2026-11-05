@@ -6,5 +6,6 @@ import { TICKLE } from "./tickle";
 import { YAWN_DEMO } from "./yawn-demo";
 import { CAPABILITIES } from "./capabilities";
 import { INK_ORBIT } from "./ink-orbit";
+import { DOORWAYEFFECT } from "./doorway-effect";
 
-export const STORIES: Storyboard[] = [YAWN_DEMO, CAPABILITIES, TICKLE, PIRATEDEMOCRACY, BURIEDTREASURE, INK_ORBIT];
+export const STORIES: Storyboard[] = [YAWN_DEMO, CAPABILITIES, TICKLE, PIRATEDEMOCRACY, BURIEDTREASURE, INK_ORBIT, DOORWAYEFFECT];

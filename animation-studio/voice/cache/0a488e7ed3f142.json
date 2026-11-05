@@ -1,0 +1,90 @@
+{
+ "hash": "0a488e7ed3f142",
+ "text": "He grabs his keys, heads out the door... and forgets where he was going.",
+ "voice": "george",
+ "lead": 0,
+ "end": 3.901,
+ "dur": 3.94449,
+ "words": [
+  {
+   "w": "He",
+   "t0": 0,
+   "t1": 0.128
+  },
+  {
+   "w": "grabs",
+   "t0": 0.186,
+   "t1": 0.476
+  },
+  {
+   "w": "his",
+   "t0": 0.511,
+   "t1": 0.615
+  },
+  {
+   "w": "keys,",
+   "t0": 0.673,
+   "t1": 1.103
+  },
+  {
+   "w": "heads",
+   "t0": 1.265,
+   "t1": 1.474
+  },
+  {
+   "w": "out",
+   "t0": 1.521,
+   "t1": 1.649
+  },
+  {
+   "w": "the",
+   "t0": 1.707,
+   "t1": 1.776
+  },
+  {
+   "w": "door...",
+   "t0": 1.823,
+   "t1": 2.229
+  },
+  {
+   "w": "and",
+   "t0": 2.276,
+   "t1": 2.415
+  },
+  {
+   "w": "forgets",
+   "t0": 2.473,
+   "t1": 2.786
+  },
+  {
+   "w": "where",
+   "t0": 2.821,
+   "t1": 2.995
+  },
+  {
+   "w": "he",
+   "t0": 3.03,
+   "t1": 3.077
+  },
+  {
+   "w": "was",
+   "t0": 3.123,
+   "t1": 3.239
+  },
+  {
+   "w": "going.",
+   "t0": 3.297,
+   "t1": 3.901
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-05T23:09:11.999Z"
+}

@@ -1,0 +1,65 @@
+{
+ "hash": "17e9cf8dbee464",
+ "text": "So Milo walks back to the sofa... and remembers.",
+ "voice": "george",
+ "lead": 0,
+ "end": 2.972,
+ "dur": 3.004082,
+ "words": [
+  {
+   "w": "So",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "Milo",
+   "t0": 0.221,
+   "t1": 0.511
+  },
+  {
+   "w": "walks",
+   "t0": 0.569,
+   "t1": 0.801
+  },
+  {
+   "w": "back",
+   "t0": 0.848,
+   "t1": 1.022
+  },
+  {
+   "w": "to",
+   "t0": 1.08,
+   "t1": 1.149
+  },
+  {
+   "w": "the",
+   "t0": 1.207,
+   "t1": 1.289
+  },
+  {
+   "w": "sofa...",
+   "t0": 1.335,
+   "t1": 1.846
+  },
+  {
+   "w": "and",
+   "t0": 1.962,
+   "t1": 2.101
+  },
+  {
+   "w": "remembers.",
+   "t0": 2.159,
+   "t1": 2.972
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-05T23:09:11.487Z"
+}

@@ -4,9 +4,10 @@
 // with overshoot over ~6 frames, a little life while it holds, fade at the end. Drawn on a 400 x 400 canvas.
 import { Pen, INK, P2, rad, fxBurst, fxSplash, fxPuff, fxNote, fxRing } from "../characters/toon";
 import { FxPlace, cardKey, CamInfo } from "../cards/cards";
+import { drawThought } from "./thought";
 
-export type FxKind = "question" | "exclaim" | "sweat" | "anger" | "idea" | "hearts" | "zzz" | "speed" | "puff" | "stars" | "burst" | "confetti" | "sparkle" | "notes" | "splash" | "ring";
-export const FX_KINDS: FxKind[] = ["question", "exclaim", "sweat", "anger", "idea", "hearts", "zzz", "speed", "puff", "stars", "burst", "confetti", "sparkle", "notes", "splash", "ring"];
+export type FxKind = "question" | "exclaim" | "sweat" | "anger" | "idea" | "hearts" | "zzz" | "speed" | "puff" | "stars" | "burst" | "confetti" | "sparkle" | "notes" | "splash" | "ring" | "thought" | "thoughtPop";
+export const FX_KINDS: FxKind[] = ["question", "exclaim", "sweat", "anger", "idea", "hearts", "zzz", "speed", "puff", "stars", "burst", "confetti", "sparkle", "notes", "splash", "ring", "thought", "thoughtPop"];
 
 const OUT = 10; // ink width on the 400 canvas
 /** pop scale: 0 -> 1.18 -> 1 over 0.2 s (reference effects land on the word, overshoot once) */
@@ -83,6 +84,8 @@ export const drawFx = (p: Pen, kind: FxKind, t: number, seed = 1) => {
     case "notes": { g.save(); g.translate(200, 200 - (t * 50) % 40); g.rotate(rad(wob * 3)); g.translate(-200, -200); g.scale(1.6, 1.4); fxNote(p, seed % 2); g.restore(); break; }
     case "splash": fxSplash(p, Math.min(1, t / 0.7)); break;
     case "ring": fxRing(p, (t * 0.8) % 1); break;
+    case "thought": g.restore(); g.save(); g.translate(200, 200); g.scale(Math.min(k, 1.06), Math.min(k, 1.06)); g.translate(-200, -200); drawThought(p, t); break;
+    case "thoughtPop": g.restore(); g.save(); drawThought(p, t, Math.min(1, t / 0.55)); break;
   }
   g.restore();
 };
@@ -103,7 +106,7 @@ export const fxNear = (cam: CamInfo, kind: FxKind, mark: [number, number, number
   // half the frame width at the character (~0.2 x distance for the 34-46 deg lenses on a 9:16 frame): the mark sits
   // inside the frame, beside the head, scaled down in close-ups
   const d = Math.hypot(cam.pos.x - mark[0], cam.pos.z - mark[2]) || 1, halfW = 0.2 * d;
-  const lat = Math.min(0.42, 0.62 * halfW), sz = Math.min(size, 0.5 * halfW), y = mark[1] + 1.72 + Math.min(0.22, 0.06 * d);
+  const lat = Math.min(0.42, 0.62 * halfW), sz = Math.min(size, (size > 0.5 ? 0.85 : 0.5) * halfW), y = mark[1] + 1.72 + Math.min(0.22, 0.06 * d);
   // keep it on screen: if the preferred side would put the mark past the frame edge, use the other side of the head
   const at = (sd: number): [number, number, number] => [mark[0] + cam.right.x * lat * sd, y, mark[2] + cam.right.z * lat * sd];
   if (cam.project) { const [x] = cam.project(at(side)), [xo] = cam.project(at(-side)); if (Math.abs(x) > 0.86 && Math.abs(xo) < Math.abs(x)) side = (-side) as -1 | 1; }

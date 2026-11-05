@@ -521,7 +521,9 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
         m = [p[0] + an.head[0] - ref[0], p[1] + an.head[1] - ref[1], p[2] + an.head[2] - ref[2]];
       }
       const x = (p[0] - cam.pos.x) * cam.right.x + (p[2] - cam.pos.z) * cam.right.z;
-      const c = fxNear(cam, fx.kind, m, t, t1, life, fx.side ?? (x > 0.3 ? -1 : 1)); if (c) out.fx.push(c);
+      // a thought bubble carries a picture (the keys): drawn bigger than a reaction mark so it reads on a phone
+      const big = fx.kind === "thought" || fx.kind === "thoughtPop";
+      const c = fxNear(cam, fx.kind, m, t, t1, life, fx.side ?? (x > 0.3 ? -1 : 1), big ? 0.75 : undefined); if (c) out.fx.push(c);
     }
   };
   return { total, shots, timeline, director, timing, notes };

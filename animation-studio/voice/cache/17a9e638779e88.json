@@ -1,0 +1,70 @@
+{
+ "hash": "17a9e638779e88",
+ "text": "He checks the fridge, a drawer, even the toaster. Nothing.",
+ "voice": "george",
+ "lead": 0,
+ "end": 3.39,
+ "dur": 3.422041,
+ "words": [
+  {
+   "w": "He",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "checks",
+   "t0": 0.197,
+   "t1": 0.476
+  },
+  {
+   "w": "the",
+   "t0": 0.522,
+   "t1": 0.592
+  },
+  {
+   "w": "fridge,",
+   "t0": 0.65,
+   "t1": 1.057
+  },
+  {
+   "w": "a",
+   "t0": 1.115,
+   "t1": 1.173
+  },
+  {
+   "w": "drawer,",
+   "t0": 1.231,
+   "t1": 1.591
+  },
+  {
+   "w": "even",
+   "t0": 1.637,
+   "t1": 1.869
+  },
+  {
+   "w": "the",
+   "t0": 1.904,
+   "t1": 1.974
+  },
+  {
+   "w": "toaster.",
+   "t0": 2.02,
+   "t1": 2.508
+  },
+  {
+   "w": "Nothing.",
+   "t0": 2.728,
+   "t1": 3.39
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-05T23:09:05.672Z"
+}

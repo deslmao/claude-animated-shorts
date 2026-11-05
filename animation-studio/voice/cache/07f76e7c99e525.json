@@ -1,0 +1,105 @@
+{
+ "hash": "07f76e7c99e525",
+ "text": "Going back can sometimes help, because the old room is full of cues. It's no guarantee, though.",
+ "voice": "george",
+ "lead": 0,
+ "end": 5.294,
+ "dur": 5.32898,
+ "words": [
+  {
+   "w": "Going",
+   "t0": 0,
+   "t1": 0.302
+  },
+  {
+   "w": "back",
+   "t0": 0.36,
+   "t1": 0.569
+  },
+  {
+   "w": "can",
+   "t0": 0.627,
+   "t1": 0.743
+  },
+  {
+   "w": "sometimes",
+   "t0": 0.801,
+   "t1": 1.207
+  },
+  {
+   "w": "help,",
+   "t0": 1.265,
+   "t1": 1.602
+  },
+  {
+   "w": "because",
+   "t0": 1.672,
+   "t1": 1.939
+  },
+  {
+   "w": "the",
+   "t0": 1.962,
+   "t1": 2.032
+  },
+  {
+   "w": "old",
+   "t0": 2.09,
+   "t1": 2.241
+  },
+  {
+   "w": "room",
+   "t0": 2.299,
+   "t1": 2.438
+  },
+  {
+   "w": "is",
+   "t0": 2.485,
+   "t1": 2.543
+  },
+  {
+   "w": "full",
+   "t0": 2.589,
+   "t1": 2.74
+  },
+  {
+   "w": "of",
+   "t0": 2.786,
+   "t1": 2.833
+  },
+  {
+   "w": "cues.",
+   "t0": 2.891,
+   "t1": 3.448
+  },
+  {
+   "w": "It's",
+   "t0": 3.855,
+   "t1": 4.04
+  },
+  {
+   "w": "no",
+   "t0": 4.087,
+   "t1": 4.18
+  },
+  {
+   "w": "guarantee,",
+   "t0": 4.238,
+   "t1": 4.714
+  },
+  {
+   "w": "though.",
+   "t0": 4.737,
+   "t1": 5.294
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-05T23:09:11.028Z"
+}

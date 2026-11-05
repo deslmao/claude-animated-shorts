@@ -1,0 +1,110 @@
+{
+ "hash": "18ed0ef62c17f0",
+ "text": "Those who walked through a doorway forgot more than those who walked the same distance in one room.",
+ "voice": "george",
+ "lead": 0,
+ "end": 4.83,
+ "dur": 4.858776,
+ "words": [
+  {
+   "w": "Those",
+   "t0": 0,
+   "t1": 0.313
+  },
+  {
+   "w": "who",
+   "t0": 0.337,
+   "t1": 0.43
+  },
+  {
+   "w": "walked",
+   "t0": 0.488,
+   "t1": 0.731
+  },
+  {
+   "w": "through",
+   "t0": 0.755,
+   "t1": 0.952
+  },
+  {
+   "w": "a",
+   "t0": 0.987,
+   "t1": 1.01
+  },
+  {
+   "w": "doorway",
+   "t0": 1.057,
+   "t1": 1.451
+  },
+  {
+   "w": "forgot",
+   "t0": 1.637,
+   "t1": 1.939
+  },
+  {
+   "w": "more",
+   "t0": 2.009,
+   "t1": 2.194
+  },
+  {
+   "w": "than",
+   "t0": 2.229,
+   "t1": 2.357
+  },
+  {
+   "w": "those",
+   "t0": 2.415,
+   "t1": 2.647
+  },
+  {
+   "w": "who",
+   "t0": 2.67,
+   "t1": 2.763
+  },
+  {
+   "w": "walked",
+   "t0": 2.821,
+   "t1": 3.042
+  },
+  {
+   "w": "the",
+   "t0": 3.077,
+   "t1": 3.146
+  },
+  {
+   "w": "same",
+   "t0": 3.193,
+   "t1": 3.402
+  },
+  {
+   "w": "distance",
+   "t0": 3.437,
+   "t1": 3.843
+  },
+  {
+   "w": "in",
+   "t0": 3.878,
+   "t1": 3.959
+  },
+  {
+   "w": "one",
+   "t0": 4.029,
+   "t1": 4.191
+  },
+  {
+   "w": "room.",
+   "t0": 4.249,
+   "t1": 4.83
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-05T23:09:07.231Z"
+}

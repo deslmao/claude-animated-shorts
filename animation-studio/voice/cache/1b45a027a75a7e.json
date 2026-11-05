@@ -1,0 +1,95 @@
+{
+ "hash": "1b45a027a75a7e",
+ "text": "You walk into a room and instantly forget why. Scientists think the doorway did it.",
+ "voice": "georgeLively",
+ "lead": 0,
+ "end": 4.737,
+ "dur": 4.780408,
+ "words": [
+  {
+   "w": "You",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "walk",
+   "t0": 0.209,
+   "t1": 0.395
+  },
+  {
+   "w": "into",
+   "t0": 0.453,
+   "t1": 0.592
+  },
+  {
+   "w": "a",
+   "t0": 0.662,
+   "t1": 0.697
+  },
+  {
+   "w": "room",
+   "t0": 0.755,
+   "t1": 0.975
+  },
+  {
+   "w": "and",
+   "t0": 1.033,
+   "t1": 1.138
+  },
+  {
+   "w": "instantly",
+   "t0": 1.196,
+   "t1": 1.602
+  },
+  {
+   "w": "forget",
+   "t0": 1.66,
+   "t1": 1.927
+  },
+  {
+   "w": "why.",
+   "t0": 1.974,
+   "t1": 2.426
+  },
+  {
+   "w": "Scientists",
+   "t0": 2.833,
+   "t1": 3.332
+  },
+  {
+   "w": "think",
+   "t0": 3.367,
+   "t1": 3.576
+  },
+  {
+   "w": "the",
+   "t0": 3.634,
+   "t1": 3.704
+  },
+  {
+   "w": "doorway",
+   "t0": 3.75,
+   "t1": 4.075
+  },
+  {
+   "w": "did",
+   "t0": 4.133,
+   "t1": 4.272
+  },
+  {
+   "w": "it.",
+   "t0": 4.331,
+   "t1": 4.737
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.35,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-05T23:09:04.000Z"
+}
