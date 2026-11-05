@@ -56,7 +56,7 @@ export const DOORWAYEFFECT: Storyboard = {
       camera: { move: "frame", on: ["milo"], size: "medium", from: -55, height: 1.4 },
       cams: [
         { word: "drawer", move: "frame", on: ["milo"], size: "medium", from: -75, height: 1.2, whip: true },
-        { word: "toaster", move: "insert", on: "toaster", size: "close", from: -70, whip: true },
+        { word: "toaster", move: "at", pos: [3.25, 1.3, -0.35], look: [4.4, 1.0, -0.95], fov: 40, whip: true },
         { word: "Nothing", move: "frame", on: ["milo"], size: "medium", from: -20, height: 1.45, whip: true },
       ],
       props: [{ id: "toaster", at: [4.4, 0.93, -0.95], yaw: -90 }],
@@ -70,7 +70,7 @@ export const DOORWAYEFFECT: Storyboard = {
     { say: "Psychologist Gabriel Radvansky put this to the test. People carried objects through rooms, then were quizzed on what they were carrying.", set: "apartment", light: "interior", transition: "cut",
       camera: { move: "at", pos: [2.5, 1.5, 4.6], look: [2.5, 1.1, -0.8], fov: 50 },
       cams: [
-        { word: "test", move: "at", pos: [-0.6, 2.1, 7.6], look: [-0.6, 1.05, -0.6], fov: 56, fly: true },
+        { word: "test", move: "at", pos: [-1.6, 2.5, 4.4], look: [-0.95, 1.0, -0.35], fov: 52, fly: true },
         { word: "quizzed", move: "at", pos: [1.85, 1.45, 3.4], look: [1.85, 1.1, -0.4], fov: 46, glide: 0.5 },
       ],
       actors: [
@@ -85,7 +85,7 @@ export const DOORWAYEFFECT: Storyboard = {
       camera: { move: "frame", on: ["volB", "juno"], size: "medium", from: -10, height: 1.4 },
       cams: [
         { word: "forgot", move: "closeUp", on: "volB", from: -10, punch: true },
-        { word: "same", move: "frame", on: ["volA"], size: "medium", from: 20, height: 1.4, whip: true },
+        { word: "same", move: "frame", on: ["volA"], size: "medium", from: -25, height: 1.4, whip: true },
       ],
       actors: [
         { who: "volB", at: [1.4, 0, -0.45], act: "confused", hold: "flask", facing: "camera", beats: [{ word: "forgot", face: "dazed", gesture: "scratchHead" }] },
@@ -102,10 +102,10 @@ export const DOORWAYEFFECT: Storyboard = {
     // the idea: one long continuous move across both rooms ("one long video") that stops dead at the wall ("cut it into
     // scenes"), then the doorway close and low ("event boundary... a big one") with Milo standing on the threshold
     { say: "You see, your brain doesn't record life as one long video. It seems to cut it into scenes. Psychologists call each cut an event boundary, and a doorway is a big one.", set: "apartment", light: "interior", transition: "cut",
-      camera: { move: "at", pos: [-3.6, 1.6, 7.2], look: [-3.0, 1.1, -0.8], fov: 46 },
+      camera: { move: "at", pos: [-3.6, 1.55, 4.4], look: [-3.2, 1.1, -0.8], fov: 46 },
       cams: [
-        { word: "video", move: "at", pos: [-0.6, 1.6, 7.2], look: [-0.2, 1.1, -0.8], fov: 46, glide: 1.2 },
-        { word: "scenes", move: "at", pos: [0.0, 1.6, 6.2], look: [0.0, 1.2, -0.8], fov: 46, glide: 0.25 },
+        { word: "video", move: "at", pos: [-0.9, 1.55, 4.4], look: [-0.5, 1.1, -0.8], fov: 46, glide: 1.2 },
+        { word: "scenes", move: "at", pos: [0.0, 1.55, 4.0], look: [0.0, 1.2, -0.8], fov: 46, glide: 0.25 },
         { word: "boundary", move: "at", pos: [-1.9, 0.5, 0.95], look: [0.0, 1.45, -0.45], fov: 44, fly: true },
         { word: "big", move: "closeUp", on: "milo", from: -55, punch: true },
       ],
@@ -117,7 +117,7 @@ export const DOORWAYEFFECT: Storyboard = {
     // tucked away, not deleted: Milo steps into the kitchen; the camera looks back through the doorway at the old scene,
     // where his thought bubble (the keys) still floats over the sofa, then flies back to it
     { say: "It's a simplified picture, but crossing one seems to tuck the old scene away, so plans made there get harder to reach. Milo's plan isn't deleted. It's just stuck back with the sofa.", set: "apartment", light: "interior", transition: "cut",
-      camera: { move: "at", pos: [-1.6, 1.45, 2.3], look: [0.0, 1.2, -0.45], fov: 40 },   // Milo on the threshold (he walks later)
+      camera: { move: "at", pos: [2.3, 1.45, 2.0], look: [0.0, 1.2, -0.45], fov: 40 },   // Milo on the threshold, from the kitchen side (he walks later)
       cams: [
         { word: "tuck", move: "at", pos: [2.6, 1.45, -0.35], look: [-2.6, 1.4, -0.75], fov: 40, fly: true },
         { word: "harder", move: "at", pos: [3.6, 1.4, -0.4], look: [-2.6, 1.45, -0.75], fov: 34, glide: 0.8 },
@@ -148,10 +148,9 @@ export const DOORWAYEFFECT: Storyboard = {
     // going back: the camera rides with Milo back through the doorway; the old room's cues (the bowl of keys, close);
     // "no guarantee" on a shrug
     { say: "Going back can sometimes help, because the old room is full of cues. It's no guarantee, though.", set: "apartment", light: "interior", transition: "cut",
-      camera: { move: "at", pos: [1.9, 1.45, 0.6], look: [-0.6, 1.25, -0.45], fov: 44 },
+      camera: { move: "at", pos: [-3.0, 1.45, 1.0], look: [-0.2, 1.2, -0.45], fov: 44 },
       cams: [
-        { word: "help", move: "at", pos: [-0.4, 1.4, 0.2], look: [-2.6, 0.9, -0.9], fov: 44, fly: true },
-        { word: "cues", move: "insert", on: "keyBowl", size: "close", from: 20 },
+        { word: "cues", move: "at", pos: [-2.15, 1.1, 0.35], look: [-2.6, 0.5, -0.75], fov: 40, glide: 0.45 },
         { word: "guarantee", move: "frame", on: ["milo"], size: "medium", from: 25, height: 1.4, whip: true },
       ],
       props: [{ id: "keyBowl", at: [-2.6, 0.45, -0.75] }],
@@ -173,7 +172,7 @@ export const DOORWAYEFFECT: Storyboard = {
 
     // the callback: keys grabbed (insert), out of the front door... and the bubble pops again. A held, blank close-up ends it
     { say: "He grabs his keys, heads out the door... and forgets where he was going.", set: "apartment", light: "interior", transition: "cut",
-      camera: { move: "at", pos: [-1.55, 1.15, 0.75], look: [-2.0, 1.0, -0.35], fov: 36 },   // keys in hand (he walks later)
+      camera: { move: "at", pos: [-1.3, 1.3, 1.5], look: [-2.0, 1.05, -0.35], fov: 38 },   // keys in hand (he walks later)
       cams: [
         { word: "heads", move: "at", pos: [-1.6, 1.5, 2.4], look: [-4.3, 1.1, 0.5], fov: 46, fly: true },
         { word: "forgets", move: "closeUp", on: "milo", from: 30, punch: true },
