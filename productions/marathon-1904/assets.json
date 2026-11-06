@@ -1,5 +1,5 @@
 {
- "reused": 72,
+ "reused": 73,
  "missing": [],
  "byKind": {
   "character": [
@@ -47,7 +47,7 @@
    "scoreBoard",
    "signBoard",
    "finishTape",
-   "farmDog",
+   "farmDogCollie",
    "arrowSign",
    "waterTable"
   ],
@@ -96,6 +96,7 @@
    "egg",
    "hipFlask",
    "coinBag",
+   "apple",
    "appleRotten"
   ]
  }
