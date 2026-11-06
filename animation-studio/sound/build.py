@@ -71,7 +71,13 @@ def main(plan_path):
     # ---------------- voice
     voice = np.zeros((2, N))
     for v in P["voice"]:
-        place(voice, decode(v["file"]), v["at"])
+        x = decode(v["file"])
+        if "from" in v:  # a piece of a line with pauses inside it (cut in a measured silence; 5 ms fades against clicks)
+            x = x[int(round(v["from"] * SR)): int(round(v["to"] * SR)) if "to" in v else len(x)].copy()
+            f = min(len(x) // 2, int(0.005 * SR))
+            if f > 0:
+                x[:f] *= np.linspace(0, 1, f); x[-f:] *= np.linspace(1, 0, f)
+        place(voice, x, v["at"])
     Lv = lu(voice)
     log(f"voice: {len(P['voice'])} clips, {Lv:.1f} LUFS")
     # ---------------- music

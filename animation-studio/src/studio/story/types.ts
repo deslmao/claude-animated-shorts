@@ -56,8 +56,14 @@ export type Glance = "left" | "right" | "up" | "down" | "camera";
 export type Beat = When & { act?: Act; face?: Expr; gesture?: Gesture; /** pick up / swap an item; null = put it away */ hold?: string | null; look?: Glance };
 /** a spoken line. who: "narrator" (voice-over, default) or a cast key (that actor's mouth moves with the words).
  *  voice: a preset from voice/voices.ts (default: storyboard.voices[who], then storyboard.voice, then the narrator).
- *  gap: extra pause before the line, seconds */
-export type Line = { text: string; who?: string; voice?: string; gap?: number };
+ *  gap: extra pause before the line, seconds
+ *  pauses: extra silence INSIDE the line, after a word (Video 04 timing pass): the generated audio is cut in the natural
+ *  gap after that word and the rest is placed s seconds later. The words, voice and audio are unchanged (no regeneration);
+ *  captions and mouths follow the shifted word timings. after: the word (as spoken, punctuation ignored); n: its
+ *  occurrence in the line (default 1); cut: where in that silence to cut, 0 = right after the word, 1 = just before the
+ *  next (default 0.5; move it off a breath so the breath stays whole) */
+export type LinePause = { after: string; n?: number; s: number; cut?: number };
+export type Line = { text: string; who?: string; voice?: string; gap?: number; pauses?: LinePause[] };
 export type ActorSpec = {
   who: string;                // key into storyboard.cast
   at: Where;

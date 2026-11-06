@@ -25,7 +25,9 @@ const ANCHOR = 2 / FPS;           // reactions land 2 frames before their word
 /** a line placed on the film's clock */
 export type Placed = { shot: number; who: string; voice: string; text: string; hash: string; estimated: boolean;
   /** absolute seconds: when the clip's audio file starts / its first word / last word */
-  fileAt: number; start: number; end: number; clip: Clip; words: Word[] /* absolute times */ };
+  fileAt: number; start: number; end: number; clip: Clip; words: Word[] /* absolute times */;
+  /** a line with pauses: its audio in pieces, file seconds [from, to) placed at absolute time at (absent: the whole file at fileAt) */
+  segs?: { from: number; to?: number; at: number }[] };
 export type Timing = { sb: Storyboard; lines: Placed[]; missing: Placed[]; problems: string[]; total: number };
 
 export const linesOf = (s: ShotSpec): Line[] => (s.say === undefined ? [] : (Array.isArray(s.say) ? s.say : [s.say]).map((l) => (typeof l === "string" ? { text: l } : l)));
@@ -36,6 +38,29 @@ export const lineList = (sb: Storyboard) => sb.shots.flatMap((s, k) => linesOf(s
   const voice = voiceOf(sb, l);
   return { shot: k, line: l, voice, hash: VOICES[voice] ? clipHash(voice, l.text) : "", who: l.who ?? "narrator" };
 }));
+
+/** pauses inside a line: cut the clip in the gap after each named word (the middle of the silence between that word and
+ *  the next, which npm run voice snaps to the measured sound) and shift everything after it; pure */
+export const MIN_PAUSE_GAP = 0.04;
+const pausedLine = (p: Placed, pauses: NonNullable<Line["pauses"]>, problem: (m: string) => void): Pick<Placed, "segs" | "words" | "end"> => {
+  const cw = p.clip.words, cuts: { j: number; s: number; f: number }[] = [];
+  for (const q of pauses) {
+    const key = norm(q.after), n = q.n ?? 1, hits = cw.map((w, j) => (norm(w.w) === key ? j : -1)).filter((j) => j >= 0), j = hits[n - 1];
+    if (j === undefined) { problem(`pause after "${q.after}"${n > 1 ? ` #${n}` : ""}, which the line doesn't say`); continue; }
+    if (j === cw.length - 1) { problem(`pause after "${q.after}", the line's last word (use the next line's gap instead)`); continue; }
+    if (!(q.s > 0)) { problem(`pause after "${q.after}" needs a length in seconds > 0`); continue; }
+    if (cw[j + 1].t0 - cw[j].t1 < MIN_PAUSE_GAP) { problem(`pause after "${q.after}": no silence there to cut in (${Math.round((cw[j + 1].t0 - cw[j].t1) * 1000)} ms)`); continue; }
+    if (q.cut !== undefined && !(q.cut >= 0 && q.cut <= 1)) { problem(`pause after "${q.after}": cut must be 0-1 (where in the silence)`); continue; }
+    cuts.push({ j, s: q.s, f: q.cut ?? 0.5 });
+  }
+  cuts.sort((a, b) => a.j - b.j);
+  const segs: NonNullable<Placed["segs"]> = [];
+  let from = 0, shift = 0;
+  const shiftOf = (j: number) => cuts.filter((c) => c.j < j).reduce((t, c) => t + c.s, 0);
+  for (const c of cuts) { const cut = cw[c.j].t1 + (cw[c.j + 1].t0 - cw[c.j].t1) * c.f; segs.push({ from, to: cut, at: p.fileAt + from + shift }); from = cut; shift += c.s; }
+  segs.push({ from, at: p.fileAt + from + shift });
+  return { segs, words: cw.map((w, j) => ({ w: w.w, t0: p.fileAt + w.t0 + shiftOf(j), t1: p.fileAt + w.t1 + shiftOf(j) })), end: p.end + shift };
+};
 
 /** resolve narration: returns a copy of the storyboard in which every shot has dur, every When has t, and speaking
  *  actors carry `speech` (their words, seconds into the shot) */
@@ -57,6 +82,7 @@ export const resolve = (sb0: Storyboard, narr?: Narration): Timing => {
       const fileAt = cursor - clip.lead;
       const p: Placed = { shot: k, who: l.who ?? "narrator", voice, text: l.text, hash, estimated: !have, fileAt, start: cursor, end: fileAt + clip.end, clip,
         words: clip.words.map((w) => ({ w: w.w, t0: fileAt + w.t0, t1: fileAt + w.t1 })) };
+      if (l.pauses?.length) Object.assign(p, pausedLine(p, l.pauses, (m) => problems.push(`shot ${k + 1}: ${m}`)));
       here.push(p); lines.push(p);
       cursor = p.end + LINE_GAP;
     }
