@@ -1,11 +1,11 @@
 {
-  "run_id": "42142303907",
-  "artifact": "Short-doorway-effect-run18",
+  "run_id": "42150577587",
+  "artifact": "Short-doorway-effect-run19",
   "frames": 1946,
   "width": 1080,
   "height": 1920,
   "audio": "required",
   "seams": "129,259,389,518,648,778,908,1037,1167,1297,1427,1556,1686,1816",
-  "keep": "productions/doorway-effect/final/Short-doorway-effect.mp4",
-  "note": "Video 03 final full-resolution render (run 18): QA and keep in the repo; no release"
+  "keep": "productions/doorway-effect/final-v2/Short-doorway-effect.mp4",
+  "note": "Video 03 corrected full-resolution render (run 19): defects at 0:47 fixed; kept beside the approved final/ until approved"
 }
