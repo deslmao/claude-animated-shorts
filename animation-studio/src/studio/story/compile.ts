@@ -26,6 +26,13 @@ import { placeCrowd } from "./crowd";
 import { PROPS } from "../props/registry";
 
 export const FPS = 30;
+/** a swoop beat's travel (frames): its own length in seconds, or 0.33 s */
+export const SWOOP_DEFAULT = 0.33;
+/** a macro insert's object width as a share of the frame width */
+export const MACRO_FILL = 0.7;
+/** the size framed by a macro insert on a held item (a set of keys, a ticket, an apple), metres */
+export const MACRO_HELD_SPAN = 0.16;
+export const swoopFrames = (v: number | true | undefined) => Math.max(4, Math.round((v === true || v === undefined ? SWOOP_DEFAULT : v) * FPS));
 /** gesture easing time and the walk-end turn (seconds) */
 const EASE = 0.15, EASE_MAX = 0.4, HAND_SPEED = 3.0, WALK_TURN = 0.25;
 /** a story prop's floor position in the world (its mark plus offset) */
@@ -77,11 +84,16 @@ export const diagramY = (s: ShotSpec) => (s.diagram?.place === "above" ? diagram
 /** camera spec -> library move, naming actors instead of coordinates (framed where they settle) */
 /** an actor's authored pose at shot time tq: the act, face, gesture and mode with every beat up to tq applied, and the
  *  held item (the director's acting starts from this; camera inserts use it to find the hands) */
+/** eye offsets for a glance (in the face drawing's gaze units: about 3 px of pupil travel at 1080 per unit) */
+export const GLANCE: Record<"left" | "right" | "up" | "down", [number, number]> = { left: [-1.3, 0], right: [1.3, 0], up: [0, -1.1], down: [0, 1] };
 export const basePoseAt = (a: ActorSpec, tq: number): { base: Pose; held: string | undefined } => {
   let base: Pose = actPose(a.act ?? "neutral", { ...(a.face ? { expr: a.face } : {}), ...(a.gesture ? { gesture: a.gesture } : {}), ...(a.mode ? { mode: a.mode } : {}) });
   for (const bt of (a.beats ?? []).filter((x) => (x.t ?? 0) <= tq).sort((x, y) => (x.t ?? 0) - (y.t ?? 0))) base = { ...(bt.act ? actPose(bt.act) : base), ...(bt.face ? { expr: bt.face } : {}), ...(bt.gesture ? { gesture: bt.gesture } : {}) };
   let held = a.hold;
   for (const bt of (a.beats ?? []).filter((x) => (x.t ?? 0) <= tq && x.hold !== undefined).sort((x, y) => (x.t ?? 0) - (y.t ?? 0))) held = bt.hold ?? undefined;
+  // eye glances: the latest one holds through act / face changes ("camera" looks back to the lens)
+  const gl = (a.beats ?? []).filter((x) => (x.t ?? 0) <= tq && x.look).sort((x, y) => (x.t ?? 0) - (y.t ?? 0)).pop();
+  if (gl?.look && gl.look !== "camera") base = { ...base, look: GLANCE[gl.look] };
   return { base, held };
 };
 
@@ -128,7 +140,9 @@ export const reachExtra = (s: ShotSpec, a: ActorSpec, p: V3, tq: number, lateral
  *  their `reach` target (a handover, a signature, a grab); "held" = in front of their own chest (what they hold) */
 export const detailOf = (cast: Storyboard["cast"], s: ShotSpec, name: string, tq = 0, from = 0): { c: V3; span: number } => {
   const pr = (s.props ?? []).find((q) => q.id === name);
-  if (pr) { const w = propWorld(s.set, pr), e = PROPS[pr.id], h = (e?.height ?? 0.6) * (pr.scale ?? 1); return { c: [w[0], w[1] + h * 0.6, w[2]], span: Math.max(h, (e?.radius ?? 0.4) * 1.3) }; }
+  if (pr) { const w = propWorld(s.set, pr), e = PROPS[pr.id], k = pr.scale ?? 1, h = (e?.height ?? 0.6) * k;
+    if (e?.focus) return { c: [w[0], w[1] + e.focus.y * k, w[2]], span: e.focus.span * k };   // the part that matters (a display's text)
+    return { c: [w[0], w[1] + h * 0.6, w[2]], span: Math.max(h, (e?.radius ?? 0.4) * 1.3) }; }
   const [who, part] = name.split("."), a = s.actors.find((x) => x.who === who);
   if (!a || !cast[who]) throw new Error(`camera names "${name}" but there is no such actor or prop in the shot`);
   const L = lookOf(cast[who]), p = restPos(s.set, a), an = anchorsFront(L, {}), y = (d: number) => p[1] + (975 - d) * SU;
@@ -211,6 +225,17 @@ const moveOf = (s: ShotSpec, c: CameraSpec, t0 = 0, cast: Storyboard["cast"] = {
       // the detail as it is a moment into the beat (a gesture that starts on the beat's word has landed)
       const from = c.from ?? ("from" in s.camera ? (s.camera as { from?: number }).from ?? 0 : 0), ar = (from * Math.PI) / 180;
       const d = detailOf(cast, s, c.on, ((c as { t?: number }).t ?? 0) + 0.25, from);
+      if (c.size === "macro") {
+        // macro (Video 04): a small or held object filling ~70 % of the frame WIDTH (the 9:16 frame is narrow, so a
+        // height fit overflows the sides), seen from 25 degrees above (readable, never top-down), at least 0.3 m away
+        // (clear of the lens), a soft but not mushy background, a barely-there push
+        // a held item: frame the item itself (drawn just below the gripping fist), not the hand and arm around it
+        const held = c.on.endsWith(".held"), span = held ? MACRO_HELD_SPAN : d.span, ctr: V3 = held ? [d.c[0], d.c[1] - 0.04, d.c[2]] : d.c;
+        const mf = 34, tanW = Math.tan((mf * Math.PI) / 360) * (9 / 16), md = Math.max(0.3, span / (MACRO_FILL * 2 * tanW)), el = (25 * Math.PI) / 180;
+        // indoors the camera stays under the ceiling (a far macro on a wide sign would otherwise rise through it)
+        const ceil = LAYOUTS[s.set]?.ceiling, mp: V3 = [ctr[0] + Math.sin(ar) * md * Math.cos(el), c.height ?? Math.min(ctr[1] + md * Math.sin(el), ceil ? ceil - 0.3 : Infinity), ctr[2] + Math.cos(ar) * md * Math.cos(el)];
+        return { move: "aim", pos: mp, look: ctr, fov: mf, push: c.push ?? 0.03, cInf: 9, focus: ctr };
+      }
       const fov = 30, fill = c.size === "extreme" ? 0.85 : 0.62, dist = d.span / fill / (2 * Math.tan((fov * Math.PI) / 360));
       const pos: V3 = [d.c[0] + Math.sin(ar) * dist, c.height ?? d.c[1] + dist * 0.2, d.c[2] + Math.cos(ar) * dist];
       return { move: "aim", pos, look: d.c, fov, push: c.push ?? 0.06, cInf: c.size === "extreme" ? 15 : 13, focus: d.c };
@@ -230,9 +255,9 @@ const moveOf = (s: ShotSpec, c: CameraSpec, t0 = 0, cast: Storyboard["cast"] = {
  *  cut = a hard cut; glide / whip = a move from the previous framing (whip: 6 frames); rack = only the focus moves.
  *  Lens blur cross-fades over a glide, so focus never pops */
 const cameraOf = (s: ShotSpec, cast: Storyboard["cast"], a: number, b: number, pre: number) => {
-  type Beat = { spec: CameraSpec; f0: number; cut: boolean; dur?: number; rack?: boolean; fly?: boolean };
+  type Beat = { spec: CameraSpec; f0: number; cut: boolean; dur?: number; rack?: boolean; fly?: boolean; swoop?: boolean };
   const beats: Beat[] = [{ spec: s.camera, f0: a - pre, cut: true },
-    ...(s.cams ?? []).map((c) => ({ spec: c as CameraSpec, f0: a + Math.round((c.t ?? 0) * FPS), cut: !(c.glide || c.whip || c.rack || c.fly), dur: c.whip ? 6 : c.glide ? Math.round(c.glide * FPS) : undefined, rack: c.rack, fly: c.fly }))]
+    ...(s.cams ?? []).map((c) => ({ spec: c as CameraSpec, f0: a + Math.round((c.t ?? 0) * FPS), cut: !(c.glide || c.whip || c.rack || c.fly || c.swoop), dur: c.whip ? 6 : c.glide ? Math.round(c.glide * FPS) : c.swoop ? swoopFrames(c.swoop) : undefined, rack: c.rack, fly: c.fly, swoop: !!c.swoop }))]
     .sort((x, y) => x.f0 - y.f0);
   // a flight: the framing before the first fly beat and every consecutive fly beat become one key whose path passes
   // through each framing on its beat's frame; lens blur blends knot to knot along it
@@ -263,7 +288,7 @@ const cameraOf = (s: ShotSpec, cast: Storyboard["cast"], a: number, b: number, p
       dofs.push({ f0: bt.f0, dof: (f) => { const pd = prev.dof(f), nd = p.dof(f), k = glide((f - bt.f0) / 14); return { cInf: pd.cInf, focus: pd.focus && nd.focus ? lerp3(pd.focus, nd.focus, k) : nd.focus ?? pd.focus }; } });
       return;
     }
-    keys.push(p.key);
+    keys.push(bt.swoop ? { ...p.key, ease: "swoop" } : p.key);
     dofs.push({ f0: bt.f0, dof: bt.cut || !prev ? p.dof : (f) => { const pd = prev.dof(f), nd = p.dof(f), k = glide((f - bt.f0) / (bt.dur ?? 24)); return { cInf: pd.cInf + (nd.cInf - pd.cInf) * k, focus: pd.focus && nd.focus ? lerp3(pd.focus, nd.focus, k) : nd.focus }; } });
   });
   return { keys, dof: (f: number) => { let d = dofs[0]; for (const x of dofs) if (f >= x.f0) d = x; return d.dof(f); } };
@@ -294,7 +319,8 @@ export const shutterOf = (s: ShotSpec, a: number, b: number, full: number, rushO
       const bt = beats[k], cl = (x: number) => Math.max(0, Math.min(1, x));
       const rush = rushOut && f >= b - RUSH_OUT - RUSH_RAMP ? cl((f - (b - RUSH_OUT - RUSH_RAMP)) / RUSH_RAMP)
         : rushIn && f < a + RUSH_IN + RUSH_RAMP ? cl(1 - (f - a - RUSH_IN + 1) / RUSH_RAMP)
-        : bt.spec.whip && f < bt.f0 + RUSH_IN + RUSH_RAMP ? cl(1 - (f - bt.f0 - RUSH_IN + 1) / RUSH_RAMP) : 0;
+        : bt.spec.whip && f < bt.f0 + RUSH_IN + RUSH_RAMP ? cl(1 - (f - bt.f0 - RUSH_IN + 1) / RUSH_RAMP)
+        : (bt.spec as { swoop?: number | true }).swoop && f < bt.f0 + swoopFrames((bt.spec as { swoop?: number | true }).swoop) ? (() => { const n = swoopFrames((bt.spec as { swoop?: number | true }).swoop); return cl(1 - (f - bt.f0 - n / 2) / (n / 2)); })() : 0;
       const flying = k + 1 < beats.length && !!beats[k + 1].spec.fly;
       const base = flying ? 1 : scale(bt.spec), cap = flying ? SMEAR_CAP.flight : capOf(bt.spec);
       return { exp: full * (base + (1 - base) * rush), cap: cap + (SMEAR_CAP.rush - cap) * rush };

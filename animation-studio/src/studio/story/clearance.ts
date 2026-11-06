@@ -62,9 +62,9 @@ export const cameraClearance = (sb: Storyboard, film: { shots: { id: number; a: 
     for (const s of list) {
       const k = s.id - 1, spec = specs[k];
       const rushIn = ["whip", "zoom"].includes(spec.transition ?? ""), rushOut = ["whip", "zoom"].includes(specs[k + 1]?.transition ?? "");
-      const beats = (spec.cams ?? []).map((c) => ({ f: s.a + Math.round(((c as { t?: number }).t ?? 0) * 30), whip: !!c.whip, blockOk: !!(c as { blockOk?: boolean }).blockOk }));
+      const beats = (spec.cams ?? []).map((c) => ({ f: s.a + Math.round(((c as { t?: number }).t ?? 0) * 30), whip: !!c.whip, swoop: c.swoop ? Math.max(4, Math.round((c.swoop === true ? 0.33 : c.swoop) * 30)) : 0, blockOk: !!(c as { blockOk?: boolean }).blockOk }));
       const blockOkAt = (f: number) => { let ok = !!(spec.camera as { blockOk?: boolean }).blockOk; for (const bt of beats) if (f >= bt.f) ok = bt.blockOk; return ok; };
-      const rushing = (f: number) => (rushIn && f < s.a + RUSH) || (rushOut && f >= s.b - RUSH) || beats.some((bt) => bt.whip && f >= bt.f && f < bt.f + 6);
+      const rushing = (f: number) => (rushIn && f < s.a + RUSH) || (rushOut && f >= s.b - RUSH) || beats.some((bt) => (bt.whip && f >= bt.f && f < bt.f + 6) || (bt.swoop > 0 && f >= bt.f && f < bt.f + bt.swoop));
       const runs: Record<string, number[]> = { inside: [], clip: [], blocked: [] };
       for (let f = s.a; f < s.b; f++) {
         const c = runKeys(s.keys, f), P = new THREE.Vector3(...c.pos), L = new THREE.Vector3(...c.look);

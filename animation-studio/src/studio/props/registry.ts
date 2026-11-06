@@ -10,6 +10,7 @@ import * as O from "./outdoor";
 import * as N from "./nature";
 import { lootPilesRig, lootHeap, sharesOf } from "./economy";
 import { parchmentRig, parchmentStatic, parchmentGuide, signaturesOf } from "./documents";
+import { signBoard, scoreBoard, displayTextOk } from "./displays";
 import { THEMES } from "../themes";
 
 export type PropEntry = {
@@ -18,7 +19,10 @@ export type PropEntry = {
   /** a rectangular footprint, half-sizes [x, z] in metres before yaw (long tables, chests): actors may stand close to
    *  its edges; without it the prop's footprint is the circle of `radius` */
   box?: [number, number];
-  build: (b: Batch, a: At) => void;
+  /** what an insert on this prop frames, when not the whole prop: a height (m) and a width (m), e.g. a display's text */
+  focus?: { y: number; span: number };
+  /** variant: a parameter prop's value (its `param`), e.g. a display's text */
+  build: (b: Batch, a: At, variant?: string) => void;
   variants?: Record<string, (b: Batch, a: At) => void>;
   /** an animated version (moving parts, posed every frame as a pure function of the inputs): used when a storyboard
    *  prop has follow / drive. target = the open hand it reaches for (world), stroke = the replayed control stroke */
@@ -42,6 +46,11 @@ export type PropEntry = {
 export type PropRig = { root: THREE.Object3D; update: (st: { target?: [number, number, number]; stroke: number; step?: number; camPos: THREE.Vector3 }) => void };
 
 export const PROPS: Record<string, PropEntry> = {
+  // in-world text displays (Video 04): the variant is the text, e.g. { id: "signBoard", variant: "FINISH" }
+  signBoard: { name: "Sign board", desc: "a painted wooden sign on two posts (board 1.2 x 0.6 m, top 1.9 m), dark lettering on cream; the variant is its text (up to 18 characters)", category: "street", themes: ["any", "history", "sport", "town"], tags: ["sign", "text", "label", "finish", "notice", "board"], radius: 0.65, height: 1.95, box: [0.62, 0.08], focus: { y: 1.62, span: 1.25 },
+    build: (b, a, v) => signBoard(b, a, v), param: { desc: "sign text (1-18 letters, digits, spaces, . , : ! ? ' - $ % # & + /)", ok: displayTextOk } },
+  scoreBoard: { name: "Score board", desc: "a dark board on legs (1.2 x 0.6 m, top 2.1 m) with chalk-white lettering, like a race or score board; the variant is its text (a time, a score, a word)", category: "street", themes: ["any", "history", "sport", "school"], tags: ["score", "time", "result", "board", "text", "race", "chalk"], radius: 0.65, height: 2.15, box: [0.62, 0.08], focus: { y: 1.83, span: 1.25 },
+    build: (b, a, v) => scoreBoard(b, a, v), param: { desc: "board text (1-18 letters, digits, spaces, . , : ! ? ' - $ % # & + /)", ok: displayTextOk } },
   // furniture / home / school / office
   sofa: { name: "Sofa", desc: "three-seat sofa", category: "furniture", themes: ["modern", "home"], tags: ["seat", "living room"], radius: 1.1, height: 0.9, build: (b, a) => I.sofa(b, a) },
   armchair: { name: "Armchair", desc: "padded armchair", category: "furniture", themes: ["modern", "home"], tags: ["seat"], radius: 0.6, height: 0.95, build: (b, a) => I.armchair(b, a) },

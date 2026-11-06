@@ -62,7 +62,8 @@ export class SetWorld implements StudioWorld {
       for (const p of s.props) {
         const e = PROPS[p.id];
         if (p.animate && e.rig) { const inst = e.rig(p.at, p.variant); g.add(inst.root); rigs.push({ inst, animate: p.animate }); }
-        else (p.variant && e.variants?.[p.variant] ? e.variants[p.variant] : e.build)(b, p.at);
+        else if (p.variant && e.variants?.[p.variant]) e.variants[p.variant](b, p.at);
+        else e.build(b, p.at, e.param ? p.variant : undefined);   // a parameter prop (a display's text) gets its value
       }
       b.build(g, true); this.props.set(s.id, g); this.rigs.set(s.id, rigs); this.root.add(g);
     }

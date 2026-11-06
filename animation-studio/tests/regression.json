@@ -54,6 +54,21 @@
       "composition": "Short-doorway-effect",
       "frame": 1690,
       "why": "engine 3 ink: open shells (the bowl of keys) keep their inner-rim outlines; only faces near the lens are culled"
+    },
+    {
+      "composition": "Short-camera-kit",
+      "frame": 45,
+      "why": "camera upgrade: macro insert on a held item (the keys) after a swoop lands"
+    },
+    {
+      "composition": "Short-camera-kit",
+      "frame": 95,
+      "why": "camera upgrade: eye-glance beat (Milo looks left)"
+    },
+    {
+      "composition": "Short-camera-kit",
+      "frame": 150,
+      "why": "camera upgrade: in-world text display (score board) readable in a macro insert"
     }
   ]
 }

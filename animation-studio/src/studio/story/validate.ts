@@ -9,7 +9,7 @@ import { ROSTER } from "../characters/roster";
 import { ACT_NAMES, FACES, GESTURES } from "../characters/figure";
 import { FX_KINDS } from "../fx/effects";
 import { runKeys } from "../camera/keys";
-import { compile, shotFrames, actorPos, FPS, stepAt } from "./compile";
+import { compile, shotFrames, actorPos, FPS, stepAt, swoopFrames } from "./compile";
 import type { Storyboard, Where } from "./types";
 import type { Narration } from "../voice/narration";
 import { resolve } from "./timing";
@@ -151,7 +151,7 @@ export const validate = (sb0: Storyboard, narr?: Narration): Report => {
     const segs = [{ cam: c, f0: a }, ...(s.cams ?? []).filter((x) => !x.rack).map((x) => ({ cam: x as typeof c, f0: a + Math.round((x.t ?? 0) * FPS) }))].sort((p, q) => p.f0 - q.f0);
     // a glide or whip is checked from the moment it arrives (on its way it is between two framings); a fly beat's
     // framing is where the flight arrives, so it is checked on its own word and after
-    const settle = (cam: typeof c) => { const x = cam as { glide?: number; whip?: boolean }; return x.whip ? 6 : x.glide ? Math.round(x.glide * FPS) : 0; };
+    const settle = (cam: typeof c) => { const x = cam as { glide?: number; whip?: boolean; swoop?: number | true }; return x.whip ? 6 : x.glide ? Math.round(x.glide * FPS) : x.swoop ? swoopFrames(x.swoop) : 0; };
     // a zoom-through or whip transition owns the frames it spends rushing in or out (by design off the subject): the
     // framing is judged on the frames either side of it
     const [lo, hi] = transitionClear(sb, i, a, b);

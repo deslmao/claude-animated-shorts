@@ -21,7 +21,9 @@ export type Where = string | V3;
  *  its word (a reveal, a fly-over, a pull-back) */
 /** blockOk: scenery deliberately fills part of the frame on this beat (a wall edge splitting the picture in two): the
  *  camera clearance check (story/clearance.ts) doesn't report the line of sight as blocked */
-export type CameraBeat = CameraSpec & When & { cut?: boolean; glide?: number; whip?: boolean; rack?: boolean; fly?: boolean; blockOk?: boolean };
+/** swoop: a fast eased move to this framing (seconds, default 0.33): most of the travel early, a slight overshoot and
+ *  a sideways arc, landing sharp: for rushing into a macro insert on the word that names the object, and out again */
+export type CameraBeat = CameraSpec & When & { cut?: boolean; glide?: number; whip?: boolean; rack?: boolean; fly?: boolean; blockOk?: boolean; swoop?: number | true };
 export type CameraSpec =
   | { move: "view"; view: string }                                                                // a set's designed view by name
   | { move: "establish"; view: string }
@@ -37,7 +39,7 @@ export type CameraSpec =
   | { move: "follow"; on: string; size?: ShotSize; from?: number; height?: number }           // tracks a walking / running actor
   /** a detail: a prop ("treasureChest"), an actor's face / hands / held item ("qm.hands", "milo.face", "gus.held"),
    *  filling most of the frame; size close (default) or extreme */
-  | { move: "insert"; on: string; size?: ShotSize; from?: number; height?: number; push?: number }
+  | { move: "insert"; on: string; size?: ShotSize | "macro"; from?: number; height?: number; push?: number }
   /** a point of view: from an actor's eyes toward another actor, a prop or a part ("milo.hands") */
   | { move: "pov"; from: string; at: string }
   /** an authored camera position in set coordinates: the start or a waypoint of a flight (an aerial over the set) */
@@ -48,7 +50,10 @@ export type CameraSpec =
 export type When = { t: number; word?: undefined } | { word: string; n?: number; t?: undefined };
 export type WordRef = { word: string; n?: number };
 /** a change during the shot (expression swaps hide behind an automatic blink) */
-export type Beat = When & { act?: Act; face?: Expr; gesture?: Gesture; /** pick up / swap an item; null = put it away */ hold?: string | null };
+/** look: an eye glance without a gesture (Video 04: a sideways glance before a lie is a joke with no words); it holds
+ *  until the next glance, "camera" looks back */
+export type Glance = "left" | "right" | "up" | "down" | "camera";
+export type Beat = When & { act?: Act; face?: Expr; gesture?: Gesture; /** pick up / swap an item; null = put it away */ hold?: string | null; look?: Glance };
 /** a spoken line. who: "narrator" (voice-over, default) or a cast key (that actor's mouth moves with the words).
  *  voice: a preset from voice/voices.ts (default: storyboard.voices[who], then storyboard.voice, then the narrator).
  *  gap: extra pause before the line, seconds */

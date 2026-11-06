@@ -5,11 +5,22 @@ export type V3 = [number, number, number];
 export type Cam = { pos: V3; look: V3; fov: number; roll: number };
 export type Shot = Partial<Cam> & { pos: V3; look: V3 };
 /** f = first frame of the key; dur = glide length from the previous framing (default 24); cut = jump instead */
-export type Key = { f: number; dur?: number; cut?: boolean; s: (f: number) => Shot };
+export type Key = { f: number; dur?: number; cut?: boolean; ease?: "swoop"; s: (f: number) => Shot };
 
 export const clamp01 = (x: number) => Math.max(0, Math.min(1, x));
 /** reference camera ease: symmetric smootherstep */
 export const glide = (u: number) => { const x = clamp01(u); return x * x * x * (x * (6 * x - 15) + 10); };
+/** swoop ease (Video 04, reference clip 3): most of the travel early (a rush), a ~2 % overshoot, settled by u = 1 */
+export const SWOOP_C1 = 0.85;
+export const swoopEase = (u: number) => { const x = clamp01(u) - 1, c1 = SWOOP_C1; return 1 + (c1 + 1) * x * x * x + c1 * x * x; };
+/** the swoop's sideways arc: a fraction of the travel distance, at its widest mid-way (a curve, not a straight dolly) */
+export const SWOOP_ARC = 0.08;
+const swoopCam = (a: Cam, b: Cam, u: number): Cam => {
+  const c = mixCam(a, b, swoopEase(u)), dx = b.pos[0] - a.pos[0], dz = b.pos[2] - a.pos[2], d = Math.hypot(dx, dz);
+  if (d < 1e-6) return c;
+  const w = SWOOP_ARC * Math.hypot(dx, b.pos[1] - a.pos[1], dz) * Math.sin(Math.PI * clamp01(u));
+  return { ...c, pos: [c.pos[0] - (dz / d) * w, c.pos[1], c.pos[2] + (dx / d) * w] };
+};
 const mixCam = (a: Cam, b: Cam, k: number): Cam => ({
   pos: a.pos.map((v, i) => v + (b.pos[i] - v) * k) as V3, look: a.look.map((v, i) => v + (b.look[i] - v) * k) as V3,
   fov: a.fov + (b.fov - a.fov) * k, roll: a.roll + (b.roll - a.roll) * k,
@@ -21,7 +32,7 @@ export const runKeys = (keys: Key[], f: number): Cam => {
   for (let i = 1; i < keys.length; i++) {
     const k = keys[i];
     if (f < k.f) break;
-    cur = k.cut ? full(k.s(f)) : mixCam(cur, full(k.s(f)), glide((f - k.f) / (k.dur ?? 24)));
+    cur = k.cut ? full(k.s(f)) : k.ease === "swoop" ? swoopCam(cur, full(k.s(f)), (f - k.f) / (k.dur ?? 10)) : mixCam(cur, full(k.s(f)), glide((f - k.f) / (k.dur ?? 24)));
   }
   return cur;
 };
