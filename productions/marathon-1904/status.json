@@ -232,6 +232,18 @@
      1957
     ]
    }
+  },
+  "render": {
+   "state": "done",
+   "at": "2026-11-06T21:38:40.000Z",
+   "inputs": "",
+   "detail": "render run #22 (20 chunks, 1080x1920): MP4 artifact Short-marathon-1904-run22"
+  },
+  "final": {
+   "state": "done",
+   "at": "2026-11-06T21:38:40.000Z",
+   "inputs": "22",
+   "detail": "QA PASSED (QA run #8, with chunk seams) | audio aligned (lag 0 ms, r=1.000) | kept in final/, no release"
   }
  },
  "approval": {
@@ -244,7 +256,7 @@
   "scriptSha256": "d990427e139faca5fb6fbad01e921fd8f7ccd57aa72933e0847faef8c7a2bf19",
   "lines": 14,
   "words": 188,
-  "change": "line 8 -> \"The real winner, Thomas Hicks, was given egg whites, brandy and strychnine — a stimulant that's also used as rat poison.\"",
+  "change": "line 8 -> \"The real winner, Thomas Hicks, was given egg whites, brandy and strychnine \u2014 a stimulant that's also used as rat poison.\"",
   "preserved": {
    "original": "productions/marathon-1904/script-v1.md",
    "v2 as proposed": "productions/marathon-1904/script-v2.md"
@@ -279,14 +291,24 @@
   "commit": "853eaa6"
  },
  "render": {
-  "inputs": "1111c0bbcdd448",
-  "sha": "a1e79289bb9f20c3fd86110af103be17e1823f8a",
-  "branch": "claude/admiring-hopper-kbrb3d",
-  "requested": "2026-11-06T19:46:28.848Z",
-  "attempt": 1,
-  "runId": 42282580673,
-  "runNumber": 21,
-  "url": "https://github.com/deslmao/claude-animated-shorts/actions/runs/42282580673",
-  "conclusion": "failure"
+  "attempt": 2,
+  "runNumber": 22,
+  "runId": 42291494506,
+  "url": "https://github.com/deslmao/claude-animated-shorts/actions/runs/42291494506",
+  "sha": "d116d80",
+  "publish": false,
+  "conclusion": "cancelled after the join uploaded the MP4 (its QA step hung); all 20 chunks and the join succeeded",
+  "previous": "run 21 failed QA: one-frame stalls at 1007 and 1740 (fixed in 896457d); 31 and 1208 are holds at hard cuts"
+ },
+ "final": {
+  "mp4": "productions/marathon-1904/final/Short-marathon-1904.mp4",
+  "qa": "PASSED",
+  "qaRun": "https://github.com/deslmao/claude-animated-shorts/actions/runs/42297985143",
+  "release": null,
+  "alignment": {
+   "lagSeconds": 0.0,
+   "correlation": 1.0
+  },
+  "note": "kept in the repo by the QA workflow; no GitHub Release (not approved)"
  }
 }
