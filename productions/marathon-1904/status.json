@@ -4,14 +4,14 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-06T19:24:00.224Z",
-   "inputs": "07e8b73bf26bb9n",
-   "detail": "valid; 22 warning(s):\n  shot 2 (raceRoad): prop \"signBoard\" overlaps something already in the set at [-6.7, -2.3]\n  shot 23 (raceRoad): prop \"signBoard\" overlaps something already in the set at [-6.7, -2.3]\n  shot 25 (city): prop \"signBoard\" overlaps something already in the set at [1.2, -7.4]\n  shot 25 (city): prop \"scoreBoard\" overlaps something already in the set at [-0.7, -7.0]\n  shot 1 (raceRoad): carv fills 35 % of the frame in the foreground @2.4s (is it hiding the action?)\n  shot 2 (raceRoad): r2's hand (pump) is out of frame @0.4s (side): widen the shot or change the gesture\n  shot 2 (raceRoad): r1's hand (pump) is out of frame @0.8s (side): widen the shot or change the gesture\n  shot 2 (raceRoad): milo's hand (pump) is out of frame @1.0s (side): widen the shot or change the gesture\n  shot 2 (raceRoad): hicks's hand (pump) is out of frame @1.6s (side): widen the shot or change the gesture\n  shot 2 (raceRoad): taun's hand (pump) is out of frame @2.4s (side): widen the shot or change the gesture\n  shot 5 (raceRoad): r2's hand (pump) is out of frame @1.2s (side): widen the shot or change the gesture\n  shot 8 (raceRoad): sp2's hand (clap) is out of frame @0.5s (side): widen the shot or change the gesture\n  shot 9 (raceRoad): milo's hand (shrug) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 10 (raceRoad): off2's hand (hips) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 10 (raceRoad): milo fills 32 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 12 (raceRoad): sp2's hand (clap) is out of frame @0.4s (side): widen the shot or change the gesture\n  shot 12 (raceRoad): hB fills 35 % of the frame in the foreground @3.6s (is it hiding the action?)\n  shot 13 (raceRoad): carv's hand (shrug) is out of frame @3.1s (side): widen the shot or change the gesture\n  shot 21 (raceRoad): juno's hand (present) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 24 (raceRoad): off1's hand (pump) is out of frame @1.6s (side): widen the shot or change the gesture\n  shot 27 (raceRoad): sp2's hand (clap) is out of frame @1.7s (side): widen the shot or change the gesture\n  shot 27 (raceRoad): milo fills 28 % of the frame in the foreground @3.1s (is it hiding the action?)"
+   "at": "2026-11-06T20:25:09.097Z",
+   "inputs": "1f5dfec89fe79bn",
+   "detail": "valid; 23 warning(s):\n  shot 2 (raceRoad): prop \"signBoard\" overlaps something already in the set at [-6.7, -2.3]\n  shot 23 (raceRoad): prop \"signBoard\" overlaps something already in the set at [-6.7, -2.3]\n  shot 25 (city): prop \"signBoard\" overlaps something already in the set at [1.2, -7.4]\n  shot 25 (city): prop \"scoreBoard\" overlaps something already in the set at [-0.7, -7.0]\n  shot 1 (raceRoad): carv fills 35 % of the frame in the foreground @2.4s (is it hiding the action?)\n  shot 2 (raceRoad): r2's hand (pump) is out of frame @0.4s (side): widen the shot or change the gesture\n  shot 2 (raceRoad): r1's hand (pump) is out of frame @0.8s (side): widen the shot or change the gesture\n  shot 2 (raceRoad): milo's hand (pump) is out of frame @1.0s (side): widen the shot or change the gesture\n  shot 2 (raceRoad): hicks's hand (pump) is out of frame @1.6s (side): widen the shot or change the gesture\n  shot 2 (raceRoad): taun's hand (pump) is out of frame @2.4s (side): widen the shot or change the gesture\n  shot 5 (raceRoad): r2's hand (pump) is out of frame @1.2s (side): widen the shot or change the gesture\n  shot 8 (raceRoad): sp2's hand (clap) is out of frame @0.5s (side): widen the shot or change the gesture\n  shot 9 (raceRoad): milo's hand (shrug) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 10 (raceRoad): off2's hand (hips) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 10 (raceRoad): milo fills 32 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 12 (raceRoad): sp2's hand (clap) is out of frame @0.4s (side): widen the shot or change the gesture\n  shot 12 (raceRoad): hA's hand (hips) is out of frame @3.2s (side): widen the shot or change the gesture\n  shot 12 (raceRoad): hB fills 35 % of the frame in the foreground @3.6s (is it hiding the action?)\n  shot 13 (raceRoad): carv's hand (shrug) is out of frame @3.1s (side): widen the shot or change the gesture\n  shot 21 (raceRoad): juno's hand (present) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 24 (raceRoad): off1's hand (pump) is out of frame @1.6s (side): widen the shot or change the gesture\n  shot 27 (raceRoad): sp2's hand (clap) is out of frame @1.7s (side): widen the shot or change the gesture\n  shot 27 (raceRoad): milo fills 28 % of the frame in the foreground @3.1s (is it hiding the action?)"
   },
   "assets": {
    "state": "done",
-   "at": "2026-11-06T19:24:00.229Z",
-   "inputs": "07e8b73bf26bb9",
+   "at": "2026-11-06T20:25:09.101Z",
+   "inputs": "1f5dfec89fe79b",
    "detail": "73 library assets reused, none missing",
    "data": {
     "reused": 73,
@@ -119,32 +119,32 @@
   },
   "approval": {
    "state": "done",
-   "at": "2026-11-06T19:24:00.234Z",
+   "at": "2026-11-06T20:25:09.106Z",
    "inputs": "083efcc8cdda50",
    "detail": "all narration already generated (no cost)"
   },
   "narration": {
    "state": "done",
-   "at": "2026-11-06T19:24:00.235Z",
+   "at": "2026-11-06T20:25:09.109Z",
    "inputs": "083efcc8cdda50",
    "detail": "all lines already generated (cached)"
   },
   "sound": {
    "state": "done",
-   "at": "2026-11-06T19:24:00.240Z",
-   "inputs": "1111c0bbcdd448",
-   "detail": "soundtrack up to date"
+   "at": "2026-11-06T20:25:37.048Z",
+   "inputs": "05c6056c565f60",
+   "detail": "soundtrack built: -14 LUFS"
   },
   "checks": {
    "state": "done",
-   "at": "2026-11-06T19:24:06.110Z",
-   "inputs": "1111c0bbcdd448",
+   "at": "2026-11-06T20:25:41.038Z",
+   "inputs": "05c6056c565f60",
    "detail": "preflight PASS; library intact"
   },
   "review": {
    "state": "done",
-   "at": "2026-11-06T19:46:25.989Z",
-   "inputs": "156b1cc6c4f1ec",
+   "at": "2026-11-06T20:48:35.379Z",
+   "inputs": "114837023ba035",
    "detail": "review sheet looked at and passed",
    "data": {
     "frames": [
@@ -286,6 +286,7 @@
   "attempt": 1,
   "runId": 42282580673,
   "runNumber": 21,
-  "url": "https://github.com/deslmao/claude-animated-shorts/actions/runs/42282580673"
+  "url": "https://github.com/deslmao/claude-animated-shorts/actions/runs/42282580673",
+  "conclusion": "failure"
  }
 }
