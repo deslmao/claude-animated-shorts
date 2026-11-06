@@ -4,5 +4,5 @@
   "preview": false,
   "audio": "animation-studio/audio/Short-doorway-effect.mp3",
   "publish": false,
-  "note": "Video 03 (doorway effect): approved full-resolution render of commit 58f9280; no release"
+  "note": "Video 03 (doorway effect): corrected full-resolution render (defects at 0:47 fixed: engine 3 ink, camera below the lamp); no release"
 }
