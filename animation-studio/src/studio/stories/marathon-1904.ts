@@ -202,7 +202,9 @@ export const MARATHON1904: Storyboard = {
       camera: { move: "at", pos: R(36.6, 0.7, 1.0), look: R(29.6, 0, 1.55), fov: 40 },
       cams: [
         { word: "three", move: "insert", on: "scoreBoard", size: "macro", swoop: true },
-        { word: "slowest", move: "at", pos: R(31.1, 3.6, 1.35), look: R(31.1, -0.7, 1.25), fov: 44, glide: 0.8 },
+        // t 2.733 = 2 frames before "slowest" (frame 1005): the pull-out starts while the board shot is still moving, so
+        // the creep settling and the glide starting never meet on a still frame (final-render QA, run 21)
+        { t: 2.733, move: "at", pos: R(31.1, 3.6, 1.35), look: R(31.1, -0.7, 1.25), fov: 44, glide: 0.8 },
       ],
       actors: [
         ...SPECT(),
@@ -319,7 +321,8 @@ export const MARATHON1904: Storyboard = {
     // ---- 13. Today: a white flash to a modern street race; Milo grabs a cup at the water table; the banned board ----
     { say: "Today, races hand out water, and strychnine is banned.", set: "city", light: "day", transition: "flash",
       camera: { move: "at", pos: [0.75, 1.35, -2.0], look: [0.7, 1.0, -6.3], fov: 42 },
-      cams: [{ word: "strychnine", move: "insert", on: "scoreBoard", size: "macro", swoop: true }],
+      // t 1.8 = 1 frame before "strychnine" (frame 1740): same reason as the board pull-out (final-render QA, run 21)
+      cams: [{ t: 1.8, move: "insert", on: "scoreBoard", size: "macro", swoop: true }],
       actors: [{ who: "miloNow", at: "b", act: "happy", facing: 0, gesture: "grab", reach: "waterTable", beats: [{ word: "water", gesture: "thumbsUp" }] }],
       props: [
         { id: "waterTable", at: "b", offset: [0.78, -0.12], yaw: 90 },
