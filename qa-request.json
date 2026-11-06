@@ -1,11 +1,11 @@
 {
-  "run_id": "42154569990",
-  "artifact": "Short-doorway-effect-run20",
-  "frames": 1946,
+  "run_id": "42291494506",
+  "artifact": "Short-marathon-1904-run22",
+  "frames": 1960,
   "width": 1080,
   "height": 1920,
   "audio": "required",
-  "seams": "129,259,389,518,648,778,908,1037,1167,1297,1427,1556,1686,1816",
-  "keep": "productions/doorway-effect/final-v2/Short-doorway-effect.mp4",
-  "note": "Video 03 corrected render 2 (run 20): replaces the run-19 file in final-v2/; the approved final/ is untouched (retry: the first QA runner hung installing ffmpeg)"
+  "seams": "98,196,294,392,490,588,686,784,882,980,1078,1176,1274,1372,1470,1568,1666,1764,1862",
+  "keep": "productions/marathon-1904/final/Short-marathon-1904.mp4",
+  "note": "Video 04 full render (run 22, 20 chunks). The join's own QA step hung and the run was cancelled after the MP4 artifact was uploaded; this runs the full QA with the chunk seams and keeps the MP4 (no GitHub Release)."
 }
