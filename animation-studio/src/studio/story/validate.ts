@@ -91,7 +91,8 @@ export const validate = (sb0: Storyboard, narr?: Narration): Report => {
       if (!e) { errors.push(`${at}: unknown prop "${q.id}" (search the library: npm run assets -- search <words>)`); continue; }
       if (q.variant && e.param && !e.param.ok(q.variant)) errors.push(`${at}: prop "${q.id}": "${q.variant}" is not a valid ${e.param.desc}`);
       if (q.variant && !e.param && !e.variants?.[q.variant]) errors.push(`${at}: prop "${q.id}" has no variant "${q.variant}" (variants: ${Object.keys(e.variants ?? {}).join(", ") || "none"})`);
-      if ((q.follow || q.drive) && !e.rig) errors.push(`${at}: prop "${q.id}" can't move (no rig), so it can't follow or be driven`);
+      if ((q.follow || q.drive || q.track) && !e.rig) errors.push(`${at}: prop "${q.id}" can't move (no rig), so it can't follow, be driven or travel with someone`);
+      if (q.track && !s.actors.some((x) => x.who === q.track!.who)) errors.push(`${at}: prop "${q.id}" travels with "${q.track.who}" who is not in the shot`);
       if (q.steps && !e.steps) errors.push(`${at}: prop "${q.id}" has no steps (stepped props: ${Object.keys(PROPS).filter((k) => PROPS[k].steps).join(", ")})`);
       else if (q.steps && e.steps) {
         const n = e.stepCount ? e.stepCount(q.variant) : e.steps.length;
@@ -99,6 +100,7 @@ export const validate = (sb0: Storyboard, narr?: Narration): Report => {
         const ts = q.steps.map((c) => c.t ?? 0); if (ts.some((t, i) => i && t < ts[i - 1])) errors.push(`${at}: prop "${q.id}"'s steps are out of order`);
       }
       for (const w of [q.follow?.who, q.drive?.who]) if (w && !s.actors.some((x) => x.who === w)) errors.push(`${at}: prop "${q.id}" follows / is driven by "${w}" who is not in the shot`);
+      if (q.track) continue; // travels with its actor: no fixed footprint to check
       if (typeof q.at === "string" && !LAYOUTS[s.set].spots[q.at]) continue; // reported with the marks
       const w = whereOf(s.set, q.at), x = w[0] + (q.offset?.[0] ?? 0), z = w[2] + (q.offset?.[1] ?? 0), r = e.radius * (q.scale ?? 1);
       for (const a of s.actors) for (const p of [a.at, ...(a.walk ? [a.walk.to] : [])]) {
@@ -302,8 +304,10 @@ const staging = (film: ReturnType<typeof compile>, sb: Storyboard, i: number, a:
       const e = PROPS[q.id], pr = shot.props?.[k]; if (!e || !pr) return;
       // in frame if any part of its footprint box (radius x height) is: a prop partly in shot counts as seen
       const r0 = e.radius * (pr.at.s ?? 1), y0 = pr.at.y ?? 0, y1 = y0 + e.height * (pr.at.s ?? 1);
+      // a prop travelling with an actor (track) is where it really is this frame
+      const tr = q.track ? pr.animate?.((f - a) / FPS, anchors)?.track : undefined, px = tr ? tr.pos[0] : pr.at.x, pz = tr ? tr.pos[2] : pr.at.z;
       for (const [dx, dz] of [[0, 0], [-1, -1], [1, -1], [1, 1], [-1, 1], [-1, 0], [1, 0], [0, -1], [0, 1]]) for (const y of [y0, (y0 + y1) / 2, y1])
-        if (inFrame(P([pr.at.x + dx * r0, y, pr.at.z + dz * r0]), 1.0)) { seenProp.add(k); break; }
+        if (inFrame(P([px + dx * r0, y, pz + dz * r0]), 1.0)) { seenProp.add(k); break; }
       if (q.follow && e.reach) {
         const hand = anchors.get(q.follow.who)?.hands.find((h) => h.kind === "palm" || h.kind === "open");
         if (!hand) report(`reach-${k}`, `prop "${q.id}" follows ${q.follow.who}'s open hand, but ${q.follow.who} isn't holding one out @${tt}s (gesture "operate")`);

@@ -385,6 +385,68 @@ def coins_pour(r):
     return fades(_sum(*parts), 0.002, 0.08) * 0.7
 
 
+# ------------------------------------------------------------------ race day, 1904 (Video 04)
+def engine(r):
+    """an early motor car: a single-cylinder putter-putter (low chugs ~9 a second) with a rattle, 1.8 s, fading out"""
+    d = 1.8
+    out = np.zeros(ns(d))
+    tm, rate = 0.0, r.uniform(8.0, 9.5)
+    while tm < d - 0.12:
+        L = 0.07
+        t = tt(L)
+        chug = lp(colored(len(t), r, 1.0), 420) * _env(t, 0.004, 0.025) * 1.4 + np.sin(phase(55 + 25 * np.exp(-t / 0.02))) * _env(t, 0.003, 0.03)
+        i = ns(tm); out[i:i + len(chug)] += chug[: len(out) - i] * r.uniform(0.75, 1.0)
+        tm += 1.0 / rate * r.uniform(0.9, 1.1)
+    rattle = bp(colored(len(out), r, 0.4), 1800, 5200, 1) * 0.06 * (1 + 0.5 * np.sin(phase(np.full(len(out), rate))))
+    return fades(out + rattle, 0.05, 0.5) * 0.7
+
+
+def honk(r):
+    """a rubber bulb horn: two reedy honks (a squeezed brass reed, ~330 Hz with a pitch dip)"""
+    def one(d):
+        t = tt(d)
+        f = 330 * (1 + 0.06 * np.exp(-t / 0.03) - 0.05 * (t / d))
+        ph = phase(f)
+        reed = np.sign(np.sin(ph)) * 0.5 + 0.5 * np.sin(ph * 2)
+        return bp(reed, 250, 3200, 1) * np.clip(t / 0.015, 0, 1) * np.clip((d - t) / 0.04, 0, 1)
+    return fades(_sum((one(0.22), 0.0), (one(0.3), 0.3)), 0.003, 0.03) * 0.45
+
+
+def backfire(r):
+    """an old car breaking down: a sharp backfire bang, a metallic clank, then a long steam hiss"""
+    t = tt(0.4)
+    bang = lp(colored(len(t), r, 0.8), 2400) * _env(t, 0.001, 0.05) * 2.0 + np.sin(phase(60 + 80 * np.exp(-t / 0.02))) * _env(t, 0.001, 0.12) * 1.2
+    clank = G.clink(r, f0=r.uniform(900, 1300), dur=0.25, bright=0.4) * 0.5
+    th = tt(1.4)
+    hiss = hp(colored(len(th), r, 0.0), 2500) * np.clip(th / 0.08, 0, 1) * np.exp(-th / 0.8) * 0.35
+    return fades(_sum((bang, 0.0), (clank, 0.06), (hiss, 0.12)), 0.001, 0.2) * 0.8
+
+
+def bark(r):
+    """a farm dog: two quick woofs (a rough voiced burst with a falling pitch)"""
+    def woof(base):
+        d = r.uniform(0.13, 0.17)
+        t = tt(d)
+        f = base * (1.25 - 0.45 * (t / d))
+        ph = phase(f)
+        voiced = np.sin(ph) + 0.6 * np.sin(2 * ph) + 0.35 * np.sin(3 * ph) + 0.4 * np.sign(np.sin(ph))
+        rough = bp(colored(len(t), r, 0.6), 500, 2500, 1) * 0.6
+        x = (voiced * 0.5 + rough) * np.clip(t / 0.01, 0, 1) * np.exp(-t / (d * 0.6))
+        return peq(bp(x, 180, 3400, 1), 900, 6, 1.2)
+    b0 = r.uniform(300, 360)
+    return fades(_sum((woof(b0), 0.0), (woof(b0 * 0.95), 0.22)), 0.002, 0.05) * 0.55
+
+
+def crack_egg(r):
+    """an egg cracked on a rim: a sharp shell crack, a short crunch, a soft wet drop"""
+    t = tt(0.06)
+    crack = hp(colored(len(t), r, 0.2), 1800) * _env(t, 0.0005, 0.012) * 1.4
+    tc = tt(0.12)
+    crunch = bp(colored(len(tc), r, 0.4), 1500, 6000, 1) * _env(tc, 0.002, 0.04) * 0.6
+    drop = G.clink(r, f0=r.uniform(500, 700), dur=0.1, bright=0.1) * 0.18
+    return fades(_sum((crack, 0.0), (crunch, 0.03), (drop, 0.18)), 0.0005, 0.04) * 0.7
+
+
 SFX = {
     "pop": pop, "ding": ding, "blip_up": blip_up, "boing": boing, "poof": poof, "twinkle": twinkle, "impact": impact,
     "thud": thud, "party_pop": party_pop, "drip": drip, "steam": steam, "snore_soft": snore_soft, "ring_ding": ring_ding,
@@ -395,6 +457,7 @@ SFX = {
     "clink": clink, "hammer": hammer, "cannon": cannon, "bell_ring": bell_ring, "wave_crash": wave_crash,
     "giggle": giggle, "feather_swish": feather_swish, "servo": servo, "stumble": stumble,
     "crowd_aye": crowd_aye, "crowd_murmur": crowd_murmur, "quill_scratch": quill_scratch, "coins_pour": coins_pour,
+    "engine": engine, "honk": honk, "backfire": backfire, "bark": bark, "crack_egg": crack_egg,
 }
 
 

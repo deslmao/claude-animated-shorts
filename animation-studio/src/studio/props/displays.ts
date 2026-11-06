@@ -13,7 +13,7 @@ const FONT = "bold %px 'DejaVu Sans', 'Liberation Sans', Arial, sans-serif";
 
 const textures = new Map<string, THREE.Texture>();
 /** the text on a canvas, centred, shrunk to fit; ink / paper colours; deterministic for a given text and style */
-const textTexture = (text: string, ink: string, paper: string, chalk: boolean) => {
+export const textTexture = (text: string, ink: string, paper: string, chalk: boolean) => {
   const key = `${text}|${ink}|${paper}|${chalk}`;
   let t = textures.get(key);
   if (t) return t;

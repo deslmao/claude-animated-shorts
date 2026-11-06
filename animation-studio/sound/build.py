@@ -33,7 +33,8 @@ SFX_REL = {"step_hard": -17, "step_stone": -17, "step_floor": -17, "step_grass":
            "blip_up": -11, "boing": -10, "poof": -11, "twinkle": -12, "party_pop": -9, "drip": -13, "steam": -13,
            "snore_soft": -14, "ring_ding": -10, "sting_low": -9, "clock_tick": -18,
            "giggle": -13, "feather_swish": -19, "servo": -18, "stumble": -14,
-           "crowd_aye": -10, "crowd_murmur": -18, "quill_scratch": -17, "coins_pour": -15}  # tickle-revision effects: subtle, under the voice
+           "crowd_aye": -10, "crowd_murmur": -18, "quill_scratch": -17, "coins_pour": -15,
+           "engine": -16, "honk": -11, "backfire": -8, "bark": -11, "crack_egg": -13}  # race day 1904 (Video 04)  # tickle-revision effects: subtle, under the voice
 SFX_DEFAULT = -10
 
 
@@ -84,7 +85,7 @@ def main(plan_path):
     music = np.zeros((2, N))
     if P.get("music"):
         mu = P["music"]
-        music, mcues = M.compose([tuple(s) for s in mu["sections"]], total, mu["button_t"], seed)
+        music, mcues = M.compose([tuple(s) for s in mu["sections"]], total, mu["button_t"], seed, **({"drop_t": mu["drop_t"]} if "drop_t" in mu else {}))
         music = music[:, :N]
         music *= duck_curve(P["words"], N, DUCK_DB)[None, :]
         music *= dbg(Lv + MUSIC_REL + mu.get("gain_db", 0.0) - lu(music))

@@ -11,13 +11,14 @@ import * as THREE from "three";
 import { runKeys } from "../camera/keys";
 import { actorPos, FPS } from "../story/compile";
 import { PROPS } from "../props/registry";
+import { norm } from "../voice/narration";
 import type { compile } from "../story/compile";
 import type { Storyboard, ActorSpec } from "../story/types";
 import { Mood, MOODS, SfxName, ambienceFor, stepFor, FX_SOUND } from "./catalog";
 
 type Film = ReturnType<typeof compile>;
 export type Cue = { t: number; name: SfxName; gain_db?: number; pan?: number; why: string };
-export type SoundPlan = { sections: [Mood, number, number][] | null; button_t: number; musicGain: number; ambience: (string | null)[]; cues: Cue[]; mood: Mood | null; moodWhy: string };
+export type SoundPlan = { sections: [Mood, number, number][] | null; button_t: number; drop_t?: number; musicGain: number; ambience: (string | null)[]; cues: Cue[]; mood: Mood | null; moodWhy: string };
 
 const COMEDY = ["laugh", "happy", "excited", "dazed", "embarrassed", "facepalm", "thumbsUp", "hello"];
 const TENSION = ["scared", "shock", "nervous", "angry", "suspicious"];
@@ -46,8 +47,8 @@ const screenX = (film: Film, i: number, f: number, m: [number, number, number]) 
 };
 
 /** footstep times along a walk / run: one step per half stride cycle of the profile cards */
-const steps = (set: string, a: ActorSpec, dur: number) => {
-  if (!a.walk) return [];
+export const footstepTimes = (set: string, a: ActorSpec, dur: number) => {
+  if (!a.walk || a.walk.mode === "ride") return [];
   const out: number[] = [], stride = a.walk.mode === "run" ? 1.04 : 0.735; // half a stride cycle: 2.08 m running, 1.47 m walking
   let last = actorPos(set, a, 0), acc = 0;
   for (let t = 0; t <= Math.min(dur, a.walk.t1 + 0.05); t += 1 / 120) {
@@ -117,7 +118,7 @@ export const soundPlan = (film: Film, sb0: Storyboard): SoundPlan => {
           if (b.gesture === "offer" && (b.hold ?? a.hold) === "coinBag") cues.push({ t: T0 + (b.t ?? 0) + 0.2, name: "coins_pour", pan: panOf(a.who, b.t ?? 0), why: `${a.who} hands over coins, shot ${i + 1}` });
         }
         for (const m of a.moves ?? []) if (m.kind === "stagger") cues.push({ t: T0 + (m.t ?? 0) + 0.15, name: "stumble", pan: panOf(a.who, m.t ?? 0), why: `${a.who} stumbles, shot ${i + 1}` });
-        for (const t of steps(s.set, a, dur)) cues.push({ t: T0 + t, name: stepFor(s.set), pan: panOf(a.who, t), why: `${a.who} ${a.walk?.mode === "run" ? "runs" : "walks"}, shot ${i + 1}` });
+        for (const t of footstepTimes(s.set, a, dur)) cues.push({ t: T0 + t, name: stepFor(s.set), pan: panOf(a.who, t), why: `${a.who} ${a.walk?.mode === "run" ? "runs" : "walks"}, shot ${i + 1}` });
       }
     }
     // a crowd voting (raising hands on a word): a chorus of "aye!"
@@ -143,7 +144,9 @@ export const soundPlan = (film: Film, sb0: Storyboard): SoundPlan => {
   // the same sound twice within 120 ms is one sound
   cues.sort((a, b) => a.t - b.t);
   const dedup = cues.filter((c, k) => !cues.slice(0, k).some((d) => d.name === c.name && Math.abs(d.t - c.t) < 0.12));
-  return { sections, button_t: last ? last.t0 : film.total / FPS - 1, musicGain: gain, ambience, cues: dedup, mood, moodWhy: why };
+  // a music drop-out before the punchline: from the end of the named word (n-th occurrence in the whole narration)
+  const dw = sb.musicDrop ? words.filter((w) => norm(w.w) === norm(sb.musicDrop!.word))[(sb.musicDrop.n ?? 1) - 1] : undefined;
+  return { sections, button_t: last ? last.t0 : film.total / FPS - 1, ...(dw ? { drop_t: dw.t1 } : {}), musicGain: gain, ambience, cues: dedup, mood, moodWhy: why };
 };
 
 export const MOOD_NAMES = Object.keys(MOODS) as Mood[];

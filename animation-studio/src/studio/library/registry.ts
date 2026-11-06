@@ -27,12 +27,14 @@ const BASE_SETS: Record<string, SetMeta> = {
   oldtown: { name: "Old town square", desc: "cobbled square: fountain, market stalls, well, cart, old houses", themes: ["history", "medieval", "victorian"], tags: ["outdoor", "market", "village", "crowd"] },
   nature: { name: "Countryside", desc: "meadow and woods: winding path, pond, log, forest edge, fence", themes: ["nature"], tags: ["outdoor", "animals", "park", "walk"] },
 };
-const ERA_DESC: Record<string, string> = { modern: "everyday people today", office: "office workers (shirts, ties, blazers)", lab: "scientists in lab coats", fifties: "1950s clothes", victorian: "19th-century dress (top hats, waistcoats, long dresses)", medieval: "medieval townsfolk (tunics, hoods)", pirate: "a ship's crew around 1720 (striped shirts, bandanas, tricorns, eyepatches)" };
+const ERA_DESC: Record<string, string> = { modern: "everyday people today", office: "office workers (shirts, ties, blazers)", lab: "scientists in lab coats", fifties: "1950s clothes", victorian: "19th-century dress (top hats, waistcoats, long dresses)", medieval: "medieval townsfolk (tunics, hoods)", pirate: "a ship's crew around 1720 (striped shirts, bandanas, tricorns, eyepatches)" , runner1904: "a 1904 marathon field (sleeveless running vests, knee shorts)" };
 const CAMERA: Record<string, string> = {
   view: "a set's designed view", establish: "a designed view with a slow drift (opening a place)", frame: "frame named actors at a shot size",
   pushIn: "glide closer (full -> medium)", pullOut: "glide away", closeUp: "close-up, optional punch-in", lowHero: "low heroic angle",
   highAngle: "looking down on actors", overShoulder: "over one actor's shoulder at another", orbit: "circle around actors",
   crane: "crane down from height", dutch: "tilted frame (drama, unease)", follow: "track a walking / running actor",
+  at: "an authored camera position in set coordinates (hand-placed set-ups, flights)", insert: "a detail: a prop, a face, hands or a held item (close / extreme / macro)",
+  pov: "a point of view: from an actor's eyes toward an actor, a prop or a part",
 };
 const FX_DESC: Record<string, string> = { question: "yellow question mark", exclaim: "red exclamation mark", sweat: "sweat drops", anger: "anger vein mark", idea: "light bulb", hearts: "floating hearts", zzz: "sleep zzz", speed: "speed lines", puff: "dust puff", stars: "dizzy stars", burst: "impact burst", confetti: "confetti", sparkle: "sparkles", notes: "music notes", splash: "water splash", ring: "ringing marks", thought: "thought bubble holding a set of keys (a plan in mind)", thoughtPop: "the thought bubble bursting into puffs (a plan forgotten)" };
 

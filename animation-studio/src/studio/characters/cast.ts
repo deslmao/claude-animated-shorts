@@ -39,7 +39,7 @@ export const CAST = { milo: MILO, juno: JUNO, junoOut: JUNO_OUT, gus: GUS };
 
 // ---------------- crowd generator ----------------
 // Extras never borrow a lead's signature: no spiky tuft, no mustard top (Milo), no teal turtleneck under a lab coat (Juno).
-export type Era = "modern" | "fifties" | "victorian" | "medieval" | "office" | "lab" | "pirate";
+export type Era = "modern" | "fifties" | "victorian" | "medieval" | "office" | "lab" | "pirate" | "runner1904";
 const SKINS = ["#ffe2c2", "#f5c9a0", "#ecd0b6", "#c99067", "#a8714c", "#e8b896"];
 const HAIRC = ["#2a201a", "#4a2f22", "#6b4226", "#a5682f", "#d9b26a", "#1f1a24", "#8c8a88", "#c94f2c"];
 const MOD_TOPS = ["#3f6fb5", "#c25a7a", "#5d8a3a", "#8c6bb1", "#2f5f6a", "#7b5ac9", "#e26d4f", "#4b4f5c", "#2a9d8f", "#b5653f"];
@@ -82,6 +82,15 @@ export const extra = (i: number, era: Era = "modern"): Look => {
         else if (h < 0.65) base.hat = { style: "tricorn", color: "#2e2a2a", trim: "#c9a24a" }; }
       if (base.hat && (base.hair.style === "afro" || base.hair.style === "bob")) base.hair = { ...base.hair, style: "curly" }; // big hair would balloon round a hat
       if (r(40) < 0.12) base.eyepatch = { side: r(41) < 0.5 ? -1 : 1 };
+      break;
+    case "runner1904": // a 1904 marathon field (Video 04): men in sleeveless running vests and knee shorts, no glasses or hats
+      base.name = `runner${i}`;
+      if (base.top.style === "dress") base.top = { style: "tee", color: "#f2ece0" };
+      base.top = { style: "tee", color: pick(r, 42, ["#f2ece0", "#e6e1d6", "#d9d4c8", "#c9d3dc", "#e8d9b8"] as const) };
+      base.bare = { arms: true }; base.shorts = pick(r, 43, ["#2f3448", "#3a3d47", "#4a4036", "#5a4636", "#f2ece0"] as const);
+      base.shoes = pick(r, 44, ["#2a201a", "#3a2b20", "#5a3b2a"] as const);
+      delete base.glasses; delete base.hat;
+      if (["long", "bun", "ponytail", "bob", "topknot"].includes(base.hair.style)) base.hair = { ...base.hair, style: "short" };
       break;
     case "medieval": base.top = { style: "sweater", color: pick(r, 29, ["#7a5a3a", "#5d6a3a", "#8c3b4a", "#6b6255"] as const) }; base.legs = pick(r, 30, ["#4a4036", "#5a4636"] as const); base.shoes = "#3a2b20"; break;
   }

@@ -78,7 +78,7 @@ export type ActorSpec = {
   shake?: (number | WordRef)[]; // head-shake start times (or words)
   idle?: number;              // idle life amount (default 1, 0 = still)
   /** walk (or run) in profile from `at` to `to`, between t0 and t1 seconds (or from / until spoken words) */
-  walk?: { to: Where; t0: number; t1: number; mode?: "walk" | "run"; from?: WordRef; until?: WordRef };
+  walk?: { to: Where; t0: number; t1: number; mode?: "walk" | "run" | "ride"; from?: WordRef; until?: WordRef };
   /** the "tickle" gesture reaches for this actor: the hands land on their flank, wherever they stand */
   reach?: string;
   /** timed body motion on top of the acting: squirm (wriggling with laughter), stagger (nearly falls over, away from
@@ -106,7 +106,12 @@ export type PropSpec = { id: string; at: Where; yaw?: number; scale?: number; va
   follow?: { who: string };
   /** a stepped prop (a registry entry with `steps`, e.g. lootPiles): each step plays on its word, in order */
   steps?: When[];
-  drive?: { who: string; delay?: number; changes?: (When & { delay: number })[] } };
+  drive?: { who: string; delay?: number; changes?: (When & { delay: number })[] };
+  /** a prop that travels with an actor (Video 04): placed at the actor's position every frame, turned to their walk
+   *  direction, `behind` metres back along it (a dog chasing a runner) and `offset` [x, z] metres in the actor's own
+   *  frame (x right, z forward; the seat of a car its rider sits in). Needs a rig (registry); the rig gets the travelled
+   *  distance and speed for wheels and legs */
+  track?: { who: string; behind?: number; offset?: [number, number] } };
 /** an explicit sound cue (automatic cues already cover effects, transitions, kicks, jumps, falls and footsteps).
  *  on = an actor (the sound is panned to where they are on screen); gain in dB on top of the kind's default level */
 export type SfxSpec = When & { name: SfxName; on?: string; gain?: number };
@@ -162,6 +167,9 @@ export type Storyboard = {
   ease?: boolean;
   /** background music: a mood, { mood, gain } (dB), or false for none. Default: chosen from the story's acting */
   music?: Mood | { mood: Mood; gain?: number } | false;
+  /** the music drops out after this spoken word (a beat of silence before the punchline): the bed fades out in 0.1 s
+   *  and stays out until the button chord lands on the last word (Video 04). Default: no drop-out */
+  musicDrop?: WordRef;
   /** automatic sound effects for effects marks, transitions, kicks, jumps, falls and footsteps (default true) */
   autoSfx?: boolean;
   /** camera motion blur on fast moves (flights, whips, zoom-throughs): true = a 180-degree shutter, or the exposure in

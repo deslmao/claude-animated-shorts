@@ -76,7 +76,7 @@ def _snap(midi, chord_pcs, strong):
     return midi + best
 
 
-def compose(sections, total, button_t, seed, gain_db=0.0):
+def compose(sections, total, button_t, seed, gain_db=0.0, drop_t=None):
     """sections: [(mood, t0, t1)] covering 0..total; returns stereo music (2, N) and a cue list"""
     N = ns(total) + ns(3.0)
     out = np.zeros((2, N))
@@ -179,6 +179,10 @@ def compose(sections, total, button_t, seed, gain_db=0.0):
     place(b, pan(I.glock(I.m2f(tonic[0] + 24), 0.45, r, 1.8), 0.2), 0)
     place(b, I.pad([I.m2f(c) for c in tonic], 1.2, 0.3, r, att=0.05, rel=1.2), 0)
     i = ns(button_t)
+    if drop_t is not None and ns(drop_t) < i:  # a drop-out before the punchline: the bed fades in 0.1 s and stays out
+        j, k = ns(drop_t), min(out.shape[1], ns(drop_t + 0.1))
+        out[:, j:k] *= np.linspace(1, 0, k - j); out[:, k:] = 0
+        cues.append((drop_t, "music: drop-out before the punchline"))
     if i < out.shape[1]:
         out[:, i:] *= np.linspace(1, 0, out.shape[1] - i) ** 2  # the running bed gives way to the button
         place(out, b, button_t)

@@ -365,12 +365,26 @@ export const motionAt = (moves: MoveSpec[] | undefined, tt: number, sideOf: (m: 
 };
 
 /** an animated prop's state at shot time tt: the open hand it reaches for and the stroke it replays */
-export type PropAnim = (tt: number, anchors: Map<string, ActorAnchor>) => { target?: V3; stroke: number; step?: number };
+export type PropAnim = (tt: number, anchors: Map<string, ActorAnchor>) => { target?: V3; stroke: number; step?: number; track?: { pos: V3; heading: number; dist: number; speed: number; t: number } };
 /** a stepped prop's progress at shot time tt: steps done + the eased fraction of the one playing (STEP_DUR s each) */
 export const STEP_DUR = 0.7;
 export const stepAt = (steps: { t?: number }[], tt: number) => steps.reduce((n, c) => n + glide((tt - (c.t ?? 0)) / STEP_DUR), 0);
 const driveOf = (a: ActorSpec | undefined) => (tt: number) => (a?.drive && tt >= (a.drive.t ?? 0) ? Math.sin(2 * Math.PI * (a.drive.hz ?? 1.6) * (tt - (a.drive.t ?? 0))) : 0);
+/** a tracked prop's pose at shot time tt: its actor's position, walk heading (rad, 0 = +z), the distance travelled
+ *  along the walk and the speed (m/s); `behind` / `offset` place it relative to the actor (pure) */
+export const trackPose = (set: string, a: ActorSpec, q: NonNullable<PropSpec["track"]>, tt: number, yaw0 = 0) => {
+  const p = actorPos(set, a, tt), p0 = whereOf(set, a.at), p1 = a.walk ? whereOf(set, a.walk.to) : p0;
+  const dx = p1[0] - p0[0], dz = p1[2] - p0[2], len = Math.hypot(dx, dz), heading = len > 1e-6 ? Math.atan2(dx, dz) : yaw0;
+  const fx = Math.sin(heading), fz = Math.cos(heading), rx = Math.cos(heading), rz = -Math.sin(heading);
+  const back = q.behind ?? 0, [ox, oz] = q.offset ?? [0, 0];
+  const dist = Math.hypot(p[0] - p0[0], p[2] - p0[2]), q2 = actorPos(set, a, tt + 1 / 30), speed = Math.hypot(q2[0] - p[0], q2[2] - p[2]) * 30;
+  return { pos: [p[0] - fx * back + rx * ox + fx * oz, p[1], p[2] - fz * back + rz * ox + fz * oz] as V3, heading, dist, speed };
+};
 const propAnim = (s: ShotSpec, q: PropSpec): PropAnim | undefined => {
+  if (q.track) {
+    const a = s.actors.find((x) => x.who === q.track!.who);
+    if (a) return (tt) => ({ stroke: 0, track: { ...trackPose(s.set, a, q.track!, tt, ((q.yaw ?? 0) * Math.PI) / 180), t: tt } });
+  }
   if (!q.follow && !q.drive && !q.steps) return undefined;
   const drv = driveOf(s.actors.find((x) => x.who === q.drive?.who));
   const delayAt = (tt: number) => { let d = q.drive?.delay ?? 0; for (const c of q.drive?.changes ?? []) if (tt >= (c.t ?? 0)) d = c.delay; return d; };
@@ -477,14 +491,14 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
         const target = typeof a.facing === "string" ? posOf.get(a.facing.slice(7)) : [...posOf.entries()].filter(([w]) => w !== a.who).map(([, q]) => q).sort((m, n) => Math.hypot(m[0] - p[0], m[2] - p[2]) - Math.hypot(n[0] - p[0], n[2] - p[2]))[0];
         if (target) facing = faceToward(cam.right.x, cam.right.z, [p[0], p[2]], [target[0], target[2]]);
       } else if (typeof a.facing === "number") facing = a.facing;
-      const walking = a.walk && tt >= a.walk.t0 && tt <= a.walk.t1;
+      const walking = a.walk && a.walk.mode !== "ride" && tt >= a.walk.t0 && tt <= a.walk.t1; // a ride: the actor's own pose (seated), carried along
       const walkDir = a.walk ? (() => { const p1 = whereOf(s.set, a.walk!.to), p0 = whereOf(s.set, a.at); return (p1[0] - p0[0]) * cam.right.x + (p1[2] - p0[2]) * cam.right.z; })() : 0;
       // just arrived from a profile walk: a quarter-second three-quarter view toward the walk, not an instant swap
-      if (a.walk && tt > a.walk.t1 && tt < a.walk.t1 + WALK_TURN && Math.abs(walkDir) > 0.05) facing = walkDir > 0 ? 1 : -1;
+      if (a.walk && a.walk.mode !== "ride" && tt > a.walk.t1 && tt < a.walk.t1 + WALK_TURN && Math.abs(walkDir) > 0.05) facing = walkDir > 0 ? 1 : -1;
       if (walking) {
         const p0 = whereOf(s.set, a.at), dist = Math.hypot(p[0] - p0[0], p[2] - p0[2]);
         const dirScreen = walkDir;
-        out.places.push(lookCard(cam, L, p[0], p[1], p[2], { side: { mode: a.walk!.mode ?? "walk", phase: dist / (a.walk!.mode === "run" ? 2.08 : 1.47), ...(held ? { hold: held } : {}), expr: (talking.expr ?? base.expr ?? "neutral") as Expr, blink: life.blink }, mirror: dirScreen < 0 }));
+        out.places.push(lookCard(cam, L, p[0], p[1], p[2], { side: { mode: a.walk!.mode === "run" ? "run" : "walk", phase: dist / (a.walk!.mode === "run" ? 2.08 : 1.47), ...(held ? { hold: held } : {}), expr: (talking.expr ?? base.expr ?? "neutral") as Expr, blink: life.blink }, mirror: dirScreen < 0 }));
         // profile walk: the front rig in the same stride approximates where the head and hands are
         out.anchors.set(a.who, { ...anchorOf(cam, L, p, anchorsFront(L, { mode: a.walk!.mode === "run" ? "run" : "walk", phase: dist / 1.47 }), dirScreen < 0), walking: true });
       } else {

@@ -1,29 +1,102 @@
 {
- "reused": 9,
+ "reused": 72,
  "missing": [],
  "byKind": {
   "character": [
-   "milo",
-   "juno",
-   "gus"
+   "miloRunner",
+   "hicks",
+   "carvajal",
+   "taunyane",
+   "mashiani",
+   "handlerA",
+   "handlerB",
+   "gusOfficial",
+   "juno1904",
+   "milo"
+  ],
+  "extras": [
+   "extras:victorian",
+   "extras:runner1904"
   ],
   "mood": [
    "playful"
   ],
   "set": [
+   "raceRoad",
    "city"
   ],
   "camera": [
-   "frame"
+   "at",
+   "frame",
+   "follow",
+   "closeUp",
+   "lowHero",
+   "insert"
   ],
   "light": [
+   "golden",
    "day"
   ],
   "ambience": [
+   "amb_nature_day",
    "amb_city_day"
   ],
+  "prop": [
+   "motorCar1904",
+   "finishArch",
+   "scoreBoard",
+   "signBoard",
+   "finishTape",
+   "farmDog",
+   "arrowSign",
+   "waterTable"
+  ],
+  "effect": [
+   "zzz",
+   "sweat",
+   "puff",
+   "question",
+   "burst",
+   "exclaim",
+   "stars",
+   "speed"
+  ],
+  "sfx": [
+   "honk",
+   "engine",
+   "clink",
+   "backfire",
+   "applause",
+   "sting_low",
+   "crack_egg",
+   "bark",
+   "gasp",
+   "splash"
+  ],
   "act": [
-   "neutral"
+   "happy",
+   "neutral",
+   "sleepy",
+   "determined",
+   "thinking",
+   "scared",
+   "proud",
+   "sad",
+   "excited",
+   "embarrassed",
+   "nervous",
+   "angry",
+   "dazed",
+   "shrug",
+   "explain",
+   "suspicious"
+  ],
+  "item": [
+   "vial",
+   "egg",
+   "hipFlask",
+   "coinBag",
+   "appleRotten"
   ]
  }
 }

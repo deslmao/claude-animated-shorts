@@ -297,7 +297,8 @@
   "shipDeck": "1241fe42efbc0d",
   "merchantDeck": "1241fe42efbc0d",
   "island": "1241fe42efbc0d",
-  "apartment": "0a009bb9f95ad4"
+  "apartment": "0a009bb9f95ad4",
+  "raceRoad": "0e258e2c5392ce"
  },
  "marks": {
   "home:a": "0750ac791c5d2d",
@@ -392,7 +393,35 @@
   "apartment:fridge": "07166345ed1814",
   "apartment:counter": "14814de55449ce",
   "apartment:toaster": "16c6d882aaf973",
-  "apartment:frontDoor": "141c082961f27a"
+  "apartment:frontDoor": "141c082961f27a",
+  "raceRoad:start": "1b0908c508e569",
+  "raceRoad:startL": "016f04eb34ef71",
+  "raceRoad:startR": "08a209aeb81431",
+  "raceRoad:startB": "1f6fd0516fbd4f",
+  "raceRoad:startC": "0360c6c47465e3",
+  "raceRoad:mile9": "00dc1ded5a42a6",
+  "raceRoad:pickup": "1ab2ed3ac50587",
+  "raceRoad:carEnd": "016a1f71f5ae93",
+  "raceRoad:lorzOut": "11c8e931ae9902",
+  "raceRoad:well": "172dc3fe023007",
+  "raceRoad:wellSide": "05c8f2111165b4",
+  "raceRoad:wellRoad": "0643033f459e08",
+  "raceRoad:orchardRoad": "068bf7b7fec064",
+  "raceRoad:napSpot": "057d9cffeea45a",
+  "raceRoad:appleTree": "0b466370e5937a",
+  "raceRoad:taunA": "18ffb0c7b82141",
+  "raceRoad:field": "1b49eb52a34d34",
+  "raceRoad:dogGap": "17d49eaa2586cc",
+  "raceRoad:mile20": "0f6f20af91e2b7",
+  "raceRoad:carStop": "033ba90c056c63",
+  "raceRoad:finishIn": "0dc8e049a3091a",
+  "raceRoad:finish": "0be9f956171a1c",
+  "raceRoad:past": "02b68aaf8f7e08",
+  "raceRoad:board": "0f07adc0e197ec",
+  "raceRoad:officials": "01b14788225870",
+  "raceRoad:a": "048c95a24a4273",
+  "raceRoad:b": "0c483da5cd1ad7",
+  "raceRoad:c": "17b37ee2e5afd1"
  },
  "views": {
   "home:wide": "12d193f00443bb",
@@ -440,7 +469,14 @@
   "apartment:dollhouse": "0483a384dc27c3",
   "apartment:living": "13aff5d21fb91a",
   "apartment:kitchen": "13e5295c872038",
-  "apartment:doorway": "1fa029f54a0d99"
+  "apartment:doorway": "1fa029f54a0d99",
+  "raceRoad:road wide": "1c0585c008900a",
+  "raceRoad:start": "18a3fd0d11ee49",
+  "raceRoad:well": "11c5c43ec3c869",
+  "raceRoad:orchard": "0bd23103af60ad",
+  "raceRoad:field high": "12904bbb5cd5d3",
+  "raceRoad:finish": "05b3ffef8ef88c",
+  "raceRoad:finish low": "1c5c4827884daf"
  },
  "lights": {
   "day": "1c824fd62ade9f",
@@ -538,7 +574,16 @@
   "gusPirate": "1a2f79c99578b7",
   "gusSling": "1dc7bed626793d",
   "shipOwner": "088afaa4818591",
-  "merchantCaptain": "0520d07c0979dc"
+  "merchantCaptain": "0520d07c0979dc",
+  "miloRunner": "1fee16ee5f7ed2",
+  "hicks": "0b02ec2ef79cf7",
+  "carvajal": "073d570649bfae",
+  "taunyane": "07c567d96c4bb6",
+  "mashiani": "1cbb9e05511651",
+  "handlerA": "0388b7957d0780",
+  "handlerB": "17e9744be9af02",
+  "gusOfficial": "06167336ae19ad",
+  "juno1904": "1632c1e277fca8"
  },
  "placeable": {
   "signBoard": "1220aa136fb86a",
@@ -605,7 +650,14 @@
   "jollyRoger": "105b38b310ba7d",
   "keyBowl": "0aea5dec5dfd06",
   "toaster": "086bda0011d741",
-  "thoughtBubble": "1c13395fdeea65"
+  "thoughtBubble": "1c13395fdeea65",
+  "motorCar1904": "118cbbd9ef03af",
+  "farmDog": "149485666e5603",
+  "appleTree": "05b3650763e368",
+  "finishArch": "178bf0a3f4b667",
+  "finishTape": "15b067d9860735",
+  "arrowSign": "0dd66ff34f527d",
+  "waterTable": "0e5c8e7152eac3"
  },
  "items": {
   "book": "",
@@ -634,6 +686,10 @@
   "cane": "",
   "crown": "",
   "tricorn": "",
-  "keys": ""
+  "keys": "",
+  "egg": "",
+  "vial": "",
+  "hipFlask": "",
+  "appleRotten": ""
  }
 }

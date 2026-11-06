@@ -29,7 +29,7 @@ export type HairStyle = "tuft" | "bob" | "horseshoe" | "short" | "side" | "long"
 export type TopStyle = "hoodie" | "turtleneck" | "shirt" | "tee" | "sweater" | "dress" | "stripes";
 /** labcoat / longcoat: knee-length coats (the longcoat is a captain's frock coat with buttons and a trimmed hem) */
 export type LayerStyle = "labcoat" | "waistcoat" | "blazer" | "cardigan" | "apron" | "longcoat";
-export type HatStyle = "cap" | "beanie" | "tophat" | "bowler" | "hardhat" | "tricorn" | "bandana";
+export type HatStyle = "cap" | "beanie" | "tophat" | "bowler" | "hardhat" | "tricorn" | "bandana" | "boater";
 export type Look = {
   name: string; build: Build; skin: string; seed: number;
   hair: { style: HairStyle; color: string };
@@ -41,7 +41,12 @@ export type Look = {
   layer?: { style: LayerStyle; color: string; accent?: string };
   neck?: { style: "bowtie" | "tie"; color: string };
   legs: string; shoes: string;
-  /** trim: a tricorn's braid / a bandana's polka dots */
+  /** knee-length shorts in this colour with bare shins below (a runner's kit, trousers cut off at the knee); legs is
+   *  then unused for the leg strokes (Video 04) */
+  shorts?: string;
+  /** bare arms (a sleeveless running vest) */
+  bare?: { arms?: boolean };
+  /** trim: a tricorn's braid / a bandana's polka dots / a boater's band */
   hat?: { style: HatStyle; color: string; trim?: string };
   /** an eyepatch over one eye (side = screen side in the front view; profiles always show it) */
   eyepatch?: { side: -1 | 1; color?: string };
@@ -357,6 +362,15 @@ const hat3 = (p: Pen, L: Look, H: Blob, cx: number, hc: number, light: number, f
       const [bx, by] = R([[cx, yb + u]])[0]; p.ell(bx, by, (top ? 0.45 : 0.42) * W, 0.05 * HH, shade(col, 0.8), ow, 0, 360, deg);
       break;
     }
+    case "boater": {
+      // a flat straw boater: a short flat-topped crown, a wide flat brim, a ribbon band (trim)
+      const yb = crown + 0.2 * HH, ht = 0.17 * HH, wb = 0.3 * W, band = L.hat.trim ?? "#3a2340";
+      const body = R([[cx - wb, yb], [cx + wb, yb], [cx + wb * 0.97, yb - ht], [cx - wb * 0.97, yb - ht]]);
+      p.shadedFill(body, col, mul(col, SH_FELT), light, wb, 0.4); p.poly(body, null, ow);
+      p.poly(R([[cx - wb, yb - 0.02 * HH], [cx + wb, yb - 0.02 * HH], [cx + wb, yb - 0.08 * HH], [cx - wb, yb - 0.08 * HH]]), band, ow * 0.6);
+      const [bx, by] = R([[cx, yb + u]])[0]; p.ell(bx, by, 0.52 * W, 0.045 * HH, shade(col, 0.88), ow, 0, 360, deg);
+      break;
+    }
     case "hardhat": {
       const cut = crown + 0.3 * HH;
       const dome = R(ellPts(cx, cut, H.a * 1.08, 0.38 * HH, 180, 360, 0, 24));
@@ -461,7 +475,7 @@ export const rigFront = (L: Look, pose: Pose) => {
   const chin = torsoBot - Bd.torso * HH, hc = chin - H.b, hipY = torsoBot - 0.12 * HH;
   const thick = thickAngle(light), ow = 5 * u;
   const top = L.top.color, outer = L.layer && L.layer.style !== "waistcoat" && L.layer.style !== "apron" ? L.layer.color : top;
-  const legCol = mix(L.legs, INK, 0.55), armCol = armColOf(outer), footCol = L.shoes;
+  const legCol = L.shorts ? mix(skin, INK, 0.3) : mix(L.legs, INK, 0.55), armCol = L.bare?.arms ? mix(skin, INK, 0.3) : armColOf(outer), footCol = L.shoes;
   const legW = 5.8 * u, footW = 7.5 * u;
   const dress = L.top.style === "dress" && mode !== "sit" && mode !== "fall";
   const coat = L.layer?.style === "labcoat" || L.layer?.style === "longcoat", frock = L.layer?.style === "longcoat";
@@ -629,6 +643,11 @@ export const figureFront = (p: Pen, L: Look, pose: Pose) => {
       const k: P2 = [(hx + fx) / 2 + side * (1.5 * u + up * 0.16), (hipY + fy) / 2 - up * 0.08];
       p.stroke(curve([hx, hipY], k, [fx, fy]), legW, legCol); footStroke(p, [fx - side * 3 * u, fy], [fx + side * 13 * u, fy + 0.5 * u], footW, footCol);
     }
+  }
+  // ---- knee shorts over the thighs (front view) ----
+  if (L.shorts && mode !== "fall" && !dress) {
+    const yT = hipY - 0.06 * HH, yB = hipY + (mode === "sit" ? 0.16 : 0.27) * HH, wO = (mode === "sit" ? 40 : mode === "run" ? 34 : 30) * u;
+    p.poly([[300 - 24 * u, yT], [300 + 24 * u, yT], [300 + wO, yB], [300 + 4 * u, yB], [300, hipY + 0.1 * HH], [300 - 4 * u, yB], [300 - wO, yB]], L.shorts, ow * 0.8);
   }
   // ---- upper body rotates about the hips ----
   p.rot = A ? [rad(A), 300, hipY] : null;
@@ -828,7 +847,8 @@ export const figureSide = (p: Pen, L: Look, pose: SidePose) => {
   const W = 2 * H.a, HH = 2 * H.b, u = W / 100, sole = 975, ankY = sole - 4 * u;
   const thick = thickAngle(light), ow = 5 * u;
   const legLen = (Bd.legs + 0.12) * HH - 4 * u, l1 = legLen / 2, l2 = legLen / 2;
-  const nearCol = mix(L.legs, INK, 0.55), farCol = mix(L.legs, INK, 0.75), footCol = L.shoes;
+  const legBase = L.shorts ? mix(skin, INK, 0.3) : L.legs;
+  const nearCol = L.shorts ? legBase : mix(L.legs, INK, 0.55), farCol = L.shorts ? mix(skin, INK, 0.5) : mix(L.legs, INK, 0.75), footCol = L.shoes;
   type LegS = { ank: P2; pitch: number; near: boolean; knee?: P2 };
   const legs: LegS[] = [];
   let hipY = ankY - legLen * 0.995, lean = 0, nearFwd = 0;
@@ -861,12 +881,16 @@ export const figureSide = (p: Pen, L: Look, pose: SidePose) => {
     p.stroke([[300 + (Lg.near ? 0 : -5 * u), hipY], knee, Lg.ank], 5.8 * u, Lg.near ? nearCol : farCol);
     const c = Math.cos(Lg.pitch), s = Math.sin(Lg.pitch);
     footStroke(p, [Lg.ank[0] - 3 * u * c, Lg.ank[1] - 3 * u * s], [Lg.ank[0] + 13 * u * c, Lg.ank[1] + 13 * u * s + 0.5 * u], 7.5 * u, Lg.near ? footCol : footCol === INK ? INK : shade(footCol, 0.82));
+    if (L.shorts) { // the shorts leg: the upper ~60 % of the thigh, wider than the leg, inked
+      const h0: P2 = [300 + (Lg.near ? 0 : -5 * u), hipY - 0.04 * HH], k2: P2 = [h0[0] + (knee[0] - h0[0]) * 0.62, h0[1] + (knee[1] - h0[1]) * 0.62];
+      p.stroke([h0, k2], 13 * u + 3.2 * u, INK); p.stroke([h0, k2], 13 * u, Lg.near ? L.shorts : shade(L.shorts, 0.8));
+    }
   }
   p.rot = lean ? [rad(lean), 300, hipY] : null;
   const coat = L.layer?.style === "labcoat" || L.layer?.style === "longcoat", frock = L.layer?.style === "longcoat", outer = L.layer && L.layer.style !== "waistcoat" && L.layer.style !== "apron" ? L.layer.color : L.top.color;
   const T: Blob = { a: (L.build === "stout" ? 0.38 : L.build === "tall" ? 0.28 : 0.31) * W, b: 0.5 * (torsoBot - (chin - 0.25 * HH)), nTop: 2.2, nBot: 2.5, egg: 0.1, asym: 0.06 + (L.build === "stout" ? 0.06 : 0), rot: 0, noise: 0.006, seed: seed + 7 };
   const tcx = 300 + 2 * u, tcy = torsoBot - T.b, tp = blobPts(tcx, tcy, T);
-  const armCol = armColOf(outer), farArm = mix(armCol, INK, 0.3);
+  const armCol = L.bare?.arms ? mix(skin, INK, 0.3) : armColOf(outer), farArm = mix(armCol, INK, 0.3);
   const S: P2 = [tcx + 0.05 * T.a, chin + 0.14 * HH], aLen = 0.95 * HH;
   const swingArm = (ang: number, bend = 16): [P2, P2, P2] => {
     const e: P2 = [S[0] + Math.sin(ang) * aLen * 0.5, S[1] + Math.cos(ang) * aLen * 0.5], a2 = ang + rad(bend) * Math.sign(ang || 1);

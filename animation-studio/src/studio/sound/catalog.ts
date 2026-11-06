@@ -42,6 +42,7 @@ export const SFX = {
   hammer: "hammer blow", cannon: "distant cannon boom", bell_ring: "ship / church bell", wave_crash: "a wave breaking",
   giggle: "a short burst of giggles (someone tickled)", feather_swish: "a feather brushing skin (soft, airy)", servo: "small robot servo whirr", stumble: "shoe scuffs + light thump (a stumble)",
   crowd_aye: "a crew's ragged chorus of \"aye!\" + a short cheer (a vote)", crowd_murmur: "a crew murmuring at a meeting (3 s)", quill_scratch: "a quill scratching on parchment (signing)", coins_pour: "coins poured into a hand (a share, a payout)",
+  engine: "an early motor car putter-putter (1.8 s)", honk: "a rubber bulb horn: two honks", backfire: "a car backfire bang + clank + steam hiss (a breakdown)", bark: "a farm dog: two woofs", crack_egg: "an egg cracked on a rim",
 } as const;
 export type SfxName = keyof typeof SFX;
 

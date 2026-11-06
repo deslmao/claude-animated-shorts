@@ -69,6 +69,21 @@
       "composition": "Short-camera-kit",
       "frame": 150,
       "why": "camera upgrade: in-world text display (score board) readable in a macro insert"
+    },
+    {
+      "composition": "Short-marathon-1904",
+      "frame": 129,
+      "why": "race1904 theme: the race road, the ST. LOUIS 1904 banner, the athletes' fixed looks (runner kits)"
+    },
+    {
+      "composition": "Short-marathon-1904",
+      "frame": 1391,
+      "why": "race1904 theme: the farm dog (tracked prop rig) chasing Taunyane off the road"
+    },
+    {
+      "composition": "Short-marathon-1904",
+      "frame": 1835,
+      "why": "race1904 theme: in-world race board (BANNED 6 MONTHS) in a macro insert"
     }
   ]
 }

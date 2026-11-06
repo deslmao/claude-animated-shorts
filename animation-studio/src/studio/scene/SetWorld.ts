@@ -16,7 +16,7 @@ import type { At } from "../props/kit";
 /** shutter: camera motion blur exposure in frames (0.5 = a 180-degree shutter), or a function of the frame (less on
  *  close-ups, full on flights); absent = none */
 export type WorldShot = { id: number; a: number; b: number; set: string; light: LightName; keys: Key[]; dof: (f: number) => { cInf: number; focus?: V3 }; kicks?: [number, number][]; shutter?: number | ((f: number) => number); shutterCap?: (f: number) => number;
-  props?: { id: string; variant?: string; at: At; animate?: (tt: number, anchors: Map<string, ActorAnchor>) => { target?: V3; stroke: number; step?: number } }[] };
+  props?: { id: string; variant?: string; at: At; animate?: (tt: number, anchors: Map<string, ActorAnchor>) => { target?: V3; stroke: number; step?: number; track?: { pos: V3; heading: number; dist: number; speed: number; t: number } } }[] };
 export type Director = (shot: WorldShot, f: number, cam: CamInfo, built: BuiltSet, out: Stage) => void;
 
 export class SetWorld implements StudioWorld {

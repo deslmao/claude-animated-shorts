@@ -31,5 +31,6 @@ export type Theme = {
 import { SCIENCE } from "./science";
 import { PIRATES } from "./pirates";
 import { EVERYDAY } from "./everyday";
+import { RACE1904 } from "./race1904";
 
-export const THEMES: Theme[] = [SCIENCE, PIRATES, EVERYDAY];
+export const THEMES: Theme[] = [SCIENCE, PIRATES, EVERYDAY, RACE1904];

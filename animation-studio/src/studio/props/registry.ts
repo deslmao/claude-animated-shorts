@@ -43,7 +43,9 @@ export type PropEntry = {
   reach?: { shoulder: number; length: number; lift: number };
 };
 /** step = a stepped prop's progress: n + the eased fraction of step n+1 (0 = before the first step) */
-export type PropRig = { root: THREE.Object3D; update: (st: { target?: [number, number, number]; stroke: number; step?: number; camPos: THREE.Vector3 }) => void };
+export type PropRig = { root: THREE.Object3D; update: (st: { target?: [number, number, number]; stroke: number; step?: number; camPos: THREE.Vector3;
+  /** a tracked prop (storyboard `track`): where it is this frame, its heading (rad, 0 = +z), distance travelled (m), speed (m/s), shot time (s) */
+  track?: { pos: [number, number, number]; heading: number; dist: number; speed: number; t: number } }) => void };
 
 export const PROPS: Record<string, PropEntry> = {
   // in-world text displays (Video 04): the variant is the text, e.g. { id: "signBoard", variant: "FINISH" }

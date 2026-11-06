@@ -38,7 +38,7 @@ const job = {
   voice: tm.lines.flatMap((l) => (l.segs ? l.segs.map((g) => ({ file: `voice/cache/${l.hash}.mp3`, at: g.at, from: g.from, ...(g.to !== undefined ? { to: g.to } : {}) })) : [{ file: `voice/cache/${l.hash}.mp3`, at: l.fileAt }])),
   words: tm.lines.flatMap((l) => l.words.map((w) => [w.t0, w.t1])),
   shots: film.shots.map((s, i) => ({ t0: s.a / 30, t1: s.b / 30, ambience: plan.ambience[i] })),
-  music: plan.sections ? { sections: plan.sections, button_t: plan.button_t, gain_db: plan.musicGain } : null,
+  music: plan.sections ? { sections: plan.sections, button_t: plan.button_t, gain_db: plan.musicGain, ...(plan.drop_t !== undefined ? { drop_t: plan.drop_t } : {}) } : null,
   cues: plan.cues,
   out: `audio/${comp}.mp3`, info: `audio/${comp}.json`, cuesheet: `audio/${comp}.cues.md`,
 };
