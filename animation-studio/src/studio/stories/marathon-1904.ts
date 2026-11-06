@@ -46,7 +46,7 @@ export const MARATHON1904: Storyboard = {
         { word: "marathon", move: "at", pos: R(-21.5, 6.4, 5.2), look: R(-26.5, 0, 0.6), fov: 46, swoop: 0.7 },
       ],
       actors: [
-        { who: "mgr", at: R(-38.0, 0.05, SEAT), mode: "sit", act: "happy", walk: { to: R(-33.2, 0.05, SEAT), t0: 0, t1: 1.0, mode: "ride" } },
+        { who: "mgr", at: R(-38.6, 0.05, SEAT), mode: "sit", act: "happy", walk: { to: R(-34.9, 0.05, SEAT), t0: 0, t1: 1.0, mode: "ride" } },  // stops ~2 m short of the lens
         { who: "hA", at: R(-24.6, -1.6), act: "neutral", facing: 0, gesture: "hold", hold: "vial" },
         { who: "carv", at: "napSpot", mode: "sit", face: "sleepy", act: "sleepy" },
         { who: "milo", at: R(-28.9, -0.3), act: "determined", facing: 1, walk: { to: R(-23.5, -0.3), t0: 0, t1: 5.7, from: { word: "marathon" }, mode: "run" } },
@@ -118,7 +118,7 @@ export const MARATHON1904: Storyboard = {
     { cont: true, set: "raceRoad", light: "golden", transition: "cut",
       note: "riding: the camera tracks alongside the car; Lorz leans back and grins at us as he passes the runners",
       camera: { move: "follow", on: "milo", size: "full", from: -18, height: 1.25 },
-      cams: [{ word: "car", move: "follow", on: "milo", size: "medium", from: -12, height: 1.35, glide: 0.5 }],
+      cams: [{ word: "car", move: "follow", on: "milo", size: "medium", from: -12, height: 1.75, glide: 0.5 }],
       actors: [
         { who: "milo", at: R(-15.0, 0.75, SEAT), mode: "sit", act: "proud", walk: { to: R(-6.0, 0.75, SEAT), t0: 0, t1: 1.75, mode: "ride" }, beats: [{ word: "eleven", look: "camera", face: "grin" }] },
         { who: "mgr", at: R(-15.0, 0.05, SEAT), mode: "sit", act: "happy", walk: { to: R(-6.0, 0.05, SEAT), t0: 0, t1: 1.75, mode: "ride" } },

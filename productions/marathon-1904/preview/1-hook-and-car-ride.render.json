@@ -1,0 +1,38 @@
+{
+  "composition": "Short-marathon-1904",
+  "out": "/home/user/claude-animated-shorts/productions/marathon-1904/preview/1-hook-and-car-ride.mp4",
+  "preview": true,
+  "frames": "0-560",
+  "machine": {
+    "platform": "linux",
+    "osName": "linux 6.18.44-fc-v242",
+    "chip": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "cores": 4,
+    "ramGB": 15.7,
+    "gl": "swangle",
+    "browser": "/opt/pw-browsers/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell",
+    "node": "v22.23.4",
+    "where": "cloud-cpu"
+  },
+  "concurrency": 4,
+  "video": {
+    "width": 540,
+    "height": 960,
+    "fps": "30/1",
+    "frames": 561,
+    "codec": "h264",
+    "audio": true
+  },
+  "bundleSeconds": 8.1,
+  "renderSeconds": 791.6,
+  "secondsPerFrame": 1.411,
+  "framesPerSecond": 0.71,
+  "memory": {
+    "peakRenderProcessesGB": 4.84,
+    "macMinFreePercent": null,
+    "linuxMinAvailableGB": 10.97,
+    "macSwapUsedGBAfter": null
+  },
+  "sizeMB": 4.8,
+  "finishedAt": "2026-11-06T11:22:04.162Z"
+}
