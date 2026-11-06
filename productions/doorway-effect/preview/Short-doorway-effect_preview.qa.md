@@ -16,8 +16,8 @@ File: `Short-doorway-effect_preview.mp4`
 
 | Measurement | Value |
 |---|---|
-| loudness | -14 LUFS integrated, true peak -1.8 dBFS (YouTube normalises to about -14 LUFS) |
+| loudness | -14 LUFS integrated, true peak -1.7 dBFS (YouTube normalises to about -14 LUFS) |
 | black spans ≥ 0.1 s | none |
 | holds settling at a hard cut (away from seams) | none |
 | frozen spans ≥ 0.5 s | none |
-| file size | 11.0 MB |
+| file size | 11.1 MB |
