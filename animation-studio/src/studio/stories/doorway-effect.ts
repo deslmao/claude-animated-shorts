@@ -111,7 +111,10 @@ export const DOORWAYEFFECT: Storyboard = {
       ],
       kicks: [{ word: "scenes" }],
       actors: [
-        { who: "milo", at: "doorway", act: "thinking", facing: "camera", beats: [{ word: "boundary", act: "idea" }, { word: "big", act: "proud", face: "excited" }] },
+        // Milo walks the "one long video" with the camera, left to right through the living room, and reaches the
+        // doorway as the move stops dead at the wall that splits the frame into two rooms ("cut it into scenes")
+        { who: "milo", at: [-3.5, 0, -0.25], act: "happy", walk: { to: "doorway", t0: 0, t1: 0, from: { word: "You" }, until: { word: "scenes" } },
+          beats: [{ word: "scenes", act: "thinking" }, { word: "boundary", act: "idea" }, { word: "big", act: "proud", face: "excited" }] },
       ] },
 
     // tucked away, not deleted: Milo steps into the kitchen; the camera looks back through the doorway at the old scene,
