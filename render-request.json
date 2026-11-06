@@ -1,8 +1,8 @@
 {
   "composition": "Short-doorway-effect",
   "chunks": 15,
-  "preview": true,
+  "preview": false,
   "audio": "animation-studio/audio/Short-doorway-effect.mp3",
   "publish": false,
-  "note": "Video 03 (doorway effect): half-size preview 2 (wall and collision fixes); no release"
+  "note": "Video 03 (doorway effect): approved full-resolution render of commit 58f9280; no release"
 }
