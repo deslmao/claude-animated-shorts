@@ -119,7 +119,6 @@ export const MARATHON1904: Storyboard = {
     { cont: true, set: "raceRoad", light: "golden", transition: "cut",
       note: "riding: the camera tracks alongside the car; Lorz leans back and grins at us as he passes the runners",
       camera: { move: "follow", on: "milo", size: "full", from: -18, height: 1.25 },
-      cams: [{ word: "car", move: "follow", on: "milo", size: "medium", from: -12, height: 1.75, glide: 0.5 }],
       actors: [
         { who: "milo", at: R(-15.0, 0.75, LORZ_SEAT), mode: "sit", act: "proud", walk: { to: R(-6.0, 0.75, LORZ_SEAT), t0: 0, t1: 1.75, mode: "ride" }, beats: [{ word: "eleven", look: "camera", face: "grin" }] },
         { who: "mgr", at: R(-15.0, 0.05, SEAT), mode: "sit", act: "happy", walk: { to: R(-6.0, 0.05, SEAT), t0: 0, t1: 1.75, mode: "ride" } },
