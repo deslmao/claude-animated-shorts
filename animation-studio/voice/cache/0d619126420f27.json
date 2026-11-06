@@ -1,0 +1,130 @@
+{
+ "hash": "0d619126420f27",
+ "text": "You see, it was only the third Olympic marathon: no drug rules, little water, and car dust that nearly killed one runner.",
+ "voice": "george",
+ "lead": 0,
+ "end": 6.827,
+ "dur": 6.870204,
+ "words": [
+  {
+   "w": "You",
+   "t0": 0,
+   "t1": 0.139
+  },
+  {
+   "w": "see,",
+   "t0": 0.197,
+   "t1": 0.395
+  },
+  {
+   "w": "it",
+   "t0": 0.43,
+   "t1": 0.534
+  },
+  {
+   "w": "was",
+   "t0": 0.569,
+   "t1": 0.662
+  },
+  {
+   "w": "only",
+   "t0": 0.708,
+   "t1": 0.882
+  },
+  {
+   "w": "the",
+   "t0": 0.94,
+   "t1": 1.01
+  },
+  {
+   "w": "third",
+   "t0": 1.068,
+   "t1": 1.312
+  },
+  {
+   "w": "Olympic",
+   "t0": 1.358,
+   "t1": 1.695
+  },
+  {
+   "w": "marathon:",
+   "t0": 1.753,
+   "t1": 2.31
+  },
+  {
+   "w": "no",
+   "t0": 2.659,
+   "t1": 2.798
+  },
+  {
+   "w": "drug",
+   "t0": 2.868,
+   "t1": 3.077
+  },
+  {
+   "w": "rules,",
+   "t0": 3.135,
+   "t1": 3.495
+  },
+  {
+   "w": "little",
+   "t0": 3.599,
+   "t1": 3.866
+  },
+  {
+   "w": "water,",
+   "t0": 3.901,
+   "t1": 4.261
+  },
+  {
+   "w": "and",
+   "t0": 4.284,
+   "t1": 4.389
+  },
+  {
+   "w": "car",
+   "t0": 4.458,
+   "t1": 4.679
+  },
+  {
+   "w": "dust",
+   "t0": 4.737,
+   "t1": 5.039
+  },
+  {
+   "w": "that",
+   "t0": 5.201,
+   "t1": 5.352
+  },
+  {
+   "w": "nearly",
+   "t0": 5.387,
+   "t1": 5.608
+  },
+  {
+   "w": "killed",
+   "t0": 5.666,
+   "t1": 5.944
+  },
+  {
+   "w": "one",
+   "t0": 6.002,
+   "t1": 6.165
+  },
+  {
+   "w": "runner.",
+   "t0": 6.211,
+   "t1": 6.827
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-06T08:42:50.444Z"
+}

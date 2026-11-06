@@ -1,0 +1,95 @@
+{
+ "hash": "08b47b2fe38535",
+ "text": "Fred Lorz got cramps at mile nine and rode the next eleven in a car.",
+ "voice": "george",
+ "lead": 0,
+ "end": 3.901,
+ "dur": 3.94449,
+ "words": [
+  {
+   "w": "Fred",
+   "t0": 0,
+   "t1": 0.267
+  },
+  {
+   "w": "Lorz",
+   "t0": 0.325,
+   "t1": 0.58
+  },
+  {
+   "w": "got",
+   "t0": 0.639,
+   "t1": 0.789
+  },
+  {
+   "w": "cramps",
+   "t0": 0.848,
+   "t1": 1.196
+  },
+  {
+   "w": "at",
+   "t0": 1.231,
+   "t1": 1.3
+  },
+  {
+   "w": "mile",
+   "t0": 1.358,
+   "t1": 1.602
+  },
+  {
+   "w": "nine",
+   "t0": 1.649,
+   "t1": 1.904
+  },
+  {
+   "w": "and",
+   "t0": 1.939,
+   "t1": 2.02
+  },
+  {
+   "w": "rode",
+   "t0": 2.067,
+   "t1": 2.264
+  },
+  {
+   "w": "the",
+   "t0": 2.299,
+   "t1": 2.368
+  },
+  {
+   "w": "next",
+   "t0": 2.403,
+   "t1": 2.612
+  },
+  {
+   "w": "eleven",
+   "t0": 2.67,
+   "t1": 2.972
+  },
+  {
+   "w": "in",
+   "t0": 3.03,
+   "t1": 3.1
+  },
+  {
+   "w": "a",
+   "t0": 3.146,
+   "t1": 3.17
+  },
+  {
+   "w": "car.",
+   "t0": 3.228,
+   "t1": 3.901
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-06T08:42:44.431Z"
+}

@@ -1,0 +1,60 @@
+{
+ "hash": "03ded480f699d7",
+ "text": "Officials didn't laugh. He was banned for life.",
+ "voice": "george",
+ "lead": 0,
+ "end": 2.879,
+ "dur": 2.925714,
+ "words": [
+  {
+   "w": "Officials",
+   "t0": 0,
+   "t1": 0.488
+  },
+  {
+   "w": "didn't",
+   "t0": 0.534,
+   "t1": 0.789
+  },
+  {
+   "w": "laugh.",
+   "t0": 0.848,
+   "t1": 1.265
+  },
+  {
+   "w": "He",
+   "t0": 1.428,
+   "t1": 1.521
+  },
+  {
+   "w": "was",
+   "t0": 1.567,
+   "t1": 1.672
+  },
+  {
+   "w": "banned",
+   "t0": 1.73,
+   "t1": 2.043
+  },
+  {
+   "w": "for",
+   "t0": 2.078,
+   "t1": 2.183
+  },
+  {
+   "w": "life.",
+   "t0": 2.241,
+   "t1": 2.879
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-06T08:42:46.083Z"
+}

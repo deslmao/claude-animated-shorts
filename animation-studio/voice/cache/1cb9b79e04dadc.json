@@ -1,0 +1,65 @@
+{
+ "hash": "1cb9b79e04dadc",
+ "text": "Today, races hand out water, and strychnine is banned.",
+ "voice": "george",
+ "lead": 0,
+ "end": 3.158,
+ "dur": 3.186939,
+ "words": [
+  {
+   "w": "Today,",
+   "t0": 0,
+   "t1": 0.406
+  },
+  {
+   "w": "races",
+   "t0": 0.453,
+   "t1": 0.766
+  },
+  {
+   "w": "hand",
+   "t0": 0.813,
+   "t1": 0.987
+  },
+  {
+   "w": "out",
+   "t0": 1.045,
+   "t1": 1.173
+  },
+  {
+   "w": "water,",
+   "t0": 1.231,
+   "t1": 1.602
+  },
+  {
+   "w": "and",
+   "t0": 1.637,
+   "t1": 1.765
+  },
+  {
+   "w": "strychnine",
+   "t0": 1.823,
+   "t1": 2.299
+  },
+  {
+   "w": "is",
+   "t0": 2.334,
+   "t1": 2.403
+  },
+  {
+   "w": "banned.",
+   "t0": 2.461,
+   "t1": 3.158
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-06T08:42:50.892Z"
+}

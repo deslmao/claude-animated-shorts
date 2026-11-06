@@ -1,0 +1,55 @@
+{
+ "hash": "06f134c09a5a0c",
+ "text": "The organizer reportedly wanted to study dehydration.",
+ "voice": "george",
+ "lead": 0,
+ "end": 3.111,
+ "dur": 3.160816,
+ "words": [
+  {
+   "w": "The",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "organizer",
+   "t0": 0.221,
+   "t1": 0.697
+  },
+  {
+   "w": "reportedly",
+   "t0": 0.755,
+   "t1": 1.289
+  },
+  {
+   "w": "wanted",
+   "t0": 1.335,
+   "t1": 1.614
+  },
+  {
+   "w": "to",
+   "t0": 1.649,
+   "t1": 1.707
+  },
+  {
+   "w": "study",
+   "t0": 1.753,
+   "t1": 2.02
+  },
+  {
+   "w": "dehydration.",
+   "t0": 2.078,
+   "t1": 3.111
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-06T08:42:43.772Z"
+}

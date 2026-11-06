@@ -1,18 +1,17 @@
 # The Worst Olympic Marathon Ever
 mood: playful
 
-- The first man to finish the 1904 Olympic marathon had spent eleven miles in a car.
-- St. Louis. Thirty-two runners, ninety-degree heat, dusty roads, and one place to get water.
+- A car ride. Rat poison. A nap. This was the 1904 Olympic marathon.
+- Thirty-two runners, ninety-degree heat, dusty roads, and one official water stop.
 - The organizer reportedly wanted to study dehydration.
-- Fred Lorz got cramps after nine miles, so he hopped in a car.
-- When it broke down, he jogged in and crossed the line first.
+- Fred Lorz got cramps at mile nine and rode the next eleven in a car.
+- When it broke down, he jogged in and finished first.
 - milo: It was a joke!
 - Officials didn't laugh. He was banned for life.
-- The real winner, Thomas Hicks, got egg whites, brandy and strychnine from his team. Rat poison, but legal back then.
+- The real winner, Thomas Hicks, was given egg whites, brandy and strychnine — a stimulant that's also used as rat poison.
 - He staggered home in three hours twenty-eight minutes, the slowest Olympic winning time ever.
 - Cuba's Félix Carvajal gambled away his travel money, ran in street clothes, ate rotten apples, napped... and still finished fourth.
-- South Africa's Len Taunyane was chased a mile off course by dogs, and still finished ninth.
-- Only fourteen finished.
-- You see, nobody knew how to run a marathon safely yet. No proper water, no drug rules, and dust from cars nearly killed one runner.
+- South Africa's Len Taunyane was chased a mile off course by a dog, and still finished ninth.
+- You see, it was only the third Olympic marathon: no drug rules, little water, and car dust that nearly killed one runner.
 - Today, races hand out water, and strychnine is banned.
-- And Lorz? His ban was lifted, and next spring he won the Boston Marathon. On foot.
+- And Lorz? His ban was cut short, and next spring he won the Boston Marathon. On foot.

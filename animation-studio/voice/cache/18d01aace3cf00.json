@@ -1,0 +1,105 @@
+{
+ "hash": "18d01aace3cf00",
+ "text": "And Lorz? His ban was cut short, and next spring he won the Boston Marathon. On foot.",
+ "voice": "george",
+ "lead": 0,
+ "end": 4.83,
+ "dur": 4.858776,
+ "words": [
+  {
+   "w": "And",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "Lorz?",
+   "t0": 0.232,
+   "t1": 0.662
+  },
+  {
+   "w": "His",
+   "t0": 0.766,
+   "t1": 0.906
+  },
+  {
+   "w": "ban",
+   "t0": 0.964,
+   "t1": 1.161
+  },
+  {
+   "w": "was",
+   "t0": 1.219,
+   "t1": 1.324
+  },
+  {
+   "w": "cut",
+   "t0": 1.37,
+   "t1": 1.533
+  },
+  {
+   "w": "short,",
+   "t0": 1.591,
+   "t1": 1.95
+  },
+  {
+   "w": "and",
+   "t0": 2.032,
+   "t1": 2.171
+  },
+  {
+   "w": "next",
+   "t0": 2.229,
+   "t1": 2.415
+  },
+  {
+   "w": "spring",
+   "t0": 2.438,
+   "t1": 2.705
+  },
+  {
+   "w": "he",
+   "t0": 2.763,
+   "t1": 2.821
+  },
+  {
+   "w": "won",
+   "t0": 2.868,
+   "t1": 3.007
+  },
+  {
+   "w": "the",
+   "t0": 3.053,
+   "t1": 3.123
+  },
+  {
+   "w": "Boston",
+   "t0": 3.158,
+   "t1": 3.46
+  },
+  {
+   "w": "Marathon.",
+   "t0": 3.518,
+   "t1": 4.029
+  },
+  {
+   "w": "On",
+   "t0": 4.087,
+   "t1": 4.226
+  },
+  {
+   "w": "foot.",
+   "t0": 4.284,
+   "t1": 4.83
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-06T08:42:51.614Z"
+}

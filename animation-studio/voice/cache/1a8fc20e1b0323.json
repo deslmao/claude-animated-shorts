@@ -1,0 +1,85 @@
+{
+ "hash": "1a8fc20e1b0323",
+ "text": "A car ride. Rat poison. A nap. This was the 1904 Olympic marathon.",
+ "voice": "georgeLively",
+ "lead": 0,
+ "end": 5.433,
+ "dur": 5.459592,
+ "words": [
+  {
+   "w": "A",
+   "t0": 0,
+   "t1": 0.093
+  },
+  {
+   "w": "car",
+   "t0": 0.163,
+   "t1": 0.36
+  },
+  {
+   "w": "ride.",
+   "t0": 0.418,
+   "t1": 0.755
+  },
+  {
+   "w": "Rat",
+   "t0": 0.94,
+   "t1": 1.126
+  },
+  {
+   "w": "poison.",
+   "t0": 1.184,
+   "t1": 1.66
+  },
+  {
+   "w": "A",
+   "t0": 1.776,
+   "t1": 1.834
+  },
+  {
+   "w": "nap.",
+   "t0": 1.916,
+   "t1": 2.287
+  },
+  {
+   "w": "This",
+   "t0": 2.926,
+   "t1": 3.123
+  },
+  {
+   "w": "was",
+   "t0": 3.181,
+   "t1": 3.297
+  },
+  {
+   "w": "the",
+   "t0": 3.344,
+   "t1": 3.413
+  },
+  {
+   "w": "1904",
+   "t0": 3.471,
+   "t1": 4.203
+  },
+  {
+   "w": "Olympic",
+   "t0": 4.261,
+   "t1": 4.632
+  },
+  {
+   "w": "marathon.",
+   "t0": 4.69,
+   "t1": 5.433
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.35,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-06T08:42:42.451Z"
+}

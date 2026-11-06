@@ -1,0 +1,105 @@
+{
+ "hash": "02d8af32bdd60e",
+ "text": "South Africa's Len Taunyane was chased a mile off course by a dog, and still finished ninth.",
+ "voice": "george",
+ "lead": 0,
+ "end": 5.248,
+ "dur": 5.276735,
+ "words": [
+  {
+   "w": "South",
+   "t0": 0,
+   "t1": 0.302
+  },
+  {
+   "w": "Africa's",
+   "t0": 0.348,
+   "t1": 0.72
+  },
+  {
+   "w": "Len",
+   "t0": 0.778,
+   "t1": 0.964
+  },
+  {
+   "w": "Taunyane",
+   "t0": 1.045,
+   "t1": 1.521
+  },
+  {
+   "w": "was",
+   "t0": 1.567,
+   "t1": 1.695
+  },
+  {
+   "w": "chased",
+   "t0": 1.741,
+   "t1": 2.032
+  },
+  {
+   "w": "a",
+   "t0": 2.067,
+   "t1": 2.101
+  },
+  {
+   "w": "mile",
+   "t0": 2.159,
+   "t1": 2.415
+  },
+  {
+   "w": "off",
+   "t0": 2.45,
+   "t1": 2.577
+  },
+  {
+   "w": "course",
+   "t0": 2.635,
+   "t1": 2.902
+  },
+  {
+   "w": "by",
+   "t0": 2.937,
+   "t1": 3.065
+  },
+  {
+   "w": "a",
+   "t0": 3.123,
+   "t1": 3.158
+  },
+  {
+   "w": "dog,",
+   "t0": 3.204,
+   "t1": 3.564
+  },
+  {
+   "w": "and",
+   "t0": 3.75,
+   "t1": 3.889
+  },
+  {
+   "w": "still",
+   "t0": 3.947,
+   "t1": 4.191
+  },
+  {
+   "w": "finished",
+   "t0": 4.249,
+   "t1": 4.574
+  },
+  {
+   "w": "ninth.",
+   "t0": 4.632,
+   "t1": 5.248
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-06T08:42:49.111Z"
+}

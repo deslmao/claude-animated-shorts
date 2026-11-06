@@ -1,0 +1,40 @@
+{
+ "hash": "0c32a3b462e773",
+ "text": "It was a joke!",
+ "voice": "liam",
+ "lead": 0,
+ "end": 1.068,
+ "dur": 1.097143,
+ "words": [
+  {
+   "w": "It",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "was",
+   "t0": 0.186,
+   "t1": 0.302
+  },
+  {
+   "w": "a",
+   "t0": 0.36,
+   "t1": 0.383
+  },
+  {
+   "w": "joke!",
+   "t0": 0.441,
+   "t1": 1.068
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-06T08:42:45.498Z"
+}

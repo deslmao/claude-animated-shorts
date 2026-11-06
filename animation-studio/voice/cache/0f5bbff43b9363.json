@@ -1,0 +1,75 @@
+{
+ "hash": "0f5bbff43b9363",
+ "text": "Thirty-two runners, ninety-degree heat, dusty roads, and one official water stop.",
+ "voice": "george",
+ "lead": 0,
+ "end": 4.598,
+ "dur": 4.623673,
+ "words": [
+  {
+   "w": "Thirty-two",
+   "t0": 0,
+   "t1": 0.546
+  },
+  {
+   "w": "runners,",
+   "t0": 0.604,
+   "t1": 1.022
+  },
+  {
+   "w": "ninety-degree",
+   "t0": 1.184,
+   "t1": 1.8
+  },
+  {
+   "w": "heat,",
+   "t0": 1.858,
+   "t1": 2.125
+  },
+  {
+   "w": "dusty",
+   "t0": 2.194,
+   "t1": 2.531
+  },
+  {
+   "w": "roads,",
+   "t0": 2.601,
+   "t1": 2.902
+  },
+  {
+   "w": "and",
+   "t0": 2.937,
+   "t1": 3.053
+  },
+  {
+   "w": "one",
+   "t0": 3.135,
+   "t1": 3.286
+  },
+  {
+   "w": "official",
+   "t0": 3.309,
+   "t1": 3.646
+  },
+  {
+   "w": "water",
+   "t0": 3.704,
+   "t1": 3.971
+  },
+  {
+   "w": "stop.",
+   "t0": 4.005,
+   "t1": 4.598
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-06T08:42:43.168Z"
+}

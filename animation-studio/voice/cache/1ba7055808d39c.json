@@ -1,0 +1,90 @@
+{
+ "hash": "1ba7055808d39c",
+ "text": "He staggered home in three hours twenty-eight minutes, the slowest Olympic winning time ever.",
+ "voice": "george",
+ "lead": 0,
+ "end": 4.923,
+ "dur": 4.963265,
+ "words": [
+  {
+   "w": "He",
+   "t0": 0,
+   "t1": 0.139
+  },
+  {
+   "w": "staggered",
+   "t0": 0.197,
+   "t1": 0.557
+  },
+  {
+   "w": "home",
+   "t0": 0.604,
+   "t1": 0.801
+  },
+  {
+   "w": "in",
+   "t0": 0.836,
+   "t1": 0.906
+  },
+  {
+   "w": "three",
+   "t0": 0.964,
+   "t1": 1.184
+  },
+  {
+   "w": "hours",
+   "t0": 1.219,
+   "t1": 1.463
+  },
+  {
+   "w": "twenty-eight",
+   "t0": 1.509,
+   "t1": 1.974
+  },
+  {
+   "w": "minutes,",
+   "t0": 2.009,
+   "t1": 2.415
+  },
+  {
+   "w": "the",
+   "t0": 2.635,
+   "t1": 2.74
+  },
+  {
+   "w": "slowest",
+   "t0": 2.798,
+   "t1": 3.181
+  },
+  {
+   "w": "Olympic",
+   "t0": 3.228,
+   "t1": 3.587
+  },
+  {
+   "w": "winning",
+   "t0": 3.646,
+   "t1": 3.901
+  },
+  {
+   "w": "time",
+   "t0": 3.959,
+   "t1": 4.238
+  },
+  {
+   "w": "ever.",
+   "t0": 4.284,
+   "t1": 4.923
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-06T08:42:47.594Z"
+}

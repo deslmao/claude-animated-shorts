@@ -1,0 +1,120 @@
+{
+ "hash": "0715e1d41b0fa0",
+ "text": "Cuba's Félix Carvajal gambled away his travel money, ran in street clothes, ate rotten apples, napped... and still finished fourth.",
+ "voice": "george",
+ "lead": 0,
+ "end": 8.081,
+ "dur": 8.124082,
+ "words": [
+  {
+   "w": "Cuba's",
+   "t0": 0,
+   "t1": 0.406
+  },
+  {
+   "w": "Félix",
+   "t0": 0.464,
+   "t1": 0.813
+  },
+  {
+   "w": "Carvajal",
+   "t0": 0.871,
+   "t1": 1.393
+  },
+  {
+   "w": "gambled",
+   "t0": 1.614,
+   "t1": 2.009
+  },
+  {
+   "w": "away",
+   "t0": 2.043,
+   "t1": 2.264
+  },
+  {
+   "w": "his",
+   "t0": 2.322,
+   "t1": 2.426
+  },
+  {
+   "w": "travel",
+   "t0": 2.461,
+   "t1": 2.752
+  },
+  {
+   "w": "money,",
+   "t0": 2.81,
+   "t1": 3.181
+  },
+  {
+   "w": "ran",
+   "t0": 3.367,
+   "t1": 3.541
+  },
+  {
+   "w": "in",
+   "t0": 3.599,
+   "t1": 3.669
+  },
+  {
+   "w": "street",
+   "t0": 3.738,
+   "t1": 4.017
+  },
+  {
+   "w": "clothes,",
+   "t0": 4.075,
+   "t1": 4.563
+  },
+  {
+   "w": "ate",
+   "t0": 4.621,
+   "t1": 4.83
+  },
+  {
+   "w": "rotten",
+   "t0": 4.876,
+   "t1": 5.155
+  },
+  {
+   "w": "apples,",
+   "t0": 5.213,
+   "t1": 5.677
+  },
+  {
+   "w": "napped...",
+   "t0": 5.84,
+   "t1": 6.316
+  },
+  {
+   "w": "and",
+   "t0": 6.502,
+   "t1": 6.653
+  },
+  {
+   "w": "still",
+   "t0": 6.711,
+   "t1": 6.966
+  },
+  {
+   "w": "finished",
+   "t0": 7.036,
+   "t1": 7.372
+  },
+  {
+   "w": "fourth.",
+   "t0": 7.43,
+   "t1": 8.081
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-06T08:42:48.476Z"
+}

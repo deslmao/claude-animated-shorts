@@ -103,3 +103,26 @@ en.wikipedia.org), which return that page's own statements, and cross-checked ac
 - https://www.olympedia.org/results/56066 (1900 Olympic marathon)
 - https://www.olympics.com/ioc/news/the-inaugural-modern-olympic-marathon
 - https://www.abc.net.au/news/2020-07-26/the-wildest-olympic-event-in-modern-history/12467362 (plural dogs)
+
+## Approved production script (script.md, v2 with the owner's line-8 wording)
+The original draft is preserved as `script-v1.md`; `script-v2.md` is the revision as first proposed; `script.md` is
+the approved production text: v2 with line 8 changed by the owner to "The real winner, Thomas Hicks, was given egg
+whites, brandy and strychnine — a stimulant that's also used as rat poison."
+
+| # | Claim in the new line 8 | Source | Confidence |
+|---|---|---|---|
+| 31 | Hicks was given egg whites, brandy and strychnine | fact 10 (Olympedia, Olympics.com, Wikipedia, Smithsonian) | solid |
+| 32 | strychnine is a stimulant | Olympics.com (given as "a popular and legal stimulant at the time"); WADA Prohibited List, class S6 "Stimulants" (S6.B specified stimulants, strychnine listed) | solid |
+| 33 | strychnine is also used as rat poison (present tense) | CDC Emergency Preparedness: "Today, strychnine is used mainly as a pesticide, particularly to kill rats"; US EPA: registered only for below-ground bait use, restricted-use since 1978 | solid |
+
+Note: the line no longer says "legal back then". That fact is still in the script, as line 12's "no drug rules"
+(facts 11 and 26), so nothing is lost or overstated. "Strychnine is banned" (line 13) is supported by the WADA listing.
+
+### Additional sources (approved script)
+- https://emergency.cdc.gov/agent/strychnine/basics/facts.asp (CDC: strychnine facts, current use as rat poison)
+- https://archive.epa.gov/pesticides/reregistration/web/pdf/3133fact.pdf (US EPA strychnine fact sheet)
+- https://www.wada-ama.org/en/prohibited-list (WADA Prohibited List: strychnine under S6 stimulants)
+
+## Production notes (owner instructions, for the storyboard stage)
+- "14 / 32" (finishers / starters, fact 17) is shown on the in-world score board. It is **not** spoken: "Only fourteen
+  finished" stays out of the narration.

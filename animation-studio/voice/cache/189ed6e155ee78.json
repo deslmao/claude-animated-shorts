@@ -1,0 +1,70 @@
+{
+ "hash": "189ed6e155ee78",
+ "text": "When it broke down, he jogged in and finished first.",
+ "voice": "george",
+ "lead": 0,
+ "end": 2.879,
+ "dur": 2.925714,
+ "words": [
+  {
+   "w": "When",
+   "t0": 0,
+   "t1": 0.209
+  },
+  {
+   "w": "it",
+   "t0": 0.255,
+   "t1": 0.313
+  },
+  {
+   "w": "broke",
+   "t0": 0.348,
+   "t1": 0.592
+  },
+  {
+   "w": "down,",
+   "t0": 0.639,
+   "t1": 0.952
+  },
+  {
+   "w": "he",
+   "t0": 0.998,
+   "t1": 1.057
+  },
+  {
+   "w": "jogged",
+   "t0": 1.126,
+   "t1": 1.393
+  },
+  {
+   "w": "in",
+   "t0": 1.451,
+   "t1": 1.602
+  },
+  {
+   "w": "and",
+   "t0": 1.66,
+   "t1": 1.776
+  },
+  {
+   "w": "finished",
+   "t0": 1.834,
+   "t1": 2.159
+  },
+  {
+   "w": "first.",
+   "t0": 2.206,
+   "t1": 2.879
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-06T08:42:45.022Z"
+}

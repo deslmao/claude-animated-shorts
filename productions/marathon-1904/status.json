@@ -1,0 +1,81 @@
+{
+ "id": "marathon-1904",
+ "composition": "Short-marathon-1904",
+ "stages": {
+  "validate": {
+   "state": "done",
+   "at": "2026-11-06T08:42:53.058Z",
+   "inputs": "0569b3bfc82ebbn",
+   "detail": "valid; 1 warning(s):\n  shot 6 (city): milo's hand (present) is out of frame @0.2s (side): widen the shot or change the gesture"
+  },
+  "assets": {
+   "state": "done",
+   "at": "2026-11-06T08:42:53.060Z",
+   "inputs": "0569b3bfc82ebb",
+   "detail": "9 library assets reused, none missing",
+   "data": {
+    "reused": 9,
+    "missing": [],
+    "byKind": {
+     "character": [
+      "milo",
+      "juno",
+      "gus"
+     ],
+     "mood": [
+      "playful"
+     ],
+     "set": [
+      "city"
+     ],
+     "camera": [
+      "frame"
+     ],
+     "light": [
+      "day"
+     ],
+     "ambience": [
+      "amb_city_day"
+     ],
+     "act": [
+      "neutral"
+     ]
+    }
+   }
+  },
+  "approval": {
+   "state": "done",
+   "at": "2026-11-06T08:42:53.064Z",
+   "inputs": "083efcc8cdda50",
+   "detail": "all narration already generated (no cost)"
+  },
+  "narration": {
+   "state": "done",
+   "at": "2026-11-06T08:42:53.064Z",
+   "inputs": "083efcc8cdda50",
+   "detail": "all lines already generated (cached)"
+  }
+ },
+ "approval": {
+  "scriptHash": "083efcc8cdda50",
+  "chars": 1077,
+  "at": "2026-11-06T08:42:35.431Z",
+  "by": "the owner, in the conversation",
+  "script": "productions/marathon-1904/script.md",
+  "version": "v2 + owner's line-8 wording (approved production script)",
+  "scriptSha256": "d990427e139faca5fb6fbad01e921fd8f7ccd57aa72933e0847faef8c7a2bf19",
+  "lines": 14,
+  "words": 188,
+  "change": "line 8 -> \"The real winner, Thomas Hicks, was given egg whites, brandy and strychnine — a stimulant that's also used as rat poison.\"",
+  "preserved": {
+   "original": "productions/marathon-1904/script-v1.md",
+   "v2 as proposed": "productions/marathon-1904/script-v2.md"
+  },
+  "scope": "narration generation only; storyboard, assets and render need separate approval",
+  "notes": [
+   "14 / 32 shown on the in-world score board, not spoken"
+  ],
+  "voices": "established Thinkora settings: hook line georgeLively (as Video 03 and Pirate Democracy), Milo liam (as Video 03), every other line george",
+  "scriptToolHash": "093c93a91d4ec9"
+ }
+}

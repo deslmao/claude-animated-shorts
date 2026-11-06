@@ -1,0 +1,29 @@
+{
+ "reused": 9,
+ "missing": [],
+ "byKind": {
+  "character": [
+   "milo",
+   "juno",
+   "gus"
+  ],
+  "mood": [
+   "playful"
+  ],
+  "set": [
+   "city"
+  ],
+  "camera": [
+   "frame"
+  ],
+  "light": [
+   "day"
+  ],
+  "ambience": [
+   "amb_city_day"
+  ],
+  "act": [
+   "neutral"
+  ]
+ }
+}
