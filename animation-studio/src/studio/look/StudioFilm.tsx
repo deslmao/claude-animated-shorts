@@ -30,8 +30,8 @@ export interface StudioWorld { root: THREE.Object3D; update(shot: number, f: num
 export interface Timeline { total: number; layersAt(f: number): { id: number; alpha: number }[]; flashes?: number[]; dips?: number[]; motionBlur?: boolean; controlledBlur?: boolean; stableInk?: boolean; inkSides?: boolean }
 
 /** A/B switches for test stills only (inputProps `{ post: { ink: false, ... } }`); everything is on by default */
-type PostToggles = { ink: boolean; ink2: boolean; lens: boolean; pre: boolean; bloom: boolean; grade: boolean; grain: boolean; motion: boolean };
-const toggles = (): PostToggles => ({ ink: true, ink2: true, lens: true, pre: true, bloom: true, grade: true, grain: false, motion: true, ...((getInputProps() as { post?: Partial<PostToggles> }).post ?? {}) });
+type PostToggles = { ink: boolean; ink2: boolean; sides: boolean; lens: boolean; pre: boolean; bloom: boolean; grade: boolean; grain: boolean; motion: boolean };
+const toggles = (): PostToggles => ({ ink: true, ink2: true, sides: true, lens: true, pre: true, bloom: true, grade: true, grain: false, motion: true, ...((getInputProps() as { post?: Partial<PostToggles> }).post ?? {}) });
 
 /** bloom for emissive sources only; its MIP chain always starts at half of 1080x1920 so the glow keeps its size */
 const makeBloom = () => {
@@ -63,7 +63,7 @@ function Inner<K>({ id, kit, makeWorld, blur, stableInk, controlledBlur = false,
     if (pass) pass.enabled = moving;
   }, 0);
   const fx = useMemo(() => ({
-    ink: new InkPass(scene, camera as THREE.PerspectiveCamera, { ...(stableInk && on.ink2 ? { stable: true } : {}), ...(inkSides ? { sides: true } : {}) }),
+    ink: new InkPass(scene, camera as THREE.PerspectiveCamera, { ...(stableInk && on.ink2 ? { stable: true } : {}), ...(inkSides && on.sides ? { sides: true } : {}) }),
     lens: new LensBlur({ maxCoC: 24, nearScale: 1.2 }),
     bloom: makeBloom(),
     tone: new ToneMappingEffect({ mode: ToneMappingMode.NEUTRAL }),

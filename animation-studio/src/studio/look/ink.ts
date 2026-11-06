@@ -49,9 +49,11 @@ export type InkOptions = {
    *  width), and the mask is smoothed with a 5x5 binomial instead of the 3x3 tent, so lines move in smaller steps.
    *  Off by default: every existing film (BridgeShort included) renders exactly as before */
   stable?: boolean;
-  /** engine 3: the outline buffer skips the faces the colour pass culls (each material's own side). Without it the
-   *  buffer is drawn double-sided: with the camera inside or against closed geometry it sees inner back faces the
-   *  picture never shows, and inks their edges as phantom lines across the frame (Video 03, frames 1417-1425) */
+  /** engine 3: NEAR the lens (within CULL_NEAR m) the outline buffer skips the faces the colour pass culls (each
+   *  material's own side). The buffer is otherwise drawn double-sided, so with the camera inside or against closed
+   *  geometry it saw inner back faces the picture never shows and inked their edges as phantom lines across the frame
+   *  (Video 03, frames 1417-1425). Farther away nothing changes: the inner rims of open shells (a bowl, a lamp shade)
+   *  keep the outlines they have always had */
   sides?: boolean;
 };
 
@@ -85,16 +87,19 @@ void main() {
   #include <project_vertex>
   vV = mvPosition.xyz;
 }`;
+/** engine 3: how close to the lens culled faces are kept out of the outline buffer (a camera inside or against geometry) */
+export const CULL_NEAR = 0.6;
 const NORMAL_FRAG = /* glsl */ `
 uniform sampler2D tCut;
 uniform float cut;
 uniform float faceCull;   // 0 = draw both faces, 1 = skip back faces, 2 = skip front faces (the material's own side)
+uniform float cullNear;   // ... only that close to the lens (m)
 varying vec3 vN;
 varying vec3 vV;
 varying vec2 vCut;
 void main() {
   if (cut > 0.0 && texture2D(tCut, vCut).a < cut) discard;
-  if (faceCull > 0.5 && (faceCull < 1.5 ? !gl_FrontFacing : gl_FrontFacing)) discard;
+  if (faceCull > 0.5 && -vV.z < cullNear && (faceCull < 1.5 ? !gl_FrontFacing : gl_FrontFacing)) discard;
   vec3 n;
   if (dot(vN, vN) < 1e-8) n = normalize(cross(dFdx(vV), dFdy(vV)));   // geometry without normals
   else n = normalize(vN) * (gl_FrontFacing ? 1.0 : -1.0);            // back faces of double-sided planes
@@ -324,7 +329,7 @@ export class InkPass extends Pass {
 
     this.normalMat = new THREE.ShaderMaterial({
       vertexShader: NORMAL_VERT, fragmentShader: NORMAL_FRAG, side: THREE.DoubleSide,
-      uniforms: { tCut: { value: null }, cut: { value: 0 }, cutUv: { value: new THREE.Matrix3() }, faceCull: { value: 0 } },
+      uniforms: { tCut: { value: null }, cut: { value: 0 }, cutUv: { value: new THREE.Matrix3() }, faceCull: { value: 0 }, cullNear: { value: CULL_NEAR } },
     });
     // per object: copy the original material's cut-out (map + alphaTest) so alpha-tested world planes keep their shape
     this.normalMat.onBeforeRender = (_r, _s, _c, _g, object, group) => {

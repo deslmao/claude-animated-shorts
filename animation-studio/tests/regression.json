@@ -49,6 +49,11 @@
       "composition": "Short-inkparity-qa",
       "frame": 1418,
       "why": "engine 3 ink: a camera inside scenery (Video 03's original keys-bubble insert) shows no phantom outline lines"
+    },
+    {
+      "composition": "Short-doorway-effect",
+      "frame": 1690,
+      "why": "engine 3 ink: open shells (the bowl of keys) keep their inner-rim outlines; only faces near the lens are culled"
     }
   ]
 }
