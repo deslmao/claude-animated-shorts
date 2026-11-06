@@ -7,5 +7,5 @@
   "audio": "required",
   "seams": "129,259,389,518,648,778,908,1037,1167,1297,1427,1556,1686,1816",
   "keep": "productions/doorway-effect/final-v2/Short-doorway-effect.mp4",
-  "note": "Video 03 corrected render 2 (run 20): replaces the run-19 file in final-v2/; the approved final/ is untouched"
+  "note": "Video 03 corrected render 2 (run 20): replaces the run-19 file in final-v2/; the approved final/ is untouched (retry: the first QA runner hung installing ffmpeg)"
 }
