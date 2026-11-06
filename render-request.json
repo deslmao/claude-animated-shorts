@@ -1,8 +1,7 @@
 {
-  "composition": "Short-doorway-effect",
-  "chunks": 15,
+  "composition": "Short-marathon-1904",
+  "chunks": 20,
   "preview": false,
-  "audio": "animation-studio/audio/Short-doorway-effect.mp3",
-  "publish": false,
-  "note": "Video 03 (doorway effect): corrected full-resolution render (defects at 0:47 fixed: camera below the lamp; engine 3 ink culls only faces near the lens); no release"
+  "audio": "",
+  "note": "Production marathon-1904 (npm run short)"
 }
