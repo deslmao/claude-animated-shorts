@@ -393,7 +393,7 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
   const flashes = sb.shots.map((s, k) => (s.transition === "flash" ? ranges[k].a : -1)).filter((f) => f >= 0);
   const dips = sb.shots.map((s, k) => (s.transition === "dip" ? ranges[k].a : -1)).filter((f) => f >= 0);
   const timeline: Timeline = {
-    total, flashes, dips, motionBlur: !!sb.motionBlur, controlledBlur: !!(sb.motionBlur && sb.controlledBlur), stableInk: sb.engine === 2,
+    total, flashes, dips, motionBlur: !!sb.motionBlur, controlledBlur: !!(sb.motionBlur && sb.controlledBlur), stableInk: (sb.engine ?? 1) >= 2, inkSides: (sb.engine ?? 1) >= 3,
     layersAt: (f) => {
       for (let k = 1; k < sb.shots.length; k++) {
         const tr = sb.shots[k].transition, F = tr === "fade" ? FADE : tr === "zoom" || tr === "whip" ? ZFADE : 0; if (!F) continue;

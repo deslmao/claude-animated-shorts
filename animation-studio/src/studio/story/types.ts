@@ -19,7 +19,9 @@ export type Where = string | V3;
  *  previous framing; whip = a 6-frame whip pan; rack = only the focus moves; fly = part of one continuous flight: the
  *  camera travels without stopping from the previous framing through every consecutive fly beat, ARRIVING at each on
  *  its word (a reveal, a fly-over, a pull-back) */
-export type CameraBeat = CameraSpec & When & { cut?: boolean; glide?: number; whip?: boolean; rack?: boolean; fly?: boolean };
+/** blockOk: scenery deliberately fills part of the frame on this beat (a wall edge splitting the picture in two): the
+ *  camera clearance check (story/clearance.ts) doesn't report the line of sight as blocked */
+export type CameraBeat = CameraSpec & When & { cut?: boolean; glide?: number; whip?: boolean; rack?: boolean; fly?: boolean; blockOk?: boolean };
 export type CameraSpec =
   | { move: "view"; view: string }                                                                // a set's designed view by name
   | { move: "establish"; view: string }
@@ -161,6 +163,7 @@ export type Storyboard = {
   controlledBlur?: boolean;
   /** render engine generation. 2 = Visual Storytelling 2.0 render behaviours: card canvases that draw identically
    *  whatever the render worker drew before (exact chunk seams on fast camera flights). Default 1: storyboards made
-   *  before 2.0 render exactly as they were approved */
-  engine?: 1 | 2;
+   *  before 2.0 render exactly as they were approved. 3 = engine 2 plus the Video 03 render corrections: the outline
+   *  buffer draws only the faces the picture draws (no phantom lines when a camera grazes or enters geometry) */
+  engine?: 1 | 2 | 3;
 };

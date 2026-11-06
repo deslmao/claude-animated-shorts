@@ -17,6 +17,14 @@ const SHORTS = STORIES.map((sb) => ({ id: sb.id, ...makeShort(sb, NARRATION[sb.i
 // QA only (not a production): Pirate Democracy with the 2.0 blur correction, for before / after measurements of the
 // transition blur on the same frames (same narration, so the same timing)
 const PIRATE = STORIES.find((sb) => sb.id === "pirate-democracy")!;
+// QA only: Video 03 with its ORIGINAL keys-bubble insert (the camera in the doorway's head trim, frames 1410-1425) on
+// engine 3. The outline buffer must not trace faces the picture culls, so frame 1418 has no phantom lines (regression
+// frame in tests/regression.json; the real storyboard's camera was moved below the lamp)
+const DOOR = STORIES.find((sb) => sb.id === "doorway-effect")!;
+const DOOR_QA = structuredClone(DOOR);
+{ const c = DOOR_QA.shots[8].cams!.find((x) => (x as { word?: string }).word === "sofa")! as Record<string, unknown>;
+  for (const k of ["pos", "look", "fov", "glide"]) delete c[k]; Object.assign(c, { move: "insert", on: "thoughtBubble", size: "close", from: 72 }); }
+SHORTS.push({ id: "inkparity-qa", ...makeShort({ ...DOOR_QA, id: "inkparity-qa" }, NARRATION["doorway-effect"]) });
 SHORTS.push({ id: "pirate-blurqa", ...makeShort({ ...PIRATE, id: "pirate-blurqa", controlledBlur: true }, NARRATION["pirate-democracy"]) });
 
 // Welcome to the Remotion Three Starter Kit!

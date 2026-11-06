@@ -27,7 +27,7 @@ export interface StudioWorld { root: THREE.Object3D; update(shot: number, f: num
 /** flashes: 4-frame white fades starting at each frame; dips: 12-frame dips to black centred on each frame (the cut) */
 /** motionBlur: the film uses camera motion blur (look/motionblur.ts); without it the post chain is unchanged */
 /** stableInk: engine-2 world ink (look/ink.ts `stable`: minimum feature width, wider anti-aliasing) */
-export interface Timeline { total: number; layersAt(f: number): { id: number; alpha: number }[]; flashes?: number[]; dips?: number[]; motionBlur?: boolean; controlledBlur?: boolean; stableInk?: boolean }
+export interface Timeline { total: number; layersAt(f: number): { id: number; alpha: number }[]; flashes?: number[]; dips?: number[]; motionBlur?: boolean; controlledBlur?: boolean; stableInk?: boolean; inkSides?: boolean }
 
 /** A/B switches for test stills only (inputProps `{ post: { ink: false, ... } }`); everything is on by default */
 type PostToggles = { ink: boolean; ink2: boolean; lens: boolean; pre: boolean; bloom: boolean; grade: boolean; grain: boolean; motion: boolean };
@@ -44,7 +44,7 @@ const makeBloom = () => {
 
 const fwd = new THREE.Vector3(), fpt = new THREE.Vector3(), ivp = new THREE.Matrix4(), mOpen = new THREE.Matrix4(), mClose = new THREE.Matrix4(), pcam = new THREE.PerspectiveCamera();
 
-function Inner<K>({ id, kit, makeWorld, blur, stableInk, controlledBlur = false }: { id: number; kit: K; makeWorld: (kit: K) => StudioWorld; blur: boolean; stableInk: boolean; controlledBlur?: boolean }) {
+function Inner<K>({ id, kit, makeWorld, blur, stableInk, controlledBlur = false, inkSides = false }: { id: number; kit: K; makeWorld: (kit: K) => StudioWorld; blur: boolean; stableInk: boolean; controlledBlur?: boolean; inkSides?: boolean }) {
   const f = useCurrentFrame();
   const { camera, scene } = useThree();
   const world = useMemo(() => makeWorld(kit), [kit, makeWorld]);
@@ -63,14 +63,14 @@ function Inner<K>({ id, kit, makeWorld, blur, stableInk, controlledBlur = false 
     if (pass) pass.enabled = moving;
   }, 0);
   const fx = useMemo(() => ({
-    ink: new InkPass(scene, camera as THREE.PerspectiveCamera, stableInk && on.ink2 ? { stable: true } : {}),
+    ink: new InkPass(scene, camera as THREE.PerspectiveCamera, { ...(stableInk && on.ink2 ? { stable: true } : {}), ...(inkSides ? { sides: true } : {}) }),
     lens: new LensBlur({ maxCoC: 24, nearScale: 1.2 }),
     bloom: makeBloom(),
     tone: new ToneMappingEffect({ mode: ToneMappingMode.NEUTRAL }),
     grade: new GradeEffect(GRADES.day, GRADE_STRENGTH.day),
     grain: new GrainEffect({ amount: 0.025, cellPx: 1.5 }), // OFF by default: the reference has no grain
     motion: new MotionBlurEffect({ controlled: controlledBlur }),
-  }), [camera, scene, stableInk, on, controlledBlur]);
+  }), [camera, scene, stableInk, on, controlledBlur, inkSides]);
   useEffect(() => () => fx.ink.dispose(), [fx]);
   const post = useMemo(() => (
     <EffectComposer multisampling={4} ref={composer}>
@@ -134,7 +134,7 @@ export function StudioFilm<K>({ timeline, makeWorld, load, background = "#cfe3f2
           <ThreeCanvas width={1080} height={1920} {...(dprOverride() ? { dpr: dprOverride() } : {})} shadows
             gl={{ antialias: false, stencil: false, powerPreference: "high-performance", toneMappingExposure: 1.0 }}
             camera={{ fov: 40, near: 0.2, far: 1500 }}>
-            <Inner id={l.id} kit={kit} makeWorld={makeWorld} blur={!!timeline.motionBlur} stableInk={!!timeline.stableInk} controlledBlur={!!timeline.controlledBlur} />
+            <Inner id={l.id} kit={kit} makeWorld={makeWorld} blur={!!timeline.motionBlur} stableInk={!!timeline.stableInk} controlledBlur={!!timeline.controlledBlur} inkSides={!!timeline.inkSides} />
           </ThreeCanvas>
         </AbsoluteFill>
       ))}

@@ -7,6 +7,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { execFileSync, spawnSync } from "node:child_process";
+import { frameChecks, runs } from "./lib/frame-checks.mjs";
 
 const argv = process.argv.slice(2);
 const [video, outDir] = argv;
@@ -52,6 +53,8 @@ for (let k = 0; k < diffs.length; k++) {
     if (atCut && !nearSeam) holds.push(k + 1); else dups.push(k + 1);
   }
 }
+// frame-level picture checks (Video 03 defect classes): near-blank runs, isolated corrupt frames, unexplained softness
+const fc = await frameChecks(video, FF);
 const [fn, fd] = (v?.r_frame_rate ?? "0/1").split("/").map(Number);
 const fps = fn / fd;
 const vDur = md5.length / fps;
@@ -84,6 +87,9 @@ const checks = [
   ["frame rate", Math.abs(fps - expFps) < 0.01, `${fps} fps (expected ${expFps})`],
   ["frame count", expFrames === null || md5.length === expFrames, `${md5.length} frames${expFrames !== null ? ` (expected ${expFrames})` : ""} = ${vDur.toFixed(3)} s`],
   ["no duplicated frames (chunk seams)", dups.length === 0, dups.length ? `duplicates at frames ${dups.slice(0, 10).join(", ")}` : "none"],
+  ["no near-blank frames (camera against scenery)", fc.nearBlank.length === 0, fc.nearBlank.length ? `frames ${runs(fc.nearBlank)}` : "none"],
+  ["no corrupt / half-refreshed frames", fc.glitch.length === 0, fc.glitch.length ? `frames ${runs(fc.glitch)}` : "none"],
+  ["no unexplained soft frames (soft while nothing moves)", fc.softStill.length === 0, fc.softStill.length ? `frames ${runs(fc.softStill)}` : "none"],
 ];
 if (audioMode !== "none") {
   checks.push(["audio track present", audioMode === "any" || !!a, a ? `${a.codec_name} ${a.sample_rate} Hz ${a.channels} ch` : "missing"]);
@@ -115,6 +121,6 @@ ${checks.map(([k, pass, d]) => `| ${k} | ${pass ? "✅" : "❌"} | ${d} |`).join
 ${soft.map(([k, d]) => `| ${k} | ${d} |`).join("\n")}
 `;
 fs.writeFileSync(path.join(outDir, "qa.md"), md);
-fs.writeFileSync(path.join(outDir, "qa.json"), JSON.stringify({ ok, frames: md5.length, fps, width: v?.width, height: v?.height, videoSeconds: vDur, audioSeconds: aDur, lufs, truePeak: tp, duplicates: dups, holds, seams, black, frozen, checks }, null, 2));
+fs.writeFileSync(path.join(outDir, "qa.json"), JSON.stringify({ ok, frames: md5.length, fps, width: v?.width, height: v?.height, videoSeconds: vDur, audioSeconds: aDur, lufs, truePeak: tp, duplicates: dups, holds, seams, nearBlank: fc.nearBlank, glitch: fc.glitch, softStill: fc.softStill, black, frozen, checks }, null, 2));
 console.log(md);
 process.exit(ok ? 0 : 1);

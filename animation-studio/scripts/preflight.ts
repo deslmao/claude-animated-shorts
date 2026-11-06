@@ -14,6 +14,7 @@ import { STORIES } from "../src/studio/stories";
 import { NARRATION } from "../src/studio/stories/voice";
 import { validate } from "../src/studio/story/validate";
 import { compile } from "../src/studio/story/compile";
+import { cameraClearance } from "../src/studio/story/clearance";
 import { soundtrackFingerprint, SoundtrackInfo, SOUNDTRACK_ENGINE } from "../src/studio/story/fingerprint";
 
 const proc = globalThis as unknown as { process: { argv: string[]; exit(n: number): never } };
@@ -27,6 +28,8 @@ if (!found) { console.log(`preflight ${comp}: FAIL\n  no storyboard "${id}" in s
 const sb = found!, narr = NARRATION[id], r = validate(sb, narr);
 problems.push(...r.errors.map((e) => `storyboard: ${e}`));
 const film = compile(sb, narr), tm = film.timing, secs = film.total / 30;
+// camera clearance (engine 3+): no camera inside or against scenery, no view blocked by a wall
+if ((sb.engine ?? 1) >= 3) problems.push(...cameraClearance(sb, film as never).map((p) => `camera: ${p.msg}`));
 if (!tm.lines.length) problems.push("the Short has no narration (no `say` lines)");
 if (tm.missing.length) problems.push(`${tm.missing.length} of ${tm.lines.length} narration lines have no generated audio (run: npm run voice -- ${id} --generate, after approving the cost)`);
 const AUDIO = `audio/${comp}.mp3`, INFO = `audio/${comp}.json`;

@@ -49,6 +49,10 @@ export type InkOptions = {
    *  width), and the mask is smoothed with a 5x5 binomial instead of the 3x3 tent, so lines move in smaller steps.
    *  Off by default: every existing film (BridgeShort included) renders exactly as before */
   stable?: boolean;
+  /** engine 3: the outline buffer skips the faces the colour pass culls (each material's own side). Without it the
+   *  buffer is drawn double-sided: with the camera inside or against closed geometry it sees inner back faces the
+   *  picture never shows, and inks their edges as phantom lines across the frame (Video 03, frames 1417-1425) */
+  sides?: boolean;
 };
 
 const DEF: Required<InkOptions> = {
@@ -57,7 +61,7 @@ const DEF: Required<InkOptions> = {
   color: "#030303", strength: 1.0,
   widthNear: 5.1, widthFar: 3.3, distNear: 6, distFar: 90, creaseScale: 0.8, // round 3: creases 0.64 -> 0.8 (building corners)
   depthLo: 0.01, depthHi: 0.03, angleLo: 35, angleHi: 50, concaveGain: 0.7, // depth jumps from 1 %; creases from 35 deg (roof eaves)
-  farOpacity: 0.95, fadeNear: 150, fadeFar: 450, stable: false,
+  farOpacity: 0.95, fadeNear: 150, fadeFar: 450, stable: false, sides: false,
 };
 
 const FS_VERT = /* glsl */ `
@@ -84,11 +88,13 @@ void main() {
 const NORMAL_FRAG = /* glsl */ `
 uniform sampler2D tCut;
 uniform float cut;
+uniform float faceCull;   // 0 = draw both faces, 1 = skip back faces, 2 = skip front faces (the material's own side)
 varying vec3 vN;
 varying vec3 vV;
 varying vec2 vCut;
 void main() {
   if (cut > 0.0 && texture2D(tCut, vCut).a < cut) discard;
+  if (faceCull > 0.5 && (faceCull < 1.5 ? !gl_FrontFacing : gl_FrontFacing)) discard;
   vec3 n;
   if (dot(vN, vN) < 1e-8) n = normalize(cross(dFdx(vV), dFdy(vV)));   // geometry without normals
   else n = normalize(vN) * (gl_FrontFacing ? 1.0 : -1.0);            // back faces of double-sided planes
@@ -294,7 +300,7 @@ export class InkPass extends Pass {
 
   constructor(scene: THREE.Scene, camera: THREE.PerspectiveCamera, options: InkOptions = {}) {
     super("InkPass");
-    const o = { ...DEF, ...options };
+    const o = { ...DEF, ...options }, sides = !!o.sides;
     this.world = scene;
     this.cam = camera;
     this.cam.layers.enable(NOINK); // the main render still shows the NOINK layer (and its shadows)
@@ -318,7 +324,7 @@ export class InkPass extends Pass {
 
     this.normalMat = new THREE.ShaderMaterial({
       vertexShader: NORMAL_VERT, fragmentShader: NORMAL_FRAG, side: THREE.DoubleSide,
-      uniforms: { tCut: { value: null }, cut: { value: 0 }, cutUv: { value: new THREE.Matrix3() } },
+      uniforms: { tCut: { value: null }, cut: { value: 0 }, cutUv: { value: new THREE.Matrix3() }, faceCull: { value: 0 } },
     });
     // per object: copy the original material's cut-out (map + alphaTest) so alpha-tested world planes keep their shape
     this.normalMat.onBeforeRender = (_r, _s, _c, _g, object, group) => {
@@ -329,6 +335,8 @@ export class InkPass extends Pass {
       const map = src && src.alphaTest > 0 ? src.map : null;
       u.tCut.value = map; u.cut.value = map ? src.alphaTest : 0;
       if (map) { map.updateMatrix(); (u.cutUv.value as THREE.Matrix3).copy(map.matrix); }
+      // engine 3: the same faces as the colour pass, so the outlines only ever trace what the picture shows
+      if (sides) u.faceCull.value = !src || src.side === THREE.DoubleSide ? 0 : src.side === THREE.BackSide ? 2 : 1;
       this.normalMat.uniformsNeedUpdate = true;
     };
     const fs = (fragmentShader: string, uniforms: Record<string, THREE.IUniform>) =>

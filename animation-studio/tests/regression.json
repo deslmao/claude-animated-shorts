@@ -44,6 +44,11 @@
       "composition": "Short-capabilities",
       "frame": 185,
       "why": "stage 3C: Juno holding a book (swapped from the flask on a word)"
+    },
+    {
+      "composition": "Short-inkparity-qa",
+      "frame": 1418,
+      "why": "engine 3 ink: a camera inside scenery (Video 03's original keys-bubble insert) shows no phantom outline lines"
     }
   ]
 }

@@ -17,7 +17,7 @@ const load = () => Promise.resolve(true);
 export const makeShort = (sb: Storyboard, narr?: Narration) => {
   const film = compile(sb, narr);
   const groups = sb.captions === false ? [] : placeCaptions(film, captionGroups(film.timing.lines, film.total));
-  const makeWorld = () => new SetWorld(film.shots, film.director, { clearShots: true, stable: sb.engine === 2 });
+  const makeWorld = () => new SetWorld(film.shots, film.director, { clearShots: true, stable: (sb.engine ?? 1) >= 2 });
   const Comp: React.FC = () => (
     <AbsoluteFill>
       <StudioFilm timeline={film.timeline} makeWorld={makeWorld} load={load} />

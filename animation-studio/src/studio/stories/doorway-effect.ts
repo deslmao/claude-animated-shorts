@@ -11,7 +11,7 @@ export const DOORWAYEFFECT: Storyboard = {
   id: "doorway-effect",
   title: "Why You Forget Why You Walked Into a Room",
   cast: { milo: "milo", juno: "juno", volA: { extra: 3 }, volB: { extra: 7 } },
-  music: "curious", motionBlur: true, controlledBlur: true, engine: 2,
+  music: "curious", motionBlur: true, controlledBlur: true, engine: 3,
   shots: [
     // HOOK: we fly through the doorway into the kitchen with Milo, his thought bubble (the keys) bursts the moment he
     // arrives ("forget"), then the camera snaps round to the doorway itself, low and accusing ("the doorway did it")
@@ -105,7 +105,7 @@ export const DOORWAYEFFECT: Storyboard = {
       camera: { move: "at", pos: [-3.6, 1.55, 4.4], look: [-3.2, 1.1, -0.8], fov: 46 },
       cams: [
         { word: "brain", move: "at", pos: [-0.9, 1.55, 4.4], look: [-0.5, 1.1, -0.8], fov: 46, glide: 2.6 },   // travels with Milo
-        { word: "scenes", move: "at", pos: [0.0, 1.55, 4.0], look: [0.0, 1.2, -0.8], fov: 46, glide: 0.25 },
+        { word: "scenes", move: "at", pos: [0.0, 1.55, 4.0], look: [0.0, 1.2, -0.8], fov: 46, glide: 0.25, blockOk: true },   // the wall edge splits the frame: intended
         { word: "boundary", move: "at", pos: [-1.9, 0.5, 0.95], look: [0.0, 1.45, -0.45], fov: 44, fly: true },
         { word: "big", move: "closeUp", on: "milo", from: -55, punch: true },
       ],
@@ -125,7 +125,9 @@ export const DOORWAYEFFECT: Storyboard = {
         { word: "tuck", move: "at", pos: [2.6, 1.45, -0.35], look: [-2.6, 1.4, -0.75], fov: 40, fly: true },
         { word: "harder", move: "at", pos: [3.6, 1.4, -0.4], look: [-2.6, 1.45, -0.75], fov: 34, glide: 0.8 },
         { word: "deleted", move: "at", pos: [-1.0, 1.55, -0.3], look: [-2.6, 1.5, -0.85], fov: 42, fly: true },
-        { word: "sofa", move: "insert", on: "thoughtBubble", size: "close", from: 72 },
+        // the zoom into the keys, placed by hand inside the living room: below the pendant lamp (shade bottom ~1.9 m) and
+        // well clear of the doorway wall (the computed insert put the camera inside the door head: Video 03 frames 1410-1425)
+        { word: "sofa", move: "at", pos: [-1.55, 1.46, -0.5], look: [-2.6, 1.44, -0.85], fov: 42, glide: 0.6 },
       ],
       props: [{ id: "thoughtBubble", at: [-2.6, 0.95, -0.85], scale: 1.4, yaw: 76 }, { id: "keyBowl", at: [-2.6, 0.45, -0.75] }], // the bubble turned to the kitchen-side cameras
       actors: [

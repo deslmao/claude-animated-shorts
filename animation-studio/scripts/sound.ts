@@ -28,7 +28,10 @@ if (!tm.lines.length) fail("the storyboard has no narration");
 if (tm.missing.length) fail(`${tm.missing.length} narration line(s) not generated yet: run npm run voice -- ${sb.id} (dry run shows the cost)`);
 
 const plan = soundPlan(film, sb), comp = `Short-${sb.id}`;
-const seed = parseInt(soundtrackFingerprint({ ...sb, shots: [] }, undefined, "seed").slice(0, 7), 16);
+// the music / ambience seed comes from the storyboard's top-level settings. Render engine generations from 3 on are
+// render-only (Video 03: the outline fix moved it from engine 2 to 3 and re-randomised its approved score), so they
+// seed as engine 2: every existing storyboard keeps its seed, and an engine change never alters a soundtrack
+const seed = parseInt(soundtrackFingerprint({ ...sb, shots: [], ...((sb.engine ?? 1) >= 3 ? { engine: 2 as const } : {}) }, undefined, "seed").slice(0, 7), 16);
 const job = {
   id: sb.id, composition: comp, frames: film.total, seconds: film.total / 30, seed,
   fingerprint: soundtrackFingerprint(sb, narr), engine: SOUNDTRACK_ENGINE,
