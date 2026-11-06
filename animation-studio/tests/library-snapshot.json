@@ -264,7 +264,8 @@
   "offer": "",
   "write": "",
   "grab": "",
-  "block": ""
+  "block": "",
+  "eat": ""
  },
  "effects": {
   "question": "",
@@ -653,6 +654,7 @@
   "thoughtBubble": "1c13395fdeea65",
   "motorCar1904": "118cbbd9ef03af",
   "farmDog": "149485666e5603",
+  "farmDogCollie": "149485666e5603",
   "appleTree": "05b3650763e368",
   "finishArch": "178bf0a3f4b667",
   "finishTape": "15b067d9860735",

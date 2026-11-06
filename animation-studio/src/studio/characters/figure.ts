@@ -416,12 +416,14 @@ const hat3 = (p: Pen, L: Look, H: Blob, cx: number, hc: number, light: number, f
 // ---------------- gestures ----------------
 export type Gesture = "hang" | "wave" | "point" | "pointUp" | "shrug" | "facepalm" | "chin" | "thumbsUp" | "crossArms" | "hips" | "raiseHand"
   | "cheer" | "talk" | "scratchHead" | "coverMouth" | "present" | "fists" | "clap" | "belly" | "stop" | "pump" | "spread" | "hold"
-  | "tickleSelf" | "tickle" | "operate" | "read" | "offer" | "write" | "grab" | "block";
+  | "tickleSelf" | "tickle" | "operate" | "read" | "offer" | "write" | "grab" | "block"
+  /** eat (Video 04): the held item raised to the mouth, drawn over the face (a bite) */
+  | "eat";
 export const GESTURES: Gesture[] = ["hang", "wave", "point", "pointUp", "shrug", "facepalm", "chin", "thumbsUp", "crossArms", "hips", "raiseHand",
-  "cheer", "talk", "scratchHead", "coverMouth", "present", "fists", "clap", "belly", "stop", "spread", "hold", "tickleSelf", "tickle", "operate", "read", "offer", "write", "grab", "block"];
+  "cheer", "talk", "scratchHead", "coverMouth", "present", "fists", "clap", "belly", "stop", "spread", "hold", "tickleSelf", "tickle", "operate", "read", "offer", "write", "grab", "block", "eat"];
 /** gestures that show a held item off overhead (raise it, point it up, cheer with it); any other gesture becomes "hold"
  *  (the item at chest height, close to the body, so it stays in frame in medium shots) while something is held */
-const CARRY: Gesture[] = ["hold", "raiseHand", "pointUp", "cheer", "operate", "read", "offer", "write", "grab"];
+const CARRY: Gesture[] = ["hold", "raiseHand", "pointUp", "cheer", "operate", "read", "offer", "write", "grab", "eat"];
 type Hand = "dot" | "point" | "thumb" | "open" | "fist" | "wiggle" | "palm";
 /** layer: 0 behind the torso, 1 in front of the torso, 2 over the face */
 type ArmDef = { pts: [P2, P2, P2]; layer: 0 | 1 | 2; hand: Hand; dir?: number };
@@ -514,6 +516,7 @@ export const rigFront = (L: Look, pose: Pose) => {
       add(s, [tcx + s * 0.85 * T.a, chin + 0.42 * HH], [300 + s * 0.12 * W + 7 * u * facing, chin - 0.02 * HH], 2, "fist");
       void S; break;
     }
+    case "eat": one((s) => add(s, [tcx + s * 1.02 * T.a, chin + 0.4 * HH], [300 + 6 * u * facing + s * 10 * u, hc + 0.95 * H.b], 2, "fist")); break; // the fist under the mouth corner, the item above it
     case "facepalm": one((s) => add(s, [tcx + s * 1.0 * T.a, chin + 0.36 * HH], [300 + 6 * u * facing + s * 4 * u, hc + 0.02 * HH], 2, "open")); break;
     case "scratchHead": one((s) => { const S = S1(s); add(s, [S[0] + s * 0.46 * HH, S[1] - 0.2 * HH], [300 + s * 0.42 * W, hc - 0.55 * H.b], 2, "dot"); }); break;
     case "coverMouth": for (const s of [-1, 1]) add(s, [tcx + s * 1.05 * T.a, chin + 0.4 * HH], [300 + 8 * u * facing + s * 9 * u, hc + 0.5 * H.b], 2, "open"); break;
@@ -759,7 +762,7 @@ export const figureFront = (p: Pen, L: Look, pose: Pose) => {
     }
   }
   // held item: in the holding hand (the gesturing arm on the `hand` side), in front of the body, behind the head
-  if (pose.hold && ITEMS[pose.hold] && mode !== "fall") {
+  if (pose.hold && ITEMS[pose.hold] && mode !== "fall" && g !== "eat") {
     const hold = arms.find((a) => Math.sign(a.pts[0][0] - tcx) === hs && a.hand !== "dot") ?? arms.find((a) => Math.sign(a.pts[0][0] - tcx) === hs);
     if (g === "read") { ITEMS[pose.hold].draw(p, tcx, chin + 0.66 * HH, u, hs); for (const a of arms) drawHand(a); } // held open in both hands
     // an item held out to someone (offer) or written with (write) is drawn larger, so the handed-over thing reads
@@ -784,6 +787,11 @@ export const figureFront = (p: Pen, L: Look, pose: Pose) => {
   // arms over the face are drawn in the body's frame
   p.rot = A ? [rad(A), 300, hipY] : null;
   for (const a of arms) if (a.layer === 2) drawArm(a);
+  // eating: the held item at the mouth, over the face, the fingers over it
+  if (g === "eat" && pose.hold && ITEMS[pose.hold] && mode !== "fall") {
+    const ea = arms.find((a) => a.layer === 2);
+    if (ea) { drawHand(ea); ITEMS[pose.hold].draw(p, ea.pts[2][0], ea.pts[2][1] - 4 * u, u, hs); } // the item at the mouth, over the fingers
+  }
   p.rot = null;
 };
 

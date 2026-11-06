@@ -164,8 +164,12 @@ const motorCarRig = (a: At, variant?: string): PropRig => {
 };
 
 /** a stylised farm dog (forward local +z): tan coat, white chest, dark floppy ears, open barking mouth */
-const dogParts = () => {
-  const coat = col("#b07a4a"), chest = col("#f2e6d0"), ear = col("#5a3a26"), nose = col("#22202a"), tongue = col("#e0707a");
+type DogCoat = { coat: string; chest: string; ear: string };
+const TAN: DogCoat = { coat: "#b07a4a", chest: "#f2e6d0", ear: "#5a3a26" };
+/** a black-and-white collie coat: reads against dry golden grass (Video 04 chase) */
+const COLLIE: DogCoat = { coat: "#2a2630", chest: "#f6f2ea", ear: "#1c1a22" };
+const dogParts = (pal: DogCoat = TAN) => {
+  const coat = col(pal.coat), chest = col(pal.chest), ear = col(pal.ear), nose = col("#22202a"), tongue = col("#e0707a");
   const body = new Batch(), head = new Batch(), jaw = new Batch(), tail = new Batch(), legs = [0, 1, 2, 3].map(() => new Batch()), I = new THREE.Matrix4();
   sph(body, coat, I, 0, 0, 0, 0.17, 0.16, 0.34, 16);
   sph(body, chest, I, 0, -0.04, 0.2, 0.12, 0.12, 0.13, 12);
@@ -180,16 +184,16 @@ const dogParts = () => {
   return { body, head, jaw, tail, legs };
 };
 const LEG_AT: [number, number][] = [[-0.09, 0.2], [0.09, 0.2], [-0.09, -0.22], [0.09, -0.22]];
-const dogStatic = (b: Batch, a: At) => {
-  const m = frame(a), P = dogParts(), put = (src: Batch, x: number, y: number, z: number) => {
+const dogStatic = (b: Batch, a: At, pal: DogCoat = TAN) => {
+  const m = frame(a), P = dogParts(pal), put = (src: Batch, x: number, y: number, z: number) => {
     const g = new THREE.Group(); src.build(g, true); g.updateMatrixWorld(true);
     g.traverse((o) => { const me = o as THREE.Mesh; if (me.isMesh) b.add(me.geometry, me.material as THREE.Material, m.clone().multiply(new THREE.Matrix4().makeTranslation(x, y, z))); });
   };
   put(P.body, 0, 0.42, 0); put(P.head, 0, 0.6, 0.36); put(P.jaw, 0, 0.53, 0.38); put(P.tail, 0, 0.5, -0.32);
   LEG_AT.forEach(([x, z], i) => put(P.legs[i], x, 0.31, z));
 };
-const dogRig = (a: At): PropRig => {
-  const root = new THREE.Group(), P = dogParts(), grp = (src: Batch, x: number, y: number, z: number) => { const g = new THREE.Group(); src.build(g, true); g.position.set(x, y, z); root.add(g); return g; };
+const dogRig = (a: At, pal: DogCoat = TAN): PropRig => {
+  const root = new THREE.Group(), P = dogParts(pal), grp = (src: Batch, x: number, y: number, z: number) => { const g = new THREE.Group(); src.build(g, true); g.position.set(x, y, z); root.add(g); return g; };
   const body = grp(P.body, 0, 0.42, 0), head = grp(P.head, 0, 0.6, 0.36), jaw = grp(P.jaw, 0, 0.53, 0.38), tail = grp(P.tail, 0, 0.5, -0.32);
   const legs = LEG_AT.map(([x, z], i) => grp(P.legs[i], x, 0.31, z));
   root.position.set(a.x, 0, a.z); root.rotation.y = a.yaw ?? 0; root.scale.setScalar(a.s ?? 1);
@@ -429,7 +433,9 @@ export const RACE1904: Theme = {
     motorCar1904: { name: "Motor car (1900s)", desc: "an early-1900s open motor car: high bench seat, brass lamps and radiator, spoked wheels (forward = +z). A rider travels in it with track (the rider seat is at offset [0.35, 0.25] from the car: use track { who, offset: [0.35, 0.25] } on the rider, who sits at y 0.55 and walks with mode \"ride\"); variants: running, broken (bonnet up, steam)", category: "theme", themes: ["history", "1904", "edwardian", "car"], tags: ["car", "automobile", "motor", "vehicle", "drive", "ride", "1900s"], radius: 1.3, height: 1.6, box: [0.75, 1.3],
       build: (b, a) => motorCar(b, a), variants: { running: (b, a) => motorCar(b, a), broken: (b, a) => motorCar(b, a, true) }, rig: motorCarRig },
     farmDog: { name: "Farm dog (stylised)", desc: "a tan farm dog with a white chest and floppy ears; animated with track (it gallops after the actor, barking): track { who, behind: 1.4 }", category: "theme", themes: ["history", "farm", "nature", "any"], tags: ["dog", "animal", "pet", "chase", "bark", "farm"], radius: 0.4, height: 0.75,
-      build: dogStatic, rig: dogRig },
+      build: (b, a) => dogStatic(b, a), rig: (a) => dogRig(a) },
+    farmDogCollie: { name: "Farm dog (collie, black and white)", desc: "the stylised farm dog with a black-and-white collie coat: high contrast on dry grass or dirt; animated with track like farmDog (track { who, behind })", category: "theme", themes: ["history", "farm", "nature", "any"], tags: ["dog", "animal", "pet", "chase", "bark", "farm", "collie"], radius: 0.4, height: 0.75,
+      build: (b, a) => dogStatic(b, a, COLLIE), rig: (a) => dogRig(a, COLLIE) },
     appleTree: { name: "Apple tree", desc: "an orchard apple tree (~3.4 m) with red apples and windfalls on the grass", category: "nature", themes: ["nature", "farm", "history", "any"], tags: ["tree", "apple", "orchard", "fruit", "farm"], radius: 1.4, height: 3.6, build: (b, a) => appleTree(b, a) },
     finishArch: { name: "Finish banner", desc: "a race banner across a road on two posts 5.4 m apart (top 3.3 m), red-white-blue bunting, a chalk line; the variant is the banner text (FINISH, START, ST. LOUIS 1904...)", category: "theme", themes: ["sport", "history", "1904", "race"], tags: ["finish", "start", "race", "banner", "line", "marathon"], radius: 2.8, height: 3.3, box: [2.8, 0.12],
       build: (b, a, v) => finishArch(b, a, v), param: { desc: "banner text (1-18 letters, digits, spaces, . , : ! ? ' - $ % # & + /)", ok: displayTextOk } },

@@ -20,7 +20,8 @@ const SPECT = (acts: ("excited" | "happy" | "neutral")[] = ["excited", "happy"])
   { who: "sp3", at: R(28.3, -2.0), act: acts[0], facing: 1 as const, gesture: "clap" as const }, { who: "sp4", at: R(26.8, 2.0), act: acts[1 % acts.length], facing: 1 as const },
   { who: "sp5", at: R(27.9, 2.05), act: acts[0], facing: 1 as const, gesture: "clap" as const },
 ];                  // a rider's floor height in the motor car (the card sits on the bench)
-const LORZ_CAR: [number, number] = [0.35, 0.25], DRIVER_CAR: [number, number] = [-0.35, 0.25]; // track offsets: rider seat -> car
+const LORZ_CAR: [number, number] = [0.35, 0.0], DRIVER_CAR: [number, number] = [-0.35, 0.25]; // track offsets: rider seat -> car (Lorz on the front of the bench: the seat back stays behind him)
+const LORZ_SEAT = 0.72; // Lorz rides a little higher than the drivers, so his body reads over the car side
 
 export const MARATHON1904: Storyboard = {
   id: "marathon-1904", title: "The Worst Olympic Marathon Ever",
@@ -120,7 +121,7 @@ export const MARATHON1904: Storyboard = {
       camera: { move: "follow", on: "milo", size: "full", from: -18, height: 1.25 },
       cams: [{ word: "car", move: "follow", on: "milo", size: "medium", from: -12, height: 1.75, glide: 0.5 }],
       actors: [
-        { who: "milo", at: R(-15.0, 0.75, SEAT), mode: "sit", act: "proud", walk: { to: R(-6.0, 0.75, SEAT), t0: 0, t1: 1.75, mode: "ride" }, beats: [{ word: "eleven", look: "camera", face: "grin" }] },
+        { who: "milo", at: R(-15.0, 0.75, LORZ_SEAT), mode: "sit", act: "proud", walk: { to: R(-6.0, 0.75, LORZ_SEAT), t0: 0, t1: 1.75, mode: "ride" }, beats: [{ word: "eleven", look: "camera", face: "grin" }] },
         { who: "mgr", at: R(-15.0, 0.05, SEAT), mode: "sit", act: "happy", walk: { to: R(-6.0, 0.05, SEAT), t0: 0, t1: 1.75, mode: "ride" } },
         { who: "r1", at: R(-12.5, -0.9), act: "sad", walk: { to: R(-9.6, -0.9), t0: 0, t1: 1.75, mode: "run" } },
         { who: "r2", at: R(-10.5, -0.6), act: "neutral", walk: { to: R(-7.8, -0.6), t0: 0, t1: 1.75, mode: "run" } },
@@ -132,7 +133,7 @@ export const MARATHON1904: Storyboard = {
     { say: "When it broke down, he jogged in and finished first.", set: "raceRoad", light: "golden", transition: "cut", until: { word: "he" },
       camera: { move: "at", pos: R(21.4, 4.6, 1.45), look: R(19.0, -0.5, 1.0), fov: 46 },
       actors: [
-        { who: "milo", at: R(15.5, 0.75, SEAT), mode: "sit", act: "happy", walk: { to: R(18.8, 0.75, SEAT), t0: 0, t1: 0, until: { word: "broke" }, mode: "ride" }, beats: [{ word: "broke", face: "shock" }] },
+        { who: "milo", at: R(15.5, 0.75, LORZ_SEAT), mode: "sit", act: "happy", walk: { to: R(18.8, 0.75, LORZ_SEAT), t0: 0, t1: 0, until: { word: "broke" }, mode: "ride" }, beats: [{ word: "broke", face: "shock" }] },
         { who: "mgr", at: R(15.5, 0.05, SEAT), mode: "sit", act: "happy", walk: { to: R(18.8, 0.05, SEAT), t0: 0, t1: 0, until: { word: "broke" }, mode: "ride" }, beats: [{ word: "broke", face: "shock" }] },
       ],
       props: [
@@ -233,12 +234,14 @@ export const MARATHON1904: Storyboard = {
         { who: "r4", at: R(-3.4, -0.8), act: "neutral", walk: { to: R(-0.1, -0.8), t0: 0, t1: 1.2, mode: "run" } },
       ] },
     { cont: true, set: "raceRoad", light: "golden", transition: "cut", until: { word: "napped" },
-      note: "under the apple tree: looking up into the branches (his view), then the bitten rotten apple in his hand",
-      camera: { move: "at", pos: [1.3, 0.95, 0.4], look: [2.9, 1.6, -3.9], fov: 46 },
+      note: "under the apple tree: a red apple to his mouth, a bite, it's rotten (a quick close look at the bitten brown apple), his face",
+      camera: { move: "frame", on: ["carv"], size: "medium", from: 15, height: 1.35 },
       cams: [
-                { word: "rotten", move: "insert", on: "carv.held", size: "macro" },
+        { word: "apples", move: "insert", on: "carv.held", size: "close" },
+        { t: 0.98, move: "closeUp", on: "carv", from: 15 },
       ],
-      actors: [{ who: "carv", at: [2.5, 0, -3.0], act: "happy", facing: 0, gesture: "hold", hold: "appleRotten", beats: [{ word: "rotten", face: "disgusted" }] }] },
+      actors: [{ who: "carv", at: [2.5, 0, -3.0], act: "happy", facing: 0, gesture: "hold", hold: "apple",
+        beats: [{ t: 0.04, gesture: "eat" }, { word: "rotten", hold: "appleRotten", face: "disgusted" }, { t: 0.45, gesture: "hold" }] }] },
     { cont: true, set: "raceRoad", light: "golden", transition: "cut", until: { word: "finished" },
       note: "the nap, from above, held over the narration's pause",
       camera: { move: "at", pos: [3.6, 2.7, -0.7], look: [2.7, 0.9, -3.3], fov: 44 },
@@ -261,11 +264,11 @@ export const MARATHON1904: Storyboard = {
       camera: { move: "follow", on: "taun", size: "full", from: 25, height: 1.0 },
       actors: [{ who: "taun", at: R(4.0, 0.2), act: "determined", walk: { to: R(9.2, 0.2), t0: 0, t1: 1.6, mode: "run" } }] },
     { cont: true, set: "raceRoad", light: "golden", transition: "cut", until: { word: "and" },
-      camera: { move: "at", pos: [9.0, 1.15, 2.9], look: [12.8, 0.9, -5.0], fov: 46 },
-      cams: [{ word: "course", move: "at", pos: [10.8, 4.6, 4.3], look: [13.2, 0.6, -4.7], fov: 44, swoop: 0.6 }],
+      camera: { move: "follow", on: "taun", size: "wide", from: -90, height: 1.0 },   // side-on: runner and dog both in profile
+      cams: [{ word: "off", move: "at", pos: [10.8, 4.6, 4.3], look: [13.2, 0.6, -4.7], fov: 44, glide: 0.5 }],      // high: the COURSE arrow points the other way
       actors: [{ who: "taun", at: R(10.4, 0.0), act: "scared", walk: { to: [14.2, 0, -8.4], t0: 0, t1: 2.0, mode: "run" }, face: "scared" }],
       props: [
-        { id: "farmDog", at: R(10.0, -0.8), track: { who: "taun", behind: 1.3 } },
+        { id: "farmDogCollie", at: R(10.0, 1.6), scale: 1.35, track: { who: "taun", behind: 0.85 } },
         { id: "arrowSign", at: R(13.4, -1.85), variant: "COURSE" },
       ],
       fx: [{ kind: "speed", on: "taun", t: 0.6, life: 1.2 }],
@@ -337,10 +340,10 @@ export const MARATHON1904: Storyboard = {
     { cont: true, set: "raceRoad", light: "day", transition: "whip",
       camera: { move: "at", pos: R(36.6, 0.7, 1.0), look: R(29.6, 0, 1.55), fov: 40 },
       cams: [
-        { word: "On", move: "at", pos: R(36.6, 0.3, 0.45), look: R(32.7, 0.05, 0.3), fov: 30, swoop: 0.45 },
+        { word: "On", move: "at", pos: R(36.5, 0.25, 0.35), look: R(32.9, 0.05, 0.62), fov: 38, swoop: 0.45 },
       ],
       actors: [
-        ...SPECT(["happy", "excited"]),{ who: "milo", at: R(25.0, 0), act: "excited", walk: { to: R(32.9, 0), t0: 0, t1: 3.42, mode: "run" }, beats: [{ word: "Boston", face: "laugh" }] }],
+        ...SPECT(["happy", "happy"]),{ who: "milo", at: R(25.0, 0), act: "excited", walk: { to: R(32.9, 0), t0: 0, t1: 3.42, mode: "run" }, beats: [{ word: "Boston", face: "laugh" }] }],
       props: [
         { id: "finishArch", at: R(30), yaw: 90, variant: "BOSTON 1905" },
         { id: "finishTape", at: R(30), yaw: 90, steps: [{ word: "Boston" }] },
