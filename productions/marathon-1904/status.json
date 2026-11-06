@@ -77,5 +77,27 @@
   ],
   "voices": "established Thinkora settings: hook line georgeLively (as Video 03 and Pirate Democracy), Milo liam (as Video 03), every other line george",
   "scriptToolHash": "093c93a91d4ec9"
+ },
+ "narrationTiming": {
+  "state": "approved-timing candidate (owner approved the timing in principle)",
+  "timelineSeconds": 65.33,
+  "frames": 1960,
+  "pauses": {
+   "hook: after 'ride'": 0.12,
+   "hook: after 'poison'": 0.2,
+   "Carvajal: after 'napped' (cut before the breath)": 0.35,
+   "after 'Lorz?'": 0.3,
+   "before 'On foot.'": 0.6
+  },
+  "checks": {
+   "linesMatchApprovedScript": true,
+   "linesRegenerated": 0,
+   "voiceRecordingsReused": "14 of 14 (unchanged files)",
+   "onlySilenceChanged": "every spoken sample identical to the source clips (24-bit precision)",
+   "npmTest": "pass"
+  },
+  "pronunciation": "NOT VERIFIED: the owner is reviewing narration/pronunciation-check.mp3; no automated check was reliable",
+  "reviewAudio": "productions/marathon-1904/narration/marathon-1904-narration-v2.mp3",
+  "commit": "853eaa6"
  }
 }
