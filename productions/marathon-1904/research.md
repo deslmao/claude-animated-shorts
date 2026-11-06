@@ -70,3 +70,36 @@ en.wikipedia.org), which return that page's own statements, and cross-checked ac
 - "First recorded drug use in the modern Olympics": Smithsonian says so, but "first" claims are hard to prove.
 - Number of nations (sources give 4 or 7) and Albert Corey's nationality (French, listed for the USA): not used.
 - "The car ride was 11 vs 10 miles": the script uses eleven, the figure in Olympics.com and Wikipedia.
+
+## Revision v2 (script-v2.md): research changes
+`script.md` (the original) is unchanged; these notes cover the revised script only.
+
+| # | v2 wording | Change | Source | Confidence |
+|---|---|---|---|---|
+| 22 | "A car ride. Rat poison. A nap." (hook) | three events already in the story, previewed: Lorz's car (fact 1), Hicks's strychnine (facts 10–11), Carvajal's nap (fact 15) | as those facts | solid |
+| 23 | "one official water stop" | replaces "one place to get water": Carvajal drank from a water tower along the way, so "one place" was too absolute | Smithsonian ("only one official water stop, 12 miles in"); Olympics.com (a well at halfway); Wikipedia (Carvajal's water-tower drink at about 6 miles) | solid |
+| 24 | "rode the next eleven in a car" (after mile nine) | restores the car-ride distance that the old hook carried | Wikipedia (dropped out after nine miles; manager drove "the next eleven miles"); Olympics.com ("the next 11 miles"); Olympedia (dropped out at nine miles) | solid |
+| 25 | "it was only the third Olympic marathon" | replaces "nobody knew how to run a marathon safely yet" (an over-generalisation) with a checkable fact | Olympedia: the Olympic marathon was held in 1896 (Athens, results 56017, won by Spyridon Louis), 1900 (Paris, results 56066, won by Michel Théato) and 1904 (results 56131), so St. Louis was the third; Olympics.com "The inaugural modern Olympic marathon" (1896) | solid |
+| 26 | "no drug rules" | precise form of the old "no rules on drugs": strychnine was a legal stimulant then | Olympics.com ("a popular and legal stimulant at the time"); Wikipedia (Hicks): strychnine forbidden for athletes only since the late 1960s | solid |
+| 27 | "little water, and car dust that nearly killed one runner" | same facts, shorter | facts 4 and 18 (William Garcia's near-fatal haemorrhage from the dust raised by the cars) | solid |
+| 28 | "chased a mile off course by a dog" | resolves dog vs dogs: see below | Smithsonian; Wikipedia race page | as strong as the sources allow (see below) |
+| 29 | "His ban was cut short" | replaces "lifted": the AAU's lifetime ban was commuted to six months on 19 Feb 1905, before the Boston Marathon (19 April 1905), so "cut short" is exact and "next spring" holds | Wikipedia (Lorz); Olympics.com (ban lifted in time for Boston) | solid |
+| 30 | "Only fourteen finished." removed from the narration | trimmed for runtime; the fact stays on screen (the in-world score board can show "14 / 32") | fact 17 | solid |
+
+### Dog vs dogs: decision
+- **Singular ("a dog"):** Smithsonian (Karen Abbott, 2012) and Wikipedia's race page.
+- **Plural ("a pack of wild dogs"):** Olympics.com and ABC News (2020).
+- **Olympedia** (the results historians' database, the strongest source for the race record) does not mention the
+  incident at all. I could not reach the 1905 primary account (Lucas) or a 1904 newspaper from this session.
+- **Decision: "a dog".** Smithsonian is the strongest *documented* account. It is a researched history piece built on
+  the 1905 Lucas report and contemporary newspapers (the St. Louis Post-Dispatch), while the Olympics.com and ABC
+  pieces are uncited features. Wikipedia agrees with the singular. "Wild" is left out because it is the most
+  embellished part in every version.
+- **What would settle it:** the Lucas text (*The Olympic Games 1904*, 1905) or a 1904 newspaper report, both
+  unreachable from this session (the network blocks those hosts).
+
+### Additional sources (v2)
+- https://www.olympedia.org/results/56017 (1896 Olympic marathon)
+- https://www.olympedia.org/results/56066 (1900 Olympic marathon)
+- https://www.olympics.com/ioc/news/the-inaugural-modern-olympic-marathon
+- https://www.abc.net.au/news/2020-07-26/the-wildest-olympic-event-in-modern-history/12467362 (plural dogs)
