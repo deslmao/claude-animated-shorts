@@ -104,7 +104,7 @@ export const DOORWAYEFFECT: Storyboard = {
     { say: "You see, your brain doesn't record life as one long video. It seems to cut it into scenes. Psychologists call each cut an event boundary, and a doorway is a big one.", set: "apartment", light: "interior", transition: "cut",
       camera: { move: "at", pos: [-3.6, 1.55, 4.4], look: [-3.2, 1.1, -0.8], fov: 46 },
       cams: [
-        { word: "video", move: "at", pos: [-0.9, 1.55, 4.4], look: [-0.5, 1.1, -0.8], fov: 46, glide: 1.2 },
+        { word: "brain", move: "at", pos: [-0.9, 1.55, 4.4], look: [-0.5, 1.1, -0.8], fov: 46, glide: 2.6 },   // travels with Milo
         { word: "scenes", move: "at", pos: [0.0, 1.55, 4.0], look: [0.0, 1.2, -0.8], fov: 46, glide: 0.25 },
         { word: "boundary", move: "at", pos: [-1.9, 0.5, 0.95], look: [0.0, 1.45, -0.45], fov: 44, fly: true },
         { word: "big", move: "closeUp", on: "milo", from: -55, punch: true },
