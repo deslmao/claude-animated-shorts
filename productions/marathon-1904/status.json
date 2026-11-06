@@ -277,5 +277,15 @@
   "pronunciation": "NOT VERIFIED: the owner is reviewing narration/pronunciation-check.mp3; no automated check was reliable",
   "reviewAudio": "productions/marathon-1904/narration/marathon-1904-narration-v2.mp3",
   "commit": "853eaa6"
+ },
+ "render": {
+  "inputs": "1111c0bbcdd448",
+  "sha": "a1e79289bb9f20c3fd86110af103be17e1823f8a",
+  "branch": "claude/admiring-hopper-kbrb3d",
+  "requested": "2026-11-06T19:46:28.848Z",
+  "attempt": 1,
+  "runId": 42282580673,
+  "runNumber": 21,
+  "url": "https://github.com/deslmao/claude-animated-shorts/actions/runs/42282580673"
  }
 }
