@@ -4,14 +4,14 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-07T06:38:21.397Z",
-   "inputs": "19526353a2ccf0n",
-   "detail": "valid; 25 warning(s):\n  shot 2 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 4 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 5 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 7 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 8 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 9 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 10 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 11 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 12 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 14 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 16 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 17 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 18 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 19 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 20 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 21 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 1 (hallway): milo fills 57 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 3 (hallway): milo fills 55 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 3 (hallway): milo's hand (present) is out of frame @0.6s (side): widen the shot or change the gesture\n  shot 7 (hallway): milo fills 68 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 8 (hallway): milo's raised hand (spread) is out of frame @1.4s (side): widen the shot or change the gesture\n  shot 9 (hallway): milo's hand (present) is out of frame @1.0s (side): widen the shot or change the gesture\n  shot 12 (hallway): milo fills 31 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 17 (hallway): milo fills 51 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 20 (hallway): milo's hand (present) is out of frame @0.6s (side): widen the shot or change the gesture"
+   "at": "2026-11-07T07:58:24.990Z",
+   "inputs": "070ef7979d878cn",
+   "detail": "valid; 24 warning(s):\n  shot 2 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 4 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 5 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 7 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 8 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 9 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 10 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 11 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 12 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 14 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 16 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 17 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 18 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 19 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 20 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 21 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 1 (hallway): milo fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 3 (hallway): milo fills 55 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 3 (hallway): milo's hand (present) is out of frame @0.6s (side): widen the shot or change the gesture\n  shot 7 (hallway): milo fills 30 % of the frame in the foreground @3.6s (is it hiding the action?)\n  shot 8 (hallway): milo's raised hand (spread) is out of frame @1.4s (side): widen the shot or change the gesture\n  shot 9 (hallway): milo's hand (present) is out of frame @1.0s (side): widen the shot or change the gesture\n  shot 12 (hallway): milo fills 31 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 17 (hallway): milo fills 51 % of the frame in the foreground @0.0s (is it hiding the action?)"
   },
   "assets": {
    "state": "done",
-   "at": "2026-11-07T06:38:21.400Z",
-   "inputs": "19526353a2ccf0",
+   "at": "2026-11-07T07:58:24.993Z",
+   "inputs": "070ef7979d878c",
    "detail": "32 library assets reused, none missing",
    "data": {
     "reused": 32,
@@ -52,10 +52,10 @@
       "latch_click"
      ],
      "act": [
-      "nervous",
       "scared",
       "neutral",
       "sleepy",
+      "nervous",
       "shock",
       "relief",
       "suspicious"
@@ -74,26 +74,26 @@
   },
   "approval": {
    "state": "done",
-   "at": "2026-11-07T06:38:21.404Z",
-   "inputs": "1d81801c2484f5",
+   "at": "2026-11-07T07:58:24.996Z",
+   "inputs": "0e840e1cac70a2",
    "detail": "all narration already generated (no cost)"
   },
   "narration": {
    "state": "done",
-   "at": "2026-11-07T06:38:21.405Z",
-   "inputs": "1d81801c2484f5",
+   "at": "2026-11-07T07:58:24.997Z",
+   "inputs": "0e840e1cac70a2",
    "detail": "all lines already generated (cached)"
   },
   "sound": {
    "state": "done",
-   "at": "2026-11-07T06:38:39.177Z",
-   "inputs": "1a613a9209936f",
+   "at": "2026-11-07T07:58:43.214Z",
+   "inputs": "1f4f1a4b87d606",
    "detail": "soundtrack built: -14.2 LUFS"
   },
   "checks": {
    "state": "done",
-   "at": "2026-11-07T06:38:41.645Z",
-   "inputs": "1a613a9209936f",
+   "at": "2026-11-07T07:58:45.803Z",
+   "inputs": "1f4f1a4b87d606",
    "detail": "preflight PASS; library intact"
   }
  }
