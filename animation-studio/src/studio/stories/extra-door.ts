@@ -29,10 +29,12 @@ export const EXTRADOOR: Storyboard = {
   autoSfx: false,
   shots: [
     // 1. HOOK: extreme close-up on his eyes, mid-count; they lock on "eight?"
-    { say: { who: "milo", text: "...six... seven... ...eight?", voice: "liamQuiet" }, hold: 0.15, set: "hallway", light: "interiorCool",
-      camera: { move: "at", pos: [0.55, 1.7, -2.72], look: [0.55, 1.68, -3.2], fov: 24 },
-      actors: [{ who: "milo", at: START, act: "nervous", facing: 0, idle: 0.4,
-        beats: [{ word: "six", look: "left" }, { word: "seven", look: "right" }, { word: "eight", act: "scared", look: "camera" }] }],
+    // (his whisper plays over the shot without a speaker tag: a speaking card takes the engine's talking faces, which
+    //  read as cheerful in a close-up; this way the eyes keep the scared face. Same recording, timing and caption)
+    { say: { text: "...six... seven... ...eight?", voice: "liamQuiet" }, hold: 0.15, set: "hallway", light: "interiorCool",
+      camera: { move: "at", pos: [0.562, 1.46, -2.6], look: [0.562, 1.44, -3.2], fov: 37 }, // his eyes and brows (face centre 1.37 m, from the engine)
+      actors: [{ who: "milo", at: START, act: "scared", face: "scared", facing: 0, idle: 0.4,
+        beats: [{ word: "six", look: "left" }, { word: "seven", look: "right" }, { word: "eight", face: "shock", look: "camera" }] }],
       sfx: ticks(0.3, 2.5) },
     // 2. the symmetrical wide: seven doors and the one that doesn't belong; Milo's back, beside the stairwell
     { say: { text: "Milo's hallway has seven doors... It always has.", voice: "georgeHushed", gap: 0.22 }, hold: 0.45, set: "hallway", light: "interiorCool", transition: "cut",
@@ -82,11 +84,11 @@ export const EXTRADOOR: Storyboard = {
     // 7. the approach: a slow over-the-shoulder push as he walks; one insert on the wall clock as its ticking stops;
     //    back over the shoulder as his hand rises toward the wood
     { dur: 4.9, set: "hallway", light: "interiorCool", transition: "cut",
-      camera: { move: "at", pos: [0.7, 1.62, -1.85], look: [0.1, 1.05, -6.9], fov: 42 },
+      camera: { move: "at", pos: [-0.4, 1.78, -0.7], look: [0.5, 1.0, -6.9], fov: 50 },
       cams: [
-        { t: 0.05, move: "at", pos: [0.68, 1.6, -3.3], look: [0.1, 1.05, -7.0], fov: 42, glide: 2.3 },
+        { t: 0.05, move: "at", pos: [-0.35, 1.76, -1.9], look: [0.5, 1.0, -6.9], fov: 50, glide: 2.3 },
         { t: 2.4, move: "at", pos: [-0.2, 1.9, -5.95], look: [-0.9, 1.95, -6.45], fov: 52 },
-        { t: 3.45, move: "at", pos: [0.62, 1.6, -3.85], look: [0.05, 1.0, -7.0], fov: 42 },
+        { t: 3.45, move: "at", pos: [-0.3, 1.72, -2.9], look: [0.3, 1.0, -6.9], fov: 50 },
       ],
       actors: [{ who: "milo", at: START, back: true, act: "neutral", idle: 0.3, walk: { to: DOOR, t0: 0.2, t1: 3.3, mode: "walk" },
         beats: [{ t: 4.0, gesture: "stop" }] }],
@@ -122,7 +124,7 @@ export const EXTRADOOR: Storyboard = {
     // 12. he backs away and pulls out his phone
     { dur: 1.8, set: "hallway", light: "interiorCool", transition: "cut",
       camera: { move: "at", pos: [0.3, 1.45, -2.75], look: [0.35, 1.1, -5.6], fov: 48 },
-      actors: [{ who: "milo", at: DOOR, act: "scared", idle: 0.3, walk: { to: BACK, t0: 0.05, t1: 1.0, mode: "walk" },
+      actors: [{ who: "milo", at: DOOR, act: "scared", idle: 0.3, walk: { to: BACK, t0: 0.0, t1: 1.0, mode: "walk" }, // moving from the first frame (no held frame after the cut)
         beats: [{ t: 1.15, gesture: "read", hold: "phone", act: "nervous" }] }],
       props: [{ id: "oldDoor", at: "oldDoor", variant: "shadows" }, { id: "photoFrame", at: "photo" }] },
     // 13. macro on the phone: "are you home?" typed, sent
