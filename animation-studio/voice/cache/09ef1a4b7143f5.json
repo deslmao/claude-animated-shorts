@@ -3,13 +3,13 @@
  "text": "...Juno?",
  "voice": "liamQuiet",
  "lead": 0,
- "end": 0.929,
- "dur": 0.966531,
+ "end": 0.7,
+ "dur": 1.018776,
  "words": [
   {
    "w": "...Juno?",
-   "t0": 0,
-   "t1": 0.929
+   "t0": 0.13,
+   "t1": 0.7
   }
  ],
  "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
@@ -21,5 +21,12 @@
   "use_speaker_boost": true,
   "speed": 0.95
  },
- "created": "2026-11-07T00:55:33.782Z"
+ "created": "2026-11-07T00:00:00.000Z",
+ "pronunciation": {
+  "rule": "alias Juno -> Jew-noh (JOO-no)",
+  "dictionary_id": "QL72FbVpgYJNI9LYwZyF",
+  "version_id": "t2TwDPoN1m60BPvm6v7c",
+  "note": "ElevenLabs pronunciation dictionary alias; same preset settings and text"
+ },
+ "source": "regenerated for pronunciation (owner review); speech-to-text check: \"Juno?\"; word edges measured from its sound"
 }

@@ -6,7 +6,7 @@ Generated with the existing voice workflow (`npm run voice -- extra-door --gener
 - Juno: `juno` (Jessica, provisional), and `junoCold` for "Don't text her".
 
 11 lines from 10 recordings, 290 characters. The script wording is unchanged. Pronunciation: **NOT verified**
-(the owner's review).
+(the owner's review). Owner review 1: "Juno" was mispronounced; line 6 was corrected (see below).
 
 - `extra-door-narration.mp3`: voice-only mix on the script's planned timeline, 55.0 s. The knocks, phone, handle and
   music come later, at the sound stage; the gaps for them are left as silence.
@@ -32,3 +32,14 @@ Speech totals about 21 s; the planned film is about 54.5 s. The final timeline i
 outside the repo. The take used is the audition take the owner approved (same voice, model, settings and text, so
 no new generation), imported into the voice cache with word edges measured from its sound. It lands "eight?" at
 1.97 s.
+
+**Pronunciation correction (owner review 1).** The owner heard "Juno" mispronounced. The only line that says the name
+is Milo's line 6, "...Juno?" (Liam, `liamQuiet`). None of Jessica's lines say it. Only that line was regenerated:
+- **What changed:** the same preset settings and the same text, plus an ElevenLabs pronunciation-dictionary alias
+  (Juno -> "Jew-noh", that is JOO-no), applied on the server. The timestamps still spell the caption "...Juno?".
+- **How it was checked:** speech-to-text on each take, placed after the carrier phrase "Her name is":
+  - the old take was heard as "Yeo Junho" (an extra syllable);
+  - the new take was heard as "Juno?" on both runs.
+- **Length:** the new take is 1.02 s and its speech starts at 0.14 s (the old one was 0.97 s), so the timeline is
+  unchanged.
+- **Untouched:** the other 9 recordings are byte-identical, checked with MD5.
