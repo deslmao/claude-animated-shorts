@@ -1,5 +1,5 @@
 {
-  "ok": false,
+  "ok": true,
   "frames": 377,
   "fps": 30,
   "width": 1080,
@@ -8,9 +8,7 @@
   "audioSeconds": 12.566,
   "lufs": -15.4,
   "truePeak": -2.6,
-  "duplicates": [
-    161
-  ],
+  "duplicates": [],
   "holds": [],
   "seams": null,
   "nearBlank": [],
@@ -41,8 +39,8 @@
     ],
     [
       "no duplicated frames (chunk seams)",
-      false,
-      "duplicates at frames 161"
+      true,
+      "none"
     ],
     [
       "no near-blank frames (camera against scenery)",

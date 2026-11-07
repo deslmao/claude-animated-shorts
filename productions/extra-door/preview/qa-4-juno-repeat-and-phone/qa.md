@@ -1,4 +1,4 @@
-# Video quality check: FAILED ❌
+# Video quality check: PASSED ✅
 
 File: `4-juno-repeat-and-phone.mp4`
 
@@ -8,7 +8,7 @@ File: `4-juno-repeat-and-phone.mp4`
 | resolution | ✅ | 1080x1920 (expected 1080x1920) |
 | frame rate | ✅ | 30 fps (expected 30) |
 | frame count | ✅ | 377 frames (expected 377) = 12.567 s |
-| no duplicated frames (chunk seams) | ❌ | duplicates at frames 161 |
+| no duplicated frames (chunk seams) | ✅ | none |
 | no near-blank frames (camera against scenery) | ✅ | none |
 | no corrupt / half-refreshed frames | ✅ | none |
 | no unexplained soft frames (soft while nothing moves) | ✅ | none |

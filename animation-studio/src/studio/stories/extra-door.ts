@@ -168,7 +168,9 @@ export const EXTRADOOR: Storyboard = {
       actors: [{ who: "milo", at: BACK, act: "scared", facing: 0, gesture: "read", hold: "phone", idle: 0.2 }],
       props: [{ id: "oldDoor", at: "oldDoor", variant: "handle" }] },
     // 20. he turns to the lens: he is asking us
-    { say: { who: "milo", text: "...what do I do?", voice: "liamQuiet", gap: 0.17 }, hold: 0.45, set: "hallway", light: "interiorCool", transition: "cut",
+    // (no speaker tag, as in shot 1: his scared face holds in the close-up instead of the engine's cheerful talking
+    //  faces. Same recording, timing and caption)
+    { say: { text: "...what do I do?", voice: "liamQuiet", gap: 0.17 }, hold: 0.45, set: "hallway", light: "interiorCool", transition: "cut",
       camera: { move: "closeUp", on: "milo" },
       actors: [{ who: "milo", at: BACK, act: "scared", face: "scared", facing: 0, idle: 0.2, beats: [{ t: 0.0, look: "camera" }] }],
       props: [{ id: "oldDoor", at: "oldDoor", variant: "handle" }] },
