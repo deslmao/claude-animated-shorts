@@ -112,7 +112,9 @@ const hallway = () => {
   // ceiling: an unlit bounce colour (as sets/room.ts), dim for night
   shell.add(quad(V(-HW, H, ZE), V(HW, H, ZE), V(HW, H, ZN), V(-HW, H, ZN), 1, 4), glow("ceilHallNight", () => ({ map: ceilingHD("#8c8377") })));
   // skirting, dado rail, cornice
-  const runs: [number, number, number, number][] = [[-HW, ZE, HW, ZE], [-HW, ZE, -HW, SZ1], [-HW, SZ0, -HW, ZN], [HW, ZE, HW, ZN], [-HW, ZN, HW, ZN]];
+  // (the end wall's skirting and dado rail stop at the old door's frame, x -0.4..0.4: the door stands where the wall
+  // was, and a skirting running behind it hid the light in the gap under the door)
+  const runs: [number, number, number, number][] = [[-HW, ZE, -0.4, ZE], [0.4, ZE, HW, ZE], [-HW, ZE, -HW, SZ1], [-HW, SZ0, -HW, ZN], [HW, ZE, HW, ZN], [-HW, ZN, HW, ZN]];
   for (const [x0, z0, x1, z1] of runs) {
     const alongX = z0 === z1, s = alongX ? (z0 < 0 ? 1 : -1) : x0 < 0 ? 1 : -1;
     // trim goes in the shell batch (no cast shadows, as sets/room.ts builds it): the cornice threw a long diagonal
@@ -164,8 +166,8 @@ const hallway = () => {
   const dust = col("#5a4a37"), e = 0.014, zD = ZE + 0.006;
   for (const [x0, x1, y0, y1] of [[PATCH.x0 - e, PATCH.x1 + e, PATCH.y1, PATCH.y1 + e], [PATCH.x0 - e, PATCH.x1 + e, PATCH.y0 - e, PATCH.y0], [PATCH.x0 - e, PATCH.x0, PATCH.y0, PATCH.y1], [PATCH.x1, PATCH.x1 + e, PATCH.y0, PATCH.y1]])
     shell.add(quad(V(x0, y0, zD), V(x1, y0, zD), V(x1, y1, zD), V(x0, y1, zD)), dust);
-  cyl(b, col("#8d9098"), I, 0, NAIL_Y, ZE + 0.001, 0.0045, 0.0045, 0.035, 8, Math.PI / 2);
-  sph(b, col("#9a9da5"), I, 0, NAIL_Y, ZE + 0.037, 0.01, 0.01, 0.0035);
+  cyl(b, col("#8d9098"), I, 0, NAIL_Y, ZE + 0.001, 0.0065, 0.0065, 0.05, 8, Math.PI / 2);
+  sph(b, col("#b4b7bf"), I, 0, NAIL_Y, ZE + 0.052, 0.017, 0.017, 0.005);
   shell.build(root, false);
   // the set dressing (doors, frames, pictures, clock, banister, stairs) casts no shadows, as sets/room.ts builds its
   // trim and door: built as casters they threw the doors' and the banister spindles' shadows across most of the floor
@@ -224,20 +226,28 @@ const doorTex = () => stex("oldDoorPlanks", 512, 1536, (g) => {
 /** the light under the door: a strip in the gap and its spill on the floor; shadows = two dark shapes in both */
 const stripTex = (shadows: boolean) => stex(`oldDoorStrip${shadows}`, 512, 16, (g) => {
   g.fillStyle = "#e9f1ff"; g.fillRect(0, 0, 512, 16);
-  if (shadows) { g.fillStyle = "#0d0b10"; g.fillRect(150, 0, 70, 16); g.fillRect(290, 0, 70, 16); }
+  if (shadows) { g.fillStyle = "#0d0b10"; g.fillRect(128, 0, 104, 16); g.fillRect(280, 0, 104, 16); }
 });
 const spillTex = (shadows: boolean) => stex(`oldDoorSpill${shadows}`, 512, 256, (g) => {
-  const gr = g.createLinearGradient(0, 0, 0, 256); gr.addColorStop(0, "rgba(215,228,255,0.6)"); gr.addColorStop(0.35, "rgba(215,228,255,0.25)"); gr.addColorStop(1, "rgba(215,228,255,0)");
+  const gr = g.createLinearGradient(0, 0, 0, 256); gr.addColorStop(0, "rgba(215,228,255,0.95)"); gr.addColorStop(0.35, "rgba(215,228,255,0.5)"); gr.addColorStop(1, "rgba(215,228,255,0)");
   g.fillStyle = gr; g.fillRect(40, 0, 432, 256);
   const side = g.createLinearGradient(0, 0, 512, 0);
   side.addColorStop(0, "rgba(0,0,0,1)"); side.addColorStop(0.12, "rgba(0,0,0,0)"); side.addColorStop(0.88, "rgba(0,0,0,0)"); side.addColorStop(1, "rgba(0,0,0,1)");
   g.globalCompositeOperation = "destination-out"; g.fillStyle = side; g.fillRect(0, 0, 512, 256);
   if (shadows) { // two long shadows fanning out from under the door
     g.fillStyle = "rgba(0,0,0,0.92)"; g.filter = "blur(10px)";
-    for (const [x0, x1] of [[150, 220], [292, 362]]) { g.beginPath(); g.moveTo(x0, 0); g.lineTo(x1, 0); g.lineTo(x1 + (x1 - 256) * 0.35, 256); g.lineTo(x0 + (x0 - 256) * 0.35, 256); g.closePath(); g.fill(); }
+    for (const [x0, x1] of [[128, 232], [280, 384]]) { g.beginPath(); g.moveTo(x0, 0); g.lineTo(x1, 0); g.lineTo(x1 + (x1 - 256) * 0.6, 256); g.lineTo(x0 + (x0 - 256) * 0.6, 256); g.closePath(); g.fill(); }
     g.filter = "none";
   }
   g.globalCompositeOperation = "source-over";
+});
+/** the two shadows as a darkening layer (normal blending: an additive light can brighten but never darken the floor) */
+const shadowTex = () => stex("oldDoorShadows", 512, 256, (g) => {
+  g.filter = "blur(8px)"; g.fillStyle = "rgba(6,4,10,0.78)";
+  for (const [x0, x1] of [[128, 232], [280, 384]]) { g.beginPath(); g.moveTo(x0, -10); g.lineTo(x1, -10); g.lineTo(x1 + (x1 - 256) * 0.6, 256); g.lineTo(x0 + (x0 - 256) * 0.6, 256); g.closePath(); g.fill(); }
+  g.filter = "none";
+  const fade = g.createLinearGradient(0, 0, 0, 256); fade.addColorStop(0, "rgba(0,0,0,0)"); fade.addColorStop(0.7, "rgba(0,0,0,0)"); fade.addColorStop(1, "rgba(0,0,0,1)");
+  g.globalCompositeOperation = "destination-out"; g.fillStyle = fade; g.fillRect(0, 0, 512, 256); g.globalCompositeOperation = "source-over";
 });
 const crackTex = () => stex("oldDoorCrack", 256, 256, (g) => {
   g.strokeStyle = "rgba(12,6,4,0.95)"; g.lineCap = "round";
@@ -260,6 +270,7 @@ const slabParts = (b: Batch, m: THREE.Matrix4) => {
 };
 const lightParts = (b: Batch, m: THREE.Matrix4, shadows: boolean) => {
   b.add(new THREE.PlaneGeometry(DW - 0.01, GAP), basic(`oldDoorStripM${shadows}`, () => ({ map: stripTex(shadows), toneMapped: false })), m.clone().multiply(new THREE.Matrix4().makeTranslation(0, GAP / 2, 0.02)));
+  if (shadows) b.add(new THREE.PlaneGeometry(0.84, 0.42).rotateX(-Math.PI / 2), basic("oldDoorShadowM", () => ({ map: shadowTex(), transparent: true, depthWrite: false })), m.clone().multiply(new THREE.Matrix4().makeTranslation(0, 0.004, 0.05 + 0.21)));
   b.add(new THREE.PlaneGeometry(0.84, 0.42).rotateX(-Math.PI / 2), basic(`oldDoorSpillM${shadows}`, () => ({ map: spillTex(shadows), transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false })), m.clone().multiply(new THREE.Matrix4().makeTranslation(0, 0.003, 0.05 + 0.21)));
 };
 /** the brass handle (rosette + lever pointing to -x, toward the hinge side), its pivot at the origin, front +z */

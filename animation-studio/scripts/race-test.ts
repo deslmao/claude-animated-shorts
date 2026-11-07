@@ -49,8 +49,9 @@ ok(!v3.errors.some((e) => e.includes("stands on")), "a tracked prop on its actor
 // music drop-out
 const mar = STORIES.find((s) => s.id === "marathon-1904")!, filmM = compile(mar, NARRATION[mar.id]), pm = soundPlan(filmM, mar);
 ok(pm.drop_t !== undefined && pm.drop_t < pm.button_t && pm.button_t - pm.drop_t < 1.2, `marathon-1904: the music drops out at ${pm.drop_t?.toFixed(2)} s, before the button at ${pm.button_t.toFixed(2)} s`);
-const others = STORIES.filter((s) => s.id !== "marathon-1904").map((s) => soundPlan(compile(s, NARRATION[s.id]), s));
-ok(others.every((p) => p.drop_t === undefined), "no other storyboard has a drop-out (their soundtrack plans are unchanged)");
+// the drop-out happens only where a storyboard asks for it (musicDrop): every other soundtrack plan is unchanged
+const plans = STORIES.filter((s) => s.id !== "marathon-1904").map((s) => ({ s, p: soundPlan(compile(s, NARRATION[s.id]), s) }));
+ok(plans.every(({ s, p }) => (p.drop_t !== undefined) === !!s.musicDrop), `a drop-out only where musicDrop asks for it (${plans.filter(({ p }) => p.drop_t !== undefined).map(({ s }) => s.id).join(", ") || "none"} besides marathon-1904)`);
 
 // runner1904 crowd
 const rs = Array.from({ length: 24 }, (_, i) => extra(i, "runner1904"));
