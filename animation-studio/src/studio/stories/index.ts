@@ -9,5 +9,6 @@ import { CAPABILITIES } from "./capabilities";
 import { INK_ORBIT } from "./ink-orbit";
 import { DOORWAYEFFECT } from "./doorway-effect";
 import { CAMERA_KIT } from "./camera-kit";
+import { EXTRADOOR } from "./extra-door";
 
-export const STORIES: Storyboard[] = [YAWN_DEMO, CAPABILITIES, TICKLE, PIRATEDEMOCRACY, BURIEDTREASURE, INK_ORBIT, DOORWAYEFFECT, CAMERA_KIT, MARATHON1904];
+export const STORIES: Storyboard[] = [YAWN_DEMO, CAPABILITIES, TICKLE, PIRATEDEMOCRACY, BURIEDTREASURE, INK_ORBIT, DOORWAYEFFECT, CAMERA_KIT, MARATHON1904, EXTRADOOR];

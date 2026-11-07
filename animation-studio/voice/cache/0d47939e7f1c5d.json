@@ -1,0 +1,36 @@
+{
+ "hash": "0d47939e7f1c5d",
+ "text": "...six... seven... ...eight?",
+ "voice": "liamQuiet",
+ "lead": 0,
+ "end": 2.2758,
+ "dur": 2.638367,
+ "words": [
+  {
+   "w": "...six...",
+   "t0": 0.1913,
+   "t1": 0.7769
+  },
+  {
+   "w": "seven...",
+   "t0": 1.294,
+   "t1": 1.7812
+  },
+  {
+   "w": "...eight?",
+   "t0": 1.9711,
+   "t1": 2.2758
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-07T00:00:00.000Z",
+ "source": "owner-approved audition take (productions/extra-door/narration/auditions/2-milo.mp3, line 1, option A); word edges measured from its sound"
+}

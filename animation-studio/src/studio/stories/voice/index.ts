@@ -3,9 +3,10 @@
 import type { Narration } from "../../voice/narration";
 import { N_buried_treasure } from "./buried-treasure";
 import { N_doorway_effect } from "./doorway-effect";
+import { N_extra_door } from "./extra-door";
 import { N_marathon_1904 } from "./marathon-1904";
 import { N_pirate_democracy } from "./pirate-democracy";
 import { N_tickle } from "./tickle";
 import { N_yawn_demo } from "./yawn-demo";
 
-export const NARRATION: Record<string, Narration> = { "buried-treasure": N_buried_treasure, "doorway-effect": N_doorway_effect, "marathon-1904": N_marathon_1904, "pirate-democracy": N_pirate_democracy, "tickle": N_tickle, "yawn-demo": N_yawn_demo };
+export const NARRATION: Record<string, Narration> = { "buried-treasure": N_buried_treasure, "doorway-effect": N_doorway_effect, "extra-door": N_extra_door, "marathon-1904": N_marathon_1904, "pirate-democracy": N_pirate_democracy, "tickle": N_tickle, "yawn-demo": N_yawn_demo };

@@ -1,0 +1,25 @@
+{
+ "hash": "09ef1a4b7143f5",
+ "text": "...Juno?",
+ "voice": "liamQuiet",
+ "lead": 0,
+ "end": 0.929,
+ "dur": 0.966531,
+ "words": [
+  {
+   "w": "...Juno?",
+   "t0": 0,
+   "t1": 0.929
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-07T00:55:33.782Z"
+}

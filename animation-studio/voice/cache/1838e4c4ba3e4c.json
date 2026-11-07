@@ -1,0 +1,60 @@
+{
+ "hash": "1838e4c4ba3e4c",
+ "text": "Milo's hallway has seven doors... It always has.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.483,
+ "dur": 3.526531,
+ "words": [
+  {
+   "w": "Milo's",
+   "t0": 0,
+   "t1": 0.499
+  },
+  {
+   "w": "hallway",
+   "t0": 0.546,
+   "t1": 0.917
+  },
+  {
+   "w": "has",
+   "t0": 0.964,
+   "t1": 1.08
+  },
+  {
+   "w": "seven",
+   "t0": 1.126,
+   "t1": 1.405
+  },
+  {
+   "w": "doors...",
+   "t0": 1.463,
+   "t1": 2.043
+  },
+  {
+   "w": "It",
+   "t0": 2.38,
+   "t1": 2.531
+  },
+  {
+   "w": "always",
+   "t0": 2.566,
+   "t1": 2.81
+  },
+  {
+   "w": "has.",
+   "t0": 2.856,
+   "t1": 3.483
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-07T00:55:31.939Z"
+}

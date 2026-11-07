@@ -23,6 +23,11 @@ export const VOICES: Record<string, VoicePreset> = {
   georgeLively: { name: "George - Warm, Captivating Storyteller", voiceId: "JBFqnCBsd6RMkjVDRZzb", model: MODEL, settings: { ...CHANNEL, stability: 0.35, style: 0.3 }, note: "George, more expressive (pirate democracy revision)" },
   // character voices (ElevenLabs Voice Design, created for Thinkora; in the account's voice library)
   captainRedd: { name: "Thinkora - Captain Redd", voiceId: "JhRIeE4Nad3PERzselQS", model: MODEL, settings: { stability: 0.4, similarity_boost: 0.8, style: 0.35, use_speaker_boost: true, speed: 1.0 }, note: "pirate captain: deep, raspy, West Country, boastful (voice design)" },
+  // Video 05 (The Extra Door, horror): owner-approved from the auditions in productions/extra-door/narration/auditions
+  georgeHushed: { name: "George - Warm, Captivating Storyteller", voiceId: "JBFqnCBsd6RMkjVDRZzb", model: MODEL, settings: { ...CHANNEL, stability: 0.6, speed: 0.95 }, note: "George, calm and slower: horror narrator (Video 05)" },
+  liamQuiet: { name: "Liam - Energetic, Social Media Creator", voiceId: "TX3LPaxmHKxFdv7VOQHJ", model: MODEL, settings: { ...CHANNEL, stability: 0.55, speed: 0.95 }, note: "Milo, quiet and nervous: natural quiet speech (Video 05)" },
+  juno: { name: "Jessica - Playful, Bright, Warm", voiceId: "cgSgspJ2msm6clMCkdW9", model: MODEL, settings: { ...CHANNEL, stability: 0.45, style: 0.15, speed: 0.9 }, note: "Juno's voice (provisional, Video 05): warm and familiar" },
+  junoCold: { name: "Jessica - Playful, Bright, Warm", voiceId: "cgSgspJ2msm6clMCkdW9", model: MODEL, settings: { ...CHANNEL, stability: 0.55, style: 0.15, speed: 0.85 }, note: "Juno's voice, slower and flatter: the unsettling line (Video 05)" },
 };
 
 /** the default voice for every line of every Short (storyboards may override with `voice` / `voices`) */
