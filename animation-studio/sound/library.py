@@ -447,6 +447,48 @@ def crack_egg(r):
     return fades(_sum((crack, 0.0), (crunch, 0.03), (drop, 0.18)), 0.0005, 0.04) * 0.7
 
 
+# ------------------------------------------------------------------ Video 05 (The Extra Door): a quiet house at night
+def knock_heavy(r):
+    """ONE slow, heavy knock on an old wooden door (cue it once per knock): a knuckle crack, a deep door-panel boom
+    and a short hallway tail"""
+    t = tt(0.9)
+    body = modal(0.9, [(r.uniform(92, 104), 1.0, 0.11), (r.uniform(176, 190), 0.55, 0.06), (r.uniform(330, 360), 0.3, 0.03)], r)
+    knuckle = bp(r.standard_normal(ns(0.03)), 900, 5000, 1) * np.exp(-tt(0.03) / 0.004) * 0.9
+    tail = lp(colored(len(t), r, 0.9), 600) * np.exp(-t / 0.18) * 0.06
+    return fades(_sum((body * 0.9, 0.0), (knuckle, 0.0), (tail, 0.01)), 0.0005, 0.12) * 0.9
+
+
+def phone_buzz(r):
+    """a phone vibrating in a hand: two short buzzes"""
+    def buzz(d):
+        t = tt(d)
+        f = r.uniform(165, 180)
+        x = np.sign(np.sin(phase(np.full(len(t), f)))) * 0.5 + np.sin(phase(np.full(len(t), 2 * f))) * 0.3
+        return bp(x, 120, 2200, 1) * np.clip(t / 0.01, 0, 1) * np.clip((d - t) / 0.02, 0, 1) * 0.35
+    return fades(_sum((buzz(0.32), 0.0), (buzz(0.32), 0.48)), 0.002, 0.02)
+
+
+def phone_tap(r):
+    """soft phone-screen typing: a quick run of glassy taps (about 1.4 s)"""
+    out = []
+    t0 = 0.0
+    for k in range(13):
+        tc = tt(0.03)
+        x = bp(r.standard_normal(len(tc)), 1500, 6500, 1) * np.exp(-tc / 0.0035) * r.uniform(0.18, 0.28)
+        out.append((x, t0))
+        t0 += r.uniform(0.07, 0.13)
+    return fades(_sum(*out), 0.0005, 0.02)
+
+
+def latch_click(r):
+    """a door latch releasing: a metallic click and the small thunk of the bolt"""
+    t = tt(0.06)
+    click = hp(colored(len(t), r, 0.2), 2500) * _env(t, 0.0004, 0.006) * 0.9
+    ring = G.clink(r, f0=r.uniform(2400, 2800), dur=0.12, bright=0.6) * 0.35
+    thunk = np.sin(phase(np.full(ns(0.08), r.uniform(150, 180)))) * np.exp(-tt(0.08) / 0.02) * 0.35
+    return fades(_sum((click, 0.0), (ring, 0.002), (thunk, 0.035)), 0.0003, 0.05) * 0.8
+
+
 SFX = {
     "pop": pop, "ding": ding, "blip_up": blip_up, "boing": boing, "poof": poof, "twinkle": twinkle, "impact": impact,
     "thud": thud, "party_pop": party_pop, "drip": drip, "steam": steam, "snore_soft": snore_soft, "ring_ding": ring_ding,
@@ -458,6 +500,7 @@ SFX = {
     "giggle": giggle, "feather_swish": feather_swish, "servo": servo, "stumble": stumble,
     "crowd_aye": crowd_aye, "crowd_murmur": crowd_murmur, "quill_scratch": quill_scratch, "coins_pour": coins_pour,
     "engine": engine, "honk": honk, "backfire": backfire, "bark": bark, "crack_egg": crack_egg,
+    "knock_heavy": knock_heavy, "phone_buzz": phone_buzz, "phone_tap": phone_tap, "latch_click": latch_click,
 }
 
 

@@ -299,7 +299,8 @@
   "merchantDeck": "1241fe42efbc0d",
   "island": "1241fe42efbc0d",
   "apartment": "0a009bb9f95ad4",
-  "raceRoad": "0e258e2c5392ce"
+  "raceRoad": "0e258e2c5392ce",
+  "hallway": "0322d1b9171be2"
  },
  "marks": {
   "home:a": "0750ac791c5d2d",
@@ -422,7 +423,18 @@
   "raceRoad:officials": "01b14788225870",
   "raceRoad:a": "048c95a24a4273",
   "raceRoad:b": "0c483da5cd1ad7",
-  "raceRoad:c": "17b37ee2e5afd1"
+  "raceRoad:c": "17b37ee2e5afd1",
+  "hallway:nearEnd": "081b6579e9b9f8",
+  "hallway:hallNear": "06c0a575978bf4",
+  "hallway:hallMid": "0c9797983fbd75",
+  "hallway:stairsTop": "1b86d7d1e26a24",
+  "hallway:nearDoor": "029f65a4d33e95",
+  "hallway:atDoor": "181fbdacd98f4c",
+  "hallway:backedAway": "1a654cde6f2f1a",
+  "hallway:oldDoor": "1e8990be5c538c",
+  "hallway:photo": "19bbd8fed50267",
+  "hallway:stairs": "1a8da7d16269f4",
+  "hallway:phone": "0ffa7bca72190f"
  },
  "views": {
   "home:wide": "12d193f00443bb",
@@ -477,7 +489,10 @@
   "raceRoad:orchard": "0bd23103af60ad",
   "raceRoad:field high": "12904bbb5cd5d3",
   "raceRoad:finish": "05b3ffef8ef88c",
-  "raceRoad:finish low": "1c5c4827884daf"
+  "raceRoad:finish low": "1c5c4827884daf",
+  "hallway:hallway": "1a30ef1c94be16",
+  "hallway:reverse": "151c22ac5a2f14",
+  "hallway:endWall": "183097c99bc353"
  },
  "lights": {
   "day": "1c824fd62ade9f",
@@ -663,7 +678,12 @@
   "finishArch": "178bf0a3f4b667",
   "finishTape": "15b067d9860735",
   "arrowSign": "0dd66ff34f527d",
-  "waterTable": "0e5c8e7152eac3"
+  "waterTable": "0e5c8e7152eac3",
+  "hallDoor": "13e699b5549a4f",
+  "oldDoor": "0010ffbccad267",
+  "photoFrame": "0f8f6d539c925c",
+  "phoneScreen": "0d72d8bf441797",
+  "choiceLabel": "02a884abbc8b74"
  },
  "items": {
   "book": "",

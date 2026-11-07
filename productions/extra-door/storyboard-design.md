@@ -12,9 +12,14 @@ lights the stairs end; the far end, with the old door, falls darker. It stays da
 fails near-black frames).
 
 ## The set: Milo's upstairs hallway (new, built with the existing room builder)
-- **Shape:** a corridor 1.6 m wide and about 7 m long, running away from the camera. The near end is the top of the
-  stairs: the first steps going down on the left, with a banister and a newel post. This makes choice B's escape route
-  visible from the first wide shot.
+- **Shape:** a corridor 1.8 m wide and about 8.6 m long, running away from the camera. *(Changed in the asset stage,
+  to pass checkpoint 2.)* An open stairwell runs along the left wall in the middle of the hall:
+  - the top of the stairs is at its far end, toward the old door;
+  - ten steps go down back toward the near end;
+  - a banister runs along its open side and across its near end.
+
+  A view down the hall sees the risers falling away into the dark. In the final shot, the door is ahead of Milo and
+  the stairwell is to his side, in one frame. It stays visible from the first wide shot, as choice B's escape route.
 - **Walls:** four cream panel doors with brass knobs on the left wall and three on the right. Between them, framed
   pictures on nails, a wall clock, a runner rug and a small console table with a plant.
 - **The old door:** centred on the far end wall. Dark, old, narrow wood, with no handle and no keyhole. It must look
