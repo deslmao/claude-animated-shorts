@@ -1,0 +1,58 @@
+{
+ "reused": 32,
+ "missing": [],
+ "byKind": {
+  "character": [
+   "milo"
+  ],
+  "mood": [
+   "mystery"
+  ],
+  "set": [
+   "hallway"
+  ],
+  "camera": [
+   "at",
+   "closeUp",
+   "frame",
+   "pushIn",
+   "insert"
+  ],
+  "light": [
+   "interiorCool"
+  ],
+  "ambience": [
+   "amb_room"
+  ],
+  "sfx": [
+   "clock_tick",
+   "whoosh_short",
+   "creak",
+   "step_floor",
+   "knock_heavy",
+   "phone_tap",
+   "swish_soft",
+   "phone_buzz",
+   "crack",
+   "latch_click"
+  ],
+  "act": [
+   "nervous",
+   "scared",
+   "neutral",
+   "sleepy",
+   "shock",
+   "relief",
+   "suspicious"
+  ],
+  "prop": [
+   "oldDoor",
+   "photoFrame",
+   "phoneScreen",
+   "choiceLabel"
+  ],
+  "item": [
+   "phone"
+  ]
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "composition": "Short-extra-door",
+ "fingerprint": "0227bab39a8d1d",
+ "engine": "sound-2",
+ "frames": 1681,
+ "seconds": 56.03333333333333,
+ "lines": 11,
+ "lufs": -14.2,
+ "truePeak": -1.7,
+ "stems": {
+  "voice_lufs": -19.45,
+  "music_vs_voice_lu": -13.0,
+  "ambience_vs_voice_lu": -20.01,
+  "sfx_cues": 36
+ },
+ "built": "2026-11-07T05:28:08Z"
+}

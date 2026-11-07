@@ -24,6 +24,9 @@ export const EXTRADOOR: Storyboard = {
   id: "extra-door", title: "The Extra Door (Part 1)",
   cast: { milo: "milo" },
   music: { mood: "mystery", gain: -3 }, musicDrop: { word: "in", n: 2 }, motionBlur: true, controlledBlur: true, engine: 3,
+  // the automatic effects are off: they put a cartoon "pop" on every "shock" (over the second knock and the stinger).
+  // The ones this film needs are cued explicitly below at the same moments: the whip whoosh, the two footsteps
+  autoSfx: false,
   shots: [
     // 1. HOOK: extreme close-up on his eyes, mid-count; they lock on "eight?"
     { say: { who: "milo", text: "...six... seven... ...eight?", voice: "liamQuiet" }, hold: 0.15, set: "hallway", light: "interiorCool",
@@ -41,7 +44,7 @@ export const EXTRADOOR: Storyboard = {
     { say: { who: "milo", text: "Okay. I'm just tired.", voice: "liamQuiet", gap: 0.3 }, hold: 0.45, set: "hallway", light: "interiorCool", transition: "cut",
       camera: { move: "at", pos: [0.4, 1.45, -4.95], look: [0.55, 1.4, -3.2], fov: 42 },
       actors: [{ who: "milo", at: START, act: "sleepy", facing: 0, gesture: "facepalm", beats: [{ word: "I'm", act: "nervous" }] }],
-      sfx: ticks(0.3, 2.3) },
+      sfx: [...ticks(0.3, 2.3), { t: 2.25, name: "whoosh_short" }] },
     // 4. the recount: a whip into a wide over-the-shoulder (Milo small, toward the right), then ONE HARD CUT PER
     //    NUMBER, each onto one door, the door large at one side of the frame with the hallway beyond it: first the four
     //    doors behind him (looking back toward the near end: right, left, right, left, each one further away), then
@@ -88,7 +91,7 @@ export const EXTRADOOR: Storyboard = {
       actors: [{ who: "milo", at: START, back: true, act: "neutral", idle: 0.3, walk: { to: DOOR, t0: 0.2, t1: 3.3, mode: "walk" },
         beats: [{ t: 4.0, gesture: "stop" }] }],
       props: [{ id: "oldDoor", at: "oldDoor" }, { id: "photoFrame", at: "photo" }],
-      sfx: [...ticks(0.25, 2.9), { t: 1.1, name: "creak", gain: -8 }, { t: 2.9, name: "creak", gain: -10 }] },
+      sfx: [...ticks(0.25, 2.9), { t: 1.1, name: "creak", gain: -8 }, { t: 1.41, name: "step_floor" }, { t: 2.12, name: "step_floor" }, { t: 2.9, name: "creak", gain: -10 }] },
     // 8. THREE KNOCKS, three hard cuts (one heavy-knock recording, cued on each cut with its reaction):
     //    the door shudders (frontal) / Milo's hand snaps back / the light under the door breaks into two shadows
     { dur: 3.5, set: "hallway", light: "interiorCool", transition: "cut",
@@ -99,7 +102,7 @@ export const EXTRADOOR: Storyboard = {
       ],
       actors: [{ who: "milo", at: DOOR, act: "nervous", facing: 0, gesture: "stop", idle: 0.2, beats: [{ t: 1.1, act: "shock" }] }],
       props: [{ id: "oldDoor", at: "oldDoor", steps: [{ t: 0.0 }, { t: 1.1 }, { t: 2.2 }] }, { id: "photoFrame", at: "photo" }],
-      sfx: [{ t: 0.0, name: "knock_heavy" }, { t: 1.1, name: "knock_heavy" }, { t: 2.2, name: "knock_heavy" }] },
+      sfx: [{ t: 0.0, name: "knock_heavy", gain: -3 }, { t: 1.1, name: "knock_heavy", gain: -3 }, { t: 2.2, name: "knock_heavy", gain: -3 }] }, // heavy, not a jump scare
     // 9. close-up, frozen: "...Juno?"
     { say: { who: "milo", text: "...Juno?", voice: "liamQuiet", gap: 0.69 }, hold: 0.95, set: "hallway", light: "interiorCool", transition: "cut",
       camera: { move: "closeUp", on: "milo" },
