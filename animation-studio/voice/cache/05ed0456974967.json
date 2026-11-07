@@ -1,0 +1,36 @@
+{
+  "hash": "05ed0456974967",
+  "text": "...twelve... thirteen... ...fourteen?",
+  "voice": "liamQuiet",
+  "lead": 0,
+  "end": 2.681,
+  "dur": 2.716735,
+  "words": [
+    {
+      "w": "...twelve...",
+      "t0": 0,
+      "t1": 0.673
+    },
+    {
+      "w": "thirteen...",
+      "t0": 0.836,
+      "t1": 1.521
+    },
+    {
+      "w": "...fourteen?",
+      "t0": 1.87,
+      "t1": 2.681
+    }
+  ],
+  "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+    "stability": 0.55,
+    "similarity_boost": 0.75,
+    "style": 0,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "created": "2026-11-07T23:31:20.262Z",
+  "edit": "silence between 'thirteen' and 'fourteen?' shortened from 1.02 s to 0.45 s (cut 1.65-2.22 s of the generated take); the original take is productions/extra-door-2/narration/takes/1-hook-original-take.mp3"
+}

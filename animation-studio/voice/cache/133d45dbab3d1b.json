@@ -1,0 +1,65 @@
+{
+ "hash": "133d45dbab3d1b",
+ "text": "Comment A or B. Your vote decides Part 3.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.669,
+ "dur": 3.709388,
+ "words": [
+  {
+   "w": "Comment",
+   "t0": 0,
+   "t1": 0.406
+  },
+  {
+   "w": "A",
+   "t0": 0.488,
+   "t1": 0.65
+  },
+  {
+   "w": "or",
+   "t0": 0.778,
+   "t1": 0.882
+  },
+  {
+   "w": "B.",
+   "t0": 0.94,
+   "t1": 1.358
+  },
+  {
+   "w": "Your",
+   "t0": 1.823,
+   "t1": 1.997
+  },
+  {
+   "w": "vote",
+   "t0": 2.055,
+   "t1": 2.252
+  },
+  {
+   "w": "decides",
+   "t0": 2.287,
+   "t1": 2.694
+  },
+  {
+   "w": "Part",
+   "t0": 2.752,
+   "t1": 2.972
+  },
+  {
+   "w": "3.",
+   "t0": 3.03,
+   "t1": 3.669
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-07T23:31:24.763Z"
+}

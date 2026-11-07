@@ -1,0 +1,60 @@
+{
+ "hash": "1675a2b7cc945f",
+ "text": "Last night, Milo's hallway grew an extra door.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.972,
+ "dur": 3.004082,
+ "words": [
+  {
+   "w": "Last",
+   "t0": 0,
+   "t1": 0.325
+  },
+  {
+   "w": "night,",
+   "t0": 0.395,
+   "t1": 0.673
+  },
+  {
+   "w": "Milo's",
+   "t0": 0.731,
+   "t1": 1.138
+  },
+  {
+   "w": "hallway",
+   "t0": 1.184,
+   "t1": 1.521
+  },
+  {
+   "w": "grew",
+   "t0": 1.579,
+   "t1": 1.776
+  },
+  {
+   "w": "an",
+   "t0": 1.823,
+   "t1": 1.869
+  },
+  {
+   "w": "extra",
+   "t0": 1.927,
+   "t1": 2.206
+  },
+  {
+   "w": "door.",
+   "t0": 2.241,
+   "t1": 2.972
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-07T23:31:20.844Z"
+}

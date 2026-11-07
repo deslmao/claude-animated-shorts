@@ -1,0 +1,50 @@
+{
+ "hash": "075249619358d6",
+ "text": "Don't open it. That's not me.",
+ "voice": "junoCold",
+ "lead": 0,
+ "end": 2.276,
+ "dur": 2.324898,
+ "words": [
+  {
+   "w": "Don't",
+   "t0": 0,
+   "t1": 0.325
+  },
+  {
+   "w": "open",
+   "t0": 0.372,
+   "t1": 0.615
+  },
+  {
+   "w": "it.",
+   "t0": 0.685,
+   "t1": 0.894
+  },
+  {
+   "w": "That's",
+   "t0": 1.068,
+   "t1": 1.382
+  },
+  {
+   "w": "not",
+   "t0": 1.428,
+   "t1": 1.591
+  },
+  {
+   "w": "me.",
+   "t0": 1.637,
+   "t1": 2.276
+  }
+ ],
+ "voiceId": "cgSgspJ2msm6clMCkdW9",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0.15,
+  "use_speaker_boost": true,
+  "speed": 0.85
+ },
+ "created": "2026-11-07T23:31:23.647Z"
+}

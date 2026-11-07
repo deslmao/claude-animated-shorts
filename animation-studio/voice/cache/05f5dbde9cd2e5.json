@@ -1,0 +1,45 @@
+{
+ "hash": "05f5dbde9cd2e5",
+ "text": "His stairs have thirteen steps.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.043,
+ "dur": 2.089796,
+ "words": [
+  {
+   "w": "His",
+   "t0": 0,
+   "t1": 0.197
+  },
+  {
+   "w": "stairs",
+   "t0": 0.232,
+   "t1": 0.592
+  },
+  {
+   "w": "have",
+   "t0": 0.639,
+   "t1": 0.778
+  },
+  {
+   "w": "thirteen",
+   "t0": 0.813,
+   "t1": 1.207
+  },
+  {
+   "w": "steps.",
+   "t0": 1.277,
+   "t1": 2.043
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-07T23:31:21.868Z"
+}

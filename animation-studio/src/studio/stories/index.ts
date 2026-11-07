@@ -10,5 +10,6 @@ import { INK_ORBIT } from "./ink-orbit";
 import { DOORWAYEFFECT } from "./doorway-effect";
 import { CAMERA_KIT } from "./camera-kit";
 import { EXTRADOOR } from "./extra-door";
+import { EXTRADOOR2 } from "./extra-door-2";
 
-export const STORIES: Storyboard[] = [YAWN_DEMO, CAPABILITIES, TICKLE, PIRATEDEMOCRACY, BURIEDTREASURE, INK_ORBIT, DOORWAYEFFECT, CAMERA_KIT, MARATHON1904, EXTRADOOR];
+export const STORIES: Storyboard[] = [YAWN_DEMO, CAPABILITIES, TICKLE, PIRATEDEMOCRACY, BURIEDTREASURE, INK_ORBIT, DOORWAYEFFECT, CAMERA_KIT, MARATHON1904, EXTRADOOR, EXTRADOOR2];
