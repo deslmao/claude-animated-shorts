@@ -42,16 +42,26 @@ export const EXTRADOOR: Storyboard = {
       camera: { move: "at", pos: [0.4, 1.45, -4.95], look: [0.55, 1.4, -3.2], fov: 42 },
       actors: [{ who: "milo", at: START, act: "sleepy", facing: 0, gesture: "facepalm", beats: [{ word: "I'm", act: "nervous" }] }],
       sfx: ticks(0.3, 2.3) },
-    // 4. the recount: a whip into over-the-shoulder, the camera follows his finger door to door; POV on "eight."
+    // 4. the recount: a whip into a wide over-the-shoulder (Milo small, toward the right), then ONE HARD CUT PER
+    //    NUMBER, each onto one door, the door large at one side of the frame with the hallway beyond it: first the four
+    //    doors behind him (looking back toward the near end: right, left, right, left, each one further away), then
+    //    "five" back on the wide as he faces the far end (his own door, beside him), then the two far doors past him;
+    //    his POV on "eight." (the impossible door, revealed last)
     { say: { who: "milo", text: "One, two, three, four, five, six, seven... ...eight.", voice: "liamQuiet", gap: 0.3 }, hold: 0.35, set: "hallway", light: "interiorCool", transition: "whip",
-      camera: { move: "at", pos: [-0.05, 1.72, -0.55], look: [0.85, 1.2, -4.0], fov: 50 },
+      camera: { move: "at", pos: [-0.3, 1.62, 1.35], look: [0.2, 1.15, -6.9], fov: 50 },
       cams: [
-        { word: "three", move: "at", pos: [-0.05, 1.72, -0.6], look: [-0.7, 1.2, -5.6], fov: 50, glide: 0.9 },
-        { word: "six", move: "at", pos: [-0.05, 1.72, -0.65], look: [0.85, 1.2, -4.6], fov: 50, glide: 0.6 },
+        { word: "One", move: "at", pos: [-0.3, 1.55, -3.0], look: [0.65, 1.1, -0.4], fov: 64 },   // door 1: right (z -1.2)
+        { word: "two", move: "at", pos: [0.4, 1.55, -2.7], look: [-0.65, 1.1, -0.1], fov: 64 },   // door 2: left (z -0.9)
+        { word: "three", move: "at", pos: [-0.3, 1.42, -1.3], look: [0.65, 0.98, 1.3], fov: 64 },  // door 3: right, by the near wall
+        { word: "four", move: "at", pos: [0.4, 1.42, -1.2], look: [-0.65, 0.98, 1.4], fov: 64 },   // door 4: left, by the near wall
+        { word: "five", move: "at", pos: [-0.3, 1.62, 1.35], look: [0.2, 1.15, -6.9], fov: 50 },  // door 5: the wide; his own door, beside him
+        { word: "six", move: "at", pos: [-0.3, 1.55, -3.35], look: [0.75, 1.1, -5.0], fov: 64 },  // door 6: right, past him (z -4.6)
+        { word: "seven", move: "at", pos: [0.45, 1.55, -3.7], look: [-0.6, 1.1, -6.0], fov: 64 }, // door 7: left, by the end wall (z -5.6)
         { word: "eight", move: "pov", from: "milo", at: "oldDoor" },
       ],
-      actors: [{ who: "milo", at: START, back: true, act: "neutral", idle: 0.3,
-        beats: [{ word: "one", look: "right" }, { word: "three", look: "left" }, { word: "six", look: "right" }] }],
+      // a still, tense pose seen from behind: arms folded in front (crossArms keeps his talking from adding a hand
+      // gesture, which stuck an arm out sideways from behind his hoodie)
+      actors: [{ who: "milo", at: START, back: true, act: "neutral", gesture: "crossArms", idle: 0.2 }],
       props: [{ id: "oldDoor", at: "oldDoor" }, { id: "photoFrame", at: "photo" }],
       sfx: ticks(0.4, 3.9) },
     // 5. the clue in one vertical framing (bare nail, clean patch, the door through it), then one glide down to the photo
