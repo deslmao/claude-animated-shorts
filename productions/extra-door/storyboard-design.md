@@ -19,15 +19,22 @@ fails near-black frames).
   pictures on nails, a wall clock, a runner rug and a small console table with a plant.
 - **The old door:** centred on the far end wall. Dark, old, narrow wood, with no handle and no keyhole. It must look
   different from the cream doors at a glance: in colour, height, grain and the missing handle.
-- **The picture clue** (owner note: it must read clearly). The old door stands exactly where the hallway's biggest
-  picture hung:
-  - an old nail sticks out of the door at eye level;
-  - around the nail, a torn scrap of the hallway's own wallpaper still clings to the wood, as if the wall became the
-    door;
-  - directly below, the framed photo of Milo and Juno lies face-up on the floor, leaning against the door.
+- **The picture clue** (owner notes: it must read instantly; nothing on the door should distract from it). The
+  biggest picture in the hallway, a 1.2 × 0.8 m family photo, hung centred on the end wall. The old door has appeared
+  through the middle of that spot:
+  - **The clean patch.** On the end wall, a clearly visible rectangle of brighter, unfaded wallpaper (1.2 × 0.8 m,
+    1.40–2.20 m high) with a faint dust line along its edges, where the frame protected the paper for years. The door
+    is narrow (0.65 × 1.95 m), so the patch shows as one rectangle: a full-width band above the door, and wide strips
+    (about 0.28 m) on both sides of the door frame.
+  - **The nail.** On the wall directly above the patch, centred (about 2.25 m high), with nothing hanging from it.
+  - **The photo.** The framed photo of Milo and Juno lies face-up on the floor, directly below, leaning against the
+    door. It is visibly the same size as the clean patch, so the viewer matches the two at a glance.
+  - **The door itself stays plain:** no scrap, no marks. All the attention goes to the patch, the nail and the photo.
 
-  One continuous camera move connects the three, from the nail and the wallpaper scrap down to the photo, under
-  Milo's line "...that's where our picture hangs."
+  The clue is introduced in one **vertical framing** that the 9:16 frame suits: the nail at the top, the patch and
+  the door in the middle, the photo at the bottom. Then one slow glide down to the photo, under Milo's line
+  "...that's where our picture hangs." The patch is also faintly visible in the wide shot 2, for viewers who watch
+  twice.
 
 ## Shot by shot
 Times are approximate and follow the approved narration.
@@ -38,10 +45,10 @@ Times are approximate and follow the approved narration.
 | 2 | 2.3–6.3 | Hard cut. **Low, symmetrical wide shot down the corridor** (`at`, about 1.0 m high, centred). The old door sits at the vanishing point. Milo's back is in the near foreground, beside the top of the stairs. | Stillness. The viewer counts with him. | Narrator: "Milo's hallway has seven doors... It always has." The music fades in very low. |
 | 3 | 6.3–8.6 | **Reverse angle:** a medium shot of Milo from the door end (`frame`). The stairs and banister are behind him, which sets up choice B. | He rubs his eyes (`facepalm`), then shakes it off with a nervous half-smile (act `nervous`). | Milo: "Okay. I'm just tired." |
 | 4 | 8.6–12.9 | **Whip** transition into an **over-the-shoulder** shot. Camera beats glide along the walls, following his finger door by door. On "eight." a hard cut to **Milo's point of view** (`pov`): the old door dead centre at the end of the corridor. | Gesture `point`. His glances switch between the left and right walls on the numbers, then freeze. | Milo: "One, two, three... seven... ...eight." |
-| 5 | 12.9–15.8 | **Macro insert** on the old door's wood: the nail and the wallpaper scrap. Then **one slow glide down** to the photo of Milo and Juno on the floor. | Silence, then the line. | Milo: "...that's where our picture hangs." |
+| 5 | 12.9–15.8 | **Vertical clue framing** (`at`): the bare nail at the top, the clean patch around the top of the door, the photo on the floor at the bottom. Then **one slow glide down** to the photo of Milo and Juno. | Silence, then the line. | Milo: "...that's where our picture hangs." |
 | 6 | 15.8–16.6 | **Close-up of Milo** | Face `scared`; one slow breath. | — |
 | 7 | 16.6–21.5 | **Slow over-the-shoulder approach** as Milo walks 2 m toward the door. It is cut once by a 1-second **insert of the wall clock**: the ticking stops mid-shot. Then back over the shoulder as he raises his hand toward the wood (`raiseHand`). | Slow and careful steps. | Floorboard creaks, footsteps; **the clock stops**. The music thins to a single note. |
-| 8 | 21.5–25.0 | **Three knocks, three hard cuts:** (1) the door, frontal, shuddering slightly; (2) a close-up of Milo snapping his hand back (act `shock`); (3) a **low macro on the gap under the door**, where the strip of light breaks into **two dark shapes**. Something is standing right behind it. Hold. | | Three single heavy knocks, about 1.1 s apart, each landing on its cut. |
+| 8 | 21.5–25.0 | **Three knocks, three hard cuts:** (1) the door, frontal, shuddering slightly; (2) a close-up of Milo snapping his hand back (act `shock`); (3) a **low macro on the gap under the door**, where the strip of light breaks into **two dark shapes**. Something is standing right behind it. Hold. | Each knock's reaction starts on the cut frame: the door's shudder (1), Milo's flinch (2), and the door's slight shudder plus the shadows arriving (3). | **One heavy-knock recording, used three times**, about 1.1 s apart. Each cue starts on the first frame of its cut. |
 | 9 | 25.0–27.2 | **Close-up of Milo**, frozen | Face `nervous`; a small hopeful lean forward. | Milo: "...Juno?" |
 | 10 | 27.2–30.2 | **Medium over the shoulder**, Milo facing the door | Relief: face `relief_open`, and he takes half a step toward the door. | Juno (through the door): "Milo... it's me. Let me in." |
 | 11 | 30.2–33.4 | Cut exactly on the repeat to a **close-up**, with a slow push-in (the film's one deliberate push) | He stops dead. His relief drains away (face `suspicious`, then `scared`). | Juno: **the identical recording**, after 1.0 s of silence. **The music drops out** as it ends. |
@@ -54,7 +61,7 @@ Times are approximate and follow the approved narration.
 | 18 | 44.6–47.6 | **Macro insert on the bare wood**: it splinters as **a brass handle pushes out through the solid wood** (about 1.5 s), then **slowly turns down**. | | The existing `crack` sound, then a metal creak, then the **latch click** (the loudest sound in the film, which is still a small one) |
 | 19 | 47.6–49.2 | **Close-up of Milo** | Face `scared`; he swallows. | — |
 | 20 | 49.2–51.0 | **Close-up from the front.** Milo turns to the lens (glance `camera`). | He is asking us. | Milo: "...what do I do?" |
-| 21 | 51.0–55.0 | **High wide shot from behind his shoulder.** The door is ahead, the dark stairwell to his left. On the narrator's "A" and "B", **on-screen labels pop in, anchored in the scene**: **A: OPEN THE DOOR** beside the door, **B: RUN DOWNSTAIRS** beside the stairs. The handle is still turned down. | Milo looks from the door to the stairs. | Narrator: "Comment A or B. Your vote decides Part 2." A second latch click ends the film. |
+| 21 | 51.0–56.0 | **High wide shot from behind his shoulder, locked off.** The door is ahead, the dark stairwell to his left. On the narrator's "A" and "B", **flat screen-graphic labels pop in** beside their choices: **A: OPEN THE DOOR** beside the door, **B: RUN DOWNSTAIRS** beside the stairs (see "The A / B labels"). They stay up until the last frame, about 4.4 s. The handle is still turned down. The shot holds 1 s after the narration ends (the narration timing is unchanged). | Milo looks from the door to the stairs. | Narrator: "Comment A or B. Your vote decides Part 2." A second latch click ends the film. |
 
 **Loop:** the last frame (the turned handle) cuts naturally back to frame 1 (his eyes counting) if the Short loops.
 
