@@ -5,7 +5,7 @@ glance, light, music mood and transition below already exists in the engine. New
 end). What is behind the door is **never shown**: the door never opens, and the only sign of something there is two
 shadows in the light under it.
 
-**Length:** about 55 s (1650 frames). **Music:** the existing `mystery` mood (slow, dark, sparse minor pad), low under
+**Length:** about 56 s (1680 frames): the narration and its timing are unchanged, plus a 1 s hold at the end so the A / B labels can be read. **Music:** the existing `mystery` mood (slow, dark, sparse minor pad), low under
 the room tone. It drops out completely as the repeated "Let me in" ends, using the existing `musicDrop`. **Ambience:**
 `amb_room` (room tone) and a clock ticking downstairs. **Light:** `interiorCool`, at night. A single warm pendant
 lights the stairs end; the far end, with the old door, falls darker. It stays dark but always readable (the video QA
@@ -53,9 +53,9 @@ Times are approximate and follow the approved narration.
 | 10 | 27.2–30.2 | **Medium over the shoulder**, Milo facing the door | Relief: face `relief_open`, and he takes half a step toward the door. | Juno (through the door): "Milo... it's me. Let me in." |
 | 11 | 30.2–33.4 | Cut exactly on the repeat to a **close-up**, with a slow push-in (the film's one deliberate push) | He stops dead. His relief drains away (face `suspicious`, then `scared`). | Juno: **the identical recording**, after 1.0 s of silence. **The music drops out** as it ends. |
 | 12 | 33.4–35.2 | **Medium shot**, from the side | He backs away from the door and pulls out his phone (gesture `read`, holding the phone). | Silence and room tone |
-| 13 | 35.2–37.0 | **Macro insert on the phone** in his hand | The screen shows **"are you home?"** being typed, then sent. | Soft taps, then a send sound |
+| 13 | 35.2–37.0 | **Macro insert on the phone** (the phone display prop, filling the frame) | The screen shows **"are you home?"** being typed, then sent. | Soft taps, then a send sound |
 | 14 | 37.0–38.5 | **Close-up**, waiting | His eyes flick to the door (glance) and back. | Silence |
-| 15 | 38.5–40.6 | **Macro insert on the phone**, held for 2 s | Buzz: **Juno: "No, I'm still at work. Why?"**, large and readable | Phone buzz |
+| 15 | 38.5–40.6 | **Macro insert on the phone** (the phone display prop), held for 2 s | Buzz: **Juno: "No, I'm still at work. Why?"**, large and readable | Phone buzz |
 | 16 | 40.6–43.5 | **Swoop into an extreme close-up of his eyes** (a swoop beat into an insert on `milo.face`) | Face `shock`; his pupils shrink. | Juno, very close: "Don't text her." |
 | 17 | 43.5–44.6 | **Wide shot from behind Milo**, with the door ahead of him | Stillness | A low wood strain |
 | 18 | 44.6–47.6 | **Macro insert on the bare wood**: it splinters as **a brass handle pushes out through the solid wood** (about 1.5 s), then **slowly turns down**. | | The existing `crack` sound, then a metal creak, then the **latch click** (the loudest sound in the film, which is still a small one) |
@@ -73,6 +73,38 @@ Times are approximate and follow the approved narration.
 - **Variety:** no two consecutive shots use the same set-up, and there is no shot of Milo just standing and talking.
 - **Pacing:** fast at the start (the hook and the count), then slower and quieter shots as the dread grows, with
   silence before every new piece of information. The biggest sound is a small click.
+
+## The A / B labels (owner note)
+- **Clean, flat screen graphics, not signs.** Each label is a flat card that faces the lens exactly, in a shot that
+  is locked off. It is unlit, with no shading, shadow or perspective, so on screen it is a flat 2D graphic.
+- **Style:** a rounded dark panel at 85 % opacity, a bright letter badge, and white bold text.
+- **Size at 1080×1920:** the letter badge is about 120 px tall and the choice text at least 64 px tall, so both read
+  on a phone screen without zooming. (The captions run at up to 96 px.)
+- **Placement, beside each choice in empty space:**
+  - **A: OPEN THE DOOR** in the wall space to the right of the door frame;
+  - **B: RUN DOWNSTAIRS** above the stairwell opening, on the left wall.
+
+  Neither label may overlap Milo, the door or the staircase, and both stay clear of the narrator's caption.
+- **Timing:** each label pops in on its word ("A" about 51.6 s, "B" about 51.9 s) and stays up until the last frame
+  (56.0 s), so it is visible for about 4.1–4.4 s. Each label is three words.
+
+## The phone message at 1080×1920 (check against the engine's actual numbers)
+- **A held item is not sharp enough.** Held items are drawn on the character's card, which holds about 1,389 px per
+  metre at close range (a 1800 × 3000 canvas for 2.16 m). A macro insert of a held item frames 0.16 m across 70 % of
+  the 1080 px width: about 4,725 px per metre on screen. The card would be magnified about **3.4×**, so the message
+  text would be soft. Not readable enough.
+- **So the inserts use a phone display prop.** Its 0.075 × 0.15 m body fills 70 % of the frame width in the macro:
+  the phone is about 756 px wide on screen, the screen about 680 px. Its own 1024 × 2048 texture is shown at about
+  1.5 texture pixels per screen pixel, so it stays sharp.
+- **Text sizes on the 1080×1920 frame:**
+  - "Juno" (the sender name): about 44 px;
+  - **"No, I'm still at work. Why?": about 68 px bold, on two lines**;
+  - "are you home?": about 60 px.
+
+  These are close to the caption size (up to 96 px) and readable on a phone without zooming. The reply is held for
+  2.0 s, and no caption shares the frame (the phone beats are silent).
+- **Confirmation:** a full-resolution still of shots 13 and 15 in the asset stage, with the text height measured in
+  pixels. This is the only render the check needs.
 
 ## Assets
 **Reused, no changes:**
@@ -93,17 +125,25 @@ Times are approximate and follow the approved narration.
    - the light under the door breaking into two shadows;
    - the handle pushing out through the wood, then turning.
 
-   It also carries the nail and the wallpaper scrap.
-4. **Prop "photoFrame":** the photo of Milo and Juno, drawn simply in the house style.
-5. **Prop "floatLabel":** a flat, unlit text card that floats in the scene (A, B). It reads as an on-screen label,
-   not a physical sign. The engine has no anchored on-screen labels; its labels are diagram panels tied to a
-   presenter.
-6. **Item "phone"** in three states (typing, sent, reply), swapped on beats like the Video 04 apple.
-7. **Four sounds:** `knock_heavy` (a single knock, so each lands on its own cut), `phone_buzz`, `phone_tap`,
-   `latch_click`.
+   The door itself is plain, with no marks on it.
+4. **Set dressing for the clue,** part of the hallway set: the clean wallpaper patch and the bare nail on the end
+   wall.
+5. **Prop "photoFrame":** the 1.2 × 0.8 m photo of Milo and Juno, drawn simply in the house style, the same size as
+   the clean patch.
+6. **Prop "choiceLabel":** the flat A / B screen graphic (see "The A / B labels").
+7. **The phone, in two parts:**
+   - **item "phone":** the phone Milo holds in the medium shots and close-ups, drawn on his character card;
+   - **prop "phoneScreen":** a phone display prop with its own high-resolution screen, used in the two macro inserts.
+     Its three screen states (typing, sent, reply) step on time, like the Video 04 boards (see "The phone message at
+     1080×1920").
+8. **Four sounds:**
+   - `knock_heavy`: **one** recording of a single heavy knock, cued three times, one cue per cut;
+   - `phone_buzz`, `phone_tap`, `latch_click`.
 
 ## Risks to check early in the asset stage (one still each, no full renders)
-1. **The phone text is drawn as a held item.** It must stay sharp and readable in the macro insert. Fallback: draw
-   the screen as a world-space display, like the readable score boards.
+1. **The phone message:** the planned sizes below, confirmed in the asset stage with a full-resolution 1080×1920
+   still of shot 15.
 2. **The handle pushing through the wood** must read as unmistakable at preview resolution.
 3. **Darkness against the QA's near-blank check:** dark, but always exposed enough to pass.
+4. **The A / B labels:** a 1080×1920 still of shot 21, with an overlap check of the label boxes against Milo, the
+   door, the staircase and the caption.
