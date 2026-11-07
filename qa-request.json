@@ -1,11 +1,11 @@
 {
-  "run_id": "42291494506",
-  "artifact": "Short-marathon-1904-run22",
-  "frames": 1960,
+  "run_id": "42357045340",
+  "artifact": "Short-extra-door-run23",
+  "frames": 1681,
   "width": 1080,
   "height": 1920,
   "audio": "required",
-  "seams": "98,196,294,392,490,588,686,784,882,980,1078,1176,1274,1372,1470,1568,1666,1764,1862",
-  "keep": "productions/marathon-1904/final/Short-marathon-1904.mp4",
-  "note": "Video 04 full render (run 22, 20 chunks). The join's own QA step hung and the run was cancelled after the MP4 artifact was uploaded; this runs the full QA with the chunk seams and keeps the MP4 (no GitHub Release)."
+  "seams": "84,168,252,336,420,504,588,672,756,840,924,1008,1092,1176,1260,1344,1428,1512,1596",
+  "keep": "productions/extra-door/final/Short-extra-door.mp4",
+  "note": "Video 05 The Extra Door (Part 1) full render (run 23, 20 chunks, all succeeded). Full QA with all 19 chunk seams, then keep the MP4 in the repo (no GitHub Release)."
 }
