@@ -172,6 +172,30 @@
      1678
     ]
    }
+  },
+  "render": {
+   "state": "done",
+   "at": "2026-11-07T09:04:44.000Z",
+   "inputs": "23",
+   "detail": "render run #23 (20 chunks, 1080x1920, all succeeded): MP4 artifact Short-extra-door-run23"
+  },
+  "final": {
+   "state": "done",
+   "at": "2026-11-07T09:17:00.000Z",
+   "inputs": "23",
+   "detail": "QA PASSED (QA run #9, with all 19 chunk seams) | audio aligned (lag 0 ms, r=1.000) | kept in final/, no release"
   }
+ },
+ "final": {
+  "mp4": "productions/extra-door/final/Short-extra-door.mp4",
+  "qa": "PASSED",
+  "renderRun": "https://github.com/deslmao/claude-animated-shorts/actions/runs/42357045340",
+  "qaRun": "https://github.com/deslmao/claude-animated-shorts/actions/runs/42358979996",
+  "release": null,
+  "alignment": {
+   "lagSeconds": 0.0,
+   "correlation": 1.0
+  },
+  "note": "kept in the repo by the QA workflow; no GitHub Release and no social upload (not approved)"
  }
 }
