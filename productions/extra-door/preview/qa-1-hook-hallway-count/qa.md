@@ -23,4 +23,4 @@ File: `1-hook-hallway-count.mp4`
 | black spans ≥ 0.1 s | none |
 | holds settling at a hard cut (away from seams) | none |
 | frozen spans ≥ 0.5 s | none |
-| file size | 8.3 MB |
+| file size | 8.5 MB |

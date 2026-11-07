@@ -23,4 +23,4 @@ File: `2-clue-and-approach.mp4`
 | black spans ≥ 0.1 s | none |
 | holds settling at a hard cut (away from seams) | none |
 | frozen spans ≥ 0.5 s | none |
-| file size | 4.6 MB |
+| file size | 5.3 MB |
