@@ -37,10 +37,10 @@
    "latch_click"
   ],
   "act": [
-   "nervous",
    "scared",
    "neutral",
    "sleepy",
+   "nervous",
    "shock",
    "relief",
    "suspicious"
