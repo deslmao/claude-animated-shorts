@@ -18,6 +18,13 @@ export const EXTRADOOR: Storyboard = {
     { say: { who: "milo", text: "...Juno?", voice: "liamQuiet" }, ...P, transition: "cut" },
     { say: { text: "Milo... it's me. Let me in.", voice: "juno" }, ...P, transition: "cut" },
     { say: { text: "Milo... it's me. Let me in.", voice: "juno" }, ...P, transition: "cut" },
+    // FLOOR CHECK shots (asset stage stills only): the opening wide shot (design shot 2) and a low hallway view
+    { dur: 1.0, set: "hallway", light: "interiorCool", transition: "cut",
+      camera: { move: "at", pos: [0, 1.0, 1.25], look: [0, 1.05, -7.0], fov: 40 },
+      actors: [{ who: "milo", at: "nearEnd", act: "neutral", facing: 0 }], props: [{ id: "oldDoor", at: "oldDoor" }, { id: "photoFrame", at: "photo" }] },
+    { dur: 1.0, set: "hallway", light: "interiorCool", transition: "cut",
+      camera: { move: "at", pos: [0.35, 0.32, 0.9], look: [0.0, 0.55, -7.0], fov: 52 },
+      actors: [], props: [{ id: "oldDoor", at: "oldDoor" }, { id: "photoFrame", at: "photo" }] },
     // ASSET CHECK shots (asset stage stills only): the clue framing with the shadows under the door, the handle close-up
     { dur: 1.0, set: "hallway", light: "interiorCool", transition: "cut",
       camera: { move: "at", pos: [0.42, 1.5, -4.15], look: [0.0, 1.15, -7.0], fov: 64 },

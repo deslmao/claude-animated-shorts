@@ -9,8 +9,9 @@ import type { Theme } from "..";
 import { INK } from "../../characters/toon";
 import { Batch, V, quad } from "../../materials/geo";
 import { wallpaperHD, plasterHD, ceilingHD } from "../../materials/paint2";
+import { ctex } from "../../materials/paint";
 import { At, frame, col, glow, box, rbox, cyl, sph } from "../../props/kit";
-import { rug, picture, clock, pendant, floorMat } from "../../props/interior";
+import { picture, clock, pendant, floorMat } from "../../props/interior";
 import { displayTextOk } from "../../props/displays";
 import { NOINK } from "../../look/ink";
 import type { View } from "../../sets/types";
@@ -101,11 +102,13 @@ const hallway = () => {
   wallFace(shell, [-HW, SZ1], [SWX, SZ1], DEEP, -0.2, deep, deep);               // under the top landing's edge (faces +z)
   wallFace(shell, [SWX, SZ0], [-HW, SZ0], DEEP, 0, deep, deep);                  // near end of the well (faces -z)
   shell.add(quad(V(-HW, DEEP, SZ0), V(SWX, DEEP, SZ0), V(SWX, DEEP, SZ1), V(-HW, DEEP, SZ1)), deep);
-  // floor: the corridor past the stairwell, the walkway beside it, and the landing at the top
+  // floor: the corridor past the stairwell, the walkway beside it, and the landing at the top. One WORLD-aligned
+  // mapping for all three pieces (u = z / 2 m, v = x / 2 m), so the boards run unbroken along the hallway across the
+  // joins (each piece starting its UVs at 0 put a seam and a board offset at every join)
   const fl = floorMat(["#8f6a48", "#86613f", "#97714d", "#7e5a3b"]);
-  shell.add(quad(V(-HW, 0, SZ1), V(HW, 0, SZ1), V(HW, 0, ZE), V(-HW, 0, ZE), (2 * HW) / 2, (SZ1 - ZE) / 2), fl);
-  shell.add(quad(V(SWX, 0, SZ0), V(HW, 0, SZ0), V(HW, 0, SZ1), V(SWX, 0, SZ1), (HW - SWX) / 2, (SZ0 - SZ1) / 2), fl);
-  shell.add(quad(V(-HW, 0, ZN), V(HW, 0, ZN), V(HW, 0, SZ0), V(-HW, 0, SZ0), (2 * HW) / 2, (ZN - SZ0) / 2), fl);
+  const floorPiece = (x0: number, x1: number, z0: number, z1: number) =>
+    shell.add(quad(V(x0, 0, z0), V(x0, 0, z1), V(x1, 0, z1), V(x1, 0, z0), z1 / 2, x1 / 2, z0 / 2, x0 / 2), fl);
+  floorPiece(-HW, HW, ZE, SZ1); floorPiece(SWX, HW, SZ1, SZ0); floorPiece(-HW, HW, SZ0, ZN);
   // ceiling: an unlit bounce colour (as sets/room.ts), dim for night
   shell.add(quad(V(-HW, H, ZE), V(HW, H, ZE), V(HW, H, ZN), V(-HW, H, ZN), 1, 4), glow("ceilHallNight", () => ({ map: ceilingHD("#8c8377") })));
   // skirting, dado rail, cornice
@@ -150,7 +153,10 @@ const hallway = () => {
   // the pendants go in the shell batch (no cast shadows): their cords and shades threw long diagonal shadows on the door
   pendant(shell, { x: 0.15, z: 0.3, y: H }, 0.2);
   pendant(shell, { x: -0.3, z: -2.6, y: H }, 0.2);
-  rug(b, { x: 0.42, z: -2.6 }, 0.7, 7.4, ["#6b2f3a", "#d9c7a2", "#2f4a5a"]);
+  // the runner: a repeating pattern tiled along its length (the library rug is one medallion image for a room rug;
+  // stretched over 7.4 m it smeared into a giant diamond and long diagonal bands)
+  const RX0 = 0.07, RX1 = 0.77, RZ0 = -6.4, RZ1 = 1.2, RL = 0.9;
+  shell.add(quad(V(RX0, 0.004, RZ0), V(RX0, 0.004, RZ1), V(RX1, 0.004, RZ1), V(RX1, 0.004, RZ0), (RZ1 - RZ0) / RL, 1, 0, 0), lamb("hallRunner", runnerTex));
   // the clue on the end wall: the clean patch where the photo hung (unfaded paper, the same stripes), a faint dust
   // line round it, and the bare nail directly above. The old door (a story prop) stands through its middle.
   const zP = ZE + 0.004, u = (x: number) => (x + HW) / 2, v = (y: number) => (y - LOW) / 2;
@@ -161,8 +167,23 @@ const hallway = () => {
   cyl(b, col("#8d9098"), I, 0, NAIL_Y, ZE + 0.001, 0.0045, 0.0045, 0.035, 8, Math.PI / 2);
   sph(b, col("#9a9da5"), I, 0, NAIL_Y, ZE + 0.037, 0.01, 0.01, 0.0035);
   shell.build(root, false);
-  b.build(root, true);
+  // the set dressing (doors, frames, pictures, clock, banister, stairs) casts no shadows, as sets/room.ts builds its
+  // trim and door: built as casters they threw the doors' and the banister spindles' shadows across most of the floor
+  // and the steps, leaving random striped pools of key light. Story props and characters keep their own shadows.
+  b.build(root, false);
   return { root, env: { sky: false, clouds: false }, ...HALL_LAYOUT };
+};
+/** the runner's repeat (0.9 m along the hallway = the canvas width): wine ground, cream and teal border bands along
+ *  both long edges, a small diamond medallion and dots */
+const runnerTex = () => {
+  const t = ctex("hallRunner", 1024, 512, (g) => {
+    g.fillStyle = "#5e2733"; g.fillRect(0, 0, 1024, 512);
+    for (const [y, h, c] of [[0, 46, "#d9c7a2"], [46, 22, "#2f4a5a"], [444, 22, "#2f4a5a"], [466, 46, "#d9c7a2"]] as [number, number, string][]) { g.fillStyle = c; g.fillRect(0, y, 1024, h); }
+    g.fillStyle = "#2f4a5a"; g.beginPath(); g.moveTo(512, 140); g.lineTo(700, 256); g.lineTo(512, 372); g.lineTo(324, 256); g.closePath(); g.fill();
+    g.fillStyle = "#d9c7a2"; g.beginPath(); g.moveTo(512, 196); g.lineTo(604, 256); g.lineTo(512, 316); g.lineTo(420, 256); g.closePath(); g.fill();
+    g.fillStyle = "#c0545f"; for (const x of [96, 928]) { g.beginPath(); g.arc(x, 256, 34, 0, Math.PI * 2); g.fill(); }
+  });
+  return t;
 };
 /** wallpaper as a lit (Lambert) material from paint2's wallpaperHD, repeat set by the quad UVs */
 function glowless(base: string, motif: string) {
