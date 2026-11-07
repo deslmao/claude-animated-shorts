@@ -1,8 +1,8 @@
 {
-  "composition": "Short-marathon-1904",
+  "composition": "Short-extra-door",
   "chunks": 20,
   "preview": false,
   "audio": "",
   "publish": false,
-  "note": "Production marathon-1904, attempt 2: two camera moves start 1-2 frames earlier (run 21 QA: one-frame stalls at 1007 and 1740). No GitHub Release: the MP4 is kept via the QA workflow."
+  "note": "Video 05 The Extra Door (Part 1): approved final render of the storyboard at 6df95fd, 1080x1920 30fps, 1681 frames (56.03 s), with its own fingerprinted soundtrack. No GitHub Release: the MP4 is kept via the QA workflow."
 }
