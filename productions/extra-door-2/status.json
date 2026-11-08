@@ -4,9 +4,82 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-08T03:30:59.528Z",
-   "inputs": "0662d27448546en",
-   "detail": "valid; 16 warning(s):\n  shot 1 (hallway): milo: walk 0.15-1.45 s outside the shot\n  shot 1 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 2 (hallway): milo: walk 0-2 s outside the shot\n  shot 3 (hallway): milo: walk 0-3 s outside the shot\n  shot 3 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 4 (hallway): milo: walk 0-1.7 s outside the shot\n  shot 5 (hallway): milo: walk 0-2.3 s outside the shot\n  shot 6 (downstairs): milo: walk 0-1.7 s outside the shot\n  shot 7 (downstairs): milo: walk 0-1.1 s outside the shot\n  shot 2 (hallway): milo fills 26 % of the frame in the foreground @0.4s (is it hiding the action?)\n  shot 3 (hallway): milo fills 30 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 6 (downstairs): milo fills 38 % of the frame in the foreground @0.8s (is it hiding the action?)\n  shot 9 (downstairs): milo fills 33 % of the frame in the foreground @0.6s (is it hiding the action?)\n  shot 9 (downstairs): milo's raised hand (pump) is out of frame @1.0s (side): widen the shot or change the gesture\n  shot 12 (downstairs): milo fills 28 % of the frame in the foreground @1.0s (is it hiding the action?)\n  shot 18 (downstairs): milo fills 60 % of the frame in the foreground @0.0s (is it hiding the action?)"
+   "at": "2026-11-08T03:52:46.596Z",
+   "inputs": "11bdbb192ac777n",
+   "detail": "valid; 17 warning(s):\n  shot 1 (hallway): milo: walk 0.15-1.45 s outside the shot\n  shot 1 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 3 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 5 (hallway): milo: walk 0-2.3 s outside the shot\n  shot 6 (downstairs): milo: walk 0-1.7 s outside the shot\n  shot 7 (downstairs): milo: walk 0-1.1 s outside the shot\n  shot 12 (downstairs): prop \"frontDoor\" overlaps something already in the set at [0.8, -6.0]\n  shot 18 (downstairs): prop \"frontDoor\" overlaps something already in the set at [0.8, -6.0]\n  shot 19 (downstairs): prop \"frontDoor\" overlaps something already in the set at [0.8, -6.0]\n  shot 21 (downstairs): prop \"frontDoor\" overlaps something already in the set at [0.8, -6.0]\n  shot 2 (hallway): milo fills 31 % of the frame in the foreground @0.4s (is it hiding the action?)\n  shot 3 (hallway): milo fills 26 % of the frame in the foreground @2.0s (is it hiding the action?)\n  shot 5 (hallway): milo fills 40 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 6 (downstairs): milo fills 38 % of the frame in the foreground @0.8s (is it hiding the action?)\n  shot 7 (downstairs): milo fills 34 % of the frame in the foreground @0.6s (is it hiding the action?)\n  shot 9 (downstairs): milo fills 33 % of the frame in the foreground @0.6s (is it hiding the action?)\n  shot 9 (downstairs): milo's raised hand (pump) is out of frame @1.0s (side): widen the shot or change the gesture"
+  },
+  "assets": {
+   "state": "done",
+   "at": "2026-11-08T03:52:46.598Z",
+   "inputs": "11bdbb192ac777",
+   "detail": "29 library assets reused, none missing",
+   "data": {
+    "reused": 29,
+    "missing": [],
+    "byKind": {
+     "character": [
+      "milo"
+     ],
+     "mood": [
+      "mystery"
+     ],
+     "set": [
+      "hallway",
+      "downstairs"
+     ],
+     "camera": [
+      "at",
+      "closeUp",
+      "frame",
+      "insert"
+     ],
+     "light": [
+      "interiorCool"
+     ],
+     "ambience": [
+      "amb_room"
+     ],
+     "prop": [
+      "oldDoor",
+      "photoFrame",
+      "choiceLabelDimmed",
+      "choiceLabelChosen",
+      "photoOnStairs",
+      "frontDoor",
+      "phoneOutside",
+      "choiceLabel"
+     ],
+     "sfx": [
+      "latch_click",
+      "step_floor",
+      "glass_crack",
+      "thud",
+      "phone_buzz",
+      "creak",
+      "knock_heavy"
+     ],
+     "act": [
+      "scared",
+      "shock",
+      "nervous"
+     ],
+     "item": [
+      "phone"
+     ]
+    }
+   }
+  },
+  "approval": {
+   "state": "done",
+   "at": "2026-11-08T03:52:46.606Z",
+   "inputs": "10afa09305c30e",
+   "detail": "all narration already generated (no cost)"
+  },
+  "narration": {
+   "state": "done",
+   "at": "2026-11-08T03:52:46.606Z",
+   "inputs": "10afa09305c30e",
+   "detail": "all lines already generated (cached)"
   }
  }
 }

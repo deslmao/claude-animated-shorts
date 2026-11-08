@@ -300,7 +300,8 @@
   "island": "1241fe42efbc0d",
   "apartment": "0a009bb9f95ad4",
   "raceRoad": "0e258e2c5392ce",
-  "hallway": "0322d1b9171be2"
+  "hallway": "0322d1b9171be2",
+  "downstairs": "0322d1b9171be2"
  },
  "marks": {
   "home:a": "0750ac791c5d2d",
@@ -434,7 +435,15 @@
   "hallway:oldDoor": "1e8990be5c538c",
   "hallway:photo": "19bbd8fed50267",
   "hallway:stairs": "1a8da7d16269f4",
-  "hallway:phone": "0ffa7bca72190f"
+  "hallway:phone": "0ffa7bca72190f",
+  "downstairs:stairsFoot": "18be9bee8dff48",
+  "downstairs:landing": "115ea1a71a4c8c",
+  "downstairs:landingDoor": "0d11cd19ade2ac",
+  "downstairs:hallMid": "18b4980d80282b",
+  "downstairs:nearFront": "160e82afc61f91",
+  "downstairs:frontDoor": "0240211214c513",
+  "downstairs:back": "078eaa44e3377c",
+  "downstairs:photoStairs": "0b0fe294241da1"
  },
  "views": {
   "home:wide": "12d193f00443bb",
@@ -492,7 +501,10 @@
   "raceRoad:finish low": "1c5c4827884daf",
   "hallway:hallway": "1a30ef1c94be16",
   "hallway:reverse": "151c22ac5a2f14",
-  "hallway:endWall": "183097c99bc353"
+  "hallway:endWall": "183097c99bc353",
+  "downstairs:hall": "0f814c14296418",
+  "downstairs:upStairs": "07792e669df75a",
+  "downstairs:frontDoor": "10ba3482424b5f"
  },
  "lights": {
   "day": "1c824fd62ade9f",
@@ -683,7 +695,12 @@
   "oldDoor": "0010ffbccad267",
   "photoFrame": "0f8f6d539c925c",
   "phoneScreen": "0d72d8bf441797",
-  "choiceLabel": "02a884abbc8b74"
+  "choiceLabel": "02a884abbc8b74",
+  "photoOnStairs": "0eef2f77f56a91",
+  "phoneOutside": "107a86b8fe2eef",
+  "choiceLabelChosen": "02a884abbc8b74",
+  "choiceLabelDimmed": "02a884abbc8b74",
+  "frontDoor": "19b3cc76b7f637"
  },
  "items": {
   "book": "",

@@ -545,9 +545,9 @@ const screenOutsideTex = (n: number) => stex(`phoneScrOutside${n}`, 1024, 2048, 
   // the thread, laid out from the input bar upward (the oldest scrolls up under the header)
   g.textBaseline = "middle";
   type Msg = { lines: string[]; out: boolean; font: number };
-  g.font = FONT(102);
+  g.font = FONT(98);
   const msgs: Msg[] = [{ lines: [MSG], out: true, font: 90 }, { lines: REPLY, out: false, font: 102 },
-    ...NEW_MSGS.slice(0, n).map((t) => ({ lines: wrapText(g, t, 1024 - 112 - 104 - 40), out: false, font: 102 }))];
+    ...NEW_MSGS.slice(0, n).map((t) => ({ lines: wrapText(g, t, 1024 - 112 - 104), out: false, font: 98 }))];
   let bottom = 1232;
   for (const m of [...msgs].reverse()) {
     g.font = FONT(m.font);
@@ -603,10 +603,10 @@ const selectTex = () => stex("choiceSelected", LW + 2 * SEL_M, LH + 2 * SEL_M, (
   for (let k = 0; k < 3; k++) { rrect(g, SEL_M + 4, SEL_M + 4, LW - 8, LH - 8, 62); g.stroke(); }
   g.shadowBlur = 0; g.lineWidth = 12; g.strokeStyle = "#a6ffca"; rrect(g, SEL_M + 4, SEL_M + 4, LW - 8, LH - 8, 62); g.stroke();
 });
-const tagTex = (text: string) => stex(`choiceTag${text}`, 640, 150, (g) => {
-  g.fillStyle = "#16a34a"; rrect(g, 6, 6, 628, 138, 69); g.fill();
-  g.strokeStyle = "#a6ffca"; g.lineWidth = 6; rrect(g, 6, 6, 628, 138, 69); g.stroke();
-  g.fillStyle = "#ffffff"; g.font = FONT(74); g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(text, 320, 80);
+const tagTex = (text: string) => stex(`choiceTag${text}`, 560, 150, (g) => {
+  g.fillStyle = "#16a34a"; rrect(g, 6, 6, 548, 138, 69); g.fill();
+  g.strokeStyle = "#a6ffca"; g.lineWidth = 6; rrect(g, 6, 6, 548, 138, 69); g.stroke();
+  g.fillStyle = "#ffffff"; g.font = FONT(74); g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(text, 280, 80);
 });
 const dimTex = (text: string) => stex(`choiceDim${text}`, LW, LH, (g) => {
   g.filter = "grayscale(1) brightness(0.8)"; g.drawImage(labelTex(text).image as CanvasImageSource, 0, 0); g.filter = "none";
@@ -625,8 +625,10 @@ const choiceStateRig = (chosen: boolean) => (a: At, v = "A: OPEN THE DOOR"): Pro
   card.renderOrder = 999; card.frustumCulled = false; card.layers.set(NOINK); holder.add(card);
   const ew = LABEL_W * (LW + 2 * SEL_M) / LW, eh = LABEL_H * (LH + 2 * SEL_M) / LH;
   const glowM = chosen ? over(selectTex(), ew, eh, 1000) : null;
-  const tagH = 0.09, tagW = tagH * 640 / 150, letter = v.trim()[0].toUpperCase();
-  const tag = chosen ? over(tagTex(`YOU CHOSE ${letter}`), tagW, tagH, 1001, LABEL_H / 2 + 0.035 + tagH / 2) : null;
+  const tagH = 0.105, tagW = tagH * 560 / 150, letter = v.trim()[0].toUpperCase();
+  // the tag is opaque and writes depth like the card (rounded ends cut by alphaTest), so no scene outline crosses it
+  const tag = chosen ? new THREE.Mesh(new THREE.PlaneGeometry(tagW, tagH), new THREE.MeshBasicMaterial({ map: tagTex(`YOU CHOSE ${letter}`), alphaTest: 0.5, depthTest: true, depthFunc: THREE.AlwaysDepth, depthWrite: true, toneMapped: false })) : null;
+  if (tag) { tag.position.y = LABEL_H / 2 + 0.035 + tagH / 2; tag.renderOrder = 1001; tag.frustumCulled = false; tag.layers.set(NOINK); holder.add(tag); }
   const shadow = chosen ? null : over(cardShadowTex(), ew, eh, 998);
   const gray = chosen ? null : over(dimTex(v), LABEL_W, LABEL_H, 1000);
   const cm = card.material as THREE.MeshBasicMaterial;
@@ -640,7 +642,6 @@ const choiceStateRig = (chosen: boolean) => (a: At, v = "A: OPEN THE DOOR"): Pro
       (glowM!.material as THREE.MeshBasicMaterial).opacity = clamp01(f * 3);
       cm.color.setScalar(1 + 0.16 * clamp01(f * 3));
       const k = clamp01((f - 0.12) / 0.3); tag!.visible = k > 0; tag!.scale.setScalar(k * (1 + 0.3 * Math.sin(Math.PI * k) * (1 - k)));
-      (tag!.material as THREE.MeshBasicMaterial).opacity = 1;
     } else {
       holder.scale.setScalar(s);
       const k = clamp01(f * 2.5);
@@ -778,12 +779,11 @@ const downstairs = () => {
   // the dim lamp at the landing (a small wall light on the left wall, high)
   box(b, col("#3b3127"), I, DX0, DX0 + 0.05, H + 1.72, H + 1.86, -5.32, -5.18);
   sph(b, glow("landingLampM", () => ({ color: new THREE.Color("#ffd9a0"), toneMapped: false })), I, DX0 + 0.1, H + 1.79, -5.25, 0.06, 0.07, 0.06);
-  // dressing: an ordinary cream door on the right wall, pictures, two pendants, a runner to the front door
+  // dressing: an ordinary cream door on the right wall, pictures, a pendant, a runner to the front door
   hallDoor(b, { x: DX1, z: -2.3, yaw: -Math.PI / 2 });
   ([[DX1 - 0.01, -0.5, -Math.PI / 2, 2], [DX1 - 0.01, -4.1, -Math.PI / 2, 1], [0.45, DZB - 0.01, Math.PI, 3]] as [number, number, number, number][])
     .forEach(([x, z, yaw, kind]) => picture(b, { x, z, y: 1.5, yaw }, 0.5, 0.4, kind));
   pendant(shell, { x: 0.75, z: -3.3, y: H }, 0.2);
-  pendant(shell, { x: 0.5, z: -0.2, y: H }, 0.2);
   const RX0 = 0.4, RX1 = 1.1, RZ0 = -5.7, RZ1 = 0.7, RL = 0.9;
   shell.add(quad(V(RX0, 0.004, RZ0), V(RX0, 0.004, RZ1), V(RX1, 0.004, RZ1), V(RX1, 0.004, RZ0), (RZ1 - RZ0) / RL, 1, 0, 0), lamb("hallRunner", runnerTex));
   shell.build(root, false);
@@ -834,5 +834,5 @@ export const EXTRADOOR_THEME: Theme = {
     downstairs: { id: "downstairs", title: "Downstairs hall at night: the foot of the stairs, the landing, the front door", lights: ["interiorCool", "interior"], build: downstairs } },
   layouts: { hallway: HALL_LAYOUT, downstairs: DOWN_LAYOUT },
   setMeta: { hallway: { name: "Upstairs hallway (night)", desc: "a closed 1.8 m-wide corridor (x -0.9..0.9) from the end wall (z -7.0) to the near wall (z +1.6): three cream doors on the left, four on the right, pictures, a wall clock (left, z -6.45), two pendants, a runner; an open stairwell along the left wall mid-hall (x -0.9..-0.05, z -4.7..-2.1): the top of the stairs at its far end, toward the old door, ten steps going down toward the near end, banister along x -0.05 and across the near end; on the end wall the clean wallpaper patch (1.2 x 0.8 m, 1.4-2.2 m high) with a bare nail above it, where a photo hung (marks: nearEnd, hallNear, hallMid, stairsTop, backedAway, nearDoor, atDoor, oldDoor, photo, stairs, phone / views: hallway, reverse, endWall / lights: interiorCool)", themes: ["home", "modern", "horror", "mystery"], tags: ["indoor", "house", "hallway", "corridor", "stairs", "night", "doors", "horror"] },
-    downstairs: { name: "Downstairs hall (night)", desc: "the ground-floor entrance hall under the hallway: 2.4 m wide (x -1.1..1.3), from the front door's wall (z -6.0) to the back wall (z +1.2); the stairs rise along the left wall (x -1.1..0.2, thirteen 0.2 m steps from z -1.3 up toward the front of the house) to a landing at 2.6 m (z -6.0..-4.55) whose back wall can hold the old door; an open stairwell above the flight with a dim lamp at the landing; banister along the flight's open side; the corridor beside the stairs (x 0.2..1.3) to the front door (centre x 0.75, place the frontDoor prop), a cream door on the right wall, pictures, two pendants, a runner (marks: stairsFoot, landing, landingDoor, hallMid, nearFront, frontDoor, back, photoStairs / views: hall, upStairs, frontDoor / lights: interiorCool)", themes: ["home", "modern", "horror", "mystery"], tags: ["indoor", "house", "hall", "entrance", "stairs", "front door", "night", "horror"] } },
+    downstairs: { name: "Downstairs hall (night)", desc: "the ground-floor entrance hall under the hallway: 2.4 m wide (x -1.1..1.3), from the front door's wall (z -6.0) to the back wall (z +1.2); the stairs rise along the left wall (x -1.1..0.2, thirteen 0.2 m steps from z -1.3 up toward the front of the house) to a landing at 2.6 m (z -6.0..-4.55) whose back wall can hold the old door; an open stairwell above the flight with a dim lamp at the landing; banister along the flight's open side; the corridor beside the stairs (x 0.2..1.3) to the front door (centre x 0.75, place the frontDoor prop), a cream door on the right wall, pictures, a pendant, a runner (marks: stairsFoot, landing, landingDoor, hallMid, nearFront, frontDoor, back, photoStairs / views: hall, upStairs, frontDoor / lights: interiorCool)", themes: ["home", "modern", "horror", "mystery"], tags: ["indoor", "house", "hall", "entrance", "stairs", "front door", "night", "horror"] } },
 };
