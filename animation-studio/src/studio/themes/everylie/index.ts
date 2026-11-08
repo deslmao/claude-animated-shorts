@@ -108,6 +108,15 @@ const shades = (b: Batch, a: At) => {
   box(b, black, m, -0.025, 0.025, 0.01, 0.03, 0, 0.02);
 };
 
+// a sheet of lined homework paper, crumpled, held in a mouth: its top edge at `at`, hanging down, facing +z
+const homeworkPaper = (b: Batch, a: At) => {
+  const m = frame(a), white = col("#f7f5ee"), line = col("#7fa7d9"), red = col("#d9534f");
+  box(b, white, m, -0.11, 0.0, -0.15, 0.0, 0.0, 0.006);                      // left half
+  box(b, white, m, 0.0, 0.11, -0.13, 0.01, 0.004, 0.012);                    // right half, a little skewed
+  for (let k = 1; k <= 5; k++) { const y = -0.022 * k; box(b, line, m, -0.1, -0.005, y, y + 0.004, 0.0065, 0.008); box(b, line, m, 0.005, 0.1, y + 0.012, y + 0.016, 0.0125, 0.014); }
+  box(b, red, m, -0.085, -0.081, -0.145, -0.005, 0.0065, 0.009);             // the margin
+};
+
 const signTextOk = (t: string) => /^(v )?[A-Za-z0-9 .,!?'()-]{1,22}$/.test(t);
 export const EVERYLIE_THEME: Theme = {
   id: "everylie", name: "Every lie appears above your head (comedy)", desc: "the LIE sign (a red neon sign with the lie and a LIE stamp that slams in above a liar's head; footnote and arrow styles) and gag props: a burnt pancake, an upside-down bucket, a stack of textbooks, sunglasses",
@@ -119,6 +128,7 @@ export const EVERYLIE_THEME: Theme = {
     burntPancake: { name: "Burnt pancake", desc: "a charcoal-black pancake on a white plate, smoking (28 cm plate)", category: "theme", themes: ["comedy", "home", "food"], tags: ["food", "pancake", "burnt", "breakfast", "plate"], radius: 0.15, height: 0.3, build: burntPancake },
     bucket: { name: "Bucket (on a head)", desc: "a steel bucket upside down, rim at the bottom (34 cm wide, 26 cm tall): put it on a character's head", category: "theme", themes: ["comedy", "home"], tags: ["bucket", "hat", "hide", "gag"], radius: 0.18, height: 0.27, build: bucket },
     bookStack: { name: "Stack of textbooks", desc: "six colourful textbooks stacked (about 33 cm tall, 26 x 18 cm), wobbly", category: "theme", themes: ["comedy", "school"], tags: ["books", "stack", "school", "gag"], radius: 0.15, height: 0.34, build: bookStack },
+    homeworkPaper: { name: "Homework paper (in a mouth)", desc: "a crumpled sheet of lined homework paper (22 x 15 cm), its top edge at `at`, hanging down and facing +z: put it at a dog's mouth (the paper it says it didn't eat)", category: "theme", themes: ["comedy", "school"], tags: ["paper", "homework", "sheet", "school", "gag"], radius: 0.11, height: 0.15, build: homeworkPaper },
     shades: { name: "Sunglasses", desc: "black sunglasses facing +z (34 cm wide, sized for the cartoon heads), with a glint; place them in front of a face", category: "theme", themes: ["comedy", "cool"], tags: ["sunglasses", "cool", "glasses", "meme"], radius: 0.17, height: 0.12, build: shades },
   },
 };

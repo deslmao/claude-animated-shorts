@@ -81,16 +81,17 @@ export const EVERYLIE: Storyboard = {
       actors: [{ who: "teacher", at: TEACH, act: "suspicious", facing: 0, gesture: "crossArms", idle: 0.3 }, { who: "milo", at: DESK, back: true, act: "nervous", idle: 0.2 }] },
     // 7. instantly: "The dog ate it." The sign; half a second later its footnote
     { say: { who: "milo", text: "The dog ate it.", voice: "liam", gap: 0.05 }, hold: 0.85, set: "classroom", light: "interior", transition: "cut",
-      camera: { move: "at", pos: [-0.2, 1.6, -2.05], look: [-0.2, 1.72, 0.15], fov: 50 },
+      camera: { move: "at", pos: [-0.2, 1.6, -2.05], look: [-0.2, 1.42, 0.15], fov: 50 },
       actors: [{ who: "milo", at: DESK, act: "determined", facing: 0, gesture: "shrug", idle: 0.3 }],
       props: [{ id: "lieSign", at: over(DESK, HEAD), variant: "THE DOG ATE IT", steps: [{ word: "it" }] },
         { id: "lieSign", at: over(DESK, HEAD - 0.12, -0.25), variant: "(HE HAS NO DOG)", scale: 0.62, steps: [{ t: 1.6 }] }],
       sfx: [{ word: "it", name: "lie_slam", gain: -2 }, { t: 1.6, name: "pop", gain: -6 }] },
     // 8. whip to the window: the dog from the first gags, pressed to the glass, with its own lie; the class: "Ooooh!"
     { say: { text: "Ooooooooooooooohhh!", voice: "chris", gap: 0.45 }, hold: 0.2, set: "classroom", light: "interior", transition: "whip",
-      camera: { move: "at", pos: [-2.3, 1.3, -0.95], look: [-4.0, 1.22, -1.9], fov: 50 },
+      camera: { move: "at", pos: [-2.03, 1.3, -0.74], look: [-4.3, 1.15, -1.55], fov: 50 },
       actors: [],
-      props: [{ id: "farmDog", at: [-4.3, 0.42, -1.9], yaw: 90 }, { id: "lieSign", at: [-3.7, 1.32, -1.9], variant: "DIDN'T EAT IT", scale: 0.6, steps: [{ t: 0.15 }] }],
+      props: [{ id: "farmDog", at: [-4.65, 0.95, -1.6], yaw: 60 }, { id: "homeworkPaper", at: [-4.18, 1.49, -1.33], yaw: 60 },
+        { id: "lieSign", at: [-3.9, 1.78, -1.45], variant: "DIDN'T EAT IT", scale: 0.6, steps: [{ t: 0.15 }] }],
       sfx: [{ t: 0.15, name: "lie_slam", gain: -3 }] },
     // 9. Milo tries to beat the system: (a) a bucket on his head
     { say: { who: "milo", text: "I'm not hiding.", voice: "liam", gap: 0.1 }, hold: 0.25, set: "classroom", light: "interior", transition: "cut",
@@ -125,14 +126,14 @@ export const EVERYLIE: Storyboard = {
       sfx: [{ t: 0.15, name: "swish_soft", gain: -6 }, { word: "seven", name: "lie_slam", gain: 0 }, { t: 2.65, name: "pop", gain: -6 }] },
     // (c) dead silence: the whole class stares at the sign
     { dur: 0.9, set: "classroom", light: "interior", transition: "cut", mood: "rest",
-      camera: { move: "at", pos: [0.3, 1.7, 4.4], look: [0.3, 1.6, 0.15], fov: 58 },
+      camera: { move: "at", pos: [0.0, 2.0, 4.0], look: [-0.15, 1.5, 0.15], fov: 56 },
       actors: [{ who: "milo", at: DESK, act: "determined", facing: 0, idle: 0.0 }, { who: "juno", at: JUNO, act: "shock", facing: -1, gesture: "hang", idle: 0 },
-        { who: "kid1", at: [-0.6, 0, 1.6], back: true, act: "shock", facing: 0, gesture: "hang", idle: 0 }, { who: "kid2", at: [0.4, 0, 2.0], back: true, act: "shock", facing: 0, gesture: "hang", idle: 0 }, { who: "kid3", at: [1.05, 0, 1.5], back: true, act: "shock", facing: 0, gesture: "hang", idle: 0 }],
+        { who: "kid1", at: [-0.85, 0, 1.6], back: true, act: "shock", facing: 0, gesture: "hang", idle: 0 }, { who: "kid2", at: [0.55, 0, 2.0], back: true, act: "shock", facing: 0, gesture: "hang", idle: 0 }, { who: "kid3", at: [1.05, 0, 1.5], back: true, act: "shock", facing: 0, gesture: "hang", idle: 0 }],
       props: [{ id: "shades", at: [-0.2, 1.45, 0.43] }, { id: "lieSign", at: over(DESK, HEAD + 0.2), variant: "67" }] },
     // (d) one kid at the back, quietly
     { say: { who: "kid1", text: "...six seven?", voice: "chris", gap: 0.05 }, hold: 0.05, set: "classroom", light: "interior", transition: "cut",
       camera: { move: "closeUp", on: "kid1" },
-      actors: [{ who: "kid1", at: [-0.6, 0, 1.6], act: "thinking", facing: 0, gesture: "chin", idle: 0.2 }] },
+      actors: [{ who: "kid1", at: [-0.85, 0, 1.6], act: "thinking", facing: 0, gesture: "chin", idle: 0.2 }] },
     // (e) the teacher starts to object...
     { say: { who: "teacher", text: "That's not even a—", voice: "matilda", gap: 0.0 }, hold: 0.0, set: "classroom", light: "interior", transition: "cut",
       camera: { move: "closeUp", on: "teacher" },
@@ -157,10 +158,10 @@ export const EVERYLIE: Storyboard = {
       sfx: [{ t: 0.55, name: "whoosh_short", gain: -5 }] },
     // 11. the vow: alone, sincere; the biggest sign yet, enormous behind him, into the ceiling; a crane up
     { say: { who: "milo", text: "From now on... I will never lie again.", voice: "liam", gap: 0.3 }, hold: 1.0, set: "classroom", light: "interior", transition: "cut", mood: "warm",
-      camera: { move: "at", pos: [-0.2, 1.45, -1.5], look: [-0.2, 1.5, 0.15], fov: 46 },
+      camera: { move: "at", pos: [-0.2, 1.45, -1.65], look: [-0.2, 1.58, 0.15], fov: 52 },
       cams: [{ word: "again", move: "at", pos: [-0.2, 1.3, -2.6], look: [-0.2, 2.35, 0.3], fov: 58, glide: 0.8 }],
       actors: [{ who: "milo", at: DESK, act: "proud", facing: 0, gesture: "raiseHand", idle: 0.2 }],
-      props: [{ id: "lieSign", at: [-0.2, 1.55, 0.6], variant: "NEVER LIE AGAIN", scale: 2.6, steps: [{ word: "again" }] }],
+      props: [{ id: "lieSign", at: [-0.2, 1.72, 0.6], variant: "NEVER LIE AGAIN", scale: 2.6, steps: [{ word: "again" }] }],
       sfx: [{ word: "again", name: "lie_slam", gain: 1 }, { word: "again", name: "crack", gain: -4 }] },
     // 12. THE TWIST: the wise moral... and the narrator's own LIE, screen-sized. Silence. "...He did not." (true: no sign)
     { say: { text: "And that's how Milo learned... honesty is the best policy.", voice: "georgeLively", gap: 0.25 }, hold: 1.1, set: "classroom", light: "interior", transition: "cut",
