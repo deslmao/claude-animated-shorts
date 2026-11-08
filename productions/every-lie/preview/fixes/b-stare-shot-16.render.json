@@ -1,0 +1,38 @@
+{
+  "composition": "Short-every-lie",
+  "out": "/home/user/claude-animated-shorts/productions/every-lie/preview/fixes/b-stare-shot-16.mp4",
+  "preview": true,
+  "frames": "792-818",
+  "machine": {
+    "platform": "linux",
+    "osName": "linux 6.18.44-fc-v310",
+    "chip": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "cores": 4,
+    "ramGB": 15.7,
+    "gl": "swangle",
+    "browser": "/opt/pw-browsers/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell",
+    "node": "v22.23.4",
+    "where": "cloud-cpu"
+  },
+  "concurrency": 4,
+  "video": {
+    "width": 540,
+    "height": 960,
+    "fps": "30/1",
+    "frames": 27,
+    "codec": "h264",
+    "audio": true
+  },
+  "bundleSeconds": 0,
+  "renderSeconds": 72.4,
+  "secondsPerFrame": 2.68,
+  "framesPerSecond": 0.37,
+  "memory": {
+    "peakRenderProcessesGB": 3.61,
+    "macMinFreePercent": null,
+    "linuxMinAvailableGB": 12.33,
+    "macSwapUsedGBAfter": null
+  },
+  "sizeMB": 0.2,
+  "finishedAt": "2026-11-08T23:39:24.579Z"
+}
