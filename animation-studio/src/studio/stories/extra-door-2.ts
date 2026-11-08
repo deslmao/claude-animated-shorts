@@ -66,20 +66,20 @@ export const EXTRADOOR2: Storyboard = {
       actors: [{ who: "milo", at: up(-4.55), act: "scared", idle: 0.3, walk: { to: up(-3.95), t0: 0.0, t1: 2.8, mode: "run" } }],
       props: [{ id: "oldDoor", at: "oldDoor", variant: "handle" }],
       sfx: [{ t: 0.3, name: "step_floor", gain: -4 }, { t: 0.9, name: "step_floor", gain: -4 }, { t: 1.5, name: "step_floor", gain: -4 }, { t: 2.1, name: "step_floor", gain: -4 }, { t: 2.7, name: "step_floor", gain: -5 }] },
-    // 4. from the top of the stairs, steeply down the flight: Milo running down it, away below us
+    // 4. close on his face as he runs: he glances back up the stairwell toward the door (a reaction, not
+    //    another run)
     { say: { text: "You told him to run.", voice: "georgeHushed", gap: 0.16 }, hold: 0.34, set: "hallway", light: "interiorCool", transition: "cut",
-      camera: { move: "at", pos: [-0.47, 1.9, -5.3], look: [-0.47, -1.6, -2.6], fov: 58 },
-      actors: [{ who: "milo", at: up(-4.45), act: "scared", idle: 0.3, walk: { to: up(-3.0), t0: 0.0, t1: 1.7, mode: "run" } }],
-      sfx: [{ t: 0.25, name: "step_floor", gain: -4 }, { t: 0.65, name: "step_floor", gain: -4 }, { t: 1.05, name: "step_floor", gain: -4 }, { t: 1.45, name: "step_floor", gain: -5 }] },
-    // 5. as shot 9: the camera flies down behind him as he runs away from us down the flight, a foot on every second
-    //    tread, from the top of the flight toward the bottom
+      camera: { move: "at", pos: [-0.47, 0.56, -2.95], look: [-0.47, 0.5, -3.6], fov: 40 },
+      actors: [{ who: "milo", at: up(-3.6), act: "scared", face: "scared", facing: 0, idle: 0.9, beats: [{ word: "told", look: "up" }, { word: "run", look: "down" }] }],
+      sfx: [{ t: 0.25, name: "step_floor", gain: -6 }, { t: 0.65, name: "step_floor", gain: -6 }, { t: 1.05, name: "step_floor", gain: -6 }, { t: 1.45, name: "step_floor", gain: -7 }] },
+    // 5. the downstairs hall, still empty: all thirteen steps rising to the landing, the front door glowing amber at
+    //    the end of the corridor (the house's geography, before anything happens in it); his footsteps thunder closer
     { say: { text: "His stairs have thirteen steps.", voice: "georgeHushed", gap: 0.16 }, hold: 0.13, set: "downstairs", light: "interiorCool", transition: "cut",
-      camera: { move: "at", pos: [-0.42, 4.55, -5.6], look: [-0.45, 1.5, -2.6], fov: 54 },
-      cams: [{ t: 1.0, move: "at", pos: [-0.42, 3.4, -4.4], look: [-0.45, 0.9, -1.8], fov: 54, fly: true },
-        { t: 2.0, move: "at", pos: [-0.42, 2.7, -3.4], look: [-0.45, 0.4, -0.9], fov: 54, fly: true }],
-      actors: [{ who: "milo", at: TREAD(12), back: true, act: "scared", gesture: "pump", idle: 0.3,
-        walk: { to: TREAD(0), t0: 0.0, t1: 2.0, mode: "run", view: "back", footfalls: [TREAD(10), TREAD(8), TREAD(6), TREAD(4), TREAD(2)] } }],
-      sfx: [0.33, 0.67, 1.0, 1.33, 1.67, 2.0].map((t, k) => ({ t, name: "step_floor" as const, gain: k < 5 ? -4 : -5 })) },
+      camera: { move: "at", pos: [0.35, 1.2, 1.0], look: [-0.15, 2.2, -6.0], fov: 62 },
+      cams: [{ t: 0, move: "at", pos: [0.35, 1.2, 1.0], look: [-0.15, 2.2, -6.0], fov: 62, blockOk: true }],
+      actors: [],
+      props: [{ id: "frontDoor", at: "frontDoor" }],
+      sfx: [0.3, 0.75, 1.2, 1.6, 1.95].map((t, k) => ({ t, name: "step_floor" as const, gain: -12 + 2 * k })) },
     // 6. THE PHOTOGRAPH, square to the lens on the steps, clearly Milo and Juno; his sneakers come down from the top of
     //    the frame and land on it: the glass cracks; he runs on, out of the bottom of the frame
     { dur: 1.6, set: "downstairs", light: "interiorCool", transition: "cut",
@@ -87,11 +87,11 @@ export const EXTRADOOR2: Storyboard = {
       actors: [{ who: "milo", at: down(-4.3, 0.1), act: "scared", idle: 0.3, walk: { to: PHOTO_EXIT, t0: 0.0, t1: 1.7, mode: "run" } }],
       props: [{ id: "photoOnStairs", at: "photoStairs", steps: [{ t: CRACK_T }] }],
       sfx: [{ t: 0.3, name: "step_floor", gain: -4 }, { t: CRACK_T - 0.02, name: "step_floor", gain: -4 }, { t: CRACK_T, name: "glass_crack", gain: -1 }, { t: 1.2, name: "step_floor", gain: -4 }] },
-    // 7. the run: from the foot of the flight, he comes hammering down at us, the banister rushing past
+    // 7. close on his face, a few steps below the photo: he glances back up at what broke under his foot
     { dur: 1.0, set: "downstairs", light: "interiorCool", transition: "cut",
-      camera: { move: "at", pos: [-0.45, 1.25, -1.1], look: [-0.45, 2.45, -3.6], fov: 52 },
-      actors: [{ who: "milo", at: down(-4.4), act: "scared", idle: 0.3, walk: { to: down(-2.2), t0: 0.0, t1: 1.1, mode: "run" } }],
-      sfx: [{ t: 0.15, name: "step_floor", gain: -4 }, { t: 0.45, name: "step_floor", gain: -4 }, { t: 0.75, name: "step_floor", gain: -4 }] },
+      camera: { move: "at", pos: [-0.45, 2.55, -1.95], look: [-0.45, 2.5, -2.6], fov: 40 },
+      actors: [{ who: "milo", at: down(-2.6), act: "scared", face: "shock", facing: 0, idle: 0.9, beats: [{ t: 0.15, look: "up" }] }],
+      sfx: [{ t: 0.1, name: "step_floor", gain: -5 }] },
     // 8. THE SAME PHOTOGRAPH: the exact framing of shot 6, the same photo, the same crack; his feet skid to a stop on
     //    the step above it. Hold.
     { dur: 2.2, set: "downstairs", light: "interiorCool", transition: "cut",
@@ -115,21 +115,27 @@ export const EXTRADOOR2: Storyboard = {
     { say: { text: "...twenty-six.", voice: "liamQuiet", gap: 0.21 }, hold: 0.30, set: "downstairs", light: "interiorCool", transition: "cut",
       camera: { move: "at", pos: [-0.4, 1.45, 0.75], look: [-0.45, 1.2, -0.75], fov: 46 },
       actors: [{ who: "milo", at: [SCX, 0, -0.75], act: "scared", face: "scared", facing: 0, idle: 0.6 }] },
-    // 11. HE LOOKS BACK UP: an ordinary staircase, thirteen steps, the dim lamp at the landing. No photograph anywhere.
+    // 11. HE LOOKS BACK UP: an ordinary staircase, thirteen steps, no photograph anywhere, and at the top, where the
+    //     landing was, the old door. It stands there from here on (it followed him down)
     { dur: 2.8, set: "downstairs", light: "interiorCool", transition: "cut",
       camera: { move: "at", pos: [-0.25, 1.55, 0.45], look: [-0.45, 3.2, -5.5], fov: 50 },
-      actors: [{ who: "milo", at: [SCX, 0, -0.75], back: true, act: "scared", idle: 0.3 }] },
-    // 12. the downstairs hall: he goes toward the front door, its frosted glass glowing amber; the voice from upstairs
-    //     stops him, eyes to the ceiling
+      actors: [{ who: "milo", at: [SCX, 0, -0.75], back: true, act: "scared", idle: 0.3 }],
+      props: [{ id: "oldDoor", at: "landingDoor" }] },
+    // 12. the downstairs hall: he goes toward the front door, its frosted glass glowing amber; the voice stops him,
+    //     eyes up; on "Where" the picture goes to where it comes from: the old door at the top of the stairs
     { say: { text: "Milo? Where did you go?", voice: "juno", gap: 0.71 }, hold: 0.41, set: "downstairs", light: "interiorCool", transition: "cut",
       camera: { move: "at", pos: [1.0, 1.55, 0.95], look: [0.75, 1.3, -6.0], fov: 46 },
+      // the voice's source: on "Where", the old door at the top of the stairs, a slow cold push from the flight
+      cams: [{ word: "Where", move: "at", pos: [-0.45, 2.75, -3.55], look: [-0.45, 3.35, -6.0], fov: 46 },
+        { t: 2.3, move: "at", pos: [-0.45, 2.85, -3.95], look: [-0.45, 3.35, -6.0], fov: 46, glide: 1.0 }],
       actors: [{ who: "milo", at: [SCX, 0, -0.75], act: "nervous", idle: 0.3, walk: { to: MID, t0: 0.0, t1: 1.6, mode: "walk" }, beats: [{ word: "Milo", look: "up" }] }],
-      props: [{ id: "frontDoor", at: "frontDoor" }],
+      props: [{ id: "frontDoor", at: "frontDoor" }, { id: "oldDoor", at: "landingDoor" }],
       sfx: [{ t: 0.35, name: "step_floor", gain: -6 }, { t: 0.9, name: "step_floor", gain: -6 }, { t: 1.45, name: "step_floor", gain: -7 }] },
-    // 13. he freezes; the phone buzzes in his hand
+    // 13. Juno outside = the front door: over his shoulder toward the porch-lit glass, the phone buzzes in his hand
     { dur: 1.0, set: "downstairs", light: "interiorCool", transition: "cut",
-      camera: { move: "frame", on: ["milo"], size: "medium", from: 12 },
-      actors: [{ who: "milo", at: MID, act: "nervous", facing: 0, gesture: "read", hold: "phone", idle: 0.2, beats: [{ t: 0.65, act: "shock" }] }],
+      camera: { move: "at", pos: [0.62, 1.5, -1.45], look: [0.7, 1.3, -6.0], fov: 42 },
+      actors: [{ who: "milo", at: MID, back: true, act: "nervous", gesture: "read", hold: "phone", idle: 0.2 }],
+      props: [{ id: "frontDoor", at: "frontDoor" }],
       sfx: [{ t: 0.6, name: "phone_buzz", gain: -2 }] },
     // 14. the phone, readable, held: the same chat as Part 1, and Juno's new message
     { dur: 2.8, set: "downstairs", light: "interiorCool", transition: "cut",
@@ -137,30 +143,39 @@ export const EXTRADOOR2: Storyboard = {
       actors: [{ who: "milo", at: MID, act: "nervous", facing: 0, idle: 0.2 }],
       props: [{ id: "phoneOutside", at: [MID[0], 1.08, MID[2] + 0.32], variant: "msg1" }] },
     // 15. (held 0.3 s after the line so its caption clears before the cut to the phone)
-    // 15. his face in the phone's light: the phone, the front door, the stairs; the voice again, closer
+    // 15. his face in the phone's light: the phone, the front door, up the stairs; the voice again: the old door, closer
     { say: { text: "Come back up, Milo.", voice: "juno", gap: 0.93 }, hold: 0.30, set: "downstairs", light: "interiorCool", transition: "cut",
       camera: { move: "closeUp", on: "milo" },
+      // on "Come": the old door, closer than in shot 12, pushing in
+      cams: [{ word: "Come", move: "at", pos: [-0.45, 2.85, -3.9], look: [-0.45, 3.3, -6.0], fov: 44 },
+        { word: "Milo", move: "at", pos: [-0.45, 2.95, -4.2], look: [-0.45, 3.3, -6.0], fov: 44, glide: 0.6 }],
       actors: [{ who: "milo", at: MID, act: "nervous", facing: 0, gesture: "read", hold: "phone", idle: 0.2,
-        beats: [{ t: 0.0, look: "down" }, { word: "Come", look: "right" }, { word: "up", look: "up" }] }] },
+        beats: [{ t: 0.0, look: "down" }, { t: 0.45, look: "right" }, { t: 0.8, look: "up" }] }],
+      props: [{ id: "oldDoor", at: "landingDoor" }] },
     // 16. buzz: the window message. The music has just cut out (at the end of "Milo."): a beat of silence, then the buzz.
     { dur: 2.8, set: "downstairs", light: "interiorCool", transition: "cut",
       camera: { move: "insert", on: "phoneOutside", size: "macro" },
       actors: [{ who: "milo", at: MID, act: "nervous", facing: 0, idle: 0.2 }],
       props: [{ id: "phoneOutside", at: [MID[0], 1.08, MID[2] + 0.32], variant: "msg1", steps: [{ t: 0.04 }] }],
       sfx: [{ t: 0.03, name: "phone_buzz", gain: -2 }] },
-    // 17. THE WARNING: about a second of dead silence, then the cold voice from the top of the stairs; a swoop into his
-    //     eyes on "Don't"; a second of silence after it
+    // 17. THE WARNING: a second of dead silence on the front door, a hard cut up to the old door, the cold voice from it;
+    //     a swoop into his eyes after it
     { say: { text: "Don't open it. That's not me.", voice: "junoCold", gap: 0.97 }, hold: 1.0, set: "downstairs", light: "interiorCool", transition: "cut",
-      camera: { move: "closeUp", on: "milo" },
-      cams: [{ word: "Don't", move: "insert", on: "milo.face", size: "extreme", swoop: true }],
-      actors: [{ who: "milo", at: MID, act: "nervous", facing: 0, gesture: "read", hold: "phone", idle: 0.2, beats: [{ word: "Don't", act: "shock" }] }] },
-    // 18. HE LOOKS BACK UP THE STAIRS: from the foot of the flight, up all thirteen steps, and at the top, where the
-    //     landing was, the old door, the cold light under it broken by two shadows
+      // the window message's two places, cut together: the porch-lit front door, then the old door at the top
+      // of the stairs, where the cold voice speaks (a slow push); after the line, his eyes
+      camera: { move: "at", pos: [0.55, 1.5, -3.9], look: [0.75, 1.45, -6.0], fov: 46 },
+      cams: [{ t: 0.7, move: "at", pos: [-0.4, 2.8, -3.65], look: [-0.45, 3.35, -6.0], fov: 46 },
+        { t: 2.9, move: "at", pos: [-0.45, 2.92, -4.15], look: [-0.45, 3.35, -6.0], fov: 46, glide: 2.0 },
+        { t: 3.05, move: "insert", on: "milo.face", size: "extreme", swoop: true }],
+      actors: [{ who: "milo", at: MID, act: "nervous", facing: 0, idle: 0.2, beats: [{ t: 3.0, act: "shock" }] }],
+      props: [{ id: "frontDoor", at: "frontDoor" }, { id: "oldDoor", at: "landingDoor" }] },
+    // 18. he looks up the stairs (his face); level with the landing: the cold light under the old door is now broken by
+    //     two shadows. Someone is standing right behind it
     { dur: 3.2, set: "downstairs", light: "interiorCool", transition: "cut",
-      camera: { move: "at", pos: [-0.3, 1.35, -0.9], look: [-0.45, 3.55, -6.0], fov: 44 },
-      // then level with the landing: the gap under the door, its cold light broken by the two shadows
+      camera: { move: "closeUp", on: "milo" },
+      // then level with the landing: the gap under the door, its cold light now broken by the two shadows
       cams: [{ t: 1.6, move: "at", pos: [-0.45, 2.88, -4.05], look: [-0.45, 2.85, -6.0], fov: 52 }],
-      actors: [{ who: "milo", at: MID, back: true, act: "scared", hold: "phone", idle: 0.2 }],
+      actors: [{ who: "milo", at: MID, act: "scared", facing: 0, hold: "phone", idle: 0.2, beats: [{ t: 0.2, look: "up" }] }],
       props: [{ id: "oldDoor", at: "landingDoor", variant: "shadows" }, { id: "frontDoor", at: "frontDoor" }],
       sfx: [{ t: 0.35, name: "creak", gain: -6 }] },
     // 19. THREE KNOCKS ON THE FRONT DOOR (Part 1's knock recording, its rhythm), one hard cut each: the frosted glass

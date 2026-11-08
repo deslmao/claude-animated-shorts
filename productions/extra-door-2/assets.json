@@ -1,5 +1,5 @@
 {
- "reused": 29,
+ "reused": 28,
  "missing": [],
  "byKind": {
   "character": [
@@ -14,7 +14,6 @@
   ],
   "camera": [
    "at",
-   "frame",
    "insert",
    "closeUp"
   ],
@@ -29,8 +28,8 @@
    "photoFrame",
    "choiceLabelDimmed",
    "choiceLabelChosen",
-   "photoOnStairs",
    "frontDoor",
+   "photoOnStairs",
    "phoneOutside",
    "choiceLabel"
   ],

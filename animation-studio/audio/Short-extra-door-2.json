@@ -1,6 +1,6 @@
 {
  "composition": "Short-extra-door-2",
- "fingerprint": "01d3309eb47500",
+ "fingerprint": "1231d71f6142cd",
  "engine": "sound-2",
  "frames": 1508,
  "seconds": 50.266666666666666,
@@ -11,7 +11,7 @@
   "voice_lufs": -19.35,
   "music_vs_voice_lu": -13.0,
   "ambience_vs_voice_lu": -20.16,
-  "sfx_cues": 47
+  "sfx_cues": 44
  },
- "built": "2026-11-08T09:11:26Z"
+ "built": "2026-11-08T10:22:00Z"
 }

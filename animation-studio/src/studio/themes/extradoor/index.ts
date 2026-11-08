@@ -686,7 +686,7 @@ const frontSlabParts = (b: Batch, m: THREE.Matrix4) => {
   b.add(new THREE.PlaneGeometry(FG.x1 - FG.x0, FG.y1 - FG.y0), basic("frontDoorGlassM", () => ({ map: frostTex(), toneMapped: false })), m.clone().multiply(new THREE.Matrix4().makeTranslation(0, (FG.y0 + FG.y1) / 2, 0.026)));
 };
 const frontSpillParts = (b: Batch, m: THREE.Matrix4) => {
-  b.add(new THREE.PlaneGeometry(1.1, 2.2).rotateX(-Math.PI / 2), basic("frontDoorSpillM", () => ({ map: porchSpillTex(), transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false })), m.clone().multiply(new THREE.Matrix4().makeTranslation(0, 0.004, 1.15)));
+  b.add(new THREE.PlaneGeometry(1.1, 2.2).rotateX(-Math.PI / 2), basic("frontDoorSpillM", () => ({ map: porchSpillTex(), transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false })), m.clone().multiply(new THREE.Matrix4().makeTranslation(0, 0.012, 1.15))); // above the runner (4 mm): coplanar with it, they flickered
 };
 const frontDoorStatic = (b: Batch, a: At) => { const m = frame(a); frontFrameParts(b, m); frontSlabParts(b, m); frontSpillParts(b, m); };
 const frontDoorRig = (a: At): PropRig => {
