@@ -142,6 +142,8 @@ export const EXTRADOOR2: Storyboard = {
     //     landing was, the old door, the cold light under it broken by two shadows
     { dur: 3.2, set: "downstairs", light: "interiorCool", transition: "cut",
       camera: { move: "at", pos: [-0.3, 1.35, -0.9], look: [-0.45, 3.55, -6.0], fov: 44 },
+      // then level with the landing: the gap under the door, its cold light broken by the two shadows
+      cams: [{ t: 1.6, move: "at", pos: [-0.45, 2.88, -4.05], look: [-0.45, 2.85, -6.0], fov: 52 }],
       actors: [{ who: "milo", at: MID, back: true, act: "scared", hold: "phone", idle: 0.2 }],
       props: [{ id: "oldDoor", at: "landingDoor", variant: "shadows" }, { id: "frontDoor", at: "frontDoor" }],
       sfx: [{ t: 0.35, name: "creak", gain: -6 }] },
