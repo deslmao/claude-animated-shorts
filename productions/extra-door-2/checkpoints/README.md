@@ -80,6 +80,13 @@ audio presence and sync.
 5. **Juno's voice is played as recorded, as in Part 1's final mix.** My narration note had proposed a distance
    treatment; Part 1 used none, and the mixer has none. Its distance comes from the timing and the picture instead.
 
+## Checks
+- **Pipeline:** validate, assets, narration (all cached, no cost), soundtrack (−14.2 LUFS, true peak −1.6 dBFS) and
+  checks (preflight including the camera clearance check, and library integrity) all pass.
+- **`npm test`:** passes (0 failures). The z-fighting test found three coplanar contacts in the new banister (newel
+  bases and the top spindle against the steps and the hall ceiling). They were moved 3 mm to 2 cm and now measure
+  0.000 m². The stills and clips were rendered just before that fix; the change is invisible at this scale.
+
 ## Known limits (not blocking)
 - **Milo on the stairs.** He moves down the flight as a smooth slope, so his feet don't plant exactly on each tread.
   The running is framed so this doesn't show; the one tread-level shot is the photo, which he crosses quickly.

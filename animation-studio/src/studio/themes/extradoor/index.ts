@@ -772,10 +772,11 @@ const downstairs = () => {
   const dz = r0[2] - r1[2], dy = r1[1] - r0[1], len = Math.hypot(dz, dy), th = Math.atan2(dy, dz);
   box(b, rail, new THREE.Matrix4().makeTranslation(...r0).multiply(new THREE.Matrix4().makeRotationX(th)), -0.03, 0.03, -0.03, 0.03, -len, 0);
   for (let i = 0; i < NSTEP; i++) {
-    const z = SB - RUN * i - RUN / 2, top = r0[1] + (dy * (r0[2] - z)) / dz, foot = RISE * (i + 1);
+    const z = SB - RUN * i - RUN / 2, top = r0[1] + (dy * (r0[2] - z)) / dz, foot = RISE * (i + 1) + 0.003;
     box(b, spindle, I, SX + 0.027, SX + 0.053, foot, top, z - 0.013, z + 0.013);
   }
-  for (const [z, y] of [[SB - 0.05, 0], [LZ, H]] as [number, number][]) { box(b, rail, I, SX - 0.01, SX + 0.09, y, y + 1.12, z - 0.05, z + 0.05); sph(b, rail, I, SX + 0.04, y + 1.15, z, 0.055, 0.045, 0.055); }
+  // (newels clear of coplanar faces: the bottom one stands 2 cm proud of the bottom riser, the top one on the landing)
+  for (const [z, y] of [[SB + 0.02, 0], [LZ, H + 0.003]] as [number, number][]) { box(b, rail, I, SX - 0.01, SX + 0.09, y, y + 1.12, z - 0.05, z + 0.05); sph(b, rail, I, SX + 0.04, y + 1.15, z, 0.055, 0.045, 0.055); }
   // the dim lamp at the landing (a small wall light on the left wall, high)
   box(b, col("#3b3127"), I, DX0, DX0 + 0.05, H + 1.72, H + 1.86, -5.32, -5.18);
   sph(b, glow("landingLampM", () => ({ color: new THREE.Color("#ffd9a0"), toneMapped: false })), I, DX0 + 0.1, H + 1.79, -5.25, 0.06, 0.07, 0.06);
