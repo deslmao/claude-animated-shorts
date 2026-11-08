@@ -1,0 +1,38 @@
+{
+  "composition": "Short-extra-door-2",
+  "out": "/home/user/claude-animated-shorts/productions/extra-door-2/preview/4-the-door-the-knocks-the-choice.mp4",
+  "preview": false,
+  "frames": "1058-1499",
+  "machine": {
+    "platform": "linux",
+    "osName": "linux 6.18.44-fc-v310",
+    "chip": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "cores": 4,
+    "ramGB": 15.7,
+    "gl": "swangle",
+    "browser": "/opt/pw-browsers/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell",
+    "node": "v22.23.4",
+    "where": "cloud-cpu"
+  },
+  "concurrency": 4,
+  "video": {
+    "width": 1080,
+    "height": 1920,
+    "fps": "30/1",
+    "frames": 442,
+    "codec": "h264",
+    "audio": true
+  },
+  "bundleSeconds": 3.1,
+  "renderSeconds": 1999.5,
+  "secondsPerFrame": 4.524,
+  "framesPerSecond": 0.22,
+  "memory": {
+    "peakRenderProcessesGB": 4.36,
+    "macMinFreePercent": null,
+    "linuxMinAvailableGB": 11.18,
+    "macSwapUsedGBAfter": null
+  },
+  "sizeMB": 7,
+  "finishedAt": "2026-11-08T05:30:50.864Z"
+}

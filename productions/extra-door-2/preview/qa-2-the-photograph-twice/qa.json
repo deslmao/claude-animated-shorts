@@ -1,13 +1,13 @@
 {
   "ok": true,
-  "frames": 201,
+  "frames": 224,
   "fps": 30,
   "width": 1080,
   "height": 1920,
-  "videoSeconds": 6.7,
-  "audioSeconds": 6.7,
-  "lufs": -13.5,
-  "truePeak": -2.2,
+  "videoSeconds": 7.466666666666667,
+  "audioSeconds": 7.466,
+  "lufs": -16.7,
+  "truePeak": -2.1,
   "duplicates": [],
   "holds": [],
   "seams": null,
@@ -35,7 +35,7 @@
     [
       "frame count",
       true,
-      "201 frames (expected 201) = 6.700 s"
+      "224 frames (expected 224) = 7.467 s"
     ],
     [
       "no duplicated frames (chunk seams)",
@@ -65,7 +65,7 @@
     [
       "audio is not silent",
       true,
-      "-13.5 LUFS integrated"
+      "-16.7 LUFS integrated"
     ],
     [
       "audio starts at 0",
@@ -75,7 +75,7 @@
     [
       "audio length matches picture (sync)",
       true,
-      "audio 6.700 s vs picture 6.700 s (diff 0.000 s)"
+      "audio 7.466 s vs picture 7.467 s (diff -0.001 s)"
     ]
   ]
 }

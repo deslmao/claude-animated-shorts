@@ -126,12 +126,13 @@ export const EXTRADOOR2: Storyboard = {
       camera: { move: "insert", on: "phoneOutside", size: "macro" },
       actors: [{ who: "milo", at: MID, act: "nervous", facing: 0, idle: 0.2 }],
       props: [{ id: "phoneOutside", at: [MID[0], 1.08, MID[2] + 0.32], variant: "msg1" }] },
+    // 15. (held 0.3 s after the line so its caption clears before the cut to the phone)
     // 15. his face in the phone's light: the phone, the front door, the stairs; the voice again, closer
-    { say: { text: "Come back up, Milo.", voice: "juno", gap: 0.93 }, hold: 0.03, set: "downstairs", light: "interiorCool", transition: "cut",
+    { say: { text: "Come back up, Milo.", voice: "juno", gap: 0.93 }, hold: 0.30, set: "downstairs", light: "interiorCool", transition: "cut",
       camera: { move: "closeUp", on: "milo" },
       actors: [{ who: "milo", at: MID, act: "nervous", facing: 0, gesture: "read", hold: "phone", idle: 0.2,
         beats: [{ t: 0.0, look: "down" }, { word: "Come", look: "right" }, { word: "up", look: "up" }] }] },
-    // 16. buzz: the window message. The music cuts out on it.
+    // 16. buzz: the window message. The music has just cut out (at the end of "Milo."): a beat of silence, then the buzz.
     { dur: 2.8, set: "downstairs", light: "interiorCool", transition: "cut",
       camera: { move: "insert", on: "phoneOutside", size: "macro" },
       actors: [{ who: "milo", at: MID, act: "nervous", facing: 0, idle: 0.2 }],
