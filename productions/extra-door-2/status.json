@@ -93,5 +93,18 @@
    "inputs": "01d3309eb47500",
    "detail": "preflight PASS; library intact"
   }
+ },
+ "final": {
+  "mp4": "productions/extra-door-2/final/Short-extra-door-2.mp4",
+  "qa": "PASSED",
+  "renderRun": "https://github.com/deslmao/claude-animated-shorts/actions/runs/42467111956",
+  "frames": 1508,
+  "seconds": 50.267,
+  "alignment": {
+   "lagSeconds": 0.0,
+   "correlation": 1.0
+  },
+  "release": null,
+  "note": "kept in the repo by the QA workflow (all 19 chunk seams checked); no GitHub Release"
  }
 }
