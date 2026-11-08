@@ -25,6 +25,10 @@ MOODS = {
     "tense": dict(root=50, scale=MIN, bpm=104, prog=[0, 0, 5, 4], bass="pulse", chords="pad", lead="vibes", perc="timpani", density=0.3, swing=0.0),
     # adventure / history / pirates: brass chords, march snare, fife tune
     "adventure": dict(root=58, scale=MAJ, bpm=120, prog=[0, 4, 5, 3], bass="brass_bass", chords="brass", lead="fife", perc="march", density=0.6, swing=0.0),
+    # drift-phonk energy (Every Lie): pitched cowbell lead, 808 slides, hats with rolls, claps on 2 and 4
+    "phonk": dict(root=49, scale=MIN, bpm=130, prog=[0, 0, 5, 6], bass="808", chords="none", lead="cowbell", perc="phonk", density=0.9, swing=0.0),
+    # near-silence for a held comedy beat (a stare, the hush before a drop): only a barely audible sub drone
+    "rest": dict(root=49, scale=MIN, bpm=130, prog=[0], bass="none", chords="sub", lead="none", perc="none", density=0.0, swing=0.0),
 }
 
 
@@ -111,6 +115,9 @@ def compose(sections, total, button_t, seed, gain_db=0.0, drop_t=None):
             elif m["bass"] == "pulse":
                 for e in range(8):
                     place(sec, pan(I.pluck(I.m2f(root), (0.55 + 0.15 * (e % 2 == 0)) * soft, r, 0.3, 0.3), -0.1), bt0 + e * beat / 2)
+            elif m["bass"] == "808":
+                for b, n_, d in [(0, root, 0.55), (1.5, root, 0.4), (2.5, root + 12, 0.5), (3.5, root + 7, 0.3)]:
+                    place(sec, I.bass808(I.m2f(n_), d, 0.8 * soft, r, glide=I.m2f(root) if b == 2.5 else None), bt0 + b * beat)
             elif m["bass"] == "brass_bass":
                 for b, n_ in [(0, root), (2, root + 7)]:
                     place(sec, pan(I.brass(I.m2f(n_), beat * 0.8, 0.55 * soft, r, "tuba"), -0.1), bt0 + b * beat)
@@ -124,6 +131,8 @@ def compose(sections, total, button_t, seed, gain_db=0.0, drop_t=None):
                         place(sec, pan(I.pluck(I.m2f(c + 12), 0.28 * soft, r, 0.35, 0.6), 0.3), bt0 + sw(b) * beat)
             elif m["chords"] == "pad":
                 place(sec, I.pad([I.m2f(c) for c in ch], bar * 0.98, 0.42 * soft, r, att=0.4, rel=0.8), bt0)
+            elif m["chords"] == "sub":
+                place(sec, I.subdrone(I.m2f(ch[0] - 12), bar * 0.98), bt0)
             elif m["chords"] == "brass":
                 for b in (1, 3):
                     for c in ch:
@@ -138,6 +147,14 @@ def compose(sections, total, button_t, seed, gain_db=0.0, drop_t=None):
                 place(sec, pan(I.triangle(0.18, r, 0.8), 0.4), bt0)
             elif m["perc"] == "timpani":
                 place(sec, I.timpani(I.m2f(ch[0] - 12), 0.45 * soft, r, 1.6), bt0)
+            elif m["perc"] == "phonk":
+                for e in range(8):  # 8th hats, a 16th roll on the last beat of every second bar
+                    place(sec, pan(I.hat(0.55 if e % 2 == 0 else 0.4, r), 0.2), bt0 + e * beat / 2)
+                if k % 2 == 1:
+                    for q in range(4):
+                        place(sec, pan(I.hat(0.35, r), 0.2), bt0 + 3 * beat + q * beat / 4)
+                for b in (1, 3):
+                    place(sec, pan(I.clap(0.6 * soft, r), -0.05), bt0 + b * beat)
             elif m["perc"] == "march":
                 for b, v in [(0, 0.35), (1, 0.22), (1.5, 0.18), (2, 0.3), (3, 0.22), (3.5, 0.18)]:
                     place(sec, pan(I.snare(v * soft, r, 0.25), 0.1), bt0 + b * beat)
@@ -151,7 +168,11 @@ def compose(sections, total, button_t, seed, gain_db=0.0, drop_t=None):
                     midi = _snap(notes[i], pcs, b in (0, 2))
                     dur = ln * beat * 0.9
                     v = 0.5 * soft
-                    if m["lead"] == "glock":
+                    if m["lead"] == "none":
+                        continue
+                    if m["lead"] == "cowbell":
+                        x = pan(I.cowbell(I.m2f(midi + 12), v * 0.9, r, 0.3), 0.15)
+                    elif m["lead"] == "glock":
                         x = pan(I.glock(I.m2f(midi + 12), v * 0.8, r, 1.2), 0.2)
                     elif m["lead"] == "vibes":
                         x = pan(I.vibes(I.m2f(midi), v, r, max(1.0, dur + 0.6)), 0.2)

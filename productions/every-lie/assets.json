@@ -1,0 +1,74 @@
+{
+ "reused": 46,
+ "missing": [],
+ "byKind": {
+  "character": [
+   "milo",
+   "gus",
+   "juno"
+  ],
+  "extras": [
+   "extras:office",
+   "extras:modern"
+  ],
+  "mood": [
+   "phonk"
+  ],
+  "set": [
+   "apartment",
+   "city",
+   "classroom"
+  ],
+  "camera": [
+   "at",
+   "frame",
+   "closeUp"
+  ],
+  "light": [
+   "interior",
+   "day"
+  ],
+  "ambience": [
+   "amb_room",
+   "amb_city_day"
+  ],
+  "prop": [
+   "lieSign",
+   "farmDog",
+   "burntPancake",
+   "bucket",
+   "bookStack",
+   "shades"
+  ],
+  "sfx": [
+   "lie_slam",
+   "boing",
+   "crack",
+   "poof",
+   "steam",
+   "thud",
+   "crickets",
+   "impact",
+   "pop",
+   "clink",
+   "swish_soft",
+   "gasp",
+   "whoosh_short",
+   "ding"
+  ],
+  "act": [
+   "proud",
+   "nervous",
+   "neutral",
+   "shock",
+   "suspicious",
+   "determined",
+   "thinking",
+   "angry",
+   "excited"
+  ],
+  "item": [
+   "phone"
+  ]
+ }
+}

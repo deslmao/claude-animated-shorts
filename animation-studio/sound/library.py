@@ -502,6 +502,27 @@ def glass_crack(r):
     return fades(_sum(*parts), 0.0003, 0.06) * 0.8
 
 
+def lie_slam(r):
+    """the LIE sign slamming into the air (Every Lie): a neon buzz, a heavy stamp thud with a deep boom tail"""
+    t = tt(0.9)
+    buzz = np.sign(np.sin(TAU * 120 * t[: ns(0.18)])) * 0.12 + bp(r.standard_normal(ns(0.18)), 2000, 6000, 1) * 0.05
+    buzz = buzz * np.linspace(1, 0, len(buzz)) ** 0.5
+    stamp = lp(r.standard_normal(ns(0.04)), 2500) * np.exp(-tt(0.04) / 0.008) * 0.8
+    boom = np.sin(TAU * (48 + 60 * np.exp(-t / 0.05)) * t) * np.exp(-t / 0.35) * 0.9
+    return fades(_sum((buzz, 0.0), (stamp, 0.03), (boom * 0.85, 0.03)), 0.0005, 0.1) * 0.85
+
+
+def crickets(r):
+    """awkward-silence crickets: a few pulsed high chirps (about 1.6 s)"""
+    out = np.zeros(ns(1.6))
+    for k, t0 in enumerate((0.05, 0.42, 0.79, 1.16)):
+        n = ns(0.16); t = np.arange(n) / 48000
+        f = r.uniform(4300, 4700)
+        chirp = np.sin(TAU * f * t) * (0.5 + 0.5 * np.sign(np.sin(TAU * 28 * t))) * np.hanning(n)
+        i = ns(t0); out[i:i + n] += chirp * 0.18
+    return fades(out, 0.01, 0.1)
+
+
 SFX = {
     "pop": pop, "ding": ding, "blip_up": blip_up, "boing": boing, "poof": poof, "twinkle": twinkle, "impact": impact,
     "thud": thud, "party_pop": party_pop, "drip": drip, "steam": steam, "snore_soft": snore_soft, "ring_ding": ring_ding,
@@ -513,7 +534,7 @@ SFX = {
     "giggle": giggle, "feather_swish": feather_swish, "servo": servo, "stumble": stumble,
     "crowd_aye": crowd_aye, "crowd_murmur": crowd_murmur, "quill_scratch": quill_scratch, "coins_pour": coins_pour,
     "engine": engine, "honk": honk, "backfire": backfire, "bark": bark, "crack_egg": crack_egg,
-    "knock_heavy": knock_heavy, "phone_buzz": phone_buzz, "phone_tap": phone_tap, "latch_click": latch_click, "glass_crack": glass_crack,
+    "knock_heavy": knock_heavy, "phone_buzz": phone_buzz, "phone_tap": phone_tap, "latch_click": latch_click, "glass_crack": glass_crack, "lie_slam": lie_slam, "crickets": crickets,
 }
 
 

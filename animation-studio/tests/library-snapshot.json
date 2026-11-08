@@ -700,7 +700,12 @@
   "phoneOutside": "107a86b8fe2eef",
   "choiceLabelChosen": "02a884abbc8b74",
   "choiceLabelDimmed": "02a884abbc8b74",
-  "frontDoor": "19b3cc76b7f637"
+  "frontDoor": "19b3cc76b7f637",
+  "lieSign": "02a884abbc8b74",
+  "burntPancake": "0513e40c48da49",
+  "bucket": "086bda0011d741",
+  "bookStack": "0513e40c48da49",
+  "shades": "0806f64e45a7b6"
  },
  "items": {
   "book": "",

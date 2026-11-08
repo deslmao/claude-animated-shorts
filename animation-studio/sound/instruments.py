@@ -289,3 +289,52 @@ def pad(freqs, dur, vel=0.5, r=None, att=0.6, rel=0.9, warm=900.0, detune=7.0, t
     if trem is not None:
         out *= trem(t)[None, :]
     return out * env[None, :] * vel / np.sqrt(len(freqs) * 3)
+
+
+# ---------------------------------------------------------------- phonk kit (the "phonk" mood, own synthesis)
+def cowbell(f, vel=0.7, r=None, dur=0.32):
+    """the pitched Memphis-phonk cowbell: two detuned square partials (f and 1.48 f), band-limited, fast metallic decay"""
+    n = ns(dur)
+    t = np.arange(n) / SR
+    sq = lambda ff: np.sign(np.sin(TAU * ff * t))
+    y = bp(0.6 * sq(f) + 0.45 * sq(f * 1.48), 500, 6500, 2)
+    y = y * (0.55 * np.exp(-t / 0.035) + 0.45 * np.exp(-t / 0.16))
+    return fades(np.tanh(1.6 * y) * 0.5 * vel, 0.0005, 0.03)
+
+
+def bass808(f, dur=0.6, vel=0.8, r=None, glide=None):
+    """808 bass: a sine with a quick pitch drop at the attack (or a slide from `glide` Hz), long decay, soft saturation"""
+    n = ns(dur + 0.25)
+    t = np.arange(n) / SR
+    f0 = (glide if glide else f * 1.6)
+    ff = f + (f0 - f) * np.exp(-t / (0.12 if glide else 0.018))
+    y = np.sin(phase(ff)) * np.exp(-t / max(0.2, dur * 0.7))
+    return fades(np.tanh(2.2 * y) * 0.62 * vel, 0.001, 0.08)
+
+
+def hat(vel=0.5, r=None, dur=0.045, open_=False):
+    """closed (or open) hi-hat: high-passed noise burst"""
+    r = r or rng(0)
+    n = ns(0.3 if open_ else dur)
+    t = np.arange(n) / SR
+    y = hp(r.standard_normal(n), 7000) * np.exp(-t / (0.09 if open_ else 0.012))
+    return fades(y * 0.35 * vel, 0.0002, 0.005)
+
+
+def clap(vel=0.7, r=None):
+    """hand clap: three quick noise bursts and a short band-passed tail"""
+    r = r or rng(0)
+    out = np.zeros(ns(0.3))
+    for k, d in enumerate((0.0, 0.011, 0.022)):
+        n = ns(0.02 if k < 2 else 0.25)
+        t = np.arange(n) / SR
+        b = bp(r.standard_normal(n), 900, 5000, 2) * np.exp(-t / (0.006 if k < 2 else 0.07))
+        i = ns(d); out[i:i + n] += b[: len(out) - i]
+    return fades(out * 0.55 * vel, 0.0002, 0.02)
+
+
+def subdrone(f, dur, vel=0.05):
+    """a barely audible low sine drone (the "rest" mood: near-silence under a held comedy beat)"""
+    n = ns(dur)
+    t = np.arange(n) / SR
+    return fades(np.sin(TAU * f * t) * vel, 0.2, 0.3)

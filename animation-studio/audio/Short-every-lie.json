@@ -1,0 +1,17 @@
+{
+ "composition": "Short-every-lie",
+ "fingerprint": "12b6e31efa4186",
+ "engine": "sound-2",
+ "frames": 1263,
+ "seconds": 42.1,
+ "lines": 21,
+ "lufs": -14.2,
+ "truePeak": -1.8,
+ "stems": {
+  "voice_lufs": -18.69,
+  "music_vs_voice_lu": -14.0,
+  "ambience_vs_voice_lu": -19.96,
+  "sfx_cues": 35
+ },
+ "built": "2026-11-08T22:49:55Z"
+}

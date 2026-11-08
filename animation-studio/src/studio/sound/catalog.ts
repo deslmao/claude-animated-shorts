@@ -12,6 +12,8 @@ export const MOODS = {
   warm: "tender and kind (pad + music box), 88 bpm major: heart-warming facts, endings",
   tense: "building tension (pulsing minor eighths, soft timpani), 104 bpm minor: danger, countdowns",
   adventure: "history, journeys, pirates (brass chords, march snare, fife tune), 120 bpm major",
+  phonk: "drift-phonk comedy energy (pitched cowbell lead, 808 slides, hats with rolls, claps), 130 bpm minor",
+  rest: "near-silence for a held comedy beat (a barely audible sub drone)",
 } as const;
 export type Mood = keyof typeof MOODS;
 
@@ -43,7 +45,7 @@ export const SFX = {
   giggle: "a short burst of giggles (someone tickled)", feather_swish: "a feather brushing skin (soft, airy)", servo: "small robot servo whirr", stumble: "shoe scuffs + light thump (a stumble)",
   crowd_aye: "a crew's ragged chorus of \"aye!\" + a short cheer (a vote)", crowd_murmur: "a crew murmuring at a meeting (3 s)", quill_scratch: "a quill scratching on parchment (signing)", coins_pour: "coins poured into a hand (a share, a payout)",
   engine: "an early motor car putter-putter (1.8 s)", honk: "a rubber bulb horn: two honks", backfire: "a car backfire bang + clank + steam hiss (a breakdown)", bark: "a farm dog: two woofs", crack_egg: "an egg cracked on a rim",
-  knock_heavy: "ONE slow, heavy knock on an old wooden door (cue once per knock)", phone_buzz: "a phone vibrating: two short buzzes", phone_tap: "soft phone-screen typing taps (1.4 s)", latch_click: "a door latch releasing: metallic click + bolt thunk", glass_crack: "picture-frame glass cracking under a foot: sharp crack + faint tinkle (no shatter)",
+  knock_heavy: "ONE slow, heavy knock on an old wooden door (cue once per knock)", phone_buzz: "a phone vibrating: two short buzzes", phone_tap: "soft phone-screen typing taps (1.4 s)", latch_click: "a door latch releasing: metallic click + bolt thunk", glass_crack: "picture-frame glass cracking under a foot: sharp crack + faint tinkle (no shatter)", lie_slam: "a LIE sign slamming in: neon buzz + heavy stamp + deep boom", crickets: "awkward-silence crickets (1.6 s)",
 } as const;
 export type SfxName = keyof typeof SFX;
 
