@@ -1,0 +1,81 @@
+{
+  "ok": true,
+  "frames": 201,
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "videoSeconds": 6.7,
+  "audioSeconds": 6.7,
+  "lufs": -13.5,
+  "truePeak": -2.2,
+  "duplicates": [],
+  "holds": [],
+  "seams": null,
+  "nearBlank": [],
+  "glitch": [],
+  "softStill": [],
+  "black": [],
+  "frozen": [],
+  "checks": [
+    [
+      "video codec is H.264",
+      true,
+      "h264"
+    ],
+    [
+      "resolution",
+      true,
+      "1080x1920 (expected 1080x1920)"
+    ],
+    [
+      "frame rate",
+      true,
+      "30 fps (expected 30)"
+    ],
+    [
+      "frame count",
+      true,
+      "201 frames (expected 201) = 6.700 s"
+    ],
+    [
+      "no duplicated frames (chunk seams)",
+      true,
+      "none"
+    ],
+    [
+      "no near-blank frames (camera against scenery)",
+      true,
+      "none"
+    ],
+    [
+      "no corrupt / half-refreshed frames",
+      true,
+      "none"
+    ],
+    [
+      "no unexplained soft frames (soft while nothing moves)",
+      true,
+      "none"
+    ],
+    [
+      "audio track present",
+      true,
+      "aac 48000 Hz 2 ch"
+    ],
+    [
+      "audio is not silent",
+      true,
+      "-13.5 LUFS integrated"
+    ],
+    [
+      "audio starts at 0",
+      true,
+      "0.000 s"
+    ],
+    [
+      "audio length matches picture (sync)",
+      true,
+      "audio 6.700 s vs picture 6.700 s (diff 0.000 s)"
+    ]
+  ]
+}

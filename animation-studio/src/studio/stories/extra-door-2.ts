@@ -22,8 +22,11 @@ const MID: V3 = [0.45, 0, -2.4];                      // in the corridor beside 
 const PHOTO_CAM = { move: "at" as const, pos: [-0.45, 3.6, -1.86] as V3, look: [-0.45, 1.8, -3.3] as V3, fov: 60 };
 /** shot time at which a walk (smoothstep-eased from t0 to t1) reaches fraction f of its way */
 const walkAt = (t0: number, t1: number, f: number) => { let lo = 0, hi = 1; for (let k = 0; k < 40; k++) { const m = (lo + hi) / 2; if (m * m * (3 - 2 * m) < f) lo = m; else hi = m; } return Math.round((t0 + (t1 - t0) * lo) * 100) / 100; };
-// shot 6: he runs from z -4.3 to -1.95; the foot lands on the photo's middle (z -3.25)
-const CRACK_T = walkAt(0, 1.7, (4.3 - 3.25) / (4.3 - 1.95));
+// shot 6: he runs from z -4.3 to -2.35; the foot lands on the photo's middle (z -3.25), right of centre
+// (after the photo his run veers right, toward the banister and out of the frame, not under the lens: a figure seen
+//  from steeply above flattens)
+const PHOTO_EXIT: V3 = [0.05, Math.round((0.2 + 0.8 * (-1.425 + 2.35) + 0.1) * 1000) / 1000, -2.35];
+const CRACK_T = walkAt(0, 1.7, (4.3 - 3.25) / (4.3 - 2.35));
 
 export const EXTRADOOR2: Storyboard = {
   id: "extra-door-2", title: "The Extra Door (Part 2)",
@@ -61,21 +64,23 @@ export const EXTRADOOR2: Storyboard = {
       actors: [{ who: "milo", at: up(-4.55), act: "scared", idle: 0.3, walk: { to: up(-3.95), t0: 0.0, t1: 2.8, mode: "run" } }],
       props: [{ id: "oldDoor", at: "oldDoor", variant: "handle" }],
       sfx: [{ t: 0.3, name: "step_floor", gain: -4 }, { t: 0.9, name: "step_floor", gain: -4 }, { t: 1.5, name: "step_floor", gain: -4 }, { t: 2.1, name: "step_floor", gain: -4 }, { t: 2.7, name: "step_floor", gain: -5 }] },
-    // 4. high over the well's edge: he glances back up as he runs
+    // 4. from the top of the stairs, steeply down the flight: Milo running down it, away below us
     { say: { text: "You told him to run.", voice: "georgeHushed", gap: 0.16 }, hold: 0.34, set: "hallway", light: "interiorCool", transition: "cut",
-      camera: { move: "at", pos: [-0.12, 2.3, -3.3], look: [-0.5, -0.8, -3.65], fov: 52 },
-      actors: [{ who: "milo", at: up(-4.3), act: "scared", idle: 0.3, walk: { to: up(-2.8), t0: 0.0, t1: 1.7, mode: "run" }, beats: [{ word: "told", look: "up" }, { word: "run", look: "down" }] }],
-      sfx: [{ t: 0.25, name: "step_floor", gain: -4 }, { t: 0.65, name: "step_floor", gain: -4 }, { t: 1.05, name: "step_floor", gain: -4 }, { t: 1.45, name: "step_floor", gain: -5 }] },
-    // 5. from the top of the stairs, steeply down the flight: Milo running away down it, the steps falling into the dark
-    { say: { text: "His stairs have thirteen steps.", voice: "georgeHushed", gap: 0.16 }, hold: 0.13, set: "hallway", light: "interiorCool", transition: "cut",
       camera: { move: "at", pos: [-0.47, 1.9, -5.3], look: [-0.47, -1.6, -2.6], fov: 58 },
-      actors: [{ who: "milo", at: up(-4.4), act: "scared", idle: 0.3, walk: { to: up(-2.75), t0: 0.0, t1: 2.3, mode: "run" } }],
+      actors: [{ who: "milo", at: up(-4.45), act: "scared", idle: 0.3, walk: { to: up(-3.0), t0: 0.0, t1: 1.7, mode: "run" } }],
+      sfx: [{ t: 0.25, name: "step_floor", gain: -4 }, { t: 0.65, name: "step_floor", gain: -4 }, { t: 1.05, name: "step_floor", gain: -4 }, { t: 1.45, name: "step_floor", gain: -5 }] },
+    // 5. the whole downstairs flight from the corridor, three-quarters on: he comes running down it (the banister in
+    //    the foreground is intended)
+    { say: { text: "His stairs have thirteen steps.", voice: "georgeHushed", gap: 0.16 }, hold: 0.13, set: "downstairs", light: "interiorCool", transition: "cut",
+      camera: { move: "at", pos: [1.0, 1.5, -0.55], look: [-0.45, 1.85, -3.6], fov: 50 },
+      cams: [{ t: 0, move: "at", pos: [1.0, 1.5, -0.55], look: [-0.45, 1.85, -3.6], fov: 50, blockOk: true }],
+      actors: [{ who: "milo", at: down(-4.45), act: "scared", idle: 0.3, walk: { to: down(-2.6), t0: 0.0, t1: 2.3, mode: "run" } }],
       sfx: [{ t: 0.3, name: "step_floor", gain: -5 }, { t: 0.8, name: "step_floor", gain: -5 }, { t: 1.3, name: "step_floor", gain: -5 }, { t: 1.8, name: "step_floor", gain: -6 }] },
     // 6. THE PHOTOGRAPH, square to the lens on the steps, clearly Milo and Juno; his sneakers come down from the top of
     //    the frame and land on it: the glass cracks; he runs on, out of the bottom of the frame
     { dur: 1.6, set: "downstairs", light: "interiorCool", transition: "cut",
       camera: PHOTO_CAM,
-      actors: [{ who: "milo", at: down(-4.3, 0.1), act: "scared", idle: 0.3, walk: { to: down(-1.95, 0.1), t0: 0.0, t1: 1.7, mode: "run" } }],
+      actors: [{ who: "milo", at: down(-4.3, 0.1), act: "scared", idle: 0.3, walk: { to: PHOTO_EXIT, t0: 0.0, t1: 1.7, mode: "run" } }],
       props: [{ id: "photoOnStairs", at: "photoStairs", steps: [{ t: CRACK_T }] }],
       sfx: [{ t: 0.3, name: "step_floor", gain: -4 }, { t: CRACK_T - 0.02, name: "step_floor", gain: -4 }, { t: CRACK_T, name: "glass_crack", gain: -1 }, { t: 1.2, name: "step_floor", gain: -4 }] },
     // 7. the run: from the foot of the flight, he comes hammering down at us, the banister rushing past
