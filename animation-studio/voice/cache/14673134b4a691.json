@@ -1,0 +1,30 @@
+{
+ "hash": "14673134b4a691",
+ "text": "...six seven?",
+ "voice": "chris",
+ "lead": 0,
+ "end": 0.975,
+ "dur": 1.018776,
+ "words": [
+  {
+   "w": "...six",
+   "t0": 0,
+   "t1": 0.383
+  },
+  {
+   "w": "seven?",
+   "t0": 0.418,
+   "t1": 0.975
+  }
+ ],
+ "voiceId": "iP95p4xoKVk53GoZ742B",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-08T22:04:30.945Z"
+}

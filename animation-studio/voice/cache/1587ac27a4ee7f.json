@@ -1,0 +1,60 @@
+{
+ "hash": "1587ac27a4ee7f",
+ "text": "From now on... I will never lie again.",
+ "voice": "liam",
+ "lead": 0,
+ "end": 2.508,
+ "dur": 2.533878,
+ "words": [
+  {
+   "w": "From",
+   "t0": 0,
+   "t1": 0.209
+  },
+  {
+   "w": "now",
+   "t0": 0.267,
+   "t1": 0.43
+  },
+  {
+   "w": "on...",
+   "t0": 0.534,
+   "t1": 0.871
+  },
+  {
+   "w": "I",
+   "t0": 1.161,
+   "t1": 1.207
+  },
+  {
+   "w": "will",
+   "t0": 1.265,
+   "t1": 1.416
+  },
+  {
+   "w": "never",
+   "t0": 1.474,
+   "t1": 1.672
+  },
+  {
+   "w": "lie",
+   "t0": 1.73,
+   "t1": 1.892
+  },
+  {
+   "w": "again.",
+   "t0": 1.927,
+   "t1": 2.508
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-08T22:04:32.481Z"
+}

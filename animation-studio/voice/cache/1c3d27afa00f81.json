@@ -1,0 +1,70 @@
+{
+ "hash": "1c3d27afa00f81",
+ "text": "And that's how Milo learned... honesty is the best policy.",
+ "voice": "georgeLively",
+ "lead": 0,
+ "end": 3.39,
+ "dur": 3.422041,
+ "words": [
+  {
+   "w": "And",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "that's",
+   "t0": 0.209,
+   "t1": 0.406
+  },
+  {
+   "w": "how",
+   "t0": 0.441,
+   "t1": 0.546
+  },
+  {
+   "w": "Milo",
+   "t0": 0.615,
+   "t1": 0.917
+  },
+  {
+   "w": "learned...",
+   "t0": 0.975,
+   "t1": 1.474
+  },
+  {
+   "w": "honesty",
+   "t0": 1.695,
+   "t1": 2.101
+  },
+  {
+   "w": "is",
+   "t0": 2.159,
+   "t1": 2.229
+  },
+  {
+   "w": "the",
+   "t0": 2.276,
+   "t1": 2.345
+  },
+  {
+   "w": "best",
+   "t0": 2.392,
+   "t1": 2.589
+  },
+  {
+   "w": "policy.",
+   "t0": 2.647,
+   "t1": 3.39
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.35,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-08T22:04:33.075Z"
+}

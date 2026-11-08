@@ -1,0 +1,65 @@
+{
+ "hash": "057f1d16c53f1a",
+ "text": "In this world, every lie appears above your head.",
+ "voice": "georgeLively",
+ "lead": 0,
+ "end": 2.972,
+ "dur": 3.004082,
+ "words": [
+  {
+   "w": "In",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "this",
+   "t0": 0.209,
+   "t1": 0.36
+  },
+  {
+   "w": "world,",
+   "t0": 0.418,
+   "t1": 0.824
+  },
+  {
+   "w": "every",
+   "t0": 0.987,
+   "t1": 1.242
+  },
+  {
+   "w": "lie",
+   "t0": 1.3,
+   "t1": 1.498
+  },
+  {
+   "w": "appears",
+   "t0": 1.533,
+   "t1": 1.881
+  },
+  {
+   "w": "above",
+   "t0": 1.927,
+   "t1": 2.148
+  },
+  {
+   "w": "your",
+   "t0": 2.194,
+   "t1": 2.345
+  },
+  {
+   "w": "head.",
+   "t0": 2.403,
+   "t1": 2.972
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.35,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-08T22:04:26.046Z"
+}

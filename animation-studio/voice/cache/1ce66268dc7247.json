@@ -1,0 +1,30 @@
+{
+ "hash": "1ce66268dc7247",
+ "text": "Milo. Homework?",
+ "voice": "matilda",
+ "lead": 0,
+ "end": 1.393,
+ "dur": 1.436735,
+ "words": [
+  {
+   "w": "Milo.",
+   "t0": 0,
+   "t1": 0.557
+  },
+  {
+   "w": "Homework?",
+   "t0": 0.604,
+   "t1": 1.393
+  }
+ ],
+ "voiceId": "XrExE9yKIg1WjnnlVkGX",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-08T22:04:27.582Z"
+}

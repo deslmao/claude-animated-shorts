@@ -1,0 +1,40 @@
+{
+ "hash": "0154a3617b2bed",
+ "text": "What's your biggest lie?",
+ "voice": "liam",
+ "lead": 0,
+ "end": 1.393,
+ "dur": 1.436735,
+ "words": [
+  {
+   "w": "What's",
+   "t0": 0,
+   "t1": 0.267
+  },
+  {
+   "w": "your",
+   "t0": 0.302,
+   "t1": 0.418
+  },
+  {
+   "w": "biggest",
+   "t0": 0.464,
+   "t1": 0.766
+  },
+  {
+   "w": "lie?",
+   "t0": 0.824,
+   "t1": 1.393
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-08T22:04:33.972Z"
+}

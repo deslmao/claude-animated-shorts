@@ -1,0 +1,25 @@
+{
+ "hash": "0085c9d9e484f4",
+ "text": "Ooooooh!",
+ "voice": "chris",
+ "lead": 0,
+ "end": 0.697,
+ "dur": 0.731429,
+ "words": [
+  {
+   "w": "Ooooooh!",
+   "t0": 0,
+   "t1": 0.697
+  }
+ ],
+ "voiceId": "iP95p4xoKVk53GoZ742B",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-08T22:04:28.555Z"
+}

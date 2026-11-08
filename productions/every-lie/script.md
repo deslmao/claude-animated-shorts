@@ -1,8 +1,13 @@
-# Thinkora: "In This World, Every Lie Appears Above Your Head". Script v1 for approval
+# Thinkora: "In This World, Every Lie Appears Above Your Head". Script v2 (approved with the owner's adjustments)
 
 **Format:** comedy, about 44 s, fast and chaotic. Milo drives every scene.
 
-**Status:** script only. No narration, assets, storyboard or render.
+**Status:** script approved, with these adjustments in v2:
+1. The narrator twist stays; it's followed by Milo's short CTA "What's your biggest lie?", then a hard cut.
+2. Gus is Dad and Juno is the classmate.
+3. The 67 scene is the comedic peak.
+4. The first LIE sign is unmistakable.
+5. Signs and captions stay readable.
 
 **The rule, shown, never explained twice.** When anyone lies, the lie itself slams into the air above their head as a
 red neon sign, with a "LIE" stamp and a buzzer. The truth never gets a sign. So **silence above a head is the
@@ -26,12 +31,21 @@ punchline** whenever someone finally tells the truth.
 | 5 | 13.4–16.2 | **Class.** The teacher looms over Milo's desk, with a low-angle hero shot of her. | TEACHER: "Milo. Homework?" MILO (instantly): "The dog ate it." | **"THE DOG ATE IT"** slams. Then a smaller sign pops under it: **"(HE DOESN'T HAVE A DOG)"**. |
 | 6 | 16.2–18.0 | Whip to the window: **the dog from scene 2** pressed against the glass, with its own sign. | CLASS: "Ooooooh!" | Dog's sign: **"I DIDN'T EVEN EAT IT"**, which is a lie: it has paper in its mouth. A second stamp: LIE. |
 | 7 | 18.0–25.0 | **Milo tries to beat the system** (three fast cuts on a phonk beat): (a) a bucket on his head; (b) a stack of textbooks on his head; (c) diving under the desk. | MILO: "I'm not hiding." / "I'm not hiding." / "…I'm not here." | Each sign spawns above the new top: above the bucket, then above the tower of books. Under the desk: **"NOT HERE"**, plus a huge arrow sign pointing down at the desk, **"HE'S UNDER HERE"**. |
-| 8 | 25.0–31.5 | **The 67.** Juno leans over: tests are back. Milo slides on sunglasses, cool. | JUNO: "What'd you get on the test?" MILO (slow, doing the hand-scales gesture): "Six… seven." | **"67"** slams with a LIE stamp, plus a footnote: **"(IT WAS 12)"**. But the class doesn't care: everyone does the hand gesture and chants **"SIX SEVEN! SIX SEVEN!"**. A phonk drop, a quick-cut montage of chanting kids, and the teacher's facepalm in a crash zoom. |
-| 9 | 31.5–35.0 | **The vow.** Milo alone in the empty classroom, golden light, hand raised, totally sincere. | MILO: "From now on… I will never lie again." | The biggest sign yet rises behind him, **"NEVER LIE AGAIN"**. It keeps rising, the camera cranes up after it, and it bursts out through the school roof like a skyscraper billboard. |
-| 10 | 35.0–41.0 | **THE TWIST.** Calm music. Milo sits on the classroom steps, wise. | NARRATOR (warm): "And that's how Milo learned… honesty is the best policy." | **A giant LIE sign slams down over the WHOLE SCREEN, the narrator's own.** Milo looks up at it, then straight into the lens. Hold. NARRATOR (quietly): "…He did not." **No sign: that one's true.** |
-| 11 | 41.0–44.0 | Milo leans into the lens, conspiratorial. | MILO (whisper): "Comment your best lie. We'll know." | On "We'll know", one last tiny sign pops above **the viewer's side of the frame**: **"?"**. Phonk stab, cut to black. |
+| 8 | 24.5–33.5 | **THE 67 (the peak).** (a) Juno leans over: tests are back. (b) Milo slides on sunglasses in slow push-in, raises both hands like scales. (c) Slam: **"67"** + LIE; half a second later the footnote **"(IT WAS 12)"**. (d) **Dead silence.** The whole class stares at the sign. (e) One kid at the back, quietly: "…six seven?" (f) The teacher starts "That's not even a—" and the **phonk DROPS**: the entire class erupts, everyone doing the hand-scales gesture, chanting. Quick cuts: kids on desks, a kid spinning, Juno chanting. (g) Crash zoom on the teacher: she cracks, and **joins in**. | JUNO: "What'd you get on the test?" MILO: "Six… …seven." KID: "…six seven?" TEACHER: "That's not even a—" CLASS: "SIX SEVEN! SIX SEVEN!" | One sign only (plus its footnote); the chaos is the class, not more signs. |
+| 9 | 33.5–37.0 | **The vow.** Milo alone in the empty classroom, golden light, hand raised, totally sincere. | MILO: "From now on… I will never lie again." | The biggest sign yet rises behind him, **"NEVER LIE AGAIN"**. It keeps rising, the camera cranes up after it, and it bursts out through the school roof like a skyscraper billboard. |
+| 10 | 37.0–43.0 | **THE TWIST.** Calm music. Milo sits on the classroom steps, wise. | NARRATOR (warm): "And that's how Milo learned… honesty is the best policy." | **A giant LIE sign slams down over the WHOLE SCREEN, the narrator's own.** Milo looks up at it, then straight into the lens. Hold. NARRATOR (quietly): "…He did not." **No sign: that one's true.** |
+| 11 | 43.0–45.0 | Milo leans into the lens. | MILO: "What's your biggest lie?" | Hard cut on the last word. |
 
-**Runtime:** about **44 s** (40–50 s target). The spoken words total about 25 s; the rest is gags and reactions.
+**Runtime:** about **45 s** (40–50 s target). The spoken words total about 25 s; the rest is gags and reactions.
+
+## Readability rules (v2)
+- **The first sign is unmistakable.** It appears alone, big, top-centre over Milo, held about 0.8 s before anything
+  stacks. Its text is the exact words he just said ("NEVER TOLD A LIE"), so "the lie appears above your head" needs no
+  explanation. The red **LIE** stamp is the biggest element on it.
+- **At most two signs on screen at once,** except the deliberate stacking gag in scene 1. Signs are **three words or
+  fewer**. A footnote appears only after the main sign has been readable for about 0.5 s.
+- **Captions stay off the signs** (the engine already places captions clear of props). Lines over a sign are kept
+  short.
 
 ## Why it works
 - **Hook in 1 second.** A sincere close-up, an obviously untrue line, and the joke is visible before the sentence
@@ -116,8 +130,3 @@ punchline** whenever someone finally tells the truth.
   only.
 - **Final:** the cloud render, about 16 min, plus QA, about 3 min.
 
-## Decisions for you
-1. **Scene 11.** Is the CTA "Comment your best lie. We'll know." good? Or end on the narrator twist and cut at about
-   41 s?
-2. **The cast.** Is Gus fine as Dad? Is Juno fine as the classmate? It's a new, unrelated story, so her
-   Extra-Door role doesn't carry over.

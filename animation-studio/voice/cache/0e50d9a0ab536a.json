@@ -1,0 +1,35 @@
+{
+ "hash": "0e50d9a0ab536a",
+ "text": "...I'm not here.",
+ "voice": "liam",
+ "lead": 0,
+ "end": 1.115,
+ "dur": 1.149388,
+ "words": [
+  {
+   "w": "...I'm",
+   "t0": 0,
+   "t1": 0.337
+  },
+  {
+   "w": "not",
+   "t0": 0.395,
+   "t1": 0.569
+  },
+  {
+   "w": "here.",
+   "t0": 0.627,
+   "t1": 1.115
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-08T22:04:29.571Z"
+}

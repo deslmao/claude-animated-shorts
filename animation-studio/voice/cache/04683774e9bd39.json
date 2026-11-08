@@ -1,0 +1,40 @@
+{
+ "hash": "04683774e9bd39",
+ "text": "That's not even a—",
+ "voice": "matilda",
+ "lead": 0,
+ "end": 1.207,
+ "dur": 1.253878,
+ "words": [
+  {
+   "w": "That's",
+   "t0": 0,
+   "t1": 0.302
+  },
+  {
+   "w": "not",
+   "t0": 0.36,
+   "t1": 0.511
+  },
+  {
+   "w": "even",
+   "t0": 0.569,
+   "t1": 0.743
+  },
+  {
+   "w": "a—",
+   "t0": 0.801,
+   "t1": 1.207
+  }
+ ],
+ "voiceId": "XrExE9yKIg1WjnnlVkGX",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-08T22:04:31.460Z"
+}

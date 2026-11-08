@@ -1,0 +1,35 @@
+{
+ "hash": "1a2943420c12c6",
+ "text": "...He did not.",
+ "voice": "georgeLively",
+ "lead": 0,
+ "end": 0.882,
+ "dur": 0.914286,
+ "words": [
+  {
+   "w": "...He",
+   "t0": 0,
+   "t1": 0.221
+  },
+  {
+   "w": "did",
+   "t0": 0.279,
+   "t1": 0.406
+  },
+  {
+   "w": "not.",
+   "t0": 0.453,
+   "t1": 0.882
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.35,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-08T22:04:33.439Z"
+}
