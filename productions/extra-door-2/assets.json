@@ -1,0 +1,55 @@
+{
+ "reused": 29,
+ "missing": [],
+ "byKind": {
+  "character": [
+   "milo"
+  ],
+  "mood": [
+   "mystery"
+  ],
+  "set": [
+   "hallway",
+   "downstairs"
+  ],
+  "camera": [
+   "at",
+   "frame",
+   "insert",
+   "closeUp"
+  ],
+  "light": [
+   "interiorCool"
+  ],
+  "ambience": [
+   "amb_room"
+  ],
+  "prop": [
+   "oldDoor",
+   "photoFrame",
+   "choiceLabelDimmed",
+   "choiceLabelChosen",
+   "photoOnStairs",
+   "frontDoor",
+   "phoneOutside",
+   "choiceLabel"
+  ],
+  "sfx": [
+   "latch_click",
+   "step_floor",
+   "glass_crack",
+   "thud",
+   "phone_buzz",
+   "creak",
+   "knock_heavy"
+  ],
+  "act": [
+   "scared",
+   "shock",
+   "nervous"
+  ],
+  "item": [
+   "phone"
+  ]
+ }
+}

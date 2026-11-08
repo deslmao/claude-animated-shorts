@@ -44,19 +44,20 @@ export const EXTRADOOR2: Storyboard = {
         { id: "choiceLabelDimmed", at: [0.417, 1.713, -2.617], variant: "A: OPEN THE DOOR", scale: 1.114, steps: [{ t: 0.1 }] },
         { id: "choiceLabelChosen", at: [-0.102, 1.227, -2.435], variant: "B: RUN DOWNSTAIRS", scale: 1.089, steps: [{ t: 0.1 }] }],
       sfx: [{ t: 0.1, name: "latch_click", gain: -2 }, { t: 0.5, name: "step_floor", gain: -3 }, { t: 0.78, name: "step_floor", gain: -3 }, { t: 1.05, name: "step_floor", gain: -3 }] },
-    // 2. HOOK: low in the stairwell, he hammers down toward the lens and stops dead; on "fourteen?" a hard cut into his
+    // 2. HOOK: down the stairwell from its near end, he hammers down the flight toward the lens and stops dead; on "fourteen?" a hard cut into his
     //    eyes (Part 1's hook ended on his eyes at "...eight?": the series' signature)
     { cont: true, hold: 0.12, set: "hallway", light: "interiorCool", transition: "cut",
-      camera: { move: "at", pos: [-0.5, -1.0, -2.45], look: [-0.47, -0.15, -4.0], fov: 55 },
+      camera: { move: "at", pos: [-0.47, 1.3, -1.85], look: [-0.47, -0.25, -4.1], fov: 52 },  // over the banister at the well's near end
       // he stops dead on the step (walk ends just before the word) and turns to us; the eyes, framed from the front
       // (face centre 1.37 m above his feet, as Part 1's hook)
       cams: [{ word: "fourteen", move: "at", pos: [-0.47, 0.62, -3.15], look: [-0.47, 0.6, -3.75], fov: 37 }],
       actors: [{ who: "milo", at: up(-4.45), act: "scared", face: "scared", facing: 0, idle: 0.3, walk: { to: up(-3.75), t0: 0.0, t1: 0.95, mode: "run" },
         beats: [{ word: "fourteen", face: "shock", look: "camera" }] }],
       sfx: [{ t: 0.12, name: "step_floor", gain: -2 }, { t: 0.42, name: "step_floor", gain: -2 }, { t: 0.72, name: "step_floor", gain: -2 }] },
-    // 3. from low in the well: he comes down at us; up behind him, past the top of the stairs, the old door
+    // 3. from the hallway beside the well: he runs down the flight below the banister; beyond him, at the end of the
+    //    hallway, the old door
     { say: { text: "Last night, Milo's hallway grew an extra door.", voice: "georgeHushed", gap: 0.16 }, hold: 0.35, set: "hallway", light: "interiorCool", transition: "cut",
-      camera: { move: "at", pos: [-0.5, -1.4, -2.38], look: [-0.25, 0.75, -6.5], fov: 56 },
+      camera: { move: "at", pos: [0.5, 1.35, -2.6], look: [0.0, 0.85, -6.95], fov: 56 },
       actors: [{ who: "milo", at: up(-4.55), act: "scared", idle: 0.3, walk: { to: up(-3.95), t0: 0.0, t1: 2.8, mode: "run" } }],
       props: [{ id: "oldDoor", at: "oldDoor", variant: "handle" }],
       sfx: [{ t: 0.3, name: "step_floor", gain: -4 }, { t: 0.9, name: "step_floor", gain: -4 }, { t: 1.5, name: "step_floor", gain: -4 }, { t: 2.1, name: "step_floor", gain: -4 }, { t: 2.7, name: "step_floor", gain: -5 }] },
@@ -97,7 +98,7 @@ export const EXTRADOOR2: Storyboard = {
       sfx: [{ t: 0.25, name: "step_floor", gain: -3 }, { t: 0.6, name: "step_floor", gain: -3 }, { t: 1.03, name: "thud", gain: -4 }] },
     // 10. close-up, panting: "...twenty-six." (no speaker tag, as Part 1's whispered lines: the scared face holds)
     { say: { text: "...twenty-six.", voice: "liamQuiet", gap: 0.21 }, hold: 0.30, set: "downstairs", light: "interiorCool", transition: "cut",
-      camera: { move: "closeUp", on: "milo" },
+      camera: { move: "at", pos: [-0.4, 1.45, 0.75], look: [-0.45, 1.2, -0.75], fov: 46 },
       actors: [{ who: "milo", at: [SCX, 0, -0.75], act: "scared", face: "scared", facing: 0, idle: 0.6 }] },
     // 11. HE LOOKS BACK UP: an ordinary staircase, thirteen steps, the dim lamp at the landing. No photograph anywhere.
     { dur: 2.8, set: "downstairs", light: "interiorCool", transition: "cut",
@@ -160,6 +161,8 @@ export const EXTRADOOR2: Storyboard = {
     //     the stairs rising to the old door; Part 1's labels pop in on "A" and "B"; cut to black on the latch click
     { say: { text: "Comment A or B. Your vote decides Part 3.", voice: "georgeHushed", gap: 0.95 }, hold: 1.9, set: "downstairs", light: "interiorCool", transition: "cut",
       camera: { move: "at", pos: [0.42, 1.35, 0.9], look: [-0.05, 2.1, -6.0], fov: 60 },
+      // the banister's newel and rail are the intended foreground beside Milo (the line to him grazes them)
+      cams: [{ t: 0, move: "at", pos: [0.42, 1.35, 0.9], look: [-0.05, 2.1, -6.0], fov: 60, blockOk: true }],
       actors: [{ who: "milo", at: [0.42, 0, -3.0], act: "scared", facing: 0, hold: "phone", idle: 0.3, beats: [{ word: "A", look: "right" }, { word: "B", look: "up" }] }],
       props: [{ id: "oldDoor", at: "landingDoor", variant: "shadows" }, { id: "frontDoor", at: "frontDoor" },
         // placed along the camera's rays (1.7 m deep) to empty parts of the frame: A upper right, above the front door,
