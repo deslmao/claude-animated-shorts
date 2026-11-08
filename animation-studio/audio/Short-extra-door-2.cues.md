@@ -37,9 +37,11 @@ Voice -19.4 LUFS; music -13.0 LU and ambience -20.16 LU relative to the voice.
 |  12.62 s |  379 | sfx step_floor: storyboard cue, shot 8 |
 |  12.90 s |  387 | sfx step_floor: storyboard cue, shot 8 |
 |  13.06 s |  392 | sfx step_floor: storyboard cue, shot 8 |
-|  14.95 s |  448 | sfx step_floor: storyboard cue, shot 9 |
-|  15.30 s |  459 | sfx step_floor: storyboard cue, shot 9 |
-|  15.73 s |  472 | sfx thud: storyboard cue, shot 9 |
+|  14.91 s |  447 | sfx step_floor: storyboard cue, shot 9 |
+|  15.12 s |  454 | sfx step_floor: storyboard cue, shot 9 |
+|  15.33 s |  460 | sfx step_floor: storyboard cue, shot 9 |
+|  15.54 s |  466 | sfx step_floor: storyboard cue, shot 9 |
+|  15.75 s |  472 | sfx thud: storyboard cue, shot 9 |
 |  20.52 s |  616 | sfx step_floor: storyboard cue, shot 12 |
 |  21.07 s |  632 | sfx step_floor: storyboard cue, shot 12 |
 |  21.62 s |  648 | sfx step_floor: storyboard cue, shot 12 |

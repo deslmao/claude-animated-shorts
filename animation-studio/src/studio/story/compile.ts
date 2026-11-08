@@ -12,7 +12,7 @@ import type { WorldShot, Director } from "../scene/SetWorld";
 import type { Timeline } from "../look/StudioFilm";
 import { extra } from "../characters/cast";
 import { ROSTER } from "../characters/roster";
-import { act as actPose, Look, Pose, Expr, anchorsFront, Anchors } from "../characters/figure";
+import { act as actPose, Look, Pose, Expr, anchorsFront, Anchors, Mode } from "../characters/figure";
 import { idle, nod as nodAt, shake as shakeAt, talk as talkAt, speak as speakAt, layer, faceToward } from "../characters/acting";
 import { lookCard, contactShadow, lidAt, cardPoint } from "../cards/person";
 import { fxNear, fxHalo, HALO_KINDS } from "../fx/effects";
@@ -53,9 +53,17 @@ const smooth = (x: number) => { const u = Math.max(0, Math.min(1, x)); return u 
 export const actorPos = (set: string, a: ActorSpec, tt: number): V3 => {
   const p0 = whereOf(set, a.at);
   if (!a.walk) return p0;
+  if (a.walk.footfalls?.length) { // stairs: contact to contact at an even cadence, a small hop between
+    const pts = [p0, ...a.walk.footfalls, whereOf(set, a.walk.to)], k = footfallK(a, tt, pts.length - 1), i = Math.min(pts.length - 2, Math.floor(k)), u = k - i;
+    const q0 = pts[i], q1 = pts[i + 1], hop = 0.07 * Math.sin(Math.PI * u);
+    return [q0[0] + (q1[0] - q0[0]) * u, q0[1] + (q1[1] - q0[1]) * u + hop, q0[2] + (q1[2] - q0[2]) * u];
+  }
   const p1 = whereOf(set, a.walk.to), k = smooth((tt - a.walk.t0) / Math.max(0.1, a.walk.t1 - a.walk.t0));
   return [p0[0] + (p1[0] - p0[0]) * k, p0[1] + (p1[1] - p0[1]) * k, p0[2] + (p1[2] - p0[2]) * k];
 };
+
+/** a footfalls walk's progress in contacts (0 .. n): even cadence between t0 and t1; foot contact at every integer */
+const footfallK = (a: ActorSpec, tt: number, n: number) => n * Math.max(0, Math.min(1, (tt - a.walk!.t0) / Math.max(0.1, a.walk!.t1 - a.walk!.t0)));
 
 /** where an actor settles in the shot (the end of their walk): cameras frame this, so walk-ins enter the frame */
 export const restPos = (set: string, a: ActorSpec): V3 => whereOf(set, a.walk ? a.walk.to : a.at);
@@ -491,7 +499,11 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
         const target = typeof a.facing === "string" ? posOf.get(a.facing.slice(7)) : [...posOf.entries()].filter(([w]) => w !== a.who).map(([, q]) => q).sort((m, n) => Math.hypot(m[0] - p[0], m[2] - p[2]) - Math.hypot(n[0] - p[0], n[2] - p[2]))[0];
         if (target) facing = faceToward(cam.right.x, cam.right.z, [p[0], p[2]], [target[0], target[2]]);
       } else if (typeof a.facing === "number") facing = a.facing;
-      const walking = a.walk && a.walk.mode !== "ride" && tt >= a.walk.t0 && tt <= a.walk.t1; // a ride: the actor's own pose (seated), carried along
+      const walking = a.walk && a.walk.mode !== "ride" && !a.walk.view && tt >= a.walk.t0 && tt <= a.walk.t1; // a ride: the actor's own pose (seated), carried along
+      // a walk drawn from behind / in front (view): the front rig in its stride; with footfalls a foot lands on each
+      const viewStride = a.walk?.view && a.walk.mode !== "ride" && tt >= a.walk.t0 && tt <= a.walk.t1
+        ? { mode: (a.walk.mode === "run" ? "run" : "walk") as Mode, phase: a.walk.footfalls?.length ? 0.5 * footfallK(a, tt, a.walk.footfalls.length + 1) : Math.hypot(p[0] - whereOf(s.set, a.at)[0], p[2] - whereOf(s.set, a.at)[2]) / (a.walk.mode === "run" ? 2.08 : 1.47) }
+        : undefined;
       const walkDir = a.walk ? (() => { const p1 = whereOf(s.set, a.walk!.to), p0 = whereOf(s.set, a.at); return (p1[0] - p0[0]) * cam.right.x + (p1[2] - p0[2]) * cam.right.z; })() : 0;
       // just arrived from a profile walk: a quarter-second three-quarter view toward the walk, not an instant swap
       if (a.walk && a.walk.mode !== "ride" && tt > a.walk.t1 && tt < a.walk.t1 + WALK_TURN && Math.abs(walkDir) > 0.05) facing = walkDir > 0 ? 1 : -1;
@@ -507,6 +519,7 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
         // a story prop they go to its middle, just over its top (grab into a chest, block a grab). Target's screen side
         Object.assign(extra, reachExtra(s, a, p, tt, lateral, (w) => posOf.get(w), [cam.pos.x, cam.pos.y, cam.pos.z], basePoseAt(a, tt).base.gesture === "write"));
         if (a.drive) extra.drive = driveOf(a)(tt);
+        if (viewStride) Object.assign(extra, viewStride);
         const build = (x: ReturnType<typeof actingAt>, tq: number) => layer(x.base, x.life, x.talking, x.shook, { headTilt: x.nodTilt, facing, back: a.back, t: t0 + tq, ...(x.held ? { hold: x.held } : {}), ...extra });
         // gesture easing: if the arms' configuration changed recently, blend from what the frame before the change
         // really drew (itself possibly mid-blend). The easing time grows with how far the hands travel (EASE for small

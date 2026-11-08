@@ -78,7 +78,14 @@ export type ActorSpec = {
   shake?: (number | WordRef)[]; // head-shake start times (or words)
   idle?: number;              // idle life amount (default 1, 0 = still)
   /** walk (or run) in profile from `at` to `to`, between t0 and t1 seconds (or from / until spoken words) */
-  walk?: { to: Where; t0: number; t1: number; mode?: "walk" | "run" | "ride"; from?: WordRef; until?: WordRef };
+  walk?: { to: Where; t0: number; t1: number; mode?: "walk" | "run" | "ride"; from?: WordRef; until?: WordRef;
+    /** stairs (Video 06): the foot contacts between `at` and `to` (one per stride half, e.g. the middle of every second
+     *  tread), visited in turn at an even cadence with a small hop between, instead of a straight slope; the legs'
+     *  stride is timed so a foot lands on each */
+    footfalls?: V3[];
+    /** "back" | "front": drawn with the front / back rig in its stride (seen from behind or in front: running away
+     *  from or toward the camera) instead of the side-on walk card */
+    view?: "back" | "front" };
   /** the "tickle" gesture reaches for this actor: the hands land on their flank, wherever they stand */
   reach?: string;
   /** timed body motion on top of the acting: squirm (wriggling with laughter), stagger (nearly falls over, away from

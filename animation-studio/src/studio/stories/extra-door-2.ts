@@ -17,6 +17,8 @@ const up = (z: number): V3 => [-0.47, Math.round((-0.18 - 0.72 * (z + 4.575)) * 
 const SCX = -0.45;                                    // the middle of the downstairs flight
 /** a foot on the downstairs flight (0.2 m risers, 0.25 m treads, the bottom riser at z -1.3), lifted by `lift` */
 const down = (z: number, lift = 0): V3 => [SCX, Math.round((Math.max(0, Math.min(2.6, 0.2 + 0.8 * (-1.425 - z))) + lift) * 1000) / 1000, z];
+/** a foot on the middle of tread i of the downstairs flight (0 = the bottom step), on its top */
+const TREAD = (i: number): V3 => [SCX, Math.round(0.2 * (i + 1) * 1000) / 1000, Math.round((-1.3 - 0.25 * i - 0.125) * 1000) / 1000];
 const MID: V3 = [0.45, 0, -2.4];                      // in the corridor beside the stairs, between the two doors
 // the photograph: its back on the line through the step edges (the photoStairs mark), the camera along its normal
 const PHOTO_CAM = { move: "at" as const, pos: [-0.45, 3.6, -1.86] as V3, look: [-0.45, 1.8, -3.3] as V3, fov: 60 };
@@ -96,11 +98,17 @@ export const EXTRADOOR2: Storyboard = {
         beats: [{ t: 0.6, act: "shock", face: "shock", look: "down" }] }],
       props: [{ id: "photoOnStairs", at: "photoStairs", variant: "cracked" }],
       sfx: [{ t: 0.12, name: "step_floor", gain: -4 }, { t: 0.4, name: "step_floor", gain: -3 }, { t: 0.56, name: "step_floor", gain: -1 }] },
-    // 9. he bolts past it and hits the bottom hard
+    // 9. he bolts: a rear-following camera flies down the flight behind him as he runs away from us, down the stairs,
+    //    a foot on every second tread (he leaps the cracked photo), and hits the bottom hard; cut to his face
     { dur: 1.35, set: "downstairs", light: "interiorCool", transition: "cut",
-      camera: { move: "at", pos: [0.95, 1.1, 0.55], look: [-0.45, 0.85, -1.5], fov: 50 },
-      actors: [{ who: "milo", at: down(-2.55), act: "scared", idle: 0.3, walk: { to: [SCX, 0, -0.75], t0: 0.0, t1: 1.05, mode: "run" }, beats: [{ t: 1.05, act: "shock" }] }],
-      sfx: [{ t: 0.25, name: "step_floor", gain: -3 }, { t: 0.6, name: "step_floor", gain: -3 }, { t: 1.03, name: "thud", gain: -4 }] },
+      camera: { move: "at", pos: [-0.42, 4.3, -5.6], look: [-0.45, 1.5, -2.4], fov: 54 },
+      cams: [{ t: 0.5, move: "at", pos: [-0.42, 3.0, -3.7], look: [-0.45, 0.8, -1.6], fov: 54, fly: true },
+        { t: 1.0, move: "at", pos: [-0.42, 2.25, -2.85], look: [-0.45, 0.6, -0.9], fov: 54, fly: true },
+        { t: 1.3, move: "at", pos: [-0.42, 2.05, -2.6], look: [-0.45, 0.55, -0.6], fov: 54, fly: true }],
+      actors: [{ who: "milo", at: [SCX, 2.2, -3.97], back: true, act: "scared", gesture: "pump", idle: 0.3,
+        walk: { to: [SCX, 0, -0.75], t0: 0.0, t1: 1.05, mode: "run", view: "back", footfalls: [TREAD(6), TREAD(4), TREAD(2), TREAD(0)] } }],
+      props: [{ id: "photoOnStairs", at: "photoStairs", variant: "cracked" }],
+      sfx: [{ t: 0.21, name: "step_floor", gain: -2 }, { t: 0.42, name: "step_floor", gain: -3 }, { t: 0.63, name: "step_floor", gain: -3 }, { t: 0.84, name: "step_floor", gain: -3 }, { t: 1.05, name: "thud", gain: -4 }] },
     // 10. close-up, panting: "...twenty-six." (no speaker tag, as Part 1's whispered lines: the scared face holds)
     { say: { text: "...twenty-six.", voice: "liamQuiet", gap: 0.21 }, hold: 0.30, set: "downstairs", light: "interiorCool", transition: "cut",
       camera: { move: "at", pos: [-0.4, 1.45, 0.75], look: [-0.45, 1.2, -0.75], fov: 46 },
