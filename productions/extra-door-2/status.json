@@ -4,9 +4,94 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-08T07:23:53.503Z",
-   "inputs": "02e4b4bd63ffc1n",
-   "detail": "valid; 18 warning(s):\n  shot 1 (hallway): milo: walk 0.15-1.45 s outside the shot\n  shot 1 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 3 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 5 (downstairs): milo: walk 0-2.3 s outside the shot\n  shot 6 (downstairs): milo: walk 0-1.7 s outside the shot\n  shot 7 (downstairs): milo: walk 0-1.1 s outside the shot\n  shot 12 (downstairs): prop \"frontDoor\" overlaps something already in the set at [0.8, -6.0]\n  shot 18 (downstairs): prop \"frontDoor\" overlaps something already in the set at [0.8, -6.0]\n  shot 19 (downstairs): prop \"frontDoor\" overlaps something already in the set at [0.8, -6.0]\n  shot 21 (downstairs): prop \"frontDoor\" overlaps something already in the set at [0.8, -6.0]\n  shot 2 (hallway): milo fills 26 % of the frame in the foreground @0.4s (is it hiding the action?)\n  shot 4 (hallway): milo fills 43 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 5 (downstairs): milo fills 26 % of the frame in the foreground @1.6s (is it hiding the action?)\n  shot 6 (downstairs): milo's hand (pump) is out of frame @1.0s (side): widen the shot or change the gesture\n  shot 6 (downstairs): milo fills 30 % of the frame in the foreground @1.0s (is it hiding the action?)\n  shot 7 (downstairs): milo fills 34 % of the frame in the foreground @0.6s (is it hiding the action?)\n  shot 9 (downstairs): milo fills 36 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 10 (downstairs): milo fills 72 % of the frame in the foreground @0.0s (is it hiding the action?)"
+   "at": "2026-11-08T09:11:00.062Z",
+   "inputs": "0273d380d0396cn",
+   "detail": "valid; 17 warning(s):\n  shot 1 (hallway): milo: walk 0.15-1.45 s outside the shot\n  shot 1 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 3 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 6 (downstairs): milo: walk 0-1.7 s outside the shot\n  shot 7 (downstairs): milo: walk 0-1.1 s outside the shot\n  shot 12 (downstairs): prop \"frontDoor\" overlaps something already in the set at [0.8, -6.0]\n  shot 18 (downstairs): prop \"frontDoor\" overlaps something already in the set at [0.8, -6.0]\n  shot 19 (downstairs): prop \"frontDoor\" overlaps something already in the set at [0.8, -6.0]\n  shot 21 (downstairs): prop \"frontDoor\" overlaps something already in the set at [0.8, -6.0]\n  shot 2 (hallway): milo fills 26 % of the frame in the foreground @0.4s (is it hiding the action?)\n  shot 4 (hallway): milo fills 43 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 5 (downstairs): milo fills 53 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 6 (downstairs): milo's hand (pump) is out of frame @1.0s (side): widen the shot or change the gesture\n  shot 6 (downstairs): milo fills 30 % of the frame in the foreground @1.0s (is it hiding the action?)\n  shot 7 (downstairs): milo fills 34 % of the frame in the foreground @0.6s (is it hiding the action?)\n  shot 9 (downstairs): milo fills 36 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 10 (downstairs): milo fills 72 % of the frame in the foreground @0.0s (is it hiding the action?)"
+  },
+  "assets": {
+   "state": "done",
+   "at": "2026-11-08T09:11:00.066Z",
+   "inputs": "0273d380d0396c",
+   "detail": "29 library assets reused, none missing",
+   "data": {
+    "reused": 29,
+    "missing": [],
+    "byKind": {
+     "character": [
+      "milo"
+     ],
+     "mood": [
+      "mystery"
+     ],
+     "set": [
+      "hallway",
+      "downstairs"
+     ],
+     "camera": [
+      "at",
+      "frame",
+      "insert",
+      "closeUp"
+     ],
+     "light": [
+      "interiorCool"
+     ],
+     "ambience": [
+      "amb_room"
+     ],
+     "prop": [
+      "oldDoor",
+      "photoFrame",
+      "choiceLabelDimmed",
+      "choiceLabelChosen",
+      "photoOnStairs",
+      "frontDoor",
+      "phoneOutside",
+      "choiceLabel"
+     ],
+     "sfx": [
+      "latch_click",
+      "step_floor",
+      "glass_crack",
+      "thud",
+      "phone_buzz",
+      "creak",
+      "knock_heavy"
+     ],
+     "act": [
+      "scared",
+      "shock",
+      "nervous"
+     ],
+     "item": [
+      "phone"
+     ]
+    }
+   }
+  },
+  "approval": {
+   "state": "done",
+   "at": "2026-11-08T09:11:00.071Z",
+   "inputs": "10afa09305c30e",
+   "detail": "all narration already generated (no cost)"
+  },
+  "narration": {
+   "state": "done",
+   "at": "2026-11-08T09:11:00.073Z",
+   "inputs": "10afa09305c30e",
+   "detail": "all lines already generated (cached)"
+  },
+  "sound": {
+   "state": "done",
+   "at": "2026-11-08T09:11:26.267Z",
+   "inputs": "01d3309eb47500",
+   "detail": "soundtrack built: -14.2 LUFS"
+  },
+  "checks": {
+   "state": "done",
+   "at": "2026-11-08T09:11:30.455Z",
+   "inputs": "01d3309eb47500",
+   "detail": "preflight PASS; library intact"
   }
  }
 }

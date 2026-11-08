@@ -71,13 +71,15 @@ export const EXTRADOOR2: Storyboard = {
       camera: { move: "at", pos: [-0.47, 1.9, -5.3], look: [-0.47, -1.6, -2.6], fov: 58 },
       actors: [{ who: "milo", at: up(-4.45), act: "scared", idle: 0.3, walk: { to: up(-3.0), t0: 0.0, t1: 1.7, mode: "run" } }],
       sfx: [{ t: 0.25, name: "step_floor", gain: -4 }, { t: 0.65, name: "step_floor", gain: -4 }, { t: 1.05, name: "step_floor", gain: -4 }, { t: 1.45, name: "step_floor", gain: -5 }] },
-    // 5. the whole downstairs flight from the corridor, three-quarters on: he comes running down it (the banister in
-    //    the foreground is intended)
+    // 5. as shot 9: the camera flies down behind him as he runs away from us down the flight, a foot on every second
+    //    tread, from the top of the flight toward the bottom
     { say: { text: "His stairs have thirteen steps.", voice: "georgeHushed", gap: 0.16 }, hold: 0.13, set: "downstairs", light: "interiorCool", transition: "cut",
-      camera: { move: "at", pos: [1.0, 1.5, -0.55], look: [-0.45, 1.85, -3.6], fov: 50 },
-      cams: [{ t: 0, move: "at", pos: [1.0, 1.5, -0.55], look: [-0.45, 1.85, -3.6], fov: 50, blockOk: true }],
-      actors: [{ who: "milo", at: down(-4.45), act: "scared", idle: 0.3, walk: { to: down(-2.6), t0: 0.0, t1: 2.3, mode: "run" } }],
-      sfx: [{ t: 0.3, name: "step_floor", gain: -5 }, { t: 0.8, name: "step_floor", gain: -5 }, { t: 1.3, name: "step_floor", gain: -5 }, { t: 1.8, name: "step_floor", gain: -6 }] },
+      camera: { move: "at", pos: [-0.42, 4.55, -5.6], look: [-0.45, 1.5, -2.6], fov: 54 },
+      cams: [{ t: 1.0, move: "at", pos: [-0.42, 3.4, -4.4], look: [-0.45, 0.9, -1.8], fov: 54, fly: true },
+        { t: 2.0, move: "at", pos: [-0.42, 2.7, -3.4], look: [-0.45, 0.4, -0.9], fov: 54, fly: true }],
+      actors: [{ who: "milo", at: TREAD(12), back: true, act: "scared", gesture: "pump", idle: 0.3,
+        walk: { to: TREAD(0), t0: 0.0, t1: 2.0, mode: "run", view: "back", footfalls: [TREAD(10), TREAD(8), TREAD(6), TREAD(4), TREAD(2)] } }],
+      sfx: [0.33, 0.67, 1.0, 1.33, 1.67, 2.0].map((t, k) => ({ t, name: "step_floor" as const, gain: k < 5 ? -4 : -5 })) },
     // 6. THE PHOTOGRAPH, square to the lens on the steps, clearly Milo and Juno; his sneakers come down from the top of
     //    the frame and land on it: the glass cracks; he runs on, out of the bottom of the frame
     { dur: 1.6, set: "downstairs", light: "interiorCool", transition: "cut",
