@@ -4,17 +4,17 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-08T22:49:42.341Z",
-   "inputs": "1ca7d8a2a9814an",
-   "detail": "valid; 16 warning(s):\n  shot 19 (classroom): kid1: walk 0-1.6 s outside the shot\n  shot 19 (classroom): kid2: walk 0-1.6 s outside the shot\n  shot 19 (classroom): kid3: walk 0-1.6 s outside the shot\n  shot 19 (classroom): juno: walk 0-1.6 s outside the shot\n  shot 19 (classroom): milo: walk 0-1.6 s outside the shot\n  shot 20 (classroom): teacher: walk 0.9-1.9 s outside the shot\n  shot 6 (apartment): milo fills 52 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 7 (apartment): milo's raised hand (spread) is out of frame @0.8s (side): widen the shot or change the gesture\n  shot 7 (apartment): dad's raised hand (spread) is out of frame @1.4s (side): widen the shot or change the gesture\n  shot 8 (classroom): teacher fills 39 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 9 (classroom): milo fills 26 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 15 (classroom): milo fills 30 % of the frame in the foreground @2.6s (is it hiding the action?)\n  shot 17 (classroom): kid1's hand (shrug) is out of frame @0.4s (side): widen the shot or change the gesture\n  shot 21 (classroom): milo fills 49 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 22 (classroom): milo fills 45 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 24 (classroom): milo fills 84 % of the frame in the foreground @0.0s (is it hiding the action?)"
+   "at": "2026-11-08T23:34:28.422Z",
+   "inputs": "0497243235ec53n",
+   "detail": "valid; 16 warning(s):\n  shot 19 (classroom): kid1: walk 0-1.6 s outside the shot\n  shot 19 (classroom): kid2: walk 0-1.6 s outside the shot\n  shot 19 (classroom): kid3: walk 0-1.6 s outside the shot\n  shot 19 (classroom): juno: walk 0-1.6 s outside the shot\n  shot 19 (classroom): milo: walk 0-1.6 s outside the shot\n  shot 20 (classroom): teacher: walk 0.9-1.9 s outside the shot\n  shot 6 (apartment): milo fills 52 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 7 (apartment): milo's raised hand (spread) is out of frame @0.8s (side): widen the shot or change the gesture\n  shot 7 (apartment): dad's raised hand (spread) is out of frame @1.4s (side): widen the shot or change the gesture\n  shot 8 (classroom): teacher fills 39 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 9 (classroom): milo fills 32 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 15 (classroom): milo fills 30 % of the frame in the foreground @2.6s (is it hiding the action?)\n  shot 17 (classroom): kid1's hand (shrug) is out of frame @0.4s (side): widen the shot or change the gesture\n  shot 21 (classroom): milo fills 35 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 22 (classroom): milo fills 45 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 24 (classroom): milo fills 84 % of the frame in the foreground @0.0s (is it hiding the action?)"
   },
   "assets": {
    "state": "done",
-   "at": "2026-11-08T22:49:42.344Z",
-   "inputs": "1ca7d8a2a9814a",
-   "detail": "46 library assets reused, none missing",
+   "at": "2026-11-08T23:34:28.425Z",
+   "inputs": "0497243235ec53",
+   "detail": "47 library assets reused, none missing",
    "data": {
-    "reused": 46,
+    "reused": 47,
     "missing": [],
     "byKind": {
      "character": [
@@ -51,6 +51,7 @@
       "lieSign",
       "farmDog",
       "burntPancake",
+      "homeworkPaper",
       "bucket",
       "bookStack",
       "shades"
@@ -90,26 +91,26 @@
   },
   "approval": {
    "state": "done",
-   "at": "2026-11-08T22:49:42.349Z",
+   "at": "2026-11-08T23:34:28.430Z",
    "inputs": "1419122ea9199f",
    "detail": "all narration already generated (no cost)"
   },
   "narration": {
    "state": "done",
-   "at": "2026-11-08T22:49:42.350Z",
+   "at": "2026-11-08T23:34:28.431Z",
    "inputs": "1419122ea9199f",
    "detail": "all lines already generated (cached)"
   },
   "sound": {
    "state": "done",
-   "at": "2026-11-08T22:49:55.525Z",
-   "inputs": "12b6e31efa4186",
+   "at": "2026-11-08T23:34:41.312Z",
+   "inputs": "1daebe9fa5d3a8",
    "detail": "soundtrack built: -14.2 LUFS"
   },
   "checks": {
    "state": "done",
-   "at": "2026-11-08T22:49:59.138Z",
-   "inputs": "12b6e31efa4186",
+   "at": "2026-11-08T23:34:44.911Z",
+   "inputs": "1daebe9fa5d3a8",
    "detail": "preflight PASS; library intact"
   }
  }

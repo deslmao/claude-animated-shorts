@@ -1,5 +1,5 @@
 {
- "reused": 46,
+ "reused": 47,
  "missing": [],
  "byKind": {
   "character": [
@@ -36,6 +36,7 @@
    "lieSign",
    "farmDog",
    "burntPancake",
+   "homeworkPaper",
    "bucket",
    "bookStack",
    "shades"
