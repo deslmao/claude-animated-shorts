@@ -1,0 +1,12 @@
+{
+ "id": "extra-door-2",
+ "composition": "Short-extra-door-2",
+ "stages": {
+  "validate": {
+   "state": "done",
+   "at": "2026-11-08T03:30:59.528Z",
+   "inputs": "0662d27448546en",
+   "detail": "valid; 16 warning(s):\n  shot 1 (hallway): milo: walk 0.15-1.45 s outside the shot\n  shot 1 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 2 (hallway): milo: walk 0-2 s outside the shot\n  shot 3 (hallway): milo: walk 0-3 s outside the shot\n  shot 3 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 4 (hallway): milo: walk 0-1.7 s outside the shot\n  shot 5 (hallway): milo: walk 0-2.3 s outside the shot\n  shot 6 (downstairs): milo: walk 0-1.7 s outside the shot\n  shot 7 (downstairs): milo: walk 0-1.1 s outside the shot\n  shot 2 (hallway): milo fills 26 % of the frame in the foreground @0.4s (is it hiding the action?)\n  shot 3 (hallway): milo fills 30 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 6 (downstairs): milo fills 38 % of the frame in the foreground @0.8s (is it hiding the action?)\n  shot 9 (downstairs): milo fills 33 % of the frame in the foreground @0.6s (is it hiding the action?)\n  shot 9 (downstairs): milo's raised hand (pump) is out of frame @1.0s (side): widen the shot or change the gesture\n  shot 12 (downstairs): milo fills 28 % of the frame in the foreground @1.0s (is it hiding the action?)\n  shot 18 (downstairs): milo fills 60 % of the frame in the foreground @0.0s (is it hiding the action?)"
+  }
+ }
+}

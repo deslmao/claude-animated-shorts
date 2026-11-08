@@ -489,6 +489,19 @@ def latch_click(r):
     return fades(_sum((click, 0.0), (ring, 0.002), (thunk, 0.035)), 0.0003, 0.05) * 0.8
 
 
+def glass_crack(r):
+    """picture-frame glass cracking under a foot (Video 06): a sharp crack, a short splintering run and a faint glassy
+    tinkle; no shatter, nothing falls out"""
+    t = tt(0.05)
+    snap = hp(colored(len(t), r, 0.1), 3000) * _env(t, 0.0003, 0.008) * 0.9
+    split = [hp(colored(ns(0.012), r, 0.15), 2500) * np.exp(-tt(0.012) / 0.003) * r.uniform(0.25, 0.5) for _ in range(6)]
+    tinkle = [G.clink(r, f0=r.uniform(3800, 5200), dur=0.09, bright=0.7) * r.uniform(0.06, 0.11) for _ in range(3)]
+    press = lp(colored(ns(0.06), r, 0.9), 900) * np.exp(-tt(0.06) / 0.015) * 0.25
+    parts = [(snap, 0.0), (press, 0.0)] + [(x, 0.01 + 0.011 * k + r.uniform(0, 0.004)) for k, x in enumerate(split)]
+    parts += [(x, 0.05 + 0.03 * k) for k, x in enumerate(tinkle)]
+    return fades(_sum(*parts), 0.0003, 0.06) * 0.8
+
+
 SFX = {
     "pop": pop, "ding": ding, "blip_up": blip_up, "boing": boing, "poof": poof, "twinkle": twinkle, "impact": impact,
     "thud": thud, "party_pop": party_pop, "drip": drip, "steam": steam, "snore_soft": snore_soft, "ring_ding": ring_ding,
@@ -500,7 +513,7 @@ SFX = {
     "giggle": giggle, "feather_swish": feather_swish, "servo": servo, "stumble": stumble,
     "crowd_aye": crowd_aye, "crowd_murmur": crowd_murmur, "quill_scratch": quill_scratch, "coins_pour": coins_pour,
     "engine": engine, "honk": honk, "backfire": backfire, "bark": bark, "crack_egg": crack_egg,
-    "knock_heavy": knock_heavy, "phone_buzz": phone_buzz, "phone_tap": phone_tap, "latch_click": latch_click,
+    "knock_heavy": knock_heavy, "phone_buzz": phone_buzz, "phone_tap": phone_tap, "latch_click": latch_click, "glass_crack": glass_crack,
 }
 
 

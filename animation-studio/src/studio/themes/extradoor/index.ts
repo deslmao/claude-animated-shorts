@@ -12,7 +12,6 @@ import { wallpaperHD, plasterHD, ceilingHD } from "../../materials/paint2";
 import { ctex } from "../../materials/paint";
 import { At, frame, col, glow, box, rbox, cyl, sph } from "../../props/kit";
 import { picture, clock, pendant, floorMat } from "../../props/interior";
-import { displayTextOk } from "../../props/displays";
 import { NOINK } from "../../look/ink";
 import type { View } from "../../sets/types";
 import type { PropRig } from "../../props/registry";
@@ -358,8 +357,10 @@ const photoTex = () => stex("photoMiloJuno", 900, 600, (g) => {
   }, true);
   g.fillStyle = "rgba(255,240,210,0.08)"; g.fillRect(0, 0, 900, 600);
 });
-const photoFrame = (b: Batch, a: At) => {
-  const m = frame(a), wood = col("#4b3221"), W = 1.2, D = 0.8, T = 0.06;
+const photoFrame = (b: Batch, a: At) => photoParts(b, frame(a));
+/** the framed photo's parts in frame m (Video 06 reuses them for the photo lying on the stairs) */
+const photoParts = (b: Batch, m: THREE.Matrix4) => {
+  const wood = col("#4b3221"), W = 1.2, D = 0.8, T = 0.06;
   box(b, wood, m, -W / 2, W / 2, 0, 0.03, -D / 2, -D / 2 + T); box(b, wood, m, -W / 2, W / 2, 0, 0.03, D / 2 - T, D / 2);
   box(b, wood, m, -W / 2, -W / 2 + T, 0, 0.03, -D / 2 + T, D / 2 - T); box(b, wood, m, W / 2 - T, W / 2, 0, 0.03, -D / 2 + T, D / 2 - T);
   box(b, col("#2a1d14"), m, -W / 2 + T, W / 2 - T, 0, 0.012, -D / 2 + T, D / 2 - T);
@@ -455,6 +456,9 @@ const labelTex = (text: string) => stex(`choice${text}`, LW, LH, (g) => {
   best.filter(Boolean).forEach((l, i, arr) => g.fillText(l, LW / 2, (arr.length > 1 ? 318 : 380) + i * (px + 22)));
 });
 const LABEL_H = 0.42, LABEL_W = (LABEL_H * LW) / LH;
+/** a choice label's text: a letter, then the choice in the display character set, up to 20 characters (the card wraps
+ *  the choice onto two lines and shrinks it to fit, so it takes more than a one-line sign's 18) */
+const choiceTextOk = (s: string) => /^\s*[A-Za-z]\s*[:.-]?\s+[A-Za-z0-9 .,:!?'\-$%#&+/]{1,20}$/.test(s) && /\S/.test(s.replace(/^\s*[A-Za-z]\s*[:.-]?\s+/, ""));
 // opaque (rounded corners cut by alphaTest) and depth-writing, drawn last over everything: the ink pass then treats the
 // card like a character card (it is on the NOINK layer, and edges behind it are masked by its depth), so no outline of
 // the scene behind can cross the label
@@ -474,6 +478,317 @@ const choiceLabelRig = (a: At, v = "A: OPEN THE DOOR"): PropRig => {
 };
 const choiceLabelStatic = (b: Batch, a: At, v = "A: OPEN THE DOOR") => {
   b.add(new THREE.PlaneGeometry(LABEL_W, LABEL_H), labelMat(v), frame(a).multiply(new THREE.Matrix4().makeTranslation(0, LABEL_H + 0.15, 0)));
+};
+
+// =====================================================================================================================
+// Video 06 (The Extra Door, Part 2) additions. Additions only: Part 1's props, set and textures are untouched (these
+// entries reuse Part 1's photo, phone, label and door parts; a protected entry's variants are part of its fingerprint,
+// so Part 2's states are sibling entries).
+// =====================================================================================================================
+
+// ---------------- the photo lying along the stairs, and its cracked glass ----------------
+// Part 1's photo (same parts, same print), lying face-up along a flight of 0.2 m risers / 0.25 m treads, resting on the
+// step edges: tilted up the stairs by the stair pitch, its top edge up the stairs (local -z). `at` = the middle of its
+// back, on the line through the step edges. Step 1: the glass cracks (instantly, under a foot). Variant cracked: the
+// same crack from the start (the match cut).
+const STAIR_PITCH = Math.atan2(0.2, 0.25);
+/** one long crack across the glass, from the impact point (low right, where the foot came down) up across the glass
+ *  to the top edge, with a few short branches and a small star at the impact. Drawn as glass: a bright, refracted line
+ *  with a faint dark hairline beside it, so it reads as broken glass over the print, never as a mark on the people */
+const glassCrackTex = () => stex("photoGlassCrack", 900, 600, (g) => {
+  type P = [number, number];
+  const main: P[] = [[748, 556], [706, 474], [664, 404], [624, 344], [578, 282], [530, 220], [478, 150], [428, 76], [394, 0]];
+  const branches: P[][] = [[[706, 474], [788, 438], [900, 452]], [[624, 344], [700, 312], [752, 250]], [[578, 282], [494, 312], [418, 300]],
+    [[530, 220], [586, 150], [610, 96]], [[748, 556], [650, 584], [590, 600]], [[748, 556], [858, 574], [900, 570]], [[478, 150], [400, 160]]];
+  const line = (pts: P[], w: number, c: string, dx = 0, dy = 0) => {
+    g.strokeStyle = c; g.lineWidth = w; g.lineJoin = "miter"; g.lineCap = "round"; g.beginPath();
+    g.moveTo(pts[0][0] + dx, pts[0][1] + dy); for (const p of pts.slice(1)) g.lineTo(p[0] + dx, p[1] + dy); g.stroke();
+  };
+  for (const [pts, k] of [[main, 1], ...branches.map((b) => [b, 0.6] as const)] as [P[], number][]) {
+    line(pts, 4 * k, "rgba(25,30,40,0.5)", 3, 2);   // the dark hairline beside the break
+    line(pts, 3.6 * k, "rgba(255,255,255,0.96)");    // the bright edge of the broken glass
+  }
+  for (let k = 0; k < 11; k++) { const a = (k / 11) * Math.PI * 2 + 0.25, l = 22 + ((k * 13) % 20); line([[748, 556], [748 + Math.cos(a) * l, 556 + Math.sin(a) * l]], 2.5, "rgba(255,255,255,0.92)"); }
+  g.fillStyle = "rgba(255,255,255,0.4)"; g.beginPath(); g.arc(748, 556, 11, 0, Math.PI * 2); g.fill();
+});
+const CRACK_AT: V3 = [0, 0.0235, 0];   // just above the print (0.022), inside the frame (0.03)
+const crackPlane = () => new THREE.PlaneGeometry(1.2 - 0.12, 0.8 - 0.12).rotateX(-Math.PI / 2);
+const photoStairsStatic = (b: Batch, a: At, cracked: boolean) => {
+  const m = frame(a).multiply(new THREE.Matrix4().makeRotationX(STAIR_PITCH));
+  photoParts(b, m);
+  if (cracked) b.add(crackPlane(), basic("photoGlassCrackM", () => ({ map: glassCrackTex(), transparent: true, depthWrite: false })), m.clone().multiply(new THREE.Matrix4().makeTranslation(...CRACK_AT)));
+};
+const photoStairsRig = (a: At, v = ""): PropRig => {
+  const root = new THREE.Group(); root.position.set(a.x, a.y ?? 0, a.z); root.rotation.y = a.yaw ?? 0;
+  const tilt = new THREE.Group(); tilt.rotation.x = STAIR_PITCH; root.add(tilt);
+  const pb = new Batch(); photoParts(pb, new THREE.Matrix4()); pb.build(tilt, true);
+  const crack = new THREE.Mesh(crackPlane(), new THREE.MeshBasicMaterial({ map: glassCrackTex(), transparent: true, depthWrite: false }));
+  crack.position.set(...CRACK_AT); tilt.add(crack);
+  const base = v === "cracked" ? 1 : 0;
+  return { root, update: ({ step = 0 }) => { crack.visible = base + step > 0.001; } };
+};
+
+// ---------------- the phone: the same chat, two new messages from Juno ----------------
+// Part 1's handset and screen design. The thread scrolls as messages arrive: Part 1's exchange ("are you home?" /
+// "No, I'm still at work. Why?") at the top, the new ones below, the newest just above the input bar, large.
+// Steps: 1 "Left work early. I'm outside, open the door?" arrives, 2 "Who's that in your upstairs window?".
+// Variant msg1: the shot starts with the first one already there.
+const NEW_MSGS = ["Left work early. I'm outside, open the door?", "Who's that in your upstairs window?"];
+const wrapText = (g: CanvasRenderingContext2D, text: string, maxW: number) => {
+  const out: string[] = []; let cur = "";
+  for (const w of text.split(" ")) { const t = cur ? `${cur} ${w}` : w; if (cur && g.measureText(t).width > maxW) { out.push(cur); cur = w; } else cur = t; }
+  if (cur) out.push(cur);
+  return out;
+};
+const screenOutsideTex = (n: number) => stex(`phoneScrOutside${n}`, 1024, 2048, (g) => {
+  g.fillStyle = "#101218"; g.fillRect(0, 0, 1024, 2048);
+  // the thread, laid out from the input bar upward (the oldest scrolls up under the header)
+  g.textBaseline = "middle";
+  type Msg = { lines: string[]; out: boolean; font: number };
+  g.font = FONT(102);
+  const msgs: Msg[] = [{ lines: [MSG], out: true, font: 90 }, { lines: REPLY, out: false, font: 102 },
+    ...NEW_MSGS.slice(0, n).map((t) => ({ lines: wrapText(g, t, 1024 - 112 - 104 - 40), out: false, font: 102 }))];
+  let bottom = 1232;
+  for (const m of [...msgs].reverse()) {
+    g.font = FONT(m.font);
+    const h = m.out ? 150 : 56 + m.lines.length * 122, top = bottom - h, w = Math.max(...m.lines.map((l) => g.measureText(l).width)) + (m.out ? 96 : 104);
+    const x = m.out ? 1024 - 56 - w : 56;
+    g.fillStyle = m.out ? "#3b82f6" : "#e9e9ee"; rrect(g, x, top, w, h, m.out ? 60 : 64); g.fill();
+    g.fillStyle = m.out ? "#ffffff" : "#111318"; g.textAlign = "left";
+    if (m.out) g.fillText(m.lines[0], x + 48, top + 77);
+    else m.lines.forEach((l, i) => g.fillText(l, 108, top + 90 + i * 122));
+    if (m.out) { g.fillStyle = "#8a90a0"; g.font = FONT(40); g.textAlign = "right"; g.fillText("Read", 1024 - 70, bottom + 45); }
+    bottom = top - (m.out ? 40 : 40) - (msgs.indexOf(m) === 1 ? 50 : 0); // room for "Read" under the sent bubble
+  }
+  // status bar and header over the scrolled thread
+  g.fillStyle = "#101218"; g.fillRect(0, 0, 1024, 130);
+  g.fillStyle = "#cfd4de"; g.font = FONT(44); g.textAlign = "left"; g.fillText("11:49", 64, 70);
+  g.textAlign = "right"; g.fillText("▮▮▮", 960, 70);
+  g.fillStyle = "#1b1e27"; g.fillRect(0, 130, 1024, 190);
+  g.fillStyle = "#23968a"; g.beginPath(); g.arc(150, 225, 62, 0, Math.PI * 2); g.fill();
+  g.fillStyle = "#ffffff"; g.font = FONT(64); g.textAlign = "center"; g.fillText("J", 150, 228);
+  g.textAlign = "left"; g.font = FONT(68); g.fillText("Juno", 240, 225);
+  g.fillStyle = "#3a3f4d"; g.fillRect(0, 318, 1024, 3);
+  // input bar + keyboard (as Part 1)
+  g.fillStyle = "#1b1e27"; g.fillRect(0, 1260, 1024, 788);
+  g.fillStyle = "#2a2e3a"; rrect(g, 56, 1290, 800, 130, 65); g.fill();
+  g.font = FONT(70); g.textAlign = "left"; g.fillStyle = "#6c7280"; g.fillText("Message", 100, 1357);
+  g.fillStyle = "#3b82f6"; g.beginPath(); g.arc(935, 1355, 62, 0, Math.PI * 2); g.fill();
+  g.fillStyle = "#ffffff"; g.beginPath(); g.moveTo(905, 1385); g.lineTo(970, 1355); g.lineTo(905, 1325); g.lineTo(915, 1355); g.closePath(); g.fill();
+  g.fillStyle = "#3a3f4d";
+  for (let r = 0; r < 4; r++) for (let c = 0; c < 10 - (r === 3 ? 6 : 0); c++) { const kw = r === 3 ? 380 : 86; const x0 = r === 3 ? 322 : 22 + c * 99 + (r === 1 ? 45 : r === 2 ? 95 : 0); if (r === 2 && c > 7) continue; rrect(g, x0, 1470 + r * 140, kw, 118, 16); g.fill(); }
+});
+const OUT_BASE: Record<string, number> = { "": 0, msg1: 1 };
+const phoneOutsideRig = (a: At, v = ""): PropRig => {
+  const root = new THREE.Group(); root.position.set(a.x, a.y ?? 0, a.z); root.rotation.y = a.yaw ?? 0; root.scale.setScalar(a.s ?? 1);
+  const bb = new Batch(); phoneBody(bb, new THREE.Matrix4()); bb.build(root, true);
+  const mat = new THREE.MeshBasicMaterial({ map: screenOutsideTex(0), toneMapped: false });
+  const scr = new THREE.Mesh(new THREE.PlaneGeometry(0.068, 0.142), mat); scr.position.set(0, 0.0775, 0.0047); root.add(scr);
+  const base = OUT_BASE[v] ?? 0;
+  return { root, update: ({ step = 0 }) => { const e = base + step, n = e > 1.02 ? 2 : e > 0.02 ? 1 : 0; mat.map = screenOutsideTex(n); mat.needsUpdate = true; } };
+};
+const phoneOutsideStatic = (b: Batch, a: At, v = "") => {
+  const m = frame(a); phoneBody(b, m);
+  b.add(new THREE.PlaneGeometry(0.068, 0.142), basic(`phoneScrOutsideM${v}`, () => ({ map: screenOutsideTex(OUT_BASE[v] ?? 0), toneMapped: false })), m.clone().multiply(new THREE.Matrix4().makeTranslation(0, 0.0775, 0.0047)));
+};
+
+// ---------------- Part 1's vote, with the winner selected (the Part 2 opening callback) ----------------
+// Part 1's choice label (the same card texture, size, placement above `at`, drawn over everything, no outline), shown
+// from the first frame as Part 1 left it. Chosen, step 1: a bright green outline and glow fade in, the card brightens
+// slightly and pops once, and a small "YOU CHOSE B" tag pops in above it. Dimmed, step 1: the card fades to a
+// desaturated copy at 40 % opacity with a soft shadow behind it. Step 2 (both): gone (on the cut out of the callback).
+const SEL_M = 70;
+const selectTex = () => stex("choiceSelected", LW + 2 * SEL_M, LH + 2 * SEL_M, (g) => {
+  g.shadowColor = "rgba(46,255,128,0.95)"; g.shadowBlur = 54; g.strokeStyle = "#2eff80"; g.lineWidth = 22;
+  for (let k = 0; k < 3; k++) { rrect(g, SEL_M + 4, SEL_M + 4, LW - 8, LH - 8, 62); g.stroke(); }
+  g.shadowBlur = 0; g.lineWidth = 12; g.strokeStyle = "#a6ffca"; rrect(g, SEL_M + 4, SEL_M + 4, LW - 8, LH - 8, 62); g.stroke();
+});
+const tagTex = (text: string) => stex(`choiceTag${text}`, 640, 150, (g) => {
+  g.fillStyle = "#16a34a"; rrect(g, 6, 6, 628, 138, 69); g.fill();
+  g.strokeStyle = "#a6ffca"; g.lineWidth = 6; rrect(g, 6, 6, 628, 138, 69); g.stroke();
+  g.fillStyle = "#ffffff"; g.font = FONT(74); g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(text, 320, 80);
+});
+const dimTex = (text: string) => stex(`choiceDim${text}`, LW, LH, (g) => {
+  g.filter = "grayscale(1) brightness(0.8)"; g.drawImage(labelTex(text).image as CanvasImageSource, 0, 0); g.filter = "none";
+});
+const cardShadowTex = () => stex("choiceCardShadow", LW + 2 * SEL_M, LH + 2 * SEL_M, (g) => {
+  g.filter = "blur(24px)"; g.fillStyle = "rgba(0,0,0,0.85)"; rrect(g, SEL_M + 14, SEL_M + 30, LW - 12, LH - 12, 60); g.fill(); g.filter = "none";
+});
+const choiceStateRig = (chosen: boolean) => (a: At, v = "A: OPEN THE DOOR"): PropRig => {
+  const root = new THREE.Group(), s = a.s ?? 1; root.position.set(a.x, a.y ?? 0, a.z);
+  const holder = new THREE.Group(); holder.position.y = LABEL_H * s + 0.15; root.add(holder);
+  const over = (map: THREE.Texture, w: number, h: number, order: number, y = 0) => {
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ map, transparent: true, depthTest: true, depthFunc: THREE.AlwaysDepth, depthWrite: false, toneMapped: false, opacity: 0 }));
+    m.position.y = y; m.renderOrder = order; m.frustumCulled = false; m.layers.set(NOINK); holder.add(m); return m;
+  };
+  const card = new THREE.Mesh(new THREE.PlaneGeometry(LABEL_W, LABEL_H), new THREE.MeshBasicMaterial({ map: labelTex(v), alphaTest: 0.5, transparent: !chosen, depthTest: true, depthFunc: THREE.AlwaysDepth, depthWrite: true, toneMapped: false }));
+  card.renderOrder = 999; card.frustumCulled = false; card.layers.set(NOINK); holder.add(card);
+  const ew = LABEL_W * (LW + 2 * SEL_M) / LW, eh = LABEL_H * (LH + 2 * SEL_M) / LH;
+  const glowM = chosen ? over(selectTex(), ew, eh, 1000) : null;
+  const tagH = 0.09, tagW = tagH * 640 / 150, letter = v.trim()[0].toUpperCase();
+  const tag = chosen ? over(tagTex(`YOU CHOSE ${letter}`), tagW, tagH, 1001, LABEL_H / 2 + 0.035 + tagH / 2) : null;
+  const shadow = chosen ? null : over(cardShadowTex(), ew, eh, 998);
+  const gray = chosen ? null : over(dimTex(v), LABEL_W, LABEL_H, 1000);
+  const cm = card.material as THREE.MeshBasicMaterial;
+  return { root, update: ({ step = 0, camPos }) => {
+    root.lookAt(camPos);
+    const f = clamp01(step);
+    root.visible = step <= 1.0005;
+    if (chosen) {
+      const pop = 1 + 0.12 * Math.sin(Math.PI * f) * (1 - f);
+      holder.scale.setScalar(s * pop);
+      (glowM!.material as THREE.MeshBasicMaterial).opacity = clamp01(f * 3);
+      cm.color.setScalar(1 + 0.16 * clamp01(f * 3));
+      const k = clamp01((f - 0.12) / 0.3); tag!.visible = k > 0; tag!.scale.setScalar(k * (1 + 0.3 * Math.sin(Math.PI * k) * (1 - k)));
+      (tag!.material as THREE.MeshBasicMaterial).opacity = 1;
+    } else {
+      holder.scale.setScalar(s);
+      const k = clamp01(f * 2.5);
+      cm.opacity = 1 - k; card.visible = cm.opacity > 0.01;
+      (gray!.material as THREE.MeshBasicMaterial).opacity = 0.4 * k;
+      (shadow!.material as THREE.MeshBasicMaterial).opacity = 0.55 * k;
+    }
+  } };
+};
+
+// ---------------- the front door ----------------
+// A cream front door (0.86 x 2.05 m) with a frosted glass panel in its upper half, lit amber from outside by the porch
+// light, its warm spill on the floor inside; a brass knob and lock. Nobody's shadow is ever on the glass. Steps 1-3:
+// a knock each (the slab and the glass shudder in the frame). Faces +z; stand it against a wall.
+const FDW = 0.86, FDH = 2.05, FG = { x0: -0.27, x1: 0.27, y0: 1.12, y1: 1.86 };
+const frostTex = () => stex("frontDoorFrost", 256, 384, (g) => {
+  const gr = g.createRadialGradient(128, 118, 10, 128, 160, 260); gr.addColorStop(0, "#ffe2a6"); gr.addColorStop(0.45, "#f5b65f"); gr.addColorStop(1, "#b8662a");
+  g.fillStyle = gr; g.fillRect(0, 0, 256, 384);
+  for (let k = 0; k < 900; k++) { const x = (k * 97) % 256, y = (k * 151) % 384; g.fillStyle = k % 2 ? "rgba(255,240,210,0.10)" : "rgba(120,60,20,0.08)"; g.fillRect(x, y, 3, 3); } // frosting
+  g.strokeStyle = "rgba(120,70,30,0.35)"; g.lineWidth = 6; g.strokeRect(3, 3, 250, 378);
+});
+const porchSpillTex = () => stex("frontDoorSpill", 256, 512, (g) => {
+  const gr = g.createLinearGradient(0, 0, 0, 512); gr.addColorStop(0, "rgba(255,190,110,0.55)"); gr.addColorStop(0.5, "rgba(255,170,90,0.22)"); gr.addColorStop(1, "rgba(255,160,80,0)");
+  g.fillStyle = gr; g.fillRect(0, 0, 256, 512);
+  const side = g.createLinearGradient(0, 0, 256, 0); side.addColorStop(0, "rgba(0,0,0,1)"); side.addColorStop(0.3, "rgba(0,0,0,0)"); side.addColorStop(0.7, "rgba(0,0,0,0)"); side.addColorStop(1, "rgba(0,0,0,1)");
+  g.globalCompositeOperation = "destination-out"; g.fillStyle = side; g.fillRect(0, 0, 256, 512); g.globalCompositeOperation = "source-over";
+});
+const frontFrameParts = (b: Batch, m: THREE.Matrix4) => {
+  const trim = col("#eae2d2");
+  box(b, trim, m, -FDW / 2 - 0.08, -FDW / 2, 0, FDH + 0.08, 0, 0.05); box(b, trim, m, FDW / 2, FDW / 2 + 0.08, 0, FDH + 0.08, 0, 0.05);
+  box(b, trim, m, -FDW / 2 - 0.08, FDW / 2 + 0.08, FDH, FDH + 0.08, 0, 0.05);
+};
+const frontSlabParts = (b: Batch, m: THREE.Matrix4) => {
+  const slab = col("#e6dcc6"), panel = col("#d9ceb6"), brass = col("#c9a24e"), X = FDW / 2 - 0.004;
+  box(b, slab, m, -X, FG.x0, 0, FDH - 0.004, 0.006, 0.045); box(b, slab, m, FG.x1, X, 0, FDH - 0.004, 0.006, 0.045);   // stiles
+  box(b, slab, m, FG.x0, FG.x1, FG.y1, FDH - 0.004, 0.006, 0.045); box(b, slab, m, FG.x0, FG.x1, 0, FG.y0, 0.006, 0.045); // rails
+  for (const [y0, y1] of [[0.2, 0.55], [0.65, 1.0]]) box(b, panel, m, -0.25, 0.25, y0, y1, 0.045, 0.052);
+  for (const [x0, x1, y0, y1] of [[FG.x0 - 0.02, FG.x1 + 0.02, FG.y0 - 0.02, FG.y0], [FG.x0 - 0.02, FG.x1 + 0.02, FG.y1, FG.y1 + 0.02], [FG.x0 - 0.02, FG.x0, FG.y0, FG.y1], [FG.x1, FG.x1 + 0.02, FG.y0, FG.y1]])
+    box(b, panel, m, x0, x1, y0, y1, 0.045, 0.055);                                                                 // glazing bead
+  sph(b, brass, m, 0.33, 1.0, 0.052, 0.034, 0.034, 0.008); sph(b, brass, m, 0.33, 1.0, 0.078, 0.03, 0.03, 0.024);
+  box(b, brass, m, 0.3, 0.36, 1.12, 1.2, 0.045, 0.052);                                                             // the lock
+  b.add(new THREE.PlaneGeometry(FG.x1 - FG.x0, FG.y1 - FG.y0), basic("frontDoorGlassM", () => ({ map: frostTex(), toneMapped: false })), m.clone().multiply(new THREE.Matrix4().makeTranslation(0, (FG.y0 + FG.y1) / 2, 0.026)));
+};
+const frontSpillParts = (b: Batch, m: THREE.Matrix4) => {
+  b.add(new THREE.PlaneGeometry(1.1, 2.2).rotateX(-Math.PI / 2), basic("frontDoorSpillM", () => ({ map: porchSpillTex(), transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false })), m.clone().multiply(new THREE.Matrix4().makeTranslation(0, 0.004, 1.15)));
+};
+const frontDoorStatic = (b: Batch, a: At) => { const m = frame(a); frontFrameParts(b, m); frontSlabParts(b, m); frontSpillParts(b, m); };
+const frontDoorRig = (a: At): PropRig => {
+  const root = new THREE.Group(); root.position.set(a.x, a.y ?? 0, a.z); root.rotation.y = a.yaw ?? 0;
+  const I = new THREE.Matrix4(), fixed = new THREE.Group(), slab = new THREE.Group(), spill = new THREE.Group();
+  const fb = new Batch(); frontFrameParts(fb, I); fb.build(fixed, true);
+  const sb = new Batch(); frontSlabParts(sb, I); sb.build(slab, true);
+  const lb = new Batch(); frontSpillParts(lb, I); lb.build(spill, false);
+  root.add(fixed, slab, spill);
+  return { root, update: ({ step = 0 }) => {
+    let shake = 0;
+    for (let k = 0; k < 3; k++) { const f = clamp01(step - k); if (f > 0 && f < 1) shake += Math.sin(f * Math.PI * 7) * (1 - f) * 0.011; }
+    slab.position.z = shake; slab.rotation.y = shake * 0.6;
+  } };
+};
+
+// ---------------- the downstairs hall ----------------
+// The ground-floor entrance hall at night, under Part 1's hallway: 2.4 m wide (x -1.1..1.3), 2.6 m high, from the front
+// door's wall (z -6.0) to the back wall (z +1.2). The stairs rise along the left wall, 1.3 m wide (x -1.1..0.2): thirteen
+// 0.2 m steps from the bottom riser (z -1.3) up toward the front of the house to a landing at 2.6 m (z -6.0..-4.55),
+// whose back wall is where the old door stands in Part 2. Open stairwell above the flight (to 5.2 m) with a dim lamp at
+// the landing; banister along the flight's open side; under the landing a closed wall. The corridor beside the stairs
+// (x 0.2..1.3) leads to the front door (centre x 0.75) with its amber frosted glass; one cream door on the right wall.
+const DX0 = -1.1, DX1 = 1.3, DZF = -6.0, DZB = 1.2, SX = 0.2, SB = -1.3, NSTEP = 13, RISE = 0.2, RUN = 0.25, LZ = SB - RUN * NSTEP, WELL = 5.2;
+/** the height of a foot on the downstairs flight at z (the line through the middle of the treads; 0 below the flight) */
+export const downstairsY = (z: number) => Math.max(0, Math.min(H, RISE + (RISE / RUN) * (SB - RUN / 2 - z)));
+const stairCX = (DX0 + SX) / 2;
+const DOWN_LAYOUT = {
+  ceiling: H,
+  spots: {
+    stairsFoot: [stairCX, 0, -0.75] as V3, landing: [stairCX, H, -5.3] as V3, landingDoor: [stairCX, H, DZF] as V3,
+    hallMid: [0.75, 0, -2.9] as V3, nearFront: [0.75, 0, -4.9] as V3, frontDoor: [0.75, 0, DZF] as V3, back: [0.45, 0, 0.4] as V3,
+    // the photo's back on the line through the step edges, between steps 6 and 8
+    photoStairs: [stairCX, RISE + (RISE / RUN) * (SB - -3.3), -3.3] as V3,
+  },
+  views: [
+    { name: "hall", pos: [0.55, 1.55, 1.0], look: [0.35, 1.1, DZF], fov: 46, establishing: true },
+    { name: "upStairs", pos: [stairCX, 1.45, 0.4], look: [stairCX, 3.0, -5.6], fov: 50 },
+    { name: "frontDoor", pos: [0.75, 1.5, -2.8], look: [0.75, 1.3, DZF], fov: 44 },
+  ] as View[],
+};
+const downstairs = () => {
+  const root = new THREE.Group(), shell = new Batch(), b = new Batch();
+  const paper = glowless(PAPER[0], PAPER[1]), dado = col("#56677a"), trim = col("#e4dacb"), I = new THREE.Matrix4();
+  // walls (fronts into the hall): left, right, back, the front wall, and the corridor side of the closed space under
+  // the landing; above the ceiling, the stairwell's walls up to its own ceiling
+  wallFace(shell, [DX0, DZB], [DX0, DZF], 0, H, paper, dado);            // left (faces +x), behind the flight
+  wallFace(shell, [DX1, DZF], [DX1, DZB], 0, H, paper, dado);            // right (faces -x)
+  wallFace(shell, [DX1, DZB], [DX0, DZB], 0, H, paper, dado);            // back (faces -z)
+  wallFace(shell, [SX, DZF], [DX1, DZF], 0, H, paper, dado);             // front wall beside the landing (faces +z)
+  wallFace(shell, [SX, LZ], [SX, DZF], 0, H, paper, dado);               // under the landing, corridor side (faces +x)
+  wallFace(shell, [DX0, SB], [DX0, DZF], H, WELL, paper, dado);           // the well: left (faces +x)
+  wallFace(shell, [DX0, DZF], [SX, DZF], H, WELL, paper, dado);           // the well: the landing's back wall (faces +z)
+  wallFace(shell, [SX + 0.06, DZF], [SX + 0.06, SB], H, WELL, paper, dado); // the well: right, above the hall ceiling (faces -x)
+  wallFace(shell, [SX + 0.06, SB], [DX0, SB], H, WELL, paper, dado);      // the well: over the foot of the stairs (faces -z)
+  shell.add(quad(V(DX0, WELL, DZF), V(SX + 0.06, WELL, DZF), V(SX + 0.06, WELL, SB), V(DX0, WELL, SB), 1, 4), glow("ceilHallNight", () => ({ map: ceilingHD("#8c8377") })));
+  // floor (world-aligned boards, as the hallway) and the landing's floor at 2.6 m
+  const fl = floorMat(["#8f6a48", "#86613f", "#97714d", "#7e5a3b"]);
+  shell.add(quad(V(DX0, 0, DZF), V(DX0, 0, DZB), V(DX1, 0, DZB), V(DX1, 0, DZF), DZB / 2, DX1 / 2, DZF / 2, DX0 / 2), fl);
+  shell.add(quad(V(DX0, H, DZF), V(DX0, H, LZ), V(SX, H, LZ), V(SX, H, DZF), LZ / 2, SX / 2, DZF / 2, DX0 / 2), fl);
+  // the hall ceiling (not over the stairwell)
+  const ceil = glow("ceilHallNight", () => ({ map: ceilingHD("#8c8377") }));
+  shell.add(quad(V(SX, H, DZF), V(DX1, H, DZF), V(DX1, H, DZB), V(SX, H, DZB), 1, 4), ceil);
+  shell.add(quad(V(DX0, H, SB), V(SX, H, SB), V(SX, H, DZB), V(DX0, H, DZB), 1, 2), ceil);
+  // skirting, dado rail and cornice along the hall's walls
+  const runs: [number, number, number, number][] = [[DX0, SB, DX0, DZB], [DX1, DZF, DX1, DZB], [DX0, DZB, DX1, DZB], [SX, DZF, DX1, DZF], [SX, DZF, SX, LZ]];
+  for (const [x0, z0, x1, z1] of runs) {
+    const alongX = z0 === z1, s = alongX ? (z0 < 0 ? 1 : -1) : x0 < 0.5 ? 1 : -1;
+    const slab = (y0: number, y1: number, d: number) => alongX
+      ? box(shell, trim, I, x0, x1, y0, y1, Math.min(z0, z0 + s * d), Math.max(z0, z0 + s * d))
+      : box(shell, trim, I, Math.min(x0, x0 + s * d), Math.max(x0, x0 + s * d), y0, y1, Math.min(z0, z1), Math.max(z0, z1));
+    slab(0, 0.12, 0.025); slab(LOW, LOW + 0.035, 0.02); slab(H - 0.1, H, 0.04);
+  }
+  // the stairs: thirteen solid steps (wood treads, a painted stringer face toward the corridor)
+  for (let i = 0; i < NSTEP; i++) {
+    const z1 = SB - RUN * i, z0 = z1 - RUN, y1 = RISE * (i + 1);
+    box(b, col(i % 2 ? "#8a6446" : "#86613f"), I, DX0 + 0.002, SX - 0.002, 0, y1, z0, z1);
+    box(b, col("#e9e1d2"), I, SX - 0.002, SX + 0.02, Math.max(0, y1 - RISE - 0.12), y1 - 0.02, z0, z1); // stringer
+  }
+  // banister along the open side: newel posts, a sloped rail and one white spindle per step
+  const rail = col("#5b3b28"), spindle = col("#efe8db");
+  const r0: V3 = [SX + 0.04, RISE + 0.92, SB - RUN / 2], r1: V3 = [SX + 0.04, H + 0.92, LZ];
+  const dz = r0[2] - r1[2], dy = r1[1] - r0[1], len = Math.hypot(dz, dy), th = Math.atan2(dy, dz);
+  box(b, rail, new THREE.Matrix4().makeTranslation(...r0).multiply(new THREE.Matrix4().makeRotationX(th)), -0.03, 0.03, -0.03, 0.03, -len, 0);
+  for (let i = 0; i < NSTEP; i++) {
+    const z = SB - RUN * i - RUN / 2, top = r0[1] + (dy * (r0[2] - z)) / dz, foot = RISE * (i + 1);
+    box(b, spindle, I, SX + 0.027, SX + 0.053, foot, top, z - 0.013, z + 0.013);
+  }
+  for (const [z, y] of [[SB - 0.05, 0], [LZ, H]] as [number, number][]) { box(b, rail, I, SX - 0.01, SX + 0.09, y, y + 1.12, z - 0.05, z + 0.05); sph(b, rail, I, SX + 0.04, y + 1.15, z, 0.055, 0.045, 0.055); }
+  // the dim lamp at the landing (a small wall light on the left wall, high)
+  box(b, col("#3b3127"), I, DX0, DX0 + 0.05, H + 1.72, H + 1.86, -5.32, -5.18);
+  sph(b, glow("landingLampM", () => ({ color: new THREE.Color("#ffd9a0"), toneMapped: false })), I, DX0 + 0.1, H + 1.79, -5.25, 0.06, 0.07, 0.06);
+  // dressing: an ordinary cream door on the right wall, pictures, two pendants, a runner to the front door
+  hallDoor(b, { x: DX1, z: -2.3, yaw: -Math.PI / 2 });
+  ([[DX1 - 0.01, -0.5, -Math.PI / 2, 2], [DX1 - 0.01, -4.1, -Math.PI / 2, 1], [0.45, DZB - 0.01, Math.PI, 3]] as [number, number, number, number][])
+    .forEach(([x, z, yaw, kind]) => picture(b, { x, z, y: 1.5, yaw }, 0.5, 0.4, kind));
+  pendant(shell, { x: 0.75, z: -3.3, y: H }, 0.2);
+  pendant(shell, { x: 0.5, z: -0.2, y: H }, 0.2);
+  const RX0 = 0.4, RX1 = 1.1, RZ0 = -5.7, RZ1 = 0.7, RL = 0.9;
+  shell.add(quad(V(RX0, 0.004, RZ0), V(RX0, 0.004, RZ1), V(RX1, 0.004, RZ1), V(RX1, 0.004, RZ0), (RZ1 - RZ0) / RL, 1, 0, 0), lamb("hallRunner", runnerTex));
+  shell.build(root, false);
+  b.build(root, false);
+  return { root, env: { sky: false, clouds: false }, ...DOWN_LAYOUT };
 };
 
 export const EXTRADOOR_THEME: Theme = {
@@ -496,9 +811,28 @@ export const EXTRADOOR_THEME: Theme = {
       rig: phoneRig, steps: ["types \"are you home?\"", "sends it", "Juno's reply arrives"], stepCount: (v) => 3 - (PHONE_BASE[v ?? ""] ?? 0) },
     choiceLabel: { name: "Choice label (A / B)", desc: "a flat on-screen choice label for a viewer vote: a dark rounded card, a coloured letter badge (A amber, B cyan) and the choice in white, always facing the lens and drawn over the scene (never a sign in the world). The variant is the text, \"A: OPEN THE DOOR\". Step 1 pops it in (hidden before)", category: "theme", themes: ["any", "interactive"], tags: ["label", "choice", "vote", "poll", "option", "interactive"], radius: 0.05, height: 0.42,
       build: (b, a, v) => choiceLabelStatic(b, a, v), rig: choiceLabelRig, steps: ["the label pops in"],
-      param: { desc: "choice text: a letter, then the choice (1-18 letters, digits, spaces, . , : ! ? ' - $ % # & + /), e.g. A: OPEN THE DOOR", ok: (s) => displayTextOk(s) && /^\s*[A-Za-z]\s*[:.-]?\s+\S/.test(s) } },
+      param: { desc: "choice text: a letter, then the choice (up to 20 letters, digits, spaces, . , : ! ? ' - $ % # & + /; the card wraps it onto two lines), e.g. A: OPEN THE DOOR", ok: choiceTextOk } },
+    // Video 06 (Part 2) additions
+    photoOnStairs: { name: "Photo of Milo and Juno, on the stairs", desc: "Part 1's framed photo (1.2 x 0.8 m) lying face-up along a flight of stairs (0.2 m risers, 0.25 m treads), resting on the step edges, its top edge up the stairs (local -z). `at` = the middle of its back on the line through the step edges. Step 1: its glass cracks (one long crack from a foot's impact low right, up across the glass). Variant cracked: already cracked", category: "theme", themes: ["home", "mystery", "horror"], tags: ["photo", "picture", "frame", "stairs", "glass", "crack"], radius: 0.7, height: 0.6, box: [0.6, 0.35],
+      build: (b, a) => photoStairsStatic(b, a, false), variants: { cracked: (b, a) => photoStairsStatic(b, a, true) },
+      rig: photoStairsRig, steps: ["the glass cracks"], stepCount: (v) => (v === "cracked" ? 0 : 1) },
+    phoneOutside: { name: "Phone (Juno's new messages)", desc: "Part 1's message phone, the same chat a few minutes later (11:49): Part 1's exchange scrolled up, then Juno's new messages, the newest large above the input bar. Steps: 1 \"Left work early. I'm outside, open the door?\" arrives, 2 \"Who's that in your upstairs window?\". Variant msg1: starts with the first one there", category: "theme", themes: ["modern", "mystery", "any"], tags: ["phone", "message", "text", "chat", "screen"], radius: 0.06, height: 0.16,
+      focus: { y: 0.0775, span: 0.085 },
+      build: (b, a, v) => phoneOutsideStatic(b, a, v), variants: { msg1: (b, a) => phoneOutsideStatic(b, a, "msg1") },
+      rig: phoneOutsideRig, steps: ["Juno: \"Left work early. I'm outside, open the door?\"", "Juno: \"Who's that in your upstairs window?\""], stepCount: (v) => 2 - (OUT_BASE[v ?? ""] ?? 0) },
+    choiceLabelChosen: { name: "Choice label, chosen (the vote's winner)", desc: "Part 1's choice label (same card, size and screen-graphic behaviour) shown from the first frame; step 1 selects it: a bright green outline and glow, a slightly brighter card, one pop and a small \"YOU CHOSE B\" tag above it; step 2 removes it. The variant is the text, as choiceLabel", category: "theme", themes: ["any", "interactive"], tags: ["label", "choice", "vote", "winner", "selected", "interactive"], radius: 0.05, height: 0.52,
+      build: (b, a, v) => choiceLabelStatic(b, a, v), rig: choiceStateRig(true), steps: ["selected: green outline and glow, a pop, the YOU CHOSE tag", "gone"],
+      param: { desc: "choice text, as choiceLabel, e.g. B: RUN DOWNSTAIRS", ok: choiceTextOk } },
+    choiceLabelDimmed: { name: "Choice label, dimmed (the vote's loser)", desc: "Part 1's choice label shown from the first frame; step 1 dims it: desaturated, 40 % opacity, a soft shadow behind; step 2 removes it. The variant is the text, as choiceLabel", category: "theme", themes: ["any", "interactive"], tags: ["label", "choice", "vote", "dimmed", "interactive"], radius: 0.05, height: 0.42,
+      build: (b, a, v) => choiceLabelStatic(b, a, v), rig: choiceStateRig(false), steps: ["dimmed: desaturated, 40 % opacity, a soft shadow", "gone"],
+      param: { desc: "choice text, as choiceLabel, e.g. A: OPEN THE DOOR", ok: choiceTextOk } },
+    frontDoor: { name: "Front door (porch light)", desc: "a cream front door (0.86 x 2.05 m) with a frosted glass panel in its upper half, glowing amber from the porch light outside, a warm spill on the floor inside; nobody's shadow on the glass (faces +z; stand it against a wall). Steps 1-3: a knock each (the door and its glass shudder)", category: "theme", themes: ["home", "mystery", "horror"], tags: ["door", "front door", "porch", "glass", "knock", "night"], radius: 0.55, height: 2.13, box: [0.51, 0.05],
+      focus: { y: 1.45, span: 1.0 },
+      build: (b, a) => frontDoorStatic(b, a), rig: frontDoorRig, steps: ["knock 1: the door shudders", "knock 2", "knock 3"] },
   },
-  sets: { hallway: { id: "hallway", title: "Upstairs hallway at night: seven doors, the stairs, the end wall", lights: ["interiorCool", "interior"], build: hallway } },
-  layouts: { hallway: HALL_LAYOUT },
-  setMeta: { hallway: { name: "Upstairs hallway (night)", desc: "a closed 1.8 m-wide corridor (x -0.9..0.9) from the end wall (z -7.0) to the near wall (z +1.6): three cream doors on the left, four on the right, pictures, a wall clock (left, z -6.45), two pendants, a runner; an open stairwell along the left wall mid-hall (x -0.9..-0.05, z -4.7..-2.1): the top of the stairs at its far end, toward the old door, ten steps going down toward the near end, banister along x -0.05 and across the near end; on the end wall the clean wallpaper patch (1.2 x 0.8 m, 1.4-2.2 m high) with a bare nail above it, where a photo hung (marks: nearEnd, hallNear, hallMid, stairsTop, backedAway, nearDoor, atDoor, oldDoor, photo, stairs, phone / views: hallway, reverse, endWall / lights: interiorCool)", themes: ["home", "modern", "horror", "mystery"], tags: ["indoor", "house", "hallway", "corridor", "stairs", "night", "doors", "horror"] } },
+  sets: { hallway: { id: "hallway", title: "Upstairs hallway at night: seven doors, the stairs, the end wall", lights: ["interiorCool", "interior"], build: hallway },
+    downstairs: { id: "downstairs", title: "Downstairs hall at night: the foot of the stairs, the landing, the front door", lights: ["interiorCool", "interior"], build: downstairs } },
+  layouts: { hallway: HALL_LAYOUT, downstairs: DOWN_LAYOUT },
+  setMeta: { hallway: { name: "Upstairs hallway (night)", desc: "a closed 1.8 m-wide corridor (x -0.9..0.9) from the end wall (z -7.0) to the near wall (z +1.6): three cream doors on the left, four on the right, pictures, a wall clock (left, z -6.45), two pendants, a runner; an open stairwell along the left wall mid-hall (x -0.9..-0.05, z -4.7..-2.1): the top of the stairs at its far end, toward the old door, ten steps going down toward the near end, banister along x -0.05 and across the near end; on the end wall the clean wallpaper patch (1.2 x 0.8 m, 1.4-2.2 m high) with a bare nail above it, where a photo hung (marks: nearEnd, hallNear, hallMid, stairsTop, backedAway, nearDoor, atDoor, oldDoor, photo, stairs, phone / views: hallway, reverse, endWall / lights: interiorCool)", themes: ["home", "modern", "horror", "mystery"], tags: ["indoor", "house", "hallway", "corridor", "stairs", "night", "doors", "horror"] },
+    downstairs: { name: "Downstairs hall (night)", desc: "the ground-floor entrance hall under the hallway: 2.4 m wide (x -1.1..1.3), from the front door's wall (z -6.0) to the back wall (z +1.2); the stairs rise along the left wall (x -1.1..0.2, thirteen 0.2 m steps from z -1.3 up toward the front of the house) to a landing at 2.6 m (z -6.0..-4.55) whose back wall can hold the old door; an open stairwell above the flight with a dim lamp at the landing; banister along the flight's open side; the corridor beside the stairs (x 0.2..1.3) to the front door (centre x 0.75, place the frontDoor prop), a cream door on the right wall, pictures, two pendants, a runner (marks: stairsFoot, landing, landingDoor, hallMid, nearFront, frontDoor, back, photoStairs / views: hall, upStairs, frontDoor / lights: interiorCool)", themes: ["home", "modern", "horror", "mystery"], tags: ["indoor", "house", "hall", "entrance", "stairs", "front door", "night", "horror"] } },
 };
