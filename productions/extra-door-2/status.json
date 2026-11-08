@@ -4,14 +4,14 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-08T10:21:36.505Z",
-   "inputs": "0e45fac95d0e29n",
-   "detail": "valid; 21 warning(s):\n  shot 1 (hallway): milo: walk 0.15-1.45 s outside the shot\n  shot 1 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 3 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 5 (downstairs): prop \"frontDoor\" overlaps something already in the set at [0.8, -6.0]\n  shot 6 (downstairs): milo: walk 0-1.7 s outside the shot\n  shot 12 (downstairs): prop \"frontDoor\" overlaps something already in the set at [0.8, -6.0]\n  shot 13 (downstairs): prop \"frontDoor\" overlaps something already in the set at [0.8, -6.0]\n  shot 17 (downstairs): prop \"frontDoor\" overlaps something already in the set at [0.8, -6.0]\n  shot 18 (downstairs): prop \"frontDoor\" overlaps something already in the set at [0.8, -6.0]\n  shot 19 (downstairs): prop \"frontDoor\" overlaps something already in the set at [0.8, -6.0]\n  shot 21 (downstairs): prop \"frontDoor\" overlaps something already in the set at [0.8, -6.0]\n  shot 2 (hallway): milo fills 26 % of the frame in the foreground @0.4s (is it hiding the action?)\n  shot 4 (hallway): milo fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 6 (downstairs): milo's hand (pump) is out of frame @1.0s (side): widen the shot or change the gesture\n  shot 6 (downstairs): milo fills 30 % of the frame in the foreground @1.0s (is it hiding the action?)\n  shot 7 (downstairs): milo fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 9 (downstairs): milo fills 36 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 10 (downstairs): milo fills 72 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 13 (downstairs): milo's hand (read) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 13 (downstairs): milo fills 65 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 17 (downstairs): milo's hand (spread) is out of frame @3.2s (side): widen the shot or change the gesture"
+   "at": "2026-11-08T10:43:24.819Z",
+   "inputs": "07af78cea19dfbn",
+   "detail": "valid; 19 warning(s):\n  shot 1 (hallway): milo: walk 0.15-1.45 s outside the shot\n  shot 1 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 3 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 5 (downstairs): prop \"frontDoor\" overlaps something already in the set at [0.8, -6.0]\n  shot 6 (downstairs): milo: walk 0-1.7 s outside the shot\n  shot 12 (downstairs): prop \"frontDoor\" overlaps something already in the set at [0.8, -6.0]\n  shot 13 (downstairs): prop \"frontDoor\" overlaps something already in the set at [0.8, -6.0]\n  shot 17 (downstairs): prop \"frontDoor\" overlaps something already in the set at [0.8, -6.0]\n  shot 18 (downstairs): prop \"frontDoor\" overlaps something already in the set at [0.8, -6.0]\n  shot 19 (downstairs): prop \"frontDoor\" overlaps something already in the set at [0.8, -6.0]\n  shot 21 (downstairs): prop \"frontDoor\" overlaps something already in the set at [0.8, -6.0]\n  shot 2 (hallway): milo fills 26 % of the frame in the foreground @0.4s (is it hiding the action?)\n  shot 4 (hallway): milo fills 87 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 6 (downstairs): milo's hand (pump) is out of frame @1.0s (side): widen the shot or change the gesture\n  shot 6 (downstairs): milo fills 30 % of the frame in the foreground @1.0s (is it hiding the action?)\n  shot 7 (downstairs): milo fills 91 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 9 (downstairs): milo fills 36 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 10 (downstairs): milo fills 72 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 17 (downstairs): milo's hand (spread) is out of frame @3.2s (side): widen the shot or change the gesture"
   },
   "assets": {
    "state": "done",
-   "at": "2026-11-08T10:21:36.509Z",
-   "inputs": "0e45fac95d0e29",
+   "at": "2026-11-08T10:43:24.821Z",
+   "inputs": "07af78cea19dfb",
    "detail": "28 library assets reused, none missing",
    "data": {
     "reused": 28,
@@ -59,8 +59,8 @@
      ],
      "act": [
       "scared",
-      "shock",
-      "nervous"
+      "nervous",
+      "shock"
      ],
      "item": [
       "phone"
@@ -70,26 +70,26 @@
   },
   "approval": {
    "state": "done",
-   "at": "2026-11-08T10:21:36.513Z",
+   "at": "2026-11-08T10:43:24.824Z",
    "inputs": "10afa09305c30e",
    "detail": "all narration already generated (no cost)"
   },
   "narration": {
    "state": "done",
-   "at": "2026-11-08T10:21:36.514Z",
+   "at": "2026-11-08T10:43:24.825Z",
    "inputs": "10afa09305c30e",
    "detail": "all lines already generated (cached)"
   },
   "sound": {
    "state": "done",
-   "at": "2026-11-08T10:22:00.156Z",
-   "inputs": "1231d71f6142cd",
+   "at": "2026-11-08T10:43:47.976Z",
+   "inputs": "02a3bc6b5fc256",
    "detail": "soundtrack built: -14.2 LUFS"
   },
   "checks": {
    "state": "done",
-   "at": "2026-11-08T10:22:03.905Z",
-   "inputs": "1231d71f6142cd",
+   "at": "2026-11-08T10:43:51.579Z",
+   "inputs": "02a3bc6b5fc256",
    "detail": "preflight PASS; library intact"
   }
  },

@@ -69,8 +69,8 @@ export const EXTRADOOR2: Storyboard = {
     // 4. close on his face as he runs: he glances back up the stairwell toward the door (a reaction, not
     //    another run)
     { say: { text: "You told him to run.", voice: "georgeHushed", gap: 0.16 }, hold: 0.34, set: "hallway", light: "interiorCool", transition: "cut",
-      camera: { move: "at", pos: [-0.47, 0.56, -2.95], look: [-0.47, 0.5, -3.6], fov: 40 },
-      actors: [{ who: "milo", at: up(-3.6), act: "scared", face: "scared", facing: 0, idle: 0.9, beats: [{ word: "told", look: "up" }, { word: "run", look: "down" }] }],
+      camera: { move: "at", pos: [-0.47, 0.75, -2.45], look: [-0.47, 0.35, -3.6], fov: 46 },
+      actors: [{ who: "milo", at: up(-3.6), act: "nervous", face: "scared", facing: 0, idle: 0.9, beats: [{ word: "told", look: "up" }, { word: "run", look: "down" }] }],
       sfx: [{ t: 0.25, name: "step_floor", gain: -6 }, { t: 0.65, name: "step_floor", gain: -6 }, { t: 1.05, name: "step_floor", gain: -6 }, { t: 1.45, name: "step_floor", gain: -7 }] },
     // 5. the downstairs hall, still empty: all thirteen steps rising to the landing, the front door glowing amber at
     //    the end of the corridor (the house's geography, before anything happens in it); his footsteps thunder closer
@@ -89,8 +89,8 @@ export const EXTRADOOR2: Storyboard = {
       sfx: [{ t: 0.3, name: "step_floor", gain: -4 }, { t: CRACK_T - 0.02, name: "step_floor", gain: -4 }, { t: CRACK_T, name: "glass_crack", gain: -1 }, { t: 1.2, name: "step_floor", gain: -4 }] },
     // 7. close on his face, a few steps below the photo: he glances back up at what broke under his foot
     { dur: 1.0, set: "downstairs", light: "interiorCool", transition: "cut",
-      camera: { move: "at", pos: [-0.45, 2.55, -1.95], look: [-0.45, 2.5, -2.6], fov: 40 },
-      actors: [{ who: "milo", at: down(-2.6), act: "scared", face: "shock", facing: 0, idle: 0.9, beats: [{ t: 0.15, look: "up" }] }],
+      camera: { move: "at", pos: [-0.45, 2.7, -1.55], look: [-0.45, 2.3, -2.6], fov: 46 },
+      actors: [{ who: "milo", at: down(-2.6), act: "nervous", face: "shock", facing: 0, idle: 0.9, beats: [{ t: 0.1, look: "up" }] }],
       sfx: [{ t: 0.1, name: "step_floor", gain: -5 }] },
     // 8. THE SAME PHOTOGRAPH: the exact framing of shot 6, the same photo, the same crack; his feet skid to a stop on
     //    the step above it. Hold.
@@ -133,7 +133,7 @@ export const EXTRADOOR2: Storyboard = {
       sfx: [{ t: 0.35, name: "step_floor", gain: -6 }, { t: 0.9, name: "step_floor", gain: -6 }, { t: 1.45, name: "step_floor", gain: -7 }] },
     // 13. Juno outside = the front door: over his shoulder toward the porch-lit glass, the phone buzzes in his hand
     { dur: 1.0, set: "downstairs", light: "interiorCool", transition: "cut",
-      camera: { move: "at", pos: [0.62, 1.5, -1.45], look: [0.7, 1.3, -6.0], fov: 42 },
+      camera: { move: "at", pos: [0.95, 1.55, -0.95], look: [0.65, 1.3, -6.0], fov: 40 },
       actors: [{ who: "milo", at: MID, back: true, act: "nervous", gesture: "read", hold: "phone", idle: 0.2 }],
       props: [{ id: "frontDoor", at: "frontDoor" }],
       sfx: [{ t: 0.6, name: "phone_buzz", gain: -2 }] },
