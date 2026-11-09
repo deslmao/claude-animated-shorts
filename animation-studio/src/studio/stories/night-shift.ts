@@ -13,9 +13,9 @@ const FINAL: V3 = [0.58, 0, -5.35], STAIRS_TOP: V3 = [-0.47, 0, -4.82];
 const stairUp = (z: number): V3 => [-0.47, Math.round((-0.18 - 0.72 * (z + 4.575)) * 1000) / 1000, z];
 const FRONT: V3 = [0.75, 0, -5.25], FOOT: V3 = [-0.45, 0, -0.75];
 // ---- the city at night (pavement y 0.15)
-const RUNA: V3 = [-9.0, 0.15, -5.4], RUNB: V3 = [-4.5, 0.15, -5.4], GUT: V3 = [-3.4, 0.0, -4.25];
+const RUNA: V3 = [-9.0, 0.15, -5.4], RUNB: V3 = [-4.5, 0.15, -5.4], GUT: V3 = [-3.4, 0.0, -3.6];  // GUT: the road gutter below the kerb (z -4)
 // ---- the lab (8 x 6.4 m, back wall z -3.2): Juno's wall photo above the back counter, the drawer beside it
-const PHOTO: V3 = [1.6, 1.92, -3.165], DRAWER: V3 = [2.0, 0, -2.6], CAM: V3 = [3.9, 2.75, -3.05], SWITCH: V3 = [3.96, 1.4, -2.2];
+const PHOTO: V3 = [1.6, 1.92, -3.165], DRAWER: V3 = [2.0, 0, -2.6], CAM: V3 = [3.9, 2.75, -3.05], SWITCH: V3 = [3.96, 1.4, -1.0];
 const JW: V3 = [0.95, 0, -1.65], MW: V3 = [0.25, 0, -1.55];      // Juno and Milo facing the wall photo
 const MON: V3 = [0.62, 0.93, -0.9];                               // the monitor on the island bench
 const WIN_OUT: V3 = [-4.65, 0, -1.0], WIN_IN: V3 = [-3.35, 0, -0.95];
@@ -56,8 +56,9 @@ export const NIGHTSHIFT: Storyboard = {
     // 4. he tears his eyes away (the creaking stops); the kitchen window, up, and out into the rain
     { dur: 2.0, set: "home", light: "interiorCool", mood: "storm", ambience: "amb_storm",
       camera: { move: "at", pos: [0.3, 1.55, 0.9], look: [3.0, 1.45, -1.0], fov: 50 },
-      actors: [{ who: "milo", at: [2.35, 0, -0.75], facing: 1.4, act: "scared", idle: 0.3, walk: { to: [2.75, 0.92, -1.0], t0: 0.8, t1: 1.7, mode: "ride" } }],
-      sfx: [{ t: 0.3, name: "thud", gain: -10 }, { t: 0.6, name: "storm_wind", gain: -6 }] },
+      actors: [{ who: "milo", at: [2.4, 0, -0.85], back: true, act: "scared", idle: 0.3, walk: { to: [2.95, 0.93, -1.0], t0: 0.7, t1: 1.0, mode: "ride" }, moves: [{ t: 0.6, kind: "hop", dur: 0.45 }] }],
+      props: [{ id: "nightWindow", at: [5.6, 0, -1.0], yaw: -90 }],
+      sfx: [{ t: 0.3, name: "thud", gain: -10 }, { t: 1.0, name: "thud", gain: -8 }, { t: 1.2, name: "storm_wind", gain: -6 }] },
     // 5. the night street, rain: running, the phone buzzes: a text from "Juno"
     { dur: 2.4, set: "city", light: "night", ambience: "amb_storm",
       camera: { move: "at", pos: [-7.0, 1.4, -2.4], look: [-7.0, 1.1, -5.6], fov: 52 },
@@ -80,9 +81,9 @@ export const NIGHTSHIFT: Storyboard = {
       sfx: [{ t: 0.95, name: "knock_heavy", gain: -14 }, { t: 1.25, name: "knock_heavy", gain: -14 }, { t: 1.55, name: "knock_heavy", gain: -14 }] },
     // 8. THE OBSTACLE: he slams the phone face down into the flooded gutter; the knocking stops dead
     { dur: 3.2, say: { who: "milo", text: "It only moves when I'm looking.", voice: MQ, gap: 1.1 }, hold: 0.3, set: "city", light: "night", mood: "storm", ambience: "amb_storm",
-      camera: { move: "at", pos: [-3.6, 1.0, -2.2], look: [-3.4, 0.5, -4.4], fov: 50 },
-      cams: [{ word: "only", move: "closeUp", on: "milo" }],
-      actors: [{ who: "milo", at: [-3.4, 0.0, -3.85], act: "angry", gesture: "grab", idle: 0.4, beats: [{ t: 0.6, act: "scared", gesture: "hang" }] }],
+      camera: { move: "at", pos: [-3.4, 1.3, -1.6], look: [-3.4, 0.7, -4.45], fov: 54 },
+      cams: [{ word: "only", move: "at", pos: [-3.25, 1.05, -2.55], look: [-3.4, 0.0, -3.6], fov: 40, glide: 0.6 }],
+      actors: [{ who: "milo", at: [-3.4, 0.15, -4.45], act: "angry", gesture: "grab", idle: 0.4, beats: [{ t: 0.6, act: "scared", gesture: "hang" }] }],
       props: [{ id: "gutterPuddle", at: GUT, variant: "phone" }],
       sfx: [{ t: 0.55, name: "splash", gain: -4 }] },
     // 9. the sprint through the rain past dark shop windows
@@ -95,6 +96,7 @@ export const NIGHTSHIFT: Storyboard = {
       camera: { move: "at", pos: [-2.1, 1.55, 0.6], look: [-4.3, 1.45, -1.0], fov: 46 },
       cams: [{ word: "Prove", move: "closeUp", on: "juno" }, { word: "Sorry", move: "at", pos: [-2.1, 1.55, 0.6], look: [-4.3, 1.45, -1.0], fov: 46 }],
       actors: [{ who: "milo", at: WIN_OUT, act: "scared", gesture: "fists", facing: "camera" }, { who: "juno", at: WIN_IN, act: "suspicious", facing: "toward:milo" }],
+      props: [{ id: "nightWindow", at: [-6.2, 1.0, -1.7], yaw: 90 }],
       sfx: [{ t: 0.05, name: "knock_heavy", gain: -10 }, { t: 0.3, name: "knock_heavy", gain: -10 }] },
     // 11. she lets him in; a fierce hug
     { dur: 4.55, say: [{ who: "juno", text: "You're soaked.", voice: J, gap: 0.05 }, { who: "milo", text: "It has your voice.", voice: MQ, gap: 0.1 }, { who: "juno", text: "It learned it from me.", voice: J, gap: 0.1 }],
@@ -105,15 +107,14 @@ export const NIGHTSHIFT: Storyboard = {
     // 12. the monitor: three night-vision clips: SPECIMEN 8 facing the photo; FEED LOST, the door shrunk; TONIGHT 21:14
     { dur: 8.68, say: [{ who: "juno", text: "It only moves while something's watching it. Eyes or cameras.", voice: J, gap: 0.05 }, { who: "juno", text: "It learned us from that photo.", voice: J, gap: 0.12 }, { who: "juno", text: "Tonight it went through mine... into yours.", voice: J, gap: 0.12 }],
       hold: 0.3, set: "lab", light: "interior", mood: "mystery", ambience: false,
-      camera: { move: "at", pos: [0.62, 1.36, -0.22], look: [0.62, 1.33, -0.9], fov: 40 },
-      cams: [{ word: "cameras", move: "at", pos: [0.62, 1.35, -0.3], look: [0.62, 1.33, -0.9], fov: 40 }, { word: "Tonight", move: "at", pos: [0.62, 1.35, -0.36], look: [0.62, 1.33, -0.9], fov: 40 }],
-      actors: [{ who: "juno", at: [0.15, 0, -0.1], back: true, act: "explain", idle: 0.2 }],
-      props: [{ id: "labMonitor", at: MON, steps: [{ word: "Eyes" }, { word: "cameras" }, { word: "Tonight" }] }],
+      camera: { move: "at", pos: [0.62, 1.4, 0.72], look: [0.62, 1.3, -0.9], fov: 40 },
+      actors: [{ who: "juno", at: [0.05, 0, -0.3], back: true, act: "explain", idle: 0.2 }],
+      props: [{ id: "labMonitor", at: MON, steps: [{ word: "Eyes" }, { word: "cameras" }, { word: "Tonight" }, { word: "went" }, { word: "through" }, { word: "mine" }, { word: "into" }] }],
       sfx: [{ word: "Eyes", name: "blip_up", gain: -14 }, { word: "cameras", name: "blip_up", gain: -14 }, { word: "Tonight", name: "blip_up", gain: -14 }] },
     // 13. Milo turns: the photo on the wall above her desk, and they are both looking at it
     { dur: 2.77, say: { who: "milo", text: "Juno. Don't look at your desk.", voice: MQ, gap: 0.1 }, hold: 0.2, set: "lab", light: "interior", mood: "silence", ambience: false,
-      camera: { move: "frame", on: ["milo", "juno"], size: "full" },
-      actors: [{ who: "milo", at: MW, act: "scared", facing: "camera", beats: [{ t: 0.4, look: "up" }] }, { who: "juno", at: JW, act: "nervous", facing: "camera", beats: [{ t: 0.4, look: "up" }] }],
+      camera: { move: "at", pos: [0.45, 1.5, 0.5], look: [1.25, 1.55, -3.2], fov: 52 },
+      actors: [{ who: "milo", at: MW, back: true, act: "scared" }, { who: "juno", at: JW, back: true, act: "nervous" }],
       props: [{ id: "photoWall", at: PHOTO }, { id: "specimenDrawer", at: DRAWER }] },
     // 14. too late: the wall behind the photo turns to wood grain, a door outline cracking open around the frame
     { dur: 2.0, set: "lab", light: "interior", mood: "rest", ambience: false,
@@ -134,8 +135,8 @@ export const NIGHTSHIFT: Storyboard = {
       sfx: [{ t: 0.15, name: "sting_low", gain: -8 }] },
     // 17. Juno tears at the frame: it has grown into the wood, it won't come off
     { dur: 2.6, say: { who: "juno", text: "It won't come off!", voice: J, gap: 0.6 }, hold: 0.45, set: "lab", light: "interior", mood: "storm", ambience: false,
-      camera: { move: "at", pos: [0.95, 1.6, -0.4], look: [1.5, 1.6, -3.2], fov: 56 },
-      actors: [{ who: "juno", at: [1.35, 0, -2.4], back: true, act: "angry", gesture: "grab", idle: 0.6 }],
+      camera: { move: "at", pos: [2.05, 1.6, -0.5], look: [1.45, 1.55, -3.2], fov: 56 },
+      actors: [{ who: "juno", at: [1.1, 0, -2.5], back: true, act: "angry", gesture: "grab", idle: 0.6 }],
       props: [{ id: "photoWall", at: PHOTO, steps: [{ t: 0 }] }],
       sfx: [{ t: 0.2, name: "creak", gain: -6 }, { t: 0.9, name: "creak", gain: -6 }] },
     // 18. macro: the brass handle pushes through the wood (Part 1's image) and turns
@@ -145,29 +146,30 @@ export const NIGHTSHIFT: Storyboard = {
       props: [{ id: "photoWall", at: PHOTO, steps: [{ t: 0 }, { t: 0.15 }, { t: 1.1 }] }],
       sfx: [{ t: 0.2, name: "creak", gain: -4 }, { t: 1.15, name: "latch_click", gain: -6 }] },
     // 19. Milo spins her to face him; they turn their backs on it, but the creaking goes on and the handle keeps turning
-    { dur: 2.8, say: { who: "milo", text: "Stop looking! Look at me!", voice: ML, gap: 0.15 }, hold: 0.6, set: "lab", light: "interior", mood: "stormPulse", ambience: false,
-      camera: { move: "at", pos: [0.6, 1.5, 0.9], look: [1.1, 1.35, -3.0], fov: 54 },
-      actors: [{ who: "milo", at: [0.55, 0, -1.2], act: "determined", gesture: "grab", facing: "toward:juno" }, { who: "juno", at: [1.15, 0, -1.25], act: "scared", facing: "toward:milo" }],
+    { dur: 2.8, say: { text: "Stop looking! Look at me!", voice: ML, gap: 0.15 }, hold: 0.6, set: "lab", light: "interior", mood: "stormPulse", ambience: false,
+      camera: { move: "at", pos: [1.6, 1.45, 0.9], look: [1.6, 1.35, -3.2], fov: 50 },
+      actors: [{ who: "milo", at: [1.2, 0, -1.3], act: "scared", face: "scared", gesture: "grab", facing: "toward:juno", shake: [{ word: "Stop" }], beats: [{ t: 0, look: "right" }] },
+        { who: "juno", at: [2.0, 0, -1.3], act: "scared", face: "scared", facing: "toward:milo", beats: [{ t: 0, look: "up" }, { word: "me", look: "left", gesture: "hang" }] }],
       props: [{ id: "photoWall", at: PHOTO, steps: [{ t: 0 }, { t: 0.01 }, { t: 0.02 }] }, { id: "specimenDrawer", at: DRAWER }],
       sfx: [{ t: 1.6, name: "creak", gain: -7 }] },
     // 20. Juno's eyes flick up: the security camera's red light, aimed at the wall
     { dur: 4.59, say: [{ who: "juno", text: "The camera's still watching it!", voice: J, gap: 0.05 }, { who: "milo", text: "If nothing sees it, it can't move.", voice: MQ, gap: 0.15 }],
       hold: 0.25, set: "lab", light: "interior", ambience: false,
-      camera: { move: "insert", on: "securityCam", size: "macro" },
-      cams: [{ word: "nothing", move: "frame", on: ["milo", "juno"], size: "medium" }],
-      actors: [{ who: "milo", at: [0.55, 0, -1.2], act: "determined", facing: "toward:juno" }, { who: "juno", at: [1.15, 0, -1.25], act: "shock", facing: "toward:milo", beats: [{ t: 0.1, look: "up" }] }],
+      camera: { move: "at", pos: [2.7, 1.95, -1.55], look: [3.88, 2.7, -3.05], fov: 22 },
+      cams: [{ word: "nothing", move: "closeUp", on: "juno" }],
+      actors: [{ who: "milo", at: [1.2, 0, -1.3], act: "scared", facing: "toward:juno" }, { who: "juno", at: [2.0, 0, -1.3], act: "shock", facing: "toward:milo", beats: [{ t: 0.1, look: "up" }, { word: "nothing", look: "left" }, { word: "move", act: "determined", look: "right" }] }],
       props: [{ id: "securityCam", at: CAM, yaw: -90 }, { id: "photoWall", at: PHOTO, steps: [{ t: 0 }, { t: 0.01 }, { t: 0.02 }] }] },
     // 21. she slams the master switch
     { dur: 1.2, set: "lab", light: "interior", mood: "silence", ambience: false,
-      camera: { move: "at", pos: [1.6, 1.55, -0.2], look: [3.6, 1.35, -1.95], fov: 54 },
-      actors: [{ who: "juno", at: [3.3, 0, -1.6], act: "determined", facing: "camera" }],
+      camera: { move: "at", pos: [1.45, 1.5, -1.45], look: [3.8, 1.35, -1.3], fov: 56 },
+      actors: [{ who: "juno", at: [3.45, 0, -1.48], act: "determined", facing: 1, gesture: "raiseHand", beats: [{ t: 0.45, gesture: "fists" }] }],
       props: [{ id: "masterSwitch", at: SWITCH, yaw: -90, steps: [{ t: 0.45 }] }],
       sfx: [{ t: 0.5, name: "impact", gain: -3 }] },
     // 22. DARKNESS, eyes shut (the exit sign's glow): the wood creaks backwards into the frame; the voices plead;
     //     Milo guides her hands; the photo goes FACE DOWN into the solid steel drawer, the drawer slams FULLY SHUT,
     //     the key TURNS (seen and heard) before any light returns
     { dur: 5.4, say: [{ text: "Milo, please.", voice: "junoScared", gap: 0.25 }, { text: "Juno, look at me!", voice: "liamScared", gap: 0.15 }, { who: "milo", text: "Left. Down. There.", voice: MQ, gap: 0.05 }],
-      dur: 5.4, hold: 1.0, set: "lab", light: "night", ambience: false,
+      hold: 1.0, set: "lab", light: "night", ambience: false,
       camera: { move: "at", pos: [1.0, 1.4, 0.4], look: [1.7, 1.2, -3.0], fov: 52 },
       cams: [{ word: "There", move: "at", pos: [2.0, 1.6, -1.15], look: [2.0, 0.82, -2.3], fov: 52 }],
       actors: [{ who: "milo", at: [1.05, 0, -1.9], act: "scared", face: "scared", gesture: "hold", facing: "toward:juno" }, { who: "juno", at: [1.65, 0, -1.95], act: "scared", face: "scared", gesture: "hold", facing: "toward:milo" }],
@@ -178,8 +180,8 @@ export const NIGHTSHIFT: Storyboard = {
     //     drawer front); relief
     { dur: 6.18, say: [{ who: "juno", text: "It's sealed. Nothing can see it in there.", voice: J, gap: 0.1 }, { who: "milo", text: "Next time you bring work home, warn me.", voice: MQ, gap: 0.15 }, { who: "juno", text: "Deal.", voice: J, gap: 0.15 }],
       hold: 0.35, set: "lab", light: "interior", mood: "warm", ambience: false,
-      camera: { move: "at", pos: [0.6, 1.6, 0.6], look: [2.4, 1.6, -2.9], fov: 60 },
-      cams: [{ t: 0, move: "at", pos: [0.6, 1.6, 0.6], look: [2.4, 1.6, -2.9], fov: 60, blockOk: true }, { word: "Next", move: "frame", on: ["milo", "juno"], size: "medium" }],
+      camera: { move: "at", pos: [0.5, 1.7, 1.4], look: [2.33, 1.5, -2.9], fov: 60 },
+      cams: [{ t: 0, move: "at", pos: [0.5, 1.7, 1.4], look: [2.33, 1.5, -2.9], fov: 60, blockOk: true }, { word: "Next", move: "frame", on: ["milo", "juno"], size: "medium" }],
       actors: [{ who: "milo", at: [1.05, 0, -1.9], act: "relief", facing: "toward:juno", beats: [{ word: "Next", act: "laugh" }] }, { who: "juno", at: [1.65, 0, -1.95], act: "relief", gesture: "hips", facing: "toward:milo", beats: [{ word: "Deal", act: "happy" }] }],
       props: [{ id: "specimenDrawer", at: DRAWER, steps: [{ t: 0 }, { t: 0.01 }, { t: 0.02 }] }, { id: "securityCam", at: CAM, yaw: -90 }] },
     // 24. the clue: Juno's phone lights up on the desk: HOME CAM, hallway, motion: Part 1's photo face up, being watched

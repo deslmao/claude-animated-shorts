@@ -63,11 +63,13 @@ const phoneScreen = (v: string, s: number) => stex(`nsPhone${v}${s}`, 512, 1024,
   g.fillStyle = "#cdd6e4"; g.font = FONT(26); g.textAlign = "center"; g.fillText(v === "cam" ? "11:52" : "11:47", 256, 54);
   if (v === "fake") {
     g.font = FONT(64); g.fillStyle = "#fff"; g.fillText("11:47", 256, 230);
-    g.fillStyle = "rgba(255,255,255,0.14)"; rr(g, 32, 420, 448, 170, 30); g.fill();
+    g.fillStyle = "rgba(255,255,255,0.14)"; rr(g, 32, 420, 448, 220, 30); g.fill();
     g.textAlign = "left"; g.fillStyle = "#9ad0ff"; g.font = FONT(30); g.fillText("Juno", 64, 480);
     g.fillStyle = "#fff"; g.font = FONT(40); g.fillText("Come back home", 64, 548);
-    g.strokeStyle = "#ffd23f"; g.lineWidth = 5; g.beginPath(); g.arc(412, 534, 22, 0, 7); g.stroke(); g.beginPath(); g.arc(412, 536, 12, 0.2, Math.PI - 0.2); g.stroke();
-    g.fillStyle = "#ffd23f"; g.fillRect(403, 524, 5, 6); g.fillRect(417, 524, 5, 6);
+    // the smiley on its own line (beside the text it overlapped the "e" of "home")
+    const sx = 90, sy = 598;
+    g.strokeStyle = "#ffd23f"; g.lineWidth = 5; g.beginPath(); g.arc(sx, sy, 22, 0, 7); g.stroke(); g.beginPath(); g.arc(sx, sy + 2, 12, 0.2, Math.PI - 0.2); g.stroke();
+    g.fillStyle = "#ffd23f"; g.fillRect(sx - 9, sy - 10, 5, 6); g.fillRect(sx + 5, sy - 10, 5, 6);
     return;
   }
   if (v === "call") {
@@ -120,7 +122,7 @@ const nsPhoneStatic = (b: Batch, a: At, v = "fake") => {
 // ---------------- labMonitor: Juno's desk monitor (0.62 x 0.4 m screen), screen to +z, on a stand (base at `at`).
 // Steps: 1 FEED LOST (black, static), 2 the feed returns: the door has shrunk to picture-frame size, 3 TONIGHT 21:14: the
 // door folds itself into the photo (the glass ripples). Before step 1: SPECIMEN 8, the door alone, facing the photo.
-const MW = 0.62, MH = 0.4;
+const MW = 0.62, MH = 0.4, FOLDN = 16;
 const monitorTex = (s: number) => stex(`nsMonitor${s}`, 1024, 660, (g) => {
   g.fillStyle = "#0a140c"; g.fillRect(0, 0, 1024, 660);
   const nv = (f: () => void) => { f(); g.fillStyle = "rgba(60,255,120,0.10)"; g.fillRect(0, 0, 1024, 660); for (let y = 0; y < 660; y += 4) { g.fillStyle = "rgba(0,0,0,0.18)"; g.fillRect(0, y, 1024, 1); } };
@@ -128,6 +130,23 @@ const monitorTex = (s: number) => stex(`nsMonitor${s}`, 1024, 660, (g) => {
   const door = (cx: number, by: number, sc: number) => { g.fillStyle = "#1c2a1e"; g.fillRect(cx - 70 * sc, by - 260 * sc, 140 * sc, 260 * sc); g.strokeStyle = "#0e170f"; g.lineWidth = 3; for (let k = 1; k < 4; k++) { g.beginPath(); g.moveTo(cx - 70 * sc + k * 35 * sc, by - 260 * sc); g.lineTo(cx - 70 * sc + k * 35 * sc, by); g.stroke(); } };
   const photoFG = (alpha = 1) => { g.save(); g.globalAlpha = alpha; g.translate(800, 560); g.rotate(0.05); drawPhoto(g, -120, -85, 240, 170); g.strokeStyle = "#cfe8d4"; g.lineWidth = 6; g.strokeRect(-120, -85, 240, 170); g.restore(); };
   const label = (t: string, red = false) => { g.fillStyle = red ? "#ff4d4d" : "#b8ffcc"; g.font = FONT(34); g.textAlign = "left"; g.fillText(t, 40, 56); g.fillStyle = "#ff4d4d"; g.beginPath(); g.arc(984, 44, 10, 0, 7); g.fill(); };
+  if (s >= 3) { // TONIGHT 21:14, fold progress (s - 3) / FOLDN: the full-size door slides to the photo, folds and is gone
+    const p = Math.min(1, (s - 3) / FOLDN), e = p * p * (3 - 2 * p);
+    nv(() => {
+      room(); photoFG(1);
+      const cx = 420 + (800 - 420) * e, by = 470 + (600 - 470) * e, sc = 1 - 0.86 * e, fold = Math.cos(e * Math.PI * 0.45);
+      if (p < 0.98) {
+        // motion trail
+        g.fillStyle = "rgba(28,42,30,0.35)"; for (let k = 1; k <= 3; k++) { const q = Math.max(0, e - k * 0.06), qx = 420 + 380 * q, qs = 1 - 0.86 * q; g.fillRect(qx - 70 * qs * fold, 470 + 130 * q - 260 * qs, 140 * qs * fold, 260 * qs); }
+        g.fillStyle = "#1c2a1e"; g.fillRect(cx - 70 * sc * fold, by - 260 * sc, 140 * sc * fold, 260 * sc);
+        g.strokeStyle = "#0e170f"; g.lineWidth = 3; g.strokeRect(cx - 70 * sc * fold, by - 260 * sc, 140 * sc * fold, 260 * sc);
+      }
+      g.strokeStyle = `rgba(200,255,210,${0.25 + 0.6 * e})`; g.lineWidth = 3;
+      for (let k = 0; k < Math.round(1 + 4 * e); k++) { g.beginPath(); g.ellipse(800, 560, 40 + k * 24 * (0.5 + e), 28 + k * 16 * (0.5 + e), 0, 0, 7); g.stroke(); }
+    });
+    label("TONIGHT  21:14", true);
+    return;
+  }
   if (s === 1) { g.fillStyle = "#000"; g.fillRect(0, 0, 1024, 660); for (let k = 0; k < 900; k++) { g.fillStyle = `rgba(200,255,210,${(k % 7) / 40})`; g.fillRect((k * 397) % 1024, (k * 151) % 660, 3, 2); } g.fillStyle = "#ff4d4d"; g.font = FONT(64); g.textAlign = "center"; g.fillText("FEED LOST  0:03", 512, 350); return; }
   nv(() => { room(); if (s === 0) door(420, 470, 1); else if (s === 2) door(420, 470, 0.32); photoFG(1); if (s === 3) { g.strokeStyle = "rgba(200,255,210,0.8)"; g.lineWidth = 3; for (let k = 0; k < 5; k++) { g.beginPath(); g.ellipse(800, 560, 60 + k * 22, 40 + k * 15, 0, 0, 7); g.stroke(); } g.fillStyle = "#1c2a1e"; g.fillRect(760, 470, 50, 90); } });
   label(s === 0 ? "SPECIMEN 8 · DAY 1" : s === 2 ? "SPECIMEN 8 · FEED RESTORED" : "TONIGHT  21:14", s === 3);
@@ -145,7 +164,7 @@ const labMonitorRig = (a: At): PropRig => {
   const root = rigRoot(a), dark = col("#202428");
   root.add(mesh(B(0.24, 0.02, 0.2), dark, 0, 0.01, -0.02), mesh(B(0.04, 0.18, 0.04), dark, 0, 0.11, -0.02), mesh(B(MW + 0.04, MH + 0.04, 0.045), dark, 0, 0.2 + MH / 2, -0.0225));
   const mat = screenMat(monitorTex(0)), scr = mesh(new THREE.PlaneGeometry(MW, MH), mat, 0, 0.2 + MH / 2, 0.0015); scr.layers.set(NOINK); root.add(scr);
-  return { root, update: ({ step = 0 }) => { const t = monitorTex(Math.min(3, Math.floor(step + 0.001))); if (mat.map !== t) { mat.map = t; mat.needsUpdate = true; } } };
+  return { root, update: ({ step = 0 }) => { const t = monitorTex(step < 3 ? Math.floor(step + 0.001) : 3 + Math.round(Math.min(1, (step - 3) / 4) * FOLDN)); if (mat.map !== t) { mat.map = t; mat.needsUpdate = true; } } };
 };
 
 // ---------------- photoWall: the copy of the photo on Juno's lab wall (0.36 x 0.25 m frame; `at` = the frame's centre on
@@ -218,14 +237,32 @@ const drawerStatic = (b: Batch, a: At) => { const m = frame(a); box(b, col("#9aa
 const keyHook = (b: Batch, a: At) => { const m = frame(a); box(b, col("#8a5a2e"), m, -0.15, 0.15, -0.05, 0.05, 0, 0.02); for (const x of [-0.09, 0, 0.09]) { box(b, col("#c9a24a"), m, x - 0.006, x + 0.006, -0.03, 0.0, 0.02, 0.05); } };
 const puddle = (b: Batch, a: At, v = "") => {
   const m = frame(a);
-  b.add(new THREE.CircleGeometry(0.55, 24).rotateX(-Math.PI / 2).scale(1.4, 1, 0.8), new THREE.MeshBasicMaterial({ color: 0x1b2a44, transparent: true, opacity: 0.85, polygonOffset: true, polygonOffsetFactor: -3 }), m.clone().multiply(new THREE.Matrix4().makeTranslation(0, 0.004, 0)));
-  if (v === "phone") { box(b, col("#1a1a1e"), m, -0.04, 0.04, 0.004, 0.014, -0.08, 0.08); }
+  b.add(new THREE.CircleGeometry(0.55, 24).rotateX(-Math.PI / 2).scale(1.4, 1, 0.8), new THREE.MeshBasicMaterial({ color: 0x2c4a78, transparent: true, opacity: 0.9, polygonOffset: true, polygonOffsetFactor: -3 }), m.clone().multiply(new THREE.Matrix4().makeTranslation(0, 0.004, 0)));
+  // the street lamp's reflection, so the water reads at night
+  b.add(new THREE.CircleGeometry(0.16, 16).rotateX(-Math.PI / 2).scale(2.2, 1, 0.5), new THREE.MeshBasicMaterial({ color: 0xffd896, transparent: true, opacity: 0.55, polygonOffset: true, polygonOffsetFactor: -4 }), m.clone().multiply(new THREE.Matrix4().makeTranslation(-0.25, 0.005, -0.12)));
+  if (v === "phone") { box(b, col("#c9ccd4"), m, -0.045, 0.045, 0.004, 0.016, -0.085, 0.085); box(b, col("#1a1a1e"), m, -0.038, 0.038, 0.016, 0.018, -0.075, 0.075); }
 };
 const exitSign = (b: Batch, a: At) => {
   const m = frame(a);
   box(b, col("#e6e6e2"), m, -0.17, 0.17, -0.07, 0.07, 0, 0.03);
   b.add(new THREE.PlaneGeometry(0.3, 0.11), screenMat(stex("nsExit", 300, 110, (g) => { g.fillStyle = "#0f8f3e"; g.fillRect(0, 0, 300, 110); g.fillStyle = "#e8ffe8"; g.font = FONT(64); g.textAlign = "center"; g.fillText("EXIT", 150, 80); })), m.clone().multiply(new THREE.Matrix4().makeTranslation(0, 0, 0.031)));
 };
+
+// ---------------- nightWindow: a rainy night outside a window. The sets paint a daytime view 3 m behind each window;
+// stood between the window and that view (facing the room) it replaces it: dark sky, wet rooftops with a few lit windows,
+// a street lamp's glow, rain streaks. 10 x 6 m, unlit, `at` = its bottom centre.
+const nightTex = () => stex("nsNightView", 1024, 640, (g) => {
+  const sky = g.createLinearGradient(0, 0, 0, 640); sky.addColorStop(0, "#03060f"); sky.addColorStop(0.6, "#0b1730"); sky.addColorStop(1, "#101c33"); g.fillStyle = sky; g.fillRect(0, 0, 1024, 640);
+  const lamp = g.createRadialGradient(700, 330, 4, 700, 330, 170); lamp.addColorStop(0, "rgba(255,214,140,0.55)"); lamp.addColorStop(1, "rgba(255,214,140,0)"); g.fillStyle = lamp; g.fillRect(500, 150, 400, 360);
+  let x = 0, k = 0;
+  while (x < 1024) { const w = 70 + ((k * 53) % 90), h = 140 + ((k * 97) % 170); g.fillStyle = k % 2 ? "#070d1a" : "#0a1222"; g.fillRect(x, 640 - h - 120, w, h + 120);
+    for (let wy = 640 - h - 100; wy < 520; wy += 34) for (let wx = x + 10; wx < x + w - 14; wx += 26) if (((wx * 7 + wy * 13 + k) % 11) < 2) { g.fillStyle = "rgba(245,196,106,0.75)"; g.fillRect(wx, wy, 12, 16); }
+    x += w + 4; k++; }
+  g.fillStyle = "#05080f"; g.fillRect(0, 560, 1024, 80);
+  g.strokeStyle = "rgba(170,200,255,0.22)"; g.lineWidth = 1.5;
+  for (let i = 0; i < 420; i++) { const rx = (i * 397) % 1024, ry = (i * 263) % 640, l = 18 + (i % 5) * 6; g.beginPath(); g.moveTo(rx, ry); g.lineTo(rx - l * 0.25, ry + l); g.stroke(); }
+});
+const nightWindow = (b: Batch, a: At) => { const m = frame(a); b.add(new THREE.PlaneGeometry(10, 6), screenMat(nightTex()), m.clone().multiply(new THREE.Matrix4().makeTranslation(0, 2.5, 0))); };
 
 export const NIGHTSHIFT_THEME: Theme = {
   id: "nightshift", name: "Night Shift (The Extra Door, Part 2)", desc: "the door's two rules made visible: Milo's and Juno's phone screens (Juno's fake text; the call whose contact photo turns to wood and grows a tiny handle; the home-camera alert and the final text), Juno's lab monitor (three night-vision clips of Specimen 8), the lab-wall copy of Part 1's photo whose wall turns to wood, a security camera, the master switch, the steel specimen drawer, an empty key hook, a flooded gutter and an exit sign",
@@ -234,8 +271,8 @@ export const NIGHTSHIFT_THEME: Theme = {
   props: {
     nsPhone: { name: "Phone (Night Shift screens)", desc: "a phone held upright, screen to +z (15 cm), for inserts. Variant fake: Juno's fake text 'Come back home :)'. Variant call: 0 incoming call (Juno's contact photo = Milo and Juno's photo), 1 answered, 2 the photo turns to wood grain, 3 a tiny brass handle pushes out through the glass, 4 it turns down. Variant cam: Juno's lock screen with the HOME CAM hallway alert (the photo face up on the hallway floor); 1 the text from 'Milo': I'm home. Come let me in.", category: "theme", themes: ["horror", "modern", "phone"], tags: ["phone", "call", "text", "screen", "camera", "alert"], radius: 0.05, height: 0.16,
       build: (b, a, v) => nsPhoneStatic(b, a, v), rig: nsPhoneRig, steps: ["the next screen"], stepCount: (v) => (v === "call" ? 4 : v === "cam" ? 1 : 0), param: { desc: "fake, call or cam", ok: (v) => ["fake", "call", "cam"].includes(v) } },
-    labMonitor: { name: "Lab monitor (Specimen 8 feed)", desc: "Juno's desk monitor on a stand (screen 0.62 x 0.4 m, to +z, base at `at`): night-vision clips of Specimen 8. Before step 1: SPECIMEN 8 · DAY 1, the old door alone in a test room, Milo and Juno's photo in the foreground; 1 FEED LOST 0:03 (black static); 2 the feed returns: the door has shrunk to picture-frame size; 3 TONIGHT 21:14: the door folds itself into the photo", category: "theme", themes: ["lab", "horror", "science"], tags: ["monitor", "screen", "camera", "feed", "night vision", "specimen"], radius: 0.2, height: 0.65, focus: { y: 0.4, span: 0.66 },
-      build: (b, a) => monitorStatic(b, a, 0), rig: labMonitorRig, steps: ["feed lost", "feed restored, the door small", "tonight 21:14"] },
+    labMonitor: { name: "Lab monitor (Specimen 8 feed)", desc: "Juno's desk monitor on a stand (screen 0.62 x 0.4 m, to +z, base at `at`): night-vision clips of Specimen 8. Before step 1: SPECIMEN 8 · DAY 1, the old door alone in a test room, Milo and Juno's photo in the foreground; 1 FEED LOST 0:03 (black static); 2 the feed returns: the door has shrunk to picture-frame size; 3 TONIGHT 21:14: the full-size door, then steps 4-7 animate it sliding to the photo, folding shut and shrinking into it (gone at 7)", category: "theme", themes: ["lab", "horror", "science"], tags: ["monitor", "screen", "camera", "feed", "night vision", "specimen"], radius: 0.2, height: 0.65, focus: { y: 0.4, span: 0.66 },
+      build: (b, a) => monitorStatic(b, a, 0), rig: labMonitorRig, steps: ["feed lost", "feed restored, the door small", "tonight 21:14: the full-size door", "it slides toward the photo", "it folds shut", "it shrinks into the photo", "it is gone; the photo ripples"] },
     photoWall: { name: "Photo on the lab wall (the door's way in)", desc: "a small framed copy of Part 1's photo of Milo and Juno (0.4 x 0.29 m) on a wall, `at` = the frame's centre, facing +z. Steps: 1 the wall turns to wood grain around it (a door 0.8 x 2 m below and around the frame), 2 a brass handle pushes out through the wood, 3 it turns down, 4 the wood shrinks back into the frame, 5 the photo is taken off the wall", category: "theme", themes: ["horror", "mystery", "lab"], tags: ["photo", "frame", "door", "wood", "wall", "handle"], radius: 0.05, height: 0.3, focus: { y: -0.4, span: 1.0 },
       build: (b, a) => photoWallStatic(b, a), rig: photoWallRig, steps: ["the wall turns to wood", "a handle pushes out", "it turns", "it shrinks back", "the photo is taken"] },
     securityCam: { name: "Security camera", desc: "a ceiling-corner security camera with a red recording light (lens to +z; `at` = its wall mount, high up)", category: "theme", themes: ["lab", "office", "modern"], tags: ["camera", "security", "cctv", "watching"], radius: 0.1, height: 0.15, build: securityCam },
@@ -246,6 +283,7 @@ export const NIGHTSHIFT_THEME: Theme = {
     keyHook: { name: "Key hook (empty)", desc: "a small wooden key rack with three brass hooks, all empty (0.3 m, on a wall facing +z, `at` = its centre)", category: "theme", themes: ["home"], tags: ["keys", "hook", "rack", "missing"], radius: 0.05, height: 0.1, build: keyHook },
     gutterPuddle: { name: "Flooded gutter", desc: "a dark rain puddle in a gutter (about 1.5 x 0.9 m); variant phone: a phone lying face down in it", category: "theme", themes: ["city", "rain", "night"], tags: ["puddle", "water", "rain", "gutter", "phone"], radius: 0.05, height: 0.02,
       build: (b, a, v) => puddle(b, a, v), variants: { phone: (b, a) => puddle(b, a, "phone") } },
+    nightWindow: { name: "Night view (rain) behind a window", desc: "a rainy night outside a window: dark sky, wet rooftops with a few lit windows, a street lamp's glow, rain streaks. 10 x 6 m, unlit; stand it outside a set's window, between the window and the set's painted (daytime) view, facing the room (`at` = its bottom centre)", category: "theme", themes: ["night", "rain", "city"], tags: ["window", "night", "rain", "view", "backdrop", "sky"], radius: 0.05, height: 3.0, build: nightWindow },
     exitSign: { name: "Exit sign", desc: "a green glowing EXIT sign (0.34 m, on a wall facing +z, `at` = its centre): the only light in a blackout", category: "theme", themes: ["lab", "office", "modern"], tags: ["exit", "sign", "glow", "emergency"], radius: 0.05, height: 0.15, build: exitSign },
   },
 };

@@ -19,8 +19,7 @@
   "camera": [
    "at",
    "follow",
-   "frame",
-   "insert"
+   "frame"
   ],
   "light": [
    "interiorCool",
@@ -38,6 +37,7 @@
    "choiceLabelChosen",
    "frontDoor",
    "keyHook",
+   "nightWindow",
    "nsPhone",
    "gutterPuddle",
    "labMonitor",
