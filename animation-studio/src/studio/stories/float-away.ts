@@ -20,7 +20,7 @@ const POD: V3 = [-0.55, 0, 0.6], POL: V3 = [0.4, 0, 0.45], RIVAL: V3 = [-3.2, 0,
 const GK: V3 = [1.75, 0, -0.75], MK: V3 = [0.85, 0, -0.45];  // Gus and Milo in the kitchen
 const CEIL = 0.8;                                             // Gus's feet when his head touches the ceiling
 // apartment (Milo's room = the living room; the second kitchen)
-const LIV: V3 = [-2.0, 0, -0.35], GP2: V3 = [2.9, 0, -0.45];
+const LIV: V3 = [-2.0, 0, -0.35], GP2: V3 = [4.0, 0, -0.45];   // the second grandpa at the kitchen counter (x 4.7)
 const up = (p: V3, dy: number): V3 => [p[0], p[1] + dy, p[2]];
 
 export const FLOATAWAY: Storyboard = {
@@ -229,7 +229,7 @@ export const FLOATAWAY: Storyboard = {
         { who: "gus", at: [-11.8, 6.2, -10.5], act: "sad", facing: "camera" }] },
     // 30. 3 viewers; comments: "fake", "nice balloon" (the music deflates to the piano)
     { say: { text: "Three viewers. One said \"fake.\"", voice: VO, gap: 0.05 }, hold: 0.6, set: "city", light: "night", mood: "rise1", ambience: "amb_city_night",
-      camera: { move: "insert", on: "livePhone", size: "macro" },
+      camera: { move: "at", pos: [-13.5, 1.387, -4.277], look: [-13.5, 1.387, -4.6], fov: 34 },
       actors: [],
       props: [{ id: "livePhone", at: [-13.5, 1.3, -4.6], variant: "live", steps: [{ word: "fake" }, { t: 2.4 }] }],
       sfx: [{ word: "fake", name: "pop", gain: -9 }, { t: 2.4, name: "pop", gain: -10 }] },
@@ -245,13 +245,13 @@ export const FLOATAWAY: Storyboard = {
     //     "Ugh. He fixed my bike." -- share (the caption), SHARED
     { say: { who: "juno", text: "Ugh. He fixed my bike.", voice: "juno", gap: 0.05 }, hold: 0.4, set: "home", light: "interiorCool", mood: "rise3", ambience: false,
       camera: { move: "closeUp", on: "juno" },
-      cams: [{ word: "bike", move: "insert", on: "livePhone", size: "macro" }],
+      cams: [{ word: "bike", move: "at", pos: [0.55, 0.837, 0.773], look: [0.55, 0.837, 0.45], fov: 34 }],
       actors: [{ who: "juno", at: [0.45, 0, -0.2], act: "embarrassed", hold: "phone", facing: "camera" }],
       props: [{ id: "livePhone", at: [0.55, 0.75, 0.45], variant: "share", steps: [{ t: 1.9 }] }],
       sfx: [{ t: 1.9, name: "ding", gain: -8 }] },
     // 33. the counter jumps: 10,000, then 80,000, hearts flooding the screen (the brass Pancake Theme)
     { say: { text: "Ten thousand. Eighty thousand.", voice: VO, gap: 0.05 }, hold: 0.25, set: "city", light: "night", mood: "rise4", ambience: "amb_city_night",
-      camera: { move: "insert", on: "livePhone", size: "macro" },
+      camera: { move: "at", pos: [-13.5, 1.387, -4.277], look: [-13.5, 1.387, -4.6], fov: 34 },
       actors: [],
       props: [{ id: "livePhone", at: [-13.5, 1.3, -4.6], variant: "live", steps: [{ t: 0 }, { t: 0.01 }, { word: "Ten" }, { word: "Eighty" }] }],
       sfx: [{ word: "Ten", name: "ding", gain: -7 }, { word: "Eighty", name: "ding", gain: -5 }] },
@@ -288,7 +288,7 @@ export const FLOATAWAY: Storyboard = {
       sfx: [{ t: 0.65, name: "splat", gain: -5 }] },
     // 38. a different kitchen, a different grandpa, holding the counter, feet floating; his phone rings; he sinks gently down
     { say: { text: "So call your grandpa. Right now. He might be holding onto the counter.", voice: VO, gap: 0.2 }, hold: 0.45, set: "apartment", light: "interior", mood: "warmTheme", transition: "cut",
-      camera: { move: "at", pos: [2.75, 1.2, 2.7], look: [2.85, 1.15, -0.45], fov: 50 },
+      camera: { move: "at", pos: [3.35, 1.2, 2.6], look: [4.0, 1.15, -0.45], fov: 50 },
       actors: [{ who: "grandpa2", at: up(GP2, 0.45), act: "sad", gesture: "grab", hold: "cane", facing: "camera", beats: [{ word: "Right", act: "happy", gesture: "hold" }],
         walk: { to: GP2, t0: 0, t1: 1, mode: "ride", from: { word: "holding" }, until: { word: "counter" } } }],
       sfx: [{ word: "Right", name: "ringtone", gain: -10 }] },

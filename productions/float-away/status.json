@@ -4,14 +4,14 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-09T09:11:44.253Z",
-   "inputs": "17303cb75bf03en",
-   "detail": "valid; 18 warning(s):\n  total length 91.6 s (Shorts target 55-65 s)\n  shot 6 (city): benchMan: walk 1.8610000000000004-3.2 s outside the shot\n  shot 6 (city): prop \"balloons\" overlaps something already in the set at [-2.5, -6.0]\n  shot 12 (home): prop \"chair\" overlaps something already in the set at [0.9, -0.8]\n  shot 23 (city): gus: walk 0-1.5 s outside the shot\n  shot 23 (city): milo: walk 0.3-1.5 s outside the shot\n  shot 24 (city): prop \"streetLamp\" overlaps something already in the set at [-1.8, -5.9]\n  shot 26 (city): gus: walk 0-1.2 s outside the shot\n  shot 8 (home): milo's hand (clap) is out of frame @1.8s (side): widen the shot or change the gesture\n  shot 11 (home): gus fills 53 % of the frame in the foreground @2.0s (is it hiding the action?)\n  shot 12 (home): gus fills 32 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 16 (home): gus fills 25 % of the frame in the foreground @1.0s (is it hiding the action?)\n  shot 18 (home): gus's raised hand (spread) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 25 (city): milo's hand (present) is out of frame @0.4s (side): widen the shot or change the gesture\n  shot 30 (city): milo fills 46 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 39 (city): neigh1's raised hand (spread) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 42 (city): milo's hand (shrug) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 43 (home): milo's hand (belly) is out of frame @0.8s (side): widen the shot or change the gesture"
+   "at": "2026-11-09T09:36:33.669Z",
+   "inputs": "0060e66ff78b5an",
+   "detail": "valid; 19 warning(s):\n  total length 91.6 s (Shorts target 55-65 s)\n  shot 6 (city): benchMan: walk 1.8610000000000004-3.2 s outside the shot\n  shot 6 (city): prop \"balloons\" overlaps something already in the set at [-2.5, -6.0]\n  shot 12 (home): prop \"chair\" overlaps something already in the set at [0.9, -0.8]\n  shot 23 (city): gus: walk 0-1.5 s outside the shot\n  shot 23 (city): milo: walk 0.3-1.5 s outside the shot\n  shot 24 (city): prop \"streetLamp\" overlaps something already in the set at [-1.8, -5.9]\n  shot 26 (city): gus: walk 0-1.2 s outside the shot\n  shot 8 (home): milo's hand (clap) is out of frame @1.8s (side): widen the shot or change the gesture\n  shot 11 (home): gus fills 53 % of the frame in the foreground @2.0s (is it hiding the action?)\n  shot 12 (home): gus fills 32 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 16 (home): gus fills 25 % of the frame in the foreground @1.0s (is it hiding the action?)\n  shot 18 (home): gus's raised hand (spread) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 25 (city): milo's hand (present) is out of frame @0.4s (side): widen the shot or change the gesture\n  shot 30 (city): milo fills 46 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 37 (home): juno fills 100 % of the frame in the foreground @1.2s (is it hiding the action?)\n  shot 39 (city): neigh1's raised hand (spread) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 42 (city): milo's hand (shrug) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 43 (home): milo's hand (belly) is out of frame @0.8s (side): widen the shot or change the gesture"
   },
   "assets": {
    "state": "done",
-   "at": "2026-11-09T09:11:44.257Z",
-   "inputs": "17303cb75bf03e",
+   "at": "2026-11-09T09:36:33.674Z",
+   "inputs": "0060e66ff78b5a",
    "detail": "85 library assets reused, none missing",
    "data": {
     "reused": 85,
@@ -129,26 +129,26 @@
   },
   "approval": {
    "state": "done",
-   "at": "2026-11-09T09:11:44.266Z",
+   "at": "2026-11-09T09:36:33.685Z",
    "inputs": "11ef298e1a9265",
    "detail": "all narration already generated (no cost)"
   },
   "narration": {
    "state": "done",
-   "at": "2026-11-09T09:11:44.266Z",
+   "at": "2026-11-09T09:36:33.686Z",
    "inputs": "11ef298e1a9265",
    "detail": "all lines already generated (cached)"
   },
   "sound": {
    "state": "done",
-   "at": "2026-11-09T09:12:18.724Z",
-   "inputs": "02466841f8067e",
+   "at": "2026-11-09T09:37:06.964Z",
+   "inputs": "01f8b96cd9fbfd",
    "detail": "soundtrack built: -14.2 LUFS"
   },
   "checks": {
    "state": "done",
-   "at": "2026-11-09T09:12:23.063Z",
-   "inputs": "02466841f8067e",
+   "at": "2026-11-09T09:37:11.348Z",
+   "inputs": "01f8b96cd9fbfd",
    "detail": "preflight PASS; library intact"
   }
  }
