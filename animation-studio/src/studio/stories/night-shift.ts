@@ -58,7 +58,7 @@ export const NIGHTSHIFT: Storyboard = {
       camera: { move: "at", pos: [0.3, 1.55, 0.9], look: [3.0, 1.45, -1.0], fov: 50 },
       actors: [{ who: "milo", at: [2.4, 0, -0.85], back: true, act: "scared", idle: 0.3, walk: { to: [2.95, 0.93, -1.0], t0: 0.7, t1: 1.0, mode: "ride" }, moves: [{ t: 0.6, kind: "hop", dur: 0.45 }] }],
       props: [{ id: "nightWindow", at: [5.6, 0, -1.0], yaw: -90 }],
-      sfx: [{ t: 0.3, name: "thud", gain: -10 }, { t: 1.0, name: "thud", gain: -8 }, { t: 1.2, name: "storm_wind", gain: -6 }] },
+      sfx: [{ t: 0.3, name: "thud", gain: -10 }, { t: 0.6, name: "storm_wind", gain: -6 }] },
     // 5. the night street, rain: running, the phone buzzes: a text from "Juno"
     { dur: 2.4, set: "city", light: "night", ambience: "amb_storm",
       camera: { move: "at", pos: [-7.0, 1.4, -2.4], look: [-7.0, 1.1, -5.6], fov: 52 },

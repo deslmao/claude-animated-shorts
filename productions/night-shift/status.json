@@ -4,14 +4,14 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-09T20:56:01.517Z",
-   "inputs": "0409f47317807bn",
+   "at": "2026-11-09T20:56:55.983Z",
+   "inputs": "09fa2fa6f8d1c8n",
    "detail": "valid; 29 warning(s):\n  total length 84.5 s (Shorts target 55-65 s)\n  shot 1 (hallway): milo: walk 0.15-1.2 s outside the shot\n  shot 1 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 3 (downstairs): prop \"frontDoor\" overlaps something already in the set at [0.8, -6.0]\n  shot 14 (lab): prop \"specimenDrawer\" overlaps something already in the set at [2.0, -2.6]\n  shot 15 (lab): prop \"specimenDrawer\" overlaps something already in the set at [2.0, -2.6]\n  shot 16 (lab): prop \"specimenDrawer\" overlaps something already in the set at [2.0, -2.6]\n  shot 17 (lab): prop \"specimenDrawer\" overlaps something already in the set at [2.0, -2.6]\n  shot 20 (lab): prop \"specimenDrawer\" overlaps something already in the set at [2.0, -2.6]\n  shot 23 (lab): light \"night\" on an indoor set\n  shot 23 (lab): prop \"specimenDrawer\" overlaps something already in the set at [2.0, -2.6]\n  shot 24 (lab): prop \"specimenDrawer\" overlaps something already in the set at [2.0, -2.6]\n  shot 2 (hallway): milo fills 33 % of the frame in the foreground @0.4s (is it hiding the action?)\n  shot 3 (downstairs): milo fills 38 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 5 (home): milo fills 26 % of the frame in the foreground @0.8s (is it hiding the action?)\n  shot 6 (city): milo fills 100 % of the frame in the foreground @1.2s (is it hiding the action?)\n  shot 7 (city): milo fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 8 (city): milo fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 11 (lab): milo fills 25 % of the frame in the foreground @0.6s (is it hiding the action?)\n  shot 12 (lab): juno's raised hand (spread) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 14 (lab): juno fills 31 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 17 (lab): milo's raised hand (spread) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 20 (lab): milo fills 27 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 20 (lab): juno fills 29 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 21 (lab): juno's raised hand (spread) is out of frame @1.8s (side): widen the shot or change the gesture\n  shot 22 (lab): juno fills 34 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 23 (lab): milo fills 28 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 23 (lab): juno fills 33 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 24 (lab): juno's hand (shrug) is out of frame @4.8s (side): widen the shot or change the gesture"
   },
   "assets": {
    "state": "done",
-   "at": "2026-11-09T20:56:01.519Z",
-   "inputs": "0409f47317807b",
+   "at": "2026-11-09T20:56:55.985Z",
+   "inputs": "09fa2fa6f8d1c8",
    "detail": "55 library assets reused, none missing",
    "data": {
     "reused": 55,
@@ -95,26 +95,26 @@
   },
   "approval": {
    "state": "done",
-   "at": "2026-11-09T20:56:01.522Z",
+   "at": "2026-11-09T20:56:55.988Z",
    "inputs": "18dbe7a68b77af",
    "detail": "all narration already generated (no cost)"
   },
   "narration": {
    "state": "done",
-   "at": "2026-11-09T20:56:01.522Z",
+   "at": "2026-11-09T20:56:55.988Z",
    "inputs": "18dbe7a68b77af",
    "detail": "all lines already generated (cached)"
   },
   "sound": {
    "state": "done",
-   "at": "2026-11-09T20:56:32.302Z",
-   "inputs": "0dded00a4ac3f6",
+   "at": "2026-11-09T20:57:25.709Z",
+   "inputs": "146fdf2506076e",
    "detail": "soundtrack built: -14.2 LUFS"
   },
   "checks": {
    "state": "done",
-   "at": "2026-11-09T20:56:35.283Z",
-   "inputs": "0dded00a4ac3f6",
+   "at": "2026-11-09T20:57:28.792Z",
+   "inputs": "146fdf2506076e",
    "detail": "preflight PASS; library intact"
   }
  }

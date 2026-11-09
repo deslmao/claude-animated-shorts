@@ -22,8 +22,7 @@ Voice -19.1 LUFS; music -14.0 LU and ambience -20.12 LU relative to the voice.
 |   7.83 s |  235 | music: storm (132 bpm) |
 |   7.83 s |  235 | ambience: amb_storm |
 |   8.13 s |  244 | sfx thud: storyboard cue, shot 5 |
-|   8.83 s |  265 | sfx thud: storyboard cue, shot 5 |
-|   9.03 s |  271 | sfx storm_wind: storyboard cue, shot 5 |
+|   8.43 s |  253 | sfx storm_wind: storyboard cue, shot 5 |
 |  10.83 s |  325 | sfx phone_buzz: storyboard cue, shot 6 |
 |  12.23 s |  367 | music: tense (104 bpm) |
 |  12.23 s |  367 | sfx ringtone: storyboard cue, shot 7 |
