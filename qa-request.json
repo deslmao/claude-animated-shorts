@@ -1,11 +1,11 @@
 {
-  "run_id": "42467111956",
-  "artifact": "Short-extra-door-2-run24",
-  "frames": 1508,
+  "run_id": "42596438383",
+  "artifact": "Short-float-away-run26",
+  "frames": 2747,
   "width": 1080,
   "height": 1920,
   "audio": "required",
-  "seams": "75,150,226,301,377,452,527,603,678,754,829,904,980,1055,1131,1206,1281,1357,1432",
-  "keep": "productions/extra-door-2/final/Short-extra-door-2.mp4",
-  "note": "Video 06 The Extra Door (Part 2) final render (run 24, 20 chunks). Full QA with all 19 chunk seams, then keep the MP4 in the repo (no GitHub Release)."
+  "seams": "137,274,412,549,686,824,961,1098,1236,1373,1510,1648,1785,1922,2060,2197,2334,2472,2609",
+  "keep": "productions/float-away/final/Short-float-away.mp4",
+  "note": "Video 08 Float Away final render (run 26, 20 chunks). Full QA with all 19 chunk seams, then keep the MP4 in the repo (no GitHub Release)."
 }
