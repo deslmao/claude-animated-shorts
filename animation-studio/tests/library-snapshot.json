@@ -526,7 +526,9 @@
   "georgeHushed": "1e7ef3e0617b87",
   "liamQuiet": "1db9923c27797c",
   "juno": "1b5bc883a26b66",
-  "junoCold": "171bf16477c112"
+  "junoCold": "171bf16477c112",
+  "junoScared": "01d367a5956e69",
+  "liamScared": "1f7b448e637223"
  },
  "props": {
   "armchair": "",
@@ -717,7 +719,16 @@
   "balloons": "02a884abbc8b74",
   "bike": "12243da681690e",
   "podium": "1c13395fdeea65",
-  "livePhone": "02a884abbc8b74"
+  "livePhone": "02a884abbc8b74",
+  "nsPhone": "02a884abbc8b74",
+  "labMonitor": "13b6e3c5a9131f",
+  "photoWall": "02a884abbc8b74",
+  "securityCam": "1396a0787f2300",
+  "masterSwitch": "0513e40c48da49",
+  "specimenDrawer": "1c13395fdeea65",
+  "keyHook": "02a884abbc8b74",
+  "gutterPuddle": "11b7c161a23c5d",
+  "exitSign": "02a884abbc8b74"
  },
  "items": {
   "book": "",

@@ -1,0 +1,79 @@
+{
+ "reused": 55,
+ "missing": [],
+ "byKind": {
+  "character": [
+   "milo",
+   "juno"
+  ],
+  "mood": [
+   "stormPulse"
+  ],
+  "set": [
+   "hallway",
+   "downstairs",
+   "home",
+   "city",
+   "lab"
+  ],
+  "camera": [
+   "at",
+   "follow",
+   "frame",
+   "insert"
+  ],
+  "light": [
+   "interiorCool",
+   "night",
+   "interior"
+  ],
+  "ambience": [
+   "amb_room",
+   "amb_storm"
+  ],
+  "prop": [
+   "oldDoor",
+   "photoFrame",
+   "choiceLabelDimmed",
+   "choiceLabelChosen",
+   "frontDoor",
+   "keyHook",
+   "nsPhone",
+   "gutterPuddle",
+   "labMonitor",
+   "photoWall",
+   "specimenDrawer",
+   "securityCam",
+   "masterSwitch",
+   "exitSign"
+  ],
+  "sfx": [
+   "latch_click",
+   "step_floor",
+   "clink",
+   "creak",
+   "thud",
+   "storm_wind",
+   "phone_buzz",
+   "ringtone",
+   "knock_heavy",
+   "splash",
+   "blip_up",
+   "sting_low",
+   "impact"
+  ],
+  "act": [
+   "scared",
+   "nervous",
+   "angry",
+   "suspicious",
+   "sad",
+   "explain",
+   "shock",
+   "determined",
+   "relief",
+   "laugh",
+   "happy"
+  ]
+ }
+}
