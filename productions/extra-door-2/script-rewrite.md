@@ -75,12 +75,12 @@
 | 17 | 50.0–52.6 | Macro: **the brass handle pushes through the wood** (Part 1's image) and starts to turn. | none | Straining wood; the latch about to go. |
 | 18 | 52.6–56.4 | **Milo's turn:** a 0.5 s flashback to the poster freezing when he looked away. He grabs Juno's face and turns it toward him. | MILO: "It needs us to watch it. Don't look." | The music strips back to the pulse. |
 | 19 | 56.4–59.4 | **Juno's turn:** her eyes flick to the security camera in the ceiling corner, its red light on. She slams the lab's master switch. | JUNO: "The cameras are still watching!" | A big switch clunk, then **silence**. |
-| 20 | 59.4–65.4 | **Darkness**, only the green exit sign. They hold hands, eyes locked on each other, the door behind them. The voices plead, then scream, then a sharp crack of wood. Then nothing. | DOOR (as Milo): "Milo, please." DOOR (as Juno): "Juno, look at me!" | Mood **silence** (true silence); the voices are the only sound. One wood crack, then a dead stop. |
+| 20 | 59.4–65.4 | **Darkness**, only the green exit sign. They hold hands, eyes locked on each other, the door behind them. The voices plead, then scream, then a sharp crack of wood. Then nothing. | DOOR (as Juno): "Milo, please." DOOR (as Milo): "Juno, look at me!" | Mood **silence** (true silence); the voices are the only sound. One wood crack, then a dead stop. |
 | 21 | 65.4–69.6 | The lights flicker back on. The wall is **plain plaster**. The photo lies on the floor face up, exactly as in Part 1. Juno exhales; Milo laughs, shaky. | JUNO: "It's gone." MILO: "Next time you bring work home, warn me." JUNO: "Deal." | Mood **warm** (soft, the first warm moment of the film). |
 | 22 | 69.6–72.5 | **Juno's phone buzzes on the desk.** Insert, held: a text from **"Milo"**: **"I'm home. Come let me in."** **Hard cut to black on the buzz.** | none | The warm music cuts dead on the buzz (music drop-out); the buzz; black, silence. |
 
 **Length:**
-- **Spoken words: about 172**: narrator 12, Milo 52, Juno 87, the door 21 (10 of them reused from the cache).
+- **Spoken words: about 167**: narrator 12, Milo 44, Juno 90, the door 21 (10 of them reused from the cache).
 - **Speech:** about 57 s at the measured pace of our voices (about 3.0 words a second for these quieter deliveries).
 - **Wordless action:** about 20 s (the window, the street freeze, the handle, the darkness, the text).
 - **Total: about 77–80 s**, inside the 75–85 s target. If it runs short, the darkness beat in scene 20 can breathe
@@ -135,5 +135,5 @@ long take is the monitor reveal, which is five changing clips.
   - a wall master switch;
   - the key hook;
   - the phone screens: the fake Juno text, the incoming call, the final text from "Milo".
-- **Narration:** about 162 new words (the door's Juno line is cached), roughly 900 characters, about 360 credits at
+- **Narration:** about 157 new words (the door's Juno line is cached), roughly 880 characters, about 350 credits at
   this plan's measured 0.4 credits per character.
