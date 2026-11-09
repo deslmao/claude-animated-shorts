@@ -1,0 +1,60 @@
+{
+ "hash": "13dee8a847f470",
+ "text": "If nobody thinks about you... you float away.",
+ "voice": "liam",
+ "lead": 0,
+ "end": 2.601,
+ "dur": 2.638367,
+ "words": [
+  {
+   "w": "If",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "nobody",
+   "t0": 0.209,
+   "t1": 0.488
+  },
+  {
+   "w": "thinks",
+   "t0": 0.534,
+   "t1": 0.755
+  },
+  {
+   "w": "about",
+   "t0": 0.801,
+   "t1": 1.033
+  },
+  {
+   "w": "you...",
+   "t0": 1.08,
+   "t1": 1.347
+  },
+  {
+   "w": "you",
+   "t0": 1.637,
+   "t1": 1.741
+  },
+  {
+   "w": "float",
+   "t0": 1.811,
+   "t1": 2.009
+  },
+  {
+   "w": "away.",
+   "t0": 2.043,
+   "t1": 2.601
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-09T05:16:54.992Z"
+}

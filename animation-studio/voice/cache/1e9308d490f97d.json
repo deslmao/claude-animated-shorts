@@ -1,0 +1,65 @@
+{
+ "hash": "1e9308d490f97d",
+ "text": "He came down so hard, he cracked the road.",
+ "voice": "liam",
+ "lead": 0,
+ "end": 2.229,
+ "dur": 2.272653,
+ "words": [
+  {
+   "w": "He",
+   "t0": 0,
+   "t1": 0.139
+  },
+  {
+   "w": "came",
+   "t0": 0.186,
+   "t1": 0.372
+  },
+  {
+   "w": "down",
+   "t0": 0.406,
+   "t1": 0.58
+  },
+  {
+   "w": "so",
+   "t0": 0.65,
+   "t1": 0.836
+  },
+  {
+   "w": "hard,",
+   "t0": 0.917,
+   "t1": 1.138
+  },
+  {
+   "w": "he",
+   "t0": 1.173,
+   "t1": 1.231
+  },
+  {
+   "w": "cracked",
+   "t0": 1.289,
+   "t1": 1.556
+  },
+  {
+   "w": "the",
+   "t0": 1.579,
+   "t1": 1.649
+  },
+  {
+   "w": "road.",
+   "t0": 1.695,
+   "t1": 2.229
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-09T05:17:06.198Z"
+}

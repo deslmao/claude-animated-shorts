@@ -1,0 +1,55 @@
+{
+ "hash": "1edbc524e39aa2",
+ "text": "Every Sunday, we had a pancake war.",
+ "voice": "liam",
+ "lead": 0,
+ "end": 1.95,
+ "dur": 1.985306,
+ "words": [
+  {
+   "w": "Every",
+   "t0": 0,
+   "t1": 0.267
+  },
+  {
+   "w": "Sunday,",
+   "t0": 0.325,
+   "t1": 0.615
+  },
+  {
+   "w": "we",
+   "t0": 0.639,
+   "t1": 0.708
+  },
+  {
+   "w": "had",
+   "t0": 0.766,
+   "t1": 0.882
+  },
+  {
+   "w": "a",
+   "t0": 0.906,
+   "t1": 0.929
+  },
+  {
+   "w": "pancake",
+   "t0": 0.975,
+   "t1": 1.416
+  },
+  {
+   "w": "war.",
+   "t0": 1.451,
+   "t1": 1.95
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-09T05:16:56.033Z"
+}

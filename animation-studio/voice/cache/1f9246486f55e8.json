@@ -1,0 +1,60 @@
+{
+ "hash": "1f9246486f55e8",
+ "text": "Now he breaks every chair he sits on.",
+ "voice": "liam",
+ "lead": 0,
+ "end": 1.997,
+ "dur": 2.037551,
+ "words": [
+  {
+   "w": "Now",
+   "t0": 0,
+   "t1": 0.186
+  },
+  {
+   "w": "he",
+   "t0": 0.244,
+   "t1": 0.29
+  },
+  {
+   "w": "breaks",
+   "t0": 0.348,
+   "t1": 0.592
+  },
+  {
+   "w": "every",
+   "t0": 0.65,
+   "t1": 0.824
+  },
+  {
+   "w": "chair",
+   "t0": 0.871,
+   "t1": 1.08
+  },
+  {
+   "w": "he",
+   "t0": 1.126,
+   "t1": 1.184
+  },
+  {
+   "w": "sits",
+   "t0": 1.242,
+   "t1": 1.451
+  },
+  {
+   "w": "on.",
+   "t0": 1.509,
+   "t1": 1.997
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-09T05:17:06.682Z"
+}

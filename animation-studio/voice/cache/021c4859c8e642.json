@@ -1,0 +1,80 @@
+{
+ "hash": "021c4859c8e642",
+ "text": "Then it hit me. He started floating the spring I stopped visiting.",
+ "voice": "liamQuiet",
+ "lead": 0,
+ "end": 3.808,
+ "dur": 3.84,
+ "words": [
+  {
+   "w": "Then",
+   "t0": 0,
+   "t1": 0.197
+  },
+  {
+   "w": "it",
+   "t0": 0.244,
+   "t1": 0.313
+  },
+  {
+   "w": "hit",
+   "t0": 0.36,
+   "t1": 0.499
+  },
+  {
+   "w": "me.",
+   "t0": 0.546,
+   "t1": 0.824
+  },
+  {
+   "w": "He",
+   "t0": 1.463,
+   "t1": 1.579
+  },
+  {
+   "w": "started",
+   "t0": 1.625,
+   "t1": 1.892
+  },
+  {
+   "w": "floating",
+   "t0": 1.939,
+   "t1": 2.241
+  },
+  {
+   "w": "the",
+   "t0": 2.276,
+   "t1": 2.345
+  },
+  {
+   "w": "spring",
+   "t0": 2.368,
+   "t1": 2.659
+  },
+  {
+   "w": "I",
+   "t0": 2.717,
+   "t1": 2.74
+  },
+  {
+   "w": "stopped",
+   "t0": 2.81,
+   "t1": 3.077
+  },
+  {
+   "w": "visiting.",
+   "t0": 3.111,
+   "t1": 3.808
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-09T05:17:02.244Z"
+}

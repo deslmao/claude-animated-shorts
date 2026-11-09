@@ -1,0 +1,60 @@
+{
+ "hash": "0b692973af2726",
+ "text": "Then Grandma died, and he started getting lighter.",
+ "voice": "liam",
+ "lead": 0,
+ "end": 2.508,
+ "dur": 2.533878,
+ "words": [
+  {
+   "w": "Then",
+   "t0": 0,
+   "t1": 0.209
+  },
+  {
+   "w": "Grandma",
+   "t0": 0.267,
+   "t1": 0.569
+  },
+  {
+   "w": "died,",
+   "t0": 0.627,
+   "t1": 0.929
+  },
+  {
+   "w": "and",
+   "t0": 0.998,
+   "t1": 1.138
+  },
+  {
+   "w": "he",
+   "t0": 1.173,
+   "t1": 1.231
+  },
+  {
+   "w": "started",
+   "t0": 1.277,
+   "t1": 1.579
+  },
+  {
+   "w": "getting",
+   "t0": 1.614,
+   "t1": 1.834
+  },
+  {
+   "w": "lighter.",
+   "t0": 1.892,
+   "t1": 2.508
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-09T05:16:57.038Z"
+}

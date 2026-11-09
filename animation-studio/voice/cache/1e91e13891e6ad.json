@@ -1,0 +1,50 @@
+{
+ "hash": "1e91e13891e6ad",
+ "text": "Grandpa, are you on the ceiling?",
+ "voice": "liam",
+ "lead": 0,
+ "end": 2.043,
+ "dur": 2.089796,
+ "words": [
+  {
+   "w": "Grandpa,",
+   "t0": 0,
+   "t1": 0.627
+  },
+  {
+   "w": "are",
+   "t0": 0.848,
+   "t1": 0.998
+  },
+  {
+   "w": "you",
+   "t0": 1.033,
+   "t1": 1.115
+  },
+  {
+   "w": "on",
+   "t0": 1.173,
+   "t1": 1.254
+  },
+  {
+   "w": "the",
+   "t0": 1.289,
+   "t1": 1.358
+  },
+  {
+   "w": "ceiling?",
+   "t0": 1.393,
+   "t1": 2.043
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-09T05:16:57.932Z"
+}

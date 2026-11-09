@@ -1,0 +1,70 @@
+{
+ "hash": "0ce5ee1d9dedc7",
+ "text": "My grandpa Gus was the heaviest man on our street.",
+ "voice": "liam",
+ "lead": 0,
+ "end": 2.694,
+ "dur": 2.742857,
+ "words": [
+  {
+   "w": "My",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "grandpa",
+   "t0": 0.197,
+   "t1": 0.511
+  },
+  {
+   "w": "Gus",
+   "t0": 0.569,
+   "t1": 0.778
+  },
+  {
+   "w": "was",
+   "t0": 0.836,
+   "t1": 0.952
+  },
+  {
+   "w": "the",
+   "t0": 1.01,
+   "t1": 1.103
+  },
+  {
+   "w": "heaviest",
+   "t0": 1.173,
+   "t1": 1.544
+  },
+  {
+   "w": "man",
+   "t0": 1.591,
+   "t1": 1.73
+  },
+  {
+   "w": "on",
+   "t0": 1.788,
+   "t1": 1.846
+  },
+  {
+   "w": "our",
+   "t0": 1.892,
+   "t1": 1.997
+  },
+  {
+   "w": "street.",
+   "t0": 2.055,
+   "t1": 2.694
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-09T05:16:55.536Z"
+}

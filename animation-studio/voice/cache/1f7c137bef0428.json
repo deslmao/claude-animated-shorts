@@ -1,0 +1,55 @@
+{
+ "hash": "1f7c137bef0428",
+ "text": "I got busy. New school. New phone.",
+ "voice": "liam",
+ "lead": 0,
+ "end": 2.136,
+ "dur": 2.168163,
+ "words": [
+  {
+   "w": "I",
+   "t0": 0,
+   "t1": 0.093
+  },
+  {
+   "w": "got",
+   "t0": 0.163,
+   "t1": 0.302
+  },
+  {
+   "w": "busy.",
+   "t0": 0.348,
+   "t1": 0.673
+  },
+  {
+   "w": "New",
+   "t0": 0.755,
+   "t1": 0.906
+  },
+  {
+   "w": "school.",
+   "t0": 0.952,
+   "t1": 1.335
+  },
+  {
+   "w": "New",
+   "t0": 1.393,
+   "t1": 1.544
+  },
+  {
+   "w": "phone.",
+   "t0": 1.579,
+   "t1": 2.136
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-09T05:16:57.537Z"
+}

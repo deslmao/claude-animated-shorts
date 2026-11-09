@@ -1,0 +1,75 @@
+{
+ "hash": "1bfa1ee4ba5801",
+ "text": "You taught me to ride a bike! You burn every pancake!",
+ "voice": "liam",
+ "lead": 0,
+ "end": 3.158,
+ "dur": 3.186939,
+ "words": [
+  {
+   "w": "You",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "taught",
+   "t0": 0.221,
+   "t1": 0.418
+  },
+  {
+   "w": "me",
+   "t0": 0.441,
+   "t1": 0.499
+  },
+  {
+   "w": "to",
+   "t0": 0.534,
+   "t1": 0.58
+  },
+  {
+   "w": "ride",
+   "t0": 0.639,
+   "t1": 0.813
+  },
+  {
+   "w": "a",
+   "t0": 0.848,
+   "t1": 0.871
+  },
+  {
+   "w": "bike!",
+   "t0": 0.929,
+   "t1": 1.324
+  },
+  {
+   "w": "You",
+   "t0": 1.672,
+   "t1": 1.8
+  },
+  {
+   "w": "burn",
+   "t0": 1.869,
+   "t1": 2.09
+  },
+  {
+   "w": "every",
+   "t0": 2.136,
+   "t1": 2.322
+  },
+  {
+   "w": "pancake!",
+   "t0": 2.38,
+   "t1": 3.158
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-09T05:17:01.582Z"
+}

@@ -1,0 +1,40 @@
+{
+ "hash": "05002dc24484d0",
+ "text": "Free pizza over here!",
+ "voice": "chris",
+ "lead": 0,
+ "end": 1.207,
+ "dur": 1.253878,
+ "words": [
+  {
+   "w": "Free",
+   "t0": 0,
+   "t1": 0.221
+  },
+  {
+   "w": "pizza",
+   "t0": 0.255,
+   "t1": 0.499
+  },
+  {
+   "w": "over",
+   "t0": 0.557,
+   "t1": 0.697
+  },
+  {
+   "w": "here!",
+   "t0": 0.731,
+   "t1": 1.207
+  }
+ ],
+ "voiceId": "iP95p4xoKVk53GoZ742B",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-09T05:16:54.469Z"
+}

@@ -1,0 +1,85 @@
+{
+ "hash": "068163b0c9e24d",
+ "text": "In this world, the more people think about you, the heavier you get.",
+ "voice": "liam",
+ "lead": 0,
+ "end": 3.622,
+ "dur": 3.657143,
+ "words": [
+  {
+   "w": "In",
+   "t0": 0,
+   "t1": 0.139
+  },
+  {
+   "w": "this",
+   "t0": 0.186,
+   "t1": 0.325
+  },
+  {
+   "w": "world,",
+   "t0": 0.383,
+   "t1": 0.72
+  },
+  {
+   "w": "the",
+   "t0": 0.859,
+   "t1": 0.964
+  },
+  {
+   "w": "more",
+   "t0": 1.022,
+   "t1": 1.207
+  },
+  {
+   "w": "people",
+   "t0": 1.242,
+   "t1": 1.498
+  },
+  {
+   "w": "think",
+   "t0": 1.533,
+   "t1": 1.707
+  },
+  {
+   "w": "about",
+   "t0": 1.753,
+   "t1": 1.962
+  },
+  {
+   "w": "you,",
+   "t0": 2.009,
+   "t1": 2.241
+  },
+  {
+   "w": "the",
+   "t0": 2.403,
+   "t1": 2.531
+  },
+  {
+   "w": "heavier",
+   "t0": 2.589,
+   "t1": 2.902
+  },
+  {
+   "w": "you",
+   "t0": 2.961,
+   "t1": 3.042
+  },
+  {
+   "w": "get.",
+   "t0": 3.1,
+   "t1": 3.622
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-09T05:16:52.882Z"
+}

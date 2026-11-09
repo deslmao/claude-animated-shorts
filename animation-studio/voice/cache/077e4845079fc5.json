@@ -1,0 +1,60 @@
+{
+ "hash": "077e4845079fc5",
+ "text": "I climbed the bus stop and went live.",
+ "voice": "liam",
+ "lead": 0,
+ "end": 2.183,
+ "dur": 2.220408,
+ "words": [
+  {
+   "w": "I",
+   "t0": 0,
+   "t1": 0.093
+  },
+  {
+   "w": "climbed",
+   "t0": 0.163,
+   "t1": 0.453
+  },
+  {
+   "w": "the",
+   "t0": 0.488,
+   "t1": 0.557
+  },
+  {
+   "w": "bus",
+   "t0": 0.604,
+   "t1": 0.801
+  },
+  {
+   "w": "stop",
+   "t0": 0.848,
+   "t1": 1.103
+  },
+  {
+   "w": "and",
+   "t0": 1.161,
+   "t1": 1.231
+  },
+  {
+   "w": "went",
+   "t0": 1.289,
+   "t1": 1.474
+  },
+  {
+   "w": "live.",
+   "t0": 1.533,
+   "t1": 2.183
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-09T05:17:03.128Z"
+}

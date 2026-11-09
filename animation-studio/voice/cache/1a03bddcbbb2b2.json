@@ -1,0 +1,45 @@
+{
+ "hash": "1a03bddcbbb2b2",
+ "text": "Ceiling counts as a plate!",
+ "voice": "brian",
+ "lead": 0,
+ "end": 1.44,
+ "dur": 1.48898,
+ "words": [
+  {
+   "w": "Ceiling",
+   "t0": 0,
+   "t1": 0.372
+  },
+  {
+   "w": "counts",
+   "t0": 0.418,
+   "t1": 0.65
+  },
+  {
+   "w": "as",
+   "t0": 0.685,
+   "t1": 0.755
+  },
+  {
+   "w": "a",
+   "t0": 0.801,
+   "t1": 0.836
+  },
+  {
+   "w": "plate!",
+   "t0": 0.871,
+   "t1": 1.44
+  }
+ ],
+ "voiceId": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-09T05:16:56.506Z"
+}

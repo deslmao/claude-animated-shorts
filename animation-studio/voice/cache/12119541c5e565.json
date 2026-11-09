@@ -1,0 +1,40 @@
+{
+ "hash": "12119541c5e565",
+ "text": "Politicians sink during speeches.",
+ "voice": "liam",
+ "lead": 0,
+ "end": 2.136,
+ "dur": 2.168163,
+ "words": [
+  {
+   "w": "Politicians",
+   "t0": 0,
+   "t1": 0.662
+  },
+  {
+   "w": "sink",
+   "t0": 0.766,
+   "t1": 1.033
+  },
+  {
+   "w": "during",
+   "t0": 1.091,
+   "t1": 1.335
+  },
+  {
+   "w": "speeches.",
+   "t0": 1.393,
+   "t1": 2.136
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-09T05:16:53.964Z"
+}

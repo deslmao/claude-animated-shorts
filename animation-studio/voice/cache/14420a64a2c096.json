@@ -1,0 +1,60 @@
+{
+ "hash": "14420a64a2c096",
+ "text": "That night, a storm blew his door open.",
+ "voice": "liam",
+ "lead": 0,
+ "end": 2.601,
+ "dur": 2.638367,
+ "words": [
+  {
+   "w": "That",
+   "t0": 0,
+   "t1": 0.255
+  },
+  {
+   "w": "night,",
+   "t0": 0.313,
+   "t1": 0.639
+  },
+  {
+   "w": "a",
+   "t0": 0.929,
+   "t1": 0.987
+  },
+  {
+   "w": "storm",
+   "t0": 1.057,
+   "t1": 1.347
+  },
+  {
+   "w": "blew",
+   "t0": 1.393,
+   "t1": 1.602
+  },
+  {
+   "w": "his",
+   "t0": 1.649,
+   "t1": 1.753
+  },
+  {
+   "w": "door",
+   "t0": 1.8,
+   "t1": 1.997
+  },
+  {
+   "w": "open.",
+   "t0": 2.055,
+   "t1": 2.601
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-09T05:17:00.556Z"
+}

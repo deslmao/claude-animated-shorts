@@ -1,0 +1,50 @@
+{
+ "hash": "183b3f44d04cd7",
+ "text": "On my birthday, his hug clinked.",
+ "voice": "liam",
+ "lead": 0,
+ "end": 1.858,
+ "dur": 1.906939,
+ "words": [
+  {
+   "w": "On",
+   "t0": 0,
+   "t1": 0.139
+  },
+  {
+   "w": "my",
+   "t0": 0.197,
+   "t1": 0.267
+  },
+  {
+   "w": "birthday,",
+   "t0": 0.325,
+   "t1": 0.743
+  },
+  {
+   "w": "his",
+   "t0": 0.778,
+   "t1": 0.906
+  },
+  {
+   "w": "hug",
+   "t0": 0.952,
+   "t1": 1.138
+  },
+  {
+   "w": "clinked.",
+   "t0": 1.196,
+   "t1": 1.858
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-09T05:16:58.975Z"
+}

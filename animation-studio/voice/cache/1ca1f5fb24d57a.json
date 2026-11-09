@@ -1,0 +1,35 @@
+{
+ "hash": "1ca1f5fb24d57a",
+ "text": "I tried everything.",
+ "voice": "liam",
+ "lead": 0,
+ "end": 1.161,
+ "dur": 1.201633,
+ "words": [
+  {
+   "w": "I",
+   "t0": 0,
+   "t1": 0.093
+  },
+  {
+   "w": "tried",
+   "t0": 0.174,
+   "t1": 0.418
+  },
+  {
+   "w": "everything.",
+   "t0": 0.453,
+   "t1": 1.161
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-09T05:17:01.036Z"
+}

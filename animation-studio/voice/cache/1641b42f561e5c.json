@@ -1,0 +1,40 @@
+{
+ "hash": "1641b42f561e5c",
+ "text": "Ten thousand. Eighty thousand.",
+ "voice": "liam",
+ "lead": 0,
+ "end": 2.136,
+ "dur": 2.168163,
+ "words": [
+  {
+   "w": "Ten",
+   "t0": 0,
+   "t1": 0.279
+  },
+  {
+   "w": "thousand.",
+   "t0": 0.348,
+   "t1": 0.848
+  },
+  {
+   "w": "Eighty",
+   "t0": 1.103,
+   "t1": 1.37
+  },
+  {
+   "w": "thousand.",
+   "t0": 1.428,
+   "t1": 2.136
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-09T05:17:05.678Z"
+}

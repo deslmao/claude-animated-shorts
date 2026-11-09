@@ -1,0 +1,70 @@
+{
+ "hash": "04c4b86b34f5c6",
+ "text": "Then Juno saw it. Two million followers. She hates me.",
+ "voice": "liam",
+ "lead": 0,
+ "end": 3.529,
+ "dur": 3.578776,
+ "words": [
+  {
+   "w": "Then",
+   "t0": 0,
+   "t1": 0.209
+  },
+  {
+   "w": "Juno",
+   "t0": 0.279,
+   "t1": 0.511
+  },
+  {
+   "w": "saw",
+   "t0": 0.58,
+   "t1": 0.755
+  },
+  {
+   "w": "it.",
+   "t0": 0.789,
+   "t1": 0.952
+  },
+  {
+   "w": "Two",
+   "t0": 1.173,
+   "t1": 1.335
+  },
+  {
+   "w": "million",
+   "t0": 1.393,
+   "t1": 1.683
+  },
+  {
+   "w": "followers.",
+   "t0": 1.741,
+   "t1": 2.38
+  },
+  {
+   "w": "She",
+   "t0": 2.67,
+   "t1": 2.81
+  },
+  {
+   "w": "hates",
+   "t0": 2.868,
+   "t1": 3.065
+  },
+  {
+   "w": "me.",
+   "t0": 3.111,
+   "t1": 3.529
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-09T05:17:04.688Z"
+}

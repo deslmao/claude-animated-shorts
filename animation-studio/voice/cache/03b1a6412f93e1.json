@@ -1,0 +1,55 @@
+{
+ "hash": "03b1a6412f93e1",
+ "text": "Movie stars break six chairs a day.",
+ "voice": "liam",
+ "lead": 0,
+ "end": 2.136,
+ "dur": 2.168163,
+ "words": [
+  {
+   "w": "Movie",
+   "t0": 0,
+   "t1": 0.313
+  },
+  {
+   "w": "stars",
+   "t0": 0.337,
+   "t1": 0.592
+  },
+  {
+   "w": "break",
+   "t0": 0.639,
+   "t1": 0.871
+  },
+  {
+   "w": "six",
+   "t0": 0.929,
+   "t1": 1.126
+  },
+  {
+   "w": "chairs",
+   "t0": 1.184,
+   "t1": 1.463
+  },
+  {
+   "w": "a",
+   "t0": 1.498,
+   "t1": 1.533
+  },
+  {
+   "w": "day.",
+   "t0": 1.579,
+   "t1": 2.136
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-09T05:16:53.428Z"
+}
