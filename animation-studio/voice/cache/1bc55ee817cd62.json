@@ -1,0 +1,55 @@
+{
+ "hash": "1bc55ee817cd62",
+ "text": "If nothing sees it, it can't move.",
+ "voice": "liamQuiet",
+ "lead": 0,
+ "end": 2.415,
+ "dur": 2.45551,
+ "words": [
+  {
+   "w": "If",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "nothing",
+   "t0": 0.232,
+   "t1": 0.511
+  },
+  {
+   "w": "sees",
+   "t0": 0.592,
+   "t1": 0.859
+  },
+  {
+   "w": "it,",
+   "t0": 0.917,
+   "t1": 1.103
+  },
+  {
+   "w": "it",
+   "t0": 1.289,
+   "t1": 1.428
+  },
+  {
+   "w": "can't",
+   "t0": 1.474,
+   "t1": 1.73
+  },
+  {
+   "w": "move.",
+   "t0": 1.788,
+   "t1": 2.415
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-09T12:36:28.470Z"
+}

@@ -1,0 +1,40 @@
+{
+ "hash": "19022a676997b7",
+ "text": "Where are the keys?!",
+ "voice": "liam",
+ "lead": 0,
+ "end": 1.254,
+ "dur": 1.28,
+ "words": [
+  {
+   "w": "Where",
+   "t0": 0,
+   "t1": 0.255
+  },
+  {
+   "w": "are",
+   "t0": 0.29,
+   "t1": 0.406
+  },
+  {
+   "w": "the",
+   "t0": 0.441,
+   "t1": 0.511
+  },
+  {
+   "w": "keys?!",
+   "t0": 0.557,
+   "t1": 1.254
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-09T12:36:18.734Z"
+}

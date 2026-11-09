@@ -1,0 +1,35 @@
+{
+ "hash": "07f71307253143",
+ "text": "Juno, it's me!",
+ "voice": "liam",
+ "lead": 0,
+ "end": 1.254,
+ "dur": 1.28,
+ "words": [
+  {
+   "w": "Juno,",
+   "t0": 0,
+   "t1": 0.453
+  },
+  {
+   "w": "it's",
+   "t0": 0.511,
+   "t1": 0.685
+  },
+  {
+   "w": "me!",
+   "t0": 0.731,
+   "t1": 1.254
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-09T12:36:21.094Z"
+}

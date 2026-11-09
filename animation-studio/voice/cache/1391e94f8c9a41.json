@@ -1,0 +1,60 @@
+{
+ "hash": "1391e94f8c9a41",
+ "text": "Next time you bring work home, warn me.",
+ "voice": "liamQuiet",
+ "lead": 0,
+ "end": 2.322,
+ "dur": 2.35102,
+ "words": [
+  {
+   "w": "Next",
+   "t0": 0,
+   "t1": 0.255
+  },
+  {
+   "w": "time",
+   "t0": 0.29,
+   "t1": 0.441
+  },
+  {
+   "w": "you",
+   "t0": 0.464,
+   "t1": 0.534
+  },
+  {
+   "w": "bring",
+   "t0": 0.592,
+   "t1": 0.743
+  },
+  {
+   "w": "work",
+   "t0": 0.801,
+   "t1": 0.987
+  },
+  {
+   "w": "home,",
+   "t0": 1.045,
+   "t1": 1.324
+  },
+  {
+   "w": "warn",
+   "t0": 1.509,
+   "t1": 1.753
+  },
+  {
+   "w": "me.",
+   "t0": 1.8,
+   "t1": 2.322
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-09T12:36:31.301Z"
+}

@@ -1,0 +1,45 @@
+{
+ "hash": "19872a1fb8ce75",
+ "text": "Stop looking! Look at me!",
+ "voice": "liam",
+ "lead": 0,
+ "end": 1.625,
+ "dur": 1.671837,
+ "words": [
+  {
+   "w": "Stop",
+   "t0": 0,
+   "t1": 0.29
+  },
+  {
+   "w": "looking!",
+   "t0": 0.348,
+   "t1": 0.708
+  },
+  {
+   "w": "Look",
+   "t0": 0.813,
+   "t1": 0.987
+  },
+  {
+   "w": "at",
+   "t0": 1.033,
+   "t1": 1.091
+  },
+  {
+   "w": "me!",
+   "t0": 1.138,
+   "t1": 1.625
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-09T12:36:27.373Z"
+}

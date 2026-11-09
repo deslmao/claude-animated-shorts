@@ -1,0 +1,50 @@
+{
+ "hash": "1220ce5d2a1ab3",
+ "text": "Juno. Don't look at your desk.",
+ "voice": "liamQuiet",
+ "lead": 0,
+ "end": 2.415,
+ "dur": 2.45551,
+ "words": [
+  {
+   "w": "Juno.",
+   "t0": 0,
+   "t1": 0.604
+  },
+  {
+   "w": "Don't",
+   "t0": 1.068,
+   "t1": 1.289
+  },
+  {
+   "w": "look",
+   "t0": 1.324,
+   "t1": 1.451
+  },
+  {
+   "w": "at",
+   "t0": 1.486,
+   "t1": 1.533
+  },
+  {
+   "w": "your",
+   "t0": 1.567,
+   "t1": 1.66
+  },
+  {
+   "w": "desk.",
+   "t0": 1.707,
+   "t1": 2.415
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-09T12:36:25.798Z"
+}

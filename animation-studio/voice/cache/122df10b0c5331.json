@@ -1,0 +1,55 @@
+{
+ "hash": "122df10b0c5331",
+ "text": "Tonight it went through mine... into yours.",
+ "voice": "juno",
+ "lead": 0,
+ "end": 2.554,
+ "dur": 2.586122,
+ "words": [
+  {
+   "w": "Tonight",
+   "t0": 0,
+   "t1": 0.406
+  },
+  {
+   "w": "it",
+   "t0": 0.43,
+   "t1": 0.488
+  },
+  {
+   "w": "went",
+   "t0": 0.522,
+   "t1": 0.662
+  },
+  {
+   "w": "through",
+   "t0": 0.685,
+   "t1": 0.894
+  },
+  {
+   "w": "mine...",
+   "t0": 0.917,
+   "t1": 1.324
+  },
+  {
+   "w": "into",
+   "t0": 1.37,
+   "t1": 1.649
+  },
+  {
+   "w": "yours.",
+   "t0": 1.741,
+   "t1": 2.554
+  }
+ ],
+ "voiceId": "cgSgspJ2msm6clMCkdW9",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.15,
+  "use_speaker_boost": true,
+  "speed": 0.9
+ },
+ "created": "2026-11-09T12:36:25.214Z"
+}

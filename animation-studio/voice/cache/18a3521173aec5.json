@@ -1,0 +1,65 @@
+{
+ "hash": "18a3521173aec5",
+ "text": "It wasn't following Milo. It was following the photo.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.297,
+ "dur": 3.343673,
+ "words": [
+  {
+   "w": "It",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "wasn't",
+   "t0": 0.197,
+   "t1": 0.476
+  },
+  {
+   "w": "following",
+   "t0": 0.534,
+   "t1": 0.906
+  },
+  {
+   "w": "Milo.",
+   "t0": 0.964,
+   "t1": 1.509
+  },
+  {
+   "w": "It",
+   "t0": 1.672,
+   "t1": 1.788
+  },
+  {
+   "w": "was",
+   "t0": 1.823,
+   "t1": 1.916
+  },
+  {
+   "w": "following",
+   "t0": 1.962,
+   "t1": 2.287
+  },
+  {
+   "w": "the",
+   "t0": 2.334,
+   "t1": 2.403
+  },
+  {
+   "w": "photo.",
+   "t0": 2.438,
+   "t1": 3.297
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-09T12:36:20.585Z"
+}

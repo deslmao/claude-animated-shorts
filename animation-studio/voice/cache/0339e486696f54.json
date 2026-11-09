@@ -1,0 +1,25 @@
+{
+ "hash": "0339e486696f54",
+ "text": "Deal.",
+ "voice": "juno",
+ "lead": 0,
+ "end": 0.836,
+ "dur": 0.862041,
+ "words": [
+  {
+   "w": "Deal.",
+   "t0": 0,
+   "t1": 0.836
+  }
+ ],
+ "voiceId": "cgSgspJ2msm6clMCkdW9",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.15,
+  "use_speaker_boost": true,
+  "speed": 0.9
+ },
+ "created": "2026-11-09T12:36:31.677Z"
+}

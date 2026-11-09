@@ -2,7 +2,9 @@
 
 **Format:** horror and mystery, the complete conclusion of Part 1 (there is no Part 3), about **77 s**.
 
-**Status:** for approval. No narration, assets, storyboard or render yet. v1 is in git history.
+**Status:** v2 approved, with the specimen drawer clarified at the climax (the photo face down in an opaque, fully
+closed steel drawer, the lock seen and heard before the lights return, nothing able to see the photo afterwards).
+Narration is generated next. v1 is in git history.
 
 **Voices (Part 1's presets):**
 
@@ -58,8 +60,8 @@ The sound backs this up: whenever the door is being watched, the music drops to 
 | 19 | 52.6–55.4 | Milo spins Juno round to face him. They turn their backs on it, **but the creaking continues and the handle keeps turning.** | MILO: "Stop looking! Look at me!" | The drone continues (something is still watching). |
 | 20 | 55.4–58.6 | Juno's eyes flick up: the **security camera's red light**, aimed at the wall. | JUNO: "The camera's still watching it!" MILO: "If nothing sees it, it can't move." | The pulse. |
 | 21 | 58.6–60.0 | She slams the **master switch**: black, except the green exit sign. | none | A big clunk, then **silence**. |
-| 22 | 60.0–66.6 | **Darkness, eyes shut.** The wood creaks *backwards*, shrinking. The voices plead from the wall. Juno, eyes squeezed shut, reaches blindly for the photo, and Milo guides her hands. She turns it face down, drops it into a steel **specimen drawer**, slams it shut and turns the key. | DOOR (as Juno): "Milo, please." DOOR (as Milo): "Juno, look at me!" MILO: "Left. Down. There." | Mood **silence**; the creak running in reverse; the drawer slam, then dead silence. |
-| 23 | 66.6–70.8 | The lights come back. **Plain plaster.** The drawer is locked, labelled "SPECIMEN 8". They both exhale; Milo laughs, shaky. | JUNO: "It's sealed. Nothing can see it in there." MILO: "Next time you bring work home, warn me." JUNO: "Deal." | Mood **warm**, the only warm moment. |
+| 22 | 60.0–66.6 | **Darkness, eyes shut.** The wood creaks *backwards*, shrinking back into the frame. The voices plead from the wall. Juno, eyes squeezed shut, reaches blindly for the photo, and Milo guides her hands. Every step is shown in the exit-sign glow: (1) she lays the photo **face down** in a solid steel specimen drawer (opaque, no window); (2) she slams the drawer **fully shut**; (3) macro: her key turns in the lock, with a click. **The lock is seen and heard before any light returns.** | DOOR (as Juno): "Milo, please." DOOR (as Milo): "Juno, look at me!" MILO: "Left. Down. There." | Mood **silence**; the creak running in reverse; the drawer slam, then dead silence. |
+| 23 | 66.6–70.8 | The lights come back. **Plain plaster.** The closed steel drawer, locked and labelled "SPECIMEN 8", sits under the security camera: the camera's red light is back on, but all it can see is the solid drawer front. Nothing can see the photo. They both exhale; Milo laughs, shaky. | JUNO: "It's sealed. Nothing can see it in there." MILO: "Next time you bring work home, warn me." JUNO: "Deal." | Mood **warm**, the only warm moment. |
 | 24 | 70.8–74.0 | **The clue:** Juno's phone lights up on the desk with a notification: **"HOME CAM · Hallway · motion detected"**. Its thumbnail shows Part 1's photo **lying face up on the hallway floor**, with the home camera looking straight at it. Juno's smile fades. | none | The warm music thins to a single held note; the drone creeps in. |
 | 25 | 74.0–77.0 | A text arrives from **"Milo"**: **"I'm home. Come let me in."** **Hard cut to black on the buzz.** | none | Music drop-out on the buzz; black, silence. |
 

@@ -1,0 +1,70 @@
+{
+ "hash": "1efd695ce2a185",
+ "text": "It only moves while something's watching it. Eyes or cameras.",
+ "voice": "juno",
+ "lead": 0,
+ "end": 3.622,
+ "dur": 3.657143,
+ "words": [
+  {
+   "w": "It",
+   "t0": 0,
+   "t1": 0.139
+  },
+  {
+   "w": "only",
+   "t0": 0.174,
+   "t1": 0.337
+  },
+  {
+   "w": "moves",
+   "t0": 0.406,
+   "t1": 0.65
+  },
+  {
+   "w": "while",
+   "t0": 0.673,
+   "t1": 0.813
+  },
+  {
+   "w": "something's",
+   "t0": 0.836,
+   "t1": 1.196
+  },
+  {
+   "w": "watching",
+   "t0": 1.242,
+   "t1": 1.556
+  },
+  {
+   "w": "it.",
+   "t0": 1.637,
+   "t1": 1.892
+  },
+  {
+   "w": "Eyes",
+   "t0": 2.252,
+   "t1": 2.519
+  },
+  {
+   "w": "or",
+   "t0": 2.566,
+   "t1": 2.635
+  },
+  {
+   "w": "cameras.",
+   "t0": 2.682,
+   "t1": 3.622
+  }
+ ],
+ "voiceId": "cgSgspJ2msm6clMCkdW9",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.15,
+  "use_speaker_boost": true,
+  "speed": 0.9
+ },
+ "created": "2026-11-09T12:36:24.128Z"
+}

@@ -1,0 +1,60 @@
+{
+ "hash": "13eac659d56956",
+ "text": "It's sealed. Nothing can see it in there.",
+ "voice": "juno",
+ "lead": 0,
+ "end": 2.368,
+ "dur": 2.403265,
+ "words": [
+  {
+   "w": "It's",
+   "t0": 0,
+   "t1": 0.244
+  },
+  {
+   "w": "sealed.",
+   "t0": 0.279,
+   "t1": 0.755
+  },
+  {
+   "w": "Nothing",
+   "t0": 0.952,
+   "t1": 1.231
+  },
+  {
+   "w": "can",
+   "t0": 1.265,
+   "t1": 1.37
+  },
+  {
+   "w": "see",
+   "t0": 1.416,
+   "t1": 1.544
+  },
+  {
+   "w": "it",
+   "t0": 1.591,
+   "t1": 1.649
+  },
+  {
+   "w": "in",
+   "t0": 1.683,
+   "t1": 1.741
+  },
+  {
+   "w": "there.",
+   "t0": 1.776,
+   "t1": 2.368
+  }
+ ],
+ "voiceId": "cgSgspJ2msm6clMCkdW9",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.15,
+  "use_speaker_boost": true,
+  "speed": 0.9
+ },
+ "created": "2026-11-09T12:36:30.745Z"
+}
