@@ -15,7 +15,7 @@ const STOP: V3 = [-13.5, 0.15, -5.8];                         // the bus stop
 const ROAD: V3 = [11.6, 0, -1.6];                             // where Gus lands
 const SEATH = 0.46;                                           // snapChair `at` = its seat top
 // old town
-const POD: V3 = [0.2, 0, 0.9], POL: V3 = [0.2, 0, 0.32], RIVAL: V3 = [-3.2, 0, 1.6];
+const POD: V3 = [-0.55, 0, 0.6], POL: V3 = [0.4, 0, 0.45], RIVAL: V3 = [-3.2, 0, 1.6];
 // home set (6.6 x 5.2 m, ceiling 2.8)
 const GK: V3 = [1.75, 0, -0.75], MK: V3 = [0.85, 0, -0.45];  // Gus and Milo in the kitchen
 const CEIL = 0.8;                                             // Gus's feet when his head touches the ceiling
@@ -47,7 +47,7 @@ export const FLOATAWAY: Storyboard = {
       sfx: [{ word: "six", name: "metal_groan", gain: -5 }, { word: "day", name: "trombone_slide", gain: -6 }] },
     // 3. old-town square, election day: the crowd chants his name; the politician sinks to his knees in the cobbles
     { say: { text: "Politicians sink during speeches.", voice: VO, gap: 0.1 }, hold: 0.2, set: "oldtown", light: "day", mood: "quirkyFull", transition: "cut",
-      camera: { move: "lowHero", on: "pol" },
+      camera: { move: "at", pos: [0.3, 1.3, 4.6], look: [0.2, 1.25, 0.4], fov: 46 },
       actors: [{ who: "pol", at: POL, act: "proud", facing: "camera", idle: 0.3, walk: { to: up(POL, -0.6), t0: 0.2, t1: 1, mode: "ride", until: { word: "speeches" } } },
         { who: "crowd1", at: [-1.15, 0, 2.2], back: true, act: "excited", gesture: "cheer" }, { who: "crowd2", at: [1.55, 0, 2.3], back: true, act: "excited", gesture: "cheer" }],
       props: [{ id: "podium", at: POD }, { id: "signBoard", at: [-0.95, 0, -0.5], variant: "VOTE BRISTOW" }],
@@ -203,13 +203,13 @@ export const FLOATAWAY: Storyboard = {
       camera: { move: "pushIn", on: ["milo"], size: "medium", to: "close" },
       actors: [{ who: "milo", at: [-2.2, 0.15, -4.4], act: "sad", facing: "camera", idle: 0.1 }] },
     // 25. "I was... the last one." Total silence (music and the bed cut)
-    { say: { text: "I was the last one.", voice: HUSH, gap: 0.2, pauses: [{ after: "was", s: 0.35 }] }, hold: 0.7, set: "city", light: "night", mood: "silence", ambience: "amb_storm",
+    { say: { text: "I was the last one.", voice: HUSH, gap: 0.2, pauses: [{ after: "was", s: 0.35 }] }, hold: 0.7, set: "city", light: "night", mood: "silence", ambience: false,
       camera: { move: "closeUp", on: "milo" },
       actors: [{ who: "milo", at: [-2.2, 0.15, -4.4], act: "sad", face: "sad", facing: "camera", idle: 0.05 }] },
     // 26. Milo sits on the kerb in the rain; the camera pulls slowly back; Gus is a speck among the stars; one music-box note
-    { dur: 3.1, set: "city", light: "night", ambience: "amb_storm",
+    { dur: 3.1, set: "city", light: "night", ambience: false,
       camera: { move: "at", pos: [-2.2, 1.0, -2.6], look: [-2.2, 0.8, -4.5], fov: 48 },
-      cams: [{ t: 0.1, move: "at", pos: [-2.4, 2.4, 0.6], look: [-2.1, 2.6, -8.0], fov: 56, glide: 2.9 }],
+      cams: [{ t: 0.1, move: "at", pos: [-2.4, 2.4, 0.6], look: [-2.1, 2.6, -8.0], fov: 56, glide: 2.9, blockOk: true }],
       actors: [{ who: "milo", at: [-2.2, 0.0, -4.35], mode: "sit", act: "sad", facing: "camera", idle: 0.05 },
         { who: "gus", at: [-1.6, 7.6, -5.6], act: "sad", facing: "camera" }],
       sfx: [{ t: 1.5, name: "musicbox_note", gain: -10 }] },

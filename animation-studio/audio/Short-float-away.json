@@ -1,17 +1,17 @@
 {
  "composition": "Short-float-away",
- "fingerprint": "15104ea19a5ea2",
+ "fingerprint": "009b8e165e045f",
  "engine": "sound-2",
  "frames": 2717,
  "seconds": 90.56666666666666,
  "lines": 31,
  "lufs": -14.2,
- "truePeak": -1.6,
+ "truePeak": -1.8,
  "stems": {
   "voice_lufs": -19.53,
   "music_vs_voice_lu": -13.0,
-  "ambience_vs_voice_lu": -19.95,
+  "ambience_vs_voice_lu": -19.97,
   "sfx_cues": 59
  },
- "built": "2026-11-09T07:19:20Z"
+ "built": "2026-11-09T07:39:02Z"
 }
