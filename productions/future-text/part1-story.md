@@ -1,7 +1,7 @@
 # "I Got a Text From Myself 10 Minutes in the Future": Part 1 (story for approval)
 
 **Status:** story only. No narration, assets, storyboard or render yet. Parts 2–5 are not written or planned.
-**Working story id:** `future-text`. **Target length:** about 85–90 s (167 spoken words plus long action beats).
+**Working story id:** `future-text`. **Target length:** about 85–90 s (163 spoken words plus long action beats).
 
 ---
 
@@ -44,7 +44,7 @@ and every prediction comes true. Viewers can check it on screen; the narration o
 
 ---
 
-## 2. Complete narration and dialogue (167 words)
+## 2. Complete narration and dialogue (163 words)
 
 **Voices:**
 - **NARRATOR:** the channel's hushed storyteller.
