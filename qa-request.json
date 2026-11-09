@@ -1,11 +1,11 @@
 {
-  "run_id": "42596438383",
-  "artifact": "Short-float-away-run26",
-  "frames": 2747,
+  "run_id": "42700074767",
+  "artifact": "Short-night-shift-run27",
+  "frames": 2536,
   "width": 1080,
   "height": 1920,
   "audio": "required",
-  "seams": "137,274,412,549,686,824,961,1098,1236,1373,1510,1648,1785,1922,2060,2197,2334,2472,2609",
-  "keep": "productions/float-away/final/Short-float-away.mp4",
-  "note": "Video 08 Float Away final render (run 26, 20 chunks). Full QA with all 19 chunk seams, then keep the MP4 in the repo (no GitHub Release)."
+  "seams": "126,253,380,507,634,760,887,1014,1141,1268,1394,1521,1648,1775,1902,2028,2155,2282,2409",
+  "keep": "productions/night-shift/final/Short-night-shift.mp4",
+  "note": "Night Shift (Extra Door Part 2) final render (run 27, 20 chunks). Full QA with all 19 chunk seams, then keep the MP4 in the repo (no GitHub Release)."
 }
