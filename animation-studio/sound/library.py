@@ -523,6 +523,103 @@ def crickets(r):
     return fades(out, 0.01, 0.1)
 
 
+# ---- Video 08 "Float Away": the world rule's two signature sounds, the gags, the storm and the crash
+def thunk(r):
+    """attention lands: a heavy, soft-edged low thud (someone gets heavier)"""
+    t = tt(0.55)
+    body = np.sin(TAU * (44 + 70 * np.exp(-t / 0.04)) * t) * np.exp(-t / 0.18)
+    knock = lp(r.standard_normal(len(t)), 700) * np.exp(-t / 0.015) * 0.35
+    return fades(body + knock, 0.0006, 0.08) * 0.9
+
+
+def float_whoosh(r):
+    """attention leaves: a soft rising air sound with a faint upward shimmer (someone floats)"""
+    t = tt(1.0)
+    env = np.sin(np.pi * np.clip(t / 1.0, 0, 1)) ** 1.5
+    air = bp(r.standard_normal(len(t)), 500, 3500, 1) * env * 0.25
+    sh = np.sin(np.cumsum(TAU * (600 + 900 * t)) / SR) * env * 0.06
+    return fades(air + sh, 0.01, 0.1)
+
+
+def trombone_slide(r):
+    """comedy: a descending 'wah-wah' trombone (the bench bending, the chair snapping)"""
+    t = tt(1.0)
+    f = 233 * 2 ** (-(t / 1.0) * 7 / 12)
+    ph = np.cumsum(TAU * f) / SR
+    tone = sum((1 / k) * np.sin(k * ph) for k in range(1, 9))
+    wah = 0.55 + 0.45 * np.abs(np.sin(TAU * 1.6 * t))
+    return fades(lp(tone, 2200) * wah * np.exp(-t / 0.9) * 0.3, 0.01, 0.08)
+
+
+def tuba_sink(r):
+    """comedy: a low tuba glide down (the politician sinking)"""
+    t = tt(1.1)
+    ph = np.cumsum(TAU * 98 * 2 ** (-(t / 1.1) * 10 / 12)) / SR
+    tone = sum((1 / k ** 1.2) * np.sin(k * ph) for k in range(1, 7))
+    return fades(lp(tone, 900) * np.exp(-t / 1.2) * 0.38, 0.02, 0.1)
+
+
+def pop_gliss(r):
+    """comedy: a quick rising slide-whistle pop (popping back up, floating off)"""
+    t = tt(0.45)
+    ph = np.cumsum(TAU * (500 + 1600 * (t / 0.45) ** 1.3)) / SR
+    return fades(np.sin(ph) * np.sin(np.pi * t / 0.45) * 0.22, 0.005, 0.05)
+
+
+def metal_groan(r):
+    """a steel bench bending: a slow, scraping metallic groan"""
+    t = tt(0.9)
+    f = 150 * (1 - 0.25 * t)
+    ph = np.cumsum(TAU * f) / SR
+    y = sum(np.sin(k * 2.03 * ph) / k for k in range(1, 6)) * (0.6 + 0.4 * np.sin(TAU * 11 * t))
+    y = bp(y + 0.3 * r.standard_normal(len(t)), 200, 2500, 1)
+    return fades(y * np.exp(-t / 0.7) * 0.25, 0.02, 0.1)
+
+
+def splat(r):
+    """a pancake hitting the ceiling: a wet slap"""
+    t = tt(0.25)
+    y = bp(r.standard_normal(len(t)), 300, 2400, 1) * np.exp(-t / 0.04) + np.sin(TAU * 140 * t) * np.exp(-t / 0.03) * 0.4
+    return fades(y * 0.5, 0.0005, 0.04)
+
+
+def ringtone(r):
+    """a cheerful phone ringtone (two rising double-beeps, about 1.6 s)"""
+    out = np.zeros(ns(1.6))
+    for t0, f in ((0.0, 880), (0.12, 1175), (0.8, 880), (0.92, 1175)):
+        n = ns(0.1); t = np.arange(n) / SR
+        i = ns(t0); out[i:i + n] += np.sin(TAU * f * t) * np.hanning(n) * 0.25
+    return fades(out, 0.002, 0.05)
+
+
+def musicbox_note(r):
+    """the single music-box note after the reveal: the Pancake Theme's first note (C6), ringing out"""
+    return I.musicbox(I.m2f(84), 0.55, r, 3.0)
+
+
+def riser(r):
+    """a build-up riser (1.6 s) into the crash"""
+    return I.riser(1.6, 0.6, r)
+
+
+def storm_wind(r):
+    """a storm gust bursting through a door: wind swell + rain spray (2.5 s)"""
+    t = tt(2.5)
+    env = np.minimum(1, t / 0.15) * np.exp(-t / 1.4)
+    wind = bp(r.standard_normal(len(t)), 250, 1800, 1) * (0.6 + 0.4 * np.sin(TAU * 0.9 * t)) * env * 0.4
+    rain = hp(r.standard_normal(len(t)), 3000) * env * 0.12
+    return fades(wind + rain, 0.005, 0.2)
+
+
+def ground_crack(r):
+    """Gus hitting the road: a deep boom + asphalt cracking + gravel"""
+    t = tt(1.4)
+    boom = np.sin(TAU * (36 + 80 * np.exp(-t / 0.05)) * t) * np.exp(-t / 0.4)
+    crk = bp(r.standard_normal(len(t)), 800, 6000, 1) * (np.exp(-t / 0.03) + 0.3 * np.exp(-((t - 0.08) / 0.03) ** 2))
+    gravel = bp(r.standard_normal(len(t)), 1500, 7000, 1) * np.exp(-t / 0.35) * 0.15 * (r.uniform(size=len(t)) > 0.97)
+    return fades(boom + 0.6 * crk + gravel * 3, 0.0005, 0.15) * 0.9
+
+
 SFX = {
     "pop": pop, "ding": ding, "blip_up": blip_up, "boing": boing, "poof": poof, "twinkle": twinkle, "impact": impact,
     "thud": thud, "party_pop": party_pop, "drip": drip, "steam": steam, "snore_soft": snore_soft, "ring_ding": ring_ding,
@@ -535,6 +632,9 @@ SFX = {
     "crowd_aye": crowd_aye, "crowd_murmur": crowd_murmur, "quill_scratch": quill_scratch, "coins_pour": coins_pour,
     "engine": engine, "honk": honk, "backfire": backfire, "bark": bark, "crack_egg": crack_egg,
     "knock_heavy": knock_heavy, "phone_buzz": phone_buzz, "phone_tap": phone_tap, "latch_click": latch_click, "glass_crack": glass_crack, "lie_slam": lie_slam, "crickets": crickets,
+    "thunk": thunk, "float_whoosh": float_whoosh, "trombone_slide": trombone_slide, "tuba_sink": tuba_sink, "pop_gliss": pop_gliss,
+    "metal_groan": metal_groan, "splat": splat, "ringtone": ringtone, "musicbox_note": musicbox_note, "riser": riser,
+    "storm_wind": storm_wind, "ground_crack": ground_crack,
 }
 
 
@@ -626,8 +726,23 @@ def amb_sea(dur, r):
     return _bed(dur, r, [(_wide(swell, r), 1.0), (G.breeze(dur, r, 1.2), 0.5), (gulls, 0.12)])
 
 
+def amb_storm(dur, r):
+    """a storm at night: steady rain, gusting wind, distant thunder rolls (Video 08)"""
+    n = ns(dur)
+    rain = hp(colored(n, r, 0.2), 2500) * 0.5
+    thunder = np.zeros(n)
+    t0 = r.uniform(2, 5)
+    while t0 < dur - 2:
+        tt_ = tt(2.0)
+        i = ns(t0); seg = lp(r.standard_normal(len(tt_)), 160) * np.exp(-tt_ / 0.9) * np.minimum(1, tt_ / 0.2) * 1.4
+        thunder[i:i + len(seg)] += seg[: n - i]
+        t0 += r.uniform(6, 10)
+    return _bed(dur, r, [(_wide(rain, r), 0.8), (G.breeze(dur, r, 1.6, 0.35, 700), 0.9), (thunder, 0.35)])
+
+
 AMBIENCE = {
     "amb_city_day": amb_city_day, "amb_city_night": amb_city_night, "amb_square": amb_square,
     "amb_square_night": amb_square_night, "amb_nature_day": amb_nature_day, "amb_nature_night": amb_nature_night,
     "amb_room": amb_room, "amb_office": amb_office, "amb_lab": amb_lab, "amb_sea": amb_sea,
+    "amb_storm": amb_storm,
 }

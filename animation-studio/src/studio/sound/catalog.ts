@@ -14,6 +14,20 @@ export const MOODS = {
   adventure: "history, journeys, pirates (brass chords, march snare, fife tune), 120 bpm major",
   phonk: "drift-phonk comedy energy (pitched cowbell lead, 808 slides, hats with rolls, claps), 130 bpm minor",
   rest: "near-silence for a held comedy beat (a barely audible sub drone)",
+  // Video 08 "Float Away": the Pancake Theme story set (sound/music.py THEME)
+  quirky: "playful, quirky world-building (pizzicato bounce, marimba stabs, finger-snap claps, glockenspiel), 112 bpm major",
+  quirkyFull: "quirky, fuller for the gags (adds a soft snare backbeat and hats), 112 bpm major",
+  pancake: "the Pancake Theme: a fixed whistleable motif on marimba + whistle over pizzicato and brushes, 104 bpm major",
+  drift: "fading away: the Pancake Theme in minor, fragments on vibes over a soft pad, 76 bpm",
+  hush: "subtle tension under dialogue: a slow piano heartbeat and one held low string chord, 60 bpm minor",
+  storm: "urgent: sixteenth-note low strings, toms, timpani, 132 bpm minor",
+  stormPulse: "the storm stripped back to its sixteenth-note pulse alone, 132 bpm minor",
+  silence: "true silence: no music and no drone (the previous section's tail is cut)",
+  rise1: "the uplifting build, layer 1: a lone piano ostinato, 120 bpm major",
+  rise2: "the build, layer 2: piano ostinato + pizzicato bass + claps, 120 bpm major",
+  rise3: "the build, layer 3: + strings, soft kick, hats, 120 bpm major",
+  rise4: "the build's peak: + the Pancake Theme on brass, 120 bpm major (uplifting, not epic)",
+  warmTheme: "tender ending: the Pancake Theme on piano with warm strings, 88 bpm major",
 } as const;
 export type Mood = keyof typeof MOODS;
 
@@ -28,6 +42,7 @@ export const AMBIENCES = {
   amb_office: "office: room tone + ventilation",
   amb_lab: "laboratory: room tone, mains hum, bubbling",
   amb_sea: "open sea: slow waves, wind, distant gulls (ships, beaches, pirates)",
+  amb_storm: "a storm at night: steady rain, gusting wind, distant thunder rolls",
 } as const;
 export type Ambience = keyof typeof AMBIENCES;
 
@@ -45,7 +60,7 @@ export const SFX = {
   giggle: "a short burst of giggles (someone tickled)", feather_swish: "a feather brushing skin (soft, airy)", servo: "small robot servo whirr", stumble: "shoe scuffs + light thump (a stumble)",
   crowd_aye: "a crew's ragged chorus of \"aye!\" + a short cheer (a vote)", crowd_murmur: "a crew murmuring at a meeting (3 s)", quill_scratch: "a quill scratching on parchment (signing)", coins_pour: "coins poured into a hand (a share, a payout)",
   engine: "an early motor car putter-putter (1.8 s)", honk: "a rubber bulb horn: two honks", backfire: "a car backfire bang + clank + steam hiss (a breakdown)", bark: "a farm dog: two woofs", crack_egg: "an egg cracked on a rim",
-  knock_heavy: "ONE slow, heavy knock on an old wooden door (cue once per knock)", phone_buzz: "a phone vibrating: two short buzzes", phone_tap: "soft phone-screen typing taps (1.4 s)", latch_click: "a door latch releasing: metallic click + bolt thunk", glass_crack: "picture-frame glass cracking under a foot: sharp crack + faint tinkle (no shatter)", lie_slam: "a LIE sign slamming in: neon buzz + heavy stamp + deep boom", crickets: "awkward-silence crickets (1.6 s)",
+  knock_heavy: "ONE slow, heavy knock on an old wooden door (cue once per knock)", phone_buzz: "a phone vibrating: two short buzzes", phone_tap: "soft phone-screen typing taps (1.4 s)", latch_click: "a door latch releasing: metallic click + bolt thunk", glass_crack: "picture-frame glass cracking under a foot: sharp crack + faint tinkle (no shatter)", lie_slam: "a LIE sign slamming in: neon buzz + heavy stamp + deep boom", crickets: "awkward-silence crickets (1.6 s)", thunk: "attention lands (Float Away): a heavy, soft low thud", float_whoosh: "attention leaves (Float Away): a soft rising air sound", trombone_slide: "comedy: a descending wah-wah trombone", tuba_sink: "comedy: a low tuba glide down", pop_gliss: "comedy: a quick rising slide-whistle pop", metal_groan: "a steel bench bending: a scraping metallic groan", splat: "a pancake hitting the ceiling: a wet slap", ringtone: "a cheerful phone ringtone (1.6 s)", musicbox_note: "one music-box note (the Pancake Theme's first note), ringing 3 s", riser: "a build-up riser (1.6 s)", storm_wind: "a storm gust through a door: wind + rain spray (2.5 s)", ground_crack: "hitting the road: deep boom + asphalt crack + gravel",
 } as const;
 export type SfxName = keyof typeof SFX;
 

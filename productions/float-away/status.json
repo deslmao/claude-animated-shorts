@@ -1,0 +1,154 @@
+{
+ "id": "float-away",
+ "composition": "Short-float-away",
+ "stages": {
+  "validate": {
+   "state": "done",
+   "at": "2026-11-09T07:18:50.435Z",
+   "inputs": "1764f88634792dn",
+   "detail": "valid; 17 warning(s):\n  total length 90.6 s (Shorts target 55-65 s)\n  shot 6 (city): benchMan: walk 1.8610000000000004-3.2 s outside the shot\n  shot 6 (city): prop \"balloons\" overlaps something already in the set at [-2.5, -6.0]\n  shot 12 (home): prop \"chair\" overlaps something already in the set at [0.9, -0.8]\n  shot 23 (city): gus: walk 0-1.5 s outside the shot\n  shot 23 (city): milo: walk 0.3-1.5 s outside the shot\n  shot 24 (city): prop \"streetLamp\" overlaps something already in the set at [-1.8, -5.9]\n  shot 26 (city): gus: walk 0-1.2 s outside the shot\n  shot 11 (home): gus fills 53 % of the frame in the foreground @2.0s (is it hiding the action?)\n  shot 12 (home): gus fills 32 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 16 (home): gus fills 25 % of the frame in the foreground @1.0s (is it hiding the action?)\n  shot 18 (home): gus's raised hand (spread) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 25 (city): milo's hand (present) is out of frame @0.4s (side): widen the shot or change the gesture\n  shot 30 (city): milo fills 46 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 39 (city): neigh1's raised hand (spread) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 42 (city): milo's hand (shrug) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 44 (apartment): grandpa2 fills 50 % of the frame in the foreground @3.0s (is it hiding the action?)"
+  },
+  "assets": {
+   "state": "done",
+   "at": "2026-11-09T07:18:50.440Z",
+   "inputs": "1764f88634792d",
+   "detail": "84 library assets reused, none missing",
+   "data": {
+    "reused": 84,
+    "missing": [],
+    "byKind": {
+     "character": [
+      "milo",
+      "gus",
+      "juno"
+     ],
+     "extras": [
+      "extras:modern",
+      "extras:office",
+      "extras:victorian"
+     ],
+     "mood": [
+      "quirky"
+     ],
+     "set": [
+      "city",
+      "oldtown",
+      "home",
+      "apartment"
+     ],
+     "camera": [
+      "frame",
+      "lowHero",
+      "at",
+      "closeUp",
+      "insert",
+      "pushIn"
+     ],
+     "light": [
+      "day",
+      "golden",
+      "interior",
+      "interiorCool",
+      "night"
+     ],
+     "ambience": [
+      "amb_city_day",
+      "amb_square",
+      "amb_room",
+      "amb_storm",
+      "amb_city_night"
+     ],
+     "prop": [
+      "snapChair",
+      "podium",
+      "signBoard",
+      "balloons",
+      "bike",
+      "pancake",
+      "checker",
+      "chair",
+      "washingLine",
+      "streetLamp",
+      "livePhone",
+      "pocketStones",
+      "stonesRoll",
+      "roadCrack"
+     ],
+     "sfx": [
+      "thunk",
+      "crack",
+      "poof",
+      "metal_groan",
+      "trombone_slide",
+      "crowd_aye",
+      "tuba_sink",
+      "pop_gliss",
+      "float_whoosh",
+      "whoosh_short",
+      "splat",
+      "thud",
+      "boing",
+      "clink",
+      "creak",
+      "storm_wind",
+      "blip_up",
+      "ringtone",
+      "ding",
+      "impact",
+      "musicbox_note",
+      "pop",
+      "gasp",
+      "riser",
+      "ground_crack"
+     ],
+     "act": [
+      "proud",
+      "excited",
+      "happy",
+      "sad",
+      "sleepy",
+      "shock",
+      "neutral",
+      "laugh",
+      "dazed",
+      "suspicious",
+      "determined",
+      "scared",
+      "confused",
+      "nervous",
+      "embarrassed",
+      "angry",
+      "shrug"
+     ],
+     "item": [
+      "phone"
+     ]
+    }
+   }
+  },
+  "approval": {
+   "state": "done",
+   "at": "2026-11-09T07:18:50.451Z",
+   "inputs": "11ef298e1a9265",
+   "detail": "all narration already generated (no cost)"
+  },
+  "narration": {
+   "state": "done",
+   "at": "2026-11-09T07:18:50.455Z",
+   "inputs": "11ef298e1a9265",
+   "detail": "all lines already generated (cached)"
+  },
+  "sound": {
+   "state": "done",
+   "at": "2026-11-09T07:19:21.039Z",
+   "inputs": "15104ea19a5ea2",
+   "detail": "soundtrack built: -14.2 LUFS"
+  },
+  "checks": {
+   "state": "failed",
+   "at": "2026-11-09T07:19:25.317Z",
+   "inputs": "15104ea19a5ea2",
+   "detail": "checks failed:\n  preflight Short-float-away: FAIL  (2717 frames = 90.57 s, 44 shots, 30 narration lines)\n    FAIL  camera: shot 30: the view to the frame's target is blocked by scenery @frames 1792-1808 (mark the beat blockOk if that's intended)\n  all protected assets intact"
+  }
+ }
+}

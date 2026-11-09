@@ -34,5 +34,6 @@ import { EVERYDAY } from "./everyday";
 import { RACE1904 } from "./race1904";
 import { EXTRADOOR_THEME } from "./extradoor";
 import { EVERYLIE_THEME } from "./everylie";
+import { FLOATAWAY_THEME } from "./floataway";
 
-export const THEMES: Theme[] = [SCIENCE, PIRATES, EVERYDAY, RACE1904, EXTRADOOR_THEME, EVERYLIE_THEME];
+export const THEMES: Theme[] = [SCIENCE, PIRATES, EVERYDAY, RACE1904, EXTRADOOR_THEME, EVERYLIE_THEME, FLOATAWAY_THEME];

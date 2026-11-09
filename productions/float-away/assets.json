@@ -1,0 +1,112 @@
+{
+ "reused": 84,
+ "missing": [],
+ "byKind": {
+  "character": [
+   "milo",
+   "gus",
+   "juno"
+  ],
+  "extras": [
+   "extras:modern",
+   "extras:office",
+   "extras:victorian"
+  ],
+  "mood": [
+   "quirky"
+  ],
+  "set": [
+   "city",
+   "oldtown",
+   "home",
+   "apartment"
+  ],
+  "camera": [
+   "frame",
+   "lowHero",
+   "at",
+   "closeUp",
+   "insert",
+   "pushIn"
+  ],
+  "light": [
+   "day",
+   "golden",
+   "interior",
+   "interiorCool",
+   "night"
+  ],
+  "ambience": [
+   "amb_city_day",
+   "amb_square",
+   "amb_room",
+   "amb_storm",
+   "amb_city_night"
+  ],
+  "prop": [
+   "snapChair",
+   "podium",
+   "signBoard",
+   "balloons",
+   "bike",
+   "pancake",
+   "checker",
+   "chair",
+   "washingLine",
+   "streetLamp",
+   "livePhone",
+   "pocketStones",
+   "stonesRoll",
+   "roadCrack"
+  ],
+  "sfx": [
+   "thunk",
+   "crack",
+   "poof",
+   "metal_groan",
+   "trombone_slide",
+   "crowd_aye",
+   "tuba_sink",
+   "pop_gliss",
+   "float_whoosh",
+   "whoosh_short",
+   "splat",
+   "thud",
+   "boing",
+   "clink",
+   "creak",
+   "storm_wind",
+   "blip_up",
+   "ringtone",
+   "ding",
+   "impact",
+   "musicbox_note",
+   "pop",
+   "gasp",
+   "riser",
+   "ground_crack"
+  ],
+  "act": [
+   "proud",
+   "excited",
+   "happy",
+   "sad",
+   "sleepy",
+   "shock",
+   "neutral",
+   "laugh",
+   "dazed",
+   "suspicious",
+   "determined",
+   "scared",
+   "confused",
+   "nervous",
+   "embarrassed",
+   "angry",
+   "shrug"
+  ],
+  "item": [
+   "phone"
+  ]
+ }
+}

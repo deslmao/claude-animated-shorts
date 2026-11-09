@@ -32,6 +32,38 @@ MOODS = {
 }
 
 
+# ---- Video 08 "Float Away": the Pancake Theme and its story moods (additions; the moods above are unchanged)
+# The Pancake Theme: a fixed, whistleable 4-bar melody (bar, beat, beats, scale degree; 0 = the tonic, 7 = its
+# octave) over I-V-vi-I. A mood whose lead starts with "theme" plays it (each section states it from bar 1); in a
+# minor mood the same degrees fall on the minor scale, so the motif stays recognisable but sad.
+THEME = [(0, 0, .5, 4), (0, .5, .5, 4), (0, 1, .5, 5), (0, 1.5, .5, 4), (0, 2, 1, 2), (0, 3, 1, 0),
+         (1, 0, .5, 1), (1, .5, .5, 2), (1, 1, 1, 3), (1, 2, 2, 1),
+         (2, 0, .5, 4), (2, .5, .5, 4), (2, 1, .5, 5), (2, 1.5, .5, 4), (2, 2, 1, 7), (2, 3, 1, 6),
+         (3, 0, .5, 5), (3, .5, .5, 4), (3, 1, 1, 2), (3, 2, 2, 0)]
+MOODS.update({
+    # world rule and comedy: pizzicato bounce, marimba stabs, finger-snap claps, a glockenspiel tune
+    "quirky": dict(root=53, scale=MAJ, bpm=112, prog=[0, 3, 4, 0], bass="pizz", chords="marimba_off", lead="glock", perc="snaps", density=0.55, swing=0.08),
+    "quirkyFull": dict(root=53, scale=MAJ, bpm=112, prog=[0, 3, 4, 0], bass="pizz", chords="marimba_off", lead="glock", perc="snaps_snare", density=0.7, swing=0.08),
+    # the Pancake Theme, playful: marimba + whistle over pizzicato and brushes
+    "pancake": dict(root=53, scale=MAJ, bpm=104, prog=[0, 4, 5, 0], bass="pizz", chords="marimba_off", lead="theme_whistle", perc="brush", density=0.6, swing=0.1),
+    # Gus fading: the theme in minor, fragments only, on vibes over a soft pad
+    "drift": dict(root=53, scale=MIN, bpm=76, prog=[0, 4, 5, 0], bass="none", chords="pad", lead="theme_frag", perc="none", density=0.3, swing=0.0),
+    # birthday and stones: a slow piano heartbeat under one held string chord
+    "hush": dict(root=53, scale=MIN, bpm=60, prog=[0], bass="heartbeat", chords="strings_low", lead="none", perc="none", density=0.0, swing=0.0),
+    # the storm: sixteenth-note low strings, toms, timpani
+    "storm": dict(root=50, scale=MIN, bpm=132, prog=[0, 0, 5, 6], bass="pulse16", chords="strings", lead="none", perc="toms", density=0.4, swing=0.0),
+    "stormPulse": dict(root=50, scale=MIN, bpm=132, prog=[0], bass="pulse16", chords="none", lead="none", perc="none", density=0.0, swing=0.0),
+    # true silence (no drone): the beat after "I was the last one"
+    "silence": dict(root=53, scale=MAJ, bpm=60, prog=[0], bass="none", chords="none", lead="none", perc="none", density=0.0, swing=0.0),
+    # the livestream: layers enter on story beats (rise1 -> rise4), uplifting, major, bouncy rather than epic
+    "rise1": dict(root=53, scale=MAJ, bpm=120, prog=[0, 4, 5, 3], bass="none", chords="piano_ost", lead="none", perc="none", density=0.3, swing=0.0),
+    "rise2": dict(root=53, scale=MAJ, bpm=120, prog=[0, 4, 5, 3], bass="pizz", chords="piano_ost", lead="none", perc="claps", density=0.4, swing=0.0),
+    "rise3": dict(root=53, scale=MAJ, bpm=120, prog=[0, 4, 5, 3], bass="pizz", chords="piano_strings", lead="none", perc="kick_clap", density=0.5, swing=0.0),
+    "rise4": dict(root=53, scale=MAJ, bpm=120, prog=[0, 4, 5, 3], bass="pizz", chords="piano_strings", lead="theme_brass", perc="kick_clap", density=0.7, swing=0.0),
+    # the ending: the theme on piano with warm strings
+    "warmTheme": dict(root=53, scale=MAJ, bpm=88, prog=[0, 4, 5, 0], bass="none", chords="strings", lead="theme_piano", perc="none", density=0.4, swing=0.0),
+})
+
 def _chord(m, deg, octave=0):
     """triad (root, third, fifth) midi numbers on a scale degree"""
     sc, root = m["scale"], m["root"] + 12 * octave
@@ -121,6 +153,15 @@ def compose(sections, total, button_t, seed, gain_db=0.0, drop_t=None):
             elif m["bass"] == "brass_bass":
                 for b, n_ in [(0, root), (2, root + 7)]:
                     place(sec, pan(I.brass(I.m2f(n_), beat * 0.8, 0.55 * soft, r, "tuba"), -0.1), bt0 + b * beat)
+            elif m["bass"] == "pizz":
+                for b, n_ in [(0, root + 12), (2, root + 19), (3.5, root + 12)]:
+                    place(sec, pan(I.pluck(I.m2f(n_), 0.6 * soft, r, 0.35, 0.6), -0.1), bt0 + sw(b) * beat)
+            elif m["bass"] == "pulse16":
+                for e in range(16):
+                    place(sec, pan(I.pluck(I.m2f(root), (0.42 + 0.18 * (e % 4 == 0)) * soft, r, 0.18, 0.3), -0.1), bt0 + e * beat / 4)
+            elif m["bass"] == "heartbeat":
+                place(sec, pan(I.piano(I.m2f(root + 12), 0.4 * soft, r, 1.2), -0.05), bt0)
+                place(sec, pan(I.piano(I.m2f(root + 12), 0.22 * soft, r, 1.0), -0.05), bt0 + 0.4 * beat)
             # chords
             if m["chords"] == "vibes_arp":
                 for e, c in enumerate([ch[0], ch[1], ch[2], ch[1] + 12, ch[2], ch[1], ch[0] + 12, ch[2]]):
@@ -137,6 +178,18 @@ def compose(sections, total, button_t, seed, gain_db=0.0, drop_t=None):
                 for b in (1, 3):
                     for c in ch:
                         place(sec, pan(I.brass(I.m2f(c), beat * 0.6, 0.32 * soft, r, "horn"), 0.25), bt0 + b * beat)
+            elif m["chords"] == "marimba_off":
+                for b in (1, 3):
+                    for c in ch:
+                        place(sec, pan(I.marimba(I.m2f(c + 12), 0.2 * soft, r, 0.5), 0.3), bt0 + sw(b) * beat)
+            elif m["chords"] in ("strings", "strings_low"):
+                v = 0.3 if m["chords"] == "strings" else 0.18
+                place(sec, I.strings([I.m2f(c - (12 if m["chords"] == "strings_low" else 0)) for c in ch], bar * 0.98, v * soft, r), bt0)
+            elif m["chords"] in ("piano_ost", "piano_strings"):
+                for e, c in enumerate([ch[0], ch[2], ch[1] + 12, ch[2]] * 2):
+                    place(sec, pan(I.piano(I.m2f(c), 0.32 * soft, r, 0.9), 0.15 if e % 2 else -0.15), bt0 + e * beat / 2)
+                if m["chords"] == "piano_strings":
+                    place(sec, I.strings([I.m2f(c) for c in ch], bar * 0.98, 0.22 * soft, r), bt0)
             # percussion
             if m["perc"] == "brush":
                 for b in range(4):
@@ -158,6 +211,57 @@ def compose(sections, total, button_t, seed, gain_db=0.0, drop_t=None):
             elif m["perc"] == "march":
                 for b, v in [(0, 0.35), (1, 0.22), (1.5, 0.18), (2, 0.3), (3, 0.22), (3.5, 0.18)]:
                     place(sec, pan(I.snare(v * soft, r, 0.25), 0.1), bt0 + b * beat)
+            elif m["perc"] in ("snaps", "snaps_snare"):
+                for b in (1, 3):
+                    place(sec, pan(I.clap(0.3 * soft, r), 0.1), bt0 + sw(b) * beat)
+                if k % 2 == 0:
+                    place(sec, pan(I.triangle(0.12, r, 0.8), 0.4), bt0)
+                if m["perc"] == "snaps_snare":
+                    for b in (1, 3):
+                        place(sec, pan(I.snare(0.2 * soft, r, 0.22, 1.1, 0.6), 0.1), bt0 + sw(b) * beat)
+                    for e in range(8):
+                        place(sec, pan(I.hat(0.16, r), 0.25), bt0 + sw(e / 2) * beat)
+            elif m["perc"] == "toms":
+                for b, f_, v in [(0, 98, 0.55), (2.5, 82, 0.45), (3, 110, 0.5)]:
+                    place(sec, pan(I.tom(f_, v * soft, r), -0.15), bt0 + b * beat)
+                if k % 2 == 0:
+                    place(sec, I.timpani(I.m2f(ch[0] - 12), 0.4 * soft, r, 1.6), bt0)
+            elif m["perc"] == "claps":
+                for b in (1, 3):
+                    place(sec, pan(I.clap(0.38 * soft, r), -0.05), bt0 + b * beat)
+            elif m["perc"] == "kick_clap":
+                for b in range(4):
+                    place(sec, I.kick(0.5 * soft, r), bt0 + b * beat)
+                for b in (1, 3):
+                    place(sec, pan(I.clap(0.4 * soft, r), -0.05), bt0 + b * beat)
+                for b in (0.5, 1.5, 2.5, 3.5):
+                    place(sec, pan(I.hat(0.2, r), 0.25), bt0 + b * beat)
+            # the Pancake Theme (Video 08): a fixed melody, stated from the section's first bar
+            if m["lead"].startswith("theme"):
+                tb, sc = k % 4, m["scale"]
+                if m["lead"] == "theme_frag" and (tb not in (0, 2) or (k // 4) % 2 == 1):
+                    continue
+                notes_t = [(bb, b, ln, m["root"] + 12 + sc[d % 7] + 12 * (d // 7)) for (bb, b, ln, d) in THEME if bb == tb]
+                if m["lead"] == "theme_frag":
+                    notes_t = notes_t[:4]
+                v = 0.42 * soft
+                if m["lead"] == "theme_whistle":
+                    t0w, wy = I.whistle([(b * beat, ln * beat * 0.92, midi + 12, 0.8) for (_, b, ln, midi) in notes_t], r)
+                    place(sec, pan(wy * 0.26 * soft, 0.2), bt0 + t0w)
+                for (_, b, ln, midi) in notes_t:
+                    dur = ln * beat * 0.92
+                    if m["lead"] == "theme_whistle":
+                        x = pan(I.marimba(I.m2f(midi + 12), v * 0.55, r, 0.7), -0.2)
+                    elif m["lead"] == "theme_frag":
+                        x = pan(I.vibes(I.m2f(midi), v * 0.7, r, max(1.0, dur + 0.6)), 0.2)
+                    elif m["lead"] == "theme_brass":
+                        x = pan(I.brass(I.m2f(midi), max(0.2, dur), v * 0.55, r, "horn"), 0.15)
+                    elif m["lead"] == "theme_piano":
+                        x = pan(I.piano(I.m2f(midi + 12), v * 0.8, r, 1.6), 0.15)
+                    else:  # theme_musicbox
+                        x = pan(I.musicbox(I.m2f(midi + 12), v * 0.8, r, 1.4), 0.2)
+                    place(sec, x, bt0 + b * beat)
+                continue
             # tune: AABA over 8 bars (A = motif, B = shifted motif), resting every 4th phrase pair for air
             phrase = (k // 2) % 4
             if k >= 1 and (k // 8) % 2 == 0 or k >= 1 and m["density"] > 0.5:
@@ -214,4 +318,11 @@ def compose(sections, total, button_t, seed, gain_db=0.0, drop_t=None):
     ir = make_ir(1.1, seed=seed % 997 + 11, pre=0.01)
     wet = convolve_st(out, ir)[:, : out.shape[1]]
     out = out + 0.22 * wet
+    # a "silence" section is truly silent: the previous section's tail and the room are cut (0.12 s fade), no drone
+    for (mood, t0, t1) in sections:
+        if mood == "silence":
+            i0, i1 = ns(t0), min(out.shape[1], ns(t1))
+            f = min(ns(0.12), i1 - i0)
+            out[:, i0:i0 + f] *= np.linspace(1, 0, f)
+            out[:, i0 + f:i1] = 0
     return out * 10 ** (gain_db / 20), cues

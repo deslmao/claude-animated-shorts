@@ -338,3 +338,65 @@ def subdrone(f, dur, vel=0.05):
     n = ns(dur)
     t = np.arange(n) / SR
     return fades(np.sin(TAU * f * t) * vel, 0.2, 0.3)
+
+
+# ---------------------------------------------------------------- story kit (Video 08 "Float Away", own synthesis)
+def marimba(f, vel=0.7, r=None, dur=0.9):
+    """marimba bar: fundamental + the tuned 4th and 10th partials (fast decays) + a soft mallet knock"""
+    r = r or rng(0)
+    t = tt(dur)
+    tau = 0.42 * (220 / f) ** 0.35
+    y = np.sin(TAU * f * t) * np.exp(-t / tau) + 0.32 * np.sin(TAU * 3.93 * f * t) * np.exp(-t / (tau * 0.22))
+    y += 0.1 * np.sin(TAU * 9.2 * f * t) * np.exp(-t / 0.02)
+    y += lp(r.standard_normal(len(t)), 2400) * np.exp(-t / 0.002) * 0.12
+    return fades(y * vel * (1 - np.exp(-t / 0.0008)), 0.0004, 0.05)
+
+
+def piano(f, vel=0.6, r=None, dur=1.8):
+    """simple piano: slightly stretched partials, two-stage decay (prompt + after-sound), a felt hammer thump"""
+    r = r or rng(0)
+    t = tt(dur)
+    y = np.zeros_like(t)
+    for k in range(1, 9):
+        fk = k * f * np.sqrt(1 + 4e-4 * k * k)
+        if fk > 9000:
+            break
+        tau1, tau2 = 0.25 / (1 + 0.5 * (k - 1)), 1.6 * (220 / f) ** 0.4 / (1 + 0.35 * (k - 1))
+        a = (1 / k ** 1.15) * (0.6 if k == 1 else 1.0)
+        y += a * (0.55 * np.exp(-t / tau1) + 0.45 * np.exp(-t / tau2)) * np.sin(TAU * fk * t + r.uniform(0, 0.3))
+    y += lp(r.standard_normal(len(t)), 900) * np.exp(-t / 0.004) * 0.1
+    return fades(y * vel * 0.6 * (1 - np.exp(-t / 0.001)), 0.0004, 0.12)
+
+
+def strings(freqs, dur, vel=0.4, r=None, att=0.45, rel=0.8):
+    """warm string section: the pad voices, brighter and wider detuned, slow bow and a gentle 5 Hz shimmer"""
+    return pad(freqs, dur, vel, r, att=att, rel=rel, warm=1700.0, detune=11.0,
+               trem=lambda t: 1 + 0.05 * np.sin(TAU * 5.1 * t))
+
+
+def tom(f=110.0, vel=0.7, r=None, dur=0.55):
+    """floor tom: a pitch-dropping skin tone + a short stick noise"""
+    r = r or rng(0)
+    t = tt(dur)
+    ph = np.cumsum(TAU * f * (1 + 0.55 * np.exp(-t / 0.035))) / SR
+    y = np.sin(ph) * np.exp(-t / 0.2) + bp(r.standard_normal(len(t)), 200, 3000, 1) * np.exp(-t / 0.012) * 0.25
+    return fades(y * vel, 0.0005, 0.06)
+
+
+def kick(vel=0.8, r=None, dur=0.32):
+    """soft pop kick: a sine sweeping down to 52 Hz + a click"""
+    r = r or rng(0)
+    t = tt(dur)
+    ph = np.cumsum(TAU * (52 + 110 * np.exp(-t / 0.028))) / SR
+    y = np.sin(ph) * np.exp(-t / 0.14) + lp(r.standard_normal(len(t)), 4000) * np.exp(-t / 0.002) * 0.15
+    return fades(y * vel, 0.0003, 0.04)
+
+
+def riser(dur=1.5, vel=0.5, r=None):
+    """a build-up riser: brightening noise + an upward sine sweep, both swelling to the end"""
+    r = r or rng(0)
+    t = tt(dur)
+    k = (t / dur) ** 2
+    nz = hp(r.standard_normal(len(t)), 900) * k * 0.35
+    ph = np.cumsum(TAU * (180 + 1100 * (t / dur) ** 1.6)) / SR
+    return fades((nz + 0.25 * np.sin(ph) * k) * vel, 0.01, 0.03)
