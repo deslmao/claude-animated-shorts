@@ -4,14 +4,14 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-09T13:10:50.682Z",
-   "inputs": "055fa73d2a3599n",
-   "detail": "valid; 32 warning(s):\n  total length 84.5 s (Shorts target 55-65 s)\n  shot 1 (hallway): milo: walk 0.15-1.2 s outside the shot\n  shot 1 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 3 (downstairs): prop \"frontDoor\" overlaps something already in the set at [0.8, -6.0]\n  shot 14 (lab): prop \"specimenDrawer\" overlaps something already in the set at [2.0, -2.6]\n  shot 15 (lab): prop \"specimenDrawer\" overlaps something already in the set at [2.0, -2.6]\n  shot 16 (lab): prop \"specimenDrawer\" overlaps something already in the set at [2.0, -2.6]\n  shot 17 (lab): prop \"specimenDrawer\" overlaps something already in the set at [2.0, -2.6]\n  shot 20 (lab): prop \"specimenDrawer\" overlaps something already in the set at [2.0, -2.6]\n  shot 23 (lab): light \"night\" on an indoor set\n  shot 23 (lab): prop \"specimenDrawer\" overlaps something already in the set at [2.0, -2.6]\n  shot 24 (lab): prop \"specimenDrawer\" overlaps something already in the set at [2.0, -2.6]\n  shot 2 (hallway): milo fills 33 % of the frame in the foreground @0.4s (is it hiding the action?)\n  shot 3 (downstairs): milo fills 38 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 5 (home): milo fills 44 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 6 (city): milo fills 100 % of the frame in the foreground @1.2s (is it hiding the action?)\n  shot 7 (city): milo fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 8 (city): milo fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 9 (city): milo fills 61 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 9 (city): milo's hand (present) is out of frame @1.4s (side): widen the shot or change the gesture\n  shot 11 (lab): milo fills 25 % of the frame in the foreground @0.6s (is it hiding the action?)\n  shot 12 (lab): juno's raised hand (spread) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 17 (lab): milo's raised hand (spread) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 18 (lab): juno fills 29 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 20 (lab): milo fills 31 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 20 (lab): juno fills 32 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 21 (lab): juno's raised hand (spread) is out of frame @1.8s (side): widen the shot or change the gesture\n  shot 22 (lab): juno fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 23 (lab): milo fills 28 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 23 (lab): juno fills 33 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 24 (lab): milo's hand (belly) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 24 (lab): juno's hand (shrug) is out of frame @4.8s (side): widen the shot or change the gesture"
+   "at": "2026-11-09T13:32:41.542Z",
+   "inputs": "14fc4cef5000aen",
+   "detail": "valid; 32 warning(s):\n  total length 84.5 s (Shorts target 55-65 s)\n  shot 1 (hallway): milo: walk 0.15-1.2 s outside the shot\n  shot 1 (hallway): prop \"oldDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 3 (downstairs): prop \"frontDoor\" overlaps something already in the set at [0.8, -6.0]\n  shot 14 (lab): prop \"specimenDrawer\" overlaps something already in the set at [2.0, -2.6]\n  shot 15 (lab): prop \"specimenDrawer\" overlaps something already in the set at [2.0, -2.6]\n  shot 16 (lab): prop \"specimenDrawer\" overlaps something already in the set at [2.0, -2.6]\n  shot 17 (lab): prop \"specimenDrawer\" overlaps something already in the set at [2.0, -2.6]\n  shot 20 (lab): prop \"specimenDrawer\" overlaps something already in the set at [2.0, -2.6]\n  shot 23 (lab): light \"night\" on an indoor set\n  shot 23 (lab): prop \"specimenDrawer\" overlaps something already in the set at [2.0, -2.6]\n  shot 24 (lab): prop \"specimenDrawer\" overlaps something already in the set at [2.0, -2.6]\n  shot 2 (hallway): milo fills 33 % of the frame in the foreground @0.4s (is it hiding the action?)\n  shot 3 (downstairs): milo fills 38 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 5 (home): milo fills 25 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 6 (city): milo fills 100 % of the frame in the foreground @1.2s (is it hiding the action?)\n  shot 7 (city): milo fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 8 (city): milo fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 9 (city): milo fills 61 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 9 (city): milo's hand (present) is out of frame @1.4s (side): widen the shot or change the gesture\n  shot 11 (lab): milo fills 25 % of the frame in the foreground @0.6s (is it hiding the action?)\n  shot 12 (lab): juno's raised hand (spread) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 17 (lab): milo's raised hand (spread) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 18 (lab): juno fills 29 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 20 (lab): milo fills 31 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 20 (lab): juno fills 32 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 21 (lab): juno's raised hand (spread) is out of frame @1.8s (side): widen the shot or change the gesture\n  shot 22 (lab): juno fills 32 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 23 (lab): milo fills 28 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 23 (lab): juno fills 33 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 24 (lab): milo's hand (belly) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 24 (lab): juno's hand (shrug) is out of frame @4.8s (side): widen the shot or change the gesture"
   },
   "assets": {
    "state": "done",
-   "at": "2026-11-09T13:10:50.687Z",
-   "inputs": "055fa73d2a3599",
+   "at": "2026-11-09T13:32:41.545Z",
+   "inputs": "14fc4cef5000ae",
    "detail": "55 library assets reused, none missing",
    "data": {
     "reused": 55,
@@ -95,26 +95,26 @@
   },
   "approval": {
    "state": "done",
-   "at": "2026-11-09T13:10:50.692Z",
+   "at": "2026-11-09T13:32:41.549Z",
    "inputs": "0e5045c570dfc3",
    "detail": "all narration already generated (no cost)"
   },
   "narration": {
    "state": "done",
-   "at": "2026-11-09T13:10:50.693Z",
+   "at": "2026-11-09T13:32:41.550Z",
    "inputs": "0e5045c570dfc3",
    "detail": "all lines already generated (cached)"
   },
   "sound": {
    "state": "done",
-   "at": "2026-11-09T13:11:32.191Z",
-   "inputs": "07bebd2f5c2d6a",
+   "at": "2026-11-09T13:33:23.597Z",
+   "inputs": "14038517df2d63",
    "detail": "soundtrack built: -14.2 LUFS"
   },
   "checks": {
    "state": "done",
-   "at": "2026-11-09T13:11:36.360Z",
-   "inputs": "07bebd2f5c2d6a",
+   "at": "2026-11-09T13:33:27.734Z",
+   "inputs": "14038517df2d63",
    "detail": "preflight PASS; library intact"
   }
  }

@@ -83,17 +83,17 @@ const phoneScreen = (v: string, s: number) => stex(`nsPhone${v}${s}`, 512, 1024,
   }
   // cam: Juno's lock screen
   g.font = FONT(64); g.fillStyle = "#fff"; g.fillText("11:52", 256, 200);
-  g.fillStyle = "rgba(255,255,255,0.14)"; rr(g, 28, 300, 456, 330, 28); g.fill();
-  g.textAlign = "left"; g.fillStyle = "#ff8a5b"; g.font = FONT(26); g.fillText("HOME CAM", 56, 346);
-  g.fillStyle = "#fff"; g.font = FONT(32); g.fillText("Hallway · motion detected", 56, 392);
+  g.fillStyle = "rgba(255,255,255,0.14)"; rr(g, 20, 290, 472, 340, 28); g.fill();
+  g.textAlign = "left"; g.fillStyle = "#ff8a5b"; g.font = FONT(34); g.fillText("HOME CAM", 44, 340);
+  g.fillStyle = "#fff"; g.font = FONT(38); g.fillText("Hallway: motion", 44, 392);
   // thumbnail: the hallway floor, the photo face up on it, seen from the ceiling camera (grey night vision)
   g.fillStyle = "#3a4048"; g.fillRect(56, 414, 400, 196); g.fillStyle = "#5a6068"; for (let k = 0; k < 6; k++) g.fillRect(56, 430 + k * 30, 400, 3);
   g.save(); g.translate(256, 512); g.rotate(-0.12); drawPhoto(g, -88, -58, 176, 116); g.strokeStyle = "#ddd"; g.lineWidth = 4; g.strokeRect(-88, -58, 176, 116); g.restore();
   g.fillStyle = "#e5484d"; g.beginPath(); g.arc(432, 432, 8, 0, 7); g.fill();
   if (s >= 1) {
-    g.fillStyle = "rgba(255,255,255,0.18)"; rr(g, 28, 660, 456, 170, 28); g.fill();
-    g.fillStyle = "#9ad0ff"; g.font = FONT(30); g.fillText("Milo", 56, 712);
-    g.fillStyle = "#fff"; g.font = FONT(36); g.fillText("I'm home.", 56, 764); g.fillText("Come let me in.", 56, 808);
+    g.fillStyle = "rgba(255,255,255,0.2)"; rr(g, 20, 650, 472, 250, 28); g.fill();
+    g.fillStyle = "#9ad0ff"; g.font = FONT(40); g.fillText("Milo", 44, 710);
+    g.fillStyle = "#fff"; g.font = FONT(54); g.fillText("I'm home.", 44, 784); g.fillText("Come let me in.", 44, 856);
   }
 });
 const nsPhoneRig = (a: At, v = "fake"): PropRig => {
