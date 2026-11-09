@@ -28,6 +28,9 @@ export const VOICES: Record<string, VoicePreset> = {
   liamQuiet: { name: "Liam - Energetic, Social Media Creator", voiceId: "TX3LPaxmHKxFdv7VOQHJ", model: MODEL, settings: { ...CHANNEL, stability: 0.55, speed: 0.95 }, note: "Milo, quiet and nervous: natural quiet speech (Video 05)" },
   juno: { name: "Jessica - Playful, Bright, Warm", voiceId: "cgSgspJ2msm6clMCkdW9", model: MODEL, settings: { ...CHANNEL, stability: 0.45, style: 0.15, speed: 0.9 }, note: "Juno's voice (provisional, Video 05): warm and familiar" },
   junoCold: { name: "Jessica - Playful, Bright, Warm", voiceId: "cgSgspJ2msm6clMCkdW9", model: MODEL, settings: { ...CHANNEL, stability: 0.55, style: 0.15, speed: 0.85 }, note: "Juno's voice, slower and flatter: the unsettling line (Video 05)" },
+  // Part 2 rewrite (night-shift): frightened, desperate takes for the door's pleading copies (additive; optional review takes)
+  junoScared: { name: "Jessica - Playful, Bright, Warm", voiceId: "cgSgspJ2msm6clMCkdW9", model: MODEL, settings: { ...CHANNEL, stability: 0.3, style: 0.4, speed: 0.88 }, note: "Juno, frightened and desperate (Part 2 rewrite review take)" },
+  liamScared: { name: "Liam - Energetic, Social Media Creator", voiceId: "TX3LPaxmHKxFdv7VOQHJ", model: MODEL, settings: { ...CHANNEL, stability: 0.3, style: 0.35, speed: 0.9 }, note: "Milo, frightened and desperate (Part 2 rewrite review take)" },
 };
 
 /** the default voice for every line of every Short (storyboards may override with `voice` / `voices`) */

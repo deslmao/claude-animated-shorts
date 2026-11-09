@@ -124,3 +124,44 @@ With all of that, the film comes to **86.3 s**, 1.3 s over the 75–85 s target.
 - the door's lines match the real voices on purpose (the copies);
 - please listen to "Milo, please." and "Juno, look at me!" in the darkness beat. They should sound pleading, not
   aggressive.
+
+---
+
+## Update: option 2 approved (four wordless beats tightened)
+
+| Beat | Before | After |
+|---|---|---|
+| The darkness | 6.0 s | 5.4 s |
+| The home-camera clue | 2.6 s | 2.2 s |
+| The phone turning to wood | 2.6 s | 2.2 s |
+| The sprint | 3.65 s | 3.35 s |
+
+**Runtime: 84.6 s.** Every approved line is unchanged, "You're soaked." included.
+
+- **Sync:** every one of the 28 lines starts and ends inside its own scene (checked by script for each line). The
+  two cached door takes, the pleas and "Left. Down. There." are placed at their scene offsets.
+- **The darkness beat** (67.85–73.25 s):
+
+  | Time | Event |
+  |---|---|
+  | 68.15 s | "Milo, please." |
+  | 69.45 s | "Juno, look at me!" |
+  | 70.75 s | "Left. Down. There." |
+  | 72.29 s | Photo laid face down in the steel drawer |
+  | 72.65 s | Drawer slammed fully shut |
+  | 72.95 s | Key turned, with a click |
+  | 73.25 s | Lights return |
+
+  The lock is seen and heard 0.3 s before the lights.
+- **The pleading lines:** two review takes were added with new frightened presets, `junoScared` and `liamScared`
+  (additions only; nothing else changed). They cost **12 credits**, so 315 in total for this production.
+  - **Original takes:** −22 LUFS, 1.10 s and 1.25 s.
+  - **Frightened takes:** −24 LUFS, slower and breathier, 1.25 s and 1.38 s. Both still fit their slots.
+  - **Which one:** this needs a human ear, which I can't provide. Compare them in
+    `pleading-lines-original-vs-frightened.mp3`, which plays the original, then the frightened take, for each line.
+
+**Files:**
+- `night-shift-narration-timed.mp3`: 84.6 s, with the original pleading takes.
+- `night-shift-narration-timed-frightened-pleas.mp3`: 84.6 s, with the frightened takes.
+- `pleading-lines-original-vs-frightened.mp3`: the A/B comparison of the two pleading lines.
+- `night-shift-lines-back-to-back.mp3`: every line with short gaps.

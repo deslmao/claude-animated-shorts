@@ -1,0 +1,30 @@
+{
+ "hash": "06e74bb60417e6",
+ "text": "Milo, please.",
+ "voice": "junoScared",
+ "lead": 0,
+ "end": 1.207,
+ "dur": 1.253878,
+ "words": [
+  {
+   "w": "Milo,",
+   "t0": 0,
+   "t1": 0.406
+  },
+  {
+   "w": "please.",
+   "t0": 0.43,
+   "t1": 1.207
+  }
+ ],
+ "voiceId": "cgSgspJ2msm6clMCkdW9",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.3,
+  "similarity_boost": 0.75,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 0.88
+ },
+ "created": "2026-11-09T12:59:41.438Z"
+}

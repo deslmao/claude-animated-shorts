@@ -43,5 +43,8 @@ export const NIGHTSHIFT: Storyboard = {
     L("It's sealed. Nothing can see it in there.", J, 0.1, "juno"),                  // 23
     L("Next time you bring work home, warn me.", MQ, 0.1, "milo"),
     L("Deal.", J, 0.1, "juno"),
+    // review-only alternative takes of the two pleading lines (frightened presets); the storyboard picks one per line
+    L("Milo, please.", "junoScared"),
+    L("Juno, look at me!", "liamScared"),
   ],
 };
