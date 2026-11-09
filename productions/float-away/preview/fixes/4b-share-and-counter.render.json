@@ -24,15 +24,15 @@
     "audio": true
   },
   "bundleSeconds": 0,
-  "renderSeconds": 271.2,
-  "secondsPerFrame": 2.187,
-  "framesPerSecond": 0.46,
+  "renderSeconds": 234.8,
+  "secondsPerFrame": 1.893,
+  "framesPerSecond": 0.53,
   "memory": {
-    "peakRenderProcessesGB": 4.73,
+    "peakRenderProcessesGB": 4.76,
     "macMinFreePercent": null,
-    "linuxMinAvailableGB": 11.31,
+    "linuxMinAvailableGB": 11.25,
     "macSwapUsedGBAfter": null
   },
-  "sizeMB": 0.4,
-  "finishedAt": "2026-11-09T09:30:05.674Z"
+  "sizeMB": 0.5,
+  "finishedAt": "2026-11-09T09:43:56.007Z"
 }
