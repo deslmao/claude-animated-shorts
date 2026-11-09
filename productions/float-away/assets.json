@@ -1,5 +1,5 @@
 {
- "reused": 83,
+ "reused": 85,
  "missing": [],
  "byKind": {
   "character": [
@@ -10,7 +10,7 @@
   "extras": [
    "extras:modern",
    "extras:office",
-   "extras:victorian"
+   "extras:fifties"
   ],
   "mood": [
    "quirky"
@@ -66,6 +66,7 @@
    "trombone_slide",
    "crowd_aye",
    "tuba_sink",
+   "crowd_murmur",
    "pop_gliss",
    "float_whoosh",
    "whoosh_short",
@@ -105,7 +106,8 @@
    "shrug"
   ],
   "item": [
-   "phone"
+   "phone",
+   "cane"
   ]
  }
 }
