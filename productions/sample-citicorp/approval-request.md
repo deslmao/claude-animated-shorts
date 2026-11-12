@@ -37,6 +37,20 @@
 - note: action-first: no explanation turn
 
 ## Independent evaluation
-Not run yet.
+**Verdict:** revise → not ready · **Would a viewer keep watching?** yes, the hook (secret welders vanishing behind plywood by morning) is strong and pulls through. The main drop-off risk is beats 2–3, a dense architecture lesson right after the hook. A smaller risk is a flat finish at beat 11, where an unreadable diagram undercuts the climax.
+
+| criterion | result | beats |
+|---|---|---|
+| clarity | weak | 2, 4, 5, 7 |
+| viewer participation | weak | 7, 9, 10 |
+| cause and effect | pass | 3, 4, 5, 6, 7, 8, 9, 10 |
+| emotional investment | weak | 1, 6, 7, 9 |
+| recontextualisation | pass | 1, 8, 11 |
+| setup and payoff | pass | 1, 2, 3, 5, 6, 8, 11 |
+| visual communication | weak | 5, 6, 9, 10, 11 |
+| originality | pass | 1, 11 |
+| accuracy | weak | 4, 5, 7, 10, 11 |
+
+Full findings: productions/sample-citicorp/eval/evaluation.md
 
 To approve: tell Claude; it records `npm run script -- sample-citicorp --approve 1354`.

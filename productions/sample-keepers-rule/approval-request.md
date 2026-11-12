@@ -37,6 +37,20 @@
 All structural checks pass (structure only: not a judgement of quality).
 
 ## Independent evaluation
-Not run yet.
+**Verdict:** revise → not ready · **Would a viewer keep watching?** yes. The hook is strong: a sick gran's rule, a bell ringing on its own, a distress call, the coastguard's confirmation, and a dead father's voice keep tightening through the full 11 beats. Viewers would stay to the end, but many would feel the closing choice was a foregone A, and the "Ellen" moment would fall flat.
+
+| criterion | result | beats |
+|---|---|---|
+| clarity | weak | 1, 5, 7, 9, 10 |
+| viewer participation | weak | 5, 6, 8, 10, 11 |
+| cause and effect | weak | 3, 4, 5, 6, 7, 8 |
+| emotional investment | weak | 1, 2, 9, 10 |
+| recontextualisation | pass | 2, 5, 7, 9 |
+| setup and payoff | weak | 1, 2, 5, 7, 8, 9, 10 |
+| visual communication | weak | 3, 5, 6, 8, 9, 10 |
+| originality | pass | 2, 3, 5, 6, 8, 9, 11 |
+| accuracy | n/a fiction | 1-11 |
+
+Full findings: productions/sample-keepers-rule/eval/evaluation.md
 
 To approve: tell Claude; it records `npm run script -- sample-keepers-rule --approve 792`.

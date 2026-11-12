@@ -34,9 +34,9 @@ Each benchmark has a different engine:
 
 The selector in docs/STORYTELLING.md §1 picks among these; it doesn't average them into one formula.
 
-## The three sample stories (story + visual plan, not rendered)
-| Sample | Format | File | Lint | Verdict |
+## The three sample stories (story + visual plan, not rendered; independently evaluated)
+| Sample | Format | File | Independent verdict | Main findings |
 |---|---|---|---|---|
-| **Floor 13:** a lift stops at a floor that doesn't exist; Mum's voice vs the intercom | immersive + mystery | `productions/sample-floor-13/story.md` | pass (~60 s) | ready |
-| **The Engineer Who Left Gaps on Purpose:** rail expansion, and the modern hidden "gap" | action-first | `productions/sample-rail-gaps/story.md` | **FAIL:** no sources yet, as intended | revise (facts to verify) |
-| **In This World, Everyone Gets 100 Words a Day:** the whistle that isn't words | world-rule + emotional | `productions/sample-hundred-words/story.md` | pass (~56 s) | ready |
+| **The Keeper's Rule:** a lighthouse, a promise, and a boat that may or may not be real | immersive + mystery | `productions/sample-keepers-rule/` | **revise** (1 fail, 6 weak) | dilemma balance fails: B has no seen cost; "lost at sea, 1979" gives the reveal away; the lamp-dark logic and the "Ellen" name aren't set up |
+| **The Skyscraper Fixed in Secret:** the 1978 Citicorp repairs | action-first (factual) | `productions/sample-citicorp/` | **revise** (5 weak) | the protagonist isn't named in time; a **factual error** in the order of events (he knew of the bolts before the call; verified); "a strike kept it quiet for years" is overstated |
+| **In This World, Everyone Gets 100 Words a Day** | world-rule + emotional | `productions/sample-hundred-words/` | **revise** (2 weak) | the word counts break the story's own rule (the woman with 2 words speaks 5); the yellow coat and "zero = mute" aren't planted; the broken promise isn't paid off |
