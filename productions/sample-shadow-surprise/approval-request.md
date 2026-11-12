@@ -39,6 +39,20 @@
 - note: estimated 45 s vs target 60 s
 
 ## Independent evaluation
-Not run yet.
+**Verdict:** revise → not ready · **Would a viewer keep watching?** yes, the soup gag in beat 1 is an instant hook, and the dramatic irony of Milo's leaking shadow keeps tension through the middle. The likeliest drop-off is the crowded rule montage in beat 2 and the expository album in beat 4.
+
+| criterion | result | beats |
+|---|---|---|
+| clarity | weak | 1, 2, 4, 12 |
+| viewer participation | pass | 5, 6, 8, 9, 10, 11 |
+| cause and effect | pass | 3, 4, 6, 8, 9, 10, 11, 12 |
+| emotional investment | pass | 3, 4, 12, 13 |
+| recontextualisation | weak | 3, 4, 7, 12 |
+| setup and payoff | pass | 2, 3, 6, 7, 8, 9, 10, 11, 12 |
+| visual communication | pass | 1, 5, 6, 9, 10, 11, 12, 13 |
+| originality and adaptation | pass | 1, 2, 8, 11, 12 |
+| accuracy | n/a fiction | 1-13 |
+
+Full findings: productions/sample-shadow-surprise/eval/evaluation.md
 
 To approve: tell Claude; it records `npm run script -- sample-shadow-surprise --approve 412`.
