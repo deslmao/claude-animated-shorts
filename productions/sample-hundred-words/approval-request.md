@@ -1,45 +1,42 @@
 # In This World, Everyone Gets 100 Words a Day: story approval
 
-**Format:** world-rule + emotional. One simple rule changes ordinary life and creates a personal problem for a boy who never stops talking; the emergency is solved by a habit set up at the start (Gus's whistle), and the ending is a change in Milo, not just a fix.
+**Format:** world-rule + emotional. One rule changes ordinary life, and gives a boy who never stops talking a personal problem; the emergency is caused by his habit, the rule turns strangers into obstacles, and the way out is a skill he refused to learn, earned under pressure rather than a loophole.
 
-**Estimated length:** 56 s · **Words:** 170 · **Narration:** 925 characters (about 925 ElevenLabs credits) · **Voices:** narrator=george, milo=liam, gus=brian, mia=jessica
+**Estimated length:** 48 s · **Words:** 117 · **Narration:** 637 characters (about 637 ElevenLabs credits) · **Voices:** narrator=george, gus=brian, milo=liam, woman=matilda, guard=chris
 
 ## Premise
-- **question:** What happens when the boy who wastes all his words is the only one who can save his little sister?
+- **question:** Can a boy who has used up all his words find his little sister in a crowd?
 - **protagonist:** Milo
-- **want:** to be funny; everyone laughs at his jokes
+- **want:** to be the funny one; every word spent on a laugh
 - **fear:** being boring
-- **protects:** his little sister Mia
-- **decision:** to save words for the people who matter
-- **rule:** Everyone can speak 100 words a day; a counter on your wrist shows how many are left, and at zero your voice stops until midnight
+- **protects:** his little sister Mia, and his promise to Grandpa Gus
+- **decision:** to stop spending his words on himself, and to learn the family whistle he laughed at
+- **rule:** Everyone can say 100 words a day. A counter on your wrist shows how many are left. At zero your voice stops until morning.
 
 ## Beats (script + visual plan)
 | # | lines | happens | camera | changes |
 |---|---|---|---|---|
-| 1 | In this world, everyone gets one hundred words a day. Every word you say ticks the counter on your wrist. | a close-up of a wrist counter: 100; a man says "Good morning" and it ticks to 98 | insert -> medium | the rule is established |
-| 2 | So people point. Menus are pictures. Phone calls are very, very short.<br>Nobody wastes a word. | a café with picture menus; a couple shares one word each; a phone call: "Yes." Click. | wide -> medium | the world feels lived-in |
-| 3 | Except Milo.<br>Every evening Grandpa Gus whistles three notes, and little Mia drops everything and runs home. Whistling isn't words. | at dusk Gus whistles a three-note tune; little Mia drops her toy and runs home to him | full -> closeUp | the whistle is planted |
-| 4 | **milo:** Why did the toast go to school? It wanted to be a little bread-ier!<br>By breakfast, Milo had spent sixty words on jokes. | Milo tells jokes at breakfast; his counter drops fast: 61, 40, 12 | medium -> insert | Milo is almost out by breakfast |
-| 5 | **gus:** Save some.<br>**milo:** Nah, I'm good.<br>That was his last word. | Gus taps Milo's wrist; Milo rolls his eyes and says his last words: "Nah, I'm good." | closeUp | Milo has no voice left today |
-| 6 | That afternoon, they took Mia to the town fair. | Milo, Gus and Mia at a crowded fair | wide | the place is established |
-| 7 | Milo looked away for one second. When he turned back, her hand was gone. | Milo looks at a ride for a second; when he turns, Mia's hand is gone | closeUp -> highAngle | the emergency begins |
-| 8 | He opened his mouth to shout her name. Nothing came out. | Milo opens his mouth to shout her name: nothing; the counter flashes 0 | closeUp -> insert | he can't call her |
-| 9 | Then he remembered.<br>He put two fingers to his lips and whistled Grandpa's three notes. | Milo remembers Gus's tune and whistles it; the counter stays at 0; across the crowd, Mia's head snaps up | pov -> follow | Mia is coming back |
-| 10 | **mia:** You whistled!<br>Across the crowd, a little head turned, and ran straight to him. | Mia crashes into Milo's arms; Gus arrives, breathless | medium -> closeUp | Mia is safe |
-| 11 | The next morning, Milo told no jokes at breakfast.<br>He saved every single word for her bedtime story. | Milo's counter at 100 at bedtime; he kneels by Mia's bed and spends them on a story | pushIn | the character arc pays off |
+| 1 | In this world, everyone gets one hundred words a day. Every word you say ticks the counter on your wrist. | a wrist counter reading 100; a postman says "Morning" and it ticks to 99 | insert -> medium | the rule is established |
+| 2 | So people point. Menus are pictures. And everyone whistles. | a café with picture menus; a taxi hailed with a sharp whistle; a dog called home by a whistle | wide -> medium | the world is lived-in |
+| 3 | Everyone except Milo.<br>**gus:** From your belly, not your lips. Again. | at home Grandpa Gus whistles three clear notes and little Mia whistles them back; Milo tries and makes a pathetic hiss; Mia giggles | medium -> closeUp | the skill is planted, and so is the flaw |
+| 4 | **milo:** Whistling's for kettles, Grandpa!<br>**gus:** My knee's bad. Take Mia to the fair. Keep ten words for her. Promise.<br>**milo:** Promise. | Gus on the sofa, his leg up on a stool; he presses Mia's hand into Milo's | closeUp | Milo is responsible for Mia |
+| 5 | At the fair, Milo spent his words the way he always did.<br>**milo:** Why did the clown quit? He was tired of everyone's funny business! | Milo wins a joke contest on a little stage; kids laugh; his counter: 9, 6, 3, 0 | medium -> insert | no words left, again |
+| 6 | *(silent)* | he turns to Mia: her hand isn't in his; the crowd surges past | closeUp -> highAngle | the emergency starts |
+| 7 | **woman:** Two left. Sorry. For my son.<br>**guard:** Lost? Tell me her name. | Milo grabs a woman's sleeve and mimes "this tall"; she taps her own counter, 2, and pulls her son close; a guard asks for a name, and Milo's mouth opens with nothing | medium -> closeUp | there's no help from words |
+| 8 | *(silent)* | across the fairground, a small yellow coat drifts with the crowd towards the exit gate and the busy road | wide -> pov | the stakes jump: the road |
+| 9 | He tried Grandpa's whistle.<br>Nothing but air.<br>**gus:** From your belly, not your lips. | Milo puckers: a hiss; again: a squeak; he remembers Gus's voice, drops his shoulders, breathes deep, and three clear notes ring out | closeUp -> pushIn | he finally does it |
+| 10 | *(silent)* | at the gate the yellow coat stops; Mia turns and whistles the three notes back; Milo follows her answer through the crowd and scoops her up | pov -> follow | Mia is safe |
+| 11 | That night, Milo still had no words. He didn't need them. | home: Gus looks up from the sofa; Milo whistles the three notes; Mia whistles them back; Gus smiles and taps Milo's counter, then his own heart | medium -> closeUp | the arc pays off without words |
 
 ## Ending
 - **type:** realisation
 - **a:** none
 - **b:** none
 
-## Checks
-All story checks pass.
+## Structural checks
+- note: estimated 48 s vs target 65 s
 
-## Evaluation
-- **verdict:** ready
-- **weaknesses:** (1) v1 used a notebook for the rescue, but writing would be words too, so the payoff broke the rule. (2) v1 introduced the whistle in the emergency itself, so the solution felt unearned. (3) Beat 2 listed four world facts, too many for 4 seconds.
-- **revision:** The rescue is now Gus's whistle, planted in beat 3, consistent with the spoken-words rule. The counter stays at 0 on screen while he whistles, which shows the rule holding. Beat 2 is cut to three images.
-- **recheck:** There is one rule, its everyday consequences, a personal problem (his jokes), an emergency caused by that problem, and a solution set up earlier, plus a change in the character. Mia and Gus each have a clear role. A first-time viewer can follow it. A residual risk is that the joke line in beat 4 must actually be funny.
+## Independent evaluation
+Not run yet.
 
-To approve: tell Claude; it records `npm run script -- sample-hundred-words --approve 925`.
+To approve: tell Claude; it records `npm run script -- sample-hundred-words --approve 637`.

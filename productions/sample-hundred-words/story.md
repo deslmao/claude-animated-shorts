@@ -1,52 +1,56 @@
 # In This World, Everyone Gets 100 Words a Day
 format: world-rule+emotional
-why: One simple rule changes ordinary life and creates a personal problem for a boy who never stops talking; the emergency is solved by a habit set up at the start (Gus's whistle), and the ending is a change in Milo, not just a fix.
-length: 60
+why: One rule changes ordinary life, and gives a boy who never stops talking a personal problem; the emergency is caused by his habit, the rule turns strangers into obstacles, and the way out is a skill he refused to learn, earned under pressure rather than a loophole.
+length: 65
 voice: george
-voices: milo=liam, gus=brian, mia=jessica
+voices: milo=liam, gus=brian, guard=chris, woman=matilda
 mood: warm
 factual: no
 
 ## Premise
-- question: What happens when the boy who wastes all his words is the only one who can save his little sister?
+- question: Can a boy who has used up all his words find his little sister in a crowd?
 - protagonist: Milo
-- want: to be funny; everyone laughs at his jokes
+- want: to be the funny one; every word spent on a laugh
 - fear: being boring
-- protects: his little sister Mia
-- decision: to save words for the people who matter
-- rule: Everyone can speak 100 words a day; a counter on your wrist shows how many are left, and at zero your voice stops until midnight
+- protects: his little sister Mia, and his promise to Grandpa Gus
+- decision: to stop spending his words on himself, and to learn the family whistle he laughed at
+- rule: Everyone can say 100 words a day. A counter on your wrist shows how many are left. At zero your voice stops until morning.
 - conflict: none
 - action: none
 
 ## Setups and payoffs
 | setup | beat | payoff beat | how it pays off |
 |---|---|---|---|
-| Gus and Mia's "come home" whistle (whistling is not words) | 3 | 9 | Milo has no words left and whistles the tune, and Mia follows the sound |
-| Milo spending all his words on jokes by breakfast | 4 | 8 | at the fair his counter reads 0 when he needs to shout |
-| The counter is on the wrist and counts spoken words | 1 | 9 | the counter stays at 0 while he whistles, so the rule is consistent |
+| Gus's three-note family whistle; Milo can't do it (a feeble hiss) | 3 | 9 | at the fair, with no words left, Milo has to manage the whistle, and fails before he gets it |
+| Gus's whistling tip: from your belly, not your lips | 3 | 9 | remembering it is how he finally gets it right |
+| Milo's promise to keep ten words | 4 | 5 | he spends them all showing off at the fair |
+| Mia whistling back the three notes as Gus taught her | 3 | 10 | she answers his whistle, which guides him through the crowd |
 
 ## Beats
 | # | lines | happens | viewer learns | subject | action | camera | changes | sound |
 |---|---|---|---|---|---|---|---|---|
-| 1 | In this world, everyone gets one hundred words a day. Every word you say ticks the counter on your wrist. | a close-up of a wrist counter: 100; a man says "Good morning" and it ticks to 98 | the rule, visibly | the wrist counter | a thumb taps the counter | insert -> medium | the rule is established | two soft ticks |
-| 2 | So people point. Menus are pictures. Phone calls are very, very short. / Nobody wastes a word. | a café with picture menus; a couple shares one word each; a phone call: "Yes." Click. | how ordinary life adapts | the picture menu | people point and nod | wide -> medium | the world feels lived-in | quiet clinks, a click |
-| 3 | Except Milo. / Every evening Grandpa Gus whistles three notes, and little Mia drops everything and runs home. Whistling isn't words. | at dusk Gus whistles a three-note tune; little Mia drops her toy and runs home to him | a family signal that isn't words | Gus's whistle | Mia's head snaps toward the sound | full -> closeUp | the whistle is planted | a three-note whistle |
-| 4 | milo: Why did the toast go to school? It wanted to be a little bread-ier! / By breakfast, Milo had spent sixty words on jokes. | Milo tells jokes at breakfast; his counter drops fast: 61, 40, 12 | Milo spends words on laughs | Milo's counter | he mimes the punchline while the counter drops | medium -> insert | Milo is almost out by breakfast | ticks, a rimshot |
-| 5 | gus: Save some. / milo: Nah, I'm good. / That was his last word. | Gus taps Milo's wrist; Milo rolls his eyes and says his last words: "Nah, I'm good." | a warning that he ignores | the counter at 0 | the counter hits 0, and Milo's mouth opens with no sound | closeUp | Milo has no voice left today | a silent beat |
-| 6 | That afternoon, they took Mia to the town fair. | Milo, Gus and Mia at a crowded fair | the setting for the emergency | the crowd | Mia holds Milo's hand | wide | the place is established | a fair organ, chatter |
-| 7 | Milo looked away for one second. When he turned back, her hand was gone. | Milo looks at a ride for a second; when he turns, Mia's hand is gone | Mia is lost | his empty hand | Milo spins in the crowd | closeUp -> highAngle | the emergency begins | the music muffles |
-| 8 | He opened his mouth to shout her name. Nothing came out. | Milo opens his mouth to shout her name: nothing; the counter flashes 0 | his habit has cost him | the counter: 0 | he clutches his throat, panicking | closeUp -> insert | he can't call her | a heartbeat |
-| 9 | Then he remembered. / He put two fingers to his lips and whistled Grandpa's three notes. | Milo remembers Gus's tune and whistles it; the counter stays at 0; across the crowd, Mia's head snaps up | the payoff: whistling isn't words | Mia turning | she pushes through legs toward the sound | pov -> follow | Mia is coming back | the three-note whistle |
-| 10 | mia: You whistled! / Across the crowd, a little head turned, and ran straight to him. | Mia crashes into Milo's arms; Gus arrives, breathless | relief, and the set-up rule holds | the hug | Milo squeezes her, eyes shut | medium -> closeUp | Mia is safe | the music returns |
-| 11 | The next morning, Milo told no jokes at breakfast. / He saved every single word for her bedtime story. | Milo's counter at 100 at bedtime; he kneels by Mia's bed and spends them on a story | Milo has changed | the counter at 100 | he opens a picture book | pushIn | the character arc pays off | a soft page turn |
+| 1 | In this world, everyone gets one hundred words a day. Every word you say ticks the counter on your wrist. | a wrist counter reading 100; a postman says "Morning" and it ticks to 99 | the rule, shown | the wrist counter | a thumb taps the counter | insert -> medium | the rule is established | a soft tick |
+| 2 | So people point. Menus are pictures. And everyone whistles. | a café with picture menus; a taxi hailed with a sharp whistle; a dog called home by a whistle | how ordinary life adapts | the whistle for the taxi | a man whistles, a taxi swerves to him | wide -> medium | the world is lived-in | traffic, a whistle, a bark |
+| 3 | Everyone except Milo. / gus: From your belly, not your lips. Again. | at home Grandpa Gus whistles three clear notes and little Mia whistles them back; Milo tries and makes a pathetic hiss; Mia giggles | the family whistle, and Milo can't do it | Milo's puffed cheeks | Milo tries, hisses, laughs it off | medium -> closeUp | the skill is planted, and so is the flaw | three notes, three notes back, a hiss |
+| 4 | milo: Whistling's for kettles, Grandpa! / gus: My knee's bad. Take Mia to the fair. Keep ten words for her. Promise. / milo: Promise. | Gus on the sofa, his leg up on a stool; he presses Mia's hand into Milo's | the stakes: a promise, a sister, Gus can't come | the two hands | Gus joins their hands | closeUp | Milo is responsible for Mia | a clock tick |
+| 5 | At the fair, Milo spent his words the way he always did. / milo: Why did the clown quit? He was tired of everyone's funny business! | Milo wins a joke contest on a little stage; kids laugh; his counter: 9, 6, 3, 0 | he breaks his promise | the counter hitting 0 | he bows, then his face drops at the counter | medium -> insert | no words left, again | laughter, ticks, a ding |
+| 6 | ~ | he turns to Mia: her hand isn't in his; the crowd surges past | Mia is lost | the empty hand | Milo spins in the crowd | closeUp -> highAngle | the emergency starts | the music muffles |
+| 7 | woman: Two left. Sorry. For my son. / guard: Lost? Tell me her name. | Milo grabs a woman's sleeve and mimes "this tall"; she taps her own counter, 2, and pulls her son close; a guard asks for a name, and Milo's mouth opens with nothing | the rule makes strangers unable to help | the woman's counter: 2 | Milo mimes, pleads, clutches his throat | medium -> closeUp | there's no help from words | crowd noise |
+| 8 | ~ | across the fairground, a small yellow coat drifts with the crowd towards the exit gate and the busy road | Mia is heading for danger | the yellow coat at the gate | Milo shoves through legs, too far behind | wide -> pov | the stakes jump: the road | a car horn beyond the gate |
+| 9 | He tried Grandpa's whistle. / Nothing but air. / gus: From your belly, not your lips. | Milo puckers: a hiss; again: a squeak; he remembers Gus's voice, drops his shoulders, breathes deep, and three clear notes ring out | the skill, earned under pressure | Milo's face, chest rising | he fails twice, then whistles | closeUp -> pushIn | he finally does it | a hiss, a squeak, three clear notes |
+| 10 | ~ | at the gate the yellow coat stops; Mia turns and whistles the three notes back; Milo follows her answer through the crowd and scoops her up | she answers, and the whistle guides him | Mia whistling back | Mia whistles; Milo runs and hugs her | pov -> follow | Mia is safe | three notes back, then the fair music swells |
+| 11 | That night, Milo still had no words. He didn't need them. | home: Gus looks up from the sofa; Milo whistles the three notes; Mia whistles them back; Gus smiles and taps Milo's counter, then his own heart | Milo has changed; the family language | the three of them | Gus taps the counter, then his heart | medium -> closeUp | the arc pays off without words | three notes, three notes back, a soft chord |
 
 ## Ending
 - type: realisation
 - A: none
 - B: none
 
-## Evaluation
-- verdict: ready
-- weaknesses: (1) v1 used a notebook for the rescue, but writing would be words too, so the payoff broke the rule. (2) v1 introduced the whistle in the emergency itself, so the solution felt unearned. (3) Beat 2 listed four world facts, too many for 4 seconds.
-- revision: The rescue is now Gus's whistle, planted in beat 3, consistent with the spoken-words rule. The counter stays at 0 on screen while he whistles, which shows the rule holding. Beat 2 is cut to three images.
-- recheck: There is one rule, its everyday consequences, a personal problem (his jokes), an emergency caused by that problem, and a solution set up earlier, plus a change in the character. Mia and Gus each have a clear role. A first-time viewer can follow it. A residual risk is that the joke line in beat 4 must actually be funny.
+## Writer notes
+v1's problems are fixed: Gus is absent (his knee), strangers block Milo because of the rule, and the whistle isn't
+announced as a loophole. The world shows that everyone whistles; the drama is that Milo can't. The road beyond the gate raises
+the danger. One doubt: beat 2's "everyone whistles" may make the climax predictable. My bet is that predictable-but-hard
+(will he manage it?) is suspense, not a giveaway.
+
+## Revision
+none yet

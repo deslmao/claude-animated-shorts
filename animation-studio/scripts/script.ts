@@ -10,7 +10,7 @@
 //   --storyboard        writes a storyboard skeleton src/studio/stories/<id>.ts with exactly the approved lines (one
 //                       shot per line, valid defaults to refine) and registers it in stories/index.ts
 // story.md (docs/STORYTELLING.md) takes precedence: the story + visual plan as a beat sheet, linted, approved only with
-// a written `verdict: ready` evaluation; --storyboard then writes one shot per beat with its purpose as notes.
+// an INDEPENDENT evaluation (eval/evaluation.md, docs/storytelling/evaluator.md) whose findings support `ready`; --storyboard then writes one shot per beat with its purpose as notes.
 // script.md format (explainers, legacy): a `# Title` line, optional `mood: <mood>` / `voice: <preset>` lines, then the narration as
 // `- line text` (voice-over) or `- gus: line text` (a character speaks it, lip-synced). One bullet = one spoken line.
 import "./lib/dom-stub";
@@ -20,7 +20,7 @@ import { estimateClip, fnv } from "../src/studio/voice/narration";
 import { VOICES, NARRATOR } from "../src/studio/voice/voices";
 import { MOODS } from "../src/studio/sound/catalog";
 import { ROSTER } from "../src/studio/characters/roster";
-import { parseStory, lintStory, type Story } from "./lib/story";
+import { parseStory, lintStory, buildPacket, parseEvaluation, gateEvaluation, CRITERIA, type Story } from "./lib/story";
 
 const proc = globalThis as unknown as { process: { argv: string[]; exit(n: number): never } };
 const argv = proc.process.argv.slice(2), id = argv[0];
@@ -134,11 +134,19 @@ function storyMode(): void {
   const research = fs.existsSync(RESEARCH) ? fs.readFileSync(RESEARCH, "utf8") : "";
   const sources = [...new Set([...research.matchAll(/https?:\/\/[^\s)>\]]+/g)].map((m) => m[0]))];
   const L = lintStory(s, (text, who) => estimateClip(voiceOf(who), text).end * 1.053, sources.length);
-  const verdict = (s.evaluation.verdict ?? "").toLowerCase();
+  // the independent evaluator's packet (docs/storytelling/evaluator.md), rewritten on every run
+  const EVAL = path.join(DIR, "eval"); fs.mkdirSync(EVAL, { recursive: true });
+  const packet = buildPacket(s, research, L.flags);
+  fs.writeFileSync(path.join(EVAL, "packet.md"), packet.text);
+  const evalFile = path.join(EVAL, "evaluation.md"), ev = fs.existsSync(evalFile) ? parseEvaluation(fs.readFileSync(evalFile, "utf8")) : undefined;
+  const gate = ev ? gateEvaluation(ev, packet.hash, L.flags.length) : undefined;
   console.log(`\n${s.title} (${id}): ${s.format.join("+")} · ${s.beats.length} beats · ${L.words} words · ~${L.estimate.toFixed(0)} s (target ${s.length ?? "-"}) · ${L.chars} characters`);
   for (const f of L.fails) console.log(`  FAIL  ${f}`);
   for (const w of L.warns) console.log(`  WARN  ${w}`);
-  console.log(`  evaluation verdict: ${verdict || "(not written yet)"}`);
+  for (const f of L.flags) console.log(`  FLAG  ${f}`);
+  console.log(`  evaluator packet: productions/${id}/eval/packet.md (${packet.hash})`);
+  if (!gate) console.log(`  independent evaluation: not run yet (docs/storytelling/evaluator.md)`);
+  else { console.log(`  independent evaluation: verdict ${gate.verdict}, ${gate.fail} fail, ${gate.weak} weak -> ${gate.ready ? "READY" : "not ready"}`); for (const p of gate.problems) console.log(`    - ${p}`); }
   const lines = s.beats.flatMap((b) => b.lines);
   const cell = (x: string) => x.replace(/\|/g, "/");
   fs.writeFileSync(path.join(DIR, "approval-request.md"), [
@@ -149,18 +157,21 @@ function storyMode(): void {
     "## Beats (script + visual plan)", "| # | lines | happens | camera | changes |", "|---|---|---|---|---|",
     ...s.beats.map((b) => `| ${b.n} | ${b.lines.length ? b.lines.map((l) => (l.who === "narrator" ? "" : `**${l.who}:** `) + cell(l.text)).join("<br>") : "*(silent)*"} | ${cell(b.happens)} | ${cell(b.camera)} | ${cell(b.changes)} |`), "",
     "## Ending", ...Object.entries(s.ending).map(([k, v]) => `- **${k}:** ${v}`), "",
-    "## Checks", ...(L.fails.length || L.warns.length ? [...L.fails.map((f) => `- FAIL ${f}`), ...L.warns.map((w) => `- note: ${w}`)] : ["All story checks pass."]), "",
-    "## Evaluation", ...Object.entries(s.evaluation).map(([k, v]) => `- **${k}:** ${v}`), "",
+    "## Structural checks", ...(L.fails.length || L.warns.length ? [...L.fails.map((f) => `- FAIL ${f}`), ...L.warns.map((w) => `- note: ${w}`)] : ["All structural checks pass (structure only: not a judgement of quality)."]), "",
+    "## Independent evaluation", ...(ev && gate ? [`**Verdict:** ${gate.verdict} → ${gate.ready ? "ready" : "not ready"} · **Would a viewer keep watching?** ${ev.overall["keep-watching"] ?? "?"}`, "",
+      "| criterion | result | beats |", "|---|---|---|", ...CRITERIA.map((c) => `| ${c} | ${cell(ev.criteria[c]?.result ?? "missing")} | ${cell(ev.criteria[c]?.beats ?? "")} |`), "",
+      ...gate.problems.map((p) => `- gate: ${p}`), `Full findings: productions/${id}/eval/evaluation.md`] : ["Not run yet."]), "",
     `To approve: tell Claude; it records \`npm run script -- ${id} --approve ${L.chars}\`.`,
   ].join("\n") + "\n");
   console.log(`\napproval request: productions/${id}/approval-request.md`);
   const scriptHash = fnv(JSON.stringify(lines.map((l) => [voiceOf(l.who), l.who, l.text])));
   if (argv.includes("--approve")) {
     if (L.fails.length) die("refusing to record approval while story checks FAIL");
-    if (verdict !== "ready") die(`refusing to record approval: the evaluation verdict is "${verdict || "missing"}", not "ready" (docs/STORYTELLING.md §4)`);
+    if (!gate) return die("refusing to record approval: no independent evaluation (docs/storytelling/evaluator.md)");
+    if (!gate.ready) die(`refusing to record approval: the independent evaluation does not support "ready" (${gate.problems[0] ?? `verdict ${gate.verdict}`})`);
     if (Number(opt("--approve")) !== L.chars) die(`approval is for ${opt("--approve")} characters, the story costs ${L.chars}: show the owner the current story again`);
     const STATUS = path.join(DIR, "status.json"), status = fs.existsSync(STATUS) ? JSON.parse(fs.readFileSync(STATUS, "utf8")) : { id, composition: `Short-${id}`, stages: {} };
-    status.story = { format: s.format, beats: s.beats.length, hash: fnv(src), at: new Date().toISOString() };
+    status.story = { format: s.format, beats: s.beats.length, hash: fnv(src), packet: packet.hash, at: new Date().toISOString() };
     status.approval = { scriptHash, chars: L.chars, at: new Date().toISOString(), by: "the owner, in the conversation", script: `productions/${id}/story.md` };
     fs.writeFileSync(STATUS, JSON.stringify(status, null, 1) + "\n");
     console.log(`story approved (${s.format.join("+")}, ${s.beats.length} beats, ${L.chars} characters)`);

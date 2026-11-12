@@ -4,11 +4,11 @@
 story is a bad video.
 
 ```
-topic ─▶ 1 FORMAT ─▶ 2 STORY + VISUAL PLAN (one file) ─▶ 3 EVALUATE ─▶ 4 one revision ─▶ 5 OWNER APPROVAL ─▶ production
-                     productions/<id>/story.md            npm run script -- <id>      (only if needed)   --approve
+topic ─▶ 1 FORMAT ─▶ 2 STORY + VISUAL PLAN (one file) ─▶ 3 INDEPENDENT EVALUATION ─▶ 4 one revision ─▶ 5 OWNER APPROVAL ─▶ production
+                     productions/<id>/story.md            eval/packet.md → evaluation.md   (only if needed)   --approve
 ```
 
-There's one writer (Claude) and one evaluator pass, with at most one focused revision. Every principle below is a writing
+There's one writer (Claude) and one **independent** evaluator (a fresh agent that sees only the script and storyboard), with at most one focused revision. Every principle below is a writing
 requirement and an evaluation criterion. None of them is a separate stage or a separate model call. `npm run script` lints
 the mechanical parts (structure, cause and effect, setups and payoffs, static shots, repeated framing, the decision, length, sources),
 so the evaluator can spend its attention on judgement.
@@ -142,50 +142,44 @@ The storyboard communicates events; it doesn't decorate the narration. For every
 - **Inserts are expensive attention.** Use repeated phone or screen close-ups only for new evidence. Otherwise show it in the scene
   (for example, floating message bubbles beside the character).
 
-## 4. The evaluator (one pass, honest)
+## 4. The independent evaluator (one call per story)
 
-Write it into `## Evaluation` in `story.md`, after `npm run script -- <id>` has run the lint. Judge the script and the visual plan
-together.
+The writer doesn't grade its own work. After `npm run script -- <id>` passes the structural checks, it writes
+`eval/packet.md`: the script, the visual storyboard and the research, with the automated flags. It leaves out the writer's
+premise, intentions, "viewer learns", "changes" and evidence columns, the setups ledger and the option consequences.
+**One fresh agent** then reads only that packet and [storytelling/evaluator.md](storytelling/evaluator.md), and writes
+`eval/evaluation.md`. The rubric there defines the procedure, the prompt and the exact format.
 
-- **Story:**
-  - Is the premise compelling, the opening effective and the format right?
-  - Is the motivation clear, and does the logic hold?
-  - Does every beat change the situation?
-  - Is the information released at the right time?
-  - Is the escalation meaningful?
-  - Are setups paid off, and does the ending pay off the question?
-- **Engagement:**
-  - Is there a question the viewer wants answered?
-  - Is the viewer involved, through decisions or competing explanations?
-  - Does new information change their understanding?
-  - Where does nothing happen?
-- **Visuals:**
-  - Does every important action have a picture?
-  - Are characters doing, not standing?
-  - Is the evidence readable and the camera directing attention?
-  - Are reactions meaningful, the space clear, and big moments given time?
-  - Does the no-narration test pass?
-- **Clarity:**
-  - Would a first-time viewer follow it?
-  - Is any concept overloaded?
-  - Is the mechanism explained?
-  - Are identities and motives clear?
-  - Is the final decision understandable?
-- **Accuracy** (factual stories):
-  - Is every claim sourced in `research.md`?
-  - Are uncertain claims worded as uncertain?
-  - Does the dramatisation change what happened?
-  - Viral videos and their comments are **not** sources. Use research to learn techniques, not to establish facts.
+- **Nine criteria:**
+  - clarity;
+  - viewer participation;
+  - cause and effect;
+  - emotional investment;
+  - recontextualisation;
+  - setup and payoff;
+  - visual communication;
+  - originality;
+  - accuracy.
 
-**Output:**
-- the three most important weaknesses, each with *why* it hurts and a targeted fix;
-- **one** focused revision;
-- a re-check;
-- a verdict: `ready`, `revise`, or `not strong enough`. Say so honestly.
+  Each gets pass, weak, fail or n/a (with a reason), plus the beats, the evidence from those beats, the problem and the fix.
+- **Eight stress tests**, applied only where relevant:
+  - plot hole;
+  - consistency;
+  - giveaway;
+  - dilemma balance;
+  - redundancy;
+  - originality;
+  - emotional cost;
+  - cold viewer.
+- **Automated flags**, such as a possible giveaway, possible redundancy, evidence balance or late motivation, are heuristics. The evaluator confirms or dismisses each one in context.
+- **Overall:** would an ordinary viewer genuinely keep watching? The verdict is `ready`, `revise` or `reject`.
+- **The gate:**
+  - `--approve` needs the lint to pass and an evaluation of the *current* packet whose verdict is `ready`;
+  - that verdict must be consistent with the findings: no fail, at most two weak, no confirmed flag, keep-watching yes.
 
-No numeric scores. Don't rewrite the whole story in a loop.
-`npm run script -- <id> --approve` refuses unless the lint passes and the verdict is `ready`. The owner approves the actual story
-before any production.
+  Structural checks alone never make a story ready.
+- **At most one** focused revision and one re-evaluation. No loops. A story that still isn't ready goes to the owner labelled as such.
+- **The writer's own reasoning** goes in `## Writer notes` in `story.md`, for the owner. The evaluator never sees it.
 
 ## 5. After approval
 

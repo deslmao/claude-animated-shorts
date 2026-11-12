@@ -27,8 +27,8 @@ checks and publishes the video. Read `PROJECT_STATUS.md` first in every session.
    serial, or other) and say why. For factual stories, research first (`research.md`: 2+ credible sources; viral videos and comments are not sources).
 2. **Story + visual plan** (`productions/<id>/story.md`, from `productions/_template/story.md`): premise and question,
    protagonist (want / fear / decision), setups and payoffs, and one row per beat with its lines, what happens, the subject, the action,
-   the camera and what changes. `npm run script -- <id>` lints it and writes `approval-request.md`. Then write the one honest
-   evaluation (story, engagement, visuals, clarity, accuracy), make one focused revision, and set the verdict.
+   the camera and what changes. `npm run script -- <id>` lints it and writes `eval/packet.md`. Then **one fresh agent** evaluates
+   the packet independently (`docs/storytelling/evaluator.md`: nine criteria, eight stress tests). Make at most one focused revision and one re-evaluation.
 3. **Approval:** the owner approves the actual story. `npm run script -- <id> --approve <chars>` refuses on a lint FAIL or a
    verdict other than `ready`. (Legacy explainers can still use `script.md` with the formula in docs/TOPIC_TO_VIDEO.md.)
 4. **Assets, reuse first:**
@@ -42,7 +42,7 @@ checks and publishes the video. Read `PROJECT_STATUS.md` first in every session.
 ## Where things are
 | Thing | Where |
 |---|---|
-| Storytelling system, formats, evaluator | `docs/STORYTELLING.md`, `docs/storytelling/benchmarks.md`, `productions/_template/story.md`, `scripts/lib/story.ts` |
+| Storytelling system, formats, evaluator | `docs/STORYTELLING.md`, `docs/storytelling/evaluator.md` (the independent evaluator), `docs/storytelling/benchmarks.md`, `productions/_template/story.md`, `scripts/lib/story.ts` |
 | Storyboard format | `docs/STORYBOARD.md`, `animation-studio/src/studio/story/types.ts` |
 | Asset library and themes | `docs/LIBRARY.md`, `docs/ASSETS.md` (generated), `src/studio/library/registry.ts`, `src/studio/themes/` |
 | Narration, captions, lip-sync | `docs/VOICE.md` |

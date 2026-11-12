@@ -31,20 +31,21 @@ factual: no
 <!-- One row per moment. lines: spoken lines, separated by " / "; "who: text" for a character, plain text for the
      narrator, "~" for a silent action beat. No "|" inside cells. camera: library moves (wide, full, medium, close,
      closeUp, insert, pov, overShoulder, pushIn, pullOut, follow, lowHero, highAngle, dutch, orbit, crane, establish),
-     "a -> b" for a change within the beat. changes: what is different at the end of the beat (never "nothing"). -->
-| # | lines | happens | viewer learns | subject | action | camera | changes | sound |
-|---|---|---|---|---|---|---|---|---|
-| 1 | <hook line> | <physical event> | <what they understand> | <the one thing that matters> | <action / reaction> | wide -> insert | <what is different now> | <sound / silence> |
+     "a -> b" for a change within the beat. changes: what is different at the end of the beat (never "nothing").
+     evidence (immersive/mystery): which explanation this beat's OBSERVABLE evidence supports: A, B, A+B or -.
+     The evaluator never sees "viewer learns", "changes" or "evidence": the lines and pictures must carry them. -->
+| # | lines | happens | viewer learns | subject | action | camera | changes | sound | evidence |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | <hook line> | <physical event> | <what they understand> | <the one thing that matters> | <action / reaction> | wide -> insert | <what is different now> | <sound / silence> | <A, B, A+B or -> |
 
 ## Ending
 - type: <solution | realisation | reversal | reveal | consequence | decision>
 - A: <option> -> <its consequence>      (decision endings only)
 - B: <option> -> <its consequence>
 
-## Evaluation
-<!-- Written after `npm run script -- <id>`. One honest pass (docs/STORYTELLING.md §4): the three biggest weaknesses,
-     why they hurt, the targeted fix, ONE revision, the re-check. No scores. -->
-- verdict: revise
-- weaknesses:
-- revision:
-- recheck:
+## Writer notes
+<!-- Why you believe it works, intended readings, open doubts. For the owner only: the independent evaluator never
+     sees this section (docs/storytelling/evaluator.md). -->
+
+## Revision
+<!-- After the independent evaluation: the ONE focused revision you made in response (or "none"). -->

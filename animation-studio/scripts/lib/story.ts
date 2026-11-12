@@ -1,18 +1,27 @@
 // Story format (docs/STORYTELLING.md): productions/<id>/story.md = the script and its visual plan in one beat sheet.
-// parseStory reads it; lintStory checks the mechanical parts of the evaluator (structure, cause and effect, setups and
-// payoffs, static or repetitive visuals, the decision, length, sources). Judgement stays with the written evaluation.
+//   parseStory      reads it
+//   lintStory       structural checks (FAIL) plus heuristic flags (WARN, never verdicts) for the independent evaluator
+//   buildPacket     what the independent evaluator sees: the script, the visual storyboard, research and the flags,
+//                   but NOT the writer's premise, intentions, "viewer learns" / "changes" / evidence columns, setups
+//                   ledger, option consequences or writer notes (docs/storytelling/evaluator.md)
+//   parseEvaluation / gateEvaluation   read productions/<id>/eval/evaluation.md and decide whether `ready` is allowed
 
 export const FORMATS = ["immersive", "action-first", "world-rule", "emotional", "mystery", "serial"] as const;
 export const CAMERA_WORDS = ["wide", "full", "medium", "close", "extreme", "closeup", "insert", "pov", "overshoulder", "pushin", "pullout",
   "follow", "lowhero", "highangle", "dutch", "orbit", "crane", "establish", "view", "frame", "whip", "hold"];
+export const CRITERIA = ["clarity", "viewer participation", "cause and effect", "emotional investment", "recontextualisation", "setup and payoff", "visual communication", "originality", "accuracy"] as const;
+/** criteria that apply to every story (the others may be n/a with a reason) */
+const ALWAYS = ["clarity", "cause and effect", "visual communication", "originality"];
+export const STRESS_TESTS = ["plot hole", "consistency", "giveaway", "dilemma balance", "redundancy", "originality", "emotional cost", "cold viewer"] as const;
 const STATIC = /^(stands?|standing|talks?|talking|explains?|explaining|says|speaks|listens?|waits?|idle|poses?|looks at (the )?camera|faces (the )?camera)\b[\s.,;]*$/i;
+const STOP = new Set("the a an and or but of to in on at for with from by as is are was were be been it its this that these those he she they his her their him them you your i me my we our not no so then than there here into onto out up down off over just very can could would will what when where who why how all any each every one two three some more most only own same too also has have had do does did".split(" "));
 
 export type StoryLine = { who: string; text: string };
-export type Beat = { n: number; lines: StoryLine[]; happens: string; learns: string; subject: string; action: string; camera: string; changes: string; sound: string };
+export type Beat = { n: number; lines: StoryLine[]; happens: string; learns: string; subject: string; action: string; camera: string; changes: string; sound: string; evidence: string };
 export type Story = {
   title: string; format: string[]; why: string; length?: number; voice?: string; voices: Record<string, string>; mood?: string; factual: boolean;
   premise: Record<string, string>; setups: { setup: string; beat: number; payoff: number; how: string }[];
-  beats: Beat[]; ending: Record<string, string>; evaluation: Record<string, string>;
+  beats: Beat[]; ending: Record<string, string>;
 };
 
 const section = (src: string, name: string) => {
@@ -22,16 +31,17 @@ const section = (src: string, name: string) => {
 const bullets = (s: string) => Object.fromEntries([...s.matchAll(/^\s*-\s*([A-Za-z][\w -]*?)\s*:\s*(.*)$/gm)].map((m) => [m[1].trim().toLowerCase(), m[2].trim()]));
 const rows = (s: string) => s.split("\n").filter((l) => /^\s*\|/.test(l) && !/^\s*\|\s*-/.test(l)).map((l) => l.trim().replace(/^\||\|$/g, "").split("|").map((c) => c.trim()));
 const empty = (v?: string) => !v || /^(<.*>|none|n\/a|-|tbd|todo)?$/i.test(v.trim());
+const content = (s: string) => (s.toLowerCase().match(/[a-z][a-z']{3,}/g) ?? []).map((w) => w.replace(/'s$/, "")).filter((w) => !STOP.has(w));
+const stem = (w: string) => w.replace(/(ing|ed|es|s)$/, "");
 
 export const parseStory = (src: string): Story => {
   const head = src.split(/^##\s/m)[0];
   const meta = (k: string) => head.match(new RegExp(`^${k}:\\s*(.+)$`, "mi"))?.[1].trim();
   const voices = Object.fromEntries((meta("voices") ?? "").split(",").map((p) => p.split("=").map((x) => x.trim())).filter((p) => p.length === 2 && p[0] && p[1]));
-  const beatRows = rows(section(src, "Beats")).slice(1);
-  const beats: Beat[] = beatRows.filter((r) => /^\d+$/.test(r[0])).map((r) => ({
+  const beats: Beat[] = rows(section(src, "Beats")).slice(1).filter((r) => /^\d+$/.test(r[0])).map((r) => ({
     n: Number(r[0]),
     lines: (r[1] ?? "").split(/\s+\/\s+/).map((x) => x.trim()).filter((x) => x && x !== "~").map((x) => { const m = x.match(/^([a-z][\w]*):\s+(.+)$/); return m ? { who: m[1], text: m[2] } : { who: "narrator", text: x }; }),
-    happens: r[2] ?? "", learns: r[3] ?? "", subject: r[4] ?? "", action: r[5] ?? "", camera: r[6] ?? "", changes: r[7] ?? "", sound: r[8] ?? "",
+    happens: r[2] ?? "", learns: r[3] ?? "", subject: r[4] ?? "", action: r[5] ?? "", camera: r[6] ?? "", changes: r[7] ?? "", sound: r[8] ?? "", evidence: (r[9] ?? "").trim(),
   }));
   const setups = rows(section(src, "Setups and payoffs")).slice(1).filter((r) => r.length >= 3 && /\d/.test(r[1] ?? "")).map((r) => ({ setup: r[0], beat: Number(r[1]), payoff: Number(r[2]), how: r[3] ?? "" }));
   return {
@@ -39,14 +49,14 @@ export const parseStory = (src: string): Story => {
     format: (meta("format") ?? "").toLowerCase().split("+").map((f) => f.trim()).filter(Boolean),
     why: meta("why") ?? "", length: meta("length") ? Number(meta("length")) : undefined, voice: meta("voice"), voices, mood: meta("mood"),
     factual: /^(yes|true)/i.test(meta("factual") ?? "no"),
-    premise: bullets(section(src, "Premise")), setups, beats, ending: bullets(section(src, "Ending")), evaluation: bullets(section(src, "Evaluation")),
+    premise: bullets(section(src, "Premise")), setups, beats, ending: bullets(section(src, "Ending")),
   };
 };
 
-export type Lint = { fails: string[]; warns: string[]; estimate: number; words: number; chars: number };
-/** est(text, who): seconds for one spoken line (the narration estimator, by the line's voice) */
+export type Lint = { fails: string[]; warns: string[]; flags: string[]; estimate: number; words: number; chars: number };
+/** est(text, who): seconds for one spoken line. warns = structural notes; flags = heuristic signals for the evaluator */
 export const lintStory = (s: Story, est: (text: string, who: string) => number, sources: number): Lint => {
-  const fails: string[] = [], warns: string[] = [], P = s.premise, f = s.format;
+  const fails: string[] = [], warns: string[] = [], flags: string[] = [], P = s.premise, f = s.format;
   const has = (k: string) => f.includes(k);
   // format and premise
   if (!f.length) fails.push("no format (docs/STORYTELLING.md §1)");
@@ -74,12 +84,10 @@ export const lintStory = (s: Story, est: (text: string, who: string) => number, 
   const inserts = new Map<string, number>();
   for (const b of B) if (/\b(insert|pov)\b/i.test(b.camera)) { const k = b.subject.toLowerCase().replace(/[^a-z ]/g, "").trim().split(" ").slice(0, 2).join(" "); inserts.set(k, (inserts.get(k) ?? 0) + 1); }
   for (const [k, n] of inserts) if (n > 3) warns.push(`${n} inserts / POVs of "${k}": repeated close-ups lose attention (show it in the scene)`);
-  // setups and payoffs
   for (const p of s.setups) {
     if (!B.some((b) => b.n === p.beat) || !B.some((b) => b.n === p.payoff)) fails.push(`setup "${p.setup}": beat ${p.beat} or ${p.payoff} does not exist`);
     else if (p.payoff <= p.beat) fails.push(`setup "${p.setup}": the payoff (beat ${p.payoff}) must come after the setup (beat ${p.beat})`);
   }
-  // ending
   const E = s.ending;
   if (empty(E.type)) fails.push("ending: no type (solution, realisation, reversal, reveal, consequence or decision)");
   if (/decision/i.test(E.type ?? "")) for (const k of ["a", "b"]) if (!/->\s*\S/.test(E[k] ?? "")) fails.push(`ending: option ${k.toUpperCase()} needs "label -> consequence"`);
@@ -94,9 +102,105 @@ export const lintStory = (s: Story, est: (text: string, who: string) => number, 
   if (estimate > 110) fails.push(`estimated ${estimate.toFixed(0)} s: too long for a Short`);
   const hook = (lines[0]?.text ?? "").split(/(?<=[.!?])\s/)[0].split(/\s+/).length;
   if (hook > 18) warns.push(`the first sentence is ${hook} words: land the situation faster`);
-  if (has("immersive") && !/\b(you|your)\b/i.test(lines.slice(0, 2).map((l) => l.text).join(" "))) warns.push("immersive: the opening isn't in the second person (\"Imagine your...\"): is the viewer inside the situation?");
   if (has("action-first") && !/\byou see\b|here'?s (why|the thing)|the reason|it turns out|because\b/i.test(lines.map((l) => l.text).join(" "))) warns.push("action-first: no explanation turn");
-  // facts
   if (s.factual && sources < 2) fails.push(`factual story: research.md lists ${sources} source URL(s), at least 2 are required (viral videos and comments are not sources)`);
-  return { fails, warns, estimate, words, chars };
+
+  // ---- heuristic flags: signals for the independent evaluator to confirm or dismiss, never verdicts
+  // possible giveaway: the key words of a payoff are spoken before the payoff beat
+  for (const p of s.setups) {
+    // only the words of HOW it pays off (not the setup's own description): planting the setup is good, announcing the solution isn't
+    const key = new Set(content(p.how).map(stem));
+    const before = B.filter((b) => b.n < p.payoff).flatMap((b) => b.lines.map((l) => ({ n: b.n, w: [...new Set(content(l.text).map(stem))] })));
+    const hits = before.filter((x) => x.w.filter((w) => key.has(w)).length >= 2);
+    if (hits.length) flags.push(`possible giveaway: lines in beat ${[...new Set(hits.map((h) => h.n))].join(", ")} share key words with what pays off at beat ${p.payoff}. Does a line reveal the solution or reveal too early?`);
+  }
+  // possible redundancy: a line mostly repeats what its own shot shows
+  for (const b of B) for (const l of b.lines) {
+    const w = content(l.text), shot = new Set(content(b.happens + " " + b.subject).map(stem));
+    if (w.length >= 5) { const r = w.filter((x) => shot.has(stem(x))).length / w.length; if (r >= 0.6) flags.push(`possible redundancy: beat ${b.n} "${l.text.slice(0, 50)}…" largely restates what its shot shows (${Math.round(r * 100)}% shared words). Does the line add meaning, or only describe the picture?`); }
+  }
+  // evidence balance (competing explanations): counted from the evidence column (A / B per beat)
+  if ((has("immersive") || has("mystery")) && !empty(P.conflict)) {
+    const a = B.filter((b) => /\bA\b/.test(b.evidence)).length, bb = B.filter((b) => /\bB\b/.test(b.evidence)).length;
+    if (!a && !bb) flags.push("evidence balance: no beat is tagged with evidence for A or B. Is the dilemma built from observable evidence?");
+    else if (Math.min(a, bb) < 2 || Math.abs(a - bb) >= 2) flags.push(`evidence balance: ${a} beat(s) of evidence for A, ${bb} for B. Is one side clearly favoured by the end?`);
+    const last = [...B].reverse().find((b) => /\b[AB]\b/.test(b.evidence));
+    if (last && !/\bA\b.*\bB\b|\bB\b.*\bA\b/.test(last.evidence)) flags.push(`evidence balance: the last evidence (beat ${last.n}) only supports ${last.evidence.match(/\b[AB]\b/)?.[0]}. Does it settle the choice too early?`);
+  }
+  // motivation: is the want visible in the first third of the story?
+  if (!empty(P.want)) {
+    const want = new Set(content(P.want).map(stem)), third = B.slice(0, Math.max(2, Math.ceil(B.length / 3)));
+    if (!third.some((b) => content(b.lines.map((l) => l.text).join(" ") + " " + b.happens + " " + b.action).some((w) => want.has(stem(w)))))
+      flags.push(`motivation: nothing in the first ${third.length} beats visibly mentions or shows the protagonist's want. Is it clear early enough for this story?`);
+  }
+  return { fails, warns, flags, estimate, words, chars };
+};
+
+// ---------------------------------------------------------------- the independent evaluator's packet
+const hash = (s: string) => { let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return (h >>> 0).toString(16); };
+/** the evaluator's input: what a viewer gets (lines + pictures + on-screen choices), the research, the flags */
+export const buildPacket = (s: Story, research: string, flags: string[]) => {
+  const cell = (x: string) => x.replace(/\|/g, "/");
+  const body = [
+    `# Evaluation packet: ${s.title}`, "",
+    `format (as claimed by the writer, for choosing which criteria apply): ${s.format.join(" + ")}`,
+    `factual: ${s.factual ? "yes (judge accuracy against the research below)" : "no (fiction)"}`, "",
+    "## Script and visual storyboard",
+    "Each beat: the spoken lines (who: text; plain text = narrator; *(silent)* = no words) and the planned picture.", "",
+    "| # | lines | on screen: what happens | key subject | action / reaction | camera | sound |", "|---|---|---|---|---|---|---|",
+    ...s.beats.map((b) => `| ${b.n} | ${b.lines.length ? b.lines.map((l) => (l.who === "narrator" ? "" : `${l.who}: `) + cell(l.text)).join(" / ") : "*(silent)*"} | ${cell(b.happens)} | ${cell(b.subject)} | ${cell(b.action)} | ${cell(b.camera)} | ${cell(b.sound)} |`), "",
+    "## Ending as shown",
+    /decision/i.test(s.ending.type ?? "") ? `On-screen choice: A: ${(s.ending.a ?? "").split("->")[0].trim()} / B: ${(s.ending.b ?? "").split("->")[0].trim()}` : "No on-screen choice: the story ends on its last beat.", "",
+    "## Automated flags (heuristic: confirm or dismiss each one, in context)",
+    ...(flags.length ? flags.map((x) => `- ${x}`) : ["- (none)"]), "",
+    ...(s.factual ? ["## Research supplied by the writer (claims and sources: check the story against them)", research.trim() || "(none)", ""] : []),
+  ].join("\n");
+  const h = hash(body);
+  return { text: `${body}\npacket: ${h}\n`, hash: h };
+};
+
+// ---------------------------------------------------------------- the evaluation and the gate
+export type Eval = { packet?: string; criteria: Record<string, Record<string, string>>; tests: Record<string, Record<string, string>>; flags: string[]; overall: Record<string, string> };
+const blocks = (s: string) => Object.fromEntries(s.split(/^###\s+/m).slice(1).map((b) => { const [h, ...rest] = b.split("\n"); return [h.trim().toLowerCase(), bullets(rest.join("\n"))]; }));
+export const parseEvaluation = (src: string): Eval => ({
+  packet: src.match(/^packet:\s*([0-9a-f]+)/m)?.[1],
+  criteria: blocks(section(src, "Criteria")), tests: blocks(section(src, "Stress tests")),
+  flags: [...section(src, "Automated flags").matchAll(/^\s*-\s*(.+)$/gm)].map((m) => m[1]),
+  overall: bullets(section(src, "Overall")),
+});
+const res = (v?: string) => (v ?? "").toLowerCase().match(/^(pass|weak|fail|n\/a)/)?.[1];
+/** may the story be called `ready`? (the evaluator's verdict must be ready AND its findings must support it) */
+export const gateEvaluation = (e: Eval, packetHash: string, flagCount: number) => {
+  const problems: string[] = [];
+  if (e.packet !== packetHash) problems.push(`the evaluation is for packet ${e.packet ?? "?"}, the story is now packet ${packetHash}: re-evaluate the current story`);
+  let weak = 0, fail = 0;
+  for (const c of CRITERIA) {
+    const x = e.criteria[c];
+    if (!x) { problems.push(`criterion "${c}" is missing`); continue; }
+    const r = res(x.result);
+    if (!r) { problems.push(`criterion "${c}": no result (pass / weak / fail / n/a)`); continue; }
+    if (r === "n/a") { if (ALWAYS.includes(c)) problems.push(`criterion "${c}" always applies (n/a not allowed)`); else if ((x.result ?? "").length < 8) problems.push(`criterion "${c}": n/a needs a reason`); continue; }
+    if (!/\d/.test(x.beats ?? "")) problems.push(`criterion "${c}": no beat references`);
+    if (empty(x.evidence)) problems.push(`criterion "${c}": no evidence from the beats`);
+    if (r !== "pass" && (empty(x.problem) || empty(x.fix))) problems.push(`criterion "${c}": a ${r} needs the problem and a fix`);
+    if (r === "weak") weak++; if (r === "fail") fail++;
+  }
+  for (const t of STRESS_TESTS) {
+    const x = e.tests[t];
+    if (!x) { problems.push(`stress test "${t}" is missing`); continue; }
+    if (!/^(yes|no)/i.test(x.applies ?? "")) problems.push(`stress test "${t}": applies yes / no (with a reason)`);
+    else if (/^yes/i.test(x.applies ?? "")) { const r = res(x.result); if (!r || r === "n/a") problems.push(`stress test "${t}": no result`); else if (r === "fail") fail++; }
+  }
+  if (e.flags.length < flagCount) problems.push(`the evaluation answers ${e.flags.length} of ${flagCount} automated flags (confirm or dismiss each)`);
+  const confirmed = e.flags.filter((f) => /\bconfirmed\b/i.test(f)).length;
+  const verdict = (e.overall.verdict ?? "").toLowerCase().match(/^(ready|revise|reject)/)?.[1];
+  const keep = /^yes/i.test(e.overall["keep-watching"] ?? "");
+  if (!verdict) problems.push("overall: no verdict (ready / revise / reject)");
+  if (!e.overall["keep-watching"]) problems.push("overall: keep-watching is not answered");
+  const blocking: string[] = [];
+  if (fail) blocking.push(`${fail} fail(s)`); if (weak > 2) blocking.push(`${weak} weak criteria`); if (!keep) blocking.push("an ordinary viewer would not keep watching");
+  if (confirmed) blocking.push(`${confirmed} confirmed flag(s)`);
+  const ready = verdict === "ready" && !problems.length && !blocking.length;
+  if (verdict === "ready" && blocking.length) problems.push(`verdict "ready" contradicts the findings: ${blocking.join(", ")}`);
+  return { ready, verdict: verdict ?? "missing", weak, fail, problems };
 };
