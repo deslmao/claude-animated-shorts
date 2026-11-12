@@ -39,6 +39,20 @@
 - note: estimated 52 s vs target 65 s
 
 ## Independent evaluation
-Not run yet.
+**Verdict:** revise → not ready · **Would a viewer keep watching?** yes, the hook (one trail to your door, none back, at 2 a.m.) is strong, and the house search and the vanishing-trail chase keep it moving. The main risk is beat 2: viewers who guess "it's Ivy" from the narrator's hint may coast or swipe during the silent search (beats 3–4), because the intruder threat no longer feels real.
+
+| criterion | result | beats |
+|---|---|---|
+| clarity | weak | 2, 6, 8, 13 |
+| viewer participation | weak | 2, 5, 6, 7, 9 |
+| cause and effect | pass | 2, 3, 4, 8, 10, 11, 12 |
+| emotional investment | pass | 2, 8, 10, 12 |
+| recontextualisation | pass | 1, 2, 4, 13 |
+| setup and payoff | pass | 2, 3, 6, 8, 10, 12 |
+| visual communication | weak | 3, 5, 6, 7, 9 |
+| originality and adaptation | pass | 1, 8, 9, 11 |
+| accuracy | n/a fiction | 8 |
+
+Full findings: productions/sample-snow-prints/eval/evaluation.md
 
 To approve: tell Claude; it records `npm run script -- sample-snow-prints --approve 701`.

@@ -32,3 +32,9 @@ the fix is the habit that prevents it.
 10. **A defensible ending line.** Top comments attack quotable lines and overclaims.
     - **Example:** "Nobody could have known."
     - **Habit:** end on a line that's true and earned.
+11. **Prop and costume continuity breaks during revisions.**
+    - **Example:** who wears which boots. Ivy leaves in your boots, you chase her in trainers, yet the ending shows "one big trail and one small", and her boots are "soaked" though she never wore them (One Set of Footprints).
+    - **Habit:** for every object the plot depends on, track where it is and who has it at each event, and re-check it after any revision.
+12. **Narration undoing a planted clue.**
+    - **Example:** after phase 1 said "don't linger on the lump in the bed", the writer added the line "Ivy's asleep. At least, that's what it looks like", announcing the trick anyway.
+    - **Habit:** a plant must look ordinary. Never add a line that tells the viewer to doubt it.
