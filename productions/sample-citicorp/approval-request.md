@@ -48,7 +48,7 @@
 | recontextualisation | pass | 1, 8, 3, 11 |
 | setup and payoff | pass | 1, 2, 3, 5, 6, 8, 11 |
 | visual communication | weak | 4, 7, 10, 11 |
-| originality | pass | 1, 7, 11 |
+| originality and adaptation | pass | 1, 7, 11 |
 | accuracy | fail | 1, 4, 6, 7, 9, 11 |
 
 Full findings: productions/sample-citicorp/eval/evaluation.md

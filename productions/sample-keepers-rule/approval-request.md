@@ -48,7 +48,7 @@ All structural checks pass (structure only: not a judgement of quality).
 | recontextualisation | pass | 1, 2, 6, 9 |
 | setup and payoff | pass | 1, 2, 5, 6, 8, 9 |
 | visual communication | weak | 3, 4, 7, 9, 10 |
-| originality | weak | 1, 3, 6, 9, 11 |
+| originality and adaptation | weak | 1, 3, 6, 9, 11 |
 | accuracy | n/a fiction | 8 |
 
 Full findings: productions/sample-keepers-rule/eval/evaluation.md

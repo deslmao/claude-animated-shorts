@@ -147,7 +147,8 @@ export const buildSpinePacket = (s: Story, sp: Spine, research: string, flags: s
     "## Rules of the situation", ...sp.constraints.map((x) => `- ${x}`), "",
     "## Event chain (what happens, in order, and what the viewer sees)",
     "| # | link | event | decision | what the viewer sees |", "|---|---|---|---|---|",
-    ...sp.events.map((e) => `| ${e.id} | ${c(e.link)} | ${c(e.event)} | ${c(e.decision || "-")} | ${c(e.proof)} |`), "",
+    // the decision as taken, without the writer's "(rejected: ..., because ...)" defence: the evaluator probes alternatives itself
+    ...sp.events.map((e) => `| ${e.id} | ${c(e.link)} | ${c(e.event)} | ${c(e.decision.replace(/\s*\(?\s*rejected:[^)]*\)?/gi, "").trim() || "-")} | ${c(e.proof)} |`), "",
     "## Ending as planned", /decision/i.test(s.ending.type ?? "") ? `On-screen choice: A: ${(s.ending.a ?? "").split("->")[0].trim()} / B: ${(s.ending.b ?? "").split("->")[0].trim()}` : `Ending type: ${s.ending.type ?? "?"}`, "",
     "## Declared inspirations", ...(sp.references.length ? sp.references.map((r) => `- ${r.source}: borrows ${r.borrowed || "?"}`) : ["- none declared"]), "",
     "## Automated flags (heuristic: confirm or dismiss in context)", ...(flags.length ? flags.map((x) => `- ${x}`) : ["- (none)"]), "",

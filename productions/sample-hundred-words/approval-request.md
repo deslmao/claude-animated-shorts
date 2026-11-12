@@ -49,7 +49,7 @@ All structural checks pass (structure only: not a judgement of quality).
 | recontextualisation | pass | 2, 5, 9, 2, 11, 12 |
 | setup and payoff | pass | 2, 4, 5, 9, 11, 12 |
 | visual communication | weak | 8, 11, 1, 6 |
-| originality | weak | 1, 2, 3, 7, 8, 10 |
+| originality and adaptation | weak | 1, 2, 3, 7, 8, 10 |
 | accuracy | n/a fiction | 1-12 |
 
 Full findings: productions/sample-hundred-words/eval/evaluation.md
