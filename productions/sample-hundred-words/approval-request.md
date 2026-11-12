@@ -37,6 +37,20 @@
 - note: estimated 48 s vs target 65 s
 
 ## Independent evaluation
-Not run yet.
+**Verdict:** revise → not ready · **Would a viewer keep watching?** yes. Beat 1's rule is a strong hook, and the counter ticking down to 0 against the promise (beat 5) creates real tension. The only dip is beat 2's list montage. A viewer would stay through to the reunion.
+
+| criterion | result | beats |
+|---|---|---|
+| clarity | weak | 1, 3, 4, 7, 8 |
+| viewer participation | pass | 4, 5, 7, 8 |
+| cause and effect | pass | 3, 5, 6, 7, 9, 10 |
+| emotional investment | pass | 3, 4, 8, 11 |
+| recontextualisation | pass | 2, 3, 4, 9, 10 |
+| setup and payoff | weak | 3, 4, 5, 9, 10, 11 |
+| visual communication | pass | 1, 5, 6, 7, 8, 9, 10 |
+| originality | pass | 1, 3, 9, 10 |
+| accuracy | n/a fiction | 1-11 |
+
+Full findings: productions/sample-hundred-words/eval/evaluation.md
 
 To approve: tell Claude; it records `npm run script -- sample-hundred-words --approve 637`.
