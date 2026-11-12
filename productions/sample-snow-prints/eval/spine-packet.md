@@ -5,34 +5,35 @@ format (as claimed by the writer): immersive + mystery · factual: no (fiction)
 ## Premise
 - protagonist: you (the viewer, as the older sibling), home alone at night with your little sister Ivy
 - want: to keep Ivy safe while Mum is at work
-- loses: Ivy, if you read the clues wrong; the snow is starting again and will erase the only trail
-- obstacle: the evidence points to an intruder inside, and the real answer is hidden in what is missing
+- loses: Ivy, if you read the clues wrong; a flurry is starting and will erase the only trail
+- obstacle: the evidence points to an intruder inside; the truth is hidden in what's missing
 - conflict: A, someone came out of the woods and is hiding in the house; B, nobody came in at all: the prints were made by someone leaving
 
 ## Rules of the situation
-- The first snow stopped at midnight. It starts again just after 2 a.m., and fresh snow will fill the tracks within minutes.
+- The first snow stopped at midnight. A short flurry starts just after 2 a.m., and it fills tracks within minutes.
 - Mum is on a night shift at the hospital. Her phone is in her locker, so calls go to voicemail.
-- Only one pair of boots in the house has a star on the sole: yours, on the rack by the door.
+- The roads are snowed in, so a police car is about forty minutes away.
+- Only one pair of boots in the house has a star on the sole: yours.
 - Walking backwards, people take short steps and press down on their toes; the toe of each print sinks deeper than the heel.
-- The woods are forbidden: Mum's note on Ivy's door says NO WOODS, because there's a wild fox.
-- Ivy is seven, clever and stubborn, and she's been reading a junior detective book.
+- The woods are forbidden: there's a wild fox, and you said "No woods" when Ivy begged to help it.
+- Ivy is seven, clever and stubborn. Her detective book has a page on making tracks point the wrong way.
 
 ## Event chain (what happens, in order, and what the viewer sees)
 | # | link | event | decision | what the viewer sees |
 |---|---|---|---|---|
-| E1 | start | You wake at 2 a.m. after the first snow: one line of footprints leads from the woods to your front door, and none lead away | you go to check on your sister | from the upstairs window, a single clean trail across white snow from the dark trees to the porch |
-| E2 | so | You check Ivy: a small shape under her blanket, asleep. Her room has fox drawings, a detective book, and Mum's NO WOODS note on the door | let her sleep | doorway shot: a lump under the blanket; crayon foxes on the wall; a book, JUNIOR DETECTIVE: TRACKS AND TRICKS, open on the floor; the NO WOODS note |
-| E3 | but | Downstairs, the front door is unlocked, and you locked it at ten | arm yourself and search | your hand turns the handle and the door swings open; a flash of you locking it, with the clock at 10:02 |
-| E4 | therefore | You search the house with an umbrella. A thump overhead freezes you. It's only snow sliding off the roof, past the window | keep searching room by room | the umbrella raised; empty rooms; the thump; a sheet of snow dropping past the window |
-| E5 | but | The doormat is bone dry. Whoever came in left no snow behind | look more closely at the prints | your palm flat on the dry mat; the snow-crusted step just outside |
-| E6 | so | Each print has a little star in its tread, the star on your boots, and the boot rack is empty | check the rack | an insert of the star in the snow; an insert of the star on the empty boot box; the empty slot on the rack |
-| E7 | therefore | The prints came in, but your boots went out. Whoever made them is wearing your boots, outside | the viewer can solve it here; you step onto the porch | a split frame: the trail leading in, the empty rack; you freeze at the door |
-| E8 | so | You step backwards in the snow beside the trail. Your print has the same short stride and the same deep toe: the trail was made walking backwards, away from the house | test it with your own foot | your own backward step beside one of the prints: the two match exactly, toe deeper than heel |
-| E9 | therefore | You run up to Ivy's room: the "sleeping" shape is two pillows. Her coat is gone, and so is the cat-food tin. The detective book is open at "FAKE TRACKS: WALK BACKWARDS" | follow her now | you rip back the blanket: pillows; the empty coat hook; an insert of the book page; the phone screen showing Mum's voicemail |
-| E10 | but | The snow starts again and begins filling the trail as you follow it into the trees with a torch | run | the torch beam on the tracks; snowflakes filling each print; the trail fading at the edges |
-| E11 | so | The trail disappears, but you recognise the old shed from Ivy's fox drawing, and hear a cough inside | go to the shed | the last prints vanishing; the shed silhouette matching the crayon drawing; a cough |
-| E12 | therefore | Inside, Ivy, in your boots, kneels beside an injured fox wrapped in your scarf, feeding it from the tin. She explains: she walked backwards so you'd search the house first | you wrap her in your coat instead of shouting | the torch finds them: the fox's bandaged paw, the tin, your boots on her feet |
-| E13 | so | At dawn, two lines of footprints lead home, both facing the right way, and a box with the fox in it under your arm | carry the fox home | a wide shot from the upstairs window, the same angle as E1: two trails walking home, one big and one small |
+| E1 | start | You wake at 2 a.m. after the first snow: one line of footprints leads from the woods to your front door, and none lead away | check on your sister | from the upstairs window, one clean trail from the dark trees to the porch |
+| E2 | so | A flash of bedtime: Ivy begged to help a hurt fox, and you snapped "No woods." Now a quick look into her room: a shape under the blanket | let her sleep | the flash: Ivy's pleading face, your hand flicking off her light. Then, from the doorway: the lump, crayon foxes (one drawing shows a shed), a book on the floor |
+| E3 | but | The front door is unlocked, and you locked it at ten | search | your hand turns the handle and the door opens; a flash of you locking it at 10:02, your star-soled boots on the rack |
+| E4 | therefore | You search with an umbrella. The pantry door is open and a tin of tuna is gone. A thump overhead: only snow sliding off the roof | keep searching | the umbrella raised; the open pantry and the gap on the shelf; the thump; snow dropping past the window |
+| E5 | but | The doormat is bone dry. Whoever came in left no snow | check the boots | your palm on the dry mat; the snow-crusted step outside |
+| E6 | so | Each print has your boots' star, and your boots are gone. Ivy's small boots are by the radiator, soaked | look at the trail again | inserts: the star in the snow; the empty slot on the rack; Ivy's wet boots steaming |
+| E7 | therefore | The prints came in, but your boots went out, and the steps are short, like a child's. Whoever wore your boots is outside | run to Ivy | a split frame: the trail coming in, and the empty slot; a measuring glance: each step shorter than your own |
+| E8 | so | Ivy's "sleeping" shape is two pillows. Her coat is gone. The detective book lies open: MAKE YOUR TRACKS POINT THE WRONG WAY. You dial 999: the roads are snowed in, and a car is forty minutes out | follow her now, the phone on speaker | you rip the blanket back: pillows; the empty coat hook; an insert of the book page; the phone screen 999 CONNECTED, and the dispatcher's words as text |
+| E9 | but | On the porch the flurry begins. One backward step beside a print, and your toe sinks deep, like hers: the trail goes *toward* the woods | run along the trail | your boot-less foot (in trainers) stepping back beside a print, toe deeper than heel; flakes landing |
+| E10 | so | You follow with a torch as the trail fills and fades, until you see the old shed from Ivy's drawing, and hear a cough | go to the shed | the torch on filling prints; the shed silhouette matching the crayon drawing; a cough |
+| E11 | therefore | Inside: Ivy, in your boots, beside an injured fox wrapped in your scarf, eating the tuna. "I walked backwards so nobody would find him." | - | the torch finds them: the fox's bandaged paw, the tuna tin, your boots on her feet |
+| E12 | so | You remember "No woods." Instead of shouting, you wrap her in your coat and lift the fox into a box | help both | you kneel, unzip your coat, wrap her; you lift the fox in the box; the flurry thins |
+| E13 | so | Under the moon, two trails lead home, a big one and a small one, both facing the right way; at eight, a wildlife rescue van takes the fox | - | the same high window angle as E1: two trails to the porch; a tag shot of the rescue van |
 
 ## Ending as planned
 Ending type: reveal
@@ -45,4 +46,4 @@ Ending type: reveal
 ## Automated flags (heuristic: confirm or dismiss in context)
 - (none)
 
-packet: 7626b28
+packet: 2b71ac6a
