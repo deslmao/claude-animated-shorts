@@ -4,8 +4,8 @@
 story is a bad video.
 
 ```
-topic ─▶ 1 FORMAT ─▶ 2 STORY + VISUAL PLAN (one file) ─▶ 3 INDEPENDENT EVALUATION ─▶ 4 one revision ─▶ 5 OWNER APPROVAL ─▶ production
-                     productions/<id>/story.md            eval/packet.md → evaluation.md   (only if needed)   --approve
+topic ─▶ SPINE (plot as events + pictures) ─▶ phase-1 eval ─▶ LINES + STORYBOARD ─▶ phase-2 eval ─▶ one revision ─▶ OWNER APPROVAL ─▶ production
+          story.md ## Spine, --phase spine     spine-packet.md     story.md ## Beats        packet.md      (spine first)    --approve
 ```
 
 There's one writer (Claude) and one **independent** evaluator (a fresh agent that sees only the script and storyboard), with at most one focused revision. Every principle below is a writing
@@ -17,6 +17,47 @@ The template is `productions/_template/story.md`. Worked references: [storytelli
 and the samples in `productions/sample-*`.
 
 ---
+
+## 0. The development process (think before writing)
+Every new story uses `spec: 2` (`productions/_template/story.md`). Before starting, read
+[storytelling/writer-lessons.md](storytelling/writer-lessons.md), the writer's own recurring mistakes.
+
+1. **Premise exploration.** What's the situation, the question, the hook image?
+2. **Format** (§1).
+3. **Originality and references.**
+   - Name the inspirations: tropes, anime, films, novels, myths and formats are all welcome.
+   - Say what each one adds, and confirm the story works without it.
+   - Fill in the References table stage by stage.
+4. **Character and motivation.**
+   - What do they want, what do they lose if they fail, and what stops them?
+   - Every decision gets a reason a viewer would accept.
+5. **Plot construction.**
+   - Write three genuinely different directions, differing in the central conflict, the key decision, the solution or the ending, not in setting or names.
+   - Choose one and say why.
+   - Then write the **event chain**: each event linked by *because*, *therefore*, *but* or *so*, never "and then".
+6. **Cause-and-effect validation.** For every obstacle, ask:
+   - "Why can't they just…?": put the obvious fixes and the on-screen reason each fails in the **Easy outs** table.
+   - Does each event change the situation?
+   - Is the solution built only from what was set up?
+   - Could an ordinary viewer explain what happened?
+7. **Visual plan.** Each event gets its **visual proof**, the image that shows it, *before* it gets a line. For explanations, give one consistent **Demonstration** model and its states.
+8. **Lines and narration,** written last, from the spine.
+   - Lines add meaning, interpretation and voice; they don't describe the shot.
+   - Factual lines cite claims.
+   - A continuous visual sequence may carry several lines or events. Cut when the action or the information changes, not for every sentence.
+9. **Independent evaluation:** phase 1 (the spine), then phase 2 (the full story), as set out in [storytelling/evaluator.md](storytelling/evaluator.md).
+10. **One focused revision.** Change the **spine first**, regenerate only the affected beats, and re-run `npm run script` on the whole story, so a fix can't open a new hole elsewhere.
+
+**Planning depth scales with the story.** `npm run script` scores the events, characters, rules, payoffs, factual load and
+competing explanations, and sets the depth:
+
+| Depth | Typical story | Required |
+|---|---|---|
+| **light** | a 45-second gag or simple turn | the essential logic: want, loss, obstacle; ≥1 constraint; a linked event chain with visual proof; 2 alternatives; 1 easy out |
+| **standard** | most 60–85 s stories | the above, plus 3 alternatives, 2 easy outs, a references table, and a phase-1 evaluation |
+| **deep** | 85–100 s mysteries, factual stories, several characters or reveals | the above, plus 3 easy outs, rejected options for every decision, a claims ledger (factual), and a demonstration (explanations) |
+
+The essential logic checks apply at every depth. Only the amount of planning detail scales.
 
 ## 1. Choose the format (write the reason in one sentence)
 

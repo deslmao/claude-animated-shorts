@@ -10,6 +10,8 @@ export const FORMATS = ["immersive", "action-first", "world-rule", "emotional", 
 export const CAMERA_WORDS = ["wide", "full", "medium", "close", "extreme", "closeup", "insert", "pov", "overshoulder", "pushin", "pullout",
   "follow", "lowhero", "highangle", "dutch", "orbit", "crane", "establish", "view", "frame", "whip", "hold"];
 export const CRITERIA = ["clarity", "viewer participation", "cause and effect", "emotional investment", "recontextualisation", "setup and payoff", "visual communication", "originality", "accuracy"] as const;
+/** renamed criteria / tests: the new name is accepted wherever the old one is expected (older evaluations keep working) */
+export const ALIASES: Record<string, string> = { originality: "originality and adaptation" };
 /** criteria that apply to every story (the others may be n/a with a reason) */
 const ALWAYS = ["clarity", "cause and effect", "visual communication", "originality"];
 export const STRESS_TESTS = ["plot hole", "consistency", "giveaway", "dilemma balance", "redundancy", "originality", "emotional cost", "cold viewer"] as const;
@@ -17,7 +19,7 @@ const STATIC = /^(stands?|standing|talks?|talking|explains?|explaining|says|spea
 const STOP = new Set("the a an and or but of to in on at for with from by as is are was were be been it its this that these those he she they his her their him them you your i me my we our not no so then than there here into onto out up down off over just very can could would will what when where who why how all any each every one two three some more most only own same too also has have had do does did".split(" "));
 
 export type StoryLine = { who: string; text: string };
-export type Beat = { n: number; lines: StoryLine[]; happens: string; learns: string; subject: string; action: string; camera: string; changes: string; sound: string; evidence: string };
+export type Beat = { n: number; lines: StoryLine[]; happens: string; learns: string; subject: string; action: string; camera: string; changes: string; sound: string; evidence: string; events: string[]; claims: string[] };
 export type Story = {
   title: string; format: string[]; why: string; length?: number; voice?: string; voices: Record<string, string>; mood?: string; factual: boolean;
   premise: Record<string, string>; setups: { setup: string; beat: number; payoff: number; how: string }[];
@@ -38,10 +40,16 @@ export const parseStory = (src: string): Story => {
   const head = src.split(/^##\s/m)[0];
   const meta = (k: string) => head.match(new RegExp(`^${k}:\\s*(.+)$`, "mi"))?.[1].trim();
   const voices = Object.fromEntries((meta("voices") ?? "").split(",").map((p) => p.split("=").map((x) => x.trim())).filter((p) => p.length === 2 && p[0] && p[1]));
-  const beats: Beat[] = rows(section(src, "Beats")).slice(1).filter((r) => /^\d+$/.test(r[0])).map((r) => ({
+  // columns by header name (older files: the original fixed order), so new columns can be added without breaking them
+  const beatRows = rows(section(src, "Beats"));
+  const bhead = (beatRows[0] ?? []).map((h) => h.toLowerCase());
+  const DEF = ["#", "lines", "happens", "viewer learns", "subject", "action", "camera", "changes", "sound", "evidence"];
+  const col = (r: string[], name: string) => { const i = bhead.indexOf(name); const j = i >= 0 ? i : bhead.length ? -1 : DEF.indexOf(name); return j >= 0 ? (r[j] ?? "").trim() : ""; };
+  const beats: Beat[] = beatRows.slice(1).filter((r) => /^\d+$/.test(r[0])).map((r) => ({
     n: Number(r[0]),
-    lines: (r[1] ?? "").split(/\s+\/\s+/).map((x) => x.trim()).filter((x) => x && x !== "~").map((x) => { const m = x.match(/^([a-z][\w]*):\s+(.+)$/); return m ? { who: m[1], text: m[2] } : { who: "narrator", text: x }; }),
-    happens: r[2] ?? "", learns: r[3] ?? "", subject: r[4] ?? "", action: r[5] ?? "", camera: r[6] ?? "", changes: r[7] ?? "", sound: r[8] ?? "", evidence: (r[9] ?? "").trim(),
+    lines: col(r, "lines").split(/\s+\/\s+/).map((x) => x.trim()).filter((x) => x && x !== "~").map((x) => { const m = x.match(/^([a-z][\w]*):\s+(.+)$/); return m ? { who: m[1], text: m[2] } : { who: "narrator", text: x }; }),
+    happens: col(r, "happens"), learns: col(r, "viewer learns"), subject: col(r, "subject"), action: col(r, "action"), camera: col(r, "camera"), changes: col(r, "changes"), sound: col(r, "sound"), evidence: col(r, "evidence"),
+    events: (col(r, "events").match(/E\d+/gi) ?? []).map((x) => x.toUpperCase()), claims: (col(r, "claims").match(/C\d+/gi) ?? []).map((x) => x.toUpperCase()),
   }));
   const setups = rows(section(src, "Setups and payoffs")).slice(1).filter((r) => r.length >= 3 && /\d/.test(r[1] ?? "")).map((r) => ({ setup: r[0], beat: Number(r[1]), payoff: Number(r[2]), how: r[3] ?? "" }));
   return {
@@ -139,7 +147,7 @@ export const lintStory = (s: Story, est: (text: string, who: string) => number, 
 // ---------------------------------------------------------------- the independent evaluator's packet
 const hash = (s: string) => { let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return (h >>> 0).toString(16); };
 /** the evaluator's input: what a viewer gets (lines + pictures + on-screen choices), the research, the flags */
-export const buildPacket = (s: Story, research: string, flags: string[]) => {
+export const buildPacket = (s: Story, research: string, flags: string[], extra: string[] = []) => {
   const cell = (x: string) => x.replace(/\|/g, "/");
   const body = [
     `# Evaluation packet: ${s.title}`, "",
@@ -154,6 +162,7 @@ export const buildPacket = (s: Story, research: string, flags: string[]) => {
     "## Automated flags (heuristic: confirm or dismiss each one, in context)",
     ...(flags.length ? flags.map((x) => `- ${x}`) : ["- (none)"]), "",
     ...(s.factual ? ["## Research supplied by the writer (claims and sources: check the story against them)", research.trim() || "(none)", ""] : []),
+    ...extra,
   ].join("\n");
   const h = hash(body);
   return { text: `${body}\npacket: ${h}\n`, hash: h };
@@ -175,7 +184,7 @@ export const gateEvaluation = (e: Eval, packetHash: string, flagCount: number) =
   if (e.packet !== packetHash) problems.push(`the evaluation is for packet ${e.packet ?? "?"}, the story is now packet ${packetHash}: re-evaluate the current story`);
   let weak = 0, fail = 0;
   for (const c of CRITERIA) {
-    const x = e.criteria[c];
+    const x = e.criteria[c] ?? e.criteria[ALIASES[c] ?? ""];
     if (!x) { problems.push(`criterion "${c}" is missing`); continue; }
     const r = res(x.result);
     if (!r) { problems.push(`criterion "${c}": no result (pass / weak / fail / n/a)`); continue; }
@@ -186,7 +195,7 @@ export const gateEvaluation = (e: Eval, packetHash: string, flagCount: number) =
     if (r === "weak") weak++; if (r === "fail") fail++;
   }
   for (const t of STRESS_TESTS) {
-    const x = e.tests[t];
+    const x = e.tests[t] ?? (t === "originality" ? e.tests["reproduction"] : undefined);
     if (!x) { problems.push(`stress test "${t}" is missing`); continue; }
     if (!/^(yes|no)/i.test(x.applies ?? "")) problems.push(`stress test "${t}": applies yes / no (with a reason)`);
     else if (/^yes/i.test(x.applies ?? "")) { const r = res(x.result); if (!r || r === "n/a") problems.push(`stress test "${t}": no result`); else if (r === "fail") fail++; }

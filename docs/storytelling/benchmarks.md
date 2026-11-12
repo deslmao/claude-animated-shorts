@@ -8,8 +8,11 @@ story *The Empty Classroom*.
 keeps the analysis and a few short quotes.
 
 **Rules for using this file:**
-- Study the mechanism. **Never reuse** a benchmark's premise, characters, signature images, twists or lines. The
-  "Don't copy" column lists the parts that are theirs.
+- **Inspiration is welcome.** Familiar ideas, tropes, anime, novels, films, shows and myths can make a story more
+  engaging, and declared homage is fine. What isn't fine is **reproduction**: a work's distinctive sequence of events,
+  recognisable scenes, characters or dialogue, re-used with surface changes. The **Distinctive expression** column
+  lists those parts for each benchmark. The **Borrowable concepts** table below lists what anyone may build on.
+- Never reproduce copyrighted dialogue or substantial passages. Use original expression.
 - Comments and view counts are signals about audiences, **not facts**. A claim made in a video or a comment is a lead to
   verify in `research.md`.
 - Incomplete in the document: *Why Perfect Railroads Don't Work* (cut at 1:03), *Your Brain's Secret Idea Zone* (cut at
@@ -17,7 +20,7 @@ keeps the analysis and a few short quotes.
 
 ## 1. Immersive and horror: the viewer inside a dilemma
 
-| Benchmark (stats) | Format | Opening | How it escalates | Evidence and visuals | Ending | Don't copy |
+| Benchmark (stats) | Format | Opening | How it escalates | Evidence and visuals | Ending | Distinctive expression (don't reproduce) |
 |---|---|---|---|---|---|---|
 | **The Last Stop, Part 1** (Instagram) | immersive + mystery | "Imagine your bus driver skips your stop and tells you it's the only reason you're still alive." The first line gives the situation, the stakes and the question. | A precise time (4:07 a.m.) and isolation ("Now it's just you and him"), then an authority who is protective and unsettling at once ("Sit up front, kiddo, where I can see you"), then a second authority by text. Every two or three seconds a new fact supports one side. | **Countable evidence:** the clipboard head count (1, later 2). **Physical evidence that cuts both ways:** the broken headlight "just like mom's car", then "Your mom's car never left the school." **An impossible image:** Mom "smiling, both hands on the wheel" while texting. **A mechanical event:** the doors "hiss open by themselves". | The options are restated in parallel, each with its consequence ("If you stay, you trust the man who skipped your stop… if you get off, the woman whose hands never left the wheel"). The owner's note: the voices, sound and visual storytelling carry it. | The bus driver who skips your stop, Mr. Hale, the head-count clipboard, the broken headlight, the band trip |
 | **The Last Stop, Part 2** | immersive (serial) | It restates Part 1 in two lines, then says what the vote chose: "Most of you said stay." | First it shows the **cost of the option not chosen** ("nobody would ever see you again"). Then new evidence that fits the world (a tuba case, "Nobody in the band plays tuba"), then a personal detail ("It's Mom's ringtone. You picked it for her"). | It **recontextualises Part 1**: "The doors never open by themselves. He opened them." A small detail the viewer saw is given a new meaning. | A new dilemma built from the same evidence: open the case and let Mom out, or trust the man who already saved you once. | The tuba case, the ringtone in the case |
@@ -29,7 +32,7 @@ keeps the analysis and a few short quotes.
 
 ## 2. Action-first explainers (Rick's Clips): the act, then the reason
 
-| Benchmark (stats) | Opening | How it escalates | The mechanism, shown | Comments: risks and lessons | Don't copy |
+| Benchmark (stats) | Opening | How it escalates | The mechanism, shown | Comments: risks and lessons | Distinctive expression (don't reproduce) |
 |---|---|---|---|---|---|
 | **The Ancient Jar That Warned an Empire** (33M views) | "He put a bronze ball in a dragon's mouth and told the emperor, 'If this ever falls out, run.'" | **Ridicule escalation:** the court laughs, a ball falls with "not even a ripple in the emperor's wine", he's called "the world's most expensive toy" and exiled. Then all eight balls drop and the guards mock "the toy guy". | Disaster first, then the mechanism: a pendulum, rods and jaws, "One ball meant a nudge from far away". Owner's note: the camera zooms out to the table and back into the object being discussed. | The top comment (110K likes) is a logic gap: "So basically he forgot to explain what it was for." Corrections claim the device showed direction, the emperor didn't exile him, and the seismoscope is attributed to Zhang Heng. **Accuracy and logic gaps become the comment section.** Verify before using any of it. | The jar, the dragons, exile on a hill |
 | **Why Perfect Railroads Don't Work** (27M; transcript cut off) | "He saw gaps into a railroad every 39 ft." | A rival company and public mockery (the "clickety-clack line"), then **measurable progress**: "In May, you can fit a coin… By July, barely a sheet of paper." | The heat gaps close, and the "perfect" track kicks sideways "like a snake". | Top comments: "chatgpt make up a science story" (22K) and corrections that modern rail is welded, laid stressed at a neutral temperature and restrained by sleepers. **A dramatised rivalry reads as fabricated.** | The whole premise; it's the owner's own example |
@@ -39,7 +42,7 @@ keeps the analysis and a few short quotes.
 
 ## 3. World-rule and character stories
 
-| Benchmark (stats) | Opening | Ordinary life under the rule | The protagonist's relationship to it | Emergency and payoff | Don't copy |
+| Benchmark (stats) | Opening | Ordinary life under the rule | The protagonist's relationship to it | Emergency and payoff | Distinctive expression (don't reproduce) |
 |---|---|---|---|---|---|
 | **In This Town, You Get 1,000,000 Steps** | One rule with an exact mechanic: a chest number "counts down every step your feet take"; at zero "your legs turn to stone". | Funny proofs that the rule shapes life: kids in wagons, grandmas on zip lines, "the mailman delivers on a pogo stick because a bounce only counts as one". That last one also plants that the rule has loopholes. | A flaw with a consequence (he ran for fun, now has 300 steps left), a social cost ("wheelbarrow boy"), and the one joy left (handstands, practised nightly). | The baby's stroller rolls toward the river; **bystanders freeze because of the rule**; a visible countdown (300…0); failure (stone legs), then the realisation (feet only), then the rescue on his hands. **A ripple ending:** the whole town walks upside down. | Limited steps, the stroller and river, the handstand loophole, the town copying him. **Our "100 Words" v2 matched this skeleton almost beat for beat. Avoid.** |
 | **We All Live on One Ship** (103.6K likes) | World, threat and rule in one line: the ship can never stop "because behind us, something is drinking the ocean." | The school on the middle deck, the fuel boat throwing a hose. | His fear (he's never been to the back, "Nose"), his knowledge (he watched Dad drive "a thousand times", learned Dad's wave rule "Don't turn, and don't slow down"). | Dad collapses; adults fail (Big Lou can't find the lever); a plate slides toward the back (a physical sign); he applies Dad's rule, faces the fear, and the threat chokes. **The ending repeats an image** with new meaning: a plate slides *forward*, and the water ahead is dropping, a new threat. | The ship and the thirst, "Nose", the wave rule |
@@ -48,6 +51,18 @@ keeps the analysis and a few short quotes.
 | **Day 1 of 30 (James)** (9.5M) | A countdown goal: "30 days until his high school reunion." | Rapid comic proofs of how bad things are ("A dog walks past, sniffs him, and files a complaint"). | A motive (Sarah's text) and a tiny brave act ("sends K"). | The vote *is* the next episode ("Teeth or sheets"). Comments vote and joke. **Participation comes from simple, concrete, low-stakes options.** | James, Sarah, the reunion |
 | **Weather Girl** | "My crush controls the weather. She has no idea." | A job, a rule ("She can never find out"), and each mistake escalating the storm. | His feelings vs the job. | A confession stops the storm, then a twist rule ("You can never break up with her"). | The weather-crush premise |
 | **Float Away** (ours) | A rule with a loved person at risk. | Comic attempts. | Milo's part in the cause. | **The realisation recontextualises:** "I was the last one." | (ours) |
+
+## Borrowable concepts (tropes and techniques, free to build on)
+| Benchmark | Borrowable (concepts, tropes, techniques) |
+|---|---|
+| The Last Stop | an authority figure who is protective and threatening at once; contradictory sources by text; a counted thing that changes; parallel final options |
+| Phone or the Door / Tower 9 / Empty Classroom | messages from yourself; an impostor voice; rules of survival; a lie exposed by a fact the viewer can check; a trusted person in two places at once |
+| Everyone Ran | waking into the aftermath; a countdown through space; rules found in the environment; clues you left yourself |
+| Rick's Clips examples | an irrational act first; ridicule from doubters; a measurable progression; following an object to reveal a mechanism; the "You see" turn |
+| 1,000,000 Steps / Vox | a limited-resource world rule; the counter as visible suspense (do not also reuse a sibling rescue by an uncounted loophole) |
+| We All Live on One Ship | a world that must keep moving; a child who has absorbed a parent's skill; facing the feared place |
+| The Numbers / Promised Neverland | a pleasant institution with a sinister purpose; a long escape plan; a betrayer who was secretly loyal (as concepts, not its sequence) |
+| Float Away | a rule tied to a relationship; a realisation that the protagonist caused it |
 
 ## 4. Patterns across the research, built into the system
 Each is in docs/STORYTELLING.md §§2–3 and checked by the evaluator.
@@ -67,4 +82,4 @@ Each is in docs/STORYTELLING.md §§2–3 and checked by the evaluator.
     - Logic gaps ("he forgot to explain"), overclaims ("not Japan-only"), myths ("rumored") and dramatised fakery ("chatgpt made this up") are what top comments attack.
     - Quotable endings get debated, so make them defensible.
     - Accuracy is a retention issue, not just an ethics issue.
-11. **Originality:** stories that copy a known premise (The Numbers) get named in the comments. YouTube also treats interchangeable, template-driven stories as a monetisation risk, so the formats and the twists must vary between videos.
+11. **Originality:** references delight viewers who recognise them, but a story that *reproduces* a known plot (The Numbers) gets named in the comments as a copy. YouTube also treats interchangeable, template-driven stories as a monetisation risk, so the formats and the twists must vary between videos.

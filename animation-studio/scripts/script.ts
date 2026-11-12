@@ -20,7 +20,8 @@ import { estimateClip, fnv } from "../src/studio/voice/narration";
 import { VOICES, NARRATOR } from "../src/studio/voice/voices";
 import { MOODS } from "../src/studio/sound/catalog";
 import { ROSTER } from "../src/studio/characters/roster";
-import { parseStory, lintStory, buildPacket, parseEvaluation, gateEvaluation, CRITERIA, type Story } from "./lib/story";
+import { parseStory, lintStory, buildPacket, parseEvaluation, gateEvaluation, CRITERIA, ALIASES, type Story } from "./lib/story";
+import { parseSpine, lintSpine, buildSpinePacket, gateSpineEval } from "./lib/spine";
 
 const proc = globalThis as unknown as { process: { argv: string[]; exit(n: number): never } };
 const argv = proc.process.argv.slice(2), id = argv[0];
@@ -133,10 +134,29 @@ function storyMode(): void {
   if (s.mood && !(s.mood in MOODS)) die(`unknown mood "${s.mood}"`);
   const research = fs.existsSync(RESEARCH) ? fs.readFileSync(RESEARCH, "utf8") : "";
   const sources = [...new Set([...research.matchAll(/https?:\/\/[^\s)>\]]+/g)].map((m) => m[0]))];
+  // ---- the Story Spine (spec 2: every new story). Phase 1: --phase spine checks and packages the plot BEFORE dialogue
+  const spec2 = /^spec:\s*2\b/m.test(src.split(/^##\s/m)[0]), sp = parseSpine(src);
+  const SL = spec2 || sp.present ? lintSpine(s, sp) : undefined;
+  if (spec2 && !sp.present) SL?.fails.unshift("spec 2 story without a ## Spine (productions/_template/story.md)");
+  const EVAL0 = path.join(DIR, "eval"); fs.mkdirSync(EVAL0, { recursive: true });
+  const spinePacket = SL ? buildSpinePacket(s, sp, research, SL.flags) : undefined;
+  if (spinePacket) fs.writeFileSync(path.join(EVAL0, "spine-packet.md"), spinePacket.text);
+  const spineEvalFile = path.join(EVAL0, "spine-evaluation.md");
+  const spineGate = spinePacket && fs.existsSync(spineEvalFile) ? gateSpineEval(fs.readFileSync(spineEvalFile, "utf8"), spinePacket.hash) : undefined;
+  if (SL) {
+    console.log(`\nspine: planning depth ${SL.depth}${SL.why.length ? ` (${SL.why.join(", ")})` : ""} · ${sp.events.length} events · ${sp.alternatives.length} alternatives · ${sp.easyOuts.length} easy outs`);
+    for (const f of SL.fails) console.log(`  FAIL  spine: ${f}`);
+    for (const w of SL.warns) console.log(`  WARN  spine: ${w}`);
+    for (const f of SL.flags) console.log(`  FLAG  spine: ${f}`);
+    console.log(`  phase-1 packet: productions/${id}/eval/spine-packet.md (${spinePacket!.hash})`);
+    console.log(spineGate ? `  phase-1 evaluation: ${spineGate.verdict} (${spineGate.fails} fail, ${spineGate.weak} weak)${spineGate.problems.map((p) => `\n    - ${p}`).join("")}` : "  phase-1 evaluation: not run (docs/storytelling/evaluator.md, phase 1)");
+  }
+  if (argv.includes("--phase") && opt("--phase") === "spine") { proc.process.exit(SL && SL.fails.length ? 1 : 0); }
   const L = lintStory(s, (text, who) => estimateClip(voiceOf(who), text).end * 1.053, sources.length);
+  if (SL) { L.fails.push(...SL.fails.map((f) => `spine: ${f}`)); L.flags.push(...SL.flags); }
   // the independent evaluator's packet (docs/storytelling/evaluator.md), rewritten on every run
   const EVAL = path.join(DIR, "eval"); fs.mkdirSync(EVAL, { recursive: true });
-  const packet = buildPacket(s, research, L.flags);
+  const packet = buildPacket(s, research, L.flags, sp.references.length ? ["## Declared inspirations (the writer's stated sources: judge adaptation vs reproduction)", ...sp.references.map((r) => `- ${r.source}: borrows ${r.borrowed || "?"}`), ""] : []);
   fs.writeFileSync(path.join(EVAL, "packet.md"), packet.text);
   const evalFile = path.join(EVAL, "evaluation.md"), ev = fs.existsSync(evalFile) ? parseEvaluation(fs.readFileSync(evalFile, "utf8")) : undefined;
   const gate = ev ? gateEvaluation(ev, packet.hash, L.flags.length) : undefined;
@@ -159,7 +179,7 @@ function storyMode(): void {
     "## Ending", ...Object.entries(s.ending).map(([k, v]) => `- **${k}:** ${v}`), "",
     "## Structural checks", ...(L.fails.length || L.warns.length ? [...L.fails.map((f) => `- FAIL ${f}`), ...L.warns.map((w) => `- note: ${w}`)] : ["All structural checks pass (structure only: not a judgement of quality)."]), "",
     "## Independent evaluation", ...(ev && gate ? [`**Verdict:** ${gate.verdict} → ${gate.ready ? "ready" : "not ready"} · **Would a viewer keep watching?** ${ev.overall["keep-watching"] ?? "?"}`, "",
-      "| criterion | result | beats |", "|---|---|---|", ...CRITERIA.map((c) => `| ${c} | ${cell(ev.criteria[c]?.result ?? "missing")} | ${cell(ev.criteria[c]?.beats ?? "")} |`), "",
+      "| criterion | result | beats |", "|---|---|---|", ...CRITERIA.map((c) => { const x = ev.criteria[c] ?? ev.criteria[ALIASES[c] ?? ""]; return `| ${ALIASES[c] ?? c} | ${cell(x?.result ?? "missing")} | ${cell(x?.beats ?? "")} |`; }), "",
       ...gate.problems.map((p) => `- gate: ${p}`), `Full findings: productions/${id}/eval/evaluation.md`] : ["Not run yet."]), "",
     `To approve: tell Claude; it records \`npm run script -- ${id} --approve ${L.chars}\`.`,
   ].join("\n") + "\n");
@@ -167,6 +187,7 @@ function storyMode(): void {
   const scriptHash = fnv(JSON.stringify(lines.map((l) => [voiceOf(l.who), l.who, l.text])));
   if (argv.includes("--approve")) {
     if (L.fails.length) die("refusing to record approval while story checks FAIL");
+    if (SL && SL.depth !== "light" && !spineGate) return die(`refusing to record approval: a ${SL.depth}-depth story needs its phase-1 (spine) evaluation first`);
     if (!gate) return die("refusing to record approval: no independent evaluation (docs/storytelling/evaluator.md)");
     if (!gate.ready) die(`refusing to record approval: the independent evaluation does not support "ready" (${gate.problems[0] ?? `verdict ${gate.verdict}`})`);
     if (Number(opt("--approve")) !== L.chars) die(`approval is for ${opt("--approve")} characters, the story costs ${L.chars}: show the owner the current story again`);

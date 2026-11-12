@@ -55,7 +55,7 @@ and the fix. `n/a` needs a reason and is allowed only where marked.
 | **Recontextualisation** | A reveal makes an earlier image or line mean something new. | A reveal that comes from nowhere, or one that contradicts what we saw. | when the story has no reveal (say so) |
 | **Setup and payoff** | What solves or reveals was shown earlier, without being spelled out. | A last-second ability or object; a payoff stated so plainly beforehand that it's given away. | rarely |
 | **Visual communication** | Muted, the key actions, discoveries and decisions still read; the camera points at what matters. | Narration carrying events the picture doesn't show; static poses; unreadable evidence. | never |
-| **Originality** | The engine isn't one well-known story with the nouns swapped. | Closely mirrors a known story's premise and solution. Name it. | never |
+| **Originality and adaptation** | Inspiration is welcome (tropes, anime, films, novels, myths, formats, homage, parody, genre mash-ups). Pass when the story brings its own characters, conflict, decisions and payoff; works for someone who doesn't know the source; and the reference adds enjoyment for those who do. | **Weak:** the reference adds nothing, or the story only works if you know the source. **Fail:** close reproduction, i.e. a source's distinctive sequence of events, recognisable scenes, characters or dialogue reproduced with surface changes. Name the source and the reproduced elements. | never |
 | **Accuracy** | Every factual claim matches the research; uncertainty is worded as uncertainty; the dramatisation doesn't change what happened. | An unsupported or overstated claim; invented dialogue presented as fact. | fiction (say "fiction") |
 
 ## The eight stress tests (apply intelligently)
@@ -66,9 +66,18 @@ For each, write `applies: yes` or `no`, with a reason. When it applies, give the
 3. **Giveaway:** does any line or picture state the solution's key before the climax, so the viewer solves it too early? Planting it is good; announcing it isn't.
 4. **Dilemma balance** (only when the viewer chooses between competing explanations or options): list the observable evidence for each side at the final beat. Does one side clearly win?
 5. **Redundancy:** flag lines that only describe what the shot already shows. Lines that add meaning, interpretation or voice are fine.
-6. **Originality:** name the closest benchmark in `benchmarks.md` (or another well-known story), and three structural differences. Does the story reuse anything in that benchmark's "Don't copy" column? Do only the nouns differ?
+6. **Reproduction:** for the closest source (declared, from `benchmarks.md`, or any well-known work), compare five things:
+   - the actual sequence of events;
+   - the characters' motivations;
+   - the central conflict;
+   - the solution;
+   - the meaning of the payoff.
+
+   Similar tropes or a familiar premise are fine. Fail only when the distinctive sequence and solution are reproduced without real transformation. Declared homage that transforms the source passes.
 7. **Emotional cost:** what does the protagonist lose if they fail, and is it shown before the climax?
 8. **Cold viewer:** summarise, in two sentences, what a first-time viewer would think happened. Then note anything they'd misunderstand.
+
+**Not originality problems:** Thinkora's recurring cast (Milo, Gus, Juno and the other library characters) appears across many stories. Never count their reuse against a story. A reference flag ("3 of 4 stages similar") means *examine closely*. It is not a verdict.
 
 **Automated flags** are heuristics, not judgements. Confirm or dismiss each one in context:
 - word overlap isn't proof of redundancy;
@@ -91,7 +100,7 @@ packet: <the hash from the packet's last line>
 ### viewer participation
 ...
 (all nine, in this order: clarity, viewer participation, cause and effect, emotional investment, recontextualisation,
-setup and payoff, visual communication, originality, accuracy)
+setup and payoff, visual communication, originality and adaptation, accuracy)
 
 ## Stress tests
 ### plot hole
@@ -99,7 +108,7 @@ setup and payoff, visual communication, originality, accuracy)
 - result: pass | weak | fail
 - beats: ...
 - finding: ...
-(all eight: plot hole, consistency, giveaway, dilemma balance, redundancy, originality, emotional cost, cold viewer)
+(all eight: plot hole, consistency, giveaway, dilemma balance, redundancy, reproduction, emotional cost, cold viewer)
 
 ## Automated flags
 - <flag, shortened>: confirmed | dismissed, <reason>
@@ -110,6 +119,26 @@ setup and payoff, visual communication, originality, accuracy)
 - verdict: ready | revise | reject
 - top-fixes: 1. ... 2. ... 3. ...
 ```
+
+## Phase 1: the spine, judged before dialogue (one call; at standard and deep planning depth)
+The writer builds the Story Spine first. `npm run script -- <id> --phase spine` writes `eval/spine-packet.md`: the premise,
+the rules of the situation, the event chain with what the viewer sees at each step, the planned ending, the declared
+inspirations, and the claims for factual stories. It leaves out the writer's "why" reasoning, the easy-outs defence,
+the alternatives and the notes. If a cause isn't visible in the events, it doesn't count.
+
+Prompt: as above, but read `productions/<id>/eval/spine-packet.md`, and write `productions/<id>/eval/spine-evaluation.md`.
+Use the same format with:
+- **these criteria only:** clarity, cause and effect, emotional investment, setup and payoff, originality and adaptation, accuracy;
+- **these stress tests only:** plot hole, consistency, dilemma balance, emotional cost, reproduction, cold viewer;
+- **an overall verdict of** `proceed`, `revise` or `reject`.
+
+Judge the *plot*: are there holes, is the logic consistent, are the motivations understandable, is the escalation real, does the payoff follow from the setup, and does the visual proof actually show each event? Lines and dialogue don't exist yet, so don't judge them.
+
+**Budget:** phase 1 plus phase 2 is two calls. The one revision goes where it's needed:
+- after phase 1 (a plot fix, the cheapest);
+- or, if phase 1 says `proceed`, after phase 2 (with one re-evaluation).
+
+That's at most three calls, and more revisions need the owner's approval.
 
 ## The gate (what `ready` requires)
 - All nine criteria and all eight tests are answered. Criteria that always apply aren't `n/a`.
