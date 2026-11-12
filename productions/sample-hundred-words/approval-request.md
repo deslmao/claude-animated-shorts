@@ -1,32 +1,33 @@
 # In This World, Everyone Gets 100 Words a Day: story approval
 
-**Format:** world-rule + emotional. One rule changes ordinary life, and gives a boy who never stops talking a personal problem; the emergency is caused by his habit, the rule turns strangers into obstacles, and the way out is a skill he refused to learn, earned under pressure rather than a loophole.
+**Format:** world-rule + emotional. One rule makes every word precious; a boy who wastes his on laughs mocks a stranger who saves hers, and when his sister is lost and his voice is gone, the rescue comes from strangers spending their last words on a child who isn't theirs: a payoff of the rule's social meaning and of his own cruelty, not a loophole.
 
-**Estimated length:** 48 s · **Words:** 117 · **Narration:** 637 characters (about 637 ElevenLabs credits) · **Voices:** narrator=george, gus=brian, milo=liam, woman=matilda, guard=chris
+**Estimated length:** 52 s · **Words:** 122 · **Narration:** 671 characters (about 671 ElevenLabs credits) · **Voices:** narrator=george, milo=liam, gus=brian, woman=matilda, man=chris
 
 ## Premise
-- **question:** Can a boy who has used up all his words find his little sister in a crowd?
+- **question:** When the boy who wastes every word has none left and his sister is lost, who will spend theirs for him?
 - **protagonist:** Milo
 - **want:** to be the funny one; every word spent on a laugh
 - **fear:** being boring
 - **protects:** his little sister Mia, and his promise to Grandpa Gus
-- **decision:** to stop spending his words on himself, and to learn the family whistle he laughed at
-- **rule:** Everyone can say 100 words a day. A counter on your wrist shows how many are left. At zero your voice stops until morning.
+- **decision:** to spend his words on what matters, and to thank the stranger he mocked
+- **rule:** Everyone can say 100 words a day. A counter on your wrist ticks down with every spoken word. At zero your voice stops until morning.
 
 ## Beats (script + visual plan)
 | # | lines | happens | camera | changes |
 |---|---|---|---|---|
-| 1 | In this world, everyone gets one hundred words a day. Every word you say ticks the counter on your wrist. | a wrist counter reading 100; a postman says "Morning" and it ticks to 99 | insert -> medium | the rule is established |
-| 2 | So people point. Menus are pictures. And everyone whistles. | a café with picture menus; a taxi hailed with a sharp whistle; a dog called home by a whistle | wide -> medium | the world is lived-in |
-| 3 | Everyone except Milo.<br>**gus:** From your belly, not your lips. Again. | at home Grandpa Gus whistles three clear notes and little Mia whistles them back; Milo tries and makes a pathetic hiss; Mia giggles | medium -> closeUp | the skill is planted, and so is the flaw |
-| 4 | **milo:** Whistling's for kettles, Grandpa!<br>**gus:** My knee's bad. Take Mia to the fair. Keep ten words for her. Promise.<br>**milo:** Promise. | Gus on the sofa, his leg up on a stool; he presses Mia's hand into Milo's | closeUp | Milo is responsible for Mia |
-| 5 | At the fair, Milo spent his words the way he always did.<br>**milo:** Why did the clown quit? He was tired of everyone's funny business! | Milo wins a joke contest on a little stage; kids laugh; his counter: 9, 6, 3, 0 | medium -> insert | no words left, again |
-| 6 | *(silent)* | he turns to Mia: her hand isn't in his; the crowd surges past | closeUp -> highAngle | the emergency starts |
-| 7 | **woman:** Two left. Sorry. For my son.<br>**guard:** Lost? Tell me her name. | Milo grabs a woman's sleeve and mimes "this tall"; she taps her own counter, 2, and pulls her son close; a guard asks for a name, and Milo's mouth opens with nothing | medium -> closeUp | there's no help from words |
-| 8 | *(silent)* | across the fairground, a small yellow coat drifts with the crowd towards the exit gate and the busy road | wide -> pov | the stakes jump: the road |
-| 9 | He tried Grandpa's whistle.<br>Nothing but air.<br>**gus:** From your belly, not your lips. | Milo puckers: a hiss; again: a squeak; he remembers Gus's voice, drops his shoulders, breathes deep, and three clear notes ring out | closeUp -> pushIn | he finally does it |
-| 10 | *(silent)* | at the gate the yellow coat stops; Mia turns and whistles the three notes back; Milo follows her answer through the crowd and scoops her up | pov -> follow | Mia is safe |
-| 11 | That night, Milo still had no words. He didn't need them. | home: Gus looks up from the sofa; Milo whistles the three notes; Mia whistles them back; Gus smiles and taps Milo's counter, then his own heart | medium -> closeUp | the arc pays off without words |
+| 1 | In this world, everyone gets one hundred words a day. Every word you say ticks down the counter on your wrist. At zero, your voice stops until morning. | a postman says "Morning", and his counter ticks 100 to 99; in a café window, a man at 0 mouths at the waiter with no sound | insert -> medium | the rule and its cost are established |
+| 2 | So people point. Menus are pictures. Some families talk with their hands. | a picture menu; a woman and her son sign to each other on the bus stop bench; her counter reads 3; the son signs a little thank-you, hand from chin outwards | wide -> insert | the woman and the sign are planted |
+| 3 | Everyone except Milo.<br>**milo:** Why don't eggs tell jokes? They'd crack each other up! | Milo at breakfast, joke after joke; his counter tumbles from 100 to 61 to 20; Mia, in a yellow raincoat, laughs anyway | medium -> insert | he's nearly out by breakfast |
+| 4 | **gus:** My knee's bad. Take Mia to the fair. Keep ten words for her. Promise.<br>**milo:** Promise. | Gus on the sofa, his leg up; he presses Mia's yellow sleeve into Milo's hand; Milo's counter now reads 19 | closeUp -> insert | Milo is responsible for Mia |
+| 5 | **milo:** Three words left, lady? Live a little, would you? | on the bus, Milo performs for the other kids and points at the woman's counter; the kids laugh; she says nothing; her son looks down | medium -> closeUp | there's a debt he doesn't know about yet; his counter reads 10 |
+| 6 | At the fair, he had ten words left.<br>**milo:** Why did the clown quit? Tired of everyone's funny business! | a joke contest on a little stage; the counter ticks once per word: 10, 9 … 0; the crowd cheers; Milo bows, then sees the 0 | medium -> insert | no words left; the promise broken |
+| 7 | *(silent)* | he turns: Mia isn't there; the crowd surges towards the exit gate and the road beyond it | closeUp -> highAngle | the emergency begins |
+| 8 | *(silent)* | Milo grabs a man's arm and mimes "this tall, yellow coat"; the man taps his own counter (1) and pulls his own daughter close; Milo pats his pockets: no pen; he opens his mouth to shout, and only air comes out; far off, a yellow raincoat drifts towards the gate | medium -> pov | there's no help, and the danger is rising |
+| 9 | **woman:** Yellow coat! Stop! | on a bench above the crowd, the woman from the bus has seen it all; she looks at her counter (3), then shouts; the counter drops to 0 | lowHero -> insert | heads turn towards the gate |
+| 10 | **man:** Little girl! | at the gate, a man hears; his counter: 2 to 0; he steps in front of Mia at the kerb as a bus roars past; Milo pushes through and scoops her up | wide -> closeUp | Mia is safe |
+| 11 | *(silent)* | Milo turns to the woman; he tries to say thank you, and nothing comes out; she shakes her head gently and smiles; her son signs thank you to Milo | closeUp -> medium | Milo understands what words cost |
+| 12 | The next morning, Milo's counter said one hundred.<br>**milo:** Thank you.<br>He signed it too. Then he kept the other ninety-eight for Mia. | at the bus stop, Milo walks to the woman and her son; he says it, and signs the thank-you; the counter ticks to 98; that night he reads Mia a story by lamplight, the counter glowing | medium -> pushIn | the arc pays off |
 
 ## Ending
 - **type:** realisation
@@ -34,23 +35,9 @@
 - **b:** none
 
 ## Structural checks
-- note: estimated 48 s vs target 65 s
+All structural checks pass (structure only: not a judgement of quality).
 
 ## Independent evaluation
-**Verdict:** revise → not ready · **Would a viewer keep watching?** yes. Beat 1's rule is a strong hook, and the counter ticking down to 0 against the promise (beat 5) creates real tension. The only dip is beat 2's list montage. A viewer would stay through to the reunion.
+Not run yet.
 
-| criterion | result | beats |
-|---|---|---|
-| clarity | weak | 1, 3, 4, 7, 8 |
-| viewer participation | pass | 4, 5, 7, 8 |
-| cause and effect | pass | 3, 5, 6, 7, 9, 10 |
-| emotional investment | pass | 3, 4, 8, 11 |
-| recontextualisation | pass | 2, 3, 4, 9, 10 |
-| setup and payoff | weak | 3, 4, 5, 9, 10, 11 |
-| visual communication | pass | 1, 5, 6, 7, 8, 9, 10 |
-| originality | pass | 1, 3, 9, 10 |
-| accuracy | n/a fiction | 1-11 |
-
-Full findings: productions/sample-hundred-words/eval/evaluation.md
-
-To approve: tell Claude; it records `npm run script -- sample-hundred-words --approve 637`.
+To approve: tell Claude; it records `npm run script -- sample-hundred-words --approve 671`.

@@ -1,55 +1,63 @@
 # The Keeper's Rule
 format: immersive+mystery
-why: The viewer keeps the lighthouse and must choose; two explanations (a real boat in trouble vs the thing the logbook warns about) each gain observable evidence, and an old photo planted early recontextualises the boat's name halfway through.
-length: 65
+why: The viewer keeps the lighthouse and must choose; each side gets evidence the viewer can check (a log entry with a visible cost, a radar fix, a voice that shouldn't exist), and the margin note about a green light becomes evidence for both sides once a real boat's green starboard light appears.
+length: 80
 voice: georgeHushed
-voices: radio=chris, coastguard=matilda, gran=jessica, voiceDad=brian
+voices: gran=jessica, nurse=matilda, radio=chris, coastguard=alice, voiceDad=brian
 mood: tense
 factual: no
 
 ## Premise
-- question: Is the boat calling for light real, or is it the thing your grandmother's rule warns about?
-- protagonist: you (the viewer), keeping your grandmother's lighthouse for one night while she is in hospital
-- want: to keep your promise to your grandmother, and to keep people safe
+- question: Is the boat calling for light real, or is it the thing your gran's rule warns about?
+- protagonist: you (the viewer), keeping your gran's lighthouse for one night while she is in hospital
+- want: to keep your promise to Gran, and to keep people safe
 - fear: getting it wrong either way: people drown, or you let something in
-- protects: the boat's crew, and your grandmother's trust
-- decision: light the lamp, or keep it dark as the rule says
+- protects: the crew on the boat, and yourself
+- decision: switch the lamp back on, or keep it dark as the rule says
 - rule: none
-- conflict: A, a real fishing boat is about to hit the rocks and needs the light; B, the fog bell has rung by itself, and the logbook says a voice always calls on those nights and must never be answered with light
+- conflict: A, a real fishing boat is drifting onto the rocks and needs the light; B, the bell rang by itself, and the logbook shows that something calls for light on these nights, and that lighting the lamp once cost a life
 - action: none
 
 ## Setups and payoffs
 | setup | beat | payoff beat | how it pays off |
 |---|---|---|---|
-| The framed photo: young Gran with her father on a boat named WREN, "lost at sea, 1979" | 2 | 7 | the boat calling tonight says it is the Wren, which makes the name mean two things at once |
-| Gran's promise and her rule: when the fog bell rings by itself, keep the lamp dark | 1 | 10 | the final choice is breaking that promise or keeping it |
-| The green light in the logbook margin: its light is always green | 4 | 8 | a green light appears on the water, but so do red distress flares |
+| Gran's wristband reads ELLEN, and the nurse calls her Ellen | 1 | 9 | the radio voice calls you "Ellen", and says it's her father |
+| The photo: Gran as a girl with her father in a keeper's uniform at this tower | 2 | 6 | the 1979 entry is his, and the child's line under it is hers |
+| Gran's rule and the switch: off when the bell rings, until dawn | 1 | 10 | the final choice is whether to switch it back on |
+| The margin note: its light is always green | 5 | 8 | the coastguard says the boat shows her green starboard light, which supports both sides |
 
 ## Beats
 | # | lines | happens | viewer learns | subject | action | camera | changes | sound | evidence |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Imagine you're keeping your gran's lighthouse tonight. She's in hospital. / gran: Promise me. If the fog bell rings by itself, keep the lamp dark. | a hospital-bed video call on a tablet propped by the lamp; Gran grips the screen edge, insisting; you nod | the situation, the promise, the rule | Gran's face on the tablet | Gran grips the screen; you nod and set the tablet down | closeUp -> medium | you've made a promise | the sea, a call beep | - |
-| 2 | ~ | you climb the spiral stairs; on the wall, a framed photo: young Gran beside her father on a fishing boat, its name painted on the bow: WREN, and a note under it: lost at sea, 1979 | Gran lost her father at sea (planted, not explained) | the photo, the name WREN | your hand brushes the photo as you pass | follow -> insert | the photo is planted | footsteps on iron | - |
-| 3 | Then the fog rolls in. / And the bell starts ringing. On its own. | the fog swallows the window; the brass fog bell outside swings with nobody near it | the rule's condition is happening | the swinging bell | you freeze on the stairs, then press against the glass | wide -> pov | the rule now applies | the bell tolling, no wind | B |
-| 4 | radio: Lighthouse! We've lost our engine! We can't see the rocks! | the old radio crackles to life; you grab the logbook from the desk and flip back through decades of entries | a voice asks for light | the radio, the logbook | you grab the handset, then the book | medium -> insert | a request that breaks the rule | static, a desperate voice | A |
-| 5 | Every entry says the same thing. Bell rang. A boat called for light. Kept it dark. / No boat was ever reported missing. | logbook pages in three different handwritings, the same lines again and again, one with a margin note: its light is always green | the call has happened many times, and nobody ever sank | the repeated entries | you run a finger down the dates | insert | the evidence tilts towards B | pages turning | B |
-| 6 | So you phone the coastguard. / coastguard: Yes. A fishing boat left harbour tonight and hasn't come back. Our lifeboat is twenty minutes away. | you dial the wall phone; you go pale as the coastguard confirms it | a real boat really is missing | the wall phone | you clutch the cord, eyes on the dark sea | closeUp | the evidence tilts back to A, and there's a deadline | dial tones, a calm voice | A |
-| 7 | radio: This is the Wren. Please. | you turn slowly from the phone to the photo on the stairs: WREN | the boat has the name of the boat that sank in 1979, which can mean two things | the photo, the radio | your head turns from the radio to the photo | pushIn | the name recontextualises the photo | the radio hiss, a low drone | A+B |
-| 8 | Through the fog, a green light. / Then a red flare. Then another. | a green glow drifts on the water; a moment later, two red distress flares arc up nearby | evidence for both at once | the green light and the red flares | you lift the binoculars and lower them, shaking | pov -> wide | both explanations get stronger | the flare's hiss | A+B |
-| 9 | voiceDad: Ellen, love. It's Dad. Light the lamp. | the radio voice changes into an old man's voice using Gran's name | the caller speaks as Gran's dead father | the radio | you back away from the radio until you hit the lamp | closeUp -> dutch | the threat becomes personal, and that voice is impossible | the bell stops; silence; the voice | B |
-| 10 | coastguard: Keeper, they're nearly on the rocks. They need that light, now. / The switch is under your hand. | the wall phone again, urgent; your hand hovers over the big brass lamp switch; out of the corner of your eye, the photo, and Gran's tablet, dark | the deadline, the promise and the switch, all at once | the switch and your hand | your hand trembles above the switch | insert -> medium | the decision has to be made now | your breathing, the phone voice | A+B |
-| 11 | Do you light the lamp for the boat? Or keep your promise and keep it dark? | the frame freezes on your hand above the switch; the A/B cards appear | the two options and what each risks | the cards over your hand | your hand frozen | medium | the viewer decides | a held tone | - |
+| 1 | Imagine you're keeping your gran's lighthouse tonight. She's in hospital. / nurse: Ellen, medicine time. / gran: Promise me. If the fog bell rings by itself, switch the lamp off. Keep it off till dawn. | a video call on a tablet propped by the lamp switch; Gran in a hospital bed, her wristband reads ELLEN; she grips the screen; you nod and rest your hand on the big brass switch | the situation, the promise and the rule; Gran's name is Ellen | Gran's face and the wristband | Gran grips the screen; your hand touches the switch | closeUp -> insert | you've made a promise | the sea, a call beep | - |
+| 2 | ~ | you climb the iron spiral stairs; on the wall, a framed photo of a girl and her father in a keeper's uniform at this tower; above, the lamp's beam sweeps the sea | Gran grew up here; her father kept the light | the photo, the beam | your hand brushes the frame as you pass | follow -> insert | the father is planted | footsteps on iron |
+| 3 | At midnight, the fog rolls in. / And the bell starts ringing. By itself. | fog swallows the window; outside, the brass bell swings while the flag beside it hangs dead still; you pull the switch, and the beam dies | the rule's condition, and you obey it | the swinging bell beside the still flag | you yank the switch down | wide -> pov | the lamp is dark | the bell tolling, no wind | B |
+| 4 | radio: Lighthouse! Our engine's gone. We can't see the rocks! | the old radio crackles; you snatch the handset; through the window, only fog | a voice asks for light | the radio | you grab the handset, freeze | medium -> closeUp | a request against the rule | static, a desperate voice | A |
+| 5 | You try Gran. No signal. / So you open her logbook. Every foggy night, the same lines. Bell rang. A voice called for light. We kept it dark. / And in the margin: its light is always green. | the tablet shows NO SIGNAL; you flip the logbook: decades of entries in different hands, the same three lines; a margin note circled in red | the call has happened for decades, and the "boat" has a sign | the margin note | you trace the circled note | insert | the evidence tilts towards B | pages turning | B |
+| 6 | Then 1979. Her father's writing. I lit the lamp for them. Something came up the steps. / And under it, a child's writing. Dad never came back down. | the 1979 page: neat adult handwriting, then a child's shaky pencil beneath; your eyes go to the spiral stairs behind you | lighting the lamp once cost a life | the two handwritings | you look over your shoulder at the stairs | insert -> overShoulder | B now has a visible cost | the bell, a creak on the stairs | B |
+| 7 | So you call the coastguard. / coastguard: Yes. Fishing boat, four on board. Fog caught her. We've got her on radar, half a mile off your rocks. Lifeboat's twenty minutes out. | you dial the wall phone, cord stretched; you stare out at the fog as the coastguard answers | a real boat is really there, on radar | the wall phone | you clutch the cord, eyes on the sea | closeUp | the evidence swings back to A, with a deadline | dial tones, a calm voice | A |
+| 8 | Through the fog, a light. Green. / coastguard: That's her starboard light. Boats show green on that side. | a green light drifts on the black water; you lower the binoculars, shaking | the green light fits both the note and a real boat | the green light | you raise the binoculars, then lower them | pov -> closeUp | the deciding clue cuts both ways | the radio hiss | A+B |
+| 9 | radio: Ellen, love. It's Dad. Light the lamp. | the radio voice changes into an old man's; you back away from it until you hit the switch | a voice that can't exist calls Gran by name | the radio | you back into the switch | closeUp -> dutch | the threat is personal and impossible | the bell stops; silence; the voice | B |
+| 10 | coastguard: Keeper, she's two hundred metres from the rocks. Light it now! | the phone receiver dangles, shouting; your hand on the brass switch; the dark stairwell behind you | the deadline is now | your hand on the switch | your hand trembles on the switch | insert -> medium | the decision must be made | the phone voice, your breathing | A |
+| 11 | If you switch it on, you trust a radar screen over a dead man's warning. / If you keep it dark, you trust an old logbook over four people on that boat. | the frame freezes on your hand on the switch; the A/B cards appear | the two options and what each costs | the cards | your hand frozen | medium | the viewer decides | a held tone | - |
 
 ## Ending
 - type: decision
-- A: LIGHT THE LAMP -> you may save a real crew of fishermen, or break your promise and answer the thing that has called for decades
-- B: KEEP IT DARK -> you keep your promise and the rule, but if the boat is real, its crew may hit the rocks
+- A: SWITCH IT ON -> you may save four real fishermen, or let in whatever came up the steps in 1979
+- B: KEEP IT DARK -> you keep your promise, but if the boat is real, four people may hit the rocks
 
 ## Writer notes
-I think the balance comes from each source being *checkable but incomplete*. The coastguard confirms that a boat is missing,
-but not its name. The logbook proves the call is old, but also that no boat ever sank. The name Wren supports both readings.
-The risks I see are the cast: three voices plus Gran in 85 s, and "Ellen" being clear. Gran's name has to land
-in beat 9 without an explanation.
+The evaluator's main point, that B had no cost, is fixed with the 1979 page: lighting the lamp is what let "something"
+up the steps. A's strongest evidence is now technical and checkable (radar). B's is personal and impossible (the
+dead father's voice, which knows Gran's name). The margin clue is planted, then made ambiguous by real seamanship.
 
 ## Revision
-none yet
+**The evaluator's findings** (dilemma balance fail; clarity, participation, cause and effect, emotional investment, setup/payoff and visuals weak):
+- **B's visible cost:** the 1979 entry and the child's line.
+- **The deciding clues land:** the narrator reads the margin note; "Ellen" is planted on the wristband and in the nurse's line; the "lost at sea" caption is removed; beat 8's narration now adds meaning (the starboard light).
+- **Logic holes closed:**
+  - the lamp is dark because you switch it off when the bell rings;
+  - Gran can't be reached (no signal);
+  - the coastguard knows from radar;
+  - the fog causes both the bell and the boat getting lost.
+- **Research technique:** checkable evidence (Tower 9's "Your light is off"); parallel final options (The Last Stop).

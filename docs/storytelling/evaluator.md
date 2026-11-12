@@ -32,9 +32,9 @@ If a scene only works because of an explanation that isn't in the lines or the p
 1. `npm run script -- <id>`: structural checks pass, and `eval/packet.md` is current.
 2. Spawn **one fresh agent** (`subagent_type: general-purpose`; never a fork, which would carry the writer's reasoning) with this prompt:
 
-> You are an independent story evaluator for animated YouTube Shorts. Read exactly two files:
-> `docs/storytelling/evaluator.md` (the rubric and output format) and `productions/<id>/eval/packet.md` (the story as
-> a viewer gets it). Do NOT open any other file in `productions/<id>/` or any other story file. Judge what an
+> You are an independent story evaluator for animated YouTube Shorts. Read exactly three files:
+> `docs/storytelling/evaluator.md` (the rubric and output format), `docs/storytelling/benchmarks.md` (the reference
+> examples, for the originality check) and `productions/<id>/eval/packet.md` (the story as a viewer gets it). Do NOT open any other file in `productions/<id>/` or any other story file. Judge what an
 > ordinary first-time viewer would experience, not what the writer may have intended. You may and should reject a
 > story that doesn't work. Write your evaluation, in the exact format of the rubric, to
 > `productions/<id>/eval/evaluation.md`. Then reply with the verdict and the top three fixes.
@@ -49,7 +49,7 @@ and the fix. `n/a` needs a reason and is allowed only where marked.
 | Criterion | Pass looks like | Weak or fail looks like | n/a? |
 |---|---|---|---|
 | **Clarity** | A first-time viewer can always say who, where, what's happening and what's at stake. | Two unexplained things in one beat; unclear identities; a rule or mechanism used before it's understood. | never |
-| **Viewer participation** | The viewer forms a theory, takes a side or asks "what would I do?" | The viewer is told everything; nothing to weigh; choices without stakes. | rarely (e.g. a pure explainer; give the reason) |
+| **Viewer participation** | The viewer forms a theory, takes a side or asks "what would I do?" Evidence they can check themselves (a count, a fact they saw) beats evidence they're told. | The viewer is told everything; nothing to weigh; choices without stakes. | rarely (e.g. a pure explainer; give the reason) |
 | **Cause and effect** | Every beat happens *because of* the previous ones; obstacles follow from the world or the characters. | Coincidence, an event that changes nothing, the protagonist rescued by luck. | never |
 | **Emotional investment** | We know what the protagonist stands to lose, and we care before the climax. | Generic stakes; a relationship that's only a voice; feelings stated, not shown. | when the story is intentionally non-character (give the reason) |
 | **Recontextualisation** | A reveal makes an earlier image or line mean something new. | A reveal that comes from nowhere, or one that contradicts what we saw. | when the story has no reveal (say so) |
@@ -61,12 +61,12 @@ and the fix. `n/a` needs a reason and is allowed only where marked.
 ## The eight stress tests (apply intelligently)
 For each, write `applies: yes` or `no`, with a reason. When it applies, give the result and the finding.
 
-1. **Plot hole:** for every obstacle, why can't someone present, or a simpler means, solve it? Is anyone conveniently absent or ignorant?
+1. **Plot hole:** for every obstacle, why can't someone present, or a simpler means, solve it? Is anyone conveniently absent or ignorant? Then the **top-comment probe**: what would the most-liked comment pick at? In the research, that was logic gaps ("he forgot to explain what it was for"), overclaims and myths.
 2. **Consistency:** check every reference to an earlier event, time, place or rule against the beats.
 3. **Giveaway:** does any line or picture state the solution's key before the climax, so the viewer solves it too early? Planting it is good; announcing it isn't.
 4. **Dilemma balance** (only when the viewer chooses between competing explanations or options): list the observable evidence for each side at the final beat. Does one side clearly win?
 5. **Redundancy:** flag lines that only describe what the shot already shows. Lines that add meaning, interpretation or voice are fine.
-6. **Originality:** name the closest well-known story and three structural differences. Do only the nouns differ?
+6. **Originality:** name the closest benchmark in `benchmarks.md` (or another well-known story), and three structural differences. Does the story reuse anything in that benchmark's "Don't copy" column? Do only the nouns differ?
 7. **Emotional cost:** what does the protagonist lose if they fail, and is it shown before the climax?
 8. **Cold viewer:** summarise, in two sentences, what a first-time viewer would think happened. Then note anything they'd misunderstand.
 

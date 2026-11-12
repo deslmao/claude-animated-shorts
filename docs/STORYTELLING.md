@@ -94,6 +94,19 @@ do. If a beat changes nothing, cut it.
 - **Stories:** usually 70–100 s.
 - **Silent action beats:** count them. They're often the best moments.
 
+**Techniques from the research** ([storytelling/benchmarks.md](storytelling/benchmarks.md) §4; learn the mechanism, never the story):
+- **The first line is the whole situation:** situation, stake and question in 10–18 words.
+- **Something new every 2–3 seconds:** one new fact per short line.
+- **Precise details:** times, counts, measurements.
+- **Evidence the viewer can check:** contradictions exposed by a fact they saw. The best evidence fits both sides.
+- **Show the rule's cost on someone else** before it applies to the protagonist.
+- **Doubters and ridicule** make the payoff land.
+- **Recontextualise a detail already seen.**
+- **Close a dilemma with parallel phrasing:** each option with its consequence.
+- **Sound and light as evidence.**
+- **Write against the top comment:** close logic gaps, don't overclaim, mark myths as myths.
+- **Vary formats and twists between videos.** Template-driven, interchangeable stories are both weaker and a monetisation risk.
+
 ## 3. Plan the visuals in the same rows
 
 The storyboard communicates events; it doesn't decorate the narration. For every beat, fill in these columns:
