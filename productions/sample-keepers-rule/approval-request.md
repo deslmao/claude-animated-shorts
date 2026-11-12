@@ -37,6 +37,20 @@
 All structural checks pass (structure only: not a judgement of quality).
 
 ## Independent evaluation
-Not run yet.
+**Verdict:** revise → not ready · **Would a viewer keep watching?** yes. The hook (a sick gran, a strange promise) and the bell swinging beside a still flag hold attention, and every beat adds a new fact up to a real choice. The likeliest drop-off is the cluttered beat 1 (three voices before the rule lands) and the dense logbook reading in beats 5 and 6. Viewers who reach beat 9 and miss that Gran is Ellen will finish confused rather than chilled.
+
+| criterion | result | beats |
+|---|---|---|
+| clarity | weak | 1, 2, 3, 5, 9 |
+| viewer participation | pass | 3, 5, 6, 7, 8, 9, 10, 11 |
+| cause and effect | weak | 4, 5, 7, 10 |
+| emotional investment | pass | 1, 2, 6, 7 |
+| recontextualisation | pass | 1, 2, 6, 9 |
+| setup and payoff | pass | 1, 2, 5, 6, 8, 9 |
+| visual communication | weak | 3, 4, 7, 9, 10 |
+| originality | weak | 1, 3, 6, 9, 11 |
+| accuracy | n/a fiction | 8 |
+
+Full findings: productions/sample-keepers-rule/eval/evaluation.md
 
 To approve: tell Claude; it records `npm run script -- sample-keepers-rule --approve 1128`.

@@ -38,6 +38,20 @@
 All structural checks pass (structure only: not a judgement of quality).
 
 ## Independent evaluation
-Not run yet.
+**Verdict:** revise → not ready · **Would a viewer keep watching?** yes, the first line is a clear rule with a visible counter, the counting invites participation, and the mocked woman's sacrifice is a strong emotional turn; a viewer who knows the Steps short may leave at beat 2–3 when they recognise the scaffold, and others may stumble at the overloaded beat 8.
+
+| criterion | result | beats |
+|---|---|---|
+| clarity | pass | 1, 2, 3, 4, 11 |
+| viewer participation | pass | 3, 4, 5, 6, 9, 10, 12 |
+| cause and effect | pass | 3, 4, 5, 6, 7, 8, 9, 10 |
+| emotional investment | pass | 3, 4, 5, 9, 11 |
+| recontextualisation | pass | 2, 5, 9, 2, 11, 12 |
+| setup and payoff | pass | 2, 4, 5, 9, 11, 12 |
+| visual communication | weak | 8, 11, 1, 6 |
+| originality | weak | 1, 2, 3, 7, 8, 10 |
+| accuracy | n/a fiction | 1-12 |
+
+Full findings: productions/sample-hundred-words/eval/evaluation.md
 
 To approve: tell Claude; it records `npm run script -- sample-hundred-words --approve 671`.

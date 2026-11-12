@@ -37,6 +37,20 @@
 - note: action-first: no explanation turn
 
 ## Independent evaluation
-Not run yet.
+**Verdict:** revise → not ready · **Would a viewer keep watching?** yes. The beat 1 hook (welders vanishing into plywood boxes overnight, workers strolling past with coffee) is strong, and beats 5 to 9 escalate well (red joints, the sixteen-slot wheel, the block stopping, the confession, the hurricane). The likely drop is at beats 2 to 4: three exposition beats (church, legs, braces, testing, a meeting about bolts) before the danger appears. The ending gets debated for the wrong reason: viewers will correct it.
+
+| criterion | result | beats |
+|---|---|---|
+| clarity | weak | 2, 4, 6, 7, 11 |
+| viewer participation | weak | 3, 5, 6, 7, 11 |
+| cause and effect | weak | 4, 5, 9, 10 |
+| emotional investment | weak | 1, 2, 6, 7 |
+| recontextualisation | pass | 1, 8, 3, 11 |
+| setup and payoff | pass | 1, 2, 3, 5, 6, 8, 11 |
+| visual communication | weak | 4, 7, 10, 11 |
+| originality | pass | 1, 7, 11 |
+| accuracy | fail | 1, 4, 6, 7, 9, 11 |
+
+Full findings: productions/sample-citicorp/eval/evaluation.md
 
 To approve: tell Claude; it records `npm run script -- sample-citicorp --approve 1532`.
