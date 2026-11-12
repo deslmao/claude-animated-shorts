@@ -1,11 +1,16 @@
 # Topic to finished video
 
-The owner gives a topic. Claude does the rest, and stops only for **one approval** (the script and its narration cost)
-before delivering the finished MP4 and its QA report. Everything is kept in `productions/<id>/`.
+The owner gives a topic. Claude does the rest, and stops only for **one approval** (the actual story and its narration
+cost) before delivering the finished MP4 and its QA report. Everything is kept in `productions/<id>/`.
 
 ```
-topic ─▶ 1 research ─▶ 2 script ─▶ 3 APPROVAL (owner) ─▶ 4 assets ─▶ 5 storyboard ─▶ 6 npm run short ─▶ MP4 + QA
+topic ─▶ 1 format + research ─▶ 2 story + visual plan + evaluation ─▶ 3 APPROVAL (owner) ─▶ 4 assets ─▶ 5 storyboard ─▶ 6 npm run short ─▶ MP4 + QA
 ```
+
+**Stories** (immersive, world-rule, emotional, mystery, serial, and most action-first stories) follow
+[STORYTELLING.md](STORYTELLING.md): one `story.md` holds the script and the visual plan, linted by `npm run script` and
+evaluated once. The formula in section 2 below is the **explainer** shape, one option among the formats, not the
+default for every idea.
 
 ## 1. Research (`productions/<id>/research.md`, from `productions/_template/`)
 - **Sources:** search the web for at least 2 credible sources (encyclopaedias, universities, museums, peer-reviewed studies, major science or news outlets). Prefer the primary source when a claim is surprising.
@@ -13,7 +18,7 @@ topic ─▶ 1 research ─▶ 2 script ─▶ 3 APPROVAL (owner) ─▶ 4 asset
 - **Claims not used:** list the claims dropped because they're unverified, exaggerated or disputed. Never invent statistics, quotes, dates or names.
 - **Angles:** note the hook (the most surprising true sentence), the everyday analogy for the mechanism, and the visual opportunities.
 
-## 2. Script (`productions/<id>/script.md`)
+## 2. Script: the explainer formula (`productions/<id>/script.md`, legacy; prefer `story.md`)
 One bullet is one spoken line: `- text` for voice-over by George, or `- gus: text` when a character says it (lip-synced). The formula is measured from the reference channel (`references/STYLE_BIBLE.md`):
 
 1. **Hook:** the surprising fact as sentence 1, no setup, at most 16 words.
@@ -52,8 +57,8 @@ These are all in `approval-request.md`. When the owner approves, record it with 
 
 ## 5. Storyboard (`src/studio/stories/<id>.ts`)
 `npm run script -- <id> --storyboard` writes a skeleton with exactly the approved lines (one shot per line) and registers it. Then refine each shot ([STORYBOARD.md](STORYBOARD.md)):
-- **Cover every line literally.** Show what the sentence says: the character, the place and a prop or held item that carries the joke. Lines can share a shot when the picture shouldn't change.
-- **Pacing:** shots of 2–5 s; vary the shot size every cut (wide, then medium, then close).
+- **Show the events, don't decorate the words** (STORYTELLING.md §3). Each shot has a purpose from its beat (what happens, the subject, the action, what changes); the physical action is shown, not posed. Pictures and narration complement each other rather than repeating each other, and lines can share a shot when the picture shouldn't change.
+- **Pacing:** shots of 2–5 s; change the framing when the information changes (wide for geography, insert for evidence, closeUp for a reaction that changes understanding). Give major actions and discoveries time.
 - **Camera:** use the library moves: `frame` for holds, `pushIn` on reveals, `closeUp` with `punch` on the punchline, `follow` for runners, `crane` or `orbit` to open or close a place, `overShoulder` for conversations, `dutch` for unease.
 - **Transitions:** `flash` after the hook, `fade` on a change of place, `dip` for a jump in time, `cut` otherwise (the reference rarely hard-cuts).
 - **Light follows the story:** day for the setup, golden for warmth, night or `interiorCool` for the explanation or a mystery.

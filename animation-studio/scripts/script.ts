@@ -9,7 +9,9 @@
 //                       checks (the same lines, voices and characters), so no paid request happens without it
 //   --storyboard        writes a storyboard skeleton src/studio/stories/<id>.ts with exactly the approved lines (one
 //                       shot per line, valid defaults to refine) and registers it in stories/index.ts
-// script.md format: a `# Title` line, optional `mood: <mood>` / `voice: <preset>` lines, then the narration as
+// story.md (docs/STORYTELLING.md) takes precedence: the story + visual plan as a beat sheet, linted, approved only with
+// a written `verdict: ready` evaluation; --storyboard then writes one shot per beat with its purpose as notes.
+// script.md format (explainers, legacy): a `# Title` line, optional `mood: <mood>` / `voice: <preset>` lines, then the narration as
 // `- line text` (voice-over) or `- gus: line text` (a character speaks it, lip-synced). One bullet = one spoken line.
 import "./lib/dom-stub";
 import fs from "node:fs";
@@ -18,6 +20,7 @@ import { estimateClip, fnv } from "../src/studio/voice/narration";
 import { VOICES, NARRATOR } from "../src/studio/voice/voices";
 import { MOODS } from "../src/studio/sound/catalog";
 import { ROSTER } from "../src/studio/characters/roster";
+import { parseStory, lintStory, type Story } from "./lib/story";
 
 const proc = globalThis as unknown as { process: { argv: string[]; exit(n: number): never } };
 const argv = proc.process.argv.slice(2), id = argv[0];
@@ -25,7 +28,9 @@ const opt = (k: string) => { const i = argv.indexOf(k); return i >= 0 ? argv[i +
 const die = (m: string): never => { console.error(`script: ${m}`); return proc.process.exit(1); };
 if (!id || id.startsWith("--")) die("usage: npm run script -- <id> [--approve <chars>] [--storyboard]");
 const ROOT = path.resolve(".."), DIR = path.join(ROOT, "productions", id), SCRIPT = path.join(DIR, "script.md"), RESEARCH = path.join(DIR, "research.md");
-if (!fs.existsSync(SCRIPT)) die(`no ${path.relative(ROOT, SCRIPT)} (copy productions/_template/script.md)`);
+const STORY = path.join(DIR, "story.md");
+if (fs.existsSync(STORY)) { storyMode(); proc.process.exit(0); }
+if (!fs.existsSync(SCRIPT)) die(`no ${path.relative(ROOT, SCRIPT)} or story.md (copy productions/_template/story.md; docs/STORYTELLING.md)`);
 
 // ---------------- parse
 const src = fs.readFileSync(SCRIPT, "utf8");
@@ -118,3 +123,95 @@ ${shots}
   console.log(`storyboard skeleton: ${file} (registered as Short-${id})`);
 }
 proc.process.exit(fails.length ? 1 : 0);
+
+// ======================================================================================================================
+// story mode: productions/<id>/story.md (docs/STORYTELLING.md)
+function storyMode(): void {
+  const src = fs.readFileSync(STORY, "utf8"), s: Story = parseStory(src);
+  const voiceOf = (who: string) => s.voices[who] ?? (who === "narrator" ? s.voice ?? NARRATOR : s.voices.default ?? s.voice ?? NARRATOR);
+  for (const v of new Set([s.voice ?? NARRATOR, ...Object.values(s.voices)])) if (!VOICES[v]) die(`unknown voice "${v}"`);
+  if (s.mood && !(s.mood in MOODS)) die(`unknown mood "${s.mood}"`);
+  const research = fs.existsSync(RESEARCH) ? fs.readFileSync(RESEARCH, "utf8") : "";
+  const sources = [...new Set([...research.matchAll(/https?:\/\/[^\s)>\]]+/g)].map((m) => m[0]))];
+  const L = lintStory(s, (text, who) => estimateClip(voiceOf(who), text).end * 1.053, sources.length);
+  const verdict = (s.evaluation.verdict ?? "").toLowerCase();
+  console.log(`\n${s.title} (${id}): ${s.format.join("+")} · ${s.beats.length} beats · ${L.words} words · ~${L.estimate.toFixed(0)} s (target ${s.length ?? "-"}) · ${L.chars} characters`);
+  for (const f of L.fails) console.log(`  FAIL  ${f}`);
+  for (const w of L.warns) console.log(`  WARN  ${w}`);
+  console.log(`  evaluation verdict: ${verdict || "(not written yet)"}`);
+  const lines = s.beats.flatMap((b) => b.lines);
+  const cell = (x: string) => x.replace(/\|/g, "/");
+  fs.writeFileSync(path.join(DIR, "approval-request.md"), [
+    `# ${s.title}: story approval`, "",
+    `**Format:** ${s.format.join(" + ")}. ${s.why}`, "",
+    `**Estimated length:** ${L.estimate.toFixed(0)} s · **Words:** ${L.words} · **Narration:** ${L.chars} characters (about ${L.chars} ElevenLabs credits) · **Voices:** ${[...new Set(lines.map((l) => `${l.who}=${voiceOf(l.who)}`))].join(", ")}`, "",
+    "## Premise", ...Object.entries(s.premise).filter(([, v]) => v && !/^none$/i.test(v)).map(([k, v]) => `- **${k}:** ${v}`), "",
+    "## Beats (script + visual plan)", "| # | lines | happens | camera | changes |", "|---|---|---|---|---|",
+    ...s.beats.map((b) => `| ${b.n} | ${b.lines.length ? b.lines.map((l) => (l.who === "narrator" ? "" : `**${l.who}:** `) + cell(l.text)).join("<br>") : "*(silent)*"} | ${cell(b.happens)} | ${cell(b.camera)} | ${cell(b.changes)} |`), "",
+    "## Ending", ...Object.entries(s.ending).map(([k, v]) => `- **${k}:** ${v}`), "",
+    "## Checks", ...(L.fails.length || L.warns.length ? [...L.fails.map((f) => `- FAIL ${f}`), ...L.warns.map((w) => `- note: ${w}`)] : ["All story checks pass."]), "",
+    "## Evaluation", ...Object.entries(s.evaluation).map(([k, v]) => `- **${k}:** ${v}`), "",
+    `To approve: tell Claude; it records \`npm run script -- ${id} --approve ${L.chars}\`.`,
+  ].join("\n") + "\n");
+  console.log(`\napproval request: productions/${id}/approval-request.md`);
+  const scriptHash = fnv(JSON.stringify(lines.map((l) => [voiceOf(l.who), l.who, l.text])));
+  if (argv.includes("--approve")) {
+    if (L.fails.length) die("refusing to record approval while story checks FAIL");
+    if (verdict !== "ready") die(`refusing to record approval: the evaluation verdict is "${verdict || "missing"}", not "ready" (docs/STORYTELLING.md §4)`);
+    if (Number(opt("--approve")) !== L.chars) die(`approval is for ${opt("--approve")} characters, the story costs ${L.chars}: show the owner the current story again`);
+    const STATUS = path.join(DIR, "status.json"), status = fs.existsSync(STATUS) ? JSON.parse(fs.readFileSync(STATUS, "utf8")) : { id, composition: `Short-${id}`, stages: {} };
+    status.story = { format: s.format, beats: s.beats.length, hash: fnv(src), at: new Date().toISOString() };
+    status.approval = { scriptHash, chars: L.chars, at: new Date().toISOString(), by: "the owner, in the conversation", script: `productions/${id}/story.md` };
+    fs.writeFileSync(STATUS, JSON.stringify(status, null, 1) + "\n");
+    console.log(`story approved (${s.format.join("+")}, ${s.beats.length} beats, ${L.chars} characters)`);
+  }
+  if (argv.includes("--storyboard")) storySkeleton(s, voiceOf);
+}
+
+/** one shot per beat: its lines, the planned camera mapped onto a library move, the beat's purpose as notes */
+function storySkeleton(s: Story, voiceOf: (who: string) => string): void {
+  const file = path.join("src/studio/stories", `${id}.ts`), ident = id.replace(/[^A-Za-z0-9]+(.)/g, (_, c) => c.toUpperCase()).replace(/^./, (c) => c.toUpperCase());
+  if (fs.existsSync(file)) die(`${file} exists already (refusing to overwrite a storyboard)`);
+  const speakers = [...new Set(s.beats.flatMap((b) => b.lines.map((l) => l.who)).filter((w) => w !== "narrator"))];
+  const lead = (s.premise.protagonist ?? "milo").toLowerCase().split(/\W/)[0];
+  const cast: Record<string, string> = { milo: "milo", ...Object.fromEntries([lead, ...speakers].filter((w) => ROSTER[w]).map((w) => [w, w])) };
+  const voices = Object.fromEntries(speakers.filter((w) => cast[w]).map((w) => [w, voiceOf(w)]));
+  const q = JSON.stringify;
+  const camOf = (c: string, who: string) => {
+    const k = c.toLowerCase().split(/\s|->/)[0];
+    if (k === "closeup" || k === "close" || k === "extreme") return `{ move: "closeUp", on: ${q(who)} }`;
+    if (k === "pushin") return `{ move: "pushIn", on: [${q(who)}], size: "full", to: "medium" }`;
+    if (k === "lowhero" || k === "highangle") return `{ move: ${q(k === "lowhero" ? "lowHero" : "highAngle")}, on: ${k === "lowhero" ? q(who) : `[${q(who)}]`} }`;
+    if (k === "follow") return `{ move: "follow", on: ${q(who)}, size: "full" }`;
+    if (k === "dutch") return `{ move: "dutch", on: [${q(who)}], roll: 0.12 }`;
+    return `{ move: "frame", on: [${q(who)}], size: ${q(k === "wide" ? "wide" : k === "full" ? "full" : "medium")} }`;
+  };
+  const shots = s.beats.map((b) => {
+    const who = b.lines.find((l) => cast[l.who])?.who ?? (cast[lead] ? lead : "milo");
+    const say = b.lines.map((l) => (cast[l.who] ? `{ who: ${q(l.who)}, text: ${q(l.text)} }` : l.who === "narrator" ? q(l.text) : `{ text: ${q(l.text)}, voice: ${q(voiceOf(l.who))} }`));
+    return `    // beat ${b.n}: ${b.happens.replace(/\n/g, " ")}  ->  ${b.changes}
+    //   plan: camera ${b.camera} · subject ${b.subject} · action ${b.action} · sound ${b.sound || "-"}
+    { ${say.length ? `say: [${say.join(", ")}], ` : "dur: 1.5, "}set: "city", light: "day", note: ${q(b.learns || b.happens)},
+      camera: ${camOf(b.camera, who)},
+      actors: [{ who: ${q(who)}, at: "a", act: "neutral" }] },`;
+  }).join("\n");
+  const constName = ident.toUpperCase().replace(/[^A-Z0-9]/g, "_");
+  fs.writeFileSync(file, `// Storyboard SKELETON for "${s.title}" (${s.format.join("+")}), from productions/${id}/story.md by npm run script -- ${id} --storyboard.
+// One shot per beat. The say lines are the approved story, word for word. Each shot's comments carry the beat's purpose
+// and visual plan: build the planned action, subject, camera and sound with the library (docs/STORYTELLING.md §3).
+import type { Storyboard } from "../story/types";
+
+export const ${constName}: Storyboard = {
+  id: ${q(id)}, title: ${q(s.title)},
+  cast: ${q(cast)},${Object.keys(voices).length ? `\n  voices: ${q(voices)},` : ""}${s.voice && s.voice !== NARRATOR ? `\n  voice: ${q(s.voice)},` : ""}${s.mood ? `\n  music: ${q(s.mood)},` : ""}
+  shots: [
+${shots}
+  ],
+};
+`);
+  const idx = "src/studio/stories/index.ts";
+  let t = fs.readFileSync(idx, "utf8");
+  t = t.replace(/(import type \{ Storyboard \} from "..\/story\/types";\n)/, `$1import { ${constName} } from "./${id}";\n`).replace(/export const STORIES: Storyboard\[\] = \[(.*)\];/, (_m: string, a: string) => `export const STORIES: Storyboard[] = [${a}, ${constName}];`);
+  fs.writeFileSync(idx, t);
+  console.log(`storyboard skeleton: ${file} (registered as Short-${id}; one shot per beat, plans in the comments)`);
+}
