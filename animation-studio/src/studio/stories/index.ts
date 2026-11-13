@@ -1,5 +1,6 @@
 // Registry of storyboards. Each becomes a composition "Short-<id>" (Root.tsx) that the cloud render farm can render.
 import type { Storyboard } from "../story/types";
+import { LOCKED_OUT_KEYS } from "./locked-out-keys";
 import { MARATHON1904 } from "./marathon-1904";
 import { BURIEDTREASURE } from "./buried-treasure";
 import { PIRATEDEMOCRACY } from "./pirate-democracy";
@@ -15,4 +16,4 @@ import { EVERYLIE } from "./every-lie";
 import { FLOATAWAY } from "./float-away";
 import { NIGHTSHIFT } from "./night-shift";
 
-export const STORIES: Storyboard[] = [YAWN_DEMO, CAPABILITIES, TICKLE, PIRATEDEMOCRACY, BURIEDTREASURE, INK_ORBIT, DOORWAYEFFECT, CAMERA_KIT, MARATHON1904, EXTRADOOR, EXTRADOOR2, EVERYLIE, FLOATAWAY, NIGHTSHIFT];
+export const STORIES: Storyboard[] = [YAWN_DEMO, CAPABILITIES, TICKLE, PIRATEDEMOCRACY, BURIEDTREASURE, INK_ORBIT, DOORWAYEFFECT, CAMERA_KIT, MARATHON1904, EXTRADOOR, EXTRADOOR2, EVERYLIE, FLOATAWAY, NIGHTSHIFT, LOCKED_OUT_KEYS];
