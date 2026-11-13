@@ -43,6 +43,20 @@
 - note: estimated 71 s vs target 95 s
 
 ## Independent evaluation
-Not run yet.
+**Verdict:** ready → ready · **Would a viewer keep watching?** yes. The hook (break into his own house) grips at once. The spike comes at beat 6, a bright new lock in flaking paint with filings on the mat ("uh-oh"). Beats 8 and 9, "It's one of ours" and "Everything he's told me is true", are the moment people rewatch. The brick and the hand over the horn (11), then "Found them! One minute." with 999 in his pocket (12), carry the second half on a real clock. The likeliest swipe point is beat 3 (about 0:08 to 0:14): three lines of rule, backstory and complaint over a slow ID check. Keep it tight and visual, with the licence beside the brass 9 and the glance at the letter. A second, smaller dip is possible at beat 4 (ringing the bell) if it's held. The ending (the woman's look, the THE LOCK MAN drawing over the warning letter) is warm and shareable. Likely top comment: the final line quoted, "'I checked who he was. I never asked who the lock was for.' Chills." Top critical comment: "He had a brick the whole time. Why'd he waste a minute on the broken pick?" This is a story a real viewer would finish and pass on, not just one that technically passes.
+
+| criterion | result | beats |
+|---|---|---|
+| clarity | pass | 1, 3, 8, 10, 15 |
+| viewer participation | pass | 2, 3, 5, 6, 7, 8, 10, 13 |
+| cause and effect | weak | 9, 11, 12, 13, 14, 15 |
+| emotional investment | pass | 1, 3, 5, 10, 12, 13, 16, 17 |
+| recontextualisation | pass | 1, 2, 4, 5, 6, 7, 8, 9, 10, 17 |
+| setup and payoff | pass | 1, 3, 5, 6, 10, 14, 16, 17 |
+| visual communication | weak | 3, 8, 10, 13 |
+| originality and adaptation | pass | 1, 6, 8, 9, 14, 17 |
+| accuracy | n/a fiction | 10 |
+
+Full findings: productions/sample-locked-out/eval/evaluation.md
 
 To approve: tell Claude; it records `npm run script -- sample-locked-out --approve 1057`.
