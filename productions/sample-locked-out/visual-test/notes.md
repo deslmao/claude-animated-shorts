@@ -46,3 +46,19 @@ Owner-authorised limited asset creation. These are the eight key frames from `vi
 - **No real reflections:** the mirror shows a drawn eyes card. There is no windscreen glass.
 - **Characters are camera-facing cards:** very close shots (16a) show a large flat face.
 - **Captions avoid faces only,** not props. Readable screens have to be framed above the caption band.
+
+## 540p climax preview, beats 10–17 (owner-approved)
+`climax-540p.mp4` is 540 x 960 and 47.7 s long (1,432 frames). It's **picture only**: no narration was recorded and no soundtrack was mixed, and the captions use estimated timing. `climax-540p-frames.jpg` shows it sampled at 2 frames per second.
+- **Storyboard:** `animation-studio/src/studio/stories/locked-out-climax.ts`, 24 shots. The script and events are unchanged; only the staging is new.
+- **Render:** 26 min 30 s (1.11 s per frame), bundle 6 s, peak memory 5.4 GB.
+- **Check stills before the render:** three passes (18, 11 and 3 frames), about 8 min in total.
+
+### Problems found (none fixed: the preview is a single authorised render)
+1. **15b:** the rise starts with Marsh's face filling the frame from about 0.55 m, the flat-card look. His position between 14c and 15b also jumps. Fix: keep him at his 14c position (about 1 m away) through beat 15.
+2. **15c:** the glance reads as "looking at the garden". The bay's dark panes don't read as glass seen edge-on, and the brick is barely visible. Fix: give the bay glass a lighter tone with a glint, and frame the brick larger.
+3. **13:** the brick drop is too small to notice at that distance. Fix: a 0.6 s insert of it landing on the lawn.
+4. **12b:** the phone going into my pocket is too dark to read. Fix: lighter jacket tones, or show the live call screen as it goes in.
+5. **Static holds:** 10a (3.6 s), 12a (3.9 s) and 14c (3.6 s) have no camera motion. Fix: slow push-ins.
+6. **16a:** Marsh's head drifts toward the left edge late in the shot. Fix: nudge the framing.
+7. **Lip-sync:** the engine turns a speaking face into a relaxed smile between words, so Marsh's and the neighbour's lines are voiced without lip-sync. Their faces hold their emotion, but their mouths won't move once a voice is added. A real fix needs an engine change: keep the emotion while speaking.
+8. **17b:** the officers stand beside him rather than visibly taking his arms. It reads, but stays static.
