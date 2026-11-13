@@ -45,21 +45,20 @@
 All structural checks pass (structure only: not a judgement of quality).
 
 ## Independent evaluation
-**Verdict:** ready → not ready · **Would a viewer keep watching?** yes. The hook ("paying me double to break into his own house") grips at once, and a new clue arrives every beat or two. The peaks are the dog's tail and the DADDY drawing (beat 5), the hands going still on the new cylinder (6), and the strip of light going out upstairs (7), which is the chill most people will mention. Next come the brick at the glass with a hand over the horn (11) and him walking back out against the operator's order (12–13). The main swipe risk is beats 3–4 (ID check, ringing the bell), about five seconds of procedure, held only by "the wrong man twice". A smaller one is the busy beat 16. A likely top comment: "'I checked who he was. I never asked who the lock was for.' Chills." (or "the light going off upstairs got me"). The top critical comment: "So honking would make him smash the window, but screaming in his face wouldn't?", then "operator: stay in your vehicle. him: anyway". It's shareable: a fresh POV (the tradesman asked to open the door), moral clarity without a speech, and a bittersweet sting ("REVIEW REQUIRED").
+**Verdict:** ready → ready · **Would a viewer keep watching?** yes. The opening line is a genuine hook (a man paying double to break into his own house). Viewers will be gripped at the dog's tail thumping at "Biscuit. It's me" beside the DADDY drawing (5), the light snapping off as the tools come out (7), the History reveal "one of ours" (8), and the brick weighed at the glass with the narrator's hand over the horn (11). Swipe risks: the procedural stretch of beats 3–4 (licence, bell) if it's paced slowly; the static decision in beat 12; and the quiet coda right after the arrest (17), where some will leave before the best line. Keep beats 18–19 tight. Top comment: "'I checked who he was. I never asked who the lock was for.' That line." (A runner-up: "The dog wagging at his voice is the saddest part.") Top critical comment: "He said honking would make him smash the window and then screamed down the entire street?" A runner-up is "Why did he call the same company that changed the locks?"
 
 | criterion | result | beats |
 |---|---|---|
-| clarity | pass | 1, 3, 6, 8, 10, 12, 16 |
-| viewer participation | pass | 2, 4, 5, 6, 7, 8 |
-| cause and effect | pass | 9, 10, 11, 12, 13, 14, 15, 16 |
-| emotional investment | pass | 1, 3, 5, 10, 14, 17, 18 |
-| recontextualisation | pass | 1, 3, 5, 7, 17, 18 |
-| setup and payoff | pass | 1, 2, 6, 8, 10, 11, 13, 14, 16, 18 |
-| visual communication | pass | 1, 3, 6, 8, 11, 12, 14, 15, 16, 18 |
-| originality and adaptation | pass | 1, 6, 8, 12, 15, 18 |
+| clarity | pass | 1, 3, 4, 5, 8, 10, 11 |
+| viewer participation | pass | 1, 5, 6, 7, 11, 12, 14 |
+| cause and effect | pass | 2, 9, 11, 12, 13, 14, 15, 16, 17 |
+| emotional investment | pass | 1, 3, 5, 10, 14, 16, 18, 19 |
+| recontextualisation | pass | 2, 4, 7, 8, 17, 18, 19 |
+| setup and payoff | pass | 1→19, 2→16, 5→18, 9→11, 10→17, 11→13, 7→18 |
+| visual communication | weak | 11, 12, 14, 15, 18 |
+| originality and adaptation | pass | 1, 6, 8, 10, 15, 19 |
 | accuracy | n/a fiction | all |
 
-- gate: the evaluation is for packet 2da39292, the story is now packet 5ef2dffb: re-evaluate the current story
 Full findings: productions/sample-locked-out/eval/evaluation.md
 
 To approve: tell Claude; it records `npm run script -- sample-locked-out --approve 1335`.
