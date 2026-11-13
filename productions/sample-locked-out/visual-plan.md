@@ -1,12 +1,18 @@
-# Locked Out: visual-development plan (revision 2)
+# Locked Out: visual-development plan (revision 3: final story)
 **Status:** awaiting the owner's approval before any asset is created. Nothing has been rendered, recorded or generated.
-- **Story:** `story.md` (spec 3, `perspective: first`, 19 beats, 263 words, packet `5ef2dffb`).
-- **Independent evaluation of this exact packet** (`eval/evaluation.md`): ready, 0 fail, 1 weak criterion (visual communication), 2 weak stress tests (plot hole and consistency); gate **READY**.
-- **History:** earlier evaluations are kept as `evaluation.v1.md` and `evaluation.v2.md`.
+- **Story:** `story.md` (spec 3, `perspective: first`, 19 beats, 256 words, packet **`53e034eb`**). It includes the owner-approved beat 12 trim: the spoken "I'll keep him at the front door." is cut.
+- **Independent evaluation of this exact packet** (`eval/evaluation.md`, a fresh evaluation after the trim): ready, 0 fail, 1 weak criterion (visual communication), 2 weak stress tests (plot hole and consistency); gate **READY**.
+- **History:** earlier evaluations are kept as `evaluation.v1.md` (before the owner's revision), `evaluation.v2.md` (packet `2da39292`) and `evaluation.v3.md` (packet `5ef2dffb`).
 - **Scope of this revision:** this plan changes staging only. The script, events and lines are exactly the evaluated packet's.
-- **Runtime:** **about 100 s** (§1). This corrects the earlier "about 98 s", which was planned from shot lengths, not speech.
+- **Runtime:** **about 98 s** (§1): about 85 s of speech plus about 13 s of silent action.
 
-## 0. What this revision addresses
+## 0a. The final evaluation's suggestions, against this plan
+The fresh evaluation of packet `53e034eb` passed. Its three suggestions, and where each one stands:
+1. **Beat 15, show the blocking.** **Already staged in this plan.** Shot 15b is a glance back over my shoulder at the brick and the bay window behind me, then a turn to Marsh at his door. The evaluator judged only the packet's story-level storyboard. **Strengthened here:** in 15b the brick lies near the bottom of frame at my feet, and the bay window fills the frame's left half.
+2. **Beats 18–19, where she is.** **Consistent as written.** She is at the front door, a voice only, while her son switches on the upstairs light (the ledger records this). By beat 19 she has gone back upstairs to the window. *Not applied:* the evaluator's alternative, ending with the family behind the intact bay window, would change the evaluated beat 19. It's noted as an option for the owner.
+3. **Beat 12, an operator reaction** ("Sir, stay in the van." / "If I stay, he's through that window."). *Not applied:* it would add lines to the evaluated script. The evaluator found beat 12 understandable without it. It's an option for the owner.
+
+## 0. What revision 2 addressed
 **The fresh evaluation's three fixes, all handled in staging:**
 
 | Finding | Where it's handled |
@@ -33,7 +39,7 @@ Speech is from the script tool's voice-calibrated estimate; action time is the s
 | 9 | 4.1 | 4.3 | his gaze to the bay; I walk to the van | keep |
 | 10 | 5.9 | 5.9 | the locking clunks; the countdown starts | keep |
 | 11 | 7.6 | 7.6 | latch, brick, glass, my hand over the horn: action under the lines | keep |
-| 12 | 10.8 | 10.8 | **the longest beat in the film** | see below |
+| 12 | 8.7 | 8.7 | the mirror; phone into pocket (its call timer running); cuff over the watch; the warning letter in frame; hand on the door handle | trimmed: line cut (owner-approved) |
 | 13 | 0.8 | 2.4 | step out; he drops the brick and walks back | keep (was 3.0) |
 | 14 | 4.4 | 5.0 | fake picking; the watch; his hand on my shoulder | keep: the suspense ramp |
 | 15 | 4.1 | 5.1 | watch, glance back, rise, shout, first window | keep: the decision |
@@ -42,11 +48,9 @@ Speech is from the script tool's voice-calibrated estimate; action time is the s
 | 18 | 8.5 | 9.0 | her lines; my hand at the flap; the light comes on | keep: the emotional payoff |
 | 19 | 4.4 | 5.4 | REFUSED; the family at the window; 1 s of tail after the line | trimmed (was 6.2) |
 
-**Total: about 100 s** (speech about 87 s, plus about 13 s of silent action).
+**Total: about 98 s** (speech about 85 s, plus about 13 s of silent action).
 
-**What is genuinely prolonged:** only **beat 12** (about 11 s, in a parked van). Its thought ("He still thinks I'm his way in. While he does, he'll wait at the door.") and its spoken line ("I'll keep him at the front door.") carry the same information.
-- **Staging (applied here):** beat 12 plays over continuous hand action (mirror, phone into pocket, cuff over the watch, eyes to the letter, hand to the door handle), so it's never a static pose.
-- **Line trim (recommended, not applied):** cutting "I'll keep him at the front door." and keeping "Stay on the line." would save about 2 s. It changes the evaluated packet, so it would need another evaluation. That's the owner's call; the film works without it.
+**What was genuinely prolonged, and is now fixed:** beat 12. Its thought and the spoken "I'll keep him at the front door." said the same thing. The owner approved cutting the spoken line. A fresh independent evaluation then confirmed the decision still reads: "His thought… and the exchange 'Do not open her door.' / 'I won't.' state the plan. Hiding the phone, covering the watch and 'Found them!' act it out." Beat 12 still plays over continuous hand action, so it's never a static pose.
 
 **Not shortened:** the suspense holds (6, 7, 11), the climax (13–17) and the ending (18). Each carries information or the emotional turn.
 
@@ -94,7 +98,7 @@ Each is placed at an authored position in the lower frame of a static first-pers
 - **No slow decorative moves:** the only slow move is 19b's final push-in (3 s), which lands on the last line.
 - **Purposeful repetition only:** the windscreen motif (1a, 11a, 19b) and the watch (10b, 14b, 15a, 16d, 17a). The watch always appears at the same size and angle, so it reads as one ticking object.
 
-## 4. Final script (the evaluated packet, unchanged)
+## 4. Final script (the evaluated packet 53e034eb, unchanged)
 Lines in *italics* are my thoughts: narration in the inner voice (`liamQuiet`, close and quiet). **ME:** lines are spoken aloud (`liam`).
 
 **1.** *At two-fourteen in the morning, a man is paying me double to break into his own house.*
@@ -129,7 +133,7 @@ Lines in *italics* are my thoughts: narration in the inner voice (`liamQuiet`, c
 *A horn, and he's through that glass before anyone's out of bed.*
 
 **12.** *He still thinks I'm his way in. While he does, he'll wait at the door.*  
-**ME:** I'll keep him at the front door. Stay on the line.  
+**ME:** Stay on the line.  
 **OPERATOR:** Do not open her door.  
 **ME:** I won't.
 
@@ -152,7 +156,6 @@ Lines in *italics* are my thoughts: narration in the inner voice (`liamQuiet`, c
 **19.** *I checked who he was.*  
 *I never asked who the lock was for.*
 
-
 ## 5. Story-level storyboard (from story.md; production staging is in §6)
 | # | events | what the viewer sees | key subject | action | camera | sound |
 |---|---|---|---|---|---|---|
@@ -167,7 +170,7 @@ Lines in *italics* are my thoughts: narration in the inner voice (`liamQuiet`, c
 | 9 | E7 | his eyes slide to the bay window and stay there; my hands snap the pick case shut; I walk to the van; he stays on the doorstep, and his long shadow, cast by the porch light, stretches after me along the pavement | his eyes on the bay window | my hands close the case; I walk | pov -> insert -> pov (walking, his shadow stretching after me) | my boots, his boots |
 | 10 | E8 | inside the van, the central locking clunks; I dial 999 under the warning letter; at "four minutes" my thumb sets my watch counting down: 04:00, 03:59 | the countdown starting | I dial; I start the countdown | pov (hands in frame) -> insert (the watch) | the clunk, the ringing, her voice |
 | 11 | E8 | through the windscreen: he leaves the door, tries the bay window's latch, then pulls a brick out of the garden border and weighs it at the glass; my hand goes to the horn and stops just above it | the brick at the glass | he tries the latch, lifts the brick; my hand hovers, then comes away | pov (windscreen) -> insert (my hand over the horn) | soil tearing, my heartbeat |
-| 12 | E9 | my reflection in the dark windscreen, the phone's glow on it, deciding; I slide the phone, still on the call, into my breast pocket, screen against my chest; I pull my cuff over the watch: 03:10; my hand on the door handle | the phone going into my pocket | I decide; hide the phone; open the door | pov (hands in frame) -> insert (pocket) | the operator's voice, then muffled |
+| 12 | E9 | my reflection in the dark windscreen, the phone's glow on it, deciding; I slide the phone, its call timer still running, into my breast pocket, screen against my chest; I pull my cuff over the watch: 03:10; my hand on the door handle | the phone going into my pocket | I decide; hide the phone; open the door | pov (hands in frame) -> insert (pocket) | the operator's voice, then muffled |
 | 13 | E9 | I step out with the case held up; at my voice he lowers the brick, drops it by the path and walks back to the door | the brick dropping by the path | he drops the brick and comes back | pov (he turns from the window) | the van door, the brick thudding into the soil |
 | 14 | E10 | on my knees: the pick rests beside the keyway, not in it, and the wrench turns nothing; my cuff slips: 02:20, then 01:40; he watches my hands; his face comes down over me, into the lens; his hand closes on my shoulder; his eyes go to the brick by the path | his hand on my shoulder, the brick behind him | my hands fake; his hand grips; he looks at the brick | insert (the pick beside the keyway) -> insert (the watch) -> pov (up at him, low) | the pick ticking on metal, his breath |
 | 15 | E11 | my eyes drop to my watch (01:30); I stand up and step out onto the path, so I'm between him and the brick and the bay window; he's against his own front door now; I shout it down the sleeping street, and across the road the first window lights up during the shout | the first window lighting up | I check the watch; step between; shout | insert (the watch) -> pov (rising, the brick and the bay window behind me, him at the door) -> wide (from the path down the dark street, the first window lighting) | my voice echoing between the houses |
@@ -175,8 +178,6 @@ Lines in *italics* are my thoughts: narration in the inner voice (`liamQuiet`, c
 | 17 | E12 | my watch: 00:00; blue light floods the street; at the end of the path two officers take his arms; he twists back toward the house, and they walk him to the car | the blue light, the officers | he's held; he shouts back at the house | insert (the watch) -> wide (from the doorstep, blue light sweeping the houses) | sirens, car doors, his shout |
 | 18 | E13 | the door stays shut; her voice comes through it; my hand moves to the letterbox flap and stops, then lowers; above me, the upstairs light comes back on | my hand not lifting the letterbox | my hand stops; the light comes on | insert (my hand at the flap) -> pov (tilting up to the lit window) | her voice muffled by the door, the dog whining softly |
 | 19 | E14 | in the van my phone shows the job: REFUSED BY TECHNICIAN. REVIEW REQUIRED, under the warning letter on the visor; I look up through the windscreen: the curtain is open, and she stands at the lit window with her small son and the dog, not hiding any more | the family at the lit window | I look from the phone to the window | insert (phone and visor) -> pov (windscreen, the lit window) | a quiet chord, a distant bird |
-
-
 
 ## 6. Shot-by-shot camera plan (revised)
 **Notation:**
@@ -207,15 +208,15 @@ Lines in *italics* are my thoughts: narration in the inner voice (`liamQuiet`, c
 | 10b | 10 | vanCab | FP-T on H:watch | on "four minutes": 04:00 → 03:59 | 3.1 |
 | 11a | 11 | vanCab | **the same framing as 1a**, with a `rack` from the glass to the house | Marsh leaves the step, tries the bay latch, kneels at the border, pulls the brick, weighs it at the glass | 5.4 |
 | 11b | 11 | vanCab | FP-W, H:horn rises toward the wheel and stops, then drops out on "glass" | | 2.2 |
-| 12a | 12 | vanCab | `glide` up to the **rear-view mirror**: my eyes, phone-lit, go to the house and back | deciding ("He still thinks I'm his way in…") | 2.4 |
-| 12b | 12 | vanCab | FP-W, H:pocket: the phone goes into my breast pocket, screen in; the visor letter in the top of frame | "Stay on the line." / "Do not open her door." | 4.2 |
-| 12c | 12 | vanCab | FP-T on H:watch as my cuff slides over it (03:10), then FP-W with my hand on the door handle | "I won't." The door opens | 4.2 |
+| 12a | 12 | vanCab | `glide` up to the **rear-view mirror**: my eyes, phone-lit, go to the house and back | deciding ("He still thinks I'm his way in. While he does, he'll wait at the door.") | 3.4 |
+| 12b | 12 | vanCab | FP-W, H:pocket: the phone, its call timer visibly running, goes into my breast pocket, screen in; the visor letter in the top of frame | "Stay on the line." / "Do not open her door." | 2.9 |
+| 12c | 12 | vanCab | FP-T on H:watch as my cuff slides over it (03:10), then FP-W with my hand on the door handle | "I won't." The door opens | 2.4 |
 | 13 | 13 | alderRow | FP-W stepping out, H:tools (the case held up) | "Found them!"; Marsh lowers the brick, drops it beside the path (it thuds) and walks back to the step | 2.4 |
 | 14a | 14 | alderRow | FP-T kneeling, H:tools: the pick rests *beside* the keyway; the wrench turns nothing | | 1.8 |
 | 14b | 14 | alderRow | FP-T H:watch (02:20; a jump cut to 01:40) | | 1.2 |
 | 14c | 14 | alderRow | FP-W kneeling, looking up at Marsh over me | "You're not even trying." A soft jolt as his hand lands on my shoulder; his eyes go to the brick: "Or I go through that window." | 2.0 |
 | 15a | 15 | alderRow | FP-T H:watch (01:30) | | 0.8 |
-| 15b | 15 | alderRow | `glide` over my shoulder: the brick by the path and the bay window behind me → `glide` back to Marsh at his door | the geography, from my eyes | 0.9 |
+| 15b | 15 | alderRow | `glide` over my shoulder: the brick near the bottom of frame at my feet, the bay window filling the frame's left half → `glide` back to Marsh at his door | the geography, from my eyes | 1.0 |
 | 15c | 15 | alderRow | FP-W rising from 1.15 to 1.65 m (`glide`), stepping back onto the path: Marsh against his own door, my body between him and the glass | the music cuts out on "No!" | 1.0 |
 | 15d | 15 | alderRow | `at` wide from the path down the street (fov 60): the first motivated outside-the-eyes shot | the shout echoes; across the road **W1 lights on "keep"** | 2.4 |
 | 16a | 16 | alderRow | `whip` to FP-W pinned *sideways* against the porch wall (the camera rolls about 8° on impact), looking over his shoulder | W2 and W3 light on "Shut"; a curtain pulls back | 2.0 |
@@ -230,7 +231,7 @@ Lines in *italics* are my thoughts: narration in the inner voice (`liamQuiet`, c
 | 19a | 19 | vanCab | FP-T H:phone (REFUSED BY TECHNICIAN. REVIEW REQUIRED) with the visor letter above it | | 2.2 |
 | 19b | 19 | vanCab | **the 1a and 11a framing**, slow `pushIn` (fov 70 → 55) | the curtain open: the woman at the lit window, her son, Biscuit's nose at the glass; the final line; 1 s of tail | 3.2 |
 
-41 shots, about 100 s. There are more shots than in revision 1 because the climax is now cut on the action. The number of *setups* is lower, because the first-person framings repeat purposefully.
+41 shots, about 98 s. There are more shots than in revision 1 because the climax is now cut on the action. The number of *setups* is lower, because the first-person framings repeat purposefully.
 
 ## 7. The climax, beats 13 to 17, in detail (about 22 s)
 **The rule for the sequence:** one new piece of information per shot, and every piece readable with the sound off.
