@@ -5,7 +5,7 @@ perspective: first
 why: A first-person mystery told through a locksmith's hands and trade knowledge: the viewer checks each piece of evidence with me (an ID, a dog, a drawing, a lock that's too new), is addressed by the man at the door, and reaches the decision at the same moment I do.
 length: 95
 voice: liamQuiet
-voices: me=liamQuiet, hale=brian, operator=alice, woman=jessica
+voices: me=liamQuiet, marsh=brian, operator=alice, woman=jessica
 mood: tense
 factual: no
 
@@ -125,19 +125,19 @@ depth: deep
 ### Clues
 | clue | beat | the viewer sees | they can infer | hold | answer at |
 |---|---|---|---|---|---|
-| cash, double, no paperwork, a finger to his lips | 1 | the notes fanned in his fist; the hush gesture | he wants no record and no noise | 1.5 | 6 |
-| the licence matches the door | 2 | D. MARSH, 9 ALDER ROW beside the brass 9 | he lives here, or did | 2 | 6 |
-| the dog and the drawing | 3 | the tail thumping at his voice; DADDY in a green coat like his | he's family | 2 | 6 |
-| nobody answers the bell | 3 | the bell rung; only the dog comes; "She won't come down" | she's in, and won't come to the door | 1.5 | 6 |
-| his key won't go in | 4 | worn brass bumping at the keyway | his key is for a different lock | 1.5 | 6 |
-| a new lock in an old door | 4 | a gleaming cylinder with a small KL stamp, a paint outline of a bigger lock, fresh filings | the lock is days old at most | 2 | 6 |
-| the strip of light upstairs | 1 | one lit strip under a curtain on a dark street | someone at number 9 is awake | 1.2 | 5 |
-| the light goes out upstairs | 5 | the strip going dark; the curtain moving | she's awake, watching, and hiding from him | 1.5 | 8 |
-| he looks at the window | 7 | his eyes on the bay window | he'll get in another way | 1.2 | 8 |
+| cash, double, no invoice, a finger to his lips | 2 | the notes fanned in his fist; the hush gesture | he wants no record and no noise | 1.5 | 8 |
+| the licence matches the door | 3 | D. MARSH, 9 ALDER ROW beside the brass 9 | he lives here, or did | 2 | 8 |
+| the dog and the drawing | 5 | the tail thumping at his voice; DADDY in a green coat like his | he's family | 2 | 8 |
+| nobody answers the bell | 4 | the bell rung; only the dog comes; "She won't come down" | she's in, and won't come to the door | 1.5 | 8 |
+| his key won't go in | 6 | worn brass bumping at the keyway | his key is for a different lock | 1.5 | 8 |
+| a new lock in an old door | 6 | a gleaming cylinder with a small KL stamp, a paint outline of a bigger lock, fresh filings | the lock is days old at most | 2 | 8 |
+| the strip of light upstairs | 1 | one lit strip under a curtain on a dark street | someone at number 9 is awake | 1.2 | 7 |
+| the light goes out upstairs | 7 | the strip going dark; the curtain moving | she's awake, watching, and hiding from him | 1.5 | 10 |
+| he looks at the window | 9 | his eyes on the bay window | he'll get in another way | 1.2 | 11 |
 
 ### Secret
 - answer: He really did live here. His partner had the lock changed yesterday, by my own firm, and kept the keys from him, because she is afraid of him. She and their child are inside
-- revealed at: beat 6
+- revealed at: beat 8
 - tells: lock change, locks changed, changed the lock, keys issued, afraid of him, don't let him in, keep him out, fitted yesterday
 
 ### Demonstration
@@ -145,10 +145,38 @@ depth: deep
 ## Setups and payoffs
 | setup | beat | payoff beat | how it pays off |
 |---|---|---|---|
+| the final warning on my visor | 1 | 17 | the drawing covers it |
+| one lit strip upstairs | 1 | 7 | it goes out when I look: she's awake, hiding |
+| his hush, and the cash for no record | 2 | 8 | he can't be on record at this address |
+| the ID passes | 3 | 9 | everything he said was true |
+| "She won't come down" | 4 | 16 | she does come down, for me, not for him |
+| the thumb-turn inside, seen through the letterbox | 5 | 16 | the jammed lock still opens from inside |
+| the family drawing through the letterbox | 5 | 17 | a new drawing comes back out through the same slot |
+| the new cylinder and its KL stamp | 6 | 8 | our firm fitted it yesterday, for her |
+| my pick and wrench | 6 | 14 | I snap the pick in the lock |
+| the brick at the window | 11 | 15 | he goes back for it, too late |
+| the stopwatch under my cuff | 10 | 15 | 03:50: the minute the jammed lock bought |
 
 ## Beats
 | # | events | lines | happens | viewer learns | subject | action | camera | changes | sound | evidence |
 |---|---|---|---|---|---|---|---|---|---|---|
+| 1 | E1 | At two-fourteen in the morning, a man is paying me double to break into his own house. | through my van's windscreen: a dark street, every window black except a thin strip of light under one upstairs curtain at number 9, small at the edge of frame; my hand lifts my phone: LOCKOUT · 9 ALDER ROW · 02:14; above it on the sun visor, a letter: FINAL WARNING: WRONGFUL REFUSAL OF SERVICE | a strange job, and I can't afford a mistake | the job card, then the warning letter | my hand lifts the phone; my eyes go up to the visor | pov (windscreen, hands in frame) -> insert (phone) -> pov (visor) | the job is strange, and my job is at risk | the engine ticking as it cools | - |
+| 2 | E1 | marsh: Double. Cash. No invoice, no call to the office. / And he keeps his voice down. | my torch finds a man in a green coat on the doorstep; he talks low, straight into the lens; the notes fanned in his fist; he puts a finger to his lips and tips his head at the neighbours' dark windows | he wants no record and no noise | the finger to his lips | he fans the cash; hushes me | pov (torch) -> insert (cash) -> closeUp (into the lens) | I'm suspicious | a dog's distant bark, his whisper | B |
+| 3 | E2 | Proof of address first. That's the rule. / Last winter I turned away a man with no ID. It was his house. / One more complaint and I'm finished. | his licence in my gloved hand: D. MARSH, 9 ALDER ROW, his photo; I hold it up beside the brass 9 on the door and the MARSH label on the bell; I glance back at the van: the letter on the visor; I hand the licence back | he passes, and refusing him would cost my job | the licence beside the brass 9 | I compare; glance back; hand it back | pov (hands in frame) -> insert -> pov (glance back at the van) | he's cleared, on paper | a car far off | A |
+| 4 | E3 | I always ring first. / marsh: She won't come down. Not at this hour. | my finger presses the bell; inside a dog barks, then whines; nobody comes; he says it into the lens, tired, not angry | she's inside, and won't come to the door | the unanswered door | I ring; wait; he shrugs | insert (bell) -> closeUp | there's a woman inside who won't come down | the bell, the dog | A+B |
+| 5 | E3 | marsh: Biscuit. It's me. | my fingers lift the letterbox flap; my torch through the slot: a spaniel in the hall, tail thumping at his voice; on the wall, a child's drawing: MUMMY, ME, BISCUIT, and DADDY in a green coat; small wellies by the mat; at the beam's edge, a brass thumb-turn on the inside of the door | he's family, and the dog loves him | the dog's tail and the drawing | the tail thumps; the torch drifts over the drawing | pov (through the letterbox) | he belongs here | a tail thumping on the floor | A |
+| 6 | E4 | marsh: Just stopped working tonight. / New locks don't just stop working. | I kneel and lay out my wrench and pick; he shows me his worn brass key: it bumps at the keyway and won't go in; my torch goes close: a bright new cylinder with a small KL stamp on its face, set in flaking old paint, a paler outline where a bigger lock used to be, metal filings glittering on the mat; my hands go still | his key was cut for a different lock | the new cylinder in the old paint | his key bumps; my hands stop | pov (hands in frame) -> insert (macro, the lock) | the lock is wrong | the key scraping, then silence | B |
+| 7 | E5 | Someone's awake up there. / marsh: Problem? | my torch tilts up as I think: the strip of light under the upstairs curtain goes out, and the curtain twitches; I tilt the torch back down: he's looking from the window to me | she's watching, and hiding from him | the light going out | the curtain moves; his eyes find mine | pov (tilt up) -> pov (back to his face) | someone is hiding from him | silence, a curtain ring | B |
+| 8 | E6 | me: Just checking the lock model. / It's one of ours. / She changed the lock yesterday. And kept the keys from him. | I lean close: KL, Kestrel Locks, my firm; I turn my phone away from him and open the address's History: "Yesterday, 16:40. Emergency lock change. Customer: R. Marsh. Keys issued to R. Marsh only."; his shadow falls on the step beside me | the reveal: he's who he says, and that's why he's locked out | the History entry | I angle the phone away; my thumb scrolls | insert (the stamp) -> insert (phone screen) -> pov (his shadow) | I know why he's locked out | my own breathing | B |
+| 9 | E7 | Everything he's told me is true. / And now he's looking at the window. / me: Wrong picks. They're in the van. | his eyes slide to the bay window and stay there; my hands close the pick case; I walk to the van, his long shadow walking beside mine on the pavement | leaving won't protect them; I need to get away from him | his eyes on the bay window | my hands snap the case shut; I walk | pov -> insert -> pov (walking, his shadow beside mine) | I'm walking away from the door | my boots, his boots | B |
+| 10 | E8 | operator: We've just had a call from inside that house. Officers are four minutes out. Stay in your vehicle. | inside the van, the central locking clunks; I dial 999 under the warning letter on the visor; at the operator's words my thumb starts the stopwatch on my wrist: 00:00 | she called too; help is four minutes away | the stopwatch starting | I dial; I start the watch | pov (hands in frame) -> insert (the watch) | the clock starts | the clunk, the ringing, her voice | - |
+| 11 | E8 | A horn, and that window's gone. | through the windscreen: he pulls a brick out of the garden border, weighs it, and walks to the bay window; my hand goes to the horn and stops just above it | four minutes is longer than a window lasts | the brick at the glass | he lifts the brick; my hand hovers, then comes away | pov (windscreen) -> insert (my hand over the horn) | he'll go through the window | soil tearing, my heartbeat | - |
+| 12 | E9 | me: Found them! One minute. | I slide the phone, still on the call, into my breast pocket, screen against my chest; I pull my cuff over the stopwatch; I get out with my tool bag; at my voice he lowers the brick, drops it by the path and comes back to the door | I'm back at the door to hold him there | the brick dropping by the path | the phone hides; the cuff covers; he drops the brick | pov (hands in frame) -> pov (he turns from the window) | I'm back between him and the house | the van door, the brick thudding into the soil | - |
+| 13 | E10 | Four minutes. So I pretend. / marsh: You said one minute. I'll have your job for this. / marsh: Open it. Now. | on my knees: the pick rests beside the keyway, not in it, and the wrench turns nothing; my cuff slips: 01:30; then 02:20; his face looms over me, into the lens; his hand closes hard on my shoulder | every second I fake buys time, and he's done waiting | the stopwatch under my cuff | my hands fake; his hand grips | pov (hands in frame) -> insert (the watch) -> pov (up at him, low) | he's run out of patience | the pick ticking on metal, his breath | - |
+| 14 | E11 | So I make sure nobody can. / marsh: What did you do? | 02:40 on my wrist; my thumb drives the pick deep into the keyway and bends it: SNAP; the steel stub sits flush in the lock; I hold up my empty hands to him | the lock is jammed for good, from outside | the broken stub in the keyway | I snap the pick; show my hands | insert (macro, the snap) -> pov (my open hands, his face beyond) | nobody can open the door from outside | a sharp metal snap | - |
+| 15 | E12 | marsh: Get it out! / marsh: It's my house! | he shoves me aside (the frame lurches against the door frame); he rams his key at the stub, claws at it with his nails, hauls me up by my jacket; 03:50 on my wrist; he lets go and runs for the brick; as he straightens with it, blue light floods the street; two officers take his arms; the brick drops into the flowerbed | the jammed lock cost him his last minute | the blue light on the brick | he fights the lock; runs; is stopped | pov (shoved, low) -> insert (the watch) -> pov (blue light sweeping the houses) | he's caught | his key scraping, then sirens, a car door, the brick thudding | - |
+| 16 | E13 | woman: You didn't open it. | inside the door a hand turns the brass thumb-turn; the door opens on its chain; a woman's eyes; behind her knees a small child holds Biscuit by the collar; her eyes go to the broken stub in her lock, then up to me, into the lens | the people I protected, safe | her eyes, then the stub | the chain catches; she looks at the lock, then at me | insert (thumb-turn) -> closeUp (into the lens) | she's safe, and she knows why | the chain rattling, the dog whining softly | - |
+| 17 | E14 | I checked who he was. / I never asked who the lock was for. | morning light: a folded drawing slides out through the letterbox into my hands: a stick man beside a van, THE LOCK MAN; in the van I clip it to the visor, over the warning letter | the warning is covered by what I did right | the drawing over the letter | my hands take it; clip it on | pov (hands in frame) -> insert (the visor) | the warning is covered | birdsong, a warm chord | - |
 
 ## Ending
 - type: reveal
@@ -163,6 +191,10 @@ depth: deep
 | I5 | "Hale" is listed as The Last Stop's distinctive expression; 2:07 echoes 3:07 and 4:07 | Renamed Marsh; the time is 2:14. The coda is cut to the drawing over the letter (the evaluator's swipe risk) | E1, E2, E14 | resolved |
 
 ## Writer notes
+**Storyboard notation:**
+- "pov (hands in frame)" means my forearms and hands are in the lower frame. The engine can't draw that yet; the fallback is the same pov plus an insert cut on my hands.
+- Every other move (pov, insert, closeUp, overShoulder) exists today.
+
 Spine written before any lines; revised once after phase 1. Sensitive subject (a woman keeping out an ex-partner): handled with restraint. No violence is shown, the threat is a brick and a hand on a shoulder, and she and the child are safe.
 
 ## Revision
