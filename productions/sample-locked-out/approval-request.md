@@ -44,22 +44,20 @@
 All structural checks pass (structure only: not a judgement of quality).
 
 ## Independent evaluation
-**Verdict:** ready → not ready · **Would a viewer keep watching?** yes. The hook (break into his own house) grips at once. The spike comes at beat 6, a bright new lock in flaking paint with filings on the mat ("uh-oh"). Beats 8 and 9, "It's one of ours" and "Everything he's told me is true", are the moment people rewatch. The brick and the hand over the horn (11), then "Found them! One minute." with 999 in his pocket (12), carry the second half on a real clock. The likeliest swipe point is beat 3 (about 0:08 to 0:14): three lines of rule, backstory and complaint over a slow ID check. Keep it tight and visual, with the licence beside the brass 9 and the glance at the letter. A second, smaller dip is possible at beat 4 (ringing the bell) if it's held. The ending (the woman's look, the THE LOCK MAN drawing over the warning letter) is warm and shareable. Likely top comment: the final line quoted, "'I checked who he was. I never asked who the lock was for.' Chills." Top critical comment: "He had a brick the whole time. Why'd he waste a minute on the broken pick?" This is a story a real viewer would finish and pass on, not just one that technically passes.
+**Verdict:** ready → ready · **Would a viewer keep watching?** yes. The hook ("paying me double to break into his own house") grips at once, and a new clue arrives every beat or two. The peaks are the dog's tail and the DADDY drawing (beat 5), the hands going still on the new cylinder (6), and the strip of light going out upstairs (7), which is the chill most people will mention. Next come the brick at the glass with a hand over the horn (11) and him walking back out against the operator's order (12–13). The main swipe risk is beats 3–4 (ID check, ringing the bell), about five seconds of procedure, held only by "the wrong man twice". A smaller one is the busy beat 16. A likely top comment: "'I checked who he was. I never asked who the lock was for.' Chills." (or "the light going off upstairs got me"). The top critical comment: "So honking would make him smash the window, but screaming in his face wouldn't?", then "operator: stay in your vehicle. him: anyway". It's shareable: a fresh POV (the tradesman asked to open the door), moral clarity without a speech, and a bittersweet sting ("REVIEW REQUIRED").
 
 | criterion | result | beats |
 |---|---|---|
-| clarity | pass | 1, 3, 8, 10, 15 |
-| viewer participation | pass | 2, 3, 5, 6, 7, 8, 10, 13 |
-| cause and effect | weak | 9, 11, 12, 13, 14, 15 |
-| emotional investment | pass | 1, 3, 5, 10, 12, 13, 16, 17 |
-| recontextualisation | pass | 1, 2, 4, 5, 6, 7, 8, 9, 10, 17 |
-| setup and payoff | pass | 1, 3, 5, 6, 10, 14, 16, 17 |
-| visual communication | weak | 3, 8, 10, 13 |
-| originality and adaptation | pass | 1, 6, 8, 9, 14, 17 |
-| accuracy | n/a fiction | 10 |
+| clarity | pass | 1, 3, 6, 8, 10, 12, 16 |
+| viewer participation | pass | 2, 4, 5, 6, 7, 8 |
+| cause and effect | pass | 9, 10, 11, 12, 13, 14, 15, 16 |
+| emotional investment | pass | 1, 3, 5, 10, 14, 17, 18 |
+| recontextualisation | pass | 1, 3, 5, 7, 17, 18 |
+| setup and payoff | pass | 1, 2, 6, 8, 10, 11, 13, 14, 16, 18 |
+| visual communication | pass | 1, 3, 6, 8, 11, 12, 14, 15, 16, 18 |
+| originality and adaptation | pass | 1, 6, 8, 12, 15, 18 |
+| accuracy | n/a fiction | all |
 
-- gate: the evaluation is for packet 3eeac0c5, the story is now packet 2da39292: re-evaluate the current story
-- gate: the evaluation answers 3 of 5 automated flags (confirm or dismiss each)
 Full findings: productions/sample-locked-out/eval/evaluation.md
 
 To approve: tell Claude; it records `npm run script -- sample-locked-out --approve 1302`.
