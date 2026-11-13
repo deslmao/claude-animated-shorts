@@ -41,6 +41,20 @@
 All structural checks pass (structure only: not a judgement of quality).
 
 ## Independent evaluation
-Not run yet.
+**Verdict:** ready → ready · **Would a viewer keep watching?** yes. The hook (flat tyres, no holes, caps lined up by someone) is a concrete puzzle in the first seconds, and the counted lates give a ticking clock. The softest spot is b4 (padlock, hook, jar), a set-up beat with no new mystery; a viewer drifting would leave there, but b5's strange dinner pulls them back.
+
+| criterion | result | beats |
+|---|---|---|
+| clarity | pass | 1, 3, 4, 5, 6, 7, 8, 12 |
+| viewer participation | pass | 2, 5, 6, 7, 8, 9 |
+| cause and effect | pass | 1-15 |
+| emotional investment | weak | 1, 4, 5, 12, 15 |
+| recontextualisation | pass | 2, 5, 11, 12, 15 |
+| setup and payoff | pass | 1, 2, 4, 6, 10, 11, 13, 14, 15 |
+| visual communication | pass | 1, 2, 3, 6, 7, 8, 9, 10, 11, 13, 14 |
+| originality and adaptation | pass | 1, 5, 9-12 |
+| accuracy | n/a fiction | all |
+
+Full findings: productions/sample-flat-again/eval/evaluation.md
 
 To approve: tell Claude; it records `npm run script -- sample-flat-again --approve 1105`.

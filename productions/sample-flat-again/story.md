@@ -205,6 +205,11 @@ depth: deep
 ## Writer notes
 Spine written before any lines. Open doubts: whether a stroke survivor is portrayed with dignity (he is the smartest person in the story, and the one who acts); whether "someone at home" is frightening enough in the middle.
 
+**After phase 2 (ready: 0 fail, 1 weak criterion, 1 weak stress test). Not applied: the one revision was used after phase 1, and more needs the owner's approval.**
+- **Emotional investment, weak:** add a two-finger tap Grandad attempts at dinner (you duck away), hold the torch on the beat-1 photo, and pay off the TRIP jar.
+- **Plot hole, weak:** "why not write BRAKE?" Put Grandad's failed note (a shaky, unreadable B) beside Mum's in beat 6. Move the stakeout to where Mum wouldn't see you as she leaves.
+- **Mute reading:** say "paper round" once or show papers in Dex's bag; show the pump on its hook in beat 1; give a glimpse of Mum reaching her car in beat 8.
+
 ## Revision
 **One revision, at spine level, after the phase-1 evaluation** (issues I1-I6 in the issue log):
 - **Grandad's gesture** is a grip-and-squeeze, and lates are chalk marks, so the two are never confused.
