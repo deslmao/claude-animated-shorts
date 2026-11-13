@@ -45,6 +45,20 @@
 All structural checks pass (structure only: not a judgement of quality).
 
 ## Independent evaluation
-Not run yet.
+**Verdict:** ready → ready · **Would a viewer keep watching?** yes, the hook (paid double to break into his own house) is a real question. Beat 6's macro of the new lock and beat 8's "It's one of ours" is where a viewer leans in, and the brick at the glass with the hand over the horn (beat 11), then the countdown under the cuff, hold them through the climax. The likeliest swipe point is beats 3 to 5 (licence, bell, letterbox), a procedural stretch before the turn. It survives because each shot adds one checkable fact, but it must be cut tight. The ending image (the family at the lit window) and the closing line give a reason to comment. Top comment: "'I checked who he was. I never asked who the lock was for.' Give this man a raise, and if they fire him at that review…" Top critical comment: "Why not just honk the horn? The street waking up is literally what made him run." (Runner-up: "Police in four minutes at 2am, what country is this.")
+
+| criterion | result | beats |
+|---|---|---|
+| clarity | pass | 1, 2, 3, 8, 10, 12, 15 |
+| viewer participation | pass | 3, 5, 6, 7, 8, 11, 12 |
+| cause and effect | pass | 2, 9, 11, 12, 13, 14, 15, 16, 17 |
+| emotional investment | pass | 1, 3, 5, 10, 14, 16, 18, 19 |
+| recontextualisation | pass | 1, 3, 6, 7, 9, 17, 18, 19 |
+| setup and payoff | pass | 1, 2, 6, 8, 9, 11, 13, 15, 16, 19 |
+| visual communication | weak | 1, 8, 15, 18 |
+| originality and adaptation | pass | 1, 6, 8, 9, 12, 15, 19 |
+| accuracy | n/a fiction | all |
+
+Full findings: productions/sample-locked-out/eval/evaluation.md
 
 To approve: tell Claude; it records `npm run script -- sample-locked-out --approve 1302`.
