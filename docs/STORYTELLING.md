@@ -40,13 +40,26 @@ Every new story uses `spec: 2` (`productions/_template/story.md`). Before starti
    - Does each event change the situation?
    - Is the solution built only from what was set up?
    - Could an ordinary viewer explain what happened?
-7. **Visual plan.** Each event gets its **visual proof**, the image that shows it, *before* it gets a line. For explanations, give one consistent **Demonstration** model and its states.
-8. **Lines and narration,** written last, from the spine.
+7. **Props and clues.**
+   - **Prop-state ledger (`### Props`):** who has each plot-critical object at each event, where, in what condition, and whether the viewer can see it.
+   - **Clue ledger (`### Clues`, mysteries):** what the viewer sees, when, what they can infer, and how long it's held.
+   - **`### Secret` (mysteries):** the answer, its reveal beat, and its *tells*, the words or images that would give it away early.
+8. **Visual plan.** Each event gets its **visual proof**, the image that shows it, *before* it gets a line. For explanations, give one consistent **Demonstration** model and its states.
+9. **Lines and narration,** written last, from the spine.
    - Lines add meaning, interpretation and voice; they don't describe the shot.
    - Factual lines cite claims.
    - A continuous visual sequence may carry several lines or events. Cut when the action or the information changes, not for every sentence.
-9. **Independent evaluation:** phase 1 (the spine), then phase 2 (the full story), as set out in [storytelling/evaluator.md](storytelling/evaluator.md).
-10. **One focused revision.** Change the **spine first**, regenerate only the affected beats, and re-run `npm run script` on the whole story, so a fix can't open a new hole elsewhere.
+10. **Independent evaluation:** phase 1 (the spine), then phase 2 (the full story), as set out in [storytelling/evaluator.md](storytelling/evaluator.md).
+11. **One focused revision, with regression protection** (`spec: 3`):
+    - **Issues logged:** every phase-1 weak or fail becomes a numbered issue (`eval/issues.md`), and each needs a row in `## Issue log` with its resolution and a status. Missing rows fail the checks.
+    - **The judged Spine is kept:** the version phase 1 evaluated is saved as `eval/spine-packet.v1.md`. Every event changed since then is listed with its downstream events to re-check, and a change no issue explains is flagged.
+    - **The whole story is re-checked:** continuity, fair clues and the giveaway guard run on every beat, lines and pictures alike.
+    - **Phase 2 checks the fixes:** it receives phase 1's findings (not the writer's answers to them) and judges whether the viewer still meets each problem.
+
+    **Limits:**
+    - The giveaway guard matches the declared tells, single words by stem and phrases in order. A paraphrase or an image the writer didn't list slips through; phase 2 is the backstop.
+    - The ledger catches structural contradictions, not semantic ones. It can't know a trail of "one big and one small" footprints is wrong unless both owners' footwear is in the ledger.
+    - There's no second independent plot check after the revision. That stays within the one-revision limit, and phase 2 sees the earlier findings instead.
 
 **Planning depth scales with the story.** `npm run script` scores the events, characters, rules, payoffs, factual load and
 competing explanations, and sets the depth:

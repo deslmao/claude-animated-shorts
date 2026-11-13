@@ -1,5 +1,5 @@
 # <Title>
-spec: 2
+spec: 3
 format: immersive
 why: <one sentence: why this format serves this idea (docs/STORYTELLING.md §1)>
 length: 85
@@ -68,6 +68,28 @@ depth: standard
 | id | claim | source | quote |
 |---|---|---|---|
 
+### Props
+<!-- The prop-state ledger: ONLY objects the plot, a clue, a deduction or continuity depends on (keys, phones, shoes,
+     clothes, documents...). One row per object per event where its holder, place, condition or visibility matters,
+     starting with where it is first. Any change of holder or condition needs "why it changes". Checked: two places at
+     once, unexplained changes, use in a beat before it's established, established only at the end. -->
+| object | event | holder / place | condition | visible | why it changes |
+|---|---|---|---|---|---|
+| <object> | E1 | <who has it / where> | <state> | yes | |
+
+### Clues
+<!-- Mysteries: every clue the viewer must read. beat = when it's first seen; hold = seconds on screen (≥1.2 to be
+     readable); answer at = the beat that explains it. -->
+| clue | beat | the viewer sees | they can infer | hold | answer at |
+|---|---|---|---|---|---|
+
+### Secret
+<!-- Mysteries: the answer, the beat that reveals it, and its TELLS: words or images that would give it away early,
+     including synonyms and visual signs. Checked in both lines and pictures of every earlier beat. -->
+- answer: <the truth, one sentence>
+- revealed at: beat <n>
+- tells: <word or phrase>, <another>, <a visual sign>
+
 ### Demonstration
 <!-- Explanatory stories: the ONE visual model used for the mechanism, and its states in order. -->
 
@@ -93,6 +115,12 @@ depth: standard
 - type: <solution | realisation | reversal | reveal | consequence | decision>
 - A: <option> -> <its consequence>      (decision endings only)
 - B: <option> -> <its consequence>
+
+## Issue log
+<!-- After phase 1: npm run script -- <id> writes eval/issues.md (every phase-1 weak or fail as I1, I2...). Log each one:
+     the resolution, where (the events/beats changed) and a status (resolved / no longer applies: <reason>). Required. -->
+| id | finding | resolution | where | status |
+|---|---|---|---|---|
 
 ## Writer notes
 <!-- Why you believe it works, intended readings, open doubts. For the owner only: the independent evaluator never

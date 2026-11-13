@@ -21,7 +21,7 @@ import { VOICES, NARRATOR } from "../src/studio/voice/voices";
 import { MOODS } from "../src/studio/sound/catalog";
 import { ROSTER } from "../src/studio/characters/roster";
 import { parseStory, lintStory, buildPacket, parseEvaluation, gateEvaluation, CRITERIA, ALIASES, type Story } from "./lib/story";
-import { parseSpine, lintSpine, buildSpinePacket, gateSpineEval } from "./lib/spine";
+import { parseSpine, lintSpine, buildSpinePacket, gateSpineEval, phase1Issues, checkRevision } from "./lib/spine";
 
 const proc = globalThis as unknown as { process: { argv: string[]; exit(n: number): never } };
 const argv = proc.process.argv.slice(2), id = argv[0];
@@ -135,13 +135,18 @@ function storyMode(): void {
   const research = fs.existsSync(RESEARCH) ? fs.readFileSync(RESEARCH, "utf8") : "";
   const sources = [...new Set([...research.matchAll(/https?:\/\/[^\s)>\]]+/g)].map((m) => m[0]))];
   // ---- the Story Spine (spec 2: every new story). Phase 1: --phase spine checks and packages the plot BEFORE dialogue
-  const spec2 = /^spec:\s*2\b/m.test(src.split(/^##\s/m)[0]), sp = parseSpine(src);
-  const SL = spec2 || sp.present ? lintSpine(s, sp) : undefined;
+  const specN = Number(src.split(/^##\s/m)[0].match(/^spec:\s*(\d+)/m)?.[1] ?? 1), spec2 = specN >= 2, sp = parseSpine(src);
+  const SL = spec2 || sp.present ? lintSpine(s, sp, specN >= 3) : undefined;
   if (spec2 && !sp.present) SL?.fails.unshift("spec 2 story without a ## Spine (productions/_template/story.md)");
   const EVAL0 = path.join(DIR, "eval"); fs.mkdirSync(EVAL0, { recursive: true });
   const spinePacket = SL ? buildSpinePacket(s, sp, research, SL.flags) : undefined;
-  if (spinePacket) fs.writeFileSync(path.join(EVAL0, "spine-packet.md"), spinePacket.text);
-  const spineEvalFile = path.join(EVAL0, "spine-evaluation.md");
+  const spineEvalFile = path.join(EVAL0, "spine-evaluation.md"), v1File = path.join(EVAL0, "spine-packet.v1.md"), packetFile = path.join(EVAL0, "spine-packet.md");
+  // keep the exact spine that phase 1 judged (before a revision overwrites it), so the revision can be compared with it
+  if (spinePacket && fs.existsSync(spineEvalFile) && !fs.existsSync(v1File) && fs.existsSync(packetFile)) {
+    const evaluated = fs.readFileSync(spineEvalFile, "utf8").match(/^packet:\s*([0-9a-f]+)/m)?.[1], old = fs.readFileSync(packetFile, "utf8");
+    if (evaluated && old.includes(`packet: ${evaluated}`)) fs.writeFileSync(v1File, old);
+  }
+  if (spinePacket) fs.writeFileSync(packetFile, spinePacket.text);
   const spineGate = spinePacket && fs.existsSync(spineEvalFile) ? gateSpineEval(fs.readFileSync(spineEvalFile, "utf8"), spinePacket.hash) : undefined;
   if (SL) {
     console.log(`\nspine: planning depth ${SL.depth}${SL.why.length ? ` (${SL.why.join(", ")})` : ""} · ${sp.events.length} events · ${sp.alternatives.length} alternatives · ${sp.easyOuts.length} easy outs`);
@@ -151,12 +156,28 @@ function storyMode(): void {
     console.log(`  phase-1 packet: productions/${id}/eval/spine-packet.md (${spinePacket!.hash})`);
     console.log(spineGate ? `  phase-1 evaluation: ${spineGate.verdict} (${spineGate.fails} fail, ${spineGate.weak} weak)${spineGate.problems.map((p) => `\n    - ${p}`).join("")}` : "  phase-1 evaluation: not run (docs/storytelling/evaluator.md, phase 1)");
   }
+  // ---- revision regression protection: phase-1 findings become numbered issues that must each be resolved
+  // spec 3 only: earlier story files (and their existing evaluations) stay exactly as they were
+  const issues = SL && specN >= 3 && fs.existsSync(spineEvalFile) ? phase1Issues(fs.readFileSync(spineEvalFile, "utf8")) : [];
+  if (SL && issues.length) {
+    fs.writeFileSync(path.join(EVAL0, "issues.md"), [`# Phase-1 issues: ${s.title}`, "Each must appear in story.md's ## Issue log with a resolution and a status (resolved / no longer applies: reason).", "",
+      ...issues.map((i) => `- **${i.id}** (${i.kind}, ${i.result}): ${i.problem}${i.fix ? `\n  - suggested fix: ${i.fix}` : ""}`)].join("\n") + "\n");
+    const R = checkRevision(sp, issues, fs.existsSync(v1File) ? fs.readFileSync(v1File, "utf8") : undefined, spinePacket!.text);
+    for (const f of R.fails) { console.log(`  FAIL  revision: ${f}`); SL.fails.push(`revision: ${f}`); }
+    for (const w of R.warns) console.log(`  WARN  revision: ${w}`);
+    for (const d of R.downstream) console.log(`  NOTE  revision: ${d}`);
+    console.log(`  issues: ${issues.length} from phase 1 (productions/${id}/eval/issues.md); ${sp.issues.length} logged`);
+  }
   if (argv.includes("--phase") && opt("--phase") === "spine") { proc.process.exit(SL && SL.fails.length ? 1 : 0); }
   const L = lintStory(s, (text, who) => estimateClip(voiceOf(who), text).end * 1.053, sources.length);
   if (SL) { L.fails.push(...SL.fails.map((f) => `spine: ${f}`)); L.flags.push(...SL.flags); }
   // the independent evaluator's packet (docs/storytelling/evaluator.md), rewritten on every run
   const EVAL = path.join(DIR, "eval"); fs.mkdirSync(EVAL, { recursive: true });
-  const packet = buildPacket(s, research, L.flags, sp.references.length ? ["## Declared inspirations (the writer's stated sources: judge adaptation vs reproduction)", ...sp.references.map((r) => `- ${r.source}: borrows ${r.borrowed || "?"}`), ""] : []);
+  const packet = buildPacket(s, research, L.flags, [
+    ...(sp.references.length ? ["## Declared inspirations (the writer's stated sources: judge adaptation vs reproduction)", ...sp.references.map((r) => `- ${r.source}: borrows ${r.borrowed || "?"}`), ""] : []),
+    // phase 1's own findings (not the writer's answers to them): phase 2 checks each one is really gone, in what the viewer sees
+    ...(issues.length ? ["## Earlier independent findings (phase 1, on the plot): for each, judge whether the viewer still meets the problem", ...issues.map((i) => `- ${i.id} (${i.kind}): ${i.problem}`), ""] : []),
+  ]);
   fs.writeFileSync(path.join(EVAL, "packet.md"), packet.text);
   const evalFile = path.join(EVAL, "evaluation.md"), ev = fs.existsSync(evalFile) ? parseEvaluation(fs.readFileSync(evalFile, "utf8")) : undefined;
   const gate = ev ? gateEvaluation(ev, packet.hash, L.flags.length) : undefined;

@@ -132,6 +132,8 @@ Use the same format with:
 - **these stress tests only:** plot hole, consistency, dilemma balance, emotional cost, reproduction, cold viewer;
 - **an overall verdict of** `proceed`, `revise` or `reject`.
 
+The spine packet also lists the **plot-critical objects** (who holds each, where and in what state, at each event). Check continuity against it: an object used by someone who doesn't have it, an object in two places, a state change with no cause, an object the plot needs that was never shown.
+
 Judge the *plot*: are there holes, is the logic consistent, are the motivations understandable, is the escalation real, does the payoff follow from the setup, and does the visual proof actually show each event? Lines and dialogue don't exist yet, so don't judge them.
 
 **Budget:** phase 1 plus phase 2 is two calls. The one revision goes where it's needed:
@@ -139,6 +141,8 @@ Judge the *plot*: are there holes, is the logic consistent, are the motivations 
 - or, if phase 1 says `proceed`, after phase 2 (with one re-evaluation).
 
 That's at most three calls, and more revisions need the owner's approval.
+
+**Phase 2 after a revision:** the packet lists phase 1's findings. For each one, say in the matching criterion or stress test whether the viewer still meets that problem, in the lines *or* the pictures, however it's now worded. A revision that re-introduces a fixed problem in new words fails the criterion.
 
 ## The gate (what `ready` requires)
 - All nine criteria and all eight tests are answered. Criteria that always apply aren't `n/a`.
