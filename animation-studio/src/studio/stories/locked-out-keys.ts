@@ -9,7 +9,7 @@ const T = (text: string, voice?: string) => (voice ? { text, voice } : { text })
 const ME = "liam", OP = "alice";
 // the van at the near kerb, facing +x (prop yaw pi/2), right-hand drive: my eye in the driver's seat
 const VAN_EYE: [number, number, number] = [-9.0, 1.6, 8.52];
-const VAN = { id: "vanCab", at: VAN_EYE, yaw: 90 };
+const VAN = { id: "vanCab", at: [VAN_EYE[0] + 0.75, VAN_EYE[1] - 0.35, VAN_EYE[2]] as [number, number, number], yaw: 90 }; // the dashboard point ahead of my eye
 const DOOR = { id: "door9", at: [0.9, 0, -0.03] as [number, number, number] };
 const UP = (steps?: { t: number }[]) => ({ id: "upstairsWindow", at: [0.9, 3.2, 0] as [number, number, number], ...(steps ? { steps } : {}) });
 const at = (pos: [number, number, number], look: [number, number, number], fov: number) => ({ move: "at" as const, pos, look, fov });
@@ -43,7 +43,7 @@ export const LOCKED_OUT_KEYS: Storyboard = {
     // 12a: the glance up to the rear-view mirror: my eyes, phone-lit
     { say: T("He still thinks I'm his way in. While he does, he'll wait at the door."), set: "alderRow", light: "night",
       camera: at(VAN_EYE, [-8.44, 1.9, 8.1], 30), cams: [{ t: 0, ...at(VAN_EYE, [-8.44, 1.9, 8.1], 30), blockOk: true }],
-      actors: [], props: [{ ...VAN, variant: "mirror" }], note: "12a" },
+      actors: [], props: [{ id: "rearMirror", variant: "eyes", at: [-8.44, 1.9, 8.1], yaw: 90 }], note: "12a" },
     // 15c: standing up on the path, between him and the glass: Marsh backed against his own door
     { say: T("No! She changed this lock to keep you out. I'm not opening it!", ME), set: "alderRow", light: "night",
       camera: at([0.9, 1.65, 1.75], [0.95, 1.55, 0.5], 58), cams: [{ t: 0, ...at([0.9, 1.65, 1.75], [0.95, 1.55, 0.5], 58), blockOk: true }],
