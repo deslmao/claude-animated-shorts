@@ -8,7 +8,7 @@ import type { Storyboard, ShotSpec, When } from "../story/types";
 import { oppWindow } from "../themes/lockedout";
 
 type V3 = [number, number, number];
-const ME = "liam", OP = "alice", MARSH = "brian", RACHEL = "jessica", NEIGHBOUR = "chris";
+const ME = "liam", OP = "alice", MARSH = "brian", RACHEL = "juno", NEIGHBOUR = "chris";
 const T = (text: string, voice?: string) => (voice ? { text, voice } : { text });
 const at = (pos: V3, look: V3, fov: number) => ({ move: "at" as const, pos, look, fov });
 const cam = (pos: V3, look: V3, fov: number) => ({ camera: at(pos, look, fov), cams: [{ t: 0, ...at(pos, look, fov), blockOk: true }] });
@@ -34,7 +34,7 @@ const IN_VAN = (v: string, x: number, y: number) => hands(v, [x, y, E[2]], -90);
 const shots: ShotSpec[] = [
   // ======== 1. the hook: the job card, then the man on the step through my windscreen
   { say: T("At two-fourteen in the morning, a man is paying me double to break into his own house."), until: { word: "morning" }, ...N,
-    ...cam(E, [-8.62, 1.33, 8.52], 50), actors: [], props: [VAN, IN_VAN("job", -8.62, 1.16)], note: "1 job card" },
+    ...cam(E, [-8.62, 1.33, 8.52], 50), actors: [], props: [VAN, IN_VAN("text", -8.62, 1.16)], sfx: [{ t: 0.05, name: "phone_buzz" }], note: "1 the text" },
   { cont: true, ...N, ...move(E, [-0.3, 2.25, 0.4], 50, E, [0.6, 1.7, 0.6], 30, 0.2, 2.6),
     actors: [{ who: "marsh", at: "step", act: "neutral", facing: "camera" }], props: [VAN, DOOR, UP()], note: "1 the man on the step" },
   // ======== 2. the offer: over my shoulder, cash in his fist; then the hush
@@ -46,22 +46,21 @@ const shots: ShotSpec[] = [
   // ======== 3. the licence (perfect), and the warning that makes me take it
   { say: T("Proof of address. His is perfect."), ...N, ...cam([0.9, 1.62, 1.15], [0.9, 1.5, 0.6], 46), actors: [],
     props: [DOOR, hands("licence", [0.9, 1.2, 0.75])], note: "3 the licence" },
-  { say: T("And I can't afford to turn away the wrong man twice."), ...N, ...cam(E, [-8.4, 1.72, 8.6], 60), actors: [], props: [VAN], note: "3 the warning letter" },
+  { say: T("One more refused job and I'm fired."), ...N, ...cam(E, [-8.4, 1.88, 8.62], 46), actors: [], props: [VAN], note: "3 the warning letter" },
   // ======== 4. the bell; nobody comes
   { say: T("I always ring first."), ...N, camera: { move: "frame", on: ["me", "marsh"], size: "medium", from: 25 },
     actors: [{ who: "me", at: [1.6, 0, 0.75], act: "neutral", facing: "toward:marsh", gesture: "point", hold: "toolCase" }, { who: "marsh", at: [0.45, 0, 0.9], act: "neutral", facing: "toward:me" }],
-    props: [DOOR, UP()], sfx: [{ t: 0.5, name: "bell_ring" }], note: "4 the bell" },
+    props: [DOOR, UP()], sfx: [{ t: 0.5, name: "bell_ring" }, { t: 1.1, name: "bark" }], note: "4 the bell" },
   { say: T("She won't come down. Not at this hour.", MARSH), ...N, camera: { move: "closeUp", on: "marsh" },
     actors: [{ who: "marsh", at: [0.45, 0, 0.9], act: "sad", facing: "camera" }, { who: "me", at: [1.6, 0, 0.75], facing: "toward:marsh" }], props: [DOOR], note: "4 she won't come down" },
   // ======== 5. through the letterbox: the dog knows him; the drawing
   { say: T("Biscuit. It's me.", MARSH), set: "downstairs", light: "interiorCool", dur: 3.0,
     ...move([0.75, 1.0, -5.9], [0.72, 0.45, -4.0], 50, [0.75, 1.0, -5.9], [1.05, 1.0, -3.8], 50, 1.4, 0.8), actors: [],
     props: [hands("flap", [0.75, 0.79, -5.65], 180), { id: "farmDog", at: [0.7, 0, -4.4], yaw: 180 }, { id: "familyDrawing", at: [1.22, 1.12, -4.1], yaw: -150 }],
-    note: "5 the letterbox" },
+    sfx: [{ t: 0.05, name: "creak" }, { t: 0.9, name: "bark" }], note: "5 the letterbox" },
   // ======== 6. his key won't go in; the lock is new
-  { say: T("Just stopped working tonight.", MARSH), ...N, ...cam([1.8, 1.5, 1.7], [1.0, 1.3, 0.35], 48),
-    actors: [{ who: "marsh", at: [0.85, 0, 0.5], act: "confused", facing: "camera", hold: "key", gesture: "present" }],
-    props: [DOOR], note: "6 his key" },
+  { say: T("Just stopped working tonight.", MARSH), ...N, dur: 1.9, ...cam([1.17, 1.12, 0.52], [1.25, 1.03, 0], 48), actors: [],
+    props: [DOOR, { id: "keyAtLock", at: [1.244, 0.836, 0.035], steps: [{ t: 0.45 }, { t: 0.8 }, { t: 1.25 }] }], sfx: [{ t: 0.2, name: "latch_click" }, { t: 0.85, name: "latch_click" }], note: "6 his key won't go in" },
   { say: T("New locks don't just stop working."), ...N, camera: at([1.15, 1.13, 0.5], [1.23, 1.04, 0], 44), cams: [{ t: 0, ...at([1.15, 1.13, 0.5], [1.23, 1.04, 0], 44), blockOk: true }, { t: 0.2, ...at([1.15, 1.13, 0.3], [1.23, 1.03, 0], 40), glide: 0.5, swoop: true, blockOk: true }],
     actors: [], props: [DOOR, hands("tools", [1.244, 0.836, 0.035])], note: "6 the new cylinder" },
   // ======== 7. the light upstairs goes out
@@ -73,7 +72,7 @@ const shots: ShotSpec[] = [
     actors: [{ who: "me", at: [1.3, 0, 0.6], act: "thinking", facing: "toward:marsh" }, { who: "marsh", at: [0.45, 0, 0.9], act: "suspicious", facing: "toward:me" }], props: [DOOR], note: "8 checking" },
   { say: T("It's one of ours."), ...N, ...cam([1.15, 1.13, 0.3], [1.23, 1.03, 0], 44), actors: [], props: [DOOR], note: "8 the KL stamp" },
   { say: T("She changed the lock yesterday. And kept the keys from him."), ...N, ...cam([0.95, 1.66, 0.96], [0.95, 1.405, 0.46], 50), actors: [],
-    props: [DOOR, hands("phone", [0.95, 1.33, 0.46])], note: "8 the History" },
+    props: [DOOR, hands("record", [0.95, 1.33, 0.46])], note: "8 the History" },
   // ======== 9. everything true; he's looking at the window; I walk away
   { say: T("Everything he's told me is true."), ...N, camera: { move: "closeUp", on: "marsh" },
     actors: [{ who: "marsh", at: [0.45, 0, 0.9], act: "determined", facing: "camera", beats: [{ t: 0.6, look: "left" }] }], props: [DOOR], note: "9 all true" },
@@ -96,21 +95,21 @@ const shots: ShotSpec[] = [
   // ======== 12. the decision: my eyes in the mirror; the open line; the door lever
   { say: T("He still thinks I'm his way in. While he does, he'll wait at the door."), ...N, ...move(E, MIRROR_AT, 34, E, MIRROR_AT, 26, 0.2, 3.0), actors: [],
     props: [{ id: "rearMirror", variant: "eyes", at: MIRROR_AT, yaw: 90 }], note: "12 the mirror" },
-  { say: [T("Stay on the line.", ME), T("Do not open her door.", OP)], ...N, ...cam(E, [-8.62, 1.33, 8.52], 50), actors: [], props: [VAN, IN_VAN("call", -8.62, 1.16)], note: "12 the open line" },
-  { say: T("I won't.", ME), ...N, dur: 1.4, ...cam(E, [-8.78, 1.42, 8.97], 50), actors: [], props: [hands("handle", [-8.78, 1.26, 8.97], -151)], note: "12 the lever" },
+  { say: [T("Stay on the line.", ME), { ...T("Do not open her door.", OP), gap: 0.3 }], ...N, ...cam(E, [-8.62, 1.33, 8.52], 50), actors: [], props: [VAN, IN_VAN("call", -8.62, 1.16)], note: "12 the open line" },
+  { say: T("I won't.", ME), ...N, dur: 1.4, ...cam(E, [-8.78, 1.42, 8.97], 50), actors: [], props: [hands("handle", [-8.78, 1.26, 8.97], -151)], sfx: [{ t: 0.8, name: "latch_click" }], note: "12 the lever" },
   // ======== 13. back up the path with the case; he puts the brick down and comes back to the door
   { say: T("Found them!", ME), ...N, dur: 2.8, ...cam([-3.5, 1.8, 7.5], [-0.14, 1.1, 2.53], 58),
     actors: [{ who: "me", at: [0.9, 0, 3.5], act: "determined", hold: "toolCase", walk: { to: [0.9, 0, 2.0], t0: 0.2, t1: 2.4, view: "front" } },
       { who: "marsh", at: BAY, act: "suspicious", facing: "camera", hold: "brick", walk: { to: MARSH_DOOR, t0: 1.0, t1: 2.6 }, beats: [{ t: 0.8, hold: null }] }],
-    props: [DOOR, UP_OFF, { id: "groundBrick", at: B2, steps: [{ t: 0.85 }] }], note: "13 found them" },
+    props: [DOOR, UP_OFF, { id: "groundBrick", at: B2, steps: [{ t: 0.85 }] }], sfx: [{ t: 0.85, name: "thud" }], note: "13 found them" },
   { ...N, dur: 0.9, ...cam([-0.55, 0.45, 2.0], [-0.75, 0.06, 1.45], 38), actors: [], props: [{ id: "groundBrick", at: B2 }], note: "13 the brick on the lawn" },
   // ======== 14. I fake it; the countdown; he leans over me
-  { ...N, dur: 1.6, ...cam([1.15, 1.13, 0.3], [1.23, 1.03, 0], 44), actors: [], props: [DOOR, hands("tools", [1.244, 0.836, 0.035])], note: "14 faking it" },
+  { ...N, dur: 1.6, ...cam([1.15, 1.13, 0.3], [1.23, 1.03, 0], 44), actors: [], props: [DOOR, hands("tools", [1.244, 0.836, 0.035])], sfx: [{ t: 0.3, name: "clink" }], note: "14 faking it" },
   { ...N, dur: 1.3, ...cam(KNEEL, [1.08, 0.95, 0.16], 40), actors: [], props: [DOOR, hands("watch:02:20|01:40", [1.08, 0.79, 0.16], 0, [{ t: 0.65 }])], note: "14 the countdown" },
-  { say: [T("You're not even trying.", MARSH), T("Open it now. Or I go through that window.", MARSH)], ...N, ...move(KNEEL, [1.75, 1.72, 1.05], 60, KNEEL, [1.75, 1.75, 1.05], 50, 0.3, 3.0), kicks: [{ word: "now" }],
+  { say: [T("You're not even trying.", MARSH), { ...T("Open it now. Or I go through that window.", MARSH), gap: 0.3 }], ...N, ...move(KNEEL, [1.75, 1.72, 1.05], 60, KNEEL, [1.75, 1.75, 1.05], 50, 0.3, 3.0), kicks: [{ word: "now" }],
     actors: [{ who: "marsh", at: [1.75, 0, 1.05], act: "angry", face: "angry", facing: "camera", beats: [{ word: "now", gesture: "fists" }, { word: "window", look: "left" }] }], props: [], note: "14 open it now" },
   // ======== 15. the decision, shown: I stand between him and the window; I make it loud
-  { say: T("Now I'm between him and that window."), ...N, ...move([-2.9, 1.95, 5.4], [0.15, 1.1, 0.9], 64, [-2.6, 1.9, 4.9], [0.2, 1.15, 0.9], 60, 0.2, 2.2),
+  { say: T("Now I'm between him and that window."), ...N, ...move([-0.05, 1.9, 6.6], [-0.05, 1.0, 0.9], 62, [-0.05, 1.85, 6.1], [-0.05, 1.0, 0.9], 59, 0.2, 2.0),
     actors: [{ who: "me", at: ME_PATH, act: "determined", facing: "toward:marsh" }, { who: "marsh", at: MARSH_DOOR, act: "angry", facing: "toward:me" }],
     props: [DOOR, UP_OFF, BRICK], note: "15 between him and the window" },
   { say: T("He wants this quiet. So I make it loud."), ...N, camera: { move: "closeUp", on: "me" },
@@ -122,13 +121,13 @@ const shots: ShotSpec[] = [
   // ======== 16. he slams me into the wall; the street wakes; the neighbour; he lets go and backs off
   { say: T("Shut up!", MARSH), transition: "whip", ...N, dur: 1.6, ...cam([0.35, 1.6, 3.0], [0.35, 1.3, 0.7], 50), kicks: [0.15],
     actors: [{ who: "marsh", at: [0.75, 0, 0.95], act: "angry", face: "angry", facing: "toward:me", gesture: "grab", reach: "me" }, { who: "me", at: [0.15, 0, 0.55], act: "scared", facing: "toward:marsh", moves: [{ t: 0.1, kind: "stagger", dur: 0.5, away: "marsh" }] }],
-    props: [DOOR], note: "16 the shove" },
-  { say: T("One light. Then another. Then the whole street."), ...N, ...cam(PINNED, [0.5, 2.2, 14.6], 62),
+    props: [DOOR], sfx: [{ t: 0.12, name: "impact" }, { t: 0.25, name: "oof" }], note: "16 the shove" },
+  { ...N, dur: 1.8, ...cam(PINNED, [0.5, 2.2, 14.6], 62),
     actors: [{ who: "marsh", at: [0.6, 0, 1.4], act: "angry", face: "angry", facing: "camera", gesture: "fists" }],
-    props: [lit(W1), lit(W2, { word: "another" }), lit(W5, { word: "whole" })], note: "16 the street wakes" },
+    props: [lit(W1), lit(W2, { t: 0.25 }), lit(W5, { t: 0.9 })], note: "16 the street wakes" },
   { say: T("Oi! I'm calling the police!", NEIGHBOUR), ...N, ...move(PINNED, [2.5, 2.2, 14.6], 62, PINNED, [-1.4, 1.6, 13.85], 28, 0.05, 0.5),
     actors: [{ who: "marsh", at: [0.6, 0, 1.4], act: "angry", facing: "camera", gesture: "fists" }, { who: "gus", at: [-1.4, 0, 13.85], act: "angry", facing: "camera", hold: "phone", gesture: "point" }],
-    props: [lit(W1), lit(W2)], note: "16 the neighbour" },
+    props: [lit(W1), lit(W2)], sfx: [{ t: 0.0, name: "creak" }], note: "16 the neighbour" },
   { ...N, dur: 1.2, ...cam(PINNED, [0.6, 1.72, 1.4], 48),
     actors: [{ who: "marsh", at: [0.6, 0, 1.4], act: "angry", facing: "camera", gesture: "fists", beats: [{ t: 0.25, look: "right" }, { t: 0.7, act: "nervous", gesture: "hang" }] }],
     props: [lit(W3), lit(W4)], note: "16 he sees them watching" },
@@ -136,18 +135,18 @@ const shots: ShotSpec[] = [
     actors: [{ who: "marsh", at: [0.6, 0, 1.4], act: "nervous", facing: "camera", walk: { to: [0.9, 0, 4.6], t0: 0.2, t1: 2.0, view: "front" } }],
     props: [], note: "16 he backs off" },
   // ======== 17. 00:00; the blue light; they take his arms
-  { ...N, dur: 0.8, ...cam(PINNED, [0.2, 1.16, 0.68], 40), actors: [], props: [hands("watch:00:00", [0.2, 1.0, 0.68], 180)], note: "17 00:00" },
+  { ...N, dur: 0.8, ...cam(PINNED, [0.2, 1.16, 0.68], 40), actors: [], props: [hands("watch:00:00", [0.2, 1.0, 0.68], 180)], sfx: [{ t: 0.1, name: "clock_tick" }], note: "17 00:00" },
   { say: T("It's my house!", MARSH), ...N, dur: 3.0, ...move([0.9, 1.7, 0.9], [0.9, 1.4, 5.2], 52, [0.9, 1.7, 1.3], [0.9, 1.45, 5.2], 46, 0.3, 2.5),
     actors: [{ who: "marsh", at: [0.9, 0, 4.85], act: "angry", facing: "camera" }, { who: "officerA", at: [0.3, 0, 5.15], act: "determined", face: "stern", facing: "toward:marsh", gesture: "grab", reach: "marsh" }, { who: "officerB", at: [1.5, 0, 5.15], act: "determined", face: "stern", facing: "toward:marsh", gesture: "grab", reach: "marsh" }],
-    props: [lit(W1), lit(W2), lit(W3), { id: "policeLight", at: [1, 0, 14.45], yaw: 180, steps: [0.05, 0.3, 0.55, 0.8, 1.05, 1.3, 1.55, 1.8, 2.05, 2.3, 2.55].map((t) => ({ t })) }], note: "17 the arrest" },
+    props: [lit(W1), lit(W2), lit(W3), { id: "policeLight", at: [1, 0, 14.45], yaw: 180, steps: [0.05, 0.3, 0.55, 0.8, 1.05, 1.3, 1.55, 1.8, 2.05, 2.3, 2.55].map((t) => ({ t })) }], sfx: [{ t: 0.05, name: "sting_low" }], note: "17 the arrest" },
   // ======== 18. her side of the night, through the closed door; her light comes back on
-  { say: [T("I watched you from upstairs. When you got your tools out.", RACHEL), T("I thought you were going to let him in.", RACHEL)], ...N, ...move([1.7, 1.8, 2.9], [0.9, 1.25, 0.0], 46, [1.55, 1.8, 2.6], [0.9, 1.3, 0.0], 42, 0.3, 4.0),
+  { say: [T("I watched you from upstairs. When you got your tools out.", RACHEL), { ...T("I thought you were going to let him in.", RACHEL), gap: 0.5 }], ...N, ...move([1.7, 1.8, 2.9], [0.9, 1.25, 0.0], 46, [1.55, 1.8, 2.6], [0.9, 1.3, 0.0], 42, 0.3, 4.0),
     actors: [{ who: "me", at: [0.95, 0, 0.75], act: "sad", back: true, beats: [{ t: 1.5, gesture: "present" }, { t: 3.6, gesture: "hang" }] }], props: [DOOR], note: "18 through the door" },
   { say: T("It's your lock. It stays shut.", ME), ...N, camera: { move: "closeUp", on: "me" }, actors: [{ who: "me", at: [0.95, 0, 0.75], act: "sad", facing: "camera" }], props: [DOOR], note: "18 it stays shut" },
   { ...N, dur: 2.0, ...move([0.9, 1.6, 1.8], [0.9, 2.0, 0.2], 50, [0.9, 1.6, 1.8], [0.9, 3.85, 0], 40, 0.1, 0.7), actors: [], props: [DOOR, UP([{ t: 0 }, { t: 0.3 }])], note: "18 her light comes back on" },
   // ======== 19. the cost; who the lock was for
   { say: T("I checked who he was."), ...N, ...cam(E, [-8.62, 1.33, 8.52], 50), actors: [], props: [VAN, IN_VAN("refused", -8.62, 1.16)], note: "19 refused" },
-  { say: T("I never asked who the lock was for."), ...N, dur: 3.6, ...move(E, [-0.2, 2.6, 0.6], 60, E, [1.15, 3.9, -0.2], 21, 0.4, 2.6),
+  { say: { ...T("I never asked who the lock was for."), gap: 0.5 }, ...N, dur: 3.6, ...move(E, [-0.2, 2.6, 0.6], 60, E, [1.15, 3.9, -0.2], 21, 0.4, 2.6),
     actors: [{ who: "rachel", at: [1.18, 2.65, -0.6], act: "sad", facing: "camera" }, { who: "sam", at: [1.52, 2.65, -0.55], act: "neutral", facing: "camera" }],
     props: [VAN, DOOR, UP([{ t: 0 }, { t: 0.01 }])], note: "19 who the lock was for" },
 ];

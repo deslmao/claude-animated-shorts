@@ -1,0 +1,80 @@
+{
+ "hash": "1f56e6dac5637d",
+ "text": "A horn, and he's through that glass before anyone's out of bed.",
+ "voice": "liamQuiet",
+ "lead": 0,
+ "end": 3.808,
+ "dur": 3.84,
+ "words": [
+  {
+   "w": "A",
+   "t0": 0,
+   "t1": 0.104
+  },
+  {
+   "w": "horn,",
+   "t0": 0.186,
+   "t1": 0.662
+  },
+  {
+   "w": "and",
+   "t0": 1.126,
+   "t1": 1.265
+  },
+  {
+   "w": "he's",
+   "t0": 1.324,
+   "t1": 1.463
+  },
+  {
+   "w": "through",
+   "t0": 1.509,
+   "t1": 1.707
+  },
+  {
+   "w": "that",
+   "t0": 1.741,
+   "t1": 1.869
+  },
+  {
+   "w": "glass",
+   "t0": 1.916,
+   "t1": 2.183
+  },
+  {
+   "w": "before",
+   "t0": 2.229,
+   "t1": 2.519
+  },
+  {
+   "w": "anyone's",
+   "t0": 2.577,
+   "t1": 2.972
+  },
+  {
+   "w": "out",
+   "t0": 3.007,
+   "t1": 3.1
+  },
+  {
+   "w": "of",
+   "t0": 3.135,
+   "t1": 3.181
+  },
+  {
+   "w": "bed.",
+   "t0": 3.239,
+   "t1": 3.808
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-13T21:20:29.391Z"
+}

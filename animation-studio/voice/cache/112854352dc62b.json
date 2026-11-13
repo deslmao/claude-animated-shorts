@@ -1,0 +1,45 @@
+{
+ "hash": "112854352dc62b",
+ "text": "Just checking the lock model.",
+ "voice": "liam",
+ "lead": 0,
+ "end": 1.579,
+ "dur": 1.619592,
+ "words": [
+  {
+   "w": "Just",
+   "t0": 0,
+   "t1": 0.244
+  },
+  {
+   "w": "checking",
+   "t0": 0.279,
+   "t1": 0.592
+  },
+  {
+   "w": "the",
+   "t0": 0.639,
+   "t1": 0.708
+  },
+  {
+   "w": "lock",
+   "t0": 0.766,
+   "t1": 0.952
+  },
+  {
+   "w": "model.",
+   "t0": 1.01,
+   "t1": 1.579
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-13T21:20:25.718Z"
+}

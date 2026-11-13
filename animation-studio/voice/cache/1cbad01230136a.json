@@ -1,0 +1,95 @@
+{
+ "hash": "1cbad01230136a",
+ "text": "He still thinks I'm his way in. While he does, he'll wait at the door.",
+ "voice": "liamQuiet",
+ "lead": 0,
+ "end": 4.18,
+ "dur": 4.205714,
+ "words": [
+  {
+   "w": "He",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "still",
+   "t0": 0.209,
+   "t1": 0.464
+  },
+  {
+   "w": "thinks",
+   "t0": 0.511,
+   "t1": 0.743
+  },
+  {
+   "w": "I'm",
+   "t0": 0.778,
+   "t1": 0.906
+  },
+  {
+   "w": "his",
+   "t0": 0.94,
+   "t1": 1.033
+  },
+  {
+   "w": "way",
+   "t0": 1.091,
+   "t1": 1.265
+  },
+  {
+   "w": "in.",
+   "t0": 1.335,
+   "t1": 1.683
+  },
+  {
+   "w": "While",
+   "t0": 2.02,
+   "t1": 2.241
+  },
+  {
+   "w": "he",
+   "t0": 2.264,
+   "t1": 2.322
+  },
+  {
+   "w": "does,",
+   "t0": 2.368,
+   "t1": 2.821
+  },
+  {
+   "w": "he'll",
+   "t0": 3.007,
+   "t1": 3.181
+  },
+  {
+   "w": "wait",
+   "t0": 3.216,
+   "t1": 3.344
+  },
+  {
+   "w": "at",
+   "t0": 3.379,
+   "t1": 3.437
+  },
+  {
+   "w": "the",
+   "t0": 3.471,
+   "t1": 3.541
+  },
+  {
+   "w": "door.",
+   "t0": 3.576,
+   "t1": 4.18
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-13T21:20:30.015Z"
+}

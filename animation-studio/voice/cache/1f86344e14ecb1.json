@@ -1,0 +1,40 @@
+{
+ "hash": "1f86344e14ecb1",
+ "text": "Just stopped working tonight.",
+ "voice": "brian",
+ "lead": 0,
+ "end": 1.579,
+ "dur": 1.619592,
+ "words": [
+  {
+   "w": "Just",
+   "t0": 0,
+   "t1": 0.267
+  },
+  {
+   "w": "stopped",
+   "t0": 0.302,
+   "t1": 0.615
+  },
+  {
+   "w": "working",
+   "t0": 0.673,
+   "t1": 0.94
+  },
+  {
+   "w": "tonight.",
+   "t0": 0.987,
+   "t1": 1.579
+  }
+ ],
+ "voiceId": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-13T21:20:23.628Z"
+}

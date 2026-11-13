@@ -1,0 +1,55 @@
+{
+ "hash": "11909abbbdd174",
+ "text": "One more refused job and I'm fired.",
+ "voice": "liamQuiet",
+ "lead": 0,
+ "end": 2.415,
+ "dur": 2.45551,
+ "words": [
+  {
+   "w": "One",
+   "t0": 0,
+   "t1": 0.186
+  },
+  {
+   "w": "more",
+   "t0": 0.232,
+   "t1": 0.406
+  },
+  {
+   "w": "refused",
+   "t0": 0.453,
+   "t1": 0.894
+  },
+  {
+   "w": "job",
+   "t0": 0.94,
+   "t1": 1.196
+  },
+  {
+   "w": "and",
+   "t0": 1.242,
+   "t1": 1.312
+  },
+  {
+   "w": "I'm",
+   "t0": 1.37,
+   "t1": 1.498
+  },
+  {
+   "w": "fired.",
+   "t0": 1.567,
+   "t1": 2.415
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-13T21:20:21.710Z"
+}

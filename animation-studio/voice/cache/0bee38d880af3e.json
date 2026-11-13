@@ -1,0 +1,25 @@
+{
+ "hash": "0bee38d880af3e",
+ "text": "Problem?",
+ "voice": "brian",
+ "lead": 0,
+ "end": 0.789,
+ "dur": 0.835918,
+ "words": [
+  {
+   "w": "Problem?",
+   "t0": 0,
+   "t1": 0.789
+  }
+ ],
+ "voiceId": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-13T21:20:25.214Z"
+}

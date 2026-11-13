@@ -1,0 +1,30 @@
+{
+ "hash": "16f5d43e991d22",
+ "text": "Found them!",
+ "voice": "liam",
+ "lead": 0,
+ "end": 0.789,
+ "dur": 0.835918,
+ "words": [
+  {
+   "w": "Found",
+   "t0": 0,
+   "t1": 0.302
+  },
+  {
+   "w": "them!",
+   "t0": 0.337,
+   "t1": 0.789
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-13T21:20:31.768Z"
+}

@@ -1,0 +1,40 @@
+{
+ "hash": "14bfbce389d711",
+ "text": "Stay on the line.",
+ "voice": "liam",
+ "lead": 0,
+ "end": 1.068,
+ "dur": 1.097143,
+ "words": [
+  {
+   "w": "Stay",
+   "t0": 0,
+   "t1": 0.255
+  },
+  {
+   "w": "on",
+   "t0": 0.313,
+   "t1": 0.372
+  },
+  {
+   "w": "the",
+   "t0": 0.406,
+   "t1": 0.476
+  },
+  {
+   "w": "line.",
+   "t0": 0.522,
+   "t1": 1.068
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-13T21:20:30.429Z"
+}

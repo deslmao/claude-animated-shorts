@@ -1,0 +1,50 @@
+{
+ "hash": "068cab4bd3eaad",
+ "text": "Wrong picks. They're in the van.",
+ "voice": "liam",
+ "lead": 0,
+ "end": 1.95,
+ "dur": 1.985306,
+ "words": [
+  {
+   "w": "Wrong",
+   "t0": 0,
+   "t1": 0.279
+  },
+  {
+   "w": "picks.",
+   "t0": 0.337,
+   "t1": 0.778
+  },
+  {
+   "w": "They're",
+   "t0": 0.964,
+   "t1": 1.196
+  },
+  {
+   "w": "in",
+   "t0": 1.219,
+   "t1": 1.265
+  },
+  {
+   "w": "the",
+   "t0": 1.3,
+   "t1": 1.37
+  },
+  {
+   "w": "van.",
+   "t0": 1.393,
+   "t1": 1.95
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-13T21:20:27.441Z"
+}

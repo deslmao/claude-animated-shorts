@@ -1,0 +1,40 @@
+{
+ "hash": "0d3cbe06df21a6",
+ "text": "I always ring first.",
+ "voice": "liamQuiet",
+ "lead": 0,
+ "end": 1.393,
+ "dur": 1.436735,
+ "words": [
+  {
+   "w": "I",
+   "t0": 0,
+   "t1": 0.093
+  },
+  {
+   "w": "always",
+   "t0": 0.186,
+   "t1": 0.453
+  },
+  {
+   "w": "ring",
+   "t0": 0.511,
+   "t1": 0.673
+  },
+  {
+   "w": "first.",
+   "t0": 0.731,
+   "t1": 1.393
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-13T21:20:22.168Z"
+}

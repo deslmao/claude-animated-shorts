@@ -1,0 +1,50 @@
+{
+ "hash": "021b4f311dca24",
+ "text": "New locks don't just stop working.",
+ "voice": "liamQuiet",
+ "lead": 0,
+ "end": 1.997,
+ "dur": 2.037551,
+ "words": [
+  {
+   "w": "New",
+   "t0": 0,
+   "t1": 0.209
+  },
+  {
+   "w": "locks",
+   "t0": 0.267,
+   "t1": 0.522
+  },
+  {
+   "w": "don't",
+   "t0": 0.569,
+   "t1": 0.755
+  },
+  {
+   "w": "just",
+   "t0": 0.789,
+   "t1": 0.94
+  },
+  {
+   "w": "stop",
+   "t0": 0.975,
+   "t1": 1.207
+  },
+  {
+   "w": "working.",
+   "t0": 1.277,
+   "t1": 1.997
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-13T21:20:24.318Z"
+}

@@ -1,0 +1,65 @@
+{
+ "hash": "19f4878aa8c0cd",
+ "text": "Open it now. Or I go through that window.",
+ "voice": "brian",
+ "lead": 0,
+ "end": 2.276,
+ "dur": 2.324898,
+ "words": [
+  {
+   "w": "Open",
+   "t0": 0,
+   "t1": 0.29
+  },
+  {
+   "w": "it",
+   "t0": 0.337,
+   "t1": 0.406
+  },
+  {
+   "w": "now.",
+   "t0": 0.441,
+   "t1": 0.662
+  },
+  {
+   "w": "Or",
+   "t0": 0.824,
+   "t1": 0.952
+  },
+  {
+   "w": "I",
+   "t0": 1.01,
+   "t1": 1.033
+  },
+  {
+   "w": "go",
+   "t0": 1.115,
+   "t1": 1.207
+  },
+  {
+   "w": "through",
+   "t0": 1.242,
+   "t1": 1.428
+  },
+  {
+   "w": "that",
+   "t0": 1.463,
+   "t1": 1.614
+  },
+  {
+   "w": "window.",
+   "t0": 1.672,
+   "t1": 2.276
+  }
+ ],
+ "voiceId": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-13T21:20:32.744Z"
+}

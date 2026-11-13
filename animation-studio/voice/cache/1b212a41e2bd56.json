@@ -1,0 +1,40 @@
+{
+ "hash": "1b212a41e2bd56",
+ "text": "It's one of ours.",
+ "voice": "liamQuiet",
+ "lead": 0,
+ "end": 1.3,
+ "dur": 1.332245,
+ "words": [
+  {
+   "w": "It's",
+   "t0": 0,
+   "t1": 0.209
+  },
+  {
+   "w": "one",
+   "t0": 0.267,
+   "t1": 0.406
+  },
+  {
+   "w": "of",
+   "t0": 0.441,
+   "t1": 0.488
+  },
+  {
+   "w": "ours.",
+   "t0": 0.557,
+   "t1": 1.3
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-13T21:20:26.105Z"
+}

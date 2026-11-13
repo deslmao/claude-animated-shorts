@@ -1,0 +1,55 @@
+{
+ "hash": "0068c91b7a69f0",
+ "text": "Now I'm between him and that window.",
+ "voice": "liamQuiet",
+ "lead": 0,
+ "end": 1.95,
+ "dur": 1.985306,
+ "words": [
+  {
+   "w": "Now",
+   "t0": 0,
+   "t1": 0.244
+  },
+  {
+   "w": "I'm",
+   "t0": 0.302,
+   "t1": 0.406
+  },
+  {
+   "w": "between",
+   "t0": 0.441,
+   "t1": 0.755
+  },
+  {
+   "w": "him",
+   "t0": 0.813,
+   "t1": 0.917
+  },
+  {
+   "w": "and",
+   "t0": 0.952,
+   "t1": 1.022
+  },
+  {
+   "w": "that",
+   "t0": 1.068,
+   "t1": 1.196
+  },
+  {
+   "w": "window.",
+   "t0": 1.254,
+   "t1": 1.95
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-13T21:20:33.208Z"
+}

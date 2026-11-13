@@ -1,0 +1,105 @@
+{
+ "hash": "1eb4e793eead11",
+ "text": "At two-fourteen in the morning, a man is paying me double to break into his own house.",
+ "voice": "liamQuiet",
+ "lead": 0,
+ "end": 4.133,
+ "dur": 4.179592,
+ "words": [
+  {
+   "w": "At",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "two-fourteen",
+   "t0": 0.186,
+   "t1": 0.801
+  },
+  {
+   "w": "in",
+   "t0": 0.836,
+   "t1": 0.894
+  },
+  {
+   "w": "the",
+   "t0": 0.929,
+   "t1": 0.998
+  },
+  {
+   "w": "morning,",
+   "t0": 1.045,
+   "t1": 1.335
+  },
+  {
+   "w": "a",
+   "t0": 1.358,
+   "t1": 1.393
+  },
+  {
+   "w": "man",
+   "t0": 1.486,
+   "t1": 1.683
+  },
+  {
+   "w": "is",
+   "t0": 1.741,
+   "t1": 1.811
+  },
+  {
+   "w": "paying",
+   "t0": 1.869,
+   "t1": 2.09
+  },
+  {
+   "w": "me",
+   "t0": 2.125,
+   "t1": 2.206
+  },
+  {
+   "w": "double",
+   "t0": 2.287,
+   "t1": 2.589
+  },
+  {
+   "w": "to",
+   "t0": 2.635,
+   "t1": 2.694
+  },
+  {
+   "w": "break",
+   "t0": 2.752,
+   "t1": 2.937
+  },
+  {
+   "w": "into",
+   "t0": 2.984,
+   "t1": 3.111
+  },
+  {
+   "w": "his",
+   "t0": 3.181,
+   "t1": 3.262
+  },
+  {
+   "w": "own",
+   "t0": 3.309,
+   "t1": 3.425
+  },
+  {
+   "w": "house.",
+   "t0": 3.471,
+   "t1": 4.133
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-13T21:20:19.703Z"
+}

@@ -1,0 +1,30 @@
+{
+ "hash": "1198cc5f7a00a6",
+ "text": "Shut up!",
+ "voice": "brian",
+ "lead": 0,
+ "end": 0.836,
+ "dur": 0.862041,
+ "words": [
+  {
+   "w": "Shut",
+   "t0": 0,
+   "t1": 0.279
+  },
+  {
+   "w": "up!",
+   "t0": 0.337,
+   "t1": 0.836
+  }
+ ],
+ "voiceId": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-13T21:20:34.734Z"
+}

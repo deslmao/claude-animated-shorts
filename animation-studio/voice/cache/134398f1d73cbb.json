@@ -1,0 +1,65 @@
+{
+ "hash": "134398f1d73cbb",
+ "text": "Double. Cash. No invoice, no call to the office.",
+ "voice": "brian",
+ "lead": 0,
+ "end": 2.601,
+ "dur": 2.638367,
+ "words": [
+  {
+   "w": "Double.",
+   "t0": 0,
+   "t1": 0.372
+  },
+  {
+   "w": "Cash.",
+   "t0": 0.395,
+   "t1": 0.778
+  },
+  {
+   "w": "No",
+   "t0": 0.824,
+   "t1": 0.94
+  },
+  {
+   "w": "invoice,",
+   "t0": 0.998,
+   "t1": 1.393
+  },
+  {
+   "w": "no",
+   "t0": 1.428,
+   "t1": 1.521
+  },
+  {
+   "w": "call",
+   "t0": 1.579,
+   "t1": 1.741
+  },
+  {
+   "w": "to",
+   "t0": 1.788,
+   "t1": 1.834
+  },
+  {
+   "w": "the",
+   "t0": 1.869,
+   "t1": 1.939
+  },
+  {
+   "w": "office.",
+   "t0": 1.997,
+   "t1": 2.601
+  }
+ ],
+ "voiceId": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-13T21:20:20.250Z"
+}

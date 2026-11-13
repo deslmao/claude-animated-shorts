@@ -1,0 +1,45 @@
+{
+ "hash": "06b51753000328",
+ "text": "Do not open her door.",
+ "voice": "alice",
+ "lead": 0,
+ "end": 1.254,
+ "dur": 1.28,
+ "words": [
+  {
+   "w": "Do",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "not",
+   "t0": 0.221,
+   "t1": 0.372
+  },
+  {
+   "w": "open",
+   "t0": 0.43,
+   "t1": 0.639
+  },
+  {
+   "w": "her",
+   "t0": 0.697,
+   "t1": 0.789
+  },
+  {
+   "w": "door.",
+   "t0": 0.848,
+   "t1": 1.254
+  }
+ ],
+ "voiceId": "Xb7hH8MSUJpSbSDYk0k2",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-13T21:20:30.901Z"
+}

@@ -1,0 +1,65 @@
+{
+ "hash": "1cb602dcfb6df7",
+ "text": "I thought you were going to let him in.",
+ "voice": "juno",
+ "lead": 0,
+ "end": 1.672,
+ "dur": 1.697959,
+ "words": [
+  {
+   "w": "I",
+   "t0": 0,
+   "t1": 0.093
+  },
+  {
+   "w": "thought",
+   "t0": 0.163,
+   "t1": 0.325
+  },
+  {
+   "w": "you",
+   "t0": 0.348,
+   "t1": 0.418
+  },
+  {
+   "w": "were",
+   "t0": 0.441,
+   "t1": 0.546
+  },
+  {
+   "w": "going",
+   "t0": 0.569,
+   "t1": 0.708
+  },
+  {
+   "w": "to",
+   "t0": 0.743,
+   "t1": 0.789
+  },
+  {
+   "w": "let",
+   "t0": 0.836,
+   "t1": 0.952
+  },
+  {
+   "w": "him",
+   "t0": 0.987,
+   "t1": 1.068
+  },
+  {
+   "w": "in.",
+   "t0": 1.115,
+   "t1": 1.672
+  }
+ ],
+ "voiceId": "cgSgspJ2msm6clMCkdW9",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.15,
+  "use_speaker_boost": true,
+  "speed": 0.9
+ },
+ "created": "2026-11-13T21:21:24.042Z"
+}

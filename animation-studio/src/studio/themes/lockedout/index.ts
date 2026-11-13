@@ -61,7 +61,7 @@ const drawScreen = (g: CanvasRenderingContext2D, v: string, x: number, y: number
   g.fillStyle = "#1f5c63"; g.fillRect(x, y, w, 150 * s);
   T("02:19", 26, 256, 40, "#cfe3e4", "center", "normal");
   T("KESTREL LOCKS", 40, 32, 100, "#ffffff"); g.fillStyle = "#f08a32"; g.fillRect(x + 32 * s, y + 116 * s, 120 * s, 8 * s);
-  if (v === "history") {
+  if (v === "history" || v === "record") {
     T("9 ALDER ROW", 34, 32, 210, "#9fc9cc");
     T("History", 30, 32, 256, "#8a96a8", "left", "normal");
     g.fillStyle = "rgba(255,255,255,0.10)"; rr(g, x + 20 * s, y + 290 * s, 472 * s, 470 * s, 26 * s); g.fill();
@@ -70,6 +70,7 @@ const drawScreen = (g: CanvasRenderingContext2D, v: string, x: number, y: number
     T("Emergency", 46, 52, 424); T("lock change", 46, 52, 482);
     T("Customer:", 32, 52, 560, "#b9c5d6", "left", "normal"); T("R. Marsh", 42, 52, 612);
     T("Keys issued to", 32, 52, 680, "#b9c5d6", "left", "normal"); T("R. Marsh only", 42, 52, 732, "#ffd9a8");
+    if (v === "record") { g.restore(); return; } // the job never reached the office: no row for tonight
     g.fillStyle = "rgba(255,255,255,0.06)"; rr(g, x + 20 * s, y + 790 * s, 472 * s, 150 * s, 26 * s); g.fill();
     T("Tonight, 02:14", 30, 52, 846, "#8a96a8", "left", "normal"); T("Lockout (D. Marsh)", 34, 52, 898, "#c9d2de");
   } else if (v === "refused") { // the job record after (beat 19)
@@ -81,6 +82,12 @@ const drawScreen = (g: CanvasRenderingContext2D, v: string, x: number, y: number
     T("999", 120, 256, 330, "#ffffff", "center"); T("Emergency call", 34, 256, 400, "#9fc9cc", "center", "normal");
     T("Police", 46, 256, 480, "#f3c58f", "center"); T("00:14", 40, 256, 560, "#cfe3e4", "center", "normal");
     g.fillStyle = "#e5484d"; g.beginPath(); g.arc(x + 256 * s, y + 800 * s, 64 * s, 0, 7); g.fill();
+  } else if (v === "text") { // the job, texted straight to the on-call phone (beat 1): no booking, no office
+    T("the only 24-hour locksmith in town", 22, 32, 146 - 4, "#cfe3e4", "left", "normal");
+    T("ON-CALL PHONE", 28, 32, 214, "#9fc9cc"); T("Text from 07700 900461", 26, 32, 256, "#8a96a8", "left", "normal");
+    g.fillStyle = "#2d3a4d"; rr(g, x + 20 * s, y + 290 * s, 440 * s, 330 * s, 34 * s); g.fill();
+    T("Locked out.", 46, 48, 360); T("9 Alder Row.", 46, 48, 420); T("I'll pay double.", 42, 48, 490, "#f3c58f"); T("Cash.", 42, 48, 550, "#f3c58f");
+    T("02:14", 28, 48, 600, "#8a96a8", "left", "normal");
   } else { // job card (beat 1)
     T("the only 24-hour locksmith in town", 22, 32, 146 - 4, "#cfe3e4", "left", "normal");
     T("NEW JOB", 30, 32, 230, "#f3c58f"); T("LOCKOUT", 64, 32, 310); T("9 ALDER ROW", 48, 32, 380); T("02:14", 48, 32, 450, "#9fc9cc");
@@ -99,25 +106,27 @@ const GLOVE = "#4a5368", GLOVE_HI = "#6f7a91", CUFF = "#2f6f78", CUFF_HI = "#4c9
 type P = [number, number];
 const pathP = (g: CanvasRenderingContext2D, pts: P[]) => { g.beginPath(); g.moveTo(pts[0][0], pts[0][1]); for (const p of pts.slice(1)) g.lineTo(p[0], p[1]); g.closePath(); };
 const inkFill = (g: CanvasRenderingContext2D, pts: P[], fill: string, lw = 9) => { pathP(g, pts); g.fillStyle = fill; g.fill(); g.lineJoin = "round"; g.strokeStyle = INK; g.lineWidth = lw; g.stroke(); };
-const finger = (g: CanvasRenderingContext2D, x: number, y: number, len: number, wd: number, ang: number) => {
+type HandCols = { glove: string; hi: string; cuff: string; cuffHi: string; stitch: string };
+const MY_HAND: HandCols = { glove: GLOVE, hi: GLOVE_HI, cuff: CUFF, cuffHi: CUFF_HI, stitch: STITCH };
+const finger = (g: CanvasRenderingContext2D, x: number, y: number, len: number, wd: number, ang: number, c: HandCols = MY_HAND) => {
   g.save(); g.translate(x, y); g.rotate(ang);
   g.beginPath(); g.moveTo(-wd / 2, 0); g.lineTo(-wd / 2, -len + wd / 2); g.arc(0, -len + wd / 2, wd / 2, Math.PI, 0); g.lineTo(wd / 2, 0); g.closePath();
-  g.fillStyle = GLOVE; g.fill(); g.strokeStyle = INK; g.lineWidth = 8; g.stroke();
-  g.fillStyle = GLOVE_HI; g.fillRect(-wd / 2 + 7, -len + wd * 0.7, wd * 0.18, len * 0.55);
+  g.fillStyle = c.glove; g.fill(); g.strokeStyle = INK; g.lineWidth = 8; g.stroke();
+  g.fillStyle = c.hi; g.fillRect(-wd / 2 + 7, -len + wd * 0.7, wd * 0.18, len * 0.55);
   g.restore();
 };
-const hand = (g: CanvasRenderingContext2D, cx: number, cy: number, s: number, side: -1 | 1) => {
+const hand = (g: CanvasRenderingContext2D, cx: number, cy: number, s: number, side: -1 | 1, c: HandCols = MY_HAND) => {
   // a gloved hand gripping from below/side: palm block, four fingers curled forward, thumb up; the jacket cuff below
   const X = (dx: number) => cx + side * dx * s, Y = (dy: number) => cy + dy * s;
-  inkFill(g, [[X(-95), Y(210)], [X(95), Y(210)], [X(110), Y(420)], [X(-110), Y(420)]], CUFF, 9);                       // sleeve
-  g.fillStyle = CUFF_HI; g.fillRect(Math.min(X(-80), X(-40)), Y(230), 40 * s, 170 * s);
-  inkFill(g, [[X(-100), Y(150)], [X(100), Y(150)], [X(104), Y(225)], [X(-104), Y(225)]], CUFF, 9);                     // cuff band
-  g.fillStyle = STITCH; g.fillRect(Math.min(X(-96), X(96)), Y(184), 192 * s, 6 * s);
-  inkFill(g, [[X(-82), Y(-20)], [X(70), Y(-40)], [X(92), Y(60)], [X(86), Y(160)], [X(-86), Y(160)], [X(-96), Y(60)]], GLOVE, 9); // palm
-  for (let k = 0; k < 4; k++) finger(g, X(-60 + k * 42), Y(-18 - (k === 1 || k === 2 ? 8 : 0)), (k === 3 ? 92 : 112) * s, 40 * s, side * (-0.06 + k * 0.03));
+  inkFill(g, [[X(-95), Y(210)], [X(95), Y(210)], [X(110), Y(420)], [X(-110), Y(420)]], c.cuff, 9);                     // sleeve
+  g.fillStyle = c.cuffHi; g.fillRect(Math.min(X(-80), X(-40)), Y(230), 40 * s, 170 * s);
+  inkFill(g, [[X(-100), Y(150)], [X(100), Y(150)], [X(104), Y(225)], [X(-104), Y(225)]], c.cuff, 9);                   // cuff band
+  g.fillStyle = c.stitch; g.fillRect(Math.min(X(-96), X(96)), Y(184), 192 * s, 6 * s);
+  inkFill(g, [[X(-82), Y(-20)], [X(70), Y(-40)], [X(92), Y(60)], [X(86), Y(160)], [X(-86), Y(160)], [X(-96), Y(60)]], c.glove, 9); // palm
+  for (let k = 0; k < 4; k++) finger(g, X(-60 + k * 42), Y(-18 - (k === 1 || k === 2 ? 8 : 0)), (k === 3 ? 92 : 112) * s, 40 * s, side * (-0.06 + k * 0.03), c);
   g.save(); g.translate(X(-92), Y(70)); g.rotate(side * -0.75);                                                          // thumb
   g.beginPath(); g.moveTo(-22 * s, 0); g.lineTo(-22 * s, -110 * s); g.arc(0, -110 * s, 22 * s, Math.PI, 0); g.lineTo(22 * s, 0); g.closePath();
-  g.fillStyle = GLOVE; g.fill(); g.strokeStyle = INK; g.lineWidth = 8; g.stroke(); g.restore();
+  g.fillStyle = c.glove; g.fill(); g.strokeStyle = INK; g.lineWidth = 8; g.stroke(); g.restore();
 };
 const handsTex = (v0: string) => { const v = v0.startsWith("watch") ? "watch" : v0; return stex(`loHands_${v}`, 1024, 1024, (g) => {
   g.clearRect(0, 0, 1024, 1024);
@@ -192,6 +201,24 @@ const handsTex = (v0: string) => { const v = v0.startsWith("watch") ? "watch" : 
   hand(g, 250, 700, 1.0, 1); hand(g, 774, 700, 1.0, -1);
   return void PHd;
 }); };
+// keyAtLock (beat 6): his bare hand, his green coat's cuff, his old brass key, its tip jammed against the new cylinder
+// beside the keyway (a card like fpHands "tools", placed at the lock); each step bumps it back off the cylinder and on
+const MARSH_HAND: HandCols = { glove: "#eec5a4", hi: "#f7dcc4", cuff: "#4c6a3a", cuffHi: "#628550", stitch: "#d9d4c8" };
+const keyTex = () => stex("loMarshKey", 1024, 1024, (g) => {
+  g.clearRect(0, 0, 1024, 1024); g.lineCap = "round"; g.lineJoin = "round";
+  const BR = "#a8823a", BR_HI = "#cfa95a";
+  inkFill(g, [[452, 362], [690, 350], [690, 418], [640, 418], [628, 440], [604, 418], [582, 446], [560, 418], [538, 438], [516, 418], [452, 408]], BR, 10); // the blade, worn teeth
+  g.fillStyle = BR_HI; g.fillRect(470, 368, 200, 10);
+  g.beginPath(); g.arc(770, 384, 92, 0, 7); g.fillStyle = BR; g.fill(); g.strokeStyle = INK; g.lineWidth = 11; g.stroke(); // the bow
+  g.beginPath(); g.arc(800, 360, 26, 0, 7); g.fillStyle = "#3a3530"; g.fill(); g.stroke();
+  g.strokeStyle = INK; g.lineWidth = 9; for (const [a, b, c, d] of [[420, 330, 392, 300], [416, 386, 380, 386], [420, 440, 392, 470]]) { g.beginPath(); g.moveTo(a, b); g.lineTo(c, d); g.stroke(); } // the bump
+  hand(g, 830, 520, 1.05, 1, MARSH_HAND);
+});
+const keyAtLockRig = (a: At): PropRig => {
+  const root = rigRoot(a), m = mesh(plane(HANDS_W, HANDS_W), cardMat(keyTex(), NIGHT_TINT), 0, HANDS_W / 2, 0); root.add(m);
+  return { root, update: ({ step = 0 }) => { m.position.x = Math.floor(step + 0.001) % 2 === 1 ? 0.018 : 0; } };
+};
+
 // the screen is its own glowing plane (readable, not tinted by the night)
 const PHONE_SCREEN = { x: 312 / 1024, y: 150 / 1024, w: 400 / 1024, h: 760 / 1024 };
 const screenTex = (v: string) => stex(`loScreen_${v}`, 512, 974, (g) => drawScreen(g, v, 0, 0, 512, 974));
@@ -225,7 +252,7 @@ const fpHandsBuild = (b: Batch, a: At, v = "phone") => {
     const lw = 0.17, lh = 0.108;
     b.add(plane(lw, lh), cardMat(licenceTex(), "#d9deea", true), m.clone().multiply(new THREE.Matrix4().makeTranslation(0, 0.2, 0.002)));
   }
-  if (v === "phone" || v === "job" || v === "call" || v === "refused") {
+  if (v === "phone" || v === "job" || v === "call" || v === "refused" || v === "text" || v === "record") {
     const sv = v === "phone" ? "history" : v, sw = PHONE_SCREEN.w * W, sh = PHONE_SCREEN.h * W;
     const cx = (PHONE_SCREEN.x + PHONE_SCREEN.w / 2 - 0.5) * W, cy = W - (PHONE_SCREEN.y + PHONE_SCREEN.h / 2) * W;
     b.add(plane(sw, sh), cardMat(screenTex(sv), "#ffffff", true), m.clone().multiply(new THREE.Matrix4().makeTranslation(cx, cy, 0.002)));
@@ -583,9 +610,11 @@ export const LOCKEDOUT_THEME: Theme = {
     cash: { name: "Cash (fanned notes)", desc: "three banknotes fanned in a hand (a bribe, a cash payment)", themes: ["money", "crime", "street"], tags: ["cash", "money", "notes", "bribe", "payment"], draw: cashItem },
     brick: { name: "Brick", desc: "a red house brick, soil still on it (pulled from a garden border: a threat to a window)", themes: ["street", "crime", "thriller"], tags: ["brick", "threat", "window", "garden"], draw: brickItem } },
   props: {
-    fpHands: { name: "First-person hands (locksmith)", desc: "the first-person view's own hands: the locksmith's dark work gloves and teal jacket cuffs, an ink-drawn card (0.34 m wide, upright, facing +z: put it 0.35-0.45 m in front of a first-person `at` camera, below the eyeline). Variants: phone (both hands holding a phone whose glowing screen shows 9 ALDER ROW's History: Yesterday 16:40, Emergency lock change, Customer R. Marsh, Keys issued to R. Marsh only), job (the night job card: KESTREL LOCKS, the only 24-hour locksmith in town, LOCKOUT, 9 ALDER ROW, 02:14), tools (a gloved hand holding the tension wrench in the keyway, the pick resting beside it: place it at the lock), call (the phone on a live 999 call), pocket (looking down: the phone going into my jacket's breast pocket, its screen still lit), horn (my glove rising toward the horn), handle (my glove on the van's door lever), case (holding up the closed tool case), watch:<times> (my wrist turned up to read the countdown; steps show the next time), refused (the job record: REFUSED BY TECHNICIAN, Review required), licence (D. MARSH's driving licence held up in both gloves), flap (looking in through the letterbox: the brass plate fills the view with the wide slot open and the flap pushed up; put it about 0.25 m in front of the eye, slot centre 0.21 m above `at`)", category: "theme", themes: ["first person", "mystery", "phone", "trade"], tags: ["hands", "gloves", "pov", "first person", "phone", "lockpick", "locksmith"], radius: 0.05, height: 0.34,
+    fpHands: { name: "First-person hands (locksmith)", desc: "the first-person view's own hands: the locksmith's dark work gloves and teal jacket cuffs, an ink-drawn card (0.34 m wide, upright, facing +z: put it 0.35-0.45 m in front of a first-person `at` camera, below the eyeline). Variants: phone (both hands holding a phone whose glowing screen shows 9 ALDER ROW's History: Yesterday 16:40, Emergency lock change, Customer R. Marsh, Keys issued to R. Marsh only), job (the night job card: KESTREL LOCKS, the only 24-hour locksmith in town, LOCKOUT, 9 ALDER ROW, 02:14), tools (a gloved hand holding the tension wrench in the keyway, the pick resting beside it: place it at the lock), call (the phone on a live 999 call), pocket (looking down: the phone going into my jacket's breast pocket, its screen still lit), horn (my glove rising toward the horn), handle (my glove on the van's door lever), case (holding up the closed tool case), watch:<times> (my wrist turned up to read the countdown; steps show the next time), refused (the job record: REFUSED BY TECHNICIAN, Review required), text (the job as a text straight to the on-call phone: Locked out. 9 Alder Row. I'll pay double. Cash. 02:14), record (the History as phone, without tonight's row), licence (D. MARSH's driving licence held up in both gloves), flap (looking in through the letterbox: the brass plate fills the view with the wide slot open and the flap pushed up; put it about 0.25 m in front of the eye, slot centre 0.21 m above `at`)", category: "theme", themes: ["first person", "mystery", "phone", "trade"], tags: ["hands", "gloves", "pov", "first person", "phone", "lockpick", "locksmith"], radius: 0.05, height: 0.34,
       build: (b, a, v) => fpHandsBuild(b, a, v ?? "phone"), rig: fpHandsRig, steps: ["the watch shows its next time"], stepCount: (v) => (v?.startsWith("watch") ? Math.max(0, watchTimes(v).length - 1) : 0),
-      param: { desc: "phone, job, call, refused, tools, pocket, horn, handle, case, licence, flap, or watch:<mm:ss>|<mm:ss>... (the countdown's times; each step shows the next)", ok: (v) => ["phone", "job", "call", "refused", "tools", "pocket", "horn", "handle", "case", "licence", "flap"].includes(v) || /^watch:\d\d:\d\d(\|\d\d:\d\d)*$/.test(v) } },
+      param: { desc: "phone, record, job, text, call, refused, tools, pocket, horn, handle, case, licence, flap, or watch:<mm:ss>|<mm:ss>... (the countdown's times; each step shows the next)", ok: (v) => ["phone", "job", "call", "refused", "tools", "pocket", "horn", "handle", "case", "licence", "flap", "text", "record"].includes(v) || /^watch:\d\d:\d\d(\|\d\d:\d\d)*$/.test(v) } },
+    keyAtLock: { name: "His key at the new lock", desc: "an ink card of Marsh's bare hand (green coat cuff) pushing a big worn brass key at a lock: the key's tip jams against the cylinder face beside the keyway, bump lines at the tip (it won't go in). Place it like fpHands tools, at door9's cylinder (door9 at [0.9,0,-0.03]: at [1.244, 0.836, 0.035]). Each step bumps it back off and on again", category: "theme", themes: ["mystery", "home"], tags: ["key", "lock", "hand", "door", "wrong key"], radius: 0.05, height: 0.34,
+      build: (b, a) => { b.add(plane(HANDS_W, HANDS_W), cardMat(keyTex(), NIGHT_TINT), frame(a).multiply(new THREE.Matrix4().makeTranslation(0, HANDS_W / 2, 0))); }, rig: keyAtLockRig, steps: ["it bumps back off", "it jams on again", "it bumps back off"] },
     vanCab: { name: "Van cab (driver's view)", desc: "the cab around a driver's eye: `at` = the dashboard point 0.75 m ahead of the driver's eye and 0.35 m below it (so for an eye at height 1.6 m, at.y = 1.25), yaw = the van's forward. Dashboard and steering wheel ahead and below, the windscreen frame (header, raked A-pillars), the driver's visor with the FINAL WARNING letter clipped to it, the rear-view mirror up and to the left (right-hand drive). Variant mirror: my eyes in the mirror, lit by a phone", category: "theme", themes: ["first person", "street", "night"], tags: ["van", "cab", "windscreen", "mirror", "visor", "pov", "driver"], radius: 1.0, height: 0.6,
       build: (b, a, v) => vanCabBuild(b, a, v), variants: { mirror: (b, a) => vanCabBuild(b, a, "mirror") } },
     rearMirror: { name: "Rear-view mirror (van)", desc: "the van's rear-view mirror on its stem, with the windscreen header and roof strip above it, `at` = the mirror's centre, yaw = the van's forward (the same mirror as vanCab's, for close shots of it on its own). Variant eyes: my eyes in the mirror, lit by a phone", category: "theme", themes: ["first person", "night"], tags: ["mirror", "rear-view", "reflection", "eyes", "van"], radius: 0.15, height: 0.1,

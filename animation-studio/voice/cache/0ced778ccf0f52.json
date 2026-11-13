@@ -1,0 +1,50 @@
+{
+ "hash": "0ced778ccf0f52",
+ "text": "Proof of address. His is perfect.",
+ "voice": "liamQuiet",
+ "lead": 0,
+ "end": 2.229,
+ "dur": 2.272653,
+ "words": [
+  {
+   "w": "Proof",
+   "t0": 0,
+   "t1": 0.279
+  },
+  {
+   "w": "of",
+   "t0": 0.325,
+   "t1": 0.383
+  },
+  {
+   "w": "address.",
+   "t0": 0.43,
+   "t1": 0.906
+  },
+  {
+   "w": "His",
+   "t0": 1.068,
+   "t1": 1.254
+  },
+  {
+   "w": "is",
+   "t0": 1.312,
+   "t1": 1.393
+  },
+  {
+   "w": "perfect.",
+   "t0": 1.451,
+   "t1": 2.229
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-13T21:20:21.213Z"
+}

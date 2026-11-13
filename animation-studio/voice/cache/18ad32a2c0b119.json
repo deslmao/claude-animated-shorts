@@ -1,0 +1,65 @@
+{
+ "hash": "18ad32a2c0b119",
+ "text": "He wants this quiet. So I make it loud.",
+ "voice": "liamQuiet",
+ "lead": 0,
+ "end": 2.926,
+ "dur": 2.951837,
+ "words": [
+  {
+   "w": "He",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "wants",
+   "t0": 0.244,
+   "t1": 0.488
+  },
+  {
+   "w": "this",
+   "t0": 0.522,
+   "t1": 0.673
+  },
+  {
+   "w": "quiet.",
+   "t0": 0.743,
+   "t1": 1.335
+  },
+  {
+   "w": "So",
+   "t0": 1.672,
+   "t1": 1.811
+  },
+  {
+   "w": "I",
+   "t0": 1.881,
+   "t1": 1.904
+  },
+  {
+   "w": "make",
+   "t0": 1.974,
+   "t1": 2.136
+  },
+  {
+   "w": "it",
+   "t0": 2.171,
+   "t1": 2.229
+  },
+  {
+   "w": "loud.",
+   "t0": 2.287,
+   "t1": 2.926
+  }
+ ],
+ "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-13T21:20:33.719Z"
+}

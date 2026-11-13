@@ -1,0 +1,80 @@
+{
+ "hash": "1627b1e50ed8a0",
+ "text": "She's still on the line upstairs. She says he's trying the windows.",
+ "voice": "alice",
+ "lead": 0,
+ "end": 3.437,
+ "dur": 3.474286,
+ "words": [
+  {
+   "w": "She's",
+   "t0": 0,
+   "t1": 0.267
+  },
+  {
+   "w": "still",
+   "t0": 0.29,
+   "t1": 0.488
+  },
+  {
+   "w": "on",
+   "t0": 0.546,
+   "t1": 0.604
+  },
+  {
+   "w": "the",
+   "t0": 0.639,
+   "t1": 0.708
+  },
+  {
+   "w": "line",
+   "t0": 0.755,
+   "t1": 0.964
+  },
+  {
+   "w": "upstairs.",
+   "t0": 0.998,
+   "t1": 1.556
+  },
+  {
+   "w": "She",
+   "t0": 1.66,
+   "t1": 1.8
+  },
+  {
+   "w": "says",
+   "t0": 1.846,
+   "t1": 2.02
+  },
+  {
+   "w": "he's",
+   "t0": 2.078,
+   "t1": 2.218
+  },
+  {
+   "w": "trying",
+   "t0": 2.264,
+   "t1": 2.508
+  },
+  {
+   "w": "the",
+   "t0": 2.554,
+   "t1": 2.624
+  },
+  {
+   "w": "windows.",
+   "t0": 2.67,
+   "t1": 3.437
+  }
+ ],
+ "voiceId": "Xb7hH8MSUJpSbSDYk0k2",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-13T21:20:28.834Z"
+}

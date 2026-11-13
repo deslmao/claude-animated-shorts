@@ -10,7 +10,7 @@ format (as claimed by the writer): mystery · factual: no (fiction)
 - conflict: A, he's an honest man locked out of his own home after a row; B, he's not meant to be let in, and I'm the way in
 
 ## Rules of the situation
-- Kestrel Locks is the only 24-hour locksmith in town. At night, jobs are booked automatically through its app: no dispatcher is awake. Earlier jobs at an address sit one tap deeper, under History. A refused job is logged for review.
+- Kestrel Locks is the only 24-hour locksmith in town. At night its number, on every van, goes straight to the on-call technician's phone: no dispatcher is awake, and a job only reaches the office if the technician logs it. Every lock the firm fits is in its app, under the address's History. A refused job, once logged, goes for review.
 - Company rule: proof of address before I touch a lock. A driving licence counts.
 - The final warning on my van's visor: last winter I refused a man with no ID, it was his house, and one more wrongful refusal means my job.
 - A driving licence keeps its old address until its holder changes it.
@@ -22,8 +22,8 @@ format (as claimed by the writer): mystery · factual: no (fiction)
 ## Event chain (what happens, in order, and what the viewer sees)
 | # | link | event | decision | what the viewer sees |
 |---|---|---|---|---|
-| E1 | start | 2:14 a.m. I pull up at 9 Alder Row for a lockout booked through the night app. Every window on the street is dark except a thin strip of light under one upstairs curtain at number 9. A man in a green coat waits on the step and keeps his voice low: double my rate, cash, no invoice, no call to the office, if I open his front door quietly. On my van's sun visor hangs a final written warning | take the job by the book | the job card on my phone: LOCKOUT, 9 ALDER ROW, 02:14; the visor letter, readable: FINAL WARNING. WRONGFUL REFUSAL OF SERVICE. ONE MORE AND YOU'RE DISMISSED; the dark street with one lit strip upstairs, unremarked; his face in my torch; the notes fanned in his fist; his finger to his lips, his eyes on the neighbours' dark windows |
-| E2 | so | Company rule: proof of address before I touch a lock. His licence is perfect: D. MARSH, 9 ALDER ROW, and the bell says MARSH. I can't afford to refuse the wrong man twice. I hand the licence back | accept the ID | the licence in my gloved hand beside the brass 9; the MARSH label on the bell; my glance back at the letter on the visor; the licence back in his hand |
+| E1 | start | 2:14 a.m. A text to the on-call phone: locked out, 9 Alder Row, he'll pay double, cash. I pull up outside. Every window on the street is dark except a thin strip of light under one upstairs curtain at number 9. A man in a green coat waits on the step and keeps his voice low: double my rate, cash, no invoice, no call to the office, if I open his front door quietly. On my van's sun visor hangs a final written warning | take the job by the book | the text on my phone: LOCKED OUT. 9 ALDER ROW. I'LL PAY DOUBLE. CASH. 02:14; the visor letter, readable: FINAL WARNING. WRONGFUL REFUSAL OF SERVICE. ONE MORE AND YOU'RE DISMISSED; the dark street with one lit strip upstairs, unremarked; his face under the porch lamp; the notes fanned in his fist; his finger to his lips, his eyes on the neighbours' dark windows |
+| E2 | so | Company rule: proof of address before I touch a lock. His licence is perfect: D. MARSH, 9 ALDER ROW, and the bell says MARSH. One more refused job and I'm fired. I hand the licence back | accept the ID | the licence in my gloved hand beside the brass 9; the MARSH label on the bell; my glance back at the letter on the visor; the licence back in his hand |
 | E3 | so | I ring the bell first, as I always do. A dog barks, then whines. Nobody comes. "She won't come down. Not at this hour." Through the letterbox my torch finds a spaniel; at his voice ("Biscuit. It's me.") its tail thumps. On the hall wall, a child's drawing: MUMMY, ME, BISCUIT, and DADDY in a green coat. Small wellies by the mat | start work | my finger on the bell; my fingers lifting the letterbox flap; the dog's thumping tail; the drawing; the wellies |
 | E4 | but | I kneel and lay out my wrench and pick. He shows me his own key, worn brass: it won't even enter the keyway. "Just stopped working tonight." Close up, the lock is wrong: a bright new cylinder in a weathered door, a paler outline in the paint where a bigger old lock sat, fresh metal filings on the mat. New locks don't fail | say nothing yet, and keep looking | his key bumping at the keyway; my torch on the gleaming cylinder (a small KL stamp on its face) against flaking paint; the outline; filings glittering on the mat; my hands going still |
 | E5 | but | My torch tilts up as I think. The strip of light under the upstairs curtain goes out, and the curtain moves. Someone is awake up there, watching, and won't come to the door. He follows my torch. "Problem?" | cover it | the strip of light (there since E1) going dark; the curtain moving; his face turning from the window to me |
@@ -35,7 +35,7 @@ format (as claimed by the writer): mystery · factual: no (fiction)
 | E11 | so | I stand up onto the path, between him and the brick and the bay window, glance at my watch (01:30), and refuse him, loud enough for the whole street: "No! She changed this lock to keep you out. I'm not opening it!" | refuse him, out loud | me rising onto the path, between him and the brick and the window; the watch at 01:30; my voice ringing down the dark street; the first neighbour's window lighting up during the shout |
 | E12 | but | He slams me back against the door and grabs my jacket, but along Alder Row the lights are coming on: a window, then another, a curtain pulled back, a neighbour on his step with his phone up: "I'm calling the police!" Marsh looks at the lit windows. His grip opens. He backs down the path, past the brick, toward the road. At 00:00 the street turns blue; two officers take his arms. "It's my house!" | - | my back against the door; his fists in my jacket; the lights coming on, one window after another; the neighbour's phone; his hands letting go; him backing past the brick; the countdown at 00:00; blue light; the officers |
 | E13 | so | The door stays locked. Her voice comes through it: "I watched you from upstairs. When you got your tools out." "I thought you were going to let him in." I don't lift the letterbox. "It's your lock. It stays shut." Above me, the upstairs light comes back on | leave the door shut | my hand moving to the letterbox, then pulling back; the closed door; the light coming back on above |
-| E14 | so | In the van, the app logs the job: REFUSED BY TECHNICIAN. REVIEW REQUIRED, under the warning letter. I look up: the curtain is open, and she stands at the lit window with her son and the dog, not hiding any more | - | the phone: REFUSED BY TECHNICIAN, beside the visor letter; through the windscreen, the lit window, the woman, the boy, the dog's nose at the glass |
+| E14 | so | In the van, I log the job with the office myself: REFUSED BY TECHNICIAN. REVIEW REQUIRED, under the warning letter. I look up: the curtain is open, and she stands at the lit window with her son and the dog, not hiding any more | - | the phone: REFUSED BY TECHNICIAN, beside the visor letter; through the windscreen, the lit window, the woman, the boy, the dog's nose at the glass |
 
 ## Plot-critical objects (who has each one, where, and in what state, at each event)
 | object | event | holder / place | condition | visible |
@@ -50,7 +50,7 @@ format (as claimed by the writer): mystery · factual: no (fiction)
 | pick and wrench | E4 | my hands |  | yes |
 | pick and wrench | E7 | the pick case, closed, in my hand |  | yes |
 | pick and wrench | E10 | my hands |  | yes |
-| my phone | E1 | my hand | job card: LOCKOUT, 9 ALDER ROW | yes |
+| my phone | E1 | my hand | a text: LOCKED OUT. 9 ALDER ROW. I'LL PAY DOUBLE. CASH. | yes |
 | my phone | E6 | my hand | the address's History | yes |
 | my phone | E8 | my hand, in the van | 999 call | yes |
 | my phone | E9 | my breast pocket, screen against my chest | call still open | no |
@@ -82,4 +82,4 @@ Ending type: reveal
 ## Automated flags (heuristic: confirm or dismiss in context)
 - (none)
 
-packet: 5e13f732
+packet: d6fdad66

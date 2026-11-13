@@ -2,7 +2,7 @@
 
 **Format:** mystery. A first-person mystery told through a locksmith's hands and trade knowledge: the viewer checks each piece of evidence with me (an ID, a dog, a drawing, a lock that's too new), is addressed by the man at the door, and reaches the decision at the same moment I do.
 
-**Estimated length:** 93 s · **Words:** 280 · **Narration:** 1424 characters (about 1424 ElevenLabs credits) · **Voices:** narrator=liamQuiet, marsh=brian, me=liam, operator=alice, neighbour=chris, woman=jessica
+**Estimated length:** 89 s · **Words:** 268 · **Narration:** 1360 characters (about 1360 ElevenLabs credits) · **Voices:** narrator=liamQuiet, marsh=brian, me=liam, operator=alice, neighbour=chris, woman=jessica
 
 ## Premise
 - **question:** At 2:14 a.m. a man is paying me double to open his own front door, quietly. Is it really his door, and why has his key stopped working?
@@ -18,9 +18,9 @@
 ## Beats (script + visual plan)
 | # | lines | happens | camera | changes |
 |---|---|---|---|---|
-| 1 | At two-fourteen in the morning, a man is paying me double to break into his own house. | through my van's windscreen: a dark street, every window black except a thin strip of light under one upstairs curtain at number 9, small at the edge of frame; my hand lifts my phone: LOCKOUT · 9 ALDER ROW · 02:14; above it on the sun visor, a letter, readable: FINAL WARNING. WRONGFUL REFUSAL OF SERVICE. ONE MORE AND YOU'RE DISMISSED | pov (windscreen, hands in frame) -> insert (phone) -> insert (visor letter) | the stakes are on screen |
-| 2 | **marsh:** Double. Cash. No invoice, no call to the office.<br>And he wants it quiet. | my torch finds a man in a green coat on the doorstep; he talks low, straight into the lens; the notes fanned in his fist; he puts a finger to his lips, his eyes going to the neighbours' dark windows | pov (torch) -> insert (cash) -> closeUp (into the lens) | I'm suspicious |
-| 3 | Proof of address. His is perfect.<br>And I can't afford to turn away the wrong man twice. | his licence in my gloved hand: D. MARSH, 9 ALDER ROW, his photo; I hold it up beside the brass 9 and the MARSH label on the bell; my eyes flick back to the van, to the letter on the visor; I hand the licence back | pov (hands in frame) -> insert -> pov (glance back at the van) | he's cleared, on paper |
+| 1 | At two-fourteen in the morning, a man is paying me double to break into his own house. | through my van's windscreen: a dark street, every window black except a thin strip of light under one upstairs curtain at number 9, small at the edge of frame; my hand lifts my phone: a text to the on-call phone: LOCKED OUT. 9 ALDER ROW. I'LL PAY DOUBLE. CASH. 02:14; above it on the sun visor, a letter, readable: FINAL WARNING. WRONGFUL REFUSAL OF SERVICE. ONE MORE AND YOU'RE DISMISSED | pov (windscreen, hands in frame) -> insert (phone) -> insert (visor letter) | the stakes are on screen |
+| 2 | **marsh:** Double. Cash. No invoice, no call to the office.<br>And he wants it quiet. | under the porch lamp, a man in a green coat on the doorstep; he talks low, straight into the lens; the notes fanned in his fist; he puts a finger to his lips, his eyes going to the neighbours' dark windows | overShoulder (mine, on him) -> closeUp (his finger to his lips) | I'm suspicious |
+| 3 | Proof of address. His is perfect.<br>One more refused job and I'm fired. | his licence in my gloved hand: D. MARSH, 9 ALDER ROW, his photo; I hold it up beside the brass 9 and the MARSH label on the bell; my eyes flick back to the van, to the letter on the visor, held long enough to read; I hand the licence back | pov (hands in frame) -> insert -> pov (glance back at the van) | he's cleared, on paper |
 | 4 | I always ring first.<br>**marsh:** She won't come down. Not at this hour. | my finger presses the bell; inside, a dog barks, then whines; nobody comes; he says it into the lens, tired, not angry | insert (bell) -> closeUp | there's a woman inside who won't come down |
 | 5 | **marsh:** Biscuit. It's me. | my fingers lift the letterbox flap; my torch through the slot: a spaniel in the hall, tail thumping at his voice; on the wall, a child's drawing: MUMMY, ME, BISCUIT, and DADDY in a green coat; small wellies by the mat | pov (through the letterbox) | he belongs here |
 | 6 | **marsh:** Just stopped working tonight.<br>New locks don't just stop working. | I kneel and lay out my wrench and pick; he shows me his worn brass key: it bumps at the keyway and won't go in; my torch goes close: a bright new cylinder with a small KL stamp on its face, set in flaking old paint, a paler outline where a bigger lock used to be, metal filings glittering on the mat; my hands go still | pov (hands in frame) -> insert (macro, the lock) | the lock is wrong |
@@ -33,10 +33,10 @@
 | 13 | **me:** Found them! | I step out with the case held up; at my voice he lowers the brick, drops it by the path and walks back to the door | pov (he turns from the window) | I'm back between him and the house |
 | 14 | **marsh:** You're not even trying.<br>**marsh:** Open it now. Or I go through that window. | on my knees: the pick rests beside the keyway, not in it, and the wrench turns nothing; my cuff slips: 02:20, then 01:40; he watches my hands; his face comes down over me, into the lens; his hand closes on my shoulder; his eyes go to the brick by the path | insert (the pick beside the keyway) -> insert (the watch) -> pov (up at him, low) | the stall is over |
 | 15 | Now I'm between him and that window.<br>He wants this quiet. So I make it loud.<br>**me:** No! She changed this lock to keep you out. I'm not opening it! | my eyes drop to my watch (01:30); I stand up and step out onto the path, so I'm between him and the brick and the bay window; he's against his own front door now; I shout it down the sleeping street, and across the road the first window lights up during the shout | insert (the watch) -> pov (rising, the brick and the bay window behind me, him at the door) -> wide (from the path down the dark street, the first window lighting) | the quiet is broken |
-| 16 | **marsh:** Shut up!<br>One light. Then another. Then the whole street.<br>**neighbour:** Oi! I'm calling the police! | he lunges, slams me back against the porch wall and twists my jacket in his fists; past his shoulder a second window lights up, then a third, a curtain pulled back, and a neighbour comes out on his step with his phone raised; Marsh looks along the lit street; his grip opens; he lets go and backs down the path, past the brick, toward the road | pov (pinned, over his shoulder) -> pov (his face turning to the lit windows) | the quiet is broken for good |
+| 16 | **marsh:** Shut up!<br>**neighbour:** Oi! I'm calling the police! | he lunges, slams me back against the porch wall and twists my jacket in his fists; past his shoulder a second window lights up, then a third, a curtain pulled back, and a neighbour comes out on his step with his phone raised; Marsh looks along the lit street; his grip opens; he lets go and backs down the path, past the brick, toward the road | pov (pinned, over his shoulder) -> pov (his face turning to the lit windows) | the quiet is broken for good |
 | 17 | **marsh:** It's my house! | my watch: 00:00; blue light floods the street; at the end of the path two officers take his arms; he twists back toward the house, and they walk him to the car | insert (the watch) -> wide (from the doorstep, blue light sweeping the houses) | he's caught |
 | 18 | **woman:** I watched you from upstairs. When you got your tools out.<br>**woman:** I thought you were going to let him in.<br>**me:** It's your lock. It stays shut. | the door stays shut; her voice comes through it; my hand moves to the letterbox flap and stops, then lowers; above me, the upstairs light comes back on | insert (my hand at the flap) -> pov (tilting up to the lit window) | she's safe, and the door is hers |
-| 19 | I checked who he was.<br>I never asked who the lock was for. | in the van my phone shows the job: REFUSED BY TECHNICIAN. REVIEW REQUIRED, under the warning letter on the visor; I look up through the windscreen: the curtain is open, and she stands at the lit window with her small son and the dog, not hiding any more | insert (phone and visor) -> pov (windscreen, the lit window) | the night is over |
+| 19 | I checked who he was.<br>I never asked who the lock was for. | in the van I log the job with the office myself; my phone shows it: REFUSED BY TECHNICIAN. REVIEW REQUIRED, under the warning letter on the visor; I look up through the windscreen: the curtain is open, and she stands at the lit window with her small son and the dog, not hiding any more | insert (phone and visor) -> pov (windscreen, the lit window) | the night is over |
 
 ## Ending
 - **type:** reveal
@@ -45,20 +45,20 @@
 All structural checks pass (structure only: not a judgement of quality).
 
 ## Independent evaluation
-**Verdict:** ready → ready · **Would a viewer keep watching?** yes. The hook grips at once (a man paying double to break into his own house). The new lock against "Just stopped working tonight" (beat 6) and "It's one of ours" (beat 8) are strong lean-in moments, and from beat 10 the 04:00 countdown, the brick at the glass and the hand over the horn keep viewers to the end. The swipe risk is beats 3 to 5: about ten seconds of procedure (licence, bell, letterbox) with the clunky "wrong man twice" line, before the lock beat pays it off. A faster beat 3 protects it. Top comment: "'He wants this quiet. So I make it loud.' Chills. And the kid's drawing with Daddy in it, everything he said was true." Top critical comment: "Your own company changed that lock yesterday and the app still sent you there at 2am?"
+**Verdict:** ready → ready · **Would a viewer keep watching?** yes, the first line is a whole situation with a stake and a question. A new fact or proof lands every beat, and the countdown pulls through the second half. The likeliest drop-off is beat 12 (a reflective decision beat), but it's short and the timer is running.
 
 | criterion | result | beats |
 |---|---|---|
-| clarity | weak | 1, 2, 3, 8, 10, 15 |
-| viewer participation | pass | 3, 4, 5, 6, 7, 11 |
-| cause and effect | pass | 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 |
-| emotional investment | pass | 1, 5, 10, 11, 14, 18, 19 |
-| recontextualisation | pass | 3, 4, 5, 6, 8, 17, 18, 19 |
-| setup and payoff | pass | 1, 2, 3, 11, 13, 15, 16, 19 |
-| visual communication | weak | 11, 12, 15, 16 |
-| originality and adaptation | pass | 1, 6, 8, 12, 15, 19 |
+| clarity | pass | 1, 3, 6, 8, 10 |
+| viewer participation | pass | 1, 3, 4, 5, 6, 7, 14 |
+| cause and effect | pass | 2, 9, 11, 12, 13, 15, 16, 17 |
+| emotional investment | pass | 1, 3, 5, 11, 14, 16, 19 |
+| recontextualisation | pass | 4, 7, 9, 18, 19 |
+| setup and payoff | pass | 1, 2, 6, 8, 11, 13, 15, 16, 17, 19 |
+| visual communication | pass | 2, 6, 8, 10, 11, 14, 15, 16, 17, 19 |
+| originality and adaptation | pass | 1, 6, 8, 10, 15, 19 |
 | accuracy | n/a fiction | all |
 
 Full findings: productions/sample-locked-out/eval/evaluation.md
 
-To approve: tell Claude; it records `npm run script -- sample-locked-out --approve 1424`.
+To approve: tell Claude; it records `npm run script -- sample-locked-out --approve 1360`.

@@ -1,0 +1,75 @@
+{
+ "hash": "1b93214da8c2be",
+ "text": "I watched you from upstairs. When you got your tools out.",
+ "voice": "jessica",
+ "lead": 0,
+ "end": 2.926,
+ "dur": 2.951837,
+ "words": [
+  {
+   "w": "I",
+   "t0": 0,
+   "t1": 0.093
+  },
+  {
+   "w": "watched",
+   "t0": 0.174,
+   "t1": 0.43
+  },
+  {
+   "w": "you",
+   "t0": 0.464,
+   "t1": 0.546
+  },
+  {
+   "w": "from",
+   "t0": 0.592,
+   "t1": 0.708
+  },
+  {
+   "w": "upstairs.",
+   "t0": 0.755,
+   "t1": 1.382
+  },
+  {
+   "w": "When",
+   "t0": 1.486,
+   "t1": 1.637
+  },
+  {
+   "w": "you",
+   "t0": 1.672,
+   "t1": 1.741
+  },
+  {
+   "w": "got",
+   "t0": 1.8,
+   "t1": 1.916
+  },
+  {
+   "w": "your",
+   "t0": 1.95,
+   "t1": 2.055
+  },
+  {
+   "w": "tools",
+   "t0": 2.101,
+   "t1": 2.357
+  },
+  {
+   "w": "out.",
+   "t0": 2.415,
+   "t1": 2.926
+  }
+ ],
+ "voiceId": "cgSgspJ2msm6clMCkdW9",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-13T21:20:36.211Z"
+}
