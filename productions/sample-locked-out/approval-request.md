@@ -2,7 +2,7 @@
 
 **Format:** mystery. A first-person mystery told through a locksmith's hands and trade knowledge: the viewer checks each piece of evidence with me (an ID, a dog, a drawing, a lock that's too new), is addressed by the man at the door, and reaches the decision at the same moment I do.
 
-**Estimated length:** 86 s · **Words:** 256 · **Narration:** 1302 characters (about 1302 ElevenLabs credits) · **Voices:** narrator=liamQuiet, marsh=brian, me=liam, operator=alice, neighbour=chris, woman=jessica
+**Estimated length:** 93 s · **Words:** 280 · **Narration:** 1424 characters (about 1424 ElevenLabs credits) · **Voices:** narrator=liamQuiet, marsh=brian, me=liam, operator=alice, neighbour=chris, woman=jessica
 
 ## Premise
 - **question:** At 2:14 a.m. a man is paying me double to open his own front door, quietly. Is it really his door, and why has his key stopped working?
@@ -32,8 +32,8 @@
 | 12 | He still thinks I'm his way in. While he does, he'll wait at the door.<br>**me:** Stay on the line.<br>**operator:** Do not open her door.<br>**me:** I won't. | my reflection in the dark windscreen, the phone's glow on it, deciding; I slide the phone, its call timer still running, into my breast pocket, screen against my chest; I pull my cuff over the watch: 03:10; my hand on the door handle | pov (hands in frame) -> insert (pocket) | I'm going back |
 | 13 | **me:** Found them! | I step out with the case held up; at my voice he lowers the brick, drops it by the path and walks back to the door | pov (he turns from the window) | I'm back between him and the house |
 | 14 | **marsh:** You're not even trying.<br>**marsh:** Open it now. Or I go through that window. | on my knees: the pick rests beside the keyway, not in it, and the wrench turns nothing; my cuff slips: 02:20, then 01:40; he watches my hands; his face comes down over me, into the lens; his hand closes on my shoulder; his eyes go to the brick by the path | insert (the pick beside the keyway) -> insert (the watch) -> pov (up at him, low) | the stall is over |
-| 15 | **me:** No! She changed this lock to keep you out. I'm not opening it! | my eyes drop to my watch (01:30); I stand up and step out onto the path, so I'm between him and the brick and the bay window; he's against his own front door now; I shout it down the sleeping street, and across the road the first window lights up during the shout | insert (the watch) -> pov (rising, the brick and the bay window behind me, him at the door) -> wide (from the path down the dark street, the first window lighting) | the quiet is broken |
-| 16 | **marsh:** Shut up!<br>**neighbour:** Oi! I'm calling the police! | he lunges, slams me back against the porch wall and twists my jacket in his fists; past his shoulder a second window lights up, then a third, a curtain pulled back, and a neighbour comes out on his step with his phone raised; Marsh looks along the lit street; his grip opens; he lets go and backs down the path, past the brick, toward the road | pov (pinned, over his shoulder) -> pov (his face turning to the lit windows) | the quiet is broken for good |
+| 15 | Now I'm between him and that window.<br>He wants this quiet. So I make it loud.<br>**me:** No! She changed this lock to keep you out. I'm not opening it! | my eyes drop to my watch (01:30); I stand up and step out onto the path, so I'm between him and the brick and the bay window; he's against his own front door now; I shout it down the sleeping street, and across the road the first window lights up during the shout | insert (the watch) -> pov (rising, the brick and the bay window behind me, him at the door) -> wide (from the path down the dark street, the first window lighting) | the quiet is broken |
+| 16 | **marsh:** Shut up!<br>One light. Then another. Then the whole street.<br>**neighbour:** Oi! I'm calling the police! | he lunges, slams me back against the porch wall and twists my jacket in his fists; past his shoulder a second window lights up, then a third, a curtain pulled back, and a neighbour comes out on his step with his phone raised; Marsh looks along the lit street; his grip opens; he lets go and backs down the path, past the brick, toward the road | pov (pinned, over his shoulder) -> pov (his face turning to the lit windows) | the quiet is broken for good |
 | 17 | **marsh:** It's my house! | my watch: 00:00; blue light floods the street; at the end of the path two officers take his arms; he twists back toward the house, and they walk him to the car | insert (the watch) -> wide (from the doorstep, blue light sweeping the houses) | he's caught |
 | 18 | **woman:** I watched you from upstairs. When you got your tools out.<br>**woman:** I thought you were going to let him in.<br>**me:** It's your lock. It stays shut. | the door stays shut; her voice comes through it; my hand moves to the letterbox flap and stops, then lowers; above me, the upstairs light comes back on | insert (my hand at the flap) -> pov (tilting up to the lit window) | she's safe, and the door is hers |
 | 19 | I checked who he was.<br>I never asked who the lock was for. | in the van my phone shows the job: REFUSED BY TECHNICIAN. REVIEW REQUIRED, under the warning letter on the visor; I look up through the windscreen: the curtain is open, and she stands at the lit window with her small son and the dog, not hiding any more | insert (phone and visor) -> pov (windscreen, the lit window) | the night is over |
@@ -45,20 +45,20 @@
 All structural checks pass (structure only: not a judgement of quality).
 
 ## Independent evaluation
-**Verdict:** ready → ready · **Would a viewer keep watching?** yes, the hook (paid double to break into his own house) is a real question. Beat 6's macro of the new lock and beat 8's "It's one of ours" is where a viewer leans in, and the brick at the glass with the hand over the horn (beat 11), then the countdown under the cuff, hold them through the climax. The likeliest swipe point is beats 3 to 5 (licence, bell, letterbox), a procedural stretch before the turn. It survives because each shot adds one checkable fact, but it must be cut tight. The ending image (the family at the lit window) and the closing line give a reason to comment. Top comment: "'I checked who he was. I never asked who the lock was for.' Give this man a raise, and if they fire him at that review…" Top critical comment: "Why not just honk the horn? The street waking up is literally what made him run." (Runner-up: "Police in four minutes at 2am, what country is this.")
+**Verdict:** ready → ready · **Would a viewer keep watching?** yes. The hook grips at once (a man paying double to break into his own house). The new lock against "Just stopped working tonight" (beat 6) and "It's one of ours" (beat 8) are strong lean-in moments, and from beat 10 the 04:00 countdown, the brick at the glass and the hand over the horn keep viewers to the end. The swipe risk is beats 3 to 5: about ten seconds of procedure (licence, bell, letterbox) with the clunky "wrong man twice" line, before the lock beat pays it off. A faster beat 3 protects it. Top comment: "'He wants this quiet. So I make it loud.' Chills. And the kid's drawing with Daddy in it, everything he said was true." Top critical comment: "Your own company changed that lock yesterday and the app still sent you there at 2am?"
 
 | criterion | result | beats |
 |---|---|---|
-| clarity | pass | 1, 2, 3, 8, 10, 12, 15 |
-| viewer participation | pass | 3, 5, 6, 7, 8, 11, 12 |
-| cause and effect | pass | 2, 9, 11, 12, 13, 14, 15, 16, 17 |
-| emotional investment | pass | 1, 3, 5, 10, 14, 16, 18, 19 |
-| recontextualisation | pass | 1, 3, 6, 7, 9, 17, 18, 19 |
-| setup and payoff | pass | 1, 2, 6, 8, 9, 11, 13, 15, 16, 19 |
-| visual communication | weak | 1, 8, 15, 18 |
-| originality and adaptation | pass | 1, 6, 8, 9, 12, 15, 19 |
+| clarity | weak | 1, 2, 3, 8, 10, 15 |
+| viewer participation | pass | 3, 4, 5, 6, 7, 11 |
+| cause and effect | pass | 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 |
+| emotional investment | pass | 1, 5, 10, 11, 14, 18, 19 |
+| recontextualisation | pass | 3, 4, 5, 6, 8, 17, 18, 19 |
+| setup and payoff | pass | 1, 2, 3, 11, 13, 15, 16, 19 |
+| visual communication | weak | 11, 12, 15, 16 |
+| originality and adaptation | pass | 1, 6, 8, 12, 15, 19 |
 | accuracy | n/a fiction | all |
 
 Full findings: productions/sample-locked-out/eval/evaluation.md
 
-To approve: tell Claude; it records `npm run script -- sample-locked-out --approve 1302`.
+To approve: tell Claude; it records `npm run script -- sample-locked-out --approve 1424`.

@@ -72,6 +72,10 @@ const drawScreen = (g: CanvasRenderingContext2D, v: string, x: number, y: number
     T("Keys issued to", 32, 52, 680, "#b9c5d6", "left", "normal"); T("R. Marsh only", 42, 52, 732, "#ffd9a8");
     g.fillStyle = "rgba(255,255,255,0.06)"; rr(g, x + 20 * s, y + 790 * s, 472 * s, 150 * s, 26 * s); g.fill();
     T("Tonight, 02:14", 30, 52, 846, "#8a96a8", "left", "normal"); T("Lockout (D. Marsh)", 34, 52, 898, "#c9d2de");
+  } else if (v === "refused") { // the job record after (beat 19)
+    T("9 ALDER ROW", 34, 32, 210, "#9fc9cc"); T("Tonight, 02:14", 30, 32, 256, "#8a96a8", "left", "normal");
+    g.fillStyle = "rgba(229,72,77,0.18)"; rr(g, x + 20 * s, y + 300 * s, 472 * s, 330 * s, 26 * s); g.fill(); g.fillStyle = "#e5484d"; g.fillRect(x + 20 * s, y + 300 * s, 10 * s, 330 * s);
+    T("REFUSED", 64, 52, 390, "#ff8a8d"); T("BY TECHNICIAN", 40, 52, 450); T("Review required", 38, 52, 560, "#f3c58f");
   } else if (v === "call") { // the 999 call (beat 10)
     g.fillStyle = "#0e131c"; g.fillRect(x, y, w, 150 * s); T("02:22", 26, 256, 40, "#cfe3e4", "center", "normal");
     T("999", 120, 256, 330, "#ffffff", "center"); T("Emergency call", 34, 256, 400, "#9fc9cc", "center", "normal");
@@ -128,6 +132,20 @@ const handsTex = (v0: string) => { const v = v0.startsWith("watch") ? "watch" : 
     hand(g, 610, 650, 1.3, 1);
     return;
   }
+  if (v === "licence") {
+    // the licence held up in both gloves (the card itself is its own lit plane)
+    hand(g, 300, 720, 0.95, 1); hand(g, 724, 720, 0.95, -1);
+    return;
+  }
+  if (v === "flap") {
+    // looking in through the letterbox: the brass plate fills the view, the slot is open, my glove holds the flap up
+    g.fillStyle = "#2a2c30"; g.fillRect(0, 0, 1024, 1024);
+    g.fillStyle = "#8a7440"; rr(g, 60, 300, 904, 460, 36); g.fill(); g.strokeStyle = INK; g.lineWidth = 12; g.stroke();
+    g.clearRect(110, 360, 804, 340);                                                                                   // the slot: the hall beyond
+    g.strokeStyle = INK; g.lineWidth = 10; g.strokeRect(110, 360, 804, 340);
+    inkFill(g, [[110, 250], [914, 250], [900, 360], [124, 360]], "#b39652", 10);                                      // the flap, pushed up
+    return;
+  }
   if (v === "pocket") {
     // looking down at my chest: the jacket's breast pocket, the phone (call still live: its screen glows at the top
     // edge) going in, my glove pushing it down
@@ -178,6 +196,13 @@ const handsTex = (v0: string) => { const v = v0.startsWith("watch") ? "watch" : 
 const PHONE_SCREEN = { x: 312 / 1024, y: 150 / 1024, w: 400 / 1024, h: 760 / 1024 };
 const screenTex = (v: string) => stex(`loScreen_${v}`, 512, 974, (g) => drawScreen(g, v, 0, 0, 512, 974));
 const HANDS_W = 0.34; // the card's width in metres (the phone on it is about 13 x 25 cm: a big phone held close)
+const licenceTex = () => stex("loLicence", 512, 326, (g) => {
+  g.fillStyle = "#f1d6dc"; g.fillRect(0, 0, 512, 326); g.fillStyle = "#c94f6d"; g.fillRect(0, 0, 512, 54);
+  g.fillStyle = "#fff"; g.font = FONT(28); g.textAlign = "left"; g.fillText("DRIVING LICENCE", 20, 38);
+  g.fillStyle = "#cbd2dc"; g.fillRect(24, 76, 150, 190); g.fillStyle = "#eec5a4"; g.beginPath(); g.arc(99, 150, 46, 0, 7); g.fill(); g.fillStyle = "#3b2c22"; g.fillRect(55, 100, 88, 28); g.fillStyle = "#4c6a3a"; g.fillRect(44, 205, 110, 61);
+  g.fillStyle = "#2a2a30"; g.font = FONT(44); g.fillText("D. MARSH", 196, 128); g.font = FONT(36, "normal"); g.fillText("9 ALDER ROW", 196, 190);
+  g.strokeStyle = INK; g.lineWidth = 6; g.strokeRect(3, 3, 506, 320);
+});
 const WATCH_FACE = { x: 436 / 1024, y: 472 / 1024, w: 152 / 1024, h: 116 / 1024 };
 const watchTimes = (v: string) => (v.split(":").length > 1 ? v.slice(v.indexOf(":") + 1).split("|") : ["04:00"]);
 const watchTex = (t: string) => stex(`loWatch_${t}`, 256, 196, (g) => {
@@ -196,7 +221,11 @@ const fpHandsBuild = (b: Batch, a: At, v = "phone") => {
   b.add(plane(W, W), cardMat(handsTex(v), NIGHT_TINT), m.clone().multiply(new THREE.Matrix4().makeTranslation(0, W / 2, 0)));
   if (v === "pocket") b.add(plane((136 / 1024) * W, (26 / 1024) * W), glow("loPocketGlow", () => ({ color: "#9fd6ff", toneMapped: false })), m.clone().multiply(new THREE.Matrix4().makeTranslation(((572 + 68) / 1024 - 0.5) * W, W - ((462 + 13) / 1024) * W, 0.002)));
   if (v.startsWith("watch")) { const f = watchFaceAt(W); b.add(plane(f.w, f.h), cardMat(watchTex(watchTimes(v)[0]), "#ffffff", true), m.clone().multiply(new THREE.Matrix4().makeTranslation(f.cx, f.cy, 0.002))); }
-  if (v === "phone" || v === "job" || v === "call") {
+  if (v === "licence") {
+    const lw = 0.17, lh = 0.108;
+    b.add(plane(lw, lh), cardMat(licenceTex(), "#d9deea", true), m.clone().multiply(new THREE.Matrix4().makeTranslation(0, 0.2, 0.002)));
+  }
+  if (v === "phone" || v === "job" || v === "call" || v === "refused") {
     const sv = v === "phone" ? "history" : v, sw = PHONE_SCREEN.w * W, sh = PHONE_SCREEN.h * W;
     const cx = (PHONE_SCREEN.x + PHONE_SCREEN.w / 2 - 0.5) * W, cy = W - (PHONE_SCREEN.y + PHONE_SCREEN.h / 2) * W;
     b.add(plane(sw, sh), cardMat(screenTex(sv), "#ffffff", true), m.clone().multiply(new THREE.Matrix4().makeTranslation(cx, cy, 0.002)));
@@ -381,6 +410,25 @@ const shadowTex = () => stex("loShadow", 128, 512, (g) => {
 });
 const shadowBuild = (b: Batch, a: At) => { const m = frame(a); b.add(plane(0.75, 3.2), new THREE.MeshBasicMaterial({ map: shadowTex(), transparent: true, opacity: 0.45, depthWrite: false, color: "#000000" }), m.clone().multiply(new THREE.Matrix4().makeTranslation(0, 0.014, 1.6)).multiply(new THREE.Matrix4().makeRotationX(-Math.PI / 2))); };
 
+// ---------------------------------------------------------------- familyDrawing: Sam's drawing in the hall
+// a child's crayon drawing pinned to a wall (0.42 x 0.3 m), `at` = its centre, facing +z: MUMMY, ME, BISCUIT (a dog),
+// DADDY in a green coat
+const drawingTex = () => stex("loDrawing", 512, 366, (g) => {
+  g.fillStyle = "#fbf7ec"; g.fillRect(0, 0, 512, 366); g.lineCap = "round"; g.lineJoin = "round";
+  const fig = (x: number, h: number, body: string, label: string) => {
+    g.strokeStyle = "#3a3340"; g.lineWidth = 6; g.beginPath(); g.arc(x, 250 - h, 22, 0, 7); g.stroke();
+    g.fillStyle = body; g.beginPath(); g.moveTo(x - 26, 274 - h + 40); g.lineTo(x + 26, 274 - h + 40); g.lineTo(x + 18, 290); g.lineTo(x - 18, 290); g.closePath(); g.fill(); g.stroke();
+    g.beginPath(); g.moveTo(x - 12, 290); g.lineTo(x - 16, 320); g.moveTo(x + 12, 290); g.lineTo(x + 16, 320); g.stroke();
+    g.fillStyle = "#3a3340"; g.font = FONT(24); g.textAlign = "center"; g.fillText(label, x, 352);
+  };
+  fig(80, 110, "#b48fd0", "MUMMY"); fig(190, 60, "#5a8ee0", "ME");
+  g.fillStyle = "#c9894e"; g.beginPath(); g.ellipse(300, 290, 40, 20, 0, 0, 7); g.fill(); g.strokeStyle = "#3a3340"; g.lineWidth = 6; g.stroke(); g.beginPath(); g.arc(342, 270, 14, 0, 7); g.fill(); g.stroke();
+  g.fillStyle = "#3a3340"; g.font = FONT(22); g.textAlign = "center"; g.fillText("BISCUIT", 305, 352);
+  fig(430, 130, "#4c8a3a", "DADDY");
+  g.fillStyle = "#f2c94c"; g.beginPath(); g.arc(470, 50, 26, 0, 7); g.fill();
+});
+const drawingBuild = (b: Batch, a: At) => { const m = frame(a); b.add(plane(0.42, 0.3), glow("loDrawingM", () => ({ map: drawingTex(), color: "#b8bccb" })), m); box(b, col("#d23c3c"), m, -0.012, 0.012, 0.13, 0.142, 0, 0.006); };
+
 // ---------------------------------------------------------------- groundBrick: the brick, dropped on the lawn
 // a red house brick (21.5 x 10 x 6.5 cm) lying on the ground with a clod of soil, `at` = where it lies; the rig version
 // is hidden until step 1 (the moment it's dropped)
@@ -406,6 +454,24 @@ const policeLightRig = (a: At): PropRig => {
 };
 const OFFICER: Look = { name: "Officer", build: "adult", skin: "#dca888", seed: 94, hair: { style: "short", color: "#201a16" },
   top: { style: "shirt", color: "#eef1f4" }, layer: { style: "blazer", color: "#d6e03a" }, hat: { style: "cap", color: "#1a1f2e" }, legs: "#1f2433", shoes: "#15171b" };
+
+// ---------------------------------------------------------------- the locksmith (me), seen in third-person shots
+const LOCKSMITH: Look = { name: "Locksmith", build: "adult", skin: "#e6b896", seed: 95, hair: { style: "short", color: "#5a3e2a" },
+  top: { style: "hoodie", color: "#2f6f78", accent: "#f08a32" }, hat: { style: "beanie", color: "#20304a" }, legs: "#2b2f3a", shoes: "#d8d2c4" };
+const cashItem = (p: Pen, x: number, y: number, u: number, s: number) => {
+  const cx = x + 2 * u * s, cy = y - 4 * u;
+  for (const [a, c] of [[-0.35, "#8fc7a0"], [0, "#f2b6c2"], [0.35, "#a9c4ef"]] as const) {
+    const ca = Math.cos(a), sa = Math.sin(a), R = (px: number, py: number): [number, number] => [cx + (px * ca - py * sa) * s, cy + px * sa + py * ca];
+    p.poly([R(-4 * u, 6 * u), R(4 * u, 6 * u), R(9 * u, -20 * u), R(-1 * u, -21 * u)], c, 2.2 * u);
+  }
+};
+
+const toolCaseItem = (p: Pen, x: number, y: number, u: number, s: number) => {
+  const cx = x + 4 * u * s, cy = y + 6 * u;
+  p.poly([[cx - 20 * u, cy - 10 * u], [cx + 20 * u, cy - 10 * u], [cx + 20 * u, cy + 14 * u], [cx - 20 * u, cy + 14 * u]], "#1d2026", 3 * u);
+  p.poly([[cx - 20 * u, cy - 2 * u], [cx + 20 * u, cy - 2 * u], [cx + 20 * u, cy + 1 * u], [cx - 20 * u, cy + 1 * u]], "#f08a32", 1.2 * u);
+  p.stroke([[cx - 7 * u, cy - 10 * u], [cx - 7 * u, cy - 17 * u], [cx + 7 * u, cy - 17 * u], [cx + 7 * u, cy - 10 * u]], 3 * u, "#2a2d34");
+};
 
 // ---------------------------------------------------------------- item: brick
 const brickItem = (p: Pen, x: number, y: number, u: number, s: number) => {
@@ -505,18 +571,21 @@ export const LOCKEDOUT_THEME: Theme = {
   mood: "mystery",
   ambience: { "alderRow:night": "amb_city_night", alderRow: "amb_city_night" },
   steps: { alderRow: "step_stone" },
-  characters: { marsh: MARSH, rachel: RACHEL, sam: SAM, officer: OFFICER },
+  characters: { marsh: MARSH, rachel: RACHEL, sam: SAM, officer: OFFICER, locksmith: LOCKSMITH },
   characterMeta: {
     marsh: { name: "Marsh", desc: "tall; short dark hair; heavy brows; a long green coat over a pale shirt", personality: "a controlled, quiet-spoken man locked out of the house he used to live in (Locked Out)", themes: ["mystery", "thriller", "night"], tags: ["antagonist", "male", "coat"] },
     rachel: { name: "Rachel", desc: "petite; brown ponytail; lilac cardigan over a pale tee", personality: "a mother who changed her locks yesterday (Locked Out); seen at her upstairs window", themes: ["mystery", "home"], tags: ["mother", "female"] },
+    locksmith: { name: "The locksmith", desc: "a night-call locksmith: short brown hair under a navy beanie; a teal work hoodie with orange trim; dark work trousers", personality: "the first-person narrator of Locked Out, seen in third-person shots: careful, tired, on a final warning, braver than he thinks", themes: ["mystery", "trade", "night"], tags: ["protagonist", "locksmith", "male", "workwear"] },
     officer: { name: "Police officer", desc: "short dark hair; a hi-vis yellow jacket over a white shirt; a dark cap", personality: "a police officer answering a 999 call at night (Locked Out); used twice", themes: ["police", "street", "night"], tags: ["police", "officer", "uniform", "hi-vis"] },
     sam: { name: "Sam", desc: "a small boy; curly brown hair; blue-and-cream striped top", personality: "Rachel's son (Locked Out); drew the family picture in the hall", themes: ["home", "family"], tags: ["child", "boy", "son"] },
   },
-  items: { brick: { name: "Brick", desc: "a red house brick, soil still on it (pulled from a garden border: a threat to a window)", themes: ["street", "crime", "thriller"], tags: ["brick", "threat", "window", "garden"], draw: brickItem } },
+  items: { toolCase: { name: "Tool case", desc: "a black locksmith's tool case with an orange stripe, carried by its handle", themes: ["trade", "work"], tags: ["case", "tools", "locksmith", "toolbox"], draw: toolCaseItem },
+    cash: { name: "Cash (fanned notes)", desc: "three banknotes fanned in a hand (a bribe, a cash payment)", themes: ["money", "crime", "street"], tags: ["cash", "money", "notes", "bribe", "payment"], draw: cashItem },
+    brick: { name: "Brick", desc: "a red house brick, soil still on it (pulled from a garden border: a threat to a window)", themes: ["street", "crime", "thriller"], tags: ["brick", "threat", "window", "garden"], draw: brickItem } },
   props: {
-    fpHands: { name: "First-person hands (locksmith)", desc: "the first-person view's own hands: the locksmith's dark work gloves and teal jacket cuffs, an ink-drawn card (0.34 m wide, upright, facing +z: put it 0.35-0.45 m in front of a first-person `at` camera, below the eyeline). Variants: phone (both hands holding a phone whose glowing screen shows 9 ALDER ROW's History: Yesterday 16:40, Emergency lock change, Customer R. Marsh, Keys issued to R. Marsh only), job (the night job card: KESTREL LOCKS, the only 24-hour locksmith in town, LOCKOUT, 9 ALDER ROW, 02:14), tools (a gloved hand holding the tension wrench in the keyway, the pick resting beside it: place it at the lock), call (the phone on a live 999 call), pocket (looking down: the phone going into my jacket's breast pocket, its screen still lit), horn (my glove rising toward the horn), handle (my glove on the van's door lever), case (holding up the closed tool case), watch:<times> (my wrist turned up to read the countdown; steps show the next time)", category: "theme", themes: ["first person", "mystery", "phone", "trade"], tags: ["hands", "gloves", "pov", "first person", "phone", "lockpick", "locksmith"], radius: 0.05, height: 0.34,
+    fpHands: { name: "First-person hands (locksmith)", desc: "the first-person view's own hands: the locksmith's dark work gloves and teal jacket cuffs, an ink-drawn card (0.34 m wide, upright, facing +z: put it 0.35-0.45 m in front of a first-person `at` camera, below the eyeline). Variants: phone (both hands holding a phone whose glowing screen shows 9 ALDER ROW's History: Yesterday 16:40, Emergency lock change, Customer R. Marsh, Keys issued to R. Marsh only), job (the night job card: KESTREL LOCKS, the only 24-hour locksmith in town, LOCKOUT, 9 ALDER ROW, 02:14), tools (a gloved hand holding the tension wrench in the keyway, the pick resting beside it: place it at the lock), call (the phone on a live 999 call), pocket (looking down: the phone going into my jacket's breast pocket, its screen still lit), horn (my glove rising toward the horn), handle (my glove on the van's door lever), case (holding up the closed tool case), watch:<times> (my wrist turned up to read the countdown; steps show the next time), refused (the job record: REFUSED BY TECHNICIAN, Review required), licence (D. MARSH's driving licence held up in both gloves), flap (looking in through the letterbox: the brass plate fills the view with the wide slot open and the flap pushed up; put it about 0.25 m in front of the eye, slot centre 0.21 m above `at`)", category: "theme", themes: ["first person", "mystery", "phone", "trade"], tags: ["hands", "gloves", "pov", "first person", "phone", "lockpick", "locksmith"], radius: 0.05, height: 0.34,
       build: (b, a, v) => fpHandsBuild(b, a, v ?? "phone"), rig: fpHandsRig, steps: ["the watch shows its next time"], stepCount: (v) => (v?.startsWith("watch") ? Math.max(0, watchTimes(v).length - 1) : 0),
-      param: { desc: "phone, job, call, tools, pocket, horn, handle, case, or watch:<mm:ss>|<mm:ss>... (the countdown's times; each step shows the next)", ok: (v) => ["phone", "job", "call", "tools", "pocket", "horn", "handle", "case"].includes(v) || /^watch:\d\d:\d\d(\|\d\d:\d\d)*$/.test(v) } },
+      param: { desc: "phone, job, call, refused, tools, pocket, horn, handle, case, licence, flap, or watch:<mm:ss>|<mm:ss>... (the countdown's times; each step shows the next)", ok: (v) => ["phone", "job", "call", "refused", "tools", "pocket", "horn", "handle", "case", "licence", "flap"].includes(v) || /^watch:\d\d:\d\d(\|\d\d:\d\d)*$/.test(v) } },
     vanCab: { name: "Van cab (driver's view)", desc: "the cab around a driver's eye: `at` = the dashboard point 0.75 m ahead of the driver's eye and 0.35 m below it (so for an eye at height 1.6 m, at.y = 1.25), yaw = the van's forward. Dashboard and steering wheel ahead and below, the windscreen frame (header, raked A-pillars), the driver's visor with the FINAL WARNING letter clipped to it, the rear-view mirror up and to the left (right-hand drive). Variant mirror: my eyes in the mirror, lit by a phone", category: "theme", themes: ["first person", "street", "night"], tags: ["van", "cab", "windscreen", "mirror", "visor", "pov", "driver"], radius: 1.0, height: 0.6,
       build: (b, a, v) => vanCabBuild(b, a, v), variants: { mirror: (b, a) => vanCabBuild(b, a, "mirror") } },
     rearMirror: { name: "Rear-view mirror (van)", desc: "the van's rear-view mirror on its stem, with the windscreen header and roof strip above it, `at` = the mirror's centre, yaw = the van's forward (the same mirror as vanCab's, for close shots of it on its own). Variant eyes: my eyes in the mirror, lit by a phone", category: "theme", themes: ["first person", "night"], tags: ["mirror", "rear-view", "reflection", "eyes", "van"], radius: 0.15, height: 0.1,
@@ -529,6 +598,7 @@ export const LOCKEDOUT_THEME: Theme = {
       build: () => undefined, rig: windowLightRig, steps: ["the light comes on"] },
     policeLight: { name: "Police light (blue wash)", desc: "the blue light of a police car off-screen washing the house fronts: a soft additive blue glow (24 x 7 m), `at` = its bottom centre, facing +z, just in front of a row of facades; off until step 1, then each step toggles it (a strobe)", category: "theme", themes: ["police", "night", "street"], tags: ["police", "blue light", "siren", "strobe", "night"], radius: 0.05, height: 7,
       build: () => undefined, rig: policeLightRig, steps: ["on", "off", "on", "off", "on", "off", "on", "off", "on", "off", "on"] },
+    familyDrawing: { name: "Child's family drawing", desc: "a child's crayon drawing pinned to a wall (0.42 x 0.3 m), `at` = its centre, facing +z: stick figures labelled MUMMY, ME, BISCUIT (the dog) and DADDY in a green coat, a yellow sun", category: "theme", themes: ["home", "family", "mystery"], tags: ["drawing", "child", "family", "wall", "picture"], radius: 0.05, height: 0.3, build: drawingBuild },
     groundBrick: { name: "Brick on the ground", desc: "a red house brick lying on the ground with a clod of soil (21.5 cm), `at` = where it lies; with steps: hidden until step 1, the moment it's dropped", category: "theme", themes: ["street", "crime", "thriller"], tags: ["brick", "dropped", "ground", "threat"], radius: 0.12, height: 0.09,
       build: (b, a) => groundBrickParts(b, frame(a)), rig: groundBrickRig, steps: ["it is dropped"] },
     shadowDecal: { name: "Long shadow", desc: "a long man's shadow on the ground, 3.2 m, `at` = his feet, stretching along local +z (away from the light behind him)", category: "theme", themes: ["night", "mystery"], tags: ["shadow", "silhouette", "night"], radius: 0.05, height: 0.02, build: shadowBuild },
