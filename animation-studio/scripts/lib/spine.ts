@@ -74,13 +74,15 @@ const stem = (w: string) => w.replace(/(ing|ed|es|s)$/, "");
 const termHit = (text: string, term: string) => {
   // a one-word tell matches its stem anywhere ("pillow" ~ "pillows"); a phrase must appear in order with at most two
   // words between ("looks like" ~ "what it looks like", but not "look at the steps ... like a child's")
-  const tw = (term.toLowerCase().match(/[a-z']{3,}/g) ?? []).map(stem), tx = (text.toLowerCase().match(/[a-z']{2,}/g) ?? []).map(stem);
+  // a phrase keeps ALL its words ("it's me" must not shrink to "it's", "i laughed" to "laugh", which match anywhere)
+  const words = term.toLowerCase().match(/[a-z']+/g) ?? [];
+  if (words.length === 1) return words[0].length >= 3 && (text.toLowerCase().match(/[a-z']{2,}/g) ?? []).map(stem).includes(stem(words[0]));
+  const tw = words.map(stem), tx = (text.toLowerCase().match(/[a-z']+/g) ?? []).map(stem);
   if (!tw.length) return false;
-  if (tw.length === 1) return tx.includes(tw[0]);
   for (let i = 0; i < tx.length; i++) {
     if (tx[i] !== tw[0]) continue;
     let k = 1, j = i + 1;
-    while (k < tw.length && j < tx.length && j - i <= tw.length + 2 * (tw.length - 1)) { if (tx[j] === tw[k]) k++; j++; }
+    while (k < tw.length && j < tx.length && j - i <= 3 * (tw.length - 1)) { if (tx[j] === tw[k]) k++; j++; }
     if (k === tw.length) return true;
   }
   return false;
