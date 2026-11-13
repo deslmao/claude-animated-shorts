@@ -40,6 +40,20 @@
 All structural checks pass (structure only: not a judgement of quality).
 
 ## Independent evaluation
-Not run yet.
+**Verdict:** ready → ready · **Would a viewer keep watching?** yes. The wet-paint hook and a new panel each morning build a daily rhythm, and the reveal reverses who the story is about. The likeliest point to drop off is beat 6, the densest stretch (two locations and a three-line deduction).
+
+| criterion | result | beats |
+|---|---|---|
+| clarity | weak | 1, 2, 5, 6, 7 |
+| viewer participation | pass | 2, 4, 5, 7, 8, 9 |
+| cause and effect | pass | 4, 5, 6, 7, 8, 10, 11, 12, 13, 14 |
+| emotional investment | pass | 1, 2, 5, 8, 9, 12, 13, 14 |
+| recontextualisation | pass | 1, 2, 5, 8, 9, 10, 12, 14 |
+| setup and payoff | pass | 1, 3, 5, 8, 9, 11, 12, 13, 14 |
+| visual communication | pass | 1, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14 |
+| originality and adaptation | pass | 1, 4, 5, 8, 9, 12, 14 |
+| accuracy | n/a fiction | all |
+
+Full findings: productions/exp-wet-paint-third/eval/evaluation.md
 
 To approve: tell Claude; it records `npm run script -- exp-wet-paint-third --approve 1145`.

@@ -40,6 +40,20 @@
 All structural checks pass (structure only: not a judgement of quality).
 
 ## Independent evaluation
-Not run yet.
+**Verdict:** ready → ready · **Would a viewer keep watching?** yes. A tiny new figure on your prize mural, still wet, with a new panel each day, is a strong pull, and the "why" plus the camera plant carry it past the point where viewers have guessed who. The likeliest drop-off is beats 6 and 7 (camera map, thumbprint, sheets), where the viewer is confirming what they already suspect. Viewers who reach beat 9 stay to the end.
+
+| criterion | result | beats |
+|---|---|---|
+| clarity | pass | 1, 2, 5, 6, 7, 9 |
+| viewer participation | pass | 2, 4, 5, 7, 8, 9 |
+| cause and effect | pass | 3, 5, 6, 7, 8, 10, 11, 12 |
+| emotional investment | pass | 1, 5, 8, 9, 12, 14 |
+| recontextualisation | pass | 1, 2, 4, 5, 8, 9, 10, 11, 14 |
+| setup and payoff | pass | 1, 3, 5, 8, 9, 11, 12, 14 |
+| visual communication | pass | 1, 4, 6, 7, 9, 10, 11, 12, 13, 14 |
+| originality and adaptation | pass | 1, 4, 5, 8, 9, 12, 14 |
+| accuracy | n/a fiction | 1-14 |
+
+Full findings: productions/exp-wet-paint-first/eval/evaluation.md
 
 To approve: tell Claude; it records `npm run script -- exp-wet-paint-first --approve 1110`.
