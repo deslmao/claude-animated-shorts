@@ -15,7 +15,7 @@
 | Beat 16: he shouldn't be caught a minute after letting go; the shove should be sideways | 16d: the watch reads 00:17 as he lets go; 17a: 00:00 as he reaches the gate. He shoves me *sideways* into the porch wall, which keeps me between him and the bay |
 | Beat 2: "It's one of ours" can read as coincidence; beat 12: show the job stake at the decision | 1b: the app header, readable, says KESTREL LOCKS · THE ONLY 24-HOUR LOCKSMITH IN TOWN (the existing rule, now on screen), and the van's door logo matches. 12b: as my hands pocket the phone, the warning letter is in the top of frame |
 
-**Your five checks:** runtime (§1), POV execution (§2), asset efficiency (§7), camera execution (§3) and the climax (§4).
+**Your five checks:** runtime (§1), POV execution (§2), asset efficiency (§7), camera execution (§3) and the climax (§7).
 
 ## 1. Runtime review
 Speech is from the script tool's voice-calibrated estimate; action time is the silent minimum each beat needs.
@@ -94,7 +94,7 @@ Each is placed at an authored position in the lower frame of a static first-pers
 - **No slow decorative moves:** the only slow move is 19b's final push-in (3 s), which lands on the last line.
 - **Purposeful repetition only:** the windscreen motif (1a, 11a, 19b) and the watch (10b, 14b, 15a, 16d, 17a). The watch always appears at the same size and angle, so it reads as one ticking object.
 
-## 5. Final script (the evaluated packet, unchanged)
+## 4. Final script (the evaluated packet, unchanged)
 Lines in *italics* are my thoughts: narration in the inner voice (`liamQuiet`, close and quiet). **ME:** lines are spoken aloud (`liam`).
 
 **1.** *At two-fourteen in the morning, a man is paying me double to break into his own house.*
@@ -153,7 +153,7 @@ Lines in *italics* are my thoughts: narration in the inner voice (`liamQuiet`, c
 *I never asked who the lock was for.*
 
 
-## 6. Story-level storyboard (from story.md; production staging is in §4)
+## 5. Story-level storyboard (from story.md; production staging is in §6)
 | # | events | what the viewer sees | key subject | action | camera | sound |
 |---|---|---|---|---|---|---|
 | 1 | E1 | through my van's windscreen: a dark street, every window black except a thin strip of light under one upstairs curtain at number 9, small at the edge of frame; my hand lifts my phone: LOCKOUT · 9 ALDER ROW · 02:14; above it on the sun visor, a letter, readable: FINAL WARNING. WRONGFUL REFUSAL OF SERVICE. ONE MORE AND YOU'RE DISMISSED | the job card, then the warning letter | my hand lifts the phone; my eyes go up to the visor | pov (windscreen, hands in frame) -> insert (phone) -> insert (visor letter) | the engine ticking as it cools |
@@ -178,7 +178,7 @@ Lines in *italics* are my thoughts: narration in the inner voice (`liamQuiet`, c
 
 
 
-## 4. Shot-by-shot camera plan (revised)
+## 6. Shot-by-shot camera plan (revised)
 **Notation:**
 - **FP-W** is first person, wide: `{ move: "at", pos: <eye>, look: <target>, fov: 70 }`.
 - **FP-T** is first person, tight, on the same axis: `fov: 42`, reached by `swoop` or `pushIn`.
@@ -362,7 +362,7 @@ Lines in *italics* are my thoughts: narration in the inner voice (`liamQuiet`, c
 ## 12. Cost and next steps (rates from CLAUDE.md)
 **After the owner approves this plan:**
 1. Build the theme additions in §10.
-2. Write the storyboard code from §4.
+2. Write the storyboard code from §6.
 3. Run `--until checks` (free).
 4. Make half-scale stills of 1a, 6b, 8b, 11a, 12a, 15c, 16a and 19b (about 30 s each, plus the bundle). The **fpHands** and mirror shots are the first to verify.
 5. Make **one combined 540p preview of beats 10–17** (about 45 s, about 34 min).
