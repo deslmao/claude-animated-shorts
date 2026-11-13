@@ -1,20 +1,100 @@
-# Locked Out: visual-development plan
-**Status:** awaiting the owner's approval. Nothing has been rendered, recorded or generated.
-- **Story:** `story.md` (spec 3, `perspective: first`, 19 beats, 263 words). The independent re-evaluation of packet `2da39292` (ready: 0 fail, 0 weak criteria; 2 weak stress tests) is the story's structural verdict.
-- **Since that evaluation:** the owner-approved staging and clarity corrections (story.md, Revision) changed the packet to `5ef2dffb`. So `npm run script -- sample-locked-out --approve`, which production requires, will refuse until the current packet is evaluated, or until the owner decides how to treat the gate.
-- **Duration:** about 87 s of speech, plus the silent action in beats 11, 13, 14, 16 and 17. Planned at **about 98 s**; a 540p preview confirms it.
+# Locked Out: visual-development plan (revision 2)
+**Status:** awaiting the owner's approval before any asset is created. Nothing has been rendered, recorded or generated.
+- **Story:** `story.md` (spec 3, `perspective: first`, 19 beats, 263 words, packet `5ef2dffb`).
+- **Independent evaluation of this exact packet** (`eval/evaluation.md`): ready, 0 fail, 1 weak criterion (visual communication), 2 weak stress tests (plot hole and consistency); gate **READY**.
+- **History:** earlier evaluations are kept as `evaluation.v1.md` and `evaluation.v2.md`.
+- **Scope of this revision:** this plan changes staging only. The script, events and lines are exactly the evaluated packet's.
+- **Runtime:** **about 100 s** (§1). This corrects the earlier "about 98 s", which was planned from shot lengths, not speech.
 
-## 1. The corrections applied (staging and clarity only)
-| Beat | Correction |
+## 0. What this revision addresses
+**The fresh evaluation's three fixes, all handled in staging:**
+
+| Finding | Where it's handled |
 |---|---|
-| 9 | Marsh stays on the doorstep; his long shadow stretches after me as I walk to the van |
-| 11 | "She's still on the line upstairs. She says he's trying the windows." The operator is relaying the woman's own 999 call |
-| 12 | "Do not open **her** door." The decision is shown in my reflection in the dark windscreen, and my hands |
-| 15 | I glance at the watch (01:30), stand and step onto the path, between him and the brick and the bay window; the first window across the road lights *during* the shout |
-| 16 → 16 + 17 | Pacing: 16 is the street waking and him letting go; 17 is 00:00, blue light and the arrest |
-| ledger | In beat 18 her son switches on the upstairs light, since she is at the door |
+| Beat 15: from my eyes, the brick and bay window are *behind* the camera, so the shout looks like the horn I rejected | 15b: I glance back over my shoulder at the brick and the bay window, then turn to Marsh at his own door. The geography is on screen, and the camera stays first person. Shot 1a is composed as the house's geography master, so the bay's position left of the door is known from the first frame |
+| Beat 16: he shouldn't be caught a minute after letting go; the shove should be sideways | 16d: the watch reads 00:17 as he lets go; 17a: 00:00 as he reaches the gate. He shoves me *sideways* into the porch wall, which keeps me between him and the bay |
+| Beat 2: "It's one of ours" can read as coincidence; beat 12: show the job stake at the decision | 1b: the app header, readable, says KESTREL LOCKS · THE ONLY 24-HOUR LOCKSMITH IN TOWN (the existing rule, now on screen), and the van's door logo matches. 12b: as my hands pocket the phone, the warning letter is in the top of frame |
 
-## 2. Final script
+**Your five checks:** runtime (§1), POV execution (§2), asset efficiency (§7), camera execution (§3) and the climax (§4).
+
+## 1. Runtime review
+Speech is from the script tool's voice-calibrated estimate; action time is the silent minimum each beat needs.
+
+| Beat | Speech | Shot time | Silent action it carries | Verdict |
+|---|---|---|---|---|
+| 1 | 5.3 | 5.5 | the geography wide, the job card and the letter | keep |
+| 2 | 4.7 | 5.0 | torch finds him; cash; the hush | keep |
+| 3 | 5.5 | 5.5 | licence; glance back at the van **cut from 2.2 s to 0.9 s** (the stake is already readable in 1b) | trimmed |
+| 4 | 4.1 | 4.1 | the bell, the unanswered door; **no close-up of Marsh** (he's an off-screen voice) | trimmed |
+| 5 | 1.1 | 2.8 | the tail thumping, the drawing, the wellies: needs at least 2.8 s to be read | keep (was 3.6) |
+| 6 | 3.4 | 4.4 | the key bumps; a 2 s hold on the lock | keep: it's the key clue |
+| 7 | 2.0 | 3.0 | tilt up, light out, curtain twitch, back to him | keep: the chill people will mention |
+| 8 | 6.7 | 6.7 | stamp, then the History screen, held 2.5 s | keep |
+| 9 | 4.1 | 4.3 | his gaze to the bay; I walk to the van | keep |
+| 10 | 5.9 | 5.9 | the locking clunks; the countdown starts | keep |
+| 11 | 7.6 | 7.6 | latch, brick, glass, my hand over the horn: action under the lines | keep |
+| 12 | 10.8 | 10.8 | **the longest beat in the film** | see below |
+| 13 | 0.8 | 2.4 | step out; he drops the brick and walks back | keep (was 3.0) |
+| 14 | 4.4 | 5.0 | fake picking; the watch; his hand on my shoulder | keep: the suspense ramp |
+| 15 | 4.1 | 5.1 | watch, glance back, rise, shout, first window | keep: the decision |
+| 16 | 2.6 | 6.2 | shove; windows W2–W4; the neighbour; he looks, lets go and backs off | keep: the payoff of the whole climax |
+| 17 | 1.1 | 3.8 | 00:00; blue light; the arrest | keep |
+| 18 | 8.5 | 9.0 | her lines; my hand at the flap; the light comes on | keep: the emotional payoff |
+| 19 | 4.4 | 5.4 | REFUSED; the family at the window; 1 s of tail after the line | trimmed (was 6.2) |
+
+**Total: about 100 s** (speech about 87 s, plus about 13 s of silent action).
+
+**What is genuinely prolonged:** only **beat 12** (about 11 s, in a parked van). Its thought ("He still thinks I'm his way in. While he does, he'll wait at the door.") and its spoken line ("I'll keep him at the front door.") carry the same information.
+- **Staging (applied here):** beat 12 plays over continuous hand action (mirror, phone into pocket, cuff over the watch, eyes to the letter, hand to the door handle), so it's never a static pose.
+- **Line trim (recommended, not applied):** cutting "I'll keep him at the front door." and keeping "Stay on the line." would save about 2 s. It changes the evaluated packet, so it would need another evaluation. That's the owner's call; the film works without it.
+
+**Not shortened:** the suspense holds (6, 7, 11), the climax (13–17) and the ending (18). Each carries information or the emotional turn.
+
+## 2. POV execution: one coherent first-person experience
+**Hands in frame, without engine changes.** The new asset is one prop family, `fpHands`: the locksmith's gloved hands and cuffs, with `variant`s per pose, each holding an existing item:
+
+| Variant | Holding |
+|---|---|
+| `phone` | the existing `phone` item, with the stepped `phoneScreen` content |
+| `licence` | |
+| `torch` | the existing `torch` |
+| `tools` | pick and wrench |
+| `horn` | (hand over the horn) |
+| `pocket` | |
+| `watch` | the stepped watch face |
+| `flap` | (hand at the letterbox flap) |
+| `brush` | not needed |
+
+Each is placed at an authored position in the lower frame of a static first-person camera (`at`, about 0.35–0.45 m in front of the eye, below the eyeline), and steps between poses on spoken words.
+
+**The rules that make the shots one continuous experience:**
+1. **Every shot is from my eye position:** `at` cameras at eye height (1.65 m standing, 1.15 m kneeling, 1.25 m seated in the van). No outside angle on my own hands, ever. The old "INS me.hands" external inserts are gone; they are only the fallback (rule 8).
+2. **One lens language:** wide first person (`fov: 70`) for looking; tight first person (`fov: 42`, the same axis) for *looking closer*. A tight shot is a `swoop` or `pushIn` along my line of sight, so it reads as my attention narrowing, not as a cut to a new camera.
+3. **Head moves are `glide`s** (0.35–0.6 s): looking up at the window, back at the van, back at the brick. Cuts happen only when time passes or attention jumps (a sound, a new place).
+4. **Hands follow the action.** They rise into frame to do something and drop out of frame while the head moves (they're world-placed props, so they must not be seen during a glide). Every glide starts after the hands have dropped and ends before they rise again.
+5. **Screens and small text** (job card, History, the 999 call, REFUSED, the watch, the licence) are held in my hands in the tight lens, not cut to as flat graphics.
+6. **No hand-held bob,** for consistency: authored `at` cameras have none, so no first-person shot uses `pov`'s bob. One rule for the whole film.
+7. **The only shots outside my eyes:** the wide down the street as it wakes (15d) and the wide of the arrest (17b). Both are moments where the world, not me, is the subject.
+8. **Fallback** if `fpHands` reads poorly in stills: the same shots with an external insert cut on `me.hands`. That needs a locksmith figure on screen (cuffs, gloves, jacket).
+
+**The windscreen reflection, reviewed: replaced.** A faint face composited on the windscreen risks reading as a second person in the van, or a ghost, and it can't be lit convincingly without real reflections.
+- **Replacement:** the **rear-view mirror**. One upward glance (a `glide`) shows my eyes in the mirror, lit by the phone, moving from the house to the phone and back. The mirror's frame tells the viewer it's a reflection, so there's no ambiguity, and it costs only an eyes-only face card inside the cab set's mirror.
+- **Hold:** 1.2 s.
+- **Fallback:** hands only, as the owner approved.
+
+## 3. Camera execution: how the framing progresses
+- **Act 1, observation (beats 1–8): the world narrows to the lock.** The street (1a) → the doorstep (2) → the letterbox, a frame within a frame (5) → the lock, macro (6) → the stamp, macro (8) → a phone screen in my hands (8). Each step is closer because suspicion is growing.
+- **Act 2, distance (beats 9–12): glass between me and the house.** Through the windscreen I can see, but not act. **Shot 11a repeats 1a's framing on purpose:** the same house, now with Marsh at the bay with a brick.
+- **Act 3, confrontation (beats 13–17): the camera's height tells the story.** Kneeling and looking up at him (14) → **standing up into his eyeline on "No!"** (15) → knocked sideways (the `whip` in 16) → the widest shot in the film as the street wakes (15d, 16) → the arrest wide (17).
+- **Ending (beats 18–19): the windscreen framing a third time.** The house again, but now the family stands at the lit window (19b). This 1a / 11a / 19b repetition is the film's motif.
+
+**What was removed or changed:**
+- **Close-ups of Marsh talking:** cut from six to three, each a different state (hush in 2, threat in 14, defeat in 16). Beat 4 holds on the unanswered door with his voice off-screen. Beat 9 follows his gaze to the bay window instead of showing his face.
+- **No static wides:** 1a holds 1.8 s while the light strip reads, then my hand enters with the phone. 15d and 17b carry action: windows lighting, officers moving.
+- **No slow decorative moves:** the only slow move is 19b's final push-in (3 s), which lands on the last line.
+- **Purposeful repetition only:** the windscreen motif (1a, 11a, 19b) and the watch (10b, 14b, 15a, 16d, 17a). The watch always appears at the same size and angle, so it reads as one ticking object.
+
+## 5. Final script (the evaluated packet, unchanged)
 Lines in *italics* are my thoughts: narration in the inner voice (`liamQuiet`, close and quiet). **ME:** lines are spoken aloud (`liam`).
 
 **1.** *At two-fourteen in the morning, a man is paying me double to break into his own house.*
@@ -73,7 +153,7 @@ Lines in *italics* are my thoughts: narration in the inner voice (`liamQuiet`, c
 *I never asked who the lock was for.*
 
 
-## 3. Final storyboard (from story.md)
+## 6. Story-level storyboard (from story.md; production staging is in §4)
 | # | events | what the viewer sees | key subject | action | camera | sound |
 |---|---|---|---|---|---|---|
 | 1 | E1 | through my van's windscreen: a dark street, every window black except a thin strip of light under one upstairs curtain at number 9, small at the edge of frame; my hand lifts my phone: LOCKOUT · 9 ALDER ROW · 02:14; above it on the sun visor, a letter, readable: FINAL WARNING. WRONGFUL REFUSAL OF SERVICE. ONE MORE AND YOU'RE DISMISSED | the job card, then the warning letter | my hand lifts the phone; my eyes go up to the visor | pov (windscreen, hands in frame) -> insert (phone) -> insert (visor letter) | the engine ticking as it cools |
@@ -98,186 +178,193 @@ Lines in *italics* are my thoughts: narration in the inner voice (`liamQuiet`, c
 
 
 
-## 4. Shot-by-shot camera plan
-**Notation, in the engine's own terms:**
-- **POV-W** is the first-person wide: an authored `{ move: "at", pos: <my eye, about 1.65 m; 1.15 m kneeling; 1.25 m in the van seat>, look: <target>, fov: 70 }`. The same approach Night Shift used (`at` with `fov`), because the engine's `pov` lens is fixed at 50°.
-- **POV** is `{ move: "pov", from: "me", at: <target> }`.
-- **INS** is `{ move: "insert", on: <prop or part>, size: "close" | "macro" }`.
-- **CU** is `{ move: "closeUp", on: <actor> }`.
-- Camera beats inside a shot use `glide` (a head turn or tilt), `whip` (a shove), `rack` (a focus pull) and `swoop` (rushing into a macro).
-- Every cut is `cut` unless a transition is given. Hands: see §8.
+## 4. Shot-by-shot camera plan (revised)
+**Notation:**
+- **FP-W** is first person, wide: `{ move: "at", pos: <eye>, look: <target>, fov: 70 }`.
+- **FP-T** is first person, tight, on the same axis: `fov: 42`, reached by `swoop` or `pushIn`.
+- **H:variant** is the `fpHands` prop in frame, in that pose.
+- Eye heights: standing 1.65 m, kneeling 1.15 m, seated in the van 1.25 m.
+- Transitions are hard cuts unless a `glide`, `whip`, `rack` or `swoop` is named.
 
-| Shot | Beat | Set / light | Camera (engine) | What it shows, and who does what | Length |
+| Shot | Beat | Set / light | Camera | What it shows, blocking and the cue | s |
 |---|---|---|---|---|---|
-| 1a | 1 | vanCab / night | POV-W through the windscreen, looking at number 9 | the dark street; one thin lit strip under the upstairs curtain at number 9, small, frame right; nothing points at it | 1.6 s |
-| 1b | 1 | vanCab | INS `jobPhone` (stepped screen: LOCKOUT · 9 ALDER ROW · 02:14), `glide` up to INS `visorLetter` | my gloved hand lifts the phone; my eyes go up to the letter, readable: FINAL WARNING. WRONGFUL REFUSAL OF SERVICE. ONE MORE AND YOU'RE DISMISSED (held 1.6 s) | 3.4 s |
-| 2a | 2 | alderRow / night | POV-W from the path, torch cone, landing on CU `marsh` (he looks into the lens) | torch beam (an effect cone) finds Marsh on the step; he speaks low, straight to camera | 2.4 s |
-| 2b | 2 | alderRow | INS `marsh.held` (cash), then CU `marsh` | the notes fanned; his finger to his lips, his eyes sliding to the neighbours' dark windows (`look: "left"`) | 2.6 s |
-| 3a | 3 | alderRow | INS `licence` held beside `door9` (brass 9, MARSH bell label) | my gloved hand holds the licence beside the number and the bell label; D. MARSH, 9 ALDER ROW is readable | 2.4 s |
-| 3b | 3 | alderRow | POV-W `glide` back over my shoulder to the van (the visor letter is a white rectangle behind the windscreen), then back | on "twice"; I hand the licence back (INS `marsh.hands`) | 2.2 s |
-| 4 | 4 | alderRow | INS `doorbell` → CU `marsh` | my finger presses the bell; dog bark and whine (no dog on screen); nobody comes; "She won't come down", tired, not angry | 3.6 s |
-| 5 | 5 | hallway (through the slot) / interiorCool | POV-W at letterbox height (1.0 m) through a `letterboxMask` frame | the spaniel's tail thumping at his voice; the torch drifts over the family drawing (MUMMY, ME, BISCUIT, DADDY in a green coat) and small wellies | 3.6 s |
-| 6a | 6 | alderRow | POV-W kneeling (eye 1.15 m) at the lock | I lay out the wrench and pick; Marsh's worn key bumps at the keyway and won't enter | 2.6 s |
-| 6b | 6 | alderRow | `swoop` into INS `newCylinder` (macro) | a bright cylinder in flaking paint, the KL stamp on its face, the paler outline of a bigger lock, filings on the mat; **held 2 s**; my hands go still | 2.8 s |
-| 7 | 7 | alderRow | POV-W `glide` tilt up to `upstairsWindow`, then `glide` back to CU `marsh` | the strip goes dark (stepped prop), the curtain twitches; back down: Marsh's eyes go from the window to the lens | 3.2 s |
-| 8a | 8 | alderRow | INS `newCylinder` (macro on the stamp) | KL · KESTREL LOCKS (the stamp becomes readable) | 1.4 s |
-| 8b | 8 | alderRow | INS `historyPhone`, screen tilted away from Marsh (his shadow decal falls across the step) | "Yesterday, 16:40. Emergency lock change. Customer: R. Marsh. Keys issued to R. Marsh only." held 2.5 s | 3.4 s |
-| 9a | 9 | alderRow | CU `marsh` (looking at the bay window) | his eyes slide to the bay window and stay | 1.6 s |
-| 9b | 9 | alderRow | POV-W walking to the van (`at` waypoints with `glide`); a long shadow decal stretches from the doorstep after me | he stays on the step (seen small, back-lit by the streetlamp); "Wrong picks. They're in the van." | 3.0 s |
-| 10a | 10 | vanCab | POV-W in the seat; INS `jobPhone` (999 call) | the central locking drops (all four pins); I dial under the visor letter | 2.6 s |
-| 10b | 10 | vanCab | INS `me.hands` (the watch, macro) | at "four minutes" my thumb starts the countdown: 04:00 → 03:59 | 2.6 s |
-| 11a | 11 | vanCab → alderRow | POV-W through the windscreen (`rack` from glass to street) | Marsh leaves the step, tries the bay window latch, kneels at the border, pulls a brick, weighs it at the glass | 4.2 s |
-| 11b | 11 | vanCab | INS `me.hands` over the horn | my hand rises to the horn and stops; comes away on "glass" | 1.8 s |
-| 12a | 12 | vanCab | INS `windscreenReflection` (my face faint in the glass, phone-lit, over the dark street; see §8) | deciding | 2.0 s |
-| 12b | 12 | vanCab | INS `me.hands`: phone into the breast pocket, screen in; cuff over the watch (03:10); hand on the door handle | "Do not open her door." "I won't." | 3.6 s |
-| 13 | 13 | alderRow | POV-W stepping out, case held up | at "Found them!" Marsh lowers the brick, drops it beside the path (it thuds), and walks back to the step | 3.0 s |
-| 14a | 14 | alderRow | INS `newCylinder` with my pick resting *beside* the keyway | fake picking; the wrench turns nothing | 2.0 s |
-| 14b | 14 | alderRow | INS `me.hands` (watch: 02:20, then 01:40), then POV-W looking up (eye 1.15 m) at CU `marsh` over me | "You're not even trying."; his hand comes down on my shoulder (a soft jolt); his eyes go to the brick | 3.6 s |
-| 15a | 15 | alderRow | INS `me.hands` (watch: 01:30) | I check it | 0.9 s |
-| 15b | 15 | alderRow | POV-W rising and stepping back onto the path (`glide`, eye 1.15 → 1.65 m): the brick and bay window behind me (seen in the turn), Marsh at his own door ahead | I'm between him and the glass | 1.6 s |
-| 15c | 15 | alderRow | `at` wide from the path down the street (fov 60) | the shout; across the road **window W1 lights during the shout** (step on "keep") | 2.8 s |
-| 16a | 16 | alderRow | `whip` to POV-W pinned against the porch wall, over Marsh's shoulder | he slams me back and twists my jacket; past his shoulder W2 and W3 light, a curtain pulls back, the neighbour opens his door with his phone raised (`stepped` on "police") | 3.4 s |
-| 16b | 16 | alderRow | CU `marsh`, his head turning along the lit street | his grip opens; he lets go and backs down the path past the brick toward the gate | 2.6 s |
-| 17a | 17 | alderRow | INS `me.hands` (watch: 00:00) | 0.8 s of silence-adjacent beat | 0.8 s |
-| 17b | 17 | alderRow | `at` wide from the step to the gate (fov 58); blue light sweeping the house fronts | two officers take his arms at the gate; he twists back toward the house: "It's my house!" | 3.4 s |
-| 18a | 18 | alderRow | POV-W at the closed door (eye 1.65 m) | her voice through the door; my hand rises toward the letterbox flap | 2.6 s |
-| 18b | 18 | alderRow | INS `me.hands` at the flap: it stops, then lowers | "It's your lock. It stays shut." | 2.4 s |
-| 18c | 18 | alderRow | POV-W `glide` tilt up to `upstairsWindow` | the upstairs light comes back on (her son's hand on the switch is not seen) | 1.6 s |
-| 19a | 19 | vanCab | INS `jobPhone` (REFUSED BY TECHNICIAN. REVIEW REQUIRED) under the visor letter | the cost | 2.2 s |
-| 19b | 19 | vanCab | POV-W through the windscreen, slow `pushIn` (fov 70 → 55) on `upstairsWindow` | the curtain is open: the woman at the lit window with her son and Biscuit's nose at the glass; final line | 4.0 s |
+| 1a | 1 | vanCab / night | FP-W through the windscreen at number 9: the **geography master** (door, the bay window to its left, garden border, path, gate, upstairs window) | dark terrace; one thin lit strip under the upstairs curtain, frame right, unremarked; held | 1.8 |
+| 1b | 1 | vanCab | H:phone rises into frame → FP-T on the screen (job card: KESTREL LOCKS · THE ONLY 24-HOUR LOCKSMITH IN TOWN / LOCKOUT · 9 ALDER ROW · 02:14) → `glide` up to the visor letter | the letter, readable, held 1.6 s: FINAL WARNING. WRONGFUL REFUSAL OF SERVICE. ONE MORE AND YOU'RE DISMISSED | 3.7 |
+| 2a | 2 | alderRow / night | FP-W with H:torch, the cone sweeping up the path to Marsh on the step | he talks low, straight into the lens | 2.4 |
+| 2b | 2 | alderRow | FP-T on his fist (cash), `glide` up to his face | finger to his lips; his eyes slide to the neighbours' dark windows | 2.6 |
+| 3a | 3 | alderRow | FP-T with H:licence, held up beside the brass 9 and the MARSH bell label | D. MARSH, 9 ALDER ROW readable | 2.6 |
+| 3b | 3 | alderRow | `glide` over my shoulder to the van (the visor letter a pale rectangle behind the glass), and back; H:licence goes out of frame to his hand | on "twice" | 0.9 + 2.0 |
+| 4 | 4 | alderRow | FP-W on the door; my gloved finger presses the bell (H:torch variant, the finger free) | the dog barks and whines behind the door; nobody comes; Marsh off-screen: "She won't come down" | 4.1 |
+| 5 | 5 | downstairs (hall) / interiorCool | FP-W at letterbox height (1.0 m) through the `letterboxMask`; my gloved fingers hold the flap at frame top | tail thumping at "Biscuit"; the torch drifts over the drawing and the wellies | 2.8 |
+| 6a | 6 | alderRow | FP-W kneeling, H:tools laid out | his worn key bumps at the keyway | 1.6 |
+| 6b | 6 | alderRow | `swoop` → FP-T macro on the cylinder | the new cylinder in flaking paint, the KL stamp, the outline, the filings; **held 2 s**; my gloved hand still at the edge of frame | 2.8 |
+| 7 | 7 | alderRow | `glide` tilt up to the upstairs window → (the strip goes out on "awake", the curtain twitches) → `glide` back down to Marsh's face | his eyes from the window to the lens: "Problem?" | 3.0 |
+| 8a | 8 | alderRow | FP-T macro on the stamp | KL · KESTREL LOCKS (the stamp readable now) | 1.2 |
+| 8b | 8 | alderRow | H:phone, angled away from him; FP-T on the History screen | the entry, readable, held 2.5 s; his shadow decal falls across the step | 5.5 |
+| 9a | 9 | alderRow | FP-W, `glide` following his gaze to the bay window | the bay window | 1.5 |
+| 9b | 9 | alderRow | FP-W walking to the van (`at` waypoints); H:tools (the closed case) at the bottom of frame | his long shadow decal from the doorstep stretches past me on the pavement; a 0.6 s `glide` back: he's still on the step | 2.8 |
+| 10a | 10 | vanCab | FP-W seated; the four locking pins drop; H:phone dials under the visor letter | the 999 call starts | 2.8 |
+| 10b | 10 | vanCab | FP-T on H:watch | on "four minutes": 04:00 → 03:59 | 3.1 |
+| 11a | 11 | vanCab | **the same framing as 1a**, with a `rack` from the glass to the house | Marsh leaves the step, tries the bay latch, kneels at the border, pulls the brick, weighs it at the glass | 5.4 |
+| 11b | 11 | vanCab | FP-W, H:horn rises toward the wheel and stops, then drops out on "glass" | | 2.2 |
+| 12a | 12 | vanCab | `glide` up to the **rear-view mirror**: my eyes, phone-lit, go to the house and back | deciding ("He still thinks I'm his way in…") | 2.4 |
+| 12b | 12 | vanCab | FP-W, H:pocket: the phone goes into my breast pocket, screen in; the visor letter in the top of frame | "Stay on the line." / "Do not open her door." | 4.2 |
+| 12c | 12 | vanCab | FP-T on H:watch as my cuff slides over it (03:10), then FP-W with my hand on the door handle | "I won't." The door opens | 4.2 |
+| 13 | 13 | alderRow | FP-W stepping out, H:tools (the case held up) | "Found them!"; Marsh lowers the brick, drops it beside the path (it thuds) and walks back to the step | 2.4 |
+| 14a | 14 | alderRow | FP-T kneeling, H:tools: the pick rests *beside* the keyway; the wrench turns nothing | | 1.8 |
+| 14b | 14 | alderRow | FP-T H:watch (02:20; a jump cut to 01:40) | | 1.2 |
+| 14c | 14 | alderRow | FP-W kneeling, looking up at Marsh over me | "You're not even trying." A soft jolt as his hand lands on my shoulder; his eyes go to the brick: "Or I go through that window." | 2.0 |
+| 15a | 15 | alderRow | FP-T H:watch (01:30) | | 0.8 |
+| 15b | 15 | alderRow | `glide` over my shoulder: the brick by the path and the bay window behind me → `glide` back to Marsh at his door | the geography, from my eyes | 0.9 |
+| 15c | 15 | alderRow | FP-W rising from 1.15 to 1.65 m (`glide`), stepping back onto the path: Marsh against his own door, my body between him and the glass | the music cuts out on "No!" | 1.0 |
+| 15d | 15 | alderRow | `at` wide from the path down the street (fov 60): the first motivated outside-the-eyes shot | the shout echoes; across the road **W1 lights on "keep"** | 2.4 |
+| 16a | 16 | alderRow | `whip` to FP-W pinned *sideways* against the porch wall (the camera rolls about 8° on impact), looking over his shoulder | W2 and W3 light on "Shut"; a curtain pulls back | 2.0 |
+| 16b | 16 | alderRow | FP-W, the same axis, `rack` to across the road | the neighbour's door opens, his phone raised: "Oi! I'm calling the police!" | 1.6 |
+| 16c | 16 | alderRow | FP-T on Marsh's face, turning along the lit street | his grip opens | 1.0 |
+| 16d | 16 | alderRow | FP-T H:watch at 00:17, then FP-W (floor level, low) as his feet back past the brick toward the gate | | 1.6 |
+| 17a | 17 | alderRow | FP-T H:watch: 00:00 (a hard cut, half a beat with no music) | | 0.8 |
+| 17b | 17 | alderRow | `at` wide from the step to the gate (fov 58), blue light sweeping the house fronts: the second outside-the-eyes shot | two officers take his arms as he reaches the gate; he twists back: "It's my house!" | 3.0 |
+| 18a | 18 | alderRow | FP-W at the closed door; H:flap rises toward the letterbox | her voice through the door | 3.6 |
+| 18b | 18 | alderRow | FP-T on H:flap: it stops, and lowers | "It's your lock. It stays shut." | 4.0 |
+| 18c | 18 | alderRow | `glide` tilt up to the upstairs window | the light comes back on (her son, upstairs) | 1.4 |
+| 19a | 19 | vanCab | FP-T H:phone (REFUSED BY TECHNICIAN. REVIEW REQUIRED) with the visor letter above it | | 2.2 |
+| 19b | 19 | vanCab | **the 1a and 11a framing**, slow `pushIn` (fov 70 → 55) | the curtain open: the woman at the lit window, her son, Biscuit's nose at the glass; the final line; 1 s of tail | 3.2 |
 
-There are 37 shots, about 98 s in all. The first frame is the dark street with one lit strip (1a). The last is the lit window, which answers that image.
+41 shots, about 100 s. There are more shots than in revision 1 because the climax is now cut on the action. The number of *setups* is lower, because the first-person framings repeat purposefully.
 
-## 5. Blocking and movement
-**The Alder Row set (new) is a terraced street at night.** Named anchors, distances from the front door:
+## 7. The climax, beats 13 to 17, in detail (about 22 s)
+**The rule for the sequence:** one new piece of information per shot, and every piece readable with the sound off.
+
+| What the viewer must understand | How it's shown (muted) | How it's heard |
+|---|---|---|
+| **13: I'm back, and he chose the door over the window again** | I step out with the case held up; he drops the brick beside the path and walks back (the brick's thud is visible as a small bounce) | "Found them!"; the thud |
+| **14: the stall is fake and failing** | the pick resting *beside* the keyway; the watch falls; looking up at him; his hand on my shoulder; his eyes to the brick | "You're not even trying." / "…or I go through that window."; pick ticks; the `tense` cue rising |
+| **15: my decision, and why it's safe now** | watch at 01:30 → over my shoulder: the brick and the bay window are *behind me* → I stand up into his eyeline, between him and the glass → the wide down the dark street, where the first window lights *during* the shout | music cut on "No!"; the shout echoing between the houses |
+| **16: his reaction, and the street waking** | knocked sideways into the porch wall → windows lighting over his shoulder → the neighbour in his doorway with his phone → his face turning to the lit street → his grip opening → watch at 00:17 → his feet backing past the brick | a thud; doors opening; "Oi! I'm calling the police!"; no music |
+| **17: the arrest, caused by the time I bought** | watch at 00:00 → blue light floods the house fronts → two officers take him at the gate | sirens, then "It's my house!" |
+
+**Checks on this sequence:**
+- **The viewer never has to infer geography.** The bay's position is established in 1a and 11a, and the brick's drop spot in 13; the glance back in 15b shows both are behind me.
+- **The decision has a visible cause chain:** the watch (time nearly bought), then the glance back (my body is between him and the glass), then standing up (a choice, made on camera).
+- **The street waking escalates in steps,** each on a word: W1 on "keep", W2 and W3 on "Shut", the neighbour's door on "Oi". It reads as the shout's consequence, not a cut-away rescue.
+- **His letting go is shown as his choice** (his face to the street, then his grip opening) *before* the police exist on screen (00:17).
+
+## 8. Blocking map and movement
+**Alder Row anchors** (distances from number 9's door):
 - **Number 9:**
   - DOOR: the letterbox at 1.0 m, the lock at 1.05 m, the bell on the right at 1.4 m;
-  - STEP, at the door;
-  - PORCH WALL, the wall between the door and the bay;
-  - BAY, the bay window, 1.8 m left;
-  - BORDER, the garden border under the bay;
-  - B2, the brick's drop spot, 1.2 m down the path;
-  - PATH, 2.5 m;
-  - GATE, 5 m;
-  - UPSTAIRS, the window above the door, with its curtain and light strip.
-- **The street:** VAN at the kerb, 8 m, its cab facing the house; LAMP, a streetlamp behind number 9's step side, which back-lights Marsh and drives the shadow decal; OPP W1–W4, windows across the road; NDOOR, the neighbour's door under W3; ROAD, where the police car stops.
+  - STEP;
+  - PORCH WALL: between the door and the bay, where I'm pinned;
+  - BAY: 1.8 m left;
+  - BORDER: under the bay;
+  - B2: the brick's spot, 1.2 m down the path;
+  - PATH: 2.5 m;
+  - GATE: 5 m;
+  - UPSTAIRS: the window over the door.
+- **The street:**
+  - VAN: at the kerb, 8 m, the windscreen facing the house;
+  - LAMP: a streetlamp behind the step, which back-lights Marsh and gives the shadow decal its direction;
+  - OPP W1–W4: windows across the road;
+  - NDOOR: under W3;
+  - ROAD: off-screen left, where the police light comes from.
 
-**Movement by character and beat:**
-
-| Who | Beat 1 | 2–8 | 9 | 10–12 | 13–14 | 15 | 16 | 17 | 18 | 19 |
+| Who | 1 | 2–8 | 9 | 10–12 | 13–14 | 15 | 16 | 17 | 18 | 19 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| **Me** | VAN (seat) | STEP; kneeling from 6 | walk STEP → VAN | VAN | VAN → STEP; kneeling | stand, step back to PATH (between him and BAY/B2) | pinned at PORCH WALL (still between him and the bay) | STEP | at DOOR | VAN |
-| **Marsh** | STEP | STEP (facing me) | STEP, looking at BAY | STEP → BAY (latch) → BORDER (brick) → BAY glass | at my voice: drops the brick at B2 → STEP, over me | at DOOR, his back to his own door | lunges to me at PORCH WALL; lets go; backs PATH → past B2 → GATE | GATE, held by officers | (gone) | (gone) |
-| **Woman** | UPSTAIRS, light on | light out (7) | UPSTAIRS (unseen) | on her own 999 call (unseen) | | | | | behind DOOR, voice only | UPSTAIRS window, with the boy and the dog |
+| **Me** | VAN | STEP; kneeling from 6 | STEP → VAN | VAN | VAN → STEP; kneeling | standing; one step back to PATH, between him and BAY/B2 | shoved sideways to PORCH WALL (still between him and the bay) | STEP | at DOOR | VAN |
+| **Marsh** | STEP | STEP | STEP, looking at BAY | STEP → BAY latch → BORDER (brick) → BAY glass | drops the brick at B2 → STEP, standing over me | at DOOR, backed against his own door | lunges; pins me; looks along the street; lets go; backs PATH → past B2 → GATE | at GATE, held | gone | gone |
+| **Woman** | UPSTAIRS (light on) | light out (7) | UPSTAIRS | on her own 999 call (unseen) | | | | | behind DOOR, voice only | UPSTAIRS window, with her son and the dog |
 | **Boy** | | | | | | | | | switches on the UPSTAIRS light | at the window |
-| **Neighbour** | | | | | | | opens NDOOR, phone up | | | |
-| **Officers** | | | | | | | | car at ROAD; at GATE | | |
+| **Neighbour** | | | | | | | opens NDOOR, phone up | watching | | |
+| **Officers** | | | | | | | | arrive from ROAD; take him at GATE | | |
 
-**Why Marsh still believes I'll get him in:**
-- I left saying the picks were in the van, and I come back holding the case.
-- He never sees the History screen (angled away in 8b) or the call: the cab is dark, and he is at the bay glass with his back half-turned in 11a; the phone is pocketed, screen in, in 12b.
-
-**Why the shout works where the horn wouldn't:** at the horn (11) he's alone at the glass, holding the brick, and nobody is awake. At the shout (15) I'm standing between him and the glass, he's at his own front door, and the street wakes with him in plain view.
-
-## 6. Key visual reveals and transitions
-- **The lit strip (1a → 7 → 18c → 19b):** planted small in the first frame, it goes dark in 7 and comes back on in 18c, and the open curtain answers it in 19b. Use the same window framing in 1a and 19b.
-- **The lock (6b → 8a):** the KL stamp is visible but unremarked in 6b, then readable in 8a. A `swoop` in on the first and a held macro on the second.
-- **Readable inserts, each held 1.5–2.5 s and checked at full resolution:** the visor letter (1b), the licence (3a), the cylinder (6b), the History screen (8b), the watch (10b, 14b, 15a, 17a), and REFUSED BY TECHNICIAN (19a).
-- **Transitions:**
-  - a `glide` for every head movement (3b, 7, 15b, 18c);
-  - a `whip` for the shove (16a);
-  - a `rack` from the windscreen glass to the street (11a);
-  - a hard cut into the silent watch at 00:00 (17a).
-- **The one sight of myself:** the reflection in the windscreen (12a).
-- **The only shots outside my eyes:** the two motivated wides, 15c (the shout down the street) and 17b (the arrest).
-
-## 7. Sound effects and music
+## 9. Sound and music
 **Voices:**
-- my thoughts: `liamQuiet` (the header's narrator voice), close and dry;
-- spoken lines: `liam`;
-- Marsh: `brian`, low and controlled until beat 16;
-- the operator: `alice`, phone-filtered (see §8);
+- thoughts: `liamQuiet` (the header's narrator voice), close and dry;
+- my spoken lines: `liam`;
+- Marsh: `brian`;
+- the operator: `alice` (phone-filtered if available, otherwise dry);
 - the woman: `jessica`, muffled through the door;
-- the neighbour: `chris`, shouted from across the road.
+- the neighbour: `chris`, at a distance.
 
 **Music** (moods from `sound/catalog.ts`):
 
 | Beats | Cue |
 |---|---|
-| 1–3 | `hush`, low (-8 dB) |
-| 4–9 | `mystery`, rising slightly at 7 |
-| 10–14 | `tense` |
-| 15 | **the music cuts out on "No!"**; the shout lands in silence |
-| 16–17 | `amb_city_night` with effects only; no score under the struggle |
+| 1–3 | `hush` at -8 dB |
+| 4–9 | `mystery`, a small lift at 7 |
+| 10–14 | `tense`, rising through 14 |
+| 15 | **cut on "No!"** |
+| 16–17 | no score; `amb_city_night` plus effects |
 | 18 | `silence` |
 | 19 | `warm` at -10 dB, entering on "I never asked" |
 
-**Effects** (existing names from the catalog; NEW means to be made):
+**Effects:** existing catalog sounds wherever possible.
+- **Existing:**
+  - `amb_city_night` as the bed for every exterior;
+  - `bell_ring` (doorbell);
+  - `latch_click` (letterbox flap, central-locking pins ×4, doors opening);
+  - `phone_buzz` (the 999 ring);
+  - `blip_up` (the watch start and 00:00);
+  - `step_grass`, pitched down (the brick pulled from soil);
+  - `impact`, low (the brick's thud);
+  - `knock_heavy` (my back against the porch wall);
+  - `clock_tick`, pitched up and sparse (the pick ticking on metal);
+  - `step_floor`, soft (the tail thumping);
+  - `whoosh_short` (the whip in 16a);
+  - `phone_tap` (the torch click).
+- **New, only four:** `dog_bark`, `dog_whine`, `siren` and `metal_scrape` (the key scraping at the keyway). The earlier plan's `van_door`, `car_door`, `engine_tick`, `curtain_ring` and `bird_dawn` are dropped or approximated with existing sounds.
 
-| Shot | Cue |
-|---|---|
-| 1a | `amb_city_night` (bed for every exterior); engine ticking as it cools (**NEW** `engine_tick`, or `clock_tick` slowed) |
-| 2a | torch click (**NEW** `torch_click`, or `phone_tap`) |
-| 4 | `bell_ring` (doorbell); dog bark then whine (**NEW** `dog_bark`, `dog_whine`) |
-| 5 | letterbox flap (`latch_click`); tail thumps (**NEW** `tail_thump`, or soft `step_floor`) |
-| 6a | key scraping at the keyway (**NEW** `key_scrape`); pick tools laid down (`latch_click`, soft) |
-| 7 | curtain rings (**NEW** `curtain_ring`, optional) |
-| 10a | central locking (`latch_click` ×4, tight); 999 ring tone (`phone_buzz`) |
-| 10b | watch start beep (`blip_up`) |
-| 11a | soil tearing (`step_grass`, pitched down); brick weighed (soft `impact`) |
-| 12b | van door opening (**NEW** `van_door`) |
-| 13 | brick thud in soil (`impact`, low) |
-| 14a | pick ticking on metal (**NEW** `pick_tick`) |
-| 15c | the shout's echo between the houses (voice plus a short reverb send) |
-| 16a | body against the wall (`knock_heavy`); doors opening (`latch_click`); the neighbour's shout |
-| 17a | the watch at 00:00 (`blip_up`), then sirens rising (**NEW** `siren`); car doors (**NEW** `car_door`) |
-| 18 | dog whining softly behind the door (`dog_whine`) |
-| 19 | a distant bird (**NEW** `bird_dawn`, optional) |
+## 10. Assets, by efficiency
+**Reused unchanged:**
+- **Items:** `phone`, `torch`, `key`, `letter`.
+- **Props:** `phoneScreen` (four screens: the job card, the 999 call, History, REFUSED); the `downstairs` set for the hallway seen through the letterbox.
+- **Recurring cast:** **Gus as the neighbour.** Recurring cast is never counted against originality, and a dressing gown is the only addition.
+- **Sound, lighting and cameras:** the catalog sounds above; `night` and `interiorCool` lighting; `at` cameras with `fov`.
 
-## 8. Assets
-**Existing, reusable as they are:**
-- **Items:** `torch`, `phone`, `key`, `keys`, `letter`.
-- **Props:** `phoneScreen` (stepped screens; the pattern for the job card, History, the 999 call and REFUSED), `keyHook`, `frontDoor` (Extra Door and Everyday; adapt as an added variant), and the `downstairs` set from Extra Door (the hallway seen through the letterbox).
-- **Lighting:** `night` and `interiorCool`.
-- **Audio:** the catalog sounds named above.
-- **Cameras:** `at` with `fov`, used as in Night Shift.
+**Adapted as added variants** (the protected library takes additions only):
+- `farmDog` → **Biscuit** (a spaniel colourway with longer ears);
+- `frontDoor` → **door 9** (a weathered finish, letterbox, bell, MARSH label, the new cylinder);
+- `letter` → the **visor letter** (new text);
+- `photoFrame` / drawing pattern → the **family drawing**;
+- `phoneScreen`'s stepped display → the **watch face**;
+- the card system's ground-blob material → the **shadow decal**.
 
-**Existing, adapted as added variants** (protected library: additions only):
-- `farmDog` → **Biscuit**, a spaniel colourway with longer ears;
-- `frontDoor` → **door 9**: a weathered paint texture, letterbox, bell and MARSH label.
+**New, because nothing existing fits:**
 
-**New to build:**
+| Kind | Asset | Why it's new |
+|---|---|---|
+| set | **alderRow** facade group | First check at the asset stage (stills) whether the existing `city` set at night can host it: its ground, lamps and road would be reused, adding only the number 9 frontage, a bay window, the border, the path, the gate and the opposite-house fronts. Build a separate set only if `city` doesn't fit |
+| set | **vanCab** | windscreen frame, dashboard, wheel and horn, visor, rear-view mirror, door handle, locking pins. Small, and nothing similar exists |
+| prop | **fpHands** | one asset with nine pose variants, holding existing items. It's also reusable in every future first-person video |
+| prop | `newCylinder` | the macro-grade hero clue |
+| prop | `windowLight` | **one** stepped window prop, reused five times (the upstairs window and W1–W4) |
+| prop | `licence`, `brick` | small |
+| prop | the mirror-eyes card | lives inside vanCab |
+| effect | blue strobe light; torch cone | **No police car model:** the car stays off-screen, and its light sweeps the house fronts |
+| character | **Marsh** | the main on-screen antagonist |
+| character | **the woman** | seen only small, at the window; a simple design |
+| character | **the boy** | seen only small, at the window; a simple design |
+| character | **one police officer design, used twice** | |
+| character | **the locksmith** | only the hands family and the mirror eyes. No full figure unless the fallback is needed |
 
-| Kind | Assets |
-|---|---|
-| Sets | **alderRow** (a terraced night street with all the anchors in §5, a streetlamp, a garden border and a bay window); **vanCab** (windscreen, visor, steering wheel and horn, door handle, central-locking pins) |
-| Props | `visorLetter` (readable text); `licence` (D. MARSH, 9 ALDER ROW, photo); `newCylinder` (macro-grade, KL stamp, paint outline, filings); `letterboxMask` (a POV frame for shot 5); `familyDrawing`; `upstairsWindow` (stepped: on → off → on, plus the open-curtain state); `streetWindows` (W1–W4, stepped, lighting in turn); `brick`; `wristWatch` (a stepped countdown display: 04:00, 03:10, 02:20, 01:40, 01:30, 00:00); `windscreenReflection` (a faint face card over the glass, see below); `shadowDecal` (a long, flat, ground-projected man's shadow); a police car with blue strobe light; a torch cone effect |
-| Characters | **the locksmith** (only hands, cuffs, gloves and a work jacket with a KESTREL LOCKS logo, plus a faint face in the reflection); **Marsh** (green coat); **the woman**; **the boy**; **the neighbour** (dressing gown, phone); **two police officers** |
-| Sounds | `dog_bark`, `dog_whine`, `key_scrape`, `pick_tick`, `van_door`, `siren`, `car_door`, `torch_click`, `tail_thump`, `engine_tick` (the last three, plus `curtain_ring` and `bird_dawn`, are optional or can be approximated with existing sounds) |
+**Deliberately not reused:** recurring cast for the woman and the boy (Juno, Milo), and Future Text's vehicles. Casting recurring characters as a family in a domestic-abuse story would clash with their established stories, and Future Text is off-limits.
 
-## 9. Engine limitations and planned fallbacks
-1. **First-person hands (the biggest limitation).** The engine's `pov` puts the camera just in front of the actor, and their own body is never drawn. There is no rig for forearms in the lower frame.
-   - **Plan with today's engine:** every "hands in frame" moment becomes a POV shot plus a separate insert on `me.hands` (the locksmith's gloved hands and cuffs, framed from outside). This is what the shot list above uses.
-   - **What it costs:** the viewer sees my hands as a cut, not as a continuous embodied view. It still reads as first person, because the inserts never show more than hands and cuffs.
-   - **Optional engine addition** (needs separate approval; not in this plan): a forearm-and-hand card anchored to the POV camera, holding the actor's item.
-2. **A wide lens:** `pov` is fixed at 50°. Wide first-person shots use authored `at` cameras with `fov: 70`, as Night Shift did. There's no lens curvature, which is acceptable.
-3. **Reflections:** there's no reflection rendering. 12a uses a faint face card composited on the windscreen glass, low opacity, which is a new prop. If it reads poorly in the preview, fall back to hands only (12b), which the owner approved.
-4. **Shadows:** characters are flat cards with a ground blob; they don't cast long shadows. 9b and 8b use a painted `shadowDecal` on the ground. If it looks wrong, fall back to a glance back at Marsh, still on the step.
-5. **Time stamps or on-screen text:** there's no overlay. Every readable time and word sits on a prop (the job card, the watch, the letter, the screens).
-6. **The phone voice:** if the voice pipeline has no telephone-line filter, the operator plays dry. A band-pass filter would be a small audio addition.
-7. **A figure seen from steeply above flattens** (CLAUDE.md). Shot 14b looks *up* at Marsh, which is fine. Keep any downward POV, such as the hands over the lock, within about 50° of horizontal.
-8. **Readability:** the watch, the licence and the History screen must pass full-resolution still checks (CLAUDE.md, preview step 5).
+## 11. Engine limitations and fallbacks
+1. **First-person hands:** the engine's `pov` can't draw the viewer's own body. Solved without an engine change by the `fpHands` prop in static first-person shots (§2); during head moves the hands are kept out of frame. **Fallback:** external hand inserts.
+2. **The wide lens:** `pov` is fixed at 50°, so every first-person shot uses authored `at` cameras (fov 70 wide, 42 tight), as in Night Shift. There's no lens curvature.
+3. **Reflections:** there's no reflection rendering. The rear-view mirror uses an eyes-only card inside the mirror frame. **Fallback:** hands only.
+4. **Shadows:** characters don't cast them. The shadow decal (blob material) covers 8b and 9b. **Fallback:** the glance back at Marsh on the step (already in 9b).
+5. **Text:** there's no overlay. All readable text is on props, held in the tight lens for 1.5–2.5 s. It must pass full-resolution still checks.
+6. **Clearance:** the camera check may flag `fpHands` as "inside scenery", because it's 0.4 m from the lens. Use `blockOk` on those camera beats.
+7. **Downward first-person views** (the lock at 1.05 m from a 1.15 m kneeling eye) stay within about 50° of horizontal, per CLAUDE.md.
+8. **The operator's phone voice:** dry if no telephone filter exists. A filter would be a small audio addition, not needed for the story.
 
-## 10. Cost and next steps (rates from CLAUDE.md)
-- **Validate first:** `--until checks` is free.
-- **Half-scale stills** of shots 1a, 6b, 8b, 11a, 15c, 16a and 19b: about 30 s each, plus the bundle.
-- **One combined 540p preview of beats 10–17** (about 40 s, 1,200 frames): about 30 min. The whole film at 540p: about 75 min.
-- **Full-resolution stills** only for the readable inserts.
-- **The final cloud render** (about 98 s): about 16–20 min, plus about 3 min of QA.
-
-**Order:**
-1. The owner approves this plan.
-2. Decide how to treat the gate: one re-evaluation of packet `5ef2dffb`, or the owner's override.
-3. Build the theme additions (sets, props, characters, sounds).
-4. Write the storyboard code from §4.
-5. Checks, stills and the 540p preview.
+## 12. Cost and next steps (rates from CLAUDE.md)
+**After the owner approves this plan:**
+1. Build the theme additions in §10.
+2. Write the storyboard code from §4.
+3. Run `--until checks` (free).
+4. Make half-scale stills of 1a, 6b, 8b, 11a, 12a, 15c, 16a and 19b (about 30 s each, plus the bundle). The **fpHands** and mirror shots are the first to verify.
+5. Make **one combined 540p preview of beats 10–17** (about 45 s, about 34 min).
+6. Make one focused correction pass.
+7. Run the cloud final render with QA (about 20 min).
