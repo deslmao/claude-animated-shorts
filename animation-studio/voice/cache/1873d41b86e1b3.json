@@ -1,0 +1,78 @@
+{
+ "hash": "1873d41b86e1b3",
+ "text": "It can't breathe! It's not going to dive. It needs air.",
+ "voice": "wrenUrgent",
+ "lead": 0,
+ "end": 5.526,
+ "dur": 5.564082,
+ "words": [
+  {
+   "w": "It",
+   "t0": 0,
+   "t1": 0.221
+  },
+  {
+   "w": "can't",
+   "t0": 0.313,
+   "t1": 0.708
+  },
+  {
+   "w": "breathe!",
+   "t0": 0.824,
+   "t1": 1.567
+  },
+  {
+   "w": "It's",
+   "t0": 2.264,
+   "t1": 2.473
+  },
+  {
+   "w": "not",
+   "t0": 2.519,
+   "t1": 2.647
+  },
+  {
+   "w": "going",
+   "t0": 2.694,
+   "t1": 2.856
+  },
+  {
+   "w": "to",
+   "t0": 2.914,
+   "t1": 2.972
+  },
+  {
+   "w": "dive.",
+   "t0": 3.019,
+   "t1": 3.611
+  },
+  {
+   "w": "It",
+   "t0": 4.423,
+   "t1": 4.563
+  },
+  {
+   "w": "needs",
+   "t0": 4.609,
+   "t1": 4.83
+  },
+  {
+   "w": "air.",
+   "t0": 4.876,
+   "t1": 5.526
+  }
+ ],
+ "voiceId": "cgSgspJ2msm6clMCkdW9",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.35,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 1
+ },
+ "context": {
+  "before": "Wren, desperate, raised her voice for the first time in her life:"
+ },
+ "created": "2026-11-14T12:44:37.193Z"
+}

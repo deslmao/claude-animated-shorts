@@ -1,0 +1,100 @@
+{
+ "hash": "1ba8ef5c5894c7",
+ "text": "The whale woke up, and breathed out so hard it blew the roofs off their houses.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.458,
+ "dur": 4.493061,
+ "words": [
+  {
+   "w": "The",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "whale",
+   "t0": 0.221,
+   "t1": 0.499
+  },
+  {
+   "w": "woke",
+   "t0": 0.534,
+   "t1": 0.778
+  },
+  {
+   "w": "up,",
+   "t0": 0.824,
+   "t1": 1.033
+  },
+  {
+   "w": "and",
+   "t0": 1.057,
+   "t1": 1.173
+  },
+  {
+   "w": "breathed",
+   "t0": 1.231,
+   "t1": 1.567
+  },
+  {
+   "w": "out",
+   "t0": 1.614,
+   "t1": 1.753
+  },
+  {
+   "w": "so",
+   "t0": 1.811,
+   "t1": 2.009
+  },
+  {
+   "w": "hard",
+   "t0": 2.101,
+   "t1": 2.368
+  },
+  {
+   "w": "it",
+   "t0": 2.426,
+   "t1": 2.496
+  },
+  {
+   "w": "blew",
+   "t0": 2.543,
+   "t1": 2.752
+  },
+  {
+   "w": "the",
+   "t0": 2.81,
+   "t1": 2.879
+  },
+  {
+   "w": "roofs",
+   "t0": 2.937,
+   "t1": 3.204
+  },
+  {
+   "w": "off",
+   "t0": 3.239,
+   "t1": 3.367
+  },
+  {
+   "w": "their",
+   "t0": 3.413,
+   "t1": 3.587
+  },
+  {
+   "w": "houses.",
+   "t0": 3.634,
+   "t1": 4.458
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T12:44:29.087Z"
+}

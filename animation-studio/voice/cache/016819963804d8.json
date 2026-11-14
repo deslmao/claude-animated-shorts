@@ -1,0 +1,80 @@
+{
+ "hash": "016819963804d8",
+ "text": "It turns out it was just waiting for someone to speak up.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.019,
+ "dur": 3.056327,
+ "words": [
+  {
+   "w": "It",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "turns",
+   "t0": 0.197,
+   "t1": 0.453
+  },
+  {
+   "w": "out",
+   "t0": 0.499,
+   "t1": 0.65
+  },
+  {
+   "w": "it",
+   "t0": 0.708,
+   "t1": 0.766
+  },
+  {
+   "w": "was",
+   "t0": 0.801,
+   "t1": 0.906
+  },
+  {
+   "w": "just",
+   "t0": 0.952,
+   "t1": 1.126
+  },
+  {
+   "w": "waiting",
+   "t0": 1.173,
+   "t1": 1.486
+  },
+  {
+   "w": "for",
+   "t0": 1.533,
+   "t1": 1.625
+  },
+  {
+   "w": "someone",
+   "t0": 1.66,
+   "t1": 1.939
+  },
+  {
+   "w": "to",
+   "t0": 1.974,
+   "t1": 2.02
+  },
+  {
+   "w": "speak",
+   "t0": 2.078,
+   "t1": 2.345
+  },
+  {
+   "w": "up.",
+   "t0": 2.426,
+   "t1": 3.019
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T12:44:40.837Z"
+}

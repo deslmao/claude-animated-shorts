@@ -675,6 +675,69 @@ def chair_scrape(r):
     """a classroom chair shoved back across a tiled floor (0.45 s): a short juddering scrape"""
     return G.creak(0.45, r, rate0=70, rate1=120, rough=0.35, noise=0.2) * 0.8
 
+
+# ------------------------------------------------------------------ The Whale City
+def whale_groan(r):
+    """a sleeping whale stirring (3.5 s): a deep, slow moan gliding up and back down, felt through stone"""
+    t = tt(3.5); f0 = 48 + 26 * np.sin(np.pi * np.clip(t / 3.2, 0, 1)) ** 1.5
+    ph = phase(f0); y = sum(np.sin(k * ph) * (0.9 / k ** 1.2) for k in range(1, 9))
+    y *= (1 + 0.25 * smooth_noise(len(t), r, 3.0)); env = np.clip(t / 0.6, 0, 1) * np.clip((3.5 - t) / 0.9, 0, 1)
+    rumble = lp(colored(len(t), r, 1.6), 160) * 0.8
+    return fades(lp(y * env, 900) * 0.45 + rumble * env * 0.5, 0.05, 0.4)
+
+
+def whale_breath(r):
+    """the whale's breath through the Fountain (2.2 s): a big hollow exhale, a soft 'pfffhhh' from deep down"""
+    t = tt(2.2); env = np.clip(t / 0.08, 0, 1) * np.exp(-np.maximum(t - 0.08, 0) / 0.7)
+    air = bp(colored(len(t), r, 0.6), 180, 2600, 1) * env
+    body = np.sin(phase(70 * np.exp(-t / 0.8) + 35)) * _env(t, 0.05, 0.4) * 0.5
+    return fades(air * 0.8 + body, 0.005, 0.3)
+
+
+def whale_blow(r):
+    """the waking whale's great breath (3.5 s): a deep boom, then a roaring blast of air and spray"""
+    t = tt(3.5)
+    boom = np.sin(phase(38 + 40 * np.exp(-t / 0.08))) * _env(t, 0.005, 0.6) * 1.1
+    roar = lp(colored(len(t), r, 0.9), 1800) * np.clip(t / 0.1, 0, 1) * np.exp(-np.maximum(t - 0.4, 0) / 1.3) * 1.2
+    hiss = hp(r.standard_normal(len(t)), 3500) * _env(t, 0.05, 1.0) * 0.25
+    return fades(boom + roar + hiss, 0.002, 0.5) * 0.8
+
+
+def baby_cry(r):
+    """a baby starting to cry (1.5 s): two rising 'waah' wails"""
+    def wail(d, f):
+        t = tt(d); f0 = f * _track_lin(t, [(0, 0.85), (d * 0.25, 1.1), (d * 0.8, 1.0), (d, 0.8)]) * (1 + 0.02 * np.sin(TAU * 6 * t))
+        forms = np.tile(np.array(G.VOW["ae"], float), (len(t), 1)) * 1.35
+        amp = np.clip(t / 0.06, 0, 1) * np.clip((d - t) / 0.12, 0, 1)
+        return G.vox(f0, forms, amp, r, breath=0.2)
+    y = _sum((wail(0.55, r.uniform(420, 460)), 0.0), (wail(0.75, r.uniform(450, 490)), 0.68))
+    return fades(lp(y, 5500), 0.005, 0.1) * 0.5
+
+
+def crowd_cheer(r):
+    """a whole city cheering for the first time (3 s): many voices, hurrahs, laughter and clapping"""
+    parts = [(G.hurrah(r, r.uniform(110, 260), r.uniform(0.9, 1.25), kid=bool(i % 4 == 0)) * r.uniform(0.3, 0.7), r.uniform(0.0, 1.6)) for i in range(18)]
+    y = _sum(*parts); clap = np.mean(G.applause(3.0, r, people=30), axis=0)
+    n = max(len(y), len(clap)); out = np.zeros(n); out[:len(y)] += y * 0.35; out[:len(clap)] += clap * 0.6
+    return fades(lp(out, 7000), 0.05, 0.5)
+
+
+def water_pour(r):
+    """sea water pouring over a quay edge and running in the street (3 s): a rushing, gurgling flow"""
+    t = tt(3.0); env = np.clip(t / 0.4, 0, 1) * np.clip((3.0 - t) / 0.6, 0, 1)
+    flow = bp(colored(len(t), r, 0.5), 300, 4000, 1) * (1 + 0.5 * smooth_noise(len(t), r, 9.0))
+    gurgle = bp(r.standard_normal(len(t)), 600, 1400, 2) * (smooth_noise(len(t), r, 14.0) > 0.4) * 0.5
+    return fades((flow + gurgle) * env * 0.6, 0.05, 0.4)
+
+
+def founders_bell(r):
+    """the founders' great bronze ship's bell (4 s): one heavy stroke, deep and ringing, the loudest thing in the film"""
+    f = I.m2f(55)
+    strike = bp(r.standard_normal(ns(0.02)), 1500, 6000, 1) * 0.6
+    ring = modal(4.0, [(f, 1.0, 2.6), (f * 2.0, 0.6, 1.8), (f * 2.42, 0.45, 1.2), (f * 3.0, 0.3, 0.8), (f * 4.2, 0.2, 0.5), (f * 5.4, 0.12, 0.3)], r)
+    out = ring.copy(); out[:len(strike)] += strike
+    return fades(out, 0.001, 0.6) * 0.9
+
 SFX = {
     "pop": pop, "ding": ding, "blip_up": blip_up, "boing": boing, "poof": poof, "twinkle": twinkle, "impact": impact,
     "thud": thud, "party_pop": party_pop, "drip": drip, "steam": steam, "snore_soft": snore_soft, "ring_ding": ring_ding,
@@ -691,6 +754,7 @@ SFX = {
     "metal_groan": metal_groan, "splat": splat, "ringtone": ringtone, "musicbox_note": musicbox_note, "riser": riser,
     "storm_wind": storm_wind, "ground_crack": ground_crack,
     "fire_bell": fire_bell, "kids_chatter": kids_chatter, "chair_scrape": chair_scrape, "camera_shutter": camera_shutter, "fire_roar": fire_roar, "cough": cough,
+    "whale_groan": whale_groan, "whale_breath": whale_breath, "whale_blow": whale_blow, "baby_cry": baby_cry, "crowd_cheer": crowd_cheer, "water_pour": water_pour, "founders_bell": founders_bell,
 }
 
 

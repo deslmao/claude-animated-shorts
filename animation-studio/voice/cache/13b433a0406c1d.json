@@ -1,0 +1,65 @@
+{
+ "hash": "13b433a0406c1d",
+ "text": "And every ring makes the hole a bit smaller.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.461,
+ "dur": 2.507755,
+ "words": [
+  {
+   "w": "And",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "every",
+   "t0": 0.232,
+   "t1": 0.453
+  },
+  {
+   "w": "ring",
+   "t0": 0.522,
+   "t1": 0.731
+  },
+  {
+   "w": "makes",
+   "t0": 0.801,
+   "t1": 1.01
+  },
+  {
+   "w": "the",
+   "t0": 1.045,
+   "t1": 1.115
+  },
+  {
+   "w": "hole",
+   "t0": 1.173,
+   "t1": 1.382
+  },
+  {
+   "w": "a",
+   "t0": 1.416,
+   "t1": 1.44
+  },
+  {
+   "w": "bit",
+   "t0": 1.474,
+   "t1": 1.602
+  },
+  {
+   "w": "smaller.",
+   "t0": 1.66,
+   "t1": 2.461
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T12:44:32.612Z"
+}

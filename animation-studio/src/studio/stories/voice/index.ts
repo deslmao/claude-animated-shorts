@@ -13,6 +13,7 @@ import { N_night_shift } from "./night-shift";
 import { N_one_too_many } from "./one-too-many";
 import { N_pirate_democracy } from "./pirate-democracy";
 import { N_tickle } from "./tickle";
+import { N_whale_city } from "./whale-city";
 import { N_yawn_demo } from "./yawn-demo";
 
-export const NARRATION: Record<string, Narration> = { "buried-treasure": N_buried_treasure, "doorway-effect": N_doorway_effect, "every-lie": N_every_lie, "extra-door": N_extra_door, "extra-door-2": N_extra_door_2, "float-away": N_float_away, "locked-out": N_locked_out, "marathon-1904": N_marathon_1904, "night-shift": N_night_shift, "one-too-many": N_one_too_many, "pirate-democracy": N_pirate_democracy, "tickle": N_tickle, "yawn-demo": N_yawn_demo };
+export const NARRATION: Record<string, Narration> = { "buried-treasure": N_buried_treasure, "doorway-effect": N_doorway_effect, "every-lie": N_every_lie, "extra-door": N_extra_door, "extra-door-2": N_extra_door_2, "float-away": N_float_away, "locked-out": N_locked_out, "marathon-1904": N_marathon_1904, "night-shift": N_night_shift, "one-too-many": N_one_too_many, "pirate-democracy": N_pirate_democracy, "tickle": N_tickle, "whale-city": N_whale_city, "yawn-demo": N_yawn_demo };

@@ -1,0 +1,38 @@
+{
+ "hash": "1ffd22859df7ce",
+ "text": "Don't you dare!",
+ "voice": "mayorSharp",
+ "lead": 0,
+ "end": 1.44,
+ "dur": 1.48898,
+ "words": [
+  {
+   "w": "Don't",
+   "t0": 0,
+   "t1": 0.325
+  },
+  {
+   "w": "you",
+   "t0": 0.383,
+   "t1": 0.488
+  },
+  {
+   "w": "dare!",
+   "t0": 0.604,
+   "t1": 1.44
+  }
+ ],
+ "voiceId": "onwK4e9ZLuTAKqWW03F9",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.35,
+  "similarity_boost": 0.75,
+  "style": 0.35,
+  "use_speaker_boost": true,
+  "speed": 1
+ },
+ "context": {
+  "before": "The Mayor lunged forward and hissed,"
+ },
+ "created": "2026-11-14T12:44:37.777Z"
+}

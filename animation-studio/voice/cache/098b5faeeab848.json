@@ -1,0 +1,80 @@
+{
+ "hash": "098b5faeeab848",
+ "text": "Every morning, Wren measures how high the whale breathes. It's her job.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.412,
+ "dur": 4.440816,
+ "words": [
+  {
+   "w": "Every",
+   "t0": 0,
+   "t1": 0.29
+  },
+  {
+   "w": "morning,",
+   "t0": 0.348,
+   "t1": 0.743
+  },
+  {
+   "w": "Wren",
+   "t0": 0.824,
+   "t1": 1.091
+  },
+  {
+   "w": "measures",
+   "t0": 1.161,
+   "t1": 1.474
+  },
+  {
+   "w": "how",
+   "t0": 1.521,
+   "t1": 1.649
+  },
+  {
+   "w": "high",
+   "t0": 1.73,
+   "t1": 1.939
+  },
+  {
+   "w": "the",
+   "t0": 1.985,
+   "t1": 2.055
+  },
+  {
+   "w": "whale",
+   "t0": 2.101,
+   "t1": 2.357
+  },
+  {
+   "w": "breathes.",
+   "t0": 2.403,
+   "t1": 2.984
+  },
+  {
+   "w": "It's",
+   "t0": 3.239,
+   "t1": 3.437
+  },
+  {
+   "w": "her",
+   "t0": 3.471,
+   "t1": 3.599
+  },
+  {
+   "w": "job.",
+   "t0": 3.68,
+   "t1": 4.412
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T12:44:30.272Z"
+}

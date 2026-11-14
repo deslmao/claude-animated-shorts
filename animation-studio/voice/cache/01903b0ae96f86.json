@@ -1,0 +1,55 @@
+{
+ "hash": "01903b0ae96f86",
+ "text": "In this city, nobody makes a sound.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.508,
+ "dur": 2.533878,
+ "words": [
+  {
+   "w": "In",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "this",
+   "t0": 0.232,
+   "t1": 0.383
+  },
+  {
+   "w": "city,",
+   "t0": 0.43,
+   "t1": 0.882
+  },
+  {
+   "w": "nobody",
+   "t0": 1.01,
+   "t1": 1.312
+  },
+  {
+   "w": "makes",
+   "t0": 1.37,
+   "t1": 1.567
+  },
+  {
+   "w": "a",
+   "t0": 1.614,
+   "t1": 1.649
+  },
+  {
+   "w": "sound.",
+   "t0": 1.707,
+   "t1": 2.508
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T12:44:27.114Z"
+}

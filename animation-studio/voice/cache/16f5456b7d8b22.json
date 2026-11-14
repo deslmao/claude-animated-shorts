@@ -1,0 +1,48 @@
+{
+ "hash": "16f5456b7d8b22",
+ "text": "Please, don't. You'll block it.",
+ "voice": "wrenWhisper",
+ "lead": 0,
+ "end": 2.09,
+ "dur": 2.115918,
+ "words": [
+  {
+   "w": "Please,",
+   "t0": 0,
+   "t1": 0.406
+  },
+  {
+   "w": "don't.",
+   "t0": 0.43,
+   "t1": 0.894
+  },
+  {
+   "w": "You'll",
+   "t0": 1.057,
+   "t1": 1.265
+  },
+  {
+   "w": "block",
+   "t0": 1.289,
+   "t1": 1.509
+  },
+  {
+   "w": "it.",
+   "t0": 1.591,
+   "t1": 2.09
+  }
+ ],
+ "voiceId": "cgSgspJ2msm6clMCkdW9",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.1,
+  "use_speaker_boost": true,
+  "speed": 0.9
+ },
+ "context": {
+  "before": "She pushed to the front and whispered urgently,"
+ },
+ "created": "2026-11-14T12:44:34.510Z"
+}

@@ -1,0 +1,55 @@
+{
+ "hash": "17faa029b0c10c",
+ "text": "Hard enough to blow the rings away.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.09,
+ "dur": 2.115918,
+ "words": [
+  {
+   "w": "Hard",
+   "t0": 0,
+   "t1": 0.29
+  },
+  {
+   "w": "enough",
+   "t0": 0.337,
+   "t1": 0.557
+  },
+  {
+   "w": "to",
+   "t0": 0.592,
+   "t1": 0.65
+  },
+  {
+   "w": "blow",
+   "t0": 0.697,
+   "t1": 0.894
+  },
+  {
+   "w": "the",
+   "t0": 0.952,
+   "t1": 1.022
+  },
+  {
+   "w": "rings",
+   "t0": 1.08,
+   "t1": 1.312
+  },
+  {
+   "w": "away.",
+   "t0": 1.347,
+   "t1": 2.09
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T12:44:38.916Z"
+}

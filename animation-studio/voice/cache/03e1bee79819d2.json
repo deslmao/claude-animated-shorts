@@ -1,0 +1,110 @@
+{
+ "hash": "03e1bee79819d2",
+ "text": "Then it went back to sleep. And for the first time in three hundred years, it could breathe.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 5.155,
+ "dur": 5.198367,
+ "words": [
+  {
+   "w": "Then",
+   "t0": 0,
+   "t1": 0.209
+  },
+  {
+   "w": "it",
+   "t0": 0.255,
+   "t1": 0.302
+  },
+  {
+   "w": "went",
+   "t0": 0.337,
+   "t1": 0.476
+  },
+  {
+   "w": "back",
+   "t0": 0.522,
+   "t1": 0.673
+  },
+  {
+   "w": "to",
+   "t0": 0.72,
+   "t1": 0.789
+  },
+  {
+   "w": "sleep.",
+   "t0": 0.859,
+   "t1": 1.358
+  },
+  {
+   "w": "And",
+   "t0": 1.823,
+   "t1": 1.962
+  },
+  {
+   "w": "for",
+   "t0": 2.009,
+   "t1": 2.101
+  },
+  {
+   "w": "the",
+   "t0": 2.136,
+   "t1": 2.206
+  },
+  {
+   "w": "first",
+   "t0": 2.264,
+   "t1": 2.519
+  },
+  {
+   "w": "time",
+   "t0": 2.554,
+   "t1": 2.821
+  },
+  {
+   "w": "in",
+   "t0": 2.856,
+   "t1": 2.926
+  },
+  {
+   "w": "three",
+   "t0": 2.984,
+   "t1": 3.193
+  },
+  {
+   "w": "hundred",
+   "t0": 3.239,
+   "t1": 3.506
+  },
+  {
+   "w": "years,",
+   "t0": 3.553,
+   "t1": 3.947
+  },
+  {
+   "w": "it",
+   "t0": 3.994,
+   "t1": 4.122
+  },
+  {
+   "w": "could",
+   "t0": 4.156,
+   "t1": 4.307
+  },
+  {
+   "w": "breathe.",
+   "t0": 4.342,
+   "t1": 5.155
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T12:44:39.606Z"
+}

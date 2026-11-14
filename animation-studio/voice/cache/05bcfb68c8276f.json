@@ -1,0 +1,43 @@
+{
+ "hash": "05bcfb68c8276f",
+ "text": "Gran, it's lower again.",
+ "voice": "wrenWhisper",
+ "lead": 0,
+ "end": 2.415,
+ "dur": 2.45551,
+ "words": [
+  {
+   "w": "Gran,",
+   "t0": 0,
+   "t1": 0.662
+  },
+  {
+   "w": "it's",
+   "t0": 1.022,
+   "t1": 1.254
+  },
+  {
+   "w": "lower",
+   "t0": 1.324,
+   "t1": 1.625
+  },
+  {
+   "w": "again.",
+   "t0": 1.695,
+   "t1": 2.415
+  }
+ ],
+ "voiceId": "cgSgspJ2msm6clMCkdW9",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.1,
+  "use_speaker_boost": true,
+  "speed": 0.9
+ },
+ "context": {
+  "before": "Wren leaned close to her gran and whispered,"
+ },
+ "created": "2026-11-14T12:44:30.881Z"
+}

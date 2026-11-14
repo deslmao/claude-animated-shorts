@@ -1,0 +1,50 @@
+{
+ "hash": "10c19c02291394",
+ "text": "That night, the whale stopped breathing.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.183,
+ "dur": 2.220408,
+ "words": [
+  {
+   "w": "That",
+   "t0": 0,
+   "t1": 0.255
+  },
+  {
+   "w": "night,",
+   "t0": 0.325,
+   "t1": 0.592
+  },
+  {
+   "w": "the",
+   "t0": 0.627,
+   "t1": 0.731
+  },
+  {
+   "w": "whale",
+   "t0": 0.789,
+   "t1": 1.045
+  },
+  {
+   "w": "stopped",
+   "t0": 1.091,
+   "t1": 1.382
+  },
+  {
+   "w": "breathing.",
+   "t0": 1.428,
+   "t1": 2.183
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T12:44:35.782Z"
+}

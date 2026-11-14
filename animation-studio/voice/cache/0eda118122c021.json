@@ -1,0 +1,85 @@
+{
+ "hash": "0eda118122c021",
+ "text": "Because the whole city is sitting on the back of a sleeping whale.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.297,
+ "dur": 3.343673,
+ "words": [
+  {
+   "w": "Because",
+   "t0": 0,
+   "t1": 0.325
+  },
+  {
+   "w": "the",
+   "t0": 0.348,
+   "t1": 0.418
+  },
+  {
+   "w": "whole",
+   "t0": 0.453,
+   "t1": 0.673
+  },
+  {
+   "w": "city",
+   "t0": 0.72,
+   "t1": 1.01
+  },
+  {
+   "w": "is",
+   "t0": 1.068,
+   "t1": 1.149
+  },
+  {
+   "w": "sitting",
+   "t0": 1.184,
+   "t1": 1.451
+  },
+  {
+   "w": "on",
+   "t0": 1.498,
+   "t1": 1.556
+  },
+  {
+   "w": "the",
+   "t0": 1.591,
+   "t1": 1.66
+  },
+  {
+   "w": "back",
+   "t0": 1.707,
+   "t1": 1.904
+  },
+  {
+   "w": "of",
+   "t0": 1.95,
+   "t1": 1.997
+  },
+  {
+   "w": "a",
+   "t0": 2.043,
+   "t1": 2.067
+  },
+  {
+   "w": "sleeping",
+   "t0": 2.125,
+   "t1": 2.496
+  },
+  {
+   "w": "whale.",
+   "t0": 2.554,
+   "t1": 3.297
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T12:44:27.594Z"
+}

@@ -34,6 +34,13 @@ export const VOICES: Record<string, VoicePreset> = {
   aliceCount: { name: "Alice - Clear, Engaging Educator", voiceId: "Xb7hH8MSUJpSbSDYk0k2", model: MODEL, settings: { ...CHANNEL, stability: 0.4, style: 0.2, speed: 0.88 }, note: "Ms Okoye counting (One Too Many): slower, with hesitations" },
   aliceSurprise: { name: "Alice - Clear, Engaging Educator", voiceId: "Xb7hH8MSUJpSbSDYk0k2", model: MODEL, settings: { ...CHANNEL, stability: 0.4, style: 0.2, speed: 0.9 }, note: "Ms Okoye's quiet, puzzled \"...thirty-one?\" (One Too Many; delivered with the count as context)" },
   aliceRealise: { name: "Alice - Clear, Engaging Educator", voiceId: "Xb7hH8MSUJpSbSDYk0k2", model: MODEL, settings: { ...CHANNEL, stability: 0.35, style: 0.2, speed: 0.88 }, note: "Ms Okoye's \"Thirty... one?\" (One Too Many, owner-chosen audition take 4; delivered with context)" },
+  // The Whale City: the city whispers (the dialogue is steered quiet with line context); Wren is Jessica, Gran is Lily
+  // (an older British actress), the Mayor is Daniel (a smooth British broadcaster)
+  wrenWhisper: { name: "Jessica - Playful, Bright, Warm", voiceId: "cgSgspJ2msm6clMCkdW9", model: MODEL, settings: { ...CHANNEL, stability: 0.5, style: 0.1, speed: 0.9 }, note: "Wren (The Whale City), whispering" },
+  wrenUrgent: { name: "Jessica - Playful, Bright, Warm", voiceId: "cgSgspJ2msm6clMCkdW9", model: MODEL, settings: { ...CHANNEL, stability: 0.35, style: 0.3, speed: 1.0 }, note: "Wren (The Whale City), urgent: \"It can't breathe!\"" },
+  granWhisper: { name: "Lily - Velvety Actress", voiceId: "pFZP5JQG7iQjIQuC4Bku", model: MODEL, settings: { ...CHANNEL, stability: 0.55, style: 0.1, speed: 0.88 }, note: "Gran (The Whale City), whispering, gentle" },
+  mayor: { name: "Daniel - Steady Broadcaster", voiceId: "onwK4e9ZLuTAKqWW03F9", model: MODEL, settings: { ...CHANNEL, stability: 0.55, style: 0.15, speed: 0.95 }, note: "the Mayor (The Whale City): pleasant, quiet" },
+  mayorSharp: { name: "Daniel - Steady Broadcaster", voiceId: "onwK4e9ZLuTAKqWW03F9", model: MODEL, settings: { ...CHANNEL, stability: 0.35, style: 0.35, speed: 1.0 }, note: "the Mayor (The Whale City), alarmed: \"Don't you dare!\"" },
   liamScared: { name: "Liam - Energetic, Social Media Creator", voiceId: "TX3LPaxmHKxFdv7VOQHJ", model: MODEL, settings: { ...CHANNEL, stability: 0.3, style: 0.35, speed: 0.9 }, note: "Milo, frightened and desperate (Part 2 rewrite review take)" },
 };
 

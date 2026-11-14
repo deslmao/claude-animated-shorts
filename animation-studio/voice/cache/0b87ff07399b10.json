@@ -1,0 +1,90 @@
+{
+ "hash": "0b87ff07399b10",
+ "text": "For three hundred years, the whole city had whispered, so it wouldn't wake up.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.133,
+ "dur": 4.179592,
+ "words": [
+  {
+   "w": "For",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "three",
+   "t0": 0.221,
+   "t1": 0.441
+  },
+  {
+   "w": "hundred",
+   "t0": 0.488,
+   "t1": 0.755
+  },
+  {
+   "w": "years,",
+   "t0": 0.813,
+   "t1": 1.138
+  },
+  {
+   "w": "the",
+   "t0": 1.161,
+   "t1": 1.254
+  },
+  {
+   "w": "whole",
+   "t0": 1.312,
+   "t1": 1.544
+  },
+  {
+   "w": "city",
+   "t0": 1.579,
+   "t1": 1.846
+  },
+  {
+   "w": "had",
+   "t0": 1.881,
+   "t1": 1.974
+  },
+  {
+   "w": "whispered,",
+   "t0": 2.009,
+   "t1": 2.508
+  },
+  {
+   "w": "so",
+   "t0": 2.67,
+   "t1": 2.786
+  },
+  {
+   "w": "it",
+   "t0": 2.856,
+   "t1": 2.914
+  },
+  {
+   "w": "wouldn't",
+   "t0": 2.949,
+   "t1": 3.204
+  },
+  {
+   "w": "wake",
+   "t0": 3.239,
+   "t1": 3.471
+  },
+  {
+   "w": "up.",
+   "t0": 3.518,
+   "t1": 4.133
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T12:44:40.249Z"
+}

@@ -1,0 +1,80 @@
+{
+ "hash": "006b6e5964341c",
+ "text": "And every year, the city sat a little lower in the sea.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.065,
+ "dur": 3.108571,
+ "words": [
+  {
+   "w": "And",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "every",
+   "t0": 0.221,
+   "t1": 0.406
+  },
+  {
+   "w": "year,",
+   "t0": 0.464,
+   "t1": 0.72
+  },
+  {
+   "w": "the",
+   "t0": 0.755,
+   "t1": 0.836
+  },
+  {
+   "w": "city",
+   "t0": 0.882,
+   "t1": 1.138
+  },
+  {
+   "w": "sat",
+   "t0": 1.196,
+   "t1": 1.428
+  },
+  {
+   "w": "a",
+   "t0": 1.474,
+   "t1": 1.498
+  },
+  {
+   "w": "little",
+   "t0": 1.544,
+   "t1": 1.765
+  },
+  {
+   "w": "lower",
+   "t0": 1.811,
+   "t1": 2.067
+  },
+  {
+   "w": "in",
+   "t0": 2.113,
+   "t1": 2.183
+  },
+  {
+   "w": "the",
+   "t0": 2.218,
+   "t1": 2.287
+  },
+  {
+   "w": "sea.",
+   "t0": 2.334,
+   "t1": 3.065
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T12:44:33.909Z"
+}

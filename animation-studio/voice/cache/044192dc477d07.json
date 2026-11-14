@@ -1,0 +1,80 @@
+{
+ "hash": "044192dc477d07",
+ "text": "Awake, it breathed out just like it did all those years ago.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.529,
+ "dur": 3.578776,
+ "words": [
+  {
+   "w": "Awake,",
+   "t0": 0,
+   "t1": 0.499
+  },
+  {
+   "w": "it",
+   "t0": 0.522,
+   "t1": 0.615
+  },
+  {
+   "w": "breathed",
+   "t0": 0.662,
+   "t1": 1.022
+  },
+  {
+   "w": "out",
+   "t0": 1.08,
+   "t1": 1.289
+  },
+  {
+   "w": "just",
+   "t0": 1.382,
+   "t1": 1.579
+  },
+  {
+   "w": "like",
+   "t0": 1.625,
+   "t1": 1.788
+  },
+  {
+   "w": "it",
+   "t0": 1.823,
+   "t1": 1.881
+  },
+  {
+   "w": "did",
+   "t0": 1.927,
+   "t1": 2.101
+  },
+  {
+   "w": "all",
+   "t0": 2.148,
+   "t1": 2.264
+  },
+  {
+   "w": "those",
+   "t0": 2.31,
+   "t1": 2.508
+  },
+  {
+   "w": "years",
+   "t0": 2.554,
+   "t1": 2.775
+  },
+  {
+   "w": "ago.",
+   "t0": 2.81,
+   "t1": 3.529
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T12:44:38.385Z"
+}

@@ -1,0 +1,53 @@
+{
+ "hash": "12dd94a8dea1c4",
+ "text": "It's not old. It can't breathe.",
+ "voice": "wrenWhisper",
+ "lead": 0,
+ "end": 2.926,
+ "dur": 2.951837,
+ "words": [
+  {
+   "w": "It's",
+   "t0": 0,
+   "t1": 0.267
+  },
+  {
+   "w": "not",
+   "t0": 0.348,
+   "t1": 0.511
+  },
+  {
+   "w": "old.",
+   "t0": 0.58,
+   "t1": 1.033
+  },
+  {
+   "w": "It",
+   "t0": 1.521,
+   "t1": 1.718
+  },
+  {
+   "w": "can't",
+   "t0": 1.788,
+   "t1": 2.032
+  },
+  {
+   "w": "breathe.",
+   "t0": 2.078,
+   "t1": 2.926
+  }
+ ],
+ "voiceId": "cgSgspJ2msm6clMCkdW9",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.1,
+  "use_speaker_boost": true,
+  "speed": 0.9
+ },
+ "context": {
+  "before": "Wren put her hand over the tiny opening and whispered, horrified,"
+ },
+ "created": "2026-11-14T12:44:33.296Z"
+}

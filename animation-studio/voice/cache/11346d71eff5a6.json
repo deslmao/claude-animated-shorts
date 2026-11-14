@@ -1,0 +1,63 @@
+{
+ "hash": "11346d71eff5a6",
+ "text": "In this city, we don't raise our voices.",
+ "voice": "mayor",
+ "lead": 0,
+ "end": 2.972,
+ "dur": 3.004082,
+ "words": [
+  {
+   "w": "In",
+   "t0": 0,
+   "t1": 0.186
+  },
+  {
+   "w": "this",
+   "t0": 0.232,
+   "t1": 0.372
+  },
+  {
+   "w": "city,",
+   "t0": 0.43,
+   "t1": 1.01
+  },
+  {
+   "w": "we",
+   "t0": 1.231,
+   "t1": 1.347
+  },
+  {
+   "w": "don't",
+   "t0": 1.393,
+   "t1": 1.591
+  },
+  {
+   "w": "raise",
+   "t0": 1.649,
+   "t1": 1.904
+  },
+  {
+   "w": "our",
+   "t0": 1.95,
+   "t1": 2.067
+  },
+  {
+   "w": "voices.",
+   "t0": 2.125,
+   "t1": 2.972
+  }
+ ],
+ "voiceId": "onwK4e9ZLuTAKqWW03F9",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0.15,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "context": {
+  "before": "The Mayor smiled pleasantly and whispered,"
+ },
+ "created": "2026-11-14T12:44:35.198Z"
+}

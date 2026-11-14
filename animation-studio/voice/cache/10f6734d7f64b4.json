@@ -1,0 +1,85 @@
+{
+ "hash": "10f6734d7f64b4",
+ "text": "Every new mayor puts another stone ring around the hole. It's a tradition.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.272,
+ "dur": 4.310204,
+ "words": [
+  {
+   "w": "Every",
+   "t0": 0,
+   "t1": 0.313
+  },
+  {
+   "w": "new",
+   "t0": 0.383,
+   "t1": 0.546
+  },
+  {
+   "w": "mayor",
+   "t0": 0.604,
+   "t1": 0.848
+  },
+  {
+   "w": "puts",
+   "t0": 0.906,
+   "t1": 1.103
+  },
+  {
+   "w": "another",
+   "t0": 1.149,
+   "t1": 1.428
+  },
+  {
+   "w": "stone",
+   "t0": 1.474,
+   "t1": 1.788
+  },
+  {
+   "w": "ring",
+   "t0": 1.834,
+   "t1": 1.997
+  },
+  {
+   "w": "around",
+   "t0": 2.043,
+   "t1": 2.287
+  },
+  {
+   "w": "the",
+   "t0": 2.322,
+   "t1": 2.392
+  },
+  {
+   "w": "hole.",
+   "t0": 2.45,
+   "t1": 2.856
+  },
+  {
+   "w": "It's",
+   "t0": 3.077,
+   "t1": 3.262
+  },
+  {
+   "w": "a",
+   "t0": 3.297,
+   "t1": 3.32
+  },
+  {
+   "w": "tradition.",
+   "t0": 3.367,
+   "t1": 4.272
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T12:44:32.063Z"
+}
