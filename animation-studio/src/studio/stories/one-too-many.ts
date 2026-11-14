@@ -8,7 +8,6 @@ import type { Storyboard, ShotSpec, ActorSpec, When } from "../story/types";
 type V3 = [number, number, number];
 const T = (text: string, voice?: string) => (voice ? { text, voice } : { text });
 const atCam = (pos: V3, look: V3, fov: number) => ({ move: "at" as const, pos, look, fov });
-const cam = (pos: V3, look: V3, fov: number) => ({ camera: atCam(pos, look, fov), cams: [{ t: 0, ...atCam(pos, look, fov), blockOk: true }] });
 const move = (p0: V3, l0: V3, f0: number, p1: V3, l1: V3, f1: number, t0 = 0.1, dur = 1.6) =>
   ({ camera: atCam(p0, l0, f0), cams: [{ t: 0, ...atCam(p0, l0, f0), blockOk: true }, { t: t0, ...atCam(p1, l1, f1), glide: dur, blockOk: true }] });
 const FIELD = { set: "ashfordField", light: "day" as const };
@@ -67,7 +66,7 @@ const shots: ShotSpec[] = [
     actors: [{ who: "okoye", at: [2.0, 0, 20.2], act: "determined", facing: "toward:p25", hold: "clipboard", gesture: "point", walk: { to: [2.0, 0, 13.4], t0: 0.1, t1: 1.55 } }, ...class7C(), CAROL()],
     props: [], note: "2 she counts the line" },
   { cont: true, until: { word: "Thirty-one" }, ...FIELD, dur: 2.5,
-    ...cam([3.4, 8.8, 25.2], [0.0, 0.3, 15.2], 50),
+    ...move([3.4, 8.8, 25.2], [0.0, 0.3, 15.2], 50, [3.0, 4.6, 15.2], [0.9, 0.4, 10.9], 44, 0.3, 1.7),
     actors: [...class7C(), ...others(), CAROL(), { who: "okoye", at: [2.1, 0, 12.2], act: "neutral", facing: "toward:carol", hold: "clipboard" }],
     props: [...tags([...Array.from({ length: 30 }, (_, k) => pos7C(k)), CAROL_AT], 0.1, 0.055), ASSEMBLY], note: "2 thirty-one" },
   { cont: true, ...FIELD, dur: 2.0,
@@ -81,12 +80,13 @@ const shots: ShotSpec[] = [
     props: [], note: "3 count again" },
   // ======== line 4: the recount: thirty, and the end of the line is empty
   { say: T("She counted again. Thirty."), ...FIELD,
-    ...cam([3.4, 8.8, 25.2], [0.0, 0.3, 15.2], 50),
+    ...move([3.4, 8.8, 25.2], [0.0, 0.3, 15.2], 50, [3.0, 4.6, 15.2], [0.9, 0.4, 10.9], 44, 0.3, 1.7),
     actors: [...class7C(), ...others(), { who: "okoye", at: [2.0, 0, 11.4], act: "neutral", facing: "toward:p29", hold: "clipboard" }],
     props: [...tags(Array.from({ length: 30 }, (_, k) => pos7C(k)), 0.05, 0.05), ASSEMBLY], note: "4 thirty" },
   { ...FIELD, dur: 2.2,
-    ...move([3.4, 0.7, 13.6], [-0.2, 1.3, 6.0], 58, [3.0, 0.75, 13.0], [-0.1, 1.5, 6.0], 50, 0.1, 2.0),
-    actors: class7C(), props: [], note: "4 the end of the line" },
+    ...move([3.0, 4.6, 15.2], [0.9, 0.4, 10.9], 44, [2.4, 3.2, 13.2], [1.0, 0.3, 10.7], 40, 0.2, 1.9),
+    actors: [...class7C(), { who: "okoye", at: [1.9, 0, 12.6], act: "confused", facing: "toward:p29" }],
+    props: tags(Array.from({ length: 30 }, (_, k) => pos7C(k)), 0, 0).filter((p) => p.at[2] < 13.0 && p.at[0] > 0.5), note: "4 the empty place at the end of the line" },
 ];
 
 export const ONE_TOO_MANY: Storyboard = {
