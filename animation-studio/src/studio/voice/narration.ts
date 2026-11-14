@@ -22,12 +22,13 @@ export const fnv = (s: string) => {
 };
 
 /** the request body for a line (exactly what is sent to ElevenLabs, minus credentials) */
-export const requestOf = (p: VoicePreset, text: string) => ({ text, model_id: p.model, voice_settings: p.settings });
+export const requestOf = (p: VoicePreset, text: string, ctx?: { before?: string; after?: string }) => ({ text, model_id: p.model, voice_settings: p.settings,
+  ...(ctx?.before ? { previous_text: ctx.before } : {}), ...(ctx?.after ? { next_text: ctx.after } : {}) });
 /** the cache key of a line: voice id + model + settings + text + output format */
-export const clipHash = (voice: string, text: string) => {
+export const clipHash = (voice: string, text: string, ctx?: { before?: string; after?: string }) => {
   const p = VOICES[voice];
   if (!p) throw new Error(`unknown voice preset "${voice}" (presets: ${Object.keys(VOICES).join(", ")})`);
-  return fnv(JSON.stringify({ v: p.voiceId, ...requestOf(p, text), fmt: "mp3_44100_128" }));
+  return fnv(JSON.stringify({ v: p.voiceId, ...requestOf(p, text, ctx), fmt: "mp3_44100_128" }));
 };
 
 /** a stand-in clip before the line is generated (validation and previews work before any credits are spent):

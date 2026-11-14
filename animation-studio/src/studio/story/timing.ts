@@ -36,7 +36,7 @@ export const voiceOf = (sb: Storyboard, l: Line) => l.voice ?? sb.voices?.[l.who
 /** every line of a storyboard with its voice and cache key (what `npm run voice` needs to generate) */
 export const lineList = (sb: Storyboard) => sb.shots.flatMap((s, k) => linesOf(s).map((l) => {
   const voice = voiceOf(sb, l);
-  return { shot: k, line: l, voice, hash: VOICES[voice] ? clipHash(voice, l.text) : "", who: l.who ?? "narrator" };
+  return { shot: k, line: l, voice, hash: VOICES[voice] ? clipHash(voice, l.text, l.context) : "", who: l.who ?? "narrator" };
 }));
 
 /** pauses inside a line: cut the clip in the gap after each named word (the middle of the silence between that word and
@@ -77,7 +77,7 @@ export const resolve = (sb0: Storyboard, narr?: Narration): Timing => {
     for (const l of ls) {
       const voice = voiceOf(sb, l);
       if (!VOICES[voice]) { problems.push(`shot ${k + 1}: unknown voice "${voice}" (presets: ${Object.keys(VOICES).join(", ")})`); continue; }
-      const hash = clipHash(voice, l.text), have = narr?.clips[hash], clip = have ?? estimateClip(voice, l.text);
+      const hash = clipHash(voice, l.text, l.context), have = narr?.clips[hash], clip = have ?? estimateClip(voice, l.text);
       cursor += l.gap ?? 0;
       const fileAt = cursor - clip.lead;
       const p: Placed = { shot: k, who: l.who ?? "narrator", voice, text: l.text, hash, estimated: !have, fileAt, start: cursor, end: fileAt + clip.end, clip,

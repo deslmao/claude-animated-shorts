@@ -33,7 +33,7 @@ const mask = (s: string) => s.replace(/sk_[A-Za-z0-9]+/g, "sk_***");
 for (const f of fs.readdirSync(CACHE).filter((x: string) => x.endsWith(".json"))) {
   const c = JSON.parse(fs.readFileSync(`${CACHE}/${f}`, "utf8")), p = VOICES[c.voice];
   if (!p || p.voiceId !== c.voiceId || p.model !== c.model || JSON.stringify(p.settings) !== JSON.stringify(c.settings)) continue;
-  const h = clipHash(c.voice, c.text), old = f.slice(0, -5);
+  const h = clipHash(c.voice, c.text, c.context), old = f.slice(0, -5);
   if (h === old || fs.existsSync(`${CACHE}/${h}.json`)) continue;
   fs.renameSync(`${CACHE}/${old}.mp3`, `${CACHE}/${h}.mp3`);
   fs.writeFileSync(`${CACHE}/${h}.json`, JSON.stringify({ ...c, hash: h }, null, 1)); fs.unlinkSync(`${CACHE}/${f}`);
@@ -60,7 +60,7 @@ const key = proc.process.env.ELEVENLABS_API_KEY;
 for (const l of todo) {
   const p = VOICES[l.voice];
   const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${p.voiceId}/with-timestamps?output_format=mp3_44100_128`, {
-    method: "POST", headers: { "Content-Type": "application/json", ...(key ? { "xi-api-key": key } : {}) }, body: JSON.stringify(requestOf(p, l.line.text)),
+    method: "POST", headers: { "Content-Type": "application/json", ...(key ? { "xi-api-key": key } : {}) }, body: JSON.stringify(requestOf(p, l.line.text, l.line.context)),
   });
   const body = await res.text();
   if (!res.ok) {
@@ -73,7 +73,7 @@ for (const l of todo) {
   fs.writeFileSync(mp3, Buffer.from(d.audio_base64, "base64"));
   const words = wordsFromAlignment(d.alignment);
   const clip: Clip = { hash: l.hash, text: l.line.text, voice: l.voice, lead: words[0]?.t0 ?? 0, end: words[words.length - 1]?.t1 ?? 0, dur: durOf(mp3), words };
-  fs.writeFileSync(`${CACHE}/${l.hash}.json`, JSON.stringify({ ...clip, voiceId: p.voiceId, model: p.model, settings: p.settings, created: new Date().toISOString() }, null, 1));
+  fs.writeFileSync(`${CACHE}/${l.hash}.json`, JSON.stringify({ ...clip, voiceId: p.voiceId, model: p.model, settings: p.settings, ...(l.line.context ? { context: l.line.context } : {}), created: new Date().toISOString() }, null, 1));
   console.log(`  generated ${l.hash}  ${clip.dur.toFixed(2)} s  ${words.length} words  "${l.line.text.slice(0, 50)}"`);
 }
 

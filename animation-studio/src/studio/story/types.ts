@@ -63,7 +63,11 @@ export type Beat = When & { act?: Act; face?: Expr; gesture?: Gesture; /** pick 
  *  occurrence in the line (default 1); cut: where in that silence to cut, 0 = right after the word, 1 = just before the
  *  next (default 0.5; move it off a breath so the breath stays whole) */
 export type LinePause = { after: string; n?: number; s: number; cut?: number };
-export type Line = { text: string; who?: string; voice?: string; gap?: number; pauses?: LinePause[] };
+/** context (optional): the words spoken just before / after the line, sent to the voice model so it delivers the line
+ *  as part of that moment (a surprised "thirty-one?" right after a count); not spoken and not captioned. Lines
+ *  without it keep their exact cache keys */
+export type LineContext = { before?: string; after?: string };
+export type Line = { text: string; who?: string; voice?: string; gap?: number; pauses?: LinePause[]; context?: LineContext };
 export type ActorSpec = {
   who: string;                // key into storyboard.cast
   at: Where;

@@ -1,0 +1,29 @@
+{
+ "hash": "1953ac14744837",
+ "text": "...thirty-one?",
+ "voice": "aliceSurprise",
+ "lead": 0,
+ "end": 1.533,
+ "dur": 1.567347,
+ "words": [
+  {
+   "w": "...thirty-one?",
+   "t0": 0,
+   "t1": 1.533
+  }
+ ],
+ "voiceId": "Xb7hH8MSUJpSbSDYk0k2",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 0.9
+ },
+ "context": {
+  "before": "Twenty-eight, twenty-nine, thirty.",
+  "after": "But there are only thirty on the register."
+ },
+ "created": "2026-11-14T06:52:02.617Z"
+}

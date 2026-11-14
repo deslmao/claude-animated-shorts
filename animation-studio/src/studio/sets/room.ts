@@ -71,7 +71,9 @@ export const buildRoom = (root: THREE.Object3D, s: RoomSpec) => {
         box(detail, trim, sd.m, cx - 0.03, cx + 0.03, h.y0, h.y1, -0.1, -0.05);
         box(detail, trim, sd.m, h.x0, h.x1, (h.y0 + h.y1) / 2 - 0.03, (h.y0 + h.y1) / 2 + 0.03, -0.1, -0.05);
         const vw = (h.x1 - h.x0) + 14, vh = (h.y1 - h.y0) + 6; // big enough for steep angles through the opening
-        detail.add(new THREE.PlaneGeometry(vw, vh).translate(cx, (h.y0 + h.y1) / 2 + 0.6, -3), glow("view" + (o.view ?? "garden"), () => ({ map: windowViewHD(o.view ?? "garden") })), sd.m);
+        // each window's view sits at its own depth: two windows on one wall have overlapping view planes (each is 14 m
+        // wider than its opening), and at one shared depth they z-fought into flickering stripes (One Too Many, classroom)
+        detail.add(new THREE.PlaneGeometry(vw, vh).translate(cx, (h.y0 + h.y1) / 2 + 0.6, -3 - i * 0.3), glow("view" + (o.view ?? "garden"), () => ({ map: windowViewHD(o.view ?? "garden") })), sd.m);
       } else {
         // door: frame + painted panel door slightly open
         for (const [a0, a1, b0, b1] of [[h.x0 - 0.1, h.x0, 0, h.y1], [h.x1, h.x1 + 0.1, 0, h.y1], [h.x0 - 0.1, h.x1 + 0.1, h.y1, h.y1 + 0.1]]) box(detail, trim, sd.m, a0, a1, b0, b1, -0.02, 0.05);
