@@ -1,0 +1,90 @@
+{
+ "hash": "0eee2c620c82cc",
+ "text": "Smoke poured from the science block. Ms Okoye counted her class. Thirty. Exactly right.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 6.502,
+ "dur": 6.530612,
+ "words": [
+  {
+   "w": "Smoke",
+   "t0": 0,
+   "t1": 0.372
+  },
+  {
+   "w": "poured",
+   "t0": 0.418,
+   "t1": 0.708
+  },
+  {
+   "w": "from",
+   "t0": 0.743,
+   "t1": 0.859
+  },
+  {
+   "w": "the",
+   "t0": 0.906,
+   "t1": 0.975
+  },
+  {
+   "w": "science",
+   "t0": 1.01,
+   "t1": 1.37
+  },
+  {
+   "w": "block.",
+   "t0": 1.393,
+   "t1": 1.765
+  },
+  {
+   "w": "Ms",
+   "t0": 2.02,
+   "t1": 2.229
+  },
+  {
+   "w": "Okoye",
+   "t0": 2.299,
+   "t1": 2.647
+  },
+  {
+   "w": "counted",
+   "t0": 2.694,
+   "t1": 3.03
+  },
+  {
+   "w": "her",
+   "t0": 3.065,
+   "t1": 3.146
+  },
+  {
+   "w": "class.",
+   "t0": 3.193,
+   "t1": 3.762
+  },
+  {
+   "w": "Thirty.",
+   "t0": 4.296,
+   "t1": 4.981
+  },
+  {
+   "w": "Exactly",
+   "t0": 5.387,
+   "t1": 5.851
+  },
+  {
+   "w": "right.",
+   "t0": 5.921,
+   "t1": 6.502
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T03:39:40.013Z"
+}

@@ -1,0 +1,35 @@
+{
+ "hash": "18e667e64a655a",
+ "text": "Leo came out.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 1.161,
+ "dur": 1.201633,
+ "words": [
+  {
+   "w": "Leo",
+   "t0": 0,
+   "t1": 0.325
+  },
+  {
+   "w": "came",
+   "t0": 0.395,
+   "t1": 0.592
+  },
+  {
+   "w": "out.",
+   "t0": 0.639,
+   "t1": 1.161
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T03:39:45.628Z"
+}

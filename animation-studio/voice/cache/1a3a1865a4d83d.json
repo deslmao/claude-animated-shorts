@@ -1,0 +1,80 @@
+{
+ "hash": "1a3a1865a4d83d",
+ "text": "She found him under the sinks, and pushed him towards the stairs.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.576,
+ "dur": 3.604898,
+ "words": [
+  {
+   "w": "She",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "found",
+   "t0": 0.244,
+   "t1": 0.441
+  },
+  {
+   "w": "him",
+   "t0": 0.488,
+   "t1": 0.58
+  },
+  {
+   "w": "under",
+   "t0": 0.639,
+   "t1": 0.813
+  },
+  {
+   "w": "the",
+   "t0": 0.859,
+   "t1": 0.929
+  },
+  {
+   "w": "sinks,",
+   "t0": 0.987,
+   "t1": 1.463
+  },
+  {
+   "w": "and",
+   "t0": 1.591,
+   "t1": 1.73
+  },
+  {
+   "w": "pushed",
+   "t0": 1.788,
+   "t1": 2.02
+  },
+  {
+   "w": "him",
+   "t0": 2.043,
+   "t1": 2.125
+  },
+  {
+   "w": "towards",
+   "t0": 2.171,
+   "t1": 2.531
+  },
+  {
+   "w": "the",
+   "t0": 2.589,
+   "t1": 2.67
+  },
+  {
+   "w": "stairs.",
+   "t0": 2.705,
+   "t1": 3.576
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T03:39:45.149Z"
+}

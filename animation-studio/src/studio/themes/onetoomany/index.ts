@@ -15,7 +15,8 @@ import type { Theme } from "..";
 import type { Look } from "../../characters/figure";
 import { INK, type Pen } from "../../characters/toon";
 import { Batch, quadUp } from "../../materials/geo";
-import { asphaltHD } from "../../materials/paint2";
+import { asphaltHD, plasterHD, tilesHD } from "../../materials/paint2";
+import { buildRoom } from "../../sets/room";
 import { At, frame, col, box, cyl, sph, tex, panel, glow } from "../../props/kit";
 import { tree, flowers, tufts, fence } from "../../props/nature";
 import { bin, bench } from "../../props/outdoor";
@@ -65,6 +66,15 @@ const TEACHER_A: Look = { name: "Teacher (hi-vis)", build: "tall", skin: "#c9906
   top: { style: "shirt", color: "#cfe0f2" }, layer: { style: "waistcoat", color: "#e3ec3c" }, legs: "#3a3d47", shoes: "#2a201a" };
 const TEACHER_B: Look = { name: "Teacher (hi-vis)", build: "adult", skin: "#f1c9a8", seed: 106, hair: { style: "ponytail", color: "#a5682f" }, glasses: { style: "round", color: INK },
   top: { style: "sweater", color: "#5d8a3a" }, layer: { style: "waistcoat", color: "#e3ec3c" }, legs: "#2f3448", shoes: "#3a2b20" };
+
+/** firefighters: dark fire tunic with reflective bands, a yellow helmet */
+const FIREFIGHTER: Look = { name: "Firefighter", build: "big", skin: "#e8b896", seed: 107, hair: { style: "short", color: "#3b2c22" },
+  top: { style: "stripes", color: "#2a2e3a", accent: "#e3ec3c" }, layer: { style: "longcoat", color: "#20242e" }, hat: { style: "hardhat", color: "#e8c33a" }, legs: "#20242e", shoes: "#15171b" };
+/** the 1979 teacher with the register: brown corduroy jacket, wide tie, moustache */
+const TEACHER_1979: Look = { name: "Teacher (1979)", build: "lanky", skin: "#efc9a6", seed: 108, hair: { style: "side", color: "#5a3b2a" }, moustache: { style: "thin", color: "#5a3b2a" },
+  top: { style: "shirt", color: "#e9d9b4" }, neck: { style: "tie", color: "#8c3b4a" }, layer: { style: "blazer", color: "#7a5236" }, legs: "#5a4636", shoes: "#3a2b20" };
+/** Ms Okoye at the end of the line, afterwards: her colours washed out like Carol's (an old photograph) */
+const OKOYE_GHOST: Look = { ...OKOYE, name: "Ms Okoye (after)", skin: "#a88f7e", top: { style: "shirt", color: "#e2ded4" }, layer: { style: "cardigan", color: "#7a6670" }, legs: "#55565c", shoes: "#3a3436" };
 
 // ---------------------------------------------------------------- item: clipboard (held)
 const clipboardItem = (p: Pen, x: number, y: number, u: number, s: number) => {
@@ -215,7 +225,7 @@ const ashfordField = () => {
   for (const x of [-2.4, 2.4]) panel(b, glow("otmWinM1", () => ({ map: windowTex(1), color: "#e9edf2" })), I, x, 2.0, 2.614, 1.0, 1.6);
   b.add(plane(4.6, 0.86), glow("otmSignM", () => ({ map: schoolSignTex() })), new THREE.Matrix4().makeTranslation(0, 3.55, 2.62));
   cyl(b, col("#f4f1ea"), I, 0, 5.6, 0.04, 0.48, 0.48, 0.06, 28, Math.PI / 2); cyl(b, col("#1f2d4f"), I, 0, 5.6, 0.0, 0.54, 0.54, 0.05, 28, Math.PI / 2);
-  box(b, col("#241726"), I, -0.02, 0.02, 5.6, 5.95, 0.08, 0.1); box(b, col("#241726"), I, 0, 0.26, 5.58, 5.62, 0.08, 0.1);         // the clock's hands
+  box(b, col("#241726"), I, -0.02, 0.02, 5.6, 5.95, 0.104, 0.12); box(b, col("#241726"), I, 0, 0.26, 5.58, 5.62, 0.104, 0.12);         // the clock's hands
   for (const x of [-16.6, -7.6, 7.6, 16.6]) box(b, col("#4a4d55"), I, x - 0.06, x + 0.06, 0, FH * NF + 0.6, 0.0, 0.12); // downpipes
   for (const [x, w] of [[-10, 2.4], [-6.5, 1.2], [9, 3.0]] as const) box(b, col("#9aa0a6"), I, x - w / 2, x + w / 2, FH * NF + 0.85, FH * NF + 1.9, -6, -3.5); // roof plant
   // the science block (single storey, right), its sign and big lab windows
@@ -236,7 +246,7 @@ const ashfordField = () => {
   for (const [x, z, h, k] of [[-12.5, 9.5, 6.5, "round"], [12.8, 9.2, 7, "fat"], [-19, 10.5, 7.5, "tall"], [20, 10.8, 6.5, "round"]] as const) tree(b, k, x, 0, z, h, 60 + x, 1);
   for (let k = 0; k < 9; k++) {                                                                                           // school bags dumped by the assembly point
     const x = -5.6 + (k % 5) * 0.34, z = 9.0 + Math.floor(k / 5) * 0.36, c = ["#1f2d4f", "#a8323a", "#2f5f6a", "#3a3d47", "#c8643f"][k % 5];
-    box(b, col(c), I, x - 0.15, x + 0.15, 0.01, 0.34, z - 0.1, z + 0.1);
+    box(b, col(c), I, x - 0.15, x + 0.15, 0.022, 0.34, z - 0.1, z + 0.1);
   }
   for (const x of [-2.4, 2.4]) { cyl(b, col("#e2662e"), I, x, 0.01, 8.6, 0.03, 0.16, 0.42, 14); cyl(b, col("#f4f1ea"), I, x, 0.2, 8.6, 0.09, 0.115, 0.07, 14); } // cones at the path
   // trees round the field, a hedge along the back, a fence on the far side
@@ -249,6 +259,114 @@ const ashfordField = () => {
   return { root, env: { clouds: true }, spots: ASH_SPOTS, views: ASH_VIEWS };
 };
 
+
+// ---------------------------------------------------------------- the later scenes' props
+/** a soft smoke puff (grey, alpha) */
+const puffTex = (k: string, c: string) => stex(`otmPuff${k}`, 256, 256, (g) => {
+  for (let i = 0; i < 9; i++) { const x = 70 + (i * 37) % 120, y = 80 + (i * 53) % 100, r0 = 50 + (i * 13) % 40; const gr = g.createRadialGradient(x, y, 4, x, y, r0); gr.addColorStop(0, c + "cc"); gr.addColorStop(1, c + "00"); g.fillStyle = gr; g.beginPath(); g.arc(x, y, r0, 0, 7); g.fill(); }
+});
+/** smokePlume: smoke pouring up from a roof or window, `at` = its base; steps drive it (give it steady steps, e.g.
+ *  every 0.15 s): the puffs rise, swell and thin out; variant "dark" for thick smoke */
+const smokePlumeRig = (a: At, v = "grey"): PropRig => {
+  const root = rigRoot(a), N = 10, c = v === "dark" ? "#3e3f45" : "#6f7076";
+  const ps = Array.from({ length: N }, (_, i) => { const m = mesh(plane(2.6, 2.6), new THREE.MeshBasicMaterial({ map: puffTex(v, c), transparent: true, depthWrite: false, toneMapped: false }), 0, 0, 0); root.add(m); return { m, i }; });
+  return { root, update: ({ step = 0, camPos }) => { for (const { m, i } of ps) { const u = ((i / N) + step * 0.035) % 1; m.position.set(Math.sin(i * 2.1 + u * 3) * 0.6 + u * 1.6, 0.4 + u * 7.5, Math.cos(i * 1.3) * 0.4); m.scale.setScalar(0.6 + u * 2.2); (m.material as THREE.MeshBasicMaterial).opacity = Math.min(1, u * 6) * (1 - u) * 1.3; m.visible = step > 0.001; m.lookAt(camPos); } } };
+};
+/** ceilingSmoke: smoke rolling along a ceiling, `at` = the middle of the stretch at ceiling height; variant = the
+ *  stretch length in metres (default 12) along local z; steps thicken it and keep it rolling */
+const ceilingSmokeRig = (a: At, v = "12"): PropRig => {
+  const root = rigRoot(a), L = Number(v) || 12, N = Math.round(L / 1.1);
+  const ps = Array.from({ length: N * 2 }, (_, i) => { const m = mesh(plane(2.4, 1.3), new THREE.MeshBasicMaterial({ map: puffTex("dark", "#45464c"), transparent: true, depthWrite: false, toneMapped: false }), 0, 0, 0); root.add(m); return { m, i }; });
+  return { root, update: ({ step = 0, camPos }) => { const k = Math.min(1, step / 3); for (const { m, i } of ps) { const z = -L / 2 + ((i * 0.55 + step * 0.12) % L), x = (i % 3 - 1) * 0.6; m.position.set(x, -0.25 - (i % 2) * 0.28 * k, z); (m.material as THREE.MeshBasicMaterial).opacity = 0.85 * k; m.visible = step > 0.001; m.lookAt(camPos); } } };
+};
+/** fireWindow: a window glowing orange from a fire inside (a pane 2.2 x 1.7 m, `at` = its centre, facing +z), hidden
+ *  until step 1; later steps flicker it; variant "figure": a small dark silhouette stands in it */
+const fireTex = (fig: boolean) => stex(`otmFire${fig ? 1 : 0}`, 256, 200, (g) => {
+  const gr = g.createLinearGradient(0, 200, 0, 0); gr.addColorStop(0, "#ffcf5a"); gr.addColorStop(0.6, "#f07a2a"); gr.addColorStop(1, "#8a2a1a"); g.fillStyle = gr; g.fillRect(0, 0, 256, 200);
+  if (fig) { g.fillStyle = "#2a1a1e"; g.beginPath(); g.arc(150, 92, 16, 0, 7); g.fill(); g.fillRect(136, 106, 28, 70); }
+  g.strokeStyle = "#f4f1ea"; g.lineWidth = 9; g.strokeRect(4, 4, 248, 192); g.beginPath(); g.moveTo(128, 0); g.lineTo(128, 200); g.stroke();
+});
+const fireWindowRig = (a: At, v?: string): PropRig => {
+  const root = rigRoot(a), m = mesh(plane(2.2, 1.7), new THREE.MeshBasicMaterial({ map: fireTex(v === "figure"), toneMapped: false }), 0, 0, 0.02); root.add(m);
+  return { root, update: ({ step = 0 }) => { m.visible = step > 0.001; const f = Math.floor(step * 3) % 3; (m.material as THREE.MeshBasicMaterial).color.setScalar(f === 1 ? 0.86 : f === 2 ? 0.94 : 1); } };
+};
+/** yearPhoto: a framed school year photograph on a wall (0.62 x 0.46 m, `at` = its centre, facing +z): three rows
+ *  of pupils under a title; blazers are maroon up to 1980 and navy after; variant = the year. In 1979 the last pupil
+ *  of the back row is Carol (pale, a brown bob) */
+const yearTex = (y: string) => stex(`otmYear${y}`, 620, 460, (g) => {
+  const yr = Number(y) || 1990, old = yr <= 1980; let s0 = yr; const r = () => ((s0 = (s0 * 16807) % 2147483647) / 2147483647);
+  g.fillStyle = "#3b2a1e"; g.fillRect(0, 0, 620, 460); g.fillStyle = old ? "#d9c9a3" : "#e8e4da"; g.fillRect(24, 24, 572, 412);
+  g.fillStyle = old ? "#9a8a6a" : "#b9c3cc"; g.fillRect(24, 24, 572, 300);
+  g.fillStyle = "#2a2a30"; g.font = FONT(26); g.textAlign = "center"; g.fillText(`ASHFORD HIGH  ·  ${y}  ·  YEAR 7`, 310, 400);
+  for (let row = 0; row < 3; row++) for (let k = 0; k < 8; k++) {
+    const x = 64 + k * 70 + (row % 2) * 12, yy = 90 + row * 74, carol = old && yr === 1979 && row === 0 && k === 7;
+    g.fillStyle = carol ? "#7d2f3c" : old ? "#7a3640" : "#1f2d4f"; g.fillRect(x - 22, yy + 18, 44, 40);
+    g.fillStyle = carol ? "#e8e1d8" : ["#f1c9a8", "#c99067", "#e8b896", "#a8714c"][Math.floor(r() * 4)]; g.beginPath(); g.arc(x, yy, 19, 0, 7); g.fill();
+    g.fillStyle = carol ? "#6a5a4e" : ["#2a201a", "#6b4226", "#a5682f", "#4a2f22"][Math.floor(r() * 4)]; g.beginPath(); g.arc(x, yy - 6, 20, Math.PI, 0); g.fill();
+    if (carol) { g.fillRect(x - 20, yy - 6, 8, 22); g.fillRect(x + 12, yy - 6, 8, 22); }
+  }
+  if (old) { g.fillStyle = "rgba(120,90,40,0.22)"; g.fillRect(24, 24, 572, 412); }
+});
+const yearPhotoBuild = (b: Batch, a: At, v = "1990") => { const m = frame(a); box(b, col("#3b2a1e"), m, -0.33, 0.33, -0.25, 0.25, -0.03, 0.0); b.add(plane(0.62, 0.46), glow(`otmYearM${v}`, () => ({ map: yearTex(v), color: "#eeeae2" })), at(m, 0, 0, 0.003)); };
+/** plaque: the small brass memorial plaque (0.42 x 0.2 m, `at` = its centre, facing +z) */
+const plaqueTex = () => stex("otmPlaque", 840, 400, (g) => {
+  const gr = g.createLinearGradient(0, 0, 840, 400); gr.addColorStop(0, "#d9b25a"); gr.addColorStop(0.5, "#f0d58a"); gr.addColorStop(1, "#b88c3a"); g.fillStyle = gr; rr(g, 4, 4, 832, 392, 30); g.fill();
+  g.strokeStyle = "#7a5a22"; g.lineWidth = 10; rr(g, 22, 22, 796, 356, 20); g.stroke();
+  g.fillStyle = "#4a3410"; g.textAlign = "center"; g.font = FONT(44, "normal"); g.fillText("IN MEMORY OF", 420, 110); g.font = FONT(88); g.fillText("CAROL WEBB", 420, 210);
+  g.font = FONT(44, "normal"); g.fillText("AGED 11", 420, 275); g.fillText("LOST IN THE FIRE OF 1979", 420, 340);
+});
+const plaqueBuild = (b: Batch, a: At) => { const m = frame(a); b.add(plane(0.42, 0.2), glow("otmPlaqueM", () => ({ map: plaqueTex() })), at(m, 0, 0, 0.004)); box(b, col("#8a6a2a"), m, -0.215, 0.215, -0.105, 0.105, -0.01, 0.002); };
+/** phonePhoto: Ms Okoye's hand holding her phone up to the lens, the photo of the line on its screen (an ink card
+ *  0.4 m wide facing +z: ~0.45 m from an `at` camera); variant wide (the whole line, a maroon blazer at the very end)
+ *  or zoom (the end of the line, the girl's back) */
+const phoneTex = (v: string) => stex(`otmPhone${v}`, 1024, 1024, (g) => {
+  g.clearRect(0, 0, 1024, 1024);
+  g.fillStyle = "#17191e"; rr(g, 262, 40, 500, 900, 54); g.fill(); g.strokeStyle = INK; g.lineWidth = 12; g.stroke();
+  g.save(); rr(g, 292, 90, 440, 800, 30); g.clip();
+  g.fillStyle = "#9aa9b8"; g.fillRect(292, 90, 440, 240); g.fillStyle = "#b5603f"; g.fillRect(292, 180, 440, 170); g.fillStyle = "#6f8f4a"; g.fillRect(292, 350, 440, 540);
+  const zoom = v === "zoom", n = zoom ? 3 : 10, sc = zoom ? 3.2 : 1;
+  for (let k = 0; k < n; k++) { const x = zoom ? 380 + k * 120 : 330 + k * 38, y = zoom ? 520 : 520 + (k % 2) * 4, end = k === n - 1;
+    g.fillStyle = end ? "#7d2f3c" : "#1f2d4f"; g.fillRect(x - 9 * sc, y, 18 * sc, 28 * sc);
+    g.fillStyle = end ? "#6a5a4e" : ["#f1c9a8", "#c99067", "#e8b896"][k % 3]; g.beginPath(); g.arc(x, y - 8 * sc, 9 * sc, 0, 7); g.fill();
+    if (!end) { g.fillStyle = "#2a201a"; g.beginPath(); g.arc(x, y - 11 * sc, 9 * sc, Math.PI, 0); g.fill(); } }
+  g.restore();
+  g.fillStyle = "#7a3b5c"; rr(g, 640, 860, 384, 164, 26); g.fill(); g.strokeStyle = INK; g.lineWidth = 9; g.stroke();
+  g.fillStyle = "#8d5a3b"; rr(g, 600, 780, 220, 140, 50); g.fill(); g.stroke(); for (let k = 0; k < 3; k++) { rr(g, 700 + k * 6, 560 + k * 80, 120, 60, 26); g.fill(); g.stroke(); }
+});
+const phonePhotoBuild = (b: Batch, a: At, v = "wide") => { b.add(plane(CARD_W, CARD_W), new THREE.MeshBasicMaterial({ map: phoneTex(v), transparent: true, alphaTest: 0.02, toneMapped: false }), at(frame(a), 0, CARD_W / 2, 0)); };
+
+// ---------------------------------------------------------------- sets: the corridor (library and toilets doors) and the boys' toilets
+const CORR_SPOTS: Record<string, V3> = { photos: [1.0, 0, -0.2], library: [0.9, 0, -1.6], end: [0, 0, -5.6], mid: [0, 0, 0], near: [0, 0, 3.0] };
+const CORR_VIEWS: View[] = [{ name: "down the corridor", pos: [0.2, 1.55, 5.6], look: [0, 1.4, -6.5], fov: 55, establishing: true, cInf: 6 }, { name: "photo wall", pos: [-0.9, 1.55, 1.6], look: [1.6, 1.55, -0.8], fov: 48, cInf: 9 }];
+const ashfordCorridor = () => {
+  const root = new THREE.Group(), b = new Batch(), I = new THREE.Matrix4();
+  buildRoom(root, { w: 3.2, d: 14, h: 2.8, floor: tex("otmLino", () => tilesHD("#c9c2b0", 10, "#b3ab98"), 1, 1), wall: tex("otmCorrWall", () => plasterHD("#ece2c8"), 1, 1),
+    lower: tex("otmCorrLow", () => plasterHD("#5f8fa3"), 1, 1), lowerH: 1.0, ceiling: "#e8e2d4", tiles: true,
+    openings: [{ wall: "back", at: 0, w: 1.0, h: 2.1, sill: 0, kind: "door" }, { wall: "right", at: -1.6, w: 1.1, h: 2.1, sill: 0, kind: "door" }] });
+  for (let k = 0; k < 12; k++) { const z = -6.4 + k * 0.62; box(b, col(["#3f6fb5", "#2f5f6a", "#3f6fb5"][k % 3]), I, -1.6, -1.22, 0, 1.85, z, z + 0.58); for (let j = 0; j < 3; j++) box(b, col("#24365a"), I, -1.221, -1.219, 1.4 + j * 0.06, 1.43 + j * 0.06, z + 0.12, z + 0.46); }
+  for (let k = 0; k < 6; k++) b.add(plane(1.1, 0.5), glow("otmCeilLight", () => ({ color: "#fff8e8", toneMapped: false })), new THREE.Matrix4().makeRotationX(Math.PI / 2).setPosition(0, 2.79, -6 + k * 2.3));
+  b.add(plane(0.5, 0.2), glow("otmExitM", () => ({ map: stex("otmExit", 256, 100, (g) => { g.fillStyle = "#1e8a4c"; g.fillRect(0, 0, 256, 100); g.fillStyle = "#fff"; g.font = FONT(40); g.textAlign = "center"; g.fillText("FIRE EXIT", 128, 66); }), toneMapped: false })), new THREE.Matrix4().makeTranslation(0, 2.45, -6.98));
+  b.add(plane(0.5, 0.16), glow("otmBoysM", () => ({ map: stex("otmBoys", 256, 80, (g) => { g.fillStyle = "#1f2d4f"; g.fillRect(0, 0, 256, 80); g.fillStyle = "#fff"; g.font = FONT(44); g.textAlign = "center"; g.fillText("BOYS", 128, 58); }) })), new THREE.Matrix4().makeTranslation(0.85, 1.6, -6.98));
+  b.add(plane(0.55, 0.16), glow("otmLibM", () => ({ map: stex("otmLib", 256, 80, (g) => { g.fillStyle = "#1f2d4f"; g.fillRect(0, 0, 256, 80); g.fillStyle = "#fff"; g.font = FONT(40); g.textAlign = "center"; g.fillText("LIBRARY", 128, 56); }) })), new THREE.Matrix4().makeRotationY(-Math.PI / 2).setPosition(1.585, 2.3, -1.6));
+  for (const [z, c] of [[1.4, "#c25a7a"], [2.2, "#e9c46a"], [3.6, "#5d8a3a"]] as const) panel(b, col(c), new THREE.Matrix4().makeRotationY(Math.PI / 2).setPosition(-1.215, 0, 0), -z, 2.2, 0.0, 0.5, 0.36);
+  b.build(root, true);
+  return { root, env: { sky: false, clouds: false }, spots: CORR_SPOTS, views: CORR_VIEWS };
+};
+const TOI_SPOTS: Record<string, V3> = { sinks: [0.2, 0, -1.1], door: [1.4, 0, 1.2], mid: [0, 0, 0.2] };
+const TOI_VIEWS: View[] = [{ name: "the sinks", pos: [0.6, 1.3, 2.2], look: [0, 0.9, -1.4], fov: 52, establishing: true, cInf: 7 }];
+const ashfordToilets = () => {
+  const root = new THREE.Group(), b = new Batch(), I = new THREE.Matrix4();
+  buildRoom(root, { w: 3.6, d: 3.4, h: 2.7, floor: tex("otmToiFloor", () => tilesHD("#9aa0a6", 10, "#7d838a"), 1, 1), wall: tex("otmToiWall", () => tilesHD("#eef0ee", 12, "#cfd4d2"), 1, 1), ceiling: "#e6e8e4",
+    openings: [{ wall: "right", at: 1.1, w: 0.95, h: 2.1, sill: 0, kind: "door" }] });
+  for (let k = 0; k < 3; k++) { const x = -1.1 + k * 1.05;                                                                   // three basins, pipes, mirrors
+    box(b, col("#f4f4f0"), I, x - 0.3, x + 0.3, 0.78, 0.92, -1.7, -1.25); box(b, col("#c9ced6"), I, x - 0.03, x + 0.03, 0.35, 0.78, -1.62, -1.56);
+    box(b, col("#9fb2c2"), I, x - 0.32, x + 0.32, 1.2, 1.85, -1.699, -1.69); box(b, col("#c9ced6"), I, x - 0.02, x + 0.02, 0.92, 1.05, -1.6, -1.55); }
+  for (let k = 0; k < 3; k++) { const z = -1.2 + k * 0.9; box(b, col("#5f8fa3"), I, -1.8, -1.0, 0.15, 2.0, z + 0.4, z + 0.43); box(b, col("#6f9fb3"), I, -1.03, -1.0, 0.15, 2.0, z - 0.42, z + 0.4); }
+  box(b, col("#c9ced6"), I, 1.75, 1.8, 1.2, 1.5, -0.6, -0.3);                                                               // hand dryer
+  b.build(root, true);
+  return { root, env: { sky: false, clouds: false }, spots: TOI_SPOTS, views: TOI_VIEWS };
+};
+
 export const ONETOOMANY_THEME: Theme = {
   id: "onetoomany", name: "One Too Many (a school ghost story: fire drills at Ashford High)",
   desc: "a British secondary school by day: the main block and science block seen from the playing field, the fire assembly point and class lines of pupils in navy blazers, the red alarm bell, the teacher's fire register on its clipboard, number tags popping up as she counts; the new teacher, the head, a Year 7 boy, and the girl in the old maroon blazer",
@@ -256,13 +374,16 @@ export const ONETOOMANY_THEME: Theme = {
   mood: "mystery",
   ambience: { ashfordField: "amb_nature_day" },
   steps: { ashfordField: "step_grass" },
-  characters: { okoye: OKOYE, rowe: ROWE, carol: CAROL, leo: LEO, teacherA: TEACHER_A, teacherB: TEACHER_B },
+  characters: { okoye: OKOYE, rowe: ROWE, carol: CAROL, leo: LEO, teacherA: TEACHER_A, teacherB: TEACHER_B, firefighter: FIREFIGHTER, teacher1979: TEACHER_1979, okoyeGhost: OKOYE_GHOST },
   characterMeta: {
     okoye: { name: "Ms Okoye", desc: "dark hair up in a bun; a plum cardigan over a cream shirt; navy trousers", personality: "the new Year 7 form tutor at Ashford High (One Too Many): counts carefully, notices what others don't", themes: ["school", "mystery"], tags: ["teacher", "female", "protagonist"] },
     rowe: { name: "Mr Rowe", desc: "stout; receding grey hair; square glasses; grey suit, blue tie", personality: "the head teacher: kind, busy, long since used to the drills coming out one over (One Too Many)", themes: ["school"], tags: ["head", "teacher", "male", "boss"] },
     carol: { name: "Carol", desc: "a small girl with a brown bob in a faded maroon 1979 school blazer and old-gold tie, her colours washed out like an old photograph", personality: "Carol Webb, a Year 7 pupil lost in the 1979 fire (One Too Many): stands at the end of every line, very still, facing the school", themes: ["school", "ghost", "mystery"], tags: ["ghost", "child", "girl", "1979", "uniform"] },
     teacherA: { name: "Teacher on duty (hi-vis)", desc: "tall; short dark hair and beard; a hi-vis vest over a pale blue shirt", personality: "a teacher on fire-drill duty (One Too Many)", themes: ["school"], tags: ["teacher", "hi-vis", "male", "background"] },
     teacherB: { name: "Teacher on duty (hi-vis)", desc: "auburn ponytail; round glasses; a hi-vis vest over a green jumper", personality: "a teacher on fire-drill duty (One Too Many)", themes: ["school"], tags: ["teacher", "hi-vis", "female", "background"] },
+    firefighter: { name: "Firefighter", desc: "big; a dark fire tunic with reflective bands; a yellow helmet", personality: "a firefighter at the school fire (One Too Many)", themes: ["fire", "rescue"], tags: ["firefighter", "rescue", "uniform"] },
+    teacher1979: { name: "Teacher (1979)", desc: "lanky; side-parted hair and a thin moustache; brown corduroy jacket, wide maroon tie", personality: "the 1979 teacher calling the register on the field (One Too Many flashback)", themes: ["school", "history"], tags: ["teacher", "1970s", "male"] },
+    okoyeGhost: { name: "Ms Okoye (after)", desc: "Ms Okoye with her colours washed out like an old photograph", personality: "Ms Okoye at the end of the line, after the fire (One Too Many's last image)", themes: ["school", "ghost"], tags: ["ghost", "teacher"] },
     leo: { name: "Leo", desc: "a small boy with dark curls in today's uniform: navy blazer, red tie", personality: "a Year 7 pupil in 7C (One Too Many)", themes: ["school"], tags: ["child", "boy", "pupil"] },
   },
   items: { clipboard: { name: "Clipboard", desc: "a wooden clipboard with a lined sheet (a register, a checklist)", themes: ["school", "work"], tags: ["clipboard", "register", "list", "teacher", "count"], draw: clipboardItem } },
@@ -273,10 +394,25 @@ export const ONETOOMANY_THEME: Theme = {
       build: (b, a) => bellParts(b, frame(a)), rig: fireBellRig, steps: ["strike", "release"] },
     assemblySign: { name: "Fire assembly point sign", desc: "the green FIRE ASSEMBLY POINT sign on a 2 m post (panel 0.6 m, facing +z)", category: "theme", themes: ["school", "fire", "street"], tags: ["sign", "fire", "assembly", "safety"], radius: 0.1, height: 2.0,
       build: (b, a) => assemblyBuild(b, a) },
+    smokePlume: { name: "Smoke plume", desc: "smoke pouring up from a roof or window (puffs rising ~8 m, swelling and thinning), `at` = its base; give it steady steps (every ~0.15 s) to keep it rising; variant dark for thick smoke", category: "theme", themes: ["fire", "disaster"], tags: ["smoke", "fire", "plume"], radius: 0.5, height: 8,
+      build: () => undefined, rig: (a, v) => smokePlumeRig(a, v ?? "grey"), steps: ["it rises"], stepCount: () => 400, variants: { dark: () => undefined } },
+    ceilingSmoke: { name: "Smoke along a ceiling", desc: "dark smoke rolling along a ceiling, `at` = the middle of the stretch at ceiling height (y = ceiling), running along local z; variant = the stretch length in m (default 12); steps thicken it (full after 3) and keep it rolling", category: "theme", themes: ["fire"], tags: ["smoke", "fire", "ceiling", "corridor"], radius: 0.5, height: 0.6,
+      build: () => undefined, rig: (a, v) => ceilingSmokeRig(a, v ?? "12"), steps: ["it rolls"], stepCount: () => 400, param: { desc: "the stretch length in metres", ok: (v) => /^\d{1,2}$/.test(v) } },
+    fireWindow: { name: "Window with fire behind it", desc: "a school window (2.2 x 1.7 m, `at` = its centre, facing +z) glowing orange from a fire inside, hidden until step 1, flickering on later steps; variant figure: a small dark silhouette stands in it", category: "theme", themes: ["fire", "horror"], tags: ["window", "fire", "glow"], radius: 0.05, height: 1.7,
+      build: () => undefined, rig: (a, v) => fireWindowRig(a, v), steps: ["it glows"], stepCount: () => 400, variants: { figure: () => undefined } },
+    yearPhoto: { name: "School year photograph", desc: "a framed year photograph on a wall (0.62 x 0.46 m, `at` = its centre, facing +z): three rows of Year 7 pupils under ASHFORD HIGH · <year> · YEAR 7; maroon blazers up to 1980, navy after; in 1979 the last pupil of the back row is Carol", category: "theme", themes: ["school", "history", "mystery"], tags: ["photo", "frame", "class photo", "wall"], radius: 0.05, height: 0.46,
+      build: (b, a, v) => yearPhotoBuild(b, a, v ?? "1990"), param: { desc: "the year (4 digits)", ok: (v) => /^\d{4}$/.test(v) } },
+    plaque: { name: "Memorial plaque (Carol Webb)", desc: "a small brass plaque (0.42 x 0.2 m, `at` = its centre, facing +z): IN MEMORY OF / CAROL WEBB / AGED 11 / LOST IN THE FIRE OF 1979", category: "theme", themes: ["school", "history", "ghost"], tags: ["plaque", "memorial", "brass", "wall"], radius: 0.05, height: 0.2, build: (b, a) => plaqueBuild(b, a) },
+    phonePhoto: { name: "Phone photo of the line (insert)", desc: "Ms Okoye's hand holding her phone to the lens, its screen showing the photo of 7C's line: variant wide (ten in a row, a maroon blazer at the very end) or zoom (the end of the line: the girl's back). An ink card 0.4 m wide facing +z: ~0.45 m from an `at` camera", category: "theme", themes: ["school", "mystery"], tags: ["phone", "photo", "insert"], radius: 0.05, height: 0.4,
+      build: (b, a, v) => phonePhotoBuild(b, a, v ?? "wide"), param: { desc: "wide or zoom", ok: (v) => v === "wide" || v === "zoom" } },
     countTag: { name: "Count tag", desc: "a round white tag with a number (0.26 m), turning to face the camera, hidden until its step starts, when it pops up at once (a head being counted): put it ~0.35 m over a head; variant = the number", category: "theme", themes: ["school", "explainer"], tags: ["number", "count", "tag", "label"], radius: 0.05, height: 0.26,
       build: () => undefined, rig: (a, v) => countTagRig(a, v ?? "1"), steps: ["it pops up"], param: { desc: "the number (digits)", ok: (v) => /^\d{1,3}$/.test(v) } },
   },
-  sets: { ashfordField: { id: "ashfordField", title: "Ashford High from the playing field: the main block, the science block, the playground and the fire assembly point", lights: ["day", "golden"], build: ashfordField } },
-  layouts: { ashfordField: { spots: ASH_SPOTS, views: ASH_VIEWS } },
-  setMeta: { ashfordField: { name: "Ashford High (school from the field)", desc: "the three-storey main block faces +z at z 0 (x -18..18, 10.2 m tall, lived-in windows), the glass entrance at x 0 under a canopy and the ASHFORD HIGH SCHOOL sign; the single-storey science block at x 20..32; tarmac playground z 0..8 with a bike shelter (x -15..-9), bins and benches; the field from z 8 (pitch lines from z 24), trees down both sides, a hedge and fence at z 70. Class lines form on the grass from z 11; put the assemblySign prop at the assembly mark (marks: entrance, assembly, line, teacher, head, science, playground / views: field, lines, entrance / lights: day, golden)", themes: ["school", "outdoor", "mystery"], tags: ["school", "field", "playground", "outdoor", "building", "fire drill"] } },
+  sets: { ashfordField: { id: "ashfordField", title: "Ashford High from the playing field: the main block, the science block, the playground and the fire assembly point", lights: ["day", "golden"], build: ashfordField },
+    ashfordCorridor: { id: "ashfordCorridor", title: "Ashford High corridor: lockers, the year-photo wall, the library and the boys' toilets", lights: ["interior", "interiorCool"], build: ashfordCorridor },
+    ashfordToilets: { id: "ashfordToilets", title: "Ashford High boys' toilets: three basins under mirrors, cubicles, a hand dryer", lights: ["interiorCool"], build: ashfordToilets } },
+  layouts: { ashfordField: { spots: ASH_SPOTS, views: ASH_VIEWS }, ashfordCorridor: { spots: CORR_SPOTS, views: CORR_VIEWS }, ashfordToilets: { spots: TOI_SPOTS, views: TOI_VIEWS } },
+  setMeta: { ashfordCorridor: { name: "Ashford High corridor", desc: "a 3.2 m school corridor (x -1.6..1.6) from the boys' toilets door at the end (z -7) to the camera side (z +7), 2.8 m ceiling with light panels: blue lockers along the left wall, notice-board posters; the right wall (x 1.6) takes yearPhoto and plaque props (yaw -90); the LIBRARY door in the right wall at z -1.6; a FIRE EXIT sign over the end door (marks: photos, library, end, mid, near / views: down the corridor, photo wall / lights: interior, interiorCool)", themes: ["school", "indoor"], tags: ["corridor", "school", "lockers", "hallway"] },
+    ashfordToilets: { name: "Ashford High boys' toilets", desc: "a tiled 3.6 x 3.4 m room: three wall basins under mirrors on the back wall (z -1.7, basin tops 0.92 m), three cubicles on the left, a hand dryer and the door on the right (marks: sinks, door, mid / views: the sinks / lights: interiorCool)", themes: ["school", "indoor"], tags: ["toilets", "bathroom", "school"] },
+    ashfordField: { name: "Ashford High (school from the field)", desc: "the three-storey main block faces +z at z 0 (x -18..18, 10.2 m tall, lived-in windows), the glass entrance at x 0 under a canopy and the ASHFORD HIGH SCHOOL sign; the single-storey science block at x 20..32; tarmac playground z 0..8 with a bike shelter (x -15..-9), bins and benches; the field from z 8 (pitch lines from z 24), trees down both sides, a hedge and fence at z 70. Class lines form on the grass from z 11; put the assemblySign prop at the assembly mark (marks: entrance, assembly, line, teacher, head, science, playground / views: field, lines, entrance / lights: day, golden)", themes: ["school", "outdoor", "mystery"], tags: ["school", "field", "playground", "outdoor", "building", "fire drill"] } },
 };

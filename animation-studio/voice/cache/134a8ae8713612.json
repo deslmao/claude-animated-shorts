@@ -1,0 +1,125 @@
+{
+ "hash": "134a8ae8713612",
+ "text": "Thirty-one children. And at the very end, a girl in a maroon blazer. Ashford's blazers have been navy for forty years.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 7.709,
+ "dur": 7.758367,
+ "words": [
+  {
+   "w": "Thirty-one",
+   "t0": 0,
+   "t1": 0.58
+  },
+  {
+   "w": "children.",
+   "t0": 0.627,
+   "t1": 1.219
+  },
+  {
+   "w": "And",
+   "t0": 1.44,
+   "t1": 1.567
+  },
+  {
+   "w": "at",
+   "t0": 1.625,
+   "t1": 1.695
+  },
+  {
+   "w": "the",
+   "t0": 1.73,
+   "t1": 1.8
+  },
+  {
+   "w": "very",
+   "t0": 1.846,
+   "t1": 2.078
+  },
+  {
+   "w": "end,",
+   "t0": 2.148,
+   "t1": 2.531
+  },
+  {
+   "w": "a",
+   "t0": 2.566,
+   "t1": 2.647
+  },
+  {
+   "w": "girl",
+   "t0": 2.728,
+   "t1": 2.972
+  },
+  {
+   "w": "in",
+   "t0": 3.042,
+   "t1": 3.1
+  },
+  {
+   "w": "a",
+   "t0": 3.146,
+   "t1": 3.17
+  },
+  {
+   "w": "maroon",
+   "t0": 3.216,
+   "t1": 3.553
+  },
+  {
+   "w": "blazer.",
+   "t0": 3.611,
+   "t1": 4.307
+  },
+  {
+   "w": "Ashford's",
+   "t0": 4.841,
+   "t1": 5.329
+  },
+  {
+   "w": "blazers",
+   "t0": 5.364,
+   "t1": 5.77
+  },
+  {
+   "w": "have",
+   "t0": 5.805,
+   "t1": 5.898
+  },
+  {
+   "w": "been",
+   "t0": 5.921,
+   "t1": 6.06
+  },
+  {
+   "w": "navy",
+   "t0": 6.118,
+   "t1": 6.385
+  },
+  {
+   "w": "for",
+   "t0": 6.432,
+   "t1": 6.536
+  },
+  {
+   "w": "forty",
+   "t0": 6.583,
+   "t1": 6.873
+  },
+  {
+   "w": "years.",
+   "t0": 6.931,
+   "t1": 7.709
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T03:39:32.498Z"
+}

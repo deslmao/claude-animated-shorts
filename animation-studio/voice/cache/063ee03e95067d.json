@@ -1,0 +1,80 @@
+{
+ "hash": "063ee03e95067d",
+ "text": "So at the next drill, she took a photo of the line.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.972,
+ "dur": 3.004082,
+ "words": [
+  {
+   "w": "So",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "at",
+   "t0": 0.209,
+   "t1": 0.279
+  },
+  {
+   "w": "the",
+   "t0": 0.313,
+   "t1": 0.383
+  },
+  {
+   "w": "next",
+   "t0": 0.43,
+   "t1": 0.662
+  },
+  {
+   "w": "drill,",
+   "t0": 0.697,
+   "t1": 1.057
+  },
+  {
+   "w": "she",
+   "t0": 1.103,
+   "t1": 1.219
+  },
+  {
+   "w": "took",
+   "t0": 1.265,
+   "t1": 1.428
+  },
+  {
+   "w": "a",
+   "t0": 1.463,
+   "t1": 1.498
+  },
+  {
+   "w": "photo",
+   "t0": 1.544,
+   "t1": 1.916
+  },
+  {
+   "w": "of",
+   "t0": 1.974,
+   "t1": 2.032
+  },
+  {
+   "w": "the",
+   "t0": 2.078,
+   "t1": 2.148
+  },
+  {
+   "w": "line.",
+   "t0": 2.206,
+   "t1": 2.972
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T03:39:31.657Z"
+}

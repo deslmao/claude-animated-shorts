@@ -1,0 +1,25 @@
+{
+ "hash": "04bdac36a837b7",
+ "text": "Thirty-one?",
+ "voice": "aliceCount",
+ "lead": 0,
+ "end": 1.161,
+ "dur": 1.201633,
+ "words": [
+  {
+   "w": "Thirty-one?",
+   "t0": 0,
+   "t1": 1.161
+  }
+ ],
+ "voiceId": "Xb7hH8MSUJpSbSDYk0k2",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 0.88
+ },
+ "created": "2026-11-14T03:39:29.525Z"
+}

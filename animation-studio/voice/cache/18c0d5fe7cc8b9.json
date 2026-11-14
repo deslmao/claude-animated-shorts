@@ -1,0 +1,90 @@
+{
+ "hash": "18c0d5fe7cc8b9",
+ "text": "On the field, a teacher called the register, and when he said \"Carol Webb\",",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.947,
+ "dur": 3.996735,
+ "words": [
+  {
+   "w": "On",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "the",
+   "t0": 0.197,
+   "t1": 0.267
+  },
+  {
+   "w": "field,",
+   "t0": 0.325,
+   "t1": 0.673
+  },
+  {
+   "w": "a",
+   "t0": 0.708,
+   "t1": 0.778
+  },
+  {
+   "w": "teacher",
+   "t0": 0.848,
+   "t1": 1.138
+  },
+  {
+   "w": "called",
+   "t0": 1.173,
+   "t1": 1.382
+  },
+  {
+   "w": "the",
+   "t0": 1.405,
+   "t1": 1.474
+  },
+  {
+   "w": "register,",
+   "t0": 1.521,
+   "t1": 2.101
+  },
+  {
+   "w": "and",
+   "t0": 2.264,
+   "t1": 2.392
+  },
+  {
+   "w": "when",
+   "t0": 2.426,
+   "t1": 2.566
+  },
+  {
+   "w": "he",
+   "t0": 2.601,
+   "t1": 2.647
+  },
+  {
+   "w": "said",
+   "t0": 2.694,
+   "t1": 2.891
+  },
+  {
+   "w": "\"Carol",
+   "t0": 2.914,
+   "t1": 3.251
+  },
+  {
+   "w": "Webb\",",
+   "t0": 3.32,
+   "t1": 3.947
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T03:39:35.686Z"
+}

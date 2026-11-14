@@ -39,7 +39,7 @@ export const CAST = { milo: MILO, juno: JUNO, junoOut: JUNO_OUT, gus: GUS };
 
 // ---------------- crowd generator ----------------
 // Extras never borrow a lead's signature: no spiky tuft, no mustard top (Milo), no teal turtleneck under a lab coat (Juno).
-export type Era = "modern" | "fifties" | "victorian" | "medieval" | "office" | "lab" | "pirate" | "runner1904" | "pupil";
+export type Era = "modern" | "fifties" | "victorian" | "medieval" | "office" | "lab" | "pirate" | "runner1904" | "pupil" | "pupil1979";
 const SKINS = ["#ffe2c2", "#f5c9a0", "#ecd0b6", "#c99067", "#a8714c", "#e8b896"];
 const HAIRC = ["#2a201a", "#4a2f22", "#6b4226", "#a5682f", "#d9b26a", "#1f1a24", "#8c8a88", "#c94f2c"];
 const MOD_TOPS = ["#3f6fb5", "#c25a7a", "#5d8a3a", "#8c6bb1", "#2f5f6a", "#7b5ac9", "#e26d4f", "#4b4f5c", "#2a9d8f", "#b5653f"];
@@ -100,6 +100,15 @@ export const extra = (i: number, era: Era = "modern"): Look => {
       base.legs = pick(r, 49, ["#4a4d55", "#3a3d47", "#55585f"] as const); base.shoes = pick(r, 50, ["#1e1e22", "#2a201a"] as const);
       delete base.beard; delete base.moustache; delete base.hat; if (r(51) < 0.7) delete base.glasses;
       if (base.hair.style === "bald" || base.hair.style === "receding") base.hair = { ...base.hair, style: "short", color: pick(r, 52, HAIRC) };
+      break;
+    case "pupil1979": // the same school in 1979 (One Too Many flashback): maroon blazers, old-gold ties, longer hair
+      base.name = `pupil79_${i}`; base.build = r(53) < 0.8 ? "kid" : "petite";
+      base.top = { style: "shirt", color: pick(r, 54, ["#ece4d0", "#f0e8d6"] as const) };
+      base.layer = { style: "blazer", color: pick(r, 55, ["#7d2f3c", "#76303a", "#81343f"] as const) };
+      base.neck = { style: "tie", color: "#b8a26a" };
+      base.legs = pick(r, 56, ["#5c5b5e", "#4f4e52", "#625a52"] as const); base.shoes = pick(r, 57, ["#2a2628", "#3a2b20"] as const);
+      delete base.beard; delete base.moustache; delete base.hat; delete base.glasses;
+      if (base.hair.style === "bald" || base.hair.style === "receding" || base.hair.style === "buzz") base.hair = { ...base.hair, style: r(58) < 0.5 ? "side" : "curly", color: pick(r, 59, HAIRC) };
       break;
     case "medieval": base.top = { style: "sweater", color: pick(r, 29, ["#7a5a3a", "#5d6a3a", "#8c3b4a", "#6b6255"] as const) }; base.legs = pick(r, 30, ["#4a4036", "#5a4636"] as const); base.shoes = "#3a2b20"; break;
   }

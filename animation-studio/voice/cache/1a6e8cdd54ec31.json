@@ -1,0 +1,95 @@
+{
+ "hash": "1a6e8cdd54ec31",
+ "text": "Underneath, a small brass plaque. Carol Webb, aged eleven. Lost in the fire of 1979.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 6.594,
+ "dur": 6.635102,
+ "words": [
+  {
+   "w": "Underneath,",
+   "t0": 0,
+   "t1": 0.557
+  },
+  {
+   "w": "a",
+   "t0": 0.58,
+   "t1": 0.627
+  },
+  {
+   "w": "small",
+   "t0": 0.697,
+   "t1": 0.964
+  },
+  {
+   "w": "brass",
+   "t0": 1.022,
+   "t1": 1.312
+  },
+  {
+   "w": "plaque.",
+   "t0": 1.358,
+   "t1": 1.858
+  },
+  {
+   "w": "Carol",
+   "t0": 2.264,
+   "t1": 2.635
+  },
+  {
+   "w": "Webb,",
+   "t0": 2.694,
+   "t1": 3.042
+  },
+  {
+   "w": "aged",
+   "t0": 3.077,
+   "t1": 3.402
+  },
+  {
+   "w": "eleven.",
+   "t0": 3.46,
+   "t1": 3.901
+  },
+  {
+   "w": "Lost",
+   "t0": 4.087,
+   "t1": 4.365
+  },
+  {
+   "w": "in",
+   "t0": 4.412,
+   "t1": 4.481
+  },
+  {
+   "w": "the",
+   "t0": 4.516,
+   "t1": 4.586
+  },
+  {
+   "w": "fire",
+   "t0": 4.632,
+   "t1": 4.957
+  },
+  {
+   "w": "of",
+   "t0": 4.992,
+   "t1": 5.05
+  },
+  {
+   "w": "1979.",
+   "t0": 5.097,
+   "t1": 6.594
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T03:39:34.521Z"
+}

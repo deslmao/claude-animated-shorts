@@ -1,0 +1,100 @@
+{
+ "hash": "0e0af81568efc0",
+ "text": "She checked every face. Leo was missing. He'd gone to the toilets just before the bell.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 5.666,
+ "dur": 5.694694,
+ "words": [
+  {
+   "w": "She",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "checked",
+   "t0": 0.244,
+   "t1": 0.546
+  },
+  {
+   "w": "every",
+   "t0": 0.604,
+   "t1": 0.871
+  },
+  {
+   "w": "face.",
+   "t0": 0.94,
+   "t1": 1.486
+  },
+  {
+   "w": "Leo",
+   "t0": 1.95,
+   "t1": 2.276
+  },
+  {
+   "w": "was",
+   "t0": 2.345,
+   "t1": 2.461
+  },
+  {
+   "w": "missing.",
+   "t0": 2.519,
+   "t1": 3.007
+  },
+  {
+   "w": "He'd",
+   "t0": 3.17,
+   "t1": 3.367
+  },
+  {
+   "w": "gone",
+   "t0": 3.402,
+   "t1": 3.553
+  },
+  {
+   "w": "to",
+   "t0": 3.587,
+   "t1": 3.646
+  },
+  {
+   "w": "the",
+   "t0": 3.704,
+   "t1": 3.773
+  },
+  {
+   "w": "toilets",
+   "t0": 3.82,
+   "t1": 4.214
+  },
+  {
+   "w": "just",
+   "t0": 4.272,
+   "t1": 4.458
+  },
+  {
+   "w": "before",
+   "t0": 4.493,
+   "t1": 4.795
+  },
+  {
+   "w": "the",
+   "t0": 4.83,
+   "t1": 4.899
+  },
+  {
+   "w": "bell.",
+   "t0": 4.946,
+   "t1": 5.666
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T03:39:42.460Z"
+}

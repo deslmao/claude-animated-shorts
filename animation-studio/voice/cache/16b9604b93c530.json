@@ -1,0 +1,45 @@
+{
+ "hash": "16b9604b93c530",
+ "text": "Smoke rolled along the ceiling.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 1.858,
+ "dur": 1.906939,
+ "words": [
+  {
+   "w": "Smoke",
+   "t0": 0,
+   "t1": 0.395
+  },
+  {
+   "w": "rolled",
+   "t0": 0.441,
+   "t1": 0.731
+  },
+  {
+   "w": "along",
+   "t0": 0.778,
+   "t1": 0.975
+  },
+  {
+   "w": "the",
+   "t0": 1.022,
+   "t1": 1.091
+  },
+  {
+   "w": "ceiling.",
+   "t0": 1.126,
+   "t1": 1.858
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T03:39:43.637Z"
+}

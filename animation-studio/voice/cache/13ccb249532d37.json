@@ -1,0 +1,75 @@
+{
+ "hash": "13ccb249532d37",
+ "text": "Everyone was out, the count said. So nobody went back in.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.39,
+ "dur": 3.422041,
+ "words": [
+  {
+   "w": "Everyone",
+   "t0": 0,
+   "t1": 0.476
+  },
+  {
+   "w": "was",
+   "t0": 0.511,
+   "t1": 0.615
+  },
+  {
+   "w": "out,",
+   "t0": 0.673,
+   "t1": 0.94
+  },
+  {
+   "w": "the",
+   "t0": 0.975,
+   "t1": 1.068
+  },
+  {
+   "w": "count",
+   "t0": 1.115,
+   "t1": 1.335
+  },
+  {
+   "w": "said.",
+   "t0": 1.393,
+   "t1": 1.707
+  },
+  {
+   "w": "So",
+   "t0": 1.869,
+   "t1": 1.997
+  },
+  {
+   "w": "nobody",
+   "t0": 2.067,
+   "t1": 2.334
+  },
+  {
+   "w": "went",
+   "t0": 2.38,
+   "t1": 2.531
+  },
+  {
+   "w": "back",
+   "t0": 2.577,
+   "t1": 2.752
+  },
+  {
+   "w": "in.",
+   "t0": 2.833,
+   "t1": 3.39
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T03:39:36.865Z"
+}

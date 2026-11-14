@@ -1,0 +1,95 @@
+{
+ "hash": "0afb6a6c0f2d8d",
+ "text": "Every fire drill at Ashford High, Year Seven comes out with one pupil too many.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.876,
+ "dur": 4.91102,
+ "words": [
+  {
+   "w": "Every",
+   "t0": 0,
+   "t1": 0.337
+  },
+  {
+   "w": "fire",
+   "t0": 0.406,
+   "t1": 0.685
+  },
+  {
+   "w": "drill",
+   "t0": 0.72,
+   "t1": 0.94
+  },
+  {
+   "w": "at",
+   "t0": 0.998,
+   "t1": 1.08
+  },
+  {
+   "w": "Ashford",
+   "t0": 1.161,
+   "t1": 1.498
+  },
+  {
+   "w": "High,",
+   "t0": 1.556,
+   "t1": 1.927
+  },
+  {
+   "w": "Year",
+   "t0": 2.113,
+   "t1": 2.334
+  },
+  {
+   "w": "Seven",
+   "t0": 2.403,
+   "t1": 2.705
+  },
+  {
+   "w": "comes",
+   "t0": 2.775,
+   "t1": 2.995
+  },
+  {
+   "w": "out",
+   "t0": 3.042,
+   "t1": 3.17
+  },
+  {
+   "w": "with",
+   "t0": 3.204,
+   "t1": 3.332
+  },
+  {
+   "w": "one",
+   "t0": 3.402,
+   "t1": 3.564
+  },
+  {
+   "w": "pupil",
+   "t0": 3.611,
+   "t1": 3.959
+  },
+  {
+   "w": "too",
+   "t0": 4.017,
+   "t1": 4.168
+  },
+  {
+   "w": "many.",
+   "t0": 4.226,
+   "t1": 4.876
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T03:39:27.848Z"
+}

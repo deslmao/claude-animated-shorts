@@ -1,0 +1,65 @@
+{
+ "hash": "1dcca680769cf2",
+ "text": "Because a wrong count makes teachers check every face.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.111,
+ "dur": 3.160816,
+ "words": [
+  {
+   "w": "Because",
+   "t0": 0,
+   "t1": 0.313
+  },
+  {
+   "w": "a",
+   "t0": 0.337,
+   "t1": 0.372
+  },
+  {
+   "w": "wrong",
+   "t0": 0.418,
+   "t1": 0.627
+  },
+  {
+   "w": "count",
+   "t0": 0.708,
+   "t1": 1.01
+  },
+  {
+   "w": "makes",
+   "t0": 1.08,
+   "t1": 1.289
+  },
+  {
+   "w": "teachers",
+   "t0": 1.335,
+   "t1": 1.683
+  },
+  {
+   "w": "check",
+   "t0": 1.73,
+   "t1": 1.974
+  },
+  {
+   "w": "every",
+   "t0": 2.055,
+   "t1": 2.287
+  },
+  {
+   "w": "face.",
+   "t0": 2.357,
+   "t1": 3.111
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T03:39:38.128Z"
+}

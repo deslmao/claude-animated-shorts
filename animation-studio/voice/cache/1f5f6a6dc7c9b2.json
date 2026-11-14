@@ -1,0 +1,50 @@
+{
+ "hash": "1f5f6a6dc7c9b2",
+ "text": "She stayed low, calling his name.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.276,
+ "dur": 2.324898,
+ "words": [
+  {
+   "w": "She",
+   "t0": 0,
+   "t1": 0.186
+  },
+  {
+   "w": "stayed",
+   "t0": 0.255,
+   "t1": 0.592
+  },
+  {
+   "w": "low,",
+   "t0": 0.65,
+   "t1": 0.952
+  },
+  {
+   "w": "calling",
+   "t0": 0.998,
+   "t1": 1.324
+  },
+  {
+   "w": "his",
+   "t0": 1.382,
+   "t1": 1.498
+  },
+  {
+   "w": "name.",
+   "t0": 1.567,
+   "t1": 2.276
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T03:39:44.078Z"
+}

@@ -88,7 +88,7 @@ const pageOf = (page: string, g: CanvasRenderingContext2D) => {
   } else if (page === "crowd") {
     let y = 10;
     for (const [era, n] of [["modern", 12], ["office", 6], ["lab", 6], ["fifties", 6], ["victorian", 6], ["medieval", 6]] as [Era, number][]) {
-      y = grid(g, crowd(n, era, { modern: 0, office: 100, lab: 200, fifties: 300, victorian: 400, medieval: 500, pirate: 600, runner1904: 700, pupil: 800 }[era]).map((l, i) => ({ look: l, pose: act(["neutral", "happy", "explain", "suspicious", "shrug", "laugh"][i % 6] as "neutral", { t: 0.3 }), label: era })), 12, y, 400, era === "modern" ? "Crowd generator" : undefined);
+      y = grid(g, crowd(n, era, { modern: 0, office: 100, lab: 200, fifties: 300, victorian: 400, medieval: 500, pirate: 600, runner1904: 700, pupil: 800, pupil1979: 900 }[era]).map((l, i) => ({ look: l, pose: act(["neutral", "happy", "explain", "suspicious", "shrug", "laugh"][i % 6] as "neutral", { t: 0.3 }), label: era })), 12, y, 400, era === "modern" ? "Crowd generator" : undefined);
     }
   }
 };

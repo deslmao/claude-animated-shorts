@@ -622,6 +622,33 @@ def ground_crack(r):
 
 
 # ------------------------------------------------------------------ One Too Many: a school fire drill
+def camera_shutter(r):
+    """a phone camera's shutter: a soft double click with a short whoosh (0.3 s)"""
+    c1 = bp(r.standard_normal(ns(0.03)), 1500, 7000, 1) * np.exp(-tt(0.03) / 0.004)
+    c2 = bp(r.standard_normal(ns(0.03)), 1200, 6000, 1) * np.exp(-tt(0.03) / 0.005) * 0.7
+    air = bp(r.standard_normal(ns(0.12)), 2000, 8000, 1) * np.sin(np.pi * tt(0.12) / 0.12) * 0.08
+    return fades(_sum((c1, 0.0), (air, 0.01), (c2, 0.09)), 0.0005, 0.02) * 0.8
+
+
+def fire_roar(r):
+    """a building fire heard from close by (3 s): a low roar with crackles and pops"""
+    dur = 3.0; n = ns(dur)
+    roar = lp(colored(n, r, 1.2), 500) * (1 + 0.25 * smooth_noise(n, r, 2.0)) * 0.5
+    out = roar.copy()
+    for _ in range(int(dur * 14)):
+        o = int(r.uniform(0, n - ns(0.05))); L = ns(r.uniform(0.005, 0.03))
+        out[o:o + L] += hp(r.standard_normal(L), 1500) * np.exp(-np.arange(L) / (L * 0.3)) * r.uniform(0.1, 0.5)
+    return fades(out * 0.7, 0.3, 0.4)
+
+
+def cough(r):
+    """a child coughing in smoke: three quick dry coughs (1 s)"""
+    def one(a):
+        t = tt(0.16); x = bp(r.standard_normal(len(t)), 300, 2600, 1) * np.exp(-t / 0.05) * a
+        return x + G.vox(r.uniform(330, 380), [(700, 1.0), (1300, 0.5)], 0.0, r) * 0 if False else x
+    return fades(_sum((one(0.9), 0.0), (one(0.7), 0.28), (one(0.8), 0.55)), 0.002, 0.05) * 0.8
+
+
 def fire_bell(r):
     """a school's electric fire-alarm bell (3 s): a hammer hitting a steel gong about 18 times a second, a bright
     metallic ring with a buzzing edge, a hard start and stop"""
@@ -663,7 +690,7 @@ SFX = {
     "thunk": thunk, "float_whoosh": float_whoosh, "trombone_slide": trombone_slide, "tuba_sink": tuba_sink, "pop_gliss": pop_gliss,
     "metal_groan": metal_groan, "splat": splat, "ringtone": ringtone, "musicbox_note": musicbox_note, "riser": riser,
     "storm_wind": storm_wind, "ground_crack": ground_crack,
-    "fire_bell": fire_bell, "kids_chatter": kids_chatter, "chair_scrape": chair_scrape,
+    "fire_bell": fire_bell, "kids_chatter": kids_chatter, "chair_scrape": chair_scrape, "camera_shutter": camera_shutter, "fire_roar": fire_roar, "cough": cough,
 }
 
 

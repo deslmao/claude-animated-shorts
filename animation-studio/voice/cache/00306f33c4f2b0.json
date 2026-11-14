@@ -1,0 +1,80 @@
+{
+ "hash": "00306f33c4f2b0",
+ "text": "Ms Okoye was new. On her first drill, she counted her class.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.18,
+ "dur": 4.205714,
+ "words": [
+  {
+   "w": "Ms",
+   "t0": 0,
+   "t1": 0.325
+  },
+  {
+   "w": "Okoye",
+   "t0": 0.395,
+   "t1": 0.801
+  },
+  {
+   "w": "was",
+   "t0": 0.848,
+   "t1": 0.964
+  },
+  {
+   "w": "new.",
+   "t0": 1.045,
+   "t1": 1.486
+  },
+  {
+   "w": "On",
+   "t0": 1.707,
+   "t1": 1.846
+  },
+  {
+   "w": "her",
+   "t0": 1.892,
+   "t1": 1.974
+  },
+  {
+   "w": "first",
+   "t0": 2.043,
+   "t1": 2.31
+  },
+  {
+   "w": "drill,",
+   "t0": 2.357,
+   "t1": 2.682
+  },
+  {
+   "w": "she",
+   "t0": 2.705,
+   "t1": 2.81
+  },
+  {
+   "w": "counted",
+   "t0": 2.879,
+   "t1": 3.204
+  },
+  {
+   "w": "her",
+   "t0": 3.239,
+   "t1": 3.332
+  },
+  {
+   "w": "class.",
+   "t0": 3.39,
+   "t1": 4.18
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T03:39:28.558Z"
+}

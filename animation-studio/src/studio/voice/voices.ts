@@ -30,6 +30,8 @@ export const VOICES: Record<string, VoicePreset> = {
   junoCold: { name: "Jessica - Playful, Bright, Warm", voiceId: "cgSgspJ2msm6clMCkdW9", model: MODEL, settings: { ...CHANNEL, stability: 0.55, style: 0.15, speed: 0.85 }, note: "Juno's voice, slower and flatter: the unsettling line (Video 05)" },
   // Part 2 rewrite (night-shift): frightened, desperate takes for the door's pleading copies (additive; optional review takes)
   junoScared: { name: "Jessica - Playful, Bright, Warm", voiceId: "cgSgspJ2msm6clMCkdW9", model: MODEL, settings: { ...CHANNEL, stability: 0.3, style: 0.4, speed: 0.88 }, note: "Juno, frightened and desperate (Part 2 rewrite review take)" },
+  // Video 09 (One Too Many): Ms Okoye counting under her breath, slower and looser than the channel settings (owner-approved)
+  aliceCount: { name: "Alice - Clear, Engaging Educator", voiceId: "Xb7hH8MSUJpSbSDYk0k2", model: MODEL, settings: { ...CHANNEL, stability: 0.4, style: 0.2, speed: 0.88 }, note: "Ms Okoye counting (One Too Many): slower, with hesitations" },
   liamScared: { name: "Liam - Energetic, Social Media Creator", voiceId: "TX3LPaxmHKxFdv7VOQHJ", model: MODEL, settings: { ...CHANNEL, stability: 0.3, style: 0.35, speed: 0.9 }, note: "Milo, frightened and desperate (Part 2 rewrite review take)" },
 };
 

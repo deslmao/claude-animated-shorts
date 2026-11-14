@@ -1,0 +1,50 @@
+{
+ "hash": "1005214e10ec7f",
+ "text": "You see, that fire was real.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 1.858,
+ "dur": 1.906939,
+ "words": [
+  {
+   "w": "You",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "see,",
+   "t0": 0.221,
+   "t1": 0.395
+  },
+  {
+   "w": "that",
+   "t0": 0.418,
+   "t1": 0.546
+  },
+  {
+   "w": "fire",
+   "t0": 0.604,
+   "t1": 0.917
+  },
+  {
+   "w": "was",
+   "t0": 0.952,
+   "t1": 1.068
+  },
+  {
+   "w": "real.",
+   "t0": 1.138,
+   "t1": 1.858
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T03:39:35.037Z"
+}

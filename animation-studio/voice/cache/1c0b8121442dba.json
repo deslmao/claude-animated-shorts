@@ -1,0 +1,45 @@
+{
+ "hash": "1c0b8121442dba",
+ "text": "Happens every drill. Count again.",
+ "voice": "brian",
+ "lead": 0,
+ "end": 1.858,
+ "dur": 1.906939,
+ "words": [
+  {
+   "w": "Happens",
+   "t0": 0,
+   "t1": 0.418
+  },
+  {
+   "w": "every",
+   "t0": 0.476,
+   "t1": 0.639
+  },
+  {
+   "w": "drill.",
+   "t0": 0.685,
+   "t1": 0.998
+  },
+  {
+   "w": "Count",
+   "t0": 1.057,
+   "t1": 1.277
+  },
+  {
+   "w": "again.",
+   "t0": 1.312,
+   "t1": 1.858
+  }
+ ],
+ "voiceId": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-14T03:39:30.513Z"
+}

@@ -1,0 +1,30 @@
+{
+ "hash": "137d9f58c2b431",
+ "text": "Leo! Leo!",
+ "voice": "alice",
+ "lead": 0,
+ "end": 1.022,
+ "dur": 1.07102,
+ "words": [
+  {
+   "w": "Leo!",
+   "t0": 0,
+   "t1": 0.406
+  },
+  {
+   "w": "Leo!",
+   "t0": 0.464,
+   "t1": 1.022
+  }
+ ],
+ "voiceId": "Xb7hH8MSUJpSbSDYk0k2",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "created": "2026-11-14T03:39:44.528Z"
+}

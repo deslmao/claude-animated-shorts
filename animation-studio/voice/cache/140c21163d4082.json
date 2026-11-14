@@ -1,0 +1,35 @@
+{
+ "hash": "140c21163d4082",
+ "text": "Twenty-eight, twenty-nine... thirty.",
+ "voice": "aliceCount",
+ "lead": 0,
+ "end": 3.019,
+ "dur": 3.056327,
+ "words": [
+  {
+   "w": "Twenty-eight,",
+   "t0": 0,
+   "t1": 0.952
+  },
+  {
+   "w": "twenty-nine...",
+   "t0": 0.987,
+   "t1": 1.997
+  },
+  {
+   "w": "thirty.",
+   "t0": 2.171,
+   "t1": 3.019
+  }
+ ],
+ "voiceId": "Xb7hH8MSUJpSbSDYk0k2",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 0.88
+ },
+ "created": "2026-11-14T03:39:31.096Z"
+}

@@ -1,0 +1,55 @@
+{
+ "hash": "11e15fcb231ca9",
+ "text": "a boy shouted \"Here!\" as a joke.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.461,
+ "dur": 2.507755,
+ "words": [
+  {
+   "w": "a",
+   "t0": 0,
+   "t1": 0.093
+  },
+  {
+   "w": "boy",
+   "t0": 0.163,
+   "t1": 0.395
+  },
+  {
+   "w": "shouted",
+   "t0": 0.464,
+   "t1": 0.871
+  },
+  {
+   "w": "\"Here!\"",
+   "t0": 0.952,
+   "t1": 1.44
+  },
+  {
+   "w": "as",
+   "t0": 1.474,
+   "t1": 1.614
+  },
+  {
+   "w": "a",
+   "t0": 1.66,
+   "t1": 1.695
+  },
+  {
+   "w": "joke.",
+   "t0": 1.765,
+   "t1": 2.461
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T03:39:36.241Z"
+}

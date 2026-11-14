@@ -1,0 +1,85 @@
+{
+ "hash": "1cbd5d17f8fcaf",
+ "text": "She wasn't looking at the camera. She was staring back at the school.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.669,
+ "dur": 3.709388,
+ "words": [
+  {
+   "w": "She",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "wasn't",
+   "t0": 0.232,
+   "t1": 0.488
+  },
+  {
+   "w": "looking",
+   "t0": 0.522,
+   "t1": 0.766
+  },
+  {
+   "w": "at",
+   "t0": 0.801,
+   "t1": 0.859
+  },
+  {
+   "w": "the",
+   "t0": 0.894,
+   "t1": 0.964
+  },
+  {
+   "w": "camera.",
+   "t0": 0.998,
+   "t1": 1.533
+  },
+  {
+   "w": "She",
+   "t0": 1.718,
+   "t1": 1.834
+  },
+  {
+   "w": "was",
+   "t0": 1.881,
+   "t1": 1.974
+  },
+  {
+   "w": "staring",
+   "t0": 2.009,
+   "t1": 2.403
+  },
+  {
+   "w": "back",
+   "t0": 2.461,
+   "t1": 2.624
+  },
+  {
+   "w": "at",
+   "t0": 2.67,
+   "t1": 2.728
+  },
+  {
+   "w": "the",
+   "t0": 2.763,
+   "t1": 2.833
+  },
+  {
+   "w": "school.",
+   "t0": 2.868,
+   "t1": 3.669
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T03:39:33.001Z"
+}

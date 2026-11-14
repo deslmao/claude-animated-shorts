@@ -1,0 +1,95 @@
+{
+ "hash": "1f0dff101d53dc",
+ "text": "Ever since, Carol has stood at the end of every line, making every count wrong.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 5.155,
+ "dur": 5.198367,
+ "words": [
+  {
+   "w": "Ever",
+   "t0": 0,
+   "t1": 0.255
+  },
+  {
+   "w": "since,",
+   "t0": 0.302,
+   "t1": 0.731
+  },
+  {
+   "w": "Carol",
+   "t0": 0.859,
+   "t1": 1.231
+  },
+  {
+   "w": "has",
+   "t0": 1.277,
+   "t1": 1.382
+  },
+  {
+   "w": "stood",
+   "t0": 1.428,
+   "t1": 1.66
+  },
+  {
+   "w": "at",
+   "t0": 1.695,
+   "t1": 1.765
+  },
+  {
+   "w": "the",
+   "t0": 1.8,
+   "t1": 1.869
+  },
+  {
+   "w": "end",
+   "t0": 1.95,
+   "t1": 2.148
+  },
+  {
+   "w": "of",
+   "t0": 2.206,
+   "t1": 2.264
+  },
+  {
+   "w": "every",
+   "t0": 2.345,
+   "t1": 2.624
+  },
+  {
+   "w": "line,",
+   "t0": 2.682,
+   "t1": 3.123
+  },
+  {
+   "w": "making",
+   "t0": 3.309,
+   "t1": 3.622
+  },
+  {
+   "w": "every",
+   "t0": 3.692,
+   "t1": 3.994
+  },
+  {
+   "w": "count",
+   "t0": 4.052,
+   "t1": 4.331
+  },
+  {
+   "w": "wrong.",
+   "t0": 4.4,
+   "t1": 5.155
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-14T03:39:37.542Z"
+}
