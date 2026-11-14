@@ -1,11 +1,11 @@
 {
-  "run_id": "43576706506",
-  "artifact": "Short-one-too-many-run28",
-  "frames": 3836,
+  "run_id": "43650769766",
+  "artifact": "Short-whale-city-run29",
+  "frames": 3164,
   "width": 1080,
   "height": 1920,
   "audio": "required",
-  "seams": "191,383,575,767,959,1150,1342,1534,1726,1918,2109,2301,2493,2685,2877,3068,3260,3452,3644",
-  "keep": "productions/one-too-many/final/Short-one-too-many.mp4",
-  "note": "One Too Many final render (run 28, 20 chunks). Full QA with all 19 chunk seams, then keep the MP4 in the repo (no GitHub Release)."
+  "seams": "158,316,474,632,791,949,1107,1265,1423,1582,1740,1898,2056,2214,2373,2531,2689,2847,3005",
+  "keep": "productions/whale-city/final/Short-whale-city.mp4",
+  "note": "The Whale City final render (run 29, 20 chunks). Full QA with all 19 chunk seams, then keep the MP4 in the repo (no GitHub Release)."
 }
