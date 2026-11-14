@@ -39,7 +39,7 @@ export const CAST = { milo: MILO, juno: JUNO, junoOut: JUNO_OUT, gus: GUS };
 
 // ---------------- crowd generator ----------------
 // Extras never borrow a lead's signature: no spiky tuft, no mustard top (Milo), no teal turtleneck under a lab coat (Juno).
-export type Era = "modern" | "fifties" | "victorian" | "medieval" | "office" | "lab" | "pirate" | "runner1904";
+export type Era = "modern" | "fifties" | "victorian" | "medieval" | "office" | "lab" | "pirate" | "runner1904" | "pupil";
 const SKINS = ["#ffe2c2", "#f5c9a0", "#ecd0b6", "#c99067", "#a8714c", "#e8b896"];
 const HAIRC = ["#2a201a", "#4a2f22", "#6b4226", "#a5682f", "#d9b26a", "#1f1a24", "#8c8a88", "#c94f2c"];
 const MOD_TOPS = ["#3f6fb5", "#c25a7a", "#5d8a3a", "#8c6bb1", "#2f5f6a", "#7b5ac9", "#e26d4f", "#4b4f5c", "#2a9d8f", "#b5653f"];
@@ -91,6 +91,15 @@ export const extra = (i: number, era: Era = "modern"): Look => {
       base.shoes = pick(r, 44, ["#2a201a", "#3a2b20", "#5a3b2a"] as const);
       delete base.glasses; delete base.hat;
       if (["long", "bun", "ponytail", "bob", "topknot"].includes(base.hair.style)) base.hair = { ...base.hair, style: "short" };
+      break;
+    case "pupil": // a British secondary school today (One Too Many): Year 7 pupils in navy blazers, white shirts, striped ties
+      base.name = `pupil${i}`; base.build = r(45) < 0.8 ? "kid" : "petite";
+      base.top = { style: "shirt", color: pick(r, 46, ["#f4f4f0", "#eef0f2", "#f2efe6"] as const) };
+      base.layer = { style: "blazer", color: pick(r, 47, ["#1f2d4f", "#22304f", "#1d2a48"] as const) };
+      base.neck = { style: "tie", color: pick(r, 48, ["#a8323a", "#b03a3f"] as const) };
+      base.legs = pick(r, 49, ["#4a4d55", "#3a3d47", "#55585f"] as const); base.shoes = pick(r, 50, ["#1e1e22", "#2a201a"] as const);
+      delete base.beard; delete base.moustache; delete base.hat; if (r(51) < 0.7) delete base.glasses;
+      if (base.hair.style === "bald" || base.hair.style === "receding") base.hair = { ...base.hair, style: "short", color: pick(r, 52, HAIRC) };
       break;
     case "medieval": base.top = { style: "sweater", color: pick(r, 29, ["#7a5a3a", "#5d6a3a", "#8c3b4a", "#6b6255"] as const) }; base.legs = pick(r, 30, ["#4a4036", "#5a4636"] as const); base.shoes = "#3a2b20"; break;
   }

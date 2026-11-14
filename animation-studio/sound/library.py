@@ -620,6 +620,34 @@ def ground_crack(r):
     return fades(boom + 0.6 * crk + gravel * 3, 0.0005, 0.15) * 0.9
 
 
+
+# ------------------------------------------------------------------ One Too Many: a school fire drill
+def fire_bell(r):
+    """a school's electric fire-alarm bell (3 s): a hammer hitting a steel gong about 18 times a second, a bright
+    metallic ring with a buzzing edge, a hard start and stop"""
+    dur, rate = 3.0, r.uniform(17.0, 19.0)
+    modes = [(r.uniform(1180, 1220), 1.0, 0.09), (r.uniform(2930, 3010), 0.55, 0.05), (r.uniform(4420, 4520), 0.3, 0.03), (r.uniform(640, 660), 0.25, 0.12)]
+    strike = modal(0.25, modes, r)
+    n = ns(dur); out = np.zeros(n + len(strike))
+    k = 0
+    while k / rate < dur:
+        o = max(0, ns(k / rate + r.uniform(-0.002, 0.002))); out[o: o + len(strike)] += strike * r.uniform(0.8, 1.0); k += 1
+    out = out[:n]
+    buzz = bp(r.standard_normal(n), 2500, 7000, 1) * 0.04
+    return fades(np.tanh((out + buzz) * 0.9) * 0.75, 0.002, 0.03)
+
+
+def kids_chatter(r):
+    """a crowd of 11-year-olds talking at once outside (3 s): bright, overlapping, no words"""
+    dur = 3.0
+    y = sum(G.babble(dur, r, r.uniform(240, 330), r.uniform(1.25, 1.45), rate=4.6, active=0.75, fmax=4800) * r.uniform(0.4, 1.0) for _ in range(9))
+    return fades(lp(y, 5200) * 0.35, 0.3, 0.4)
+
+
+def chair_scrape(r):
+    """a classroom chair shoved back across a tiled floor (0.45 s): a short juddering scrape"""
+    return G.creak(0.45, r, rate0=70, rate1=120, rough=0.35, noise=0.2) * 0.8
+
 SFX = {
     "pop": pop, "ding": ding, "blip_up": blip_up, "boing": boing, "poof": poof, "twinkle": twinkle, "impact": impact,
     "thud": thud, "party_pop": party_pop, "drip": drip, "steam": steam, "snore_soft": snore_soft, "ring_ding": ring_ding,
@@ -635,6 +663,7 @@ SFX = {
     "thunk": thunk, "float_whoosh": float_whoosh, "trombone_slide": trombone_slide, "tuba_sink": tuba_sink, "pop_gliss": pop_gliss,
     "metal_groan": metal_groan, "splat": splat, "ringtone": ringtone, "musicbox_note": musicbox_note, "riser": riser,
     "storm_wind": storm_wind, "ground_crack": ground_crack,
+    "fire_bell": fire_bell, "kids_chatter": kids_chatter, "chair_scrape": chair_scrape,
 }
 
 
