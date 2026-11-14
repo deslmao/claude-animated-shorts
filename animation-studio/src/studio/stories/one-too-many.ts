@@ -57,7 +57,8 @@ const PHOTOS = [["1975", 1.4], ["1979", -0.4], ["1986", 0.5], ["1994", 2.3], ["2
 const FIRE79 = [{ id: "fireWindow", variant: "figure", at: [2.0, 4.9, 0.03] as V3, steps: STEADY }, { id: "smokePlume", variant: "dark", at: [2.0, 6.0, 0.6] as V3, steps: STEADY },
   { id: "smokePlume", at: [-7.0, 10.6, -2.0] as V3, steps: STEADY }];
 /** today: smoke pours from the science block roof and the ground-floor window of the boys' toilets (main block, x 16.5) */
-const SMOKE = [{ id: "smokePlume", variant: "dark", at: [26, 4.5, -3.0] as V3, steps: STEADY }, { id: "smokePlume", at: [16.5, 2.4, 0.4] as V3, steps: STEADY }];
+const SMOKE = [{ id: "smokePlume", variant: "dark", at: [26, 4.5, -3.0] as V3, steps: STEADY }, { id: "smokePlume", at: [16.5, 2.4, 0.4] as V3, steps: STEADY },
+  { id: "smokePlume", variant: "dark", at: [15.5, 10.9, -3.0] as V3, steps: STEADY }];
 const CORR_SMOKE = [{ id: "ceilingSmoke", variant: "13", at: [0, 2.8, -0.5] as V3, steps: STEADY }];
 const BLUE = { id: "policeLight", at: [0, 0, 0.4] as V3, steps: Array.from({ length: 24 }, (_, i) => ({ t: 0.05 + i * 0.25 })) };
 /** 1979's lines on the field: three files of eight in maroon */
@@ -159,14 +160,14 @@ const shots: ShotSpec[] = [
     actors: [{ who: "okoye", at: [0.6, 0, 2.6], act: "thinking", facing: "toward:carol", walk: { to: [0.75, 0, 0.1], t0: 0.1, t1: 2.2 }, beats: [{ t: 0.6, look: "right" }] }],
     props: PHOTOS, note: "8 the photo wall" },
   { cont: true, until: { word: "blazers" }, ...CORR,
-    ...move([0.95, 1.6, -0.4], [1.58, 1.6, -0.4], 34, [1.05, 1.62, -0.38], [1.58, 1.62, -0.4], 30, 0.1, 1.6),
+    ...move([0.2, 1.6, -0.4], [1.58, 1.6, -0.4], 46, [0.45, 1.62, -0.36], [1.58, 1.62, -0.36], 44, 0.1, 1.8),
     actors: [], props: PHOTOS, note: "8 1979" },
   { cont: true, ...CORR, dur: 2.4,
-    ...move([1.05, 1.62, -0.38], [1.58, 1.62, -0.4], 30, [1.32, 1.74, -0.16], [1.58, 1.74, -0.16], 20, 0.2, 1.8),
+    ...move([0.45, 1.62, -0.36], [1.58, 1.62, -0.36], 44, [0.98, 1.72, -0.17], [1.58, 1.72, -0.17], 40, 0.2, 1.9),
     actors: [], props: PHOTOS, note: "8 the same girl" },
   // ======== line 9: the plaque; her face
   { say: T("Underneath, a small brass plaque. Carol Webb, aged eleven. Lost in the fire of 1979."), until: { word: "eleven" }, ...CORR,
-    ...move([1.05, 1.25, -0.4], [1.58, 1.22, -0.4], 36, [1.12, 1.23, -0.4], [1.58, 1.22, -0.4], 32, 0.2, 2.0),
+    ...move([0.45, 1.24, -0.4], [1.58, 1.22, -0.4], 40, [0.55, 1.23, -0.4], [1.58, 1.22, -0.4], 38, 0.2, 2.0),
     actors: [], props: PHOTOS, note: "9 the plaque" },
   { cont: true, ...CORR,
     camera: { move: "closeUp", on: "okoye" },
@@ -202,7 +203,7 @@ const shots: ShotSpec[] = [
     actors: [{ who: "teacherB", at: [2.1, 0, 18.4], act: "determined", facing: "toward:p22", gesture: "point", walk: { to: [2.1, 0, 17.3], t0: 0.1, t1: 2.2 } }, ...class7C().filter((a) => (a.at as V3)[0] > 0.5)],
     props: [], note: "12 every face" },
   { say: T("Nobody checked hers."), ...FIELD, dur: 2.6,
-    ...move([1.0, 1.06, 9.6], [1.0, 1.02, 10.85], 32, [1.0, 1.04, 9.95], [1.0, 1.02, 10.85], 26, 0.1, 2.4),
+    ...move([1.0, 1.07, 9.3], [1.0, 1.02, 10.85], 38, [1.0, 1.06, 9.5], [1.0, 1.02, 10.85], 35, 0.1, 2.4),
     actors: [{ who: "carol", at: CAROL_AT, act: "sad", facing: "camera" }, ...class7C().filter((a) => (a.at as V3)[0] > 0.5 && (a.at as V3)[2] < 13)],
     props: [], note: "12 nobody checked hers" },
   // ======== line 13: the alarm, for real
@@ -215,7 +216,7 @@ const shots: ShotSpec[] = [
     props: [], note: "13 for real" },
   // ======== line 14: smoke from the science block; she counts: thirty, exactly right
   { say: T("Smoke poured from the science block. Ms Okoye counted her class. Thirty. Exactly right."), until: { word: "block" }, ...FIELD,
-    ...move([4.0, 1.4, 27], [14, 4.0, -2], 52, [4.4, 2.2, 28], [16, 5.0, -2], 50, 0.1, 2.2),
+    ...move([4.0, 1.4, 27], [10, 5.5, -2], 54, [4.4, 2.0, 28], [11, 6.5, -2], 52, 0.1, 2.2),
     actors: [...class7FIRE(), ...others()], props: [...SMOKE, ASSEMBLY], sfx: [{ t: 0.1, name: "fire_roar" }, { t: 0.3, name: "kids_chatter" }], note: "14 smoke" },
   { cont: true, until: { word: "class" }, ...FIELD,
     camera: { move: "frame", on: ["okoye", "p20", "p21"], size: "medium", from: -50 },
@@ -311,7 +312,7 @@ const shots: ShotSpec[] = [
 
 /** scenery props a shot's camera never sees (found by probing the validator, shot by shot): dropped from those shots
  *  so every prop listed is on screen; the smoke, fire and photo wall stay wherever they are seen */
-const OFF_FRAME: Record<string, number[]> = {"8 the photo wall": [0, 2, 3, 4, 5], "8 1979": [0, 2, 3, 4, 5], "8 the same girl": [0, 2, 3, 4, 5, 6], "9 the plaque": [0, 1, 2, 3, 4, 5], "9 her face": [0, 1, 2, 3, 4, 5, 6], "10 the register": [0, 1, 2], "11 the tick": [0, 1], "15 that's everyone": [0], "16 she looks": [0, 1], "16 Carol was there": [0, 1], "17 the realisation": [0, 1], "18 the gap where Leo stands": [0, 1], "18 the toilets": [0, 1], "19 wait": [0], "19 she runs back in": [0, 1], "21 under the sinks": [0], "11 the window": [2], "14 smoke": [2], "10 1979: the fire": [3], "20 the smoke": [4, 5, 6]};
+const OFF_FRAME: Record<string, number[]> = {"8 the photo wall": [0, 2, 3, 4, 5], "8 1979": [0, 2, 3, 4, 5], "8 the same girl": [0, 2, 3, 4, 5], "9 the plaque": [0, 2, 3, 4, 5], "9 her face": [0, 1, 2, 3, 4, 5, 6], "10 the register": [0, 1, 2], "11 the tick": [0, 1], "14 smoke": [0, 3], "15 that's everyone": [0], "16 she looks": [0, 1, 2], "16 Carol was there": [0, 1, 2], "17 the realisation": [0, 1, 2], "18 the gap where Leo stands": [0, 1, 2], "18 the toilets": [0, 1, 2], "19 wait": [0], "19 she runs back in": [0, 1, 2], "21 under the sinks": [0], "11 the window": [2], "14 she counts": [2], "16 one window": [2], "10 1979: the fire": [3], "20 the smoke": [4, 5, 6]};
 for (const s of shots) { const k = OFF_FRAME[s.note ?? ""]; if (k && s.props) s.props = s.props.filter((_, i) => !k.includes(i)); }
 
 export const ONE_TOO_MANY: Storyboard = {

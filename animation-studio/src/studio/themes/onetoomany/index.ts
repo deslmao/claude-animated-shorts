@@ -270,7 +270,7 @@ const puffTex = (k: string, c: string) => stex(`otmPuff${k}`, 256, 256, (g) => {
 const smokePlumeRig = (a: At, v = "grey"): PropRig => {
   const root = rigRoot(a), N = 10, c = v === "dark" ? "#3e3f45" : "#6f7076";
   const ps = Array.from({ length: N }, (_, i) => { const m = mesh(plane(2.6, 2.6), new THREE.MeshBasicMaterial({ map: puffTex(v, c), transparent: true, depthWrite: false, toneMapped: false }), 0, 0, 0); root.add(m); return { m, i }; });
-  return { root, update: ({ step = 0, camPos }) => { for (const { m, i } of ps) { const u = ((i / N) + step * 0.035) % 1; m.position.set(Math.sin(i * 2.1 + u * 3) * 0.6 + u * 1.6, 0.4 + u * 7.5, Math.cos(i * 1.3) * 0.4); m.scale.setScalar(0.6 + u * 2.2); (m.material as THREE.MeshBasicMaterial).opacity = Math.min(1, u * 6) * (1 - u) * 1.3; m.visible = step > 0.001; m.lookAt(camPos); } } };
+  return { root, update: ({ step = 0, camPos }) => { for (const { m, i } of ps) { const u = ((i / N) + step * 0.035) % 1; m.position.set(Math.sin(i * 2.1 + u * 3) * 0.6 + u * 1.6, 0.4 + u * 7.5, Math.cos(i * 1.3) * 0.4); m.scale.setScalar(0.8 + u * 2.8); (m.material as THREE.MeshBasicMaterial).opacity = Math.min(1, Math.min(1, u * 6) * (1 - u) * 1.9); m.visible = step > 0.001; m.lookAt(camPos); } } };
 };
 /** ceilingSmoke: smoke rolling along a ceiling, `at` = the middle of the stretch at ceiling height; variant = the
  *  stretch length in metres (default 12) along local z; steps thicken it and keep it rolling */
