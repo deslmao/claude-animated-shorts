@@ -4,6 +4,7 @@ import { LOCKED_OUT_KEYS } from "./locked-out-keys";
 import { LOCKED_OUT_CLIMAX } from "./locked-out-climax";
 import { LOCKED_OUT } from "./locked-out";
 import { ONE_TOO_MANY } from "./one-too-many";
+import { ONE_TOO_MANY_THUMBS } from "./one-too-many-thumbs";
 import { MARATHON1904 } from "./marathon-1904";
 import { BURIEDTREASURE } from "./buried-treasure";
 import { PIRATEDEMOCRACY } from "./pirate-democracy";
@@ -19,4 +20,4 @@ import { EVERYLIE } from "./every-lie";
 import { FLOATAWAY } from "./float-away";
 import { NIGHTSHIFT } from "./night-shift";
 
-export const STORIES: Storyboard[] = [YAWN_DEMO, CAPABILITIES, TICKLE, PIRATEDEMOCRACY, BURIEDTREASURE, INK_ORBIT, DOORWAYEFFECT, CAMERA_KIT, MARATHON1904, EXTRADOOR, EXTRADOOR2, EVERYLIE, FLOATAWAY, NIGHTSHIFT, LOCKED_OUT_KEYS, LOCKED_OUT_CLIMAX, LOCKED_OUT, ONE_TOO_MANY];
+export const STORIES: Storyboard[] = [YAWN_DEMO, CAPABILITIES, TICKLE, PIRATEDEMOCRACY, BURIEDTREASURE, INK_ORBIT, DOORWAYEFFECT, CAMERA_KIT, MARATHON1904, EXTRADOOR, EXTRADOOR2, EVERYLIE, FLOATAWAY, NIGHTSHIFT, LOCKED_OUT_KEYS, LOCKED_OUT_CLIMAX, LOCKED_OUT, ONE_TOO_MANY, ONE_TOO_MANY_THUMBS];
