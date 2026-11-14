@@ -50,7 +50,7 @@ const shots: ShotSpec[] = [
   // ======== 2: pull up and away: the city is on a whale
   { say: "Because the whole city is sitting on the back of a sleeping whale.", ...DAY,
     ...move([-4, P + 5, 16], [-6, P + 1, 4], 50, [30, 62, -150], [0, 0, 20], 40, 0.1, 3.8),
-    actors: [{ who: "mother", at: [-8.8, P, 8.0], act: "neutral", hold: "baby" }, ...townsfolk(-5)], props: [{ id: "whaleTail", at: [0, 0, 140], variant: "rest", scale: 1.4, steps: STILL }], sfx: [{ t: 0.2, name: "whoosh_long", gain: -6 }], note: "2 the whale" },
+    actors: [{ who: "mother", at: [-8.8, P, 8.0], act: "neutral", hold: "baby" }, ...townsfolk(-5)], props: [spout("low"), ring("12"), { id: "whaleTail", at: [0, 0, 140], variant: "rest", scale: 1.4, steps: STILL }, { id: "whaleEye", at: EYE, yaw: 70, steps: STILL }], sfx: [{ t: 0.2, name: "whoosh_long", gain: -6 }], note: "2 the whale" },
   // ======== 3: the founding tapestry; the tied bell
   { say: "The first people here thought it was an island. Then, at their first party, they fired a cannon.", ...DAY,
     ...move([0.05, P + 2.4, -13.9], TAPESTRY, 40, [-0.12, P + 2.38, -14.5], [-0.18, P + 2.36, -16.0], 34, 0.1, 4.0),
@@ -68,7 +68,7 @@ const shots: ShotSpec[] = [
     props: [ring("12"), spout("low"), pole()], sfx: [{ t: 0.2, name: "whale_breath" }], note: "4 the breath-keeper" },
   // ======== 5: the marks are lower
   { ...DAWN, dur: 1.6,
-    camera: atCam([2.62, P + 3.9, -2.95], [2.62, P + 3.9, -3.55], 40),
+    camera: atCam([2.62, P + 3.9, -2.5], [2.62, P + 3.9, -3.55], 40),
     actors: [], props: [{ id: "poleCard", at: [2.62, P + 3.9, -3.55], variant: "low", steps: STILL }], note: "5 the marks" },
   { say: whisper("Gran, it's lower again.", "wrenWhisper", "wren", "Wren leaned close to her gran and whispered,"), ...DAWN,
     camera: { move: "frame", on: ["wren", "gran"], size: "medium", from: 160 },
@@ -90,7 +90,7 @@ const shots: ShotSpec[] = [
     actors: [{ who: "wren", at: WREN_AT, act: "scared", facing: -1, gesture: "stop" }], props: [ring("12")], note: "6 it can't breathe" },
   // ======== 7: the city is sinking
   { say: "And every year, the city sat a little lower in the sea.", ...DAY,
-    ...move([31.6, 2.0, -41.0], [27.4, 1.0, -45.8], 50, [31.2, 1.9, -41.6], [27.4, 0.9, -45.8], 46, 0.1, 3.0),
+    ...move([33.8, 2.9, -38.6], [27.0, 1.2, -45.0], 46, [33.4, 2.8, -39.2], [27.0, 1.1, -45.0], 43, 0.1, 3.0),
     actors: [{ who: "fisher", at: [27.0, 1.3, -43.6], act: "sad", gesture: "hold", facing: -1, beats: [{ t: 0.4, look: "down" }] }], sfx: [{ t: 0.3, name: "wave_crash", gain: -10 }], note: "7 the sea over the step" },
   // ======== 8: the thirteenth ring
   { ...DAY, dur: 2.6,
@@ -148,7 +148,7 @@ const shots: ShotSpec[] = [
   { ...DAWN, dur: 2.8,
     camera: atCam([31.5, 3.0, -45.0], EYE, 42),
     cams: [{ t: 0.1, ...atCam([30.5, 2.8, -46.5], EYE, 36), glide: 2.6, blockOk: true }],
-    actors: [], props: [{ id: "whaleEye", at: EYE, yaw: 90, steps: [{ t: 0.3 }, { t: 0.9 }, { t: 2.0 }] }],
+    actors: [], props: [{ id: "whaleEye", at: EYE, yaw: 42, steps: [{ t: 0.3 }, { t: 0.9 }, { t: 2.0 }] }],
     sfx: [{ t: 0.1, name: "whale_groan" }], kicks: [0.4], note: "11 the eye opens" },
   { ...RISE, dur: 2.6,
     camera: atCam([33.5, 2.4, -38.5], [25, 1.7, -45], 52),
@@ -181,7 +181,7 @@ const shots: ShotSpec[] = [
     actors: [{ who: "wren", at: WREN_AT, act: "relief", facing: "toward:gran", beats: [{ t: 0.3, look: "up" }] }],
     props: [ring("open"), spout("tall", [0, P + 0.15, -3]), pole("top")], sfx: [{ t: 0.3, name: "whale_breath" }], note: "14 it can breathe" },
   { ...DAWN, dur: 1.6,
-    camera: atCam([2.62, P + 3.9, -2.95], [2.62, P + 3.9, -3.55], 40),
+    camera: atCam([2.62, P + 3.9, -2.5], [2.62, P + 3.9, -3.55], 40),
     actors: [], props: [{ id: "poleCard", at: [2.62, P + 3.9, -3.55], variant: "top", steps: STILL }], note: "14 her mark, at the top" },
   // ======== 15: speak up
   { say: "For three hundred years, the whole city had whispered, so it wouldn't wake up.", ...DAWN,
@@ -190,7 +190,7 @@ const shots: ShotSpec[] = [
     props: [{ id: "foundersBell", at: BELL, variant: "free", steps: STILL }], note: "15 the bell" },
   { say: "It turns out it was just waiting for someone to speak up.", ...DAWN, hold: 1.4,
     ...move([24, 40, -118], [0, 2, 22], 42, [36, 70, -172], [0, 0, 25], 40, 0.1, 5.0),
-    actors: [], props: [spout("tall", [0, P + 0.15, -3]), { id: "whaleTail", at: [0, 0, 140], variant: "rest", scale: 1.4, steps: STILL }], note: "15 the city at sunrise" },
+    actors: [], props: [spout("tall", [0, P + 0.15, -3]), { id: "whaleTail", at: [0, 0, 140], variant: "rest", scale: 1.4, steps: STILL }, { id: "whaleEye", at: EYE, yaw: 70, steps: STILL }], note: "15 the city at sunrise" },
 ];
 
 export const WHALE_CITY: Storyboard = {

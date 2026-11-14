@@ -51,7 +51,7 @@ const EYE: V3 = [flankX(-58, 0.6) + 0.6, 1.5, -58];
 
 // ---------------------------------------------------------------- textures
 const skinTex = () => stex("wcSkin", 1024, 1024, (g) => {
-  const gr = g.createLinearGradient(0, 0, 0, 1024); gr.addColorStop(0, "#5d6f82"); gr.addColorStop(1, "#4e5e71"); g.fillStyle = gr; g.fillRect(0, 0, 1024, 1024);
+  const gr = g.createLinearGradient(0, 0, 0, 1024); gr.addColorStop(0, "#7d8893"); gr.addColorStop(1, "#6c7783"); g.fillStyle = gr; g.fillRect(0, 0, 1024, 1024);
   seed = 11;
   for (let k = 0; k < 90; k++) { g.fillStyle = rnd() < 0.5 ? "rgba(120,140,160,0.35)" : "rgba(40,52,66,0.3)"; g.beginPath(); g.ellipse(rnd() * 1024, rnd() * 1024, 20 + rnd() * 70, 10 + rnd() * 40, rnd() * 3, 0, 7); g.fill(); }
   for (let k = 0; k < 40; k++) { g.strokeStyle = "rgba(200,210,220,0.35)"; g.lineWidth = 2 + rnd() * 3; g.beginPath(); const x = rnd() * 1024, y = rnd() * 1024; g.moveTo(x, y); g.quadraticCurveTo(x + rnd() * 60, y + 20, x + 40 + rnd() * 80, y + rnd() * 30); g.stroke(); }  // old scars
@@ -214,8 +214,8 @@ const bellRig = (a: At, v = "tied"): PropRig => {
 /** whaleEye: the whale's eye on its flank (5 m across), `at` = its centre, facing +z; shut until its first step, then
  *  the lids open over the next step; it then looks about slowly. */
 const eyeRig = (a: At): PropRig => {
-  const root = rigRoot(a), skin = new THREE.MeshLambertMaterial({ map: skinTex() });
-  root.add(mesh(new THREE.SphereGeometry(3.3, 32, 20), skin, 0, 0, -2.2));                       // the mound around it
+  const root = rigRoot(a), skin = new THREE.MeshLambertMaterial({ map: skinTex(), emissive: "#2a3644" });
+  root.add(mesh(new THREE.SphereGeometry(3.3, 32, 20), skin, 0, 0, -3.0));                       // the mound around it (behind the eye)
   const ball = new THREE.Group(); ball.position.set(0, 0, 0.6); root.add(ball);
   ball.add(mesh(new THREE.CircleGeometry(1.9, 40), new THREE.MeshBasicMaterial({ color: "#efe6c8" }), 0, 0, 0.02));
   ball.add(mesh(new THREE.CircleGeometry(0.95, 40), new THREE.MeshBasicMaterial({ color: "#6a4428" }), 0, 0, 0.04));
@@ -245,7 +245,7 @@ const tailRig = (a: At, v?: string): PropRig => {
  *  sea drops from +0.5 to -2.8 over its first two steps, white water pouring off the quay; "glide": the sea 2.8 m down,
  *  rushing past toward +z (the city swimming forward); "calm": still, 2.8 m down. `at` = [0, 0, 0]. */
 const seaRig = (a: At, v = "rise"): PropRig => {
-  const root = rigRoot(a), t = seaTex("A", "#2f7fae", "#4a97c2").clone(); t.repeat.set(160, 160); t.needsUpdate = true;
+  const root = rigRoot(a), t = seaTex("A", "#1f5f92", "#3f84b8").clone(); t.repeat.set(160, 160); t.needsUpdate = true;
   const water = mesh(new THREE.PlaneGeometry(1800, 1800).rotateX(-Math.PI / 2), new THREE.MeshLambertMaterial({ map: t }), 0, 0, 0); root.add(water);
   const falls = v === "rise" ? Array.from({ length: 18 }, (_, i) => { const m = mesh(new THREE.PlaneGeometry(2.2, 1), new THREE.MeshBasicMaterial({ color: "#eaf6fa", transparent: true, opacity: 0.8, depthWrite: false, side: THREE.DoubleSide })); root.add(m); return { m, i }; }) : [];
   return { root, update: ({ step = 0 }) => {
@@ -257,8 +257,8 @@ const seaRig = (a: At, v = "rise"): PropRig => {
 /** floodWater: sea water over the harbour quay (14 x 9 m), rising from below the quay to 0.4 m over it over its first
  *  three steps. `at` = the quay's centre at the quay's surface. */
 const floodRig = (a: At): PropRig => {
-  const root = rigRoot(a), t = seaTex("F", "#2a6f98", "#3f88b0").clone(); t.repeat.set(4, 4); t.needsUpdate = true;
-  const w = mesh(new THREE.PlaneGeometry(9, 16).rotateX(-Math.PI / 2), new THREE.MeshLambertMaterial({ map: t, transparent: true, opacity: 0.92 }), 0, 0, 0); root.add(w);
+  const root = rigRoot(a), t = seaTex("F", "#3a7aa6", "#8fc2dc").clone(); t.repeat.set(3, 3); t.needsUpdate = true;
+  const w = mesh(new THREE.PlaneGeometry(9, 16).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({ map: t, transparent: true, opacity: 0.9, color: "#8fb4cc" }), 0, 0, 0); root.add(w);
   return { root, update: ({ step = 0 }) => { w.position.y = -0.3 + Math.min(1, step / 3) * 0.7; t.offset.x = step * 0.01; w.visible = step > 0.001; } };
 };
 
@@ -276,8 +276,8 @@ const WC_VIEWS: View[] = [
 const whaleCityBuild = (withSea: boolean) => () => {
   const root = new THREE.Group(), b = new Batch(), I = new THREE.Matrix4(); seed = 61;
   if (withSea) {                                                                                  // the sea, foam along the whale's waterline
-    b.add(quadUp(-900, 900, -900, 900, 1, 1, SEA), col("#2f7fae"));
-    b.add(quadUp(-160, 160, -200, 240, 1, 1, SEA + 0.005), col("#3a8fbd"));
+    b.add(quadUp(-900, 900, -900, 900, 1, 1, SEA), col("#1f5f92"));
+    b.add(quadUp(-160, 160, -200, 240, 1, 1, SEA + 0.005), col("#2a6fa3"));
     for (let z = -70; z <= 130; z += 4) for (const s of [-1, 1]) { const x = s * flankX(z, SEA); if (!x) continue; b.add(quadUp(-0.25, 0.25, -1.8, 1.8, 1, 1, SEA + 0.02).translate(x + s * 0.5, 0, z), col("#dcecf2")); }
     for (let i = 0; i < 80; i++) { const ang = rnd() * Math.PI * 2, d = 60 + rnd() * 160, w = 0.6 + rnd() * 2; b.add(quadUp(-w, w, -0.1, 0.1, 1, 1, SEA + 0.01).translate(Math.cos(ang) * d, 0, 25 + Math.sin(ang) * d * 1.4), col("#d9eef5")); }
   }
@@ -286,7 +286,7 @@ const whaleCityBuild = (withSea: boolean) => () => {
   b.add(new THREE.SphereGeometry(1, 64, 32), skin, new THREE.Matrix4().compose(new THREE.Vector3(...BODY.c), new THREE.Quaternion(), new THREE.Vector3(...BODY.r)));
   b.add(new THREE.SphereGeometry(1, 48, 24), skin, new THREE.Matrix4().compose(new THREE.Vector3(0, -7, -62), new THREE.Quaternion(), new THREE.Vector3(30, 11, 24)));
   for (const s of [-1, 1]) {
-    b.add(new THREE.TorusGeometry(26, 0.35, 8, 48, Math.PI * 0.55), col("#2c3642"), new THREE.Matrix4().compose(new THREE.Vector3(0, 0.6, -60), new THREE.Quaternion().setFromEuler(new THREE.Euler(Math.PI / 2, 0, s > 0 ? -0.3 : Math.PI - 1.43)), new THREE.Vector3(1, 1.25, 1)));
+    b.add(new THREE.TorusGeometry(26, 0.7, 8, 48, Math.PI * 0.55), col("#c9c2b0"), new THREE.Matrix4().compose(new THREE.Vector3(0, 0.6, -60), new THREE.Quaternion().setFromEuler(new THREE.Euler(Math.PI / 2, 0, s > 0 ? -0.3 : Math.PI - 1.43)), new THREE.Vector3(1, 1.25, 1)));
     b.add(new THREE.SphereGeometry(1, 24, 12), tex("wcFlip", skinTex, 2, 1), new THREE.Matrix4().compose(new THREE.Vector3(s * 44, 0.3, -18), new THREE.Quaternion().setFromEuler(new THREE.Euler(0, s * 0.5, s * 0.12)), new THREE.Vector3(12, 1.2, 4)));
   }
   // the plaza: a raised cobbled disc at the top, with a stone retaining wall down to the skin
@@ -322,7 +322,7 @@ const whaleCityBuild = (withSea: boolean) => () => {
   for (const [dx, dz] of [[1.2, -5], [1.8, -4.2], [2.2, 5]] as const) barrel(b, { x: QUAY_X0 + dx, y: QUAY_TOP, z: HARBOUR_Z + dz });
   for (const [dx, dz] of [[1.5, 3.6], [2.4, 3.2]] as const) crate(b, { x: QUAY_X0 + dx, y: QUAY_TOP, z: HARBOUR_Z + dz, yaw: dz }, 0.6);
   for (const [dx, dz] of [[3.2, -2.5], [3.6, 1.2]] as const) sph(b, col("#a89068"), I, QUAY_X0 + dx, QUAY_TOP, HARBOUR_Z + dz, 0.7, 0.25, 0.55, 12);  // net piles
-  for (const z of [-12, -18, 12]) house(b, { x: QUAY_X0 - 3.5, y: backY(QUAY_X0 - 3.5, HARBOUR_Z + z) - 0.6, z: HARBOUR_Z + z, yaw: Math.PI / 2 }, 6, 6, 6.4, Math.floor(rnd() * 8), z);
+  for (const z of [12]) house(b, { x: QUAY_X0 - 3.5, y: backY(QUAY_X0 - 3.5, HARBOUR_Z + z) - 0.6, z: HARBOUR_Z + z, yaw: Math.PI / 2 }, 6, 6, 6.4, Math.floor(rnd() * 8), z);
   lathe(b, col("#3a3430"), I, QUAY_X1 - 0.4, QUAY_TOP + 0.8, HARBOUR_Z - 6, [[0.22, 0], [0.22, 0.08], [0.0, 0.08]], 10);
   b.build(root, true);
   void glow;
