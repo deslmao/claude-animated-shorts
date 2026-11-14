@@ -79,9 +79,9 @@ const shots: ShotSpec[] = [
     note: "5 an old whale" },
   // ======== 6: the rings
   { say: "Every new mayor puts another stone ring around the hole. It's a tradition.", ...DAWN,
-    camera: { move: "overShoulder", over: "wren", at: "blowhole" },
+    ...move([3.7, P + 2.6, 1.0], [0, P + 1.0, -3.0], 44, [3.4, P + 2.4, 0.6], [0, P + 1.0, -3.0], 40, 0.1, 3.6),
     actors: [{ who: "wren", at: WREN_AT, act: "thinking", facing: -1 }],
-    props: [ring("12"), spout("low")], note: "6 the rings" },
+    props: [ring("12")], note: "6 the rings" },
   { say: "And every ring makes the hole a bit smaller.", ...DAY,
     ...move([0.02, P + 2.42, -14.7], [0.02, P + 2.42, -16.0], 30, [0.02, P + 2.45, -15.25], [0.02, P + 2.47, -16.0], 26, 0.1, 2.2),
     actors: [], props: [{ id: "tapestryCard", at: TAPESTRY, steps: STILL }], note: "6 the founders' wide hole" },
