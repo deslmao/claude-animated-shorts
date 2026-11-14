@@ -1,11 +1,11 @@
 {
-  "run_id": "42700074767",
-  "artifact": "Short-night-shift-run27",
-  "frames": 2536,
+  "run_id": "43576706506",
+  "artifact": "Short-one-too-many-run28",
+  "frames": 3836,
   "width": 1080,
   "height": 1920,
   "audio": "required",
-  "seams": "126,253,380,507,634,760,887,1014,1141,1268,1394,1521,1648,1775,1902,2028,2155,2282,2409",
-  "keep": "productions/night-shift/final/Short-night-shift.mp4",
-  "note": "Night Shift (Extra Door Part 2) final render (run 27, 20 chunks). Full QA with all 19 chunk seams, then keep the MP4 in the repo (no GitHub Release)."
+  "seams": "191,383,575,767,959,1150,1342,1534,1726,1918,2109,2301,2493,2685,2877,3068,3260,3452,3644",
+  "keep": "productions/one-too-many/final/Short-one-too-many.mp4",
+  "note": "One Too Many final render (run 28, 20 chunks). Full QA with all 19 chunk seams, then keep the MP4 in the repo (no GitHub Release)."
 }
