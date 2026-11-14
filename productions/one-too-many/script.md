@@ -8,9 +8,11 @@ on screen. About 322 words, about 90 s with the silent beats. Storyboard: `anima
 | # | Voice | Line |
 |---|---|---|
 | 1 | N | Every fire drill at Ashford High, Year Seven comes out with one pupil too many. |
-| 2 | N | Ms Okoye was new. On her first drill, she counted them on the field. Thirty-one. The register said thirty. |
+| 2 | N | Ms Okoye was new. On her first drill, she counted her class. |
+| 2b | Ms Okoye (under her breath, in the scene) | Twenty-nine... thirty... thirty-one? |
+| 2c | N | The register said thirty. |
 | 3 | Head | Happens every drill. Count again. |
-| 4 | N | She counted again. Thirty. |
+| 4 | Ms Okoye (quicker) | Twenty-eight, twenty-nine... thirty. |
 | 5 | N | So at the next drill, she took a photo of the line. |
 | 6 | N | Thirty-one children. And at the very end, a girl in a maroon blazer. Ashford's blazers have been navy for forty years. |
 | 7 | N | She wasn't looking at the camera. She was staring back at the school. |
@@ -77,3 +79,9 @@ The counts are one form, 7C (register 30), so the numbers can be shown on screen
   - firefighters;
   - the phone-photo insert.
 - **Reused:** the classroom set, school desks, chairs, the crowd generator, the mug, the day and golden lights, the mystery music and the nature ambience.
+
+## Revision after the quality review (owner direction: benchmark production quality plus stronger storytelling)
+- **Delivery, not story.** The counts are now heard from Ms Okoye herself, under her breath, in the scene, the way Milo counts in Extra Door. The narrator no longer reads the numbers, and the story is unchanged.
+- **Production baseline restored:** motion blur and controlled blur on, music at −3 dB, library framings (close-up, two-shot, push-in) with their depth of field, named faces large in frame, a performed beat in every shot.
+- **The set:** warm red brick, a mown field, a porch block with a clock, railings, trees, bags and cones, and teachers in hi-vis.
+- **Number tags** now appear only on the last three heads of the count.

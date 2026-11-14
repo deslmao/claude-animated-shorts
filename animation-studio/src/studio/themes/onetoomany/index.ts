@@ -15,7 +15,6 @@ import type { Theme } from "..";
 import type { Look } from "../../characters/figure";
 import { INK, type Pen } from "../../characters/toon";
 import { Batch, quadUp } from "../../materials/geo";
-import { grassHD } from "../../materials/paint";
 import { asphaltHD } from "../../materials/paint2";
 import { At, frame, col, box, cyl, sph, tex, panel, glow } from "../../props/kit";
 import { tree, flowers, tufts, fence } from "../../props/nature";
@@ -61,6 +60,12 @@ const LEO: Look = { name: "Leo", build: "kid", skin: "#c99067", seed: 104, hair:
   top: { style: "shirt", color: "#f4f4f0" }, neck: { style: "tie", color: "#a8323a" }, layer: { style: "blazer", color: "#1f2d4f" },
   legs: "#4a4d55", shoes: "#1e1e22" };
 
+/** two teachers on fire-drill duty, in hi-vis vests over their clothes */
+const TEACHER_A: Look = { name: "Teacher (hi-vis)", build: "tall", skin: "#c99067", seed: 105, hair: { style: "short", color: "#2a201a" }, beard: { style: "full", color: "#2a201a" },
+  top: { style: "shirt", color: "#cfe0f2" }, layer: { style: "waistcoat", color: "#e3ec3c" }, legs: "#3a3d47", shoes: "#2a201a" };
+const TEACHER_B: Look = { name: "Teacher (hi-vis)", build: "adult", skin: "#f1c9a8", seed: 106, hair: { style: "ponytail", color: "#a5682f" }, glasses: { style: "round", color: INK },
+  top: { style: "sweater", color: "#5d8a3a" }, layer: { style: "waistcoat", color: "#e3ec3c" }, legs: "#2f3448", shoes: "#3a2b20" };
+
 // ---------------------------------------------------------------- item: clipboard (held)
 const clipboardItem = (p: Pen, x: number, y: number, u: number, s: number) => {
   const cx = x + 3 * u * s, cy = y - 2 * u;
@@ -71,10 +76,17 @@ const clipboardItem = (p: Pen, x: number, y: number, u: number, s: number) => {
 };
 
 // ---------------------------------------------------------------- textures
-const brickTex = () => stex("otmBrick", 512, 512, (g) => {
-  g.fillStyle = "#e0d4bf"; g.fillRect(0, 0, 512, 512); let s = 23; const r = () => ((s = (s * 16807) % 2147483647) / 2147483647);
+const brickTex = () => stex("otmBrick2", 512, 512, (g) => {
+  g.fillStyle = "#d3c4ad"; g.fillRect(0, 0, 512, 512); let s = 23; const r = () => ((s = (s * 16807) % 2147483647) / 2147483647);
   const bw = 64, bh = 22;
-  for (let y = 0, row = 0; y < 512; y += bh, row++) for (let x = -(row % 2) * bw / 2; x < 512; x += bw) { const t = r(); g.fillStyle = t > 0.7 ? "#b98a5c" : t > 0.35 ? "#c99b6c" : "#d4a878"; g.fillRect(x + 2, y + 2, bw - 4, bh - 4); }
+  for (let y = 0, row = 0; y < 512; y += bh, row++) for (let x = -(row % 2) * bw / 2; x < 512; x += bw) { const t = r(); g.fillStyle = t > 0.72 ? "#a9563c" : t > 0.36 ? "#bb6646" : t > 0.1 ? "#c87556" : "#8f4a36"; g.fillRect(x + 2, y + 2, bw - 4, bh - 4); }
+});
+/** a mown school field: broad light and dark mowing stripes, blade strokes, the odd clover and daisy */
+const fieldTex = () => stex("otmField", 512, 512, (g) => {
+  let s = 41; const r = () => ((s = (s * 16807) % 2147483647) / 2147483647);
+  for (let y = 0; y < 512; y += 256) { g.fillStyle = y ? "#6f8f4a" : "#7d9c55"; g.fillRect(0, y, 512, 256); }
+  for (let k = 0; k < 2600; k++) { const x = r() * 512, y = r() * 512, d = y < 256 ? 0 : 1; g.strokeStyle = ["#87a75c", "#668546", "#90ad66", "#5f7d40"][Math.floor(r() * 2) + d * 2]; g.lineWidth = 1.6; g.beginPath(); g.moveTo(x, y); g.lineTo(x + (r() - 0.5) * 3, y - 5 - r() * 4); g.stroke(); }
+  for (let k = 0; k < 26; k++) { g.fillStyle = r() < 0.7 ? "#f4f1e6" : "#5a7a3c"; g.beginPath(); g.arc(r() * 512, r() * 512, 2.2, 0, 7); g.fill(); }
 });
 /** a window pane, lived in: plain sky reflection, blinds half down, a poster, a plant on the sill, a paper chain */
 const WINDOW_KINDS = 5;
@@ -176,7 +188,7 @@ const ashfordField = () => {
   const root = new THREE.Group(), b = new Batch(), I = new THREE.Matrix4();
   // ground: the playground, the field, the pitch lines
   b.add(quadUp(-70, 70, -12, 8, 40, 6), tex("otmTarmac", asphaltHD, 1, 1));
-  b.add(quadUp(-70, 70, 8, 80, 40, 20, 0.01), tex("otmGrass", grassHD, 1, 1));
+  b.add(quadUp(-70, 70, 8, 80, 40, 20, 0.01), tex("otmField", fieldTex, 1, 1));
   const line = col("#f4f4ee");
   for (const [x0, x1, z0, z1] of [[-22, 22, 24, 24.1], [-22, 22, 66, 66.1], [-22, -21.9, 24, 66.1], [21.9, 22, 24, 66.1], [-22, 22, 45, 45.1]] as const) b.add(quadUp(x0, x1, z0, z1, 1, 1, 0.02), line);
   for (const [x0, x1, z0, z1] of [[-30, 30, 7.95, 8.05]] as const) b.add(quadUp(x0, x1, z0, z1, 1, 1, 0.02), col("#d9d4c8")); // the field's edge kerb line
@@ -195,11 +207,17 @@ const ashfordField = () => {
       box(b, trim, I, x - 1.18, x + 1.18, f * FH + 0.9, f * FH + 1.0, 0.0, 0.14);                                       // sill
     }
   }
-  // the entrance: glass doors, a canopy on posts, the sign above
-  panel(b, glow("otmDoors", () => ({ map: windowTex(0), color: "#c9d4df" })), I, 0, 1.3, 0.014, 2.8, 2.6);
-  box(b, col("#1f2d4f"), I, -1.5, 1.5, 2.6, 2.75, 0.0, 0.12);
-  box(b, col("#f1efe8"), I, -2.6, 2.6, 2.9, 3.05, 0, 2.6); for (const x of [-2.4, 2.4]) box(b, col("#9aa0a6"), I, x - 0.06, x + 0.06, 0, 2.9, 2.36, 2.48);
-  b.add(plane(4.6, 0.86), glow("otmSignM", () => ({ map: schoolSignTex() })), new THREE.Matrix4().makeTranslation(0, 3.62, 0.02));
+  // the entrance: a porch block projecting 2.6 m (glass doors, the sign on its parapet), a clock above it
+  const porch = tex("otmBrickP", brickTex, 6.4 / 1.72, 4.2 / 1.72);
+  box(b, porch, I, -3.2, 3.2, 0, 4.2, 0.0, 2.6); box(b, col("#d8d0c0"), I, -3.35, 3.35, 4.2, 4.42, -0.1, 2.75);
+  panel(b, glow("otmDoors", () => ({ map: windowTex(0), color: "#c9d4df" })), I, 0, 1.3, 2.614, 2.8, 2.6);
+  box(b, col("#1f2d4f"), I, -1.5, 1.5, 2.6, 2.75, 2.6, 2.72);
+  for (const x of [-2.4, 2.4]) panel(b, glow("otmWinM1", () => ({ map: windowTex(1), color: "#e9edf2" })), I, x, 2.0, 2.614, 1.0, 1.6);
+  b.add(plane(4.6, 0.86), glow("otmSignM", () => ({ map: schoolSignTex() })), new THREE.Matrix4().makeTranslation(0, 3.55, 2.62));
+  cyl(b, col("#f4f1ea"), I, 0, 5.6, 0.04, 0.48, 0.48, 0.06, 28, Math.PI / 2); cyl(b, col("#1f2d4f"), I, 0, 5.6, 0.0, 0.54, 0.54, 0.05, 28, Math.PI / 2);
+  box(b, col("#241726"), I, -0.02, 0.02, 5.6, 5.95, 0.08, 0.1); box(b, col("#241726"), I, 0, 0.26, 5.58, 5.62, 0.08, 0.1);         // the clock's hands
+  for (const x of [-16.6, -7.6, 7.6, 16.6]) box(b, col("#4a4d55"), I, x - 0.06, x + 0.06, 0, FH * NF + 0.6, 0.0, 0.12); // downpipes
+  for (const [x, w] of [[-10, 2.4], [-6.5, 1.2], [9, 3.0]] as const) box(b, col("#9aa0a6"), I, x - w / 2, x + w / 2, FH * NF + 0.85, FH * NF + 1.9, -6, -3.5); // roof plant
   // the science block (single storey, right), its sign and big lab windows
   const sbrick = tex("otmBrickS", brickTex, 12 / 1.72, 4.2 / 1.72);
   box(b, sbrick, I, 20, 32, 0, 4.2, -10, 0); box(b, col("#d8d0c0"), I, 19.85, 32.15, 4.2, 4.45, -10.15, 0.15);
@@ -211,6 +229,16 @@ const ashfordField = () => {
   for (let k = 0; k < 6; k++) box(b, col(["#3f6fb5", "#c25a7a", "#5d8a3a"][k % 3]), I, -15 + k * 0.95, -14.95 + k * 0.95, 0.3, 0.95, 1.6, 3.0); // bikes, end on (thin frames)
   for (const x of [5.5, 6.3, 7.1]) bin(b, { x, z: 0.6 }, "#2f3a33");
   bench(b, { x: -6, z: 7.2, yaw: Math.PI }); bench(b, { x: 9, z: 7.2, yaw: Math.PI });
+  for (const [x0, x1] of [[-30, -5.5], [5.5, 30]] as const) {                                                            // green railings, a gap for the path
+    for (let x = x0; x <= x1; x += 0.22) box(b, col("#2f5a43"), I, x - 0.015, x + 0.015, 0, 1.1, 7.55, 7.58);
+    for (const y of [0.12, 1.02]) box(b, col("#2f5a43"), I, x0, x1, y, y + 0.05, 7.53, 7.6);
+  }
+  for (const [x, z, h, k] of [[-12.5, 9.5, 6.5, "round"], [12.8, 9.2, 7, "fat"], [-19, 10.5, 7.5, "tall"], [20, 10.8, 6.5, "round"]] as const) tree(b, k, x, 0, z, h, 60 + x, 1);
+  for (let k = 0; k < 9; k++) {                                                                                           // school bags dumped by the assembly point
+    const x = -5.6 + (k % 5) * 0.34, z = 9.0 + Math.floor(k / 5) * 0.36, c = ["#1f2d4f", "#a8323a", "#2f5f6a", "#3a3d47", "#c8643f"][k % 5];
+    box(b, col(c), I, x - 0.15, x + 0.15, 0.01, 0.34, z - 0.1, z + 0.1);
+  }
+  for (const x of [-2.4, 2.4]) { cyl(b, col("#e2662e"), I, x, 0.01, 8.6, 0.03, 0.16, 0.42, 14); cyl(b, col("#f4f1ea"), I, x, 0.2, 8.6, 0.09, 0.115, 0.07, 14); } // cones at the path
   // trees round the field, a hedge along the back, a fence on the far side
   for (let k = 0; k < 9; k++) tree(b, k % 3 === 0 ? "tall" : "round", -34 + (k % 2) * 3, 0, 14 + k * 6, 6 + (k % 3), k + 3);
   for (let k = 0; k < 9; k++) tree(b, k % 2 === 0 ? "fat" : "round", 34 - (k % 2) * 3, 0, 12 + k * 6, 6 + (k % 2) * 2, k + 21);
@@ -228,11 +256,13 @@ export const ONETOOMANY_THEME: Theme = {
   mood: "mystery",
   ambience: { ashfordField: "amb_nature_day" },
   steps: { ashfordField: "step_grass" },
-  characters: { okoye: OKOYE, rowe: ROWE, carol: CAROL, leo: LEO },
+  characters: { okoye: OKOYE, rowe: ROWE, carol: CAROL, leo: LEO, teacherA: TEACHER_A, teacherB: TEACHER_B },
   characterMeta: {
     okoye: { name: "Ms Okoye", desc: "dark hair up in a bun; a plum cardigan over a cream shirt; navy trousers", personality: "the new Year 7 form tutor at Ashford High (One Too Many): counts carefully, notices what others don't", themes: ["school", "mystery"], tags: ["teacher", "female", "protagonist"] },
     rowe: { name: "Mr Rowe", desc: "stout; receding grey hair; square glasses; grey suit, blue tie", personality: "the head teacher: kind, busy, long since used to the drills coming out one over (One Too Many)", themes: ["school"], tags: ["head", "teacher", "male", "boss"] },
     carol: { name: "Carol", desc: "a small girl with a brown bob in a faded maroon 1979 school blazer and old-gold tie, her colours washed out like an old photograph", personality: "Carol Webb, a Year 7 pupil lost in the 1979 fire (One Too Many): stands at the end of every line, very still, facing the school", themes: ["school", "ghost", "mystery"], tags: ["ghost", "child", "girl", "1979", "uniform"] },
+    teacherA: { name: "Teacher on duty (hi-vis)", desc: "tall; short dark hair and beard; a hi-vis vest over a pale blue shirt", personality: "a teacher on fire-drill duty (One Too Many)", themes: ["school"], tags: ["teacher", "hi-vis", "male", "background"] },
+    teacherB: { name: "Teacher on duty (hi-vis)", desc: "auburn ponytail; round glasses; a hi-vis vest over a green jumper", personality: "a teacher on fire-drill duty (One Too Many)", themes: ["school"], tags: ["teacher", "hi-vis", "female", "background"] },
     leo: { name: "Leo", desc: "a small boy with dark curls in today's uniform: navy blazer, red tie", personality: "a Year 7 pupil in 7C (One Too Many)", themes: ["school"], tags: ["child", "boy", "pupil"] },
   },
   items: { clipboard: { name: "Clipboard", desc: "a wooden clipboard with a lined sheet (a register, a checklist)", themes: ["school", "work"], tags: ["clipboard", "register", "list", "teacher", "count"], draw: clipboardItem } },
