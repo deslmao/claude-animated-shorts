@@ -33,6 +33,7 @@ export const VOICES: Record<string, VoicePreset> = {
   // Video 09 (One Too Many): Ms Okoye counting under her breath, slower and looser than the channel settings (owner-approved)
   aliceCount: { name: "Alice - Clear, Engaging Educator", voiceId: "Xb7hH8MSUJpSbSDYk0k2", model: MODEL, settings: { ...CHANNEL, stability: 0.4, style: 0.2, speed: 0.88 }, note: "Ms Okoye counting (One Too Many): slower, with hesitations" },
   aliceSurprise: { name: "Alice - Clear, Engaging Educator", voiceId: "Xb7hH8MSUJpSbSDYk0k2", model: MODEL, settings: { ...CHANNEL, stability: 0.4, style: 0.2, speed: 0.9 }, note: "Ms Okoye's quiet, puzzled \"...thirty-one?\" (One Too Many; delivered with the count as context)" },
+  aliceRealise: { name: "Alice - Clear, Engaging Educator", voiceId: "Xb7hH8MSUJpSbSDYk0k2", model: MODEL, settings: { ...CHANNEL, stability: 0.35, style: 0.2, speed: 0.88 }, note: "Ms Okoye's \"Thirty... one?\" (One Too Many, owner-chosen audition take 4; delivered with context)" },
   liamScared: { name: "Liam - Energetic, Social Media Creator", voiceId: "TX3LPaxmHKxFdv7VOQHJ", model: MODEL, settings: { ...CHANNEL, stability: 0.3, style: 0.35, speed: 0.9 }, note: "Milo, frightened and desperate (Part 2 rewrite review take)" },
 };
 

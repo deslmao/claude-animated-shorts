@@ -1,0 +1,35 @@
+{
+ "hash": "01afbe93ce5c2f",
+ "text": "Thirty... one?",
+ "voice": "aliceRealise",
+ "lead": 0.03,
+ "end": 1.43,
+ "dur": 1.750204,
+ "words": [
+  {
+   "w": "Thirty...",
+   "t0": 0.03,
+   "t1": 0.73
+  },
+  {
+   "w": "one?",
+   "t0": 0.89,
+   "t1": 1.43
+  }
+ ],
+ "voiceId": "Xb7hH8MSUJpSbSDYk0k2",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.35,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 0.88
+ },
+ "context": {
+  "before": "Twenty-eight, twenty-nine, thirty. Hang on.",
+  "after": "That's not right."
+ },
+ "source": "owner-chosen audition take 4 (productions/one-too-many/narration/thirty-one-takes/4-thirty-pause-one.mp3), used exactly as auditioned; word times from its measured silences",
+ "created": "2026-11-14T08:32:00.929Z"
+}
