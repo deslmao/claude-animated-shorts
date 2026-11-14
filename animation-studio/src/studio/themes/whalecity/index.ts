@@ -62,9 +62,9 @@ const seaTex = (k: string, c0: string, c1: string) => stex("wcSea" + k, 512, 512
   for (let i = 0; i < 160; i++) { g.strokeStyle = i % 4 ? c1 : "rgba(235,246,250,0.55)"; g.lineWidth = 2 + rnd() * 3; const x = rnd() * 512, y = rnd() * 512, w = 20 + rnd() * 50; g.beginPath(); g.moveTo(x, y); g.quadraticCurveTo(x + w / 2, y - 5, x + w, y); g.stroke(); }
 }, true);
 const marbleTex = () => stex("wcMarble", 512, 128, (g) => {
-  g.fillStyle = "#ece6da"; g.fillRect(0, 0, 512, 128); seed = 5;
-  for (let k = 0; k < 30; k++) { g.strokeStyle = "rgba(150,140,130,0.35)"; g.lineWidth = 1.5; g.beginPath(); g.moveTo(rnd() * 512, 0); g.bezierCurveTo(rnd() * 512, 40, rnd() * 512, 90, rnd() * 512, 128); g.stroke(); }
-  g.fillStyle = "rgba(110,98,84,0.75)"; g.font = FONT(30); g.textAlign = "center"; for (let x = 64; x < 512; x += 128) g.fillText("✦ MAYOR ✦", x, 76);  // carved names
+  g.fillStyle = "#f4f1ea"; g.fillRect(0, 0, 512, 128); seed = 5;
+  for (let k = 0; k < 14; k++) { g.strokeStyle = "rgba(170,165,160,0.25)"; g.lineWidth = 1.2; g.beginPath(); g.moveTo(rnd() * 512, 0); g.bezierCurveTo(rnd() * 512, 40, rnd() * 512, 90, rnd() * 512, 128); g.stroke(); }
+  g.fillStyle = "#c9a24a"; g.fillRect(0, 54, 512, 6);                                                // a thin gilt line round each ring
 }, true);
 /** the breath-keeper's marks, painted up the pole: [height m, colour, faded] */
 const MARKS: [number, string, number][] = [[8.6, "#7a6a5a", 0.45], [8.3, "#7a6a5a", 0.45], [7.9, "#6a5a8a", 0.5], [7.4, "#6a5a8a", 0.55], [6.9, "#5a7a4a", 0.6], [6.4, "#5a7a4a", 0.65], [5.8, "#3f6fb5", 0.8], [5.2, "#3f6fb5", 0.85], [4.6, "#3f6fb5", 0.9], [4.1, "#3f6fb5", 0.95]];
@@ -147,16 +147,16 @@ const ringGeo = (ri: number, ro: number, t: number) => new THREE.LatheGeometry([
 const RING_T = 0.1, RINGS = 13;
 const ringR = (k: number): [number, number] => [1.55 - k * 0.085, 2.35 - k * 0.1];   // inner / outer radius of ring k (0 = the founders' first)
 const blowholeRig = (a: At, v = "12"): PropRig => {
-  const root = rigRoot(a), n = v === "12" ? 12 : 13, marble = new THREE.MeshLambertMaterial({ map: marbleTex() });
+  const root = rigRoot(a), n = v === "open" ? 0 : v === "12" ? 12 : 13, marble = new THREE.MeshLambertMaterial({ map: marbleTex() }), marble2 = new THREE.MeshLambertMaterial({ map: marbleTex(), color: "#e6e0d6" });
   root.add(mesh(new THREE.CylinderGeometry(2.6, 2.75, 0.15, 40), new THREE.MeshLambertMaterial({ map: skinTex() }), 0, 0.07, 0));  // the skin it sits on
   const hole = mesh(new THREE.CircleGeometry(1.5, 32).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({ color: "#121418" }), 0, 0.151, 0); root.add(hole);
-  const rings = Array.from({ length: n }, (_, k) => { const [ri, ro] = ringR(k), m = mesh(ringGeo(ri, ro, RING_T), marble, 0, 0.15 + k * RING_T, 0); root.add(m); return m; });
+  const rings = Array.from({ length: n }, (_, k) => { const [ri, ro] = ringR(k), mk = k % 2 ? marble : marble2, m = mesh(ringGeo(ri, ro, RING_T * 0.92), mk, 0, 0.15 + k * RING_T, 0); root.add(m); return m; });
   const plug = mesh(new THREE.CircleGeometry(1, 32).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({ color: "#0e1014" }), 0, 0, 0); root.add(plug);  // the dark opening at the top
   const fly = rings.map((_, k) => ({ vx: Math.cos(k * 2.4) * (2 + (k % 4)), vz: Math.sin(k * 2.4) * (2 + (k % 3)), vy: 10 + (k % 5) * 2.2, spin: (k % 2 ? 1 : -1) * (2 + k * 0.3) }));
   const ropes = v === "13lower" ? [0, 1, 2].map((i) => { const r = mesh(new THREE.CylinderGeometry(0.02, 0.02, 6, 6), new THREE.MeshLambertMaterial({ color: "#b89a6a" }), 0, 0, 0); root.add(r); return { r, i }; }) : [];
   return { root, update: ({ step = 0 }) => {
-    const top = 0.15 + n * RING_T; plug.position.y = top + 0.001; const [pri] = ringR(n - 1); plug.scale.setScalar(pri * 0.98);
-    if (v === "13lower") { const u = Math.min(1, step), y0 = 0.15 + 12 * RING_T, y = y0 + (1 - u) * 2.2; rings[12].position.y = y;
+    const top = 0.15 + n * RING_T; plug.position.y = top + 0.001; const [pri] = n ? ringR(n - 1) : [1.5]; plug.scale.setScalar(pri * 0.98);
+    if (v === "13lower") { const u = Math.min(1, step / 4), y0 = 0.15 + 12 * RING_T, y = y0 + (1 - u) * 2.2; rings[12].position.y = y;
       for (const { r, i } of ropes) { const ang = (i / 3) * Math.PI * 2, [ri] = ringR(12); r.position.set(Math.cos(ang) * (ri + 0.25), y + 3, Math.sin(ang) * (ri + 0.25)); } }
     if (v === "blast") { const t = Math.max(0, step) * 0.45;
       rings.forEach((m, k) => { const f = fly[k], tk = Math.max(0, t - (RINGS - 1 - k) * 0.03); m.position.set(f.vx * tk, 0.15 + k * RING_T + f.vy * tk - 4.9 * tk * tk * 0.35, f.vz * tk); m.rotation.set(f.spin * tk, 0, f.spin * 0.6 * tk); m.visible = m.position.y > -2; });
@@ -176,7 +176,7 @@ const spoutRig = (a: At, v = "low"): PropRig => {
   if (bow) { (bow.geometry as THREE.RingGeometry).computeBoundingSphere(); root.add(bow); }
   return { root, update: ({ step = 0, camPos }) => {
     const on = step > 0.001, life = v === "fail" ? Math.max(0, 1 - step / 6) : v === "erupt" ? Math.min(1, step * 0.9) : Math.min(1, step * 1.5);
-    for (const { m, i } of ps) { const u = ((i / N) + step * (v === "erupt" ? 0.09 : 0.06)) % 1, h = u * H * life, w = W * (0.6 + u * 1.3) * (0.5 + life * 0.5);
+    for (const { m, i } of ps) { const u = ((i / N) + step * (v === "erupt" ? 0.09 : 0.06)) % 1, h = u * H * life, w = W * (0.6 + u * (v === "erupt" ? 2.6 : 1.3)) * (0.5 + life * 0.5);
       m.position.set(Math.sin(i * 2.7) * W * 0.18 * u, h, Math.cos(i * 1.9) * W * 0.18 * u); m.scale.setScalar(w * 1.6); m.lookAt(camPos);
       (m.material as THREE.MeshBasicMaterial).opacity = on ? Math.min(1, u * 8) * (1 - u * 0.85) * life : 0; m.visible = on && life > 0.01; }
     for (const { m, i } of spray) { const u = ((i / spray.length) * 1.7 + step * 0.05) % 1, r0 = 4 + (i % 7) * 3.2, ang = i * 2.3;
@@ -218,9 +218,9 @@ const eyeRig = (a: At): PropRig => {
   root.add(mesh(new THREE.SphereGeometry(3.3, 32, 20), skin, 0, 0, -2.2));                       // the mound around it
   const ball = new THREE.Group(); ball.position.set(0, 0, 0.6); root.add(ball);
   ball.add(mesh(new THREE.CircleGeometry(1.9, 40), new THREE.MeshBasicMaterial({ color: "#efe6c8" }), 0, 0, 0.02));
-  ball.add(mesh(new THREE.CircleGeometry(1.15, 40), new THREE.MeshBasicMaterial({ color: "#5a3a22" }), 0, 0, 0.04));
-  ball.add(mesh(new THREE.CircleGeometry(0.55, 32), new THREE.MeshBasicMaterial({ color: "#0c0a0a" }), 0, 0, 0.06));
-  ball.add(mesh(new THREE.CircleGeometry(0.22, 20), new THREE.MeshBasicMaterial({ color: "#ffffff" }), 0.45, 0.45, 0.08));
+  ball.add(mesh(new THREE.CircleGeometry(0.95, 40), new THREE.MeshBasicMaterial({ color: "#6a4428" }), 0, 0, 0.04));
+  ball.add(mesh(new THREE.CircleGeometry(0.45, 32), new THREE.MeshBasicMaterial({ color: "#0c0a0a" }), 0, 0, 0.06));
+  ball.add(mesh(new THREE.CircleGeometry(0.26, 20), new THREE.MeshBasicMaterial({ color: "#ffffff" }), 0.32, 0.32, 0.08));
   const lid = (s: number) => { const g = new THREE.Group(); const m = mesh(new THREE.CircleGeometry(2.25, 40, s > 0 ? 0 : Math.PI, Math.PI), skin, 0, 0, 0.12); g.add(m); root.add(g); return g; };
   const up = lid(1), dn = lid(-1);
   root.add(mesh(new THREE.TorusGeometry(2.2, 0.32, 10, 48), skin, 0, 0, 0.12));
@@ -228,13 +228,14 @@ const eyeRig = (a: At): PropRig => {
 };
 /** whaleTail: the whale's tail flukes (24 m across) far behind the city: hidden under the sea until its first step,
  *  rising out over the next two (water streaming off), then slapping down. `at` = where it breaks the surface. */
-const tailRig = (a: At): PropRig => {
+const tailRig = (a: At, v?: string): PropRig => {
   const root = rigRoot(a), s = new THREE.Shape(); s.moveTo(0, 0); s.bezierCurveTo(4, 2, 9, 6, 12, 9); s.bezierCurveTo(9, 8.6, 5, 8.2, 2, 9.6); s.lineTo(0, 7.5); s.lineTo(-2, 9.6); s.bezierCurveTo(-5, 8.2, -9, 8.6, -12, 9); s.bezierCurveTo(-9, 6, -4, 2, 0, 0);
   const g = new THREE.Group(); root.add(g);
   g.add(mesh(new THREE.ExtrudeGeometry(s, { depth: 0.8, bevelEnabled: true, bevelThickness: 0.3, bevelSize: 0.3, bevelSegments: 2 }).translate(0, 0, -0.4), new THREE.MeshLambertMaterial({ map: skinTex() }), 0, 0, 0));
   g.add(mesh(new THREE.CylinderGeometry(1.4, 2.6, 8, 20), new THREE.MeshLambertMaterial({ map: skinTex() }), 0, -3.6, 0));
   const drops = Array.from({ length: 24 }, (_, i) => { const m = mesh(new THREE.PlaneGeometry(0.4, 2.2), new THREE.MeshBasicMaterial({ color: "#e8f4fa", transparent: true, opacity: 0.7, depthWrite: false })); g.add(m); return { m, i }; });
   return { root, update: ({ step = 0, camPos }) => {
+    if (v === "rest") { g.position.y = -7.2; g.rotation.x = -0.35; g.visible = true; for (const { m } of drops) m.visible = false; return; }
     const u = Math.max(0, step - 0.05), rise = Math.min(1, u / 2), fall = Math.max(0, Math.min(1, (u - 3) / 1.2));
     g.position.y = -12 + rise * 12 - fall * 12; g.rotation.x = -0.25 + rise * 0.25 + fall * 0.5; g.visible = step > 0.001;
     for (const { m, i } of drops) { const k = ((i / 24) + u * 0.6) % 1; m.position.set(-11 + (i % 12) * 2, 9 - k * 9, 0.6); m.lookAt(camPos); m.visible = rise > 0.3 && fall < 0.9; }
@@ -277,7 +278,7 @@ const whaleCityBuild = (withSea: boolean) => () => {
   if (withSea) {                                                                                  // the sea, foam along the whale's waterline
     b.add(quadUp(-900, 900, -900, 900, 1, 1, SEA), col("#2f7fae"));
     b.add(quadUp(-160, 160, -200, 240, 1, 1, SEA + 0.005), col("#3a8fbd"));
-    for (let z = -70; z <= 130; z += 4) for (const s of [-1, 1]) { const x = s * flankX(z, SEA); if (!x) continue; b.add(quadUp(-1.2, 1.2, -1.6, 1.6, 1, 1, SEA + 0.02).translate(x + s * 0.8, 0, z), col("#e6f3f7")); }
+    for (let z = -70; z <= 130; z += 4) for (const s of [-1, 1]) { const x = s * flankX(z, SEA); if (!x) continue; b.add(quadUp(-0.25, 0.25, -1.8, 1.8, 1, 1, SEA + 0.02).translate(x + s * 0.5, 0, z), col("#dcecf2")); }
     for (let i = 0; i < 80; i++) { const ang = rnd() * Math.PI * 2, d = 60 + rnd() * 160, w = 0.6 + rnd() * 2; b.add(quadUp(-w, w, -0.1, 0.1, 1, 1, SEA + 0.01).translate(Math.cos(ang) * d, 0, 25 + Math.sin(ang) * d * 1.4), col("#d9eef5")); }
   }
   // the whale: its long back, a blunt head with a mouth line, two flippers
@@ -302,7 +303,7 @@ const whaleCityBuild = (withSea: boolean) => () => {
     house(b, { x, y: P - 0.3, z, yaw: Math.atan2(-x, -z) }, w, 7, h, Math.floor(rnd() * 8), k);
   }
   // terraces stepping down the whale's back
-  for (const [R, n, sz] of [[34, 26, 1.5], [45, 30, 1.6], [56, 32, 1.75]] as const) for (let k = 0; k < n; k++) {
+  for (const [R, n, sz] of [[34, 18, 1.5], [45, 11, 1.6]] as const) for (let k = 0; k < n; k++) {
     const ang = (k / n) * Math.PI * 2 + R, x = Math.sin(ang) * R * 0.78, z = -Math.cos(ang) * R * sz + 8, y = backY(x, z);
     if (!(y > SEA + 2.2) || (x > 10 && z < -30 && z > -60)) continue;                              // above the water; the harbour slope stays open
     house(b, { x, y: y - 0.6, z, yaw: Math.atan2(-x, -(z - 8)) }, 6 + Math.floor(rnd() * 3), 7, [6.2, 7.4, 8.4][Math.floor(rnd() * 3)], Math.floor(rnd() * 8), k + R);
@@ -348,22 +349,22 @@ export const WHALECITY_THEME: Theme = {
     baby: { name: "Baby", desc: "a baby swaddled in a cream shawl, held in the arms", themes: ["any"], tags: ["baby", "infant", "child", "family"], draw: babyItem },
   },
   props: {
-    blowhole: { name: "The Fountain (the whale's blowhole)", desc: "the whale's blowhole, a dark wet hole in the skin, inside stacked white marble rings (each 0.1 m, narrower than the one below; the opening at the top of the stack, ~1.35 m up for 12 rings), `at` = the centre. Variant 12, 13, 13lower (the 13th lowered into place over the first step, on three ropes) or blast (all thrown up and away over its steps)", category: "theme", themes: ["fantasy", "whale"], tags: ["fountain", "blowhole", "rings", "marble", "monument"], radius: 2.4, height: 1.5,
-      build: () => undefined, rig: (a, v) => blowholeRig(a, v ?? "12"), steps: ["it moves"], stepCount: () => 400, variants: { "12": () => undefined, "13": () => undefined, "13lower": () => undefined, blast: () => undefined } },
+    blowhole: { name: "The Fountain (the whale's blowhole)", desc: "the whale's blowhole, a dark wet hole in the skin, inside stacked white marble rings (each 0.1 m, narrower than the one below; the opening at the top of the stack, ~1.35 m up for 12 rings), `at` = the centre. Variant 12, 13, open (no rings: the hole wide open), 13lower (the 13th lowered into place over four steps, on three ropes) or blast (all thrown up and away over its steps)", category: "theme", themes: ["fantasy", "whale"], tags: ["fountain", "blowhole", "rings", "marble", "monument"], radius: 2.4, height: 1.5,
+      build: () => undefined, rig: (a, v) => blowholeRig(a, v ?? "12"), steps: ["it moves"], stepCount: () => 400, variants: { "12": () => undefined, "13": () => undefined, open: () => undefined, "13lower": () => undefined, blast: () => undefined } },
     spout: { name: "Whale spout", desc: "the whale's breath: a column of white vapour from the Fountain's opening, `at` = the opening; variant low (~3.3 m), fail (a thin hiss dying away over ~6 steps), erupt (~30 m, spray over the city, a rainbow), tall (~11 m); give it steady steps (every ~0.15 s)", category: "theme", themes: ["fantasy", "whale", "sea"], tags: ["spout", "breath", "vapour", "water"], radius: 1, height: 11,
       build: () => undefined, rig: (a, v) => spoutRig(a, v ?? "low"), steps: ["it breathes"], stepCount: () => 400, variants: { low: () => undefined, fail: () => undefined, erupt: () => undefined, tall: () => undefined } },
     breathPole: { name: "Breath-keeper's pole", desc: "a 9.4 m white measuring pole with red bands every 1.5 m and each keeper's coloured dawn mark, `at` = its foot; variant low (Wren's fresh white mark at 3.3 m, below Gran's blue ones) or top (her mark at 9 m)", category: "theme", themes: ["fantasy"], tags: ["pole", "measure", "marks", "gauge"], radius: 0.3, height: 9.4,
       build: (b, a, v) => poleBuild(b, a, v ?? "low"), param: { desc: "low or top", ok: (v) => v === "low" || v === "top" } },
     poleCard: { name: "The pole's marks (insert)", desc: "the breath-keeper's pole up close: each keeper's painted mark with their name (BRAM, OTTILIE, HESTER faded near the top; GRAN's blue marks; WREN's fresh white mark far below them, a dashed line showing the drop). An ink card 0.4 x 0.64 m facing +z: ~0.55 m from an `at` camera; variant top: WREN's mark above them all", category: "theme", themes: ["fantasy"], tags: ["insert", "marks", "pole"], radius: 0.05, height: 0.64,
-      build: () => undefined, rig: (a, v) => { const root = rigRoot(a); root.add(mesh(new THREE.PlaneGeometry(0.4, 0.64), cardMat(poleCardTex(v ?? "low")))); return { root, update: () => undefined }; }, param: { desc: "low or top", ok: (v) => v === "low" || v === "top" } },
+      build: () => undefined, rig: (a, v) => { const root = rigRoot(a); root.add(mesh(new THREE.PlaneGeometry(0.4, 0.64), cardMat(poleCardTex(v ?? "low")))); return { root, update: () => undefined }; }, steps: ["it shows"], param: { desc: "low or top", ok: (v) => v === "low" || v === "top" } },
     tapestryCard: { name: "The founding tapestry (insert)", desc: "the town hall's tapestry of the founding: the founders' ship, the 'island' with their first houses and a wide open hole at its top, the cannon fired at their first party, the great breath blowing the roofs off. An ink card 0.8 x 0.6 m facing +z: ~1 m from an `at` camera", category: "theme", themes: ["fantasy", "history"], tags: ["insert", "tapestry", "history", "founding"], radius: 0.05, height: 0.6,
-      build: () => undefined, rig: (a) => { const root = rigRoot(a); root.add(mesh(new THREE.PlaneGeometry(0.8, 0.6), cardMat(tapestryTex()))); return { root, update: () => undefined }; } },
+      build: () => undefined, rig: (a) => { const root = rigRoot(a); root.add(mesh(new THREE.PlaneGeometry(0.8, 0.6), cardMat(tapestryTex()))); return { root, update: () => undefined }; }, steps: ["it shows"] },
     foundersBell: { name: "The founders' bell", desc: "the founders' bronze ship's bell (0.7 m) hanging in a wooden frame (3 m), its mouth 2 m up, `at` = the frame's centre (the frame runs along local x); variant tied (the clapper lashed with old rope: silenced) or free (the lashing cut, the bell rope hanging to 1.5 m); with free, each step is one swing of the bell", category: "theme", themes: ["fantasy", "sea", "history"], tags: ["bell", "ship's bell", "rope", "frame"], radius: 0.3, height: 3.1,
       build: () => undefined, rig: (a, v) => bellRig(a, v ?? "tied"), steps: ["it swings"], stepCount: () => 400, variants: { tied: () => undefined, free: () => undefined } },
     whaleEye: { name: "The whale's eye", desc: "the whale's eye (5 m across, in a mound of skin), `at` = its centre, facing +z; shut until its second step, then opening; then it looks about", category: "theme", themes: ["fantasy", "whale"], tags: ["eye", "whale", "awake"], radius: 3.3, height: 6,
       build: () => undefined, rig: (a) => eyeRig(a), steps: ["it opens"], stepCount: () => 400 },
-    whaleTail: { name: "The whale's tail", desc: "the whale's tail flukes (24 m across), `at` = where it breaks the sea, facing +z; hidden until its first step, rising out over the next two with water streaming off, held, then slapping down after its fourth", category: "theme", themes: ["fantasy", "whale", "sea"], tags: ["tail", "flukes", "whale"], radius: 12, height: 12,
-      build: () => undefined, rig: (a) => tailRig(a), steps: ["it rises"], stepCount: () => 400 },
+    whaleTail: { name: "The whale's tail", desc: "the whale's tail flukes (24 m across), `at` = where it breaks the sea, facing +z; variant rest: its tips just out of the water (asleep); otherwise hidden until its first step, rising out over the next two with water streaming off, held, then slapping down after its fourth", category: "theme", themes: ["fantasy", "whale", "sea"], tags: ["tail", "flukes", "whale"], radius: 12, height: 12,
+      build: () => undefined, rig: (a, v) => tailRig(a, v), steps: ["it rises"], stepCount: () => 400, variants: { rest: () => undefined } },
     whaleSea: { name: "Moving sea", desc: "the sea as a prop for the whaleRise set, `at` = [0, 0, 0]: variant rise (it drops from 0.5 m to 2.8 m below the old sea level over two steps, water pouring off the quay), glide (2.8 m down, rushing past: the city swimming) or calm; give it steady steps", category: "theme", themes: ["fantasy", "sea"], tags: ["sea", "water", "waves"], radius: 1, height: 0.1,
       build: () => undefined, rig: (a, v) => seaRig(a, v ?? "rise"), steps: ["it moves"], stepCount: () => 400, variants: { rise: () => undefined, glide: () => undefined, calm: () => undefined } },
     floodWater: { name: "Flood water on the quay", desc: "sea water spreading over the harbour quay (9 x 16 m), `at` = the quay's centre at its surface; rising to 0.4 m over three steps", category: "theme", themes: ["fantasy", "sea", "disaster"], tags: ["flood", "water", "sea"], radius: 0.05, height: 0.4,
