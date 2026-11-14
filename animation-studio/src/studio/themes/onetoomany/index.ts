@@ -20,7 +20,6 @@ import { asphaltHD } from "../../materials/paint2";
 import { At, frame, col, box, cyl, sph, tex, panel, glow } from "../../props/kit";
 import { tree, flowers, tufts, fence } from "../../props/nature";
 import { bin, bench } from "../../props/outdoor";
-import { NOINK } from "../../look/ink";
 import type { PropRig } from "../../props/registry";
 import type { View } from "../../sets/types";
 import type { V3 } from "../../camera/keys";
@@ -154,8 +153,8 @@ const assemblyBuild = (b: Batch, a: At) => {
 // ---------------------------------------------------------------- prop: countTag (a number popping up)
 const countTagRig = (a: At, v = "1"): PropRig => {
   const root = rigRoot(a), p = mesh(plane(0.26, 0.26), new THREE.MeshBasicMaterial({ map: tagTex(v), transparent: true, alphaTest: 0.05, toneMapped: false }), 0, 0, 0);
-  p.layers.set(NOINK); root.add(p);
-  return { root, update: ({ step = 0, camPos }) => { p.visible = step >= 1; p.lookAt(camPos); } };
+  root.add(p); // on the default layer: drawn in every pass, including the motion-blur passes of a moving camera
+  return { root, update: ({ step = 0, camPos }) => { p.visible = step > 0.001; p.scale.setScalar(Math.min(1, 0.25 + step * 3)); p.lookAt(camPos); } }; // pops in the instant its step starts (steps ease over 0.7 s)
 };
 
 // ---------------------------------------------------------------- set: ashfordField
@@ -244,7 +243,7 @@ export const ONETOOMANY_THEME: Theme = {
       build: (b, a) => bellParts(b, frame(a)), rig: fireBellRig, steps: ["strike", "release"] },
     assemblySign: { name: "Fire assembly point sign", desc: "the green FIRE ASSEMBLY POINT sign on a 2 m post (panel 0.6 m, facing +z)", category: "theme", themes: ["school", "fire", "street"], tags: ["sign", "fire", "assembly", "safety"], radius: 0.1, height: 2.0,
       build: (b, a) => assemblyBuild(b, a) },
-    countTag: { name: "Count tag", desc: "a round white tag with a number (0.26 m), turning to face the camera, hidden until step 1, when it pops up (a head being counted): put it ~0.35 m over a head; variant = the number", category: "theme", themes: ["school", "explainer"], tags: ["number", "count", "tag", "label"], radius: 0.05, height: 0.26,
+    countTag: { name: "Count tag", desc: "a round white tag with a number (0.26 m), turning to face the camera, hidden until its step starts, when it pops up at once (a head being counted): put it ~0.35 m over a head; variant = the number", category: "theme", themes: ["school", "explainer"], tags: ["number", "count", "tag", "label"], radius: 0.05, height: 0.26,
       build: () => undefined, rig: (a, v) => countTagRig(a, v ?? "1"), steps: ["it pops up"], param: { desc: "the number (digits)", ok: (v) => /^\d{1,3}$/.test(v) } },
   },
   sets: { ashfordField: { id: "ashfordField", title: "Ashford High from the playing field: the main block, the science block, the playground and the fire assembly point", lights: ["day", "golden"], build: ashfordField } },
