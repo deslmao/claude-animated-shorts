@@ -70,7 +70,7 @@ const shots: ShotSpec[] = [
     actors: [...class7C(), ...others(), CAROL(), { who: "okoye", at: [2.1, 0, 12.2], act: "neutral", facing: "toward:carol", hold: "clipboard" }],
     props: [...tags([...Array.from({ length: 30 }, (_, k) => pos7C(k)), CAROL_AT], 0.1, 0.055), ASSEMBLY], note: "2 thirty-one" },
   { cont: true, ...FIELD, dur: 2.0,
-    ...move([0.02, 1.33, 22.6], [0, 1.31, 22.0], 44, [0.02, 1.33, 22.52], [0, 1.31, 22.0], 40, 0.2, 1.6),
+    ...move([0.02, 1.2, 22.66], [0, 1.18, 22.0], 46, [0.02, 1.2, 22.58], [0, 1.18, 22.0], 42, 0.2, 1.6),
     actors: [], props: [{ id: "clipboardCard", variant: "31", at: [0, 1.11, 22.0] }], note: "2 the register said thirty" },
   // ======== line 3: the head, unbothered
   { say: { text: "Happens every drill. Count again.", who: "rowe", voice: HEAD }, ...FIELD,
