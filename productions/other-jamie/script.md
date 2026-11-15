@@ -1,80 +1,85 @@
-# The Other Jamie: premises and script (for approval)
+# The Other Jamie: final script (story improvement pass; for approval)
 
-Format: horror / supernatural thriller, about 100 s. First person: Sam narrates his own story, with dialogue in
-the scenes. It ends on a direct A/B question to the viewer.
+Format: horror / supernatural thriller, about 105 s. First person: Sam narrates his own story, with dialogue in the
+scenes. It ends on a direct A/B question to the viewer. The premise is unchanged: Jamie did something terrible, the
+thing in the woods kept him and sent back a copy who never did it, and Sam has to choose.
 
-## Five premises
-1. **The Other Jamie** (doppelgänger, a bargain). *"My best friend came back from the woods left-handed."*
-   - Jamie did something terrible: a hit-and-run.
-   - He asked the thing in the woods to take away the part of him that did it. It kept him and sent back a perfect, kinder copy that never did anything wrong.
-   - **Choice:** bring the real, guilty Jamie home (the truth comes out, and the innocent copy is unmade), or keep the kind copy (the real Jamie stays trapped, and nobody ever learns who did it).
-2. **The Passenger Seat** (a ghost, a confession). You were in the car when your friend hit someone and drove on. Now the victim stands at the end of *your* bed every night, because you said "just go".
-   - **Choice:** tell the police (your friend goes to prison), or stay silent (it moves to your little sister's room).
-3. **Lend Me Your Face** (a creature, identity). The police have CCTV of you breaking into a house while you were asleep. Your friend borrowed your face from a thing that collects faces. Now it wants a face to keep.
-   - **Choice:** give it his, or let it keep yours.
-4. **The Confession Line** (a strange rule). An old phone box: whoever *hears* a confession takes the crime, along with the memories, the scratches and the evidence. Your friend confessed to you.
-   - **Choice:** confess it back to him, or keep it and pay for what he did.
-5. **The Lake Gives Back** (a bargain). The lake returns the drowned for one night if someone takes their place. Your friend brought his drowned brother back and gave the lake a stranger's child.
-   - **Choice:** return the brother, or keep him.
-
-## The choice: 1, The Other Jamie
-- **Hook:** the strongest of the five. "Left-handed" makes an impossible detail obvious in the first second, and every viewer has a picture of it.
-- **Visual clues:**
-  - his left-handed writing;
-  - the scar on the wrong eyebrow, in an old photo next to today;
-  - the 11:20 pm text;
-  - the police poster.
-- **The creature:** a tall, thin thing in the woods with a mirror where its face should be. It speaks in Sam's own voice, and in that mirror the real Jamie is trapped, pounding on the glass.
-- **Why the choice works:** neither side wins.
-  - The guilty but real friend against an innocent copy who is the better person.
-  - The truth for the girl's family against the happiness of everyone who loves Jamie.
-  - It's an identity question with no right answer, which is exactly what gets people debating in the comments.
-- **Why not the others:** 2 and 4 have strong choices but more familiar mechanics. 3 needs too much explaining. 5 turns on a child's death, which is risky on YouTube.
-
-## Critique of the first draft, and the one revision
-1. **Unclear cause and effect.** It wasn't obvious why Jamie was driving. Revision: "He'd passed his driving test that week" sits next to the poster, so the link is made by the viewer, not stated.
-2. **The creature wasn't memorable.** In the draft it had a normal, eerie voice. Revision: it speaks in Sam's own voice (its face is a mirror, and it talks back as you). No lore needed.
-3. **The copy needed more sympathy.** The draft only described him. Revision: one scene of him fixing Sam's little sister's bike: "Everyone keeps saying I've changed. I just feel… lucky." Now the B option costs something.
-4. **The stakes of the choice weren't balanced.** Revision: Sam states both sides in plain words, each with its cost, before the question.
-5. **Too much narration in the middle.** Cut a line of explanation. The mirror image of the trapped Jamie shows what happened.
+## The rules (all of them shown or said on screen, nothing else needed)
+- **The deal:** the thing in the woods takes "the part of you that you can't live with". It took all of Jamie and sent back a copy that never did it.
+- **The trap:** the real Jamie is behind the glass of one of its mirrors. Every mirror in the woods holds someone from the town.
+- **The swap:** there can only be one Jamie. If Sam brings the copy into the woods, they swap: one goes home, one stays behind the glass forever.
+- **The clock:** the real Jamie's glass is fogging over. When it goes dark, he's gone.
+- **No third option:**
+  - Both can't come home: "there can only be one".
+  - Going to the police puts the copy in prison, for something he never did, and still leaves the real Jamie behind the glass.
 
 ## Final script
-**SAM** = Sam, 16, narrating. **MENDER** = the thing in the woods, speaking in Sam's own voice, softer and layered. Times are estimates.
+**SAM** = Sam, 16, narrating. **IT** = the thing in the woods, speaking softly in Sam's own voice. Times are estimates.
 
 | # | Time | Picture | Words |
 |---|---|---|---|
-| 1 | 0:00 | Morning, Jamie's kitchen. Close on a hand writing *Happy birthday, Mum* on a card: the left hand. | **SAM:** My best friend Jamie came back from the woods left-handed. |
-| 2 | 0:04 | Night: torches of a search party in Ashby Woods. Dawn: Jamie walks out of the trees, mud to the knees, smiling. | **SAM:** He went missing for one night. When he walked out of Ashby Woods, he couldn't remember a thing. |
-| 3 | 0:11 | Jamie hugs his mum. Holds a door for an old man. Laughs with Sam. | **SAM:** And he was nicer. Kinder. Like the best version of himself. |
-| 4 | 0:17 | Insert: an old photo of the two of them, Jamie's scar through his left eyebrow. Cut: Jamie today, the scar through his right. | **SAM:** Then I looked at an old photo. |
-| 5 | 0:23 | Insert: Sam's phone. A text from Jamie, 11:20 pm, the night he vanished: *I did something really bad. I can't live with it.* | **SAM:** The night he disappeared, he sent me this. |
-| 6 | 0:29 | Mill Lane, a lamppost. A police poster: *HIT AND RUN · Friday 11pm · Girl, 14, critical · The driver did not stop.* | **SAM:** That same night, a girl was hit by a car on Mill Lane. And Jamie had passed his driving test that week. |
-| 7 | 0:37 | Night. Sam walks into Ashby Woods with a torch. Small mirrors hang from the branches, turning. | **SAM:** So I went into the woods. |
-| 8 | 0:41 | Between the trees, something stands: tall, too thin, and where its face should be, a mirror. Sam sees his own torch in it. | *(silence; a low sting)* |
-| 9 | 0:45 | It tilts its head. | **MENDER:** He came to me crying. He asked me to take away the part of him that did it. |
-| 10 | 0:51 | In the mirror-face, Sam's reflection is replaced by the real Jamie, behind the glass, pounding on it with his fists, shouting with no sound. | **MENDER:** So I kept him. And I sent back a Jamie who never did anything wrong. |
-| 11 | 0:58 | Sam, torch shaking. | **SAM:** Give him back. **MENDER:** There can only be one. Bring me the other one, and the real Jamie comes home. He'll remember everything. |
-| 12 | 1:07 | The next day. Copy Jamie fixes the chain on Sam's little sister's bike; she laughs. | **JAMIE:** Weird, isn't it? Everyone keeps saying I've changed. I just feel lucky. |
-| 13 | 1:14 | Dusk at the edge of the woods. Sam and Jamie at the treeline. A mirror turns in a branch above them. | **JAMIE:** Sam? Why are we here? |
-| 14 | 1:18 | Sam, close, not answering. | **SAM:** If I bring back the real Jamie, he has to face what he did. That girl's family finally gets the truth. But this Jamie, the one who's never hurt anyone, is gone forever. |
-| 15 | 1:29 | Copy Jamie, smiling, waiting. | **SAM:** If I walk away, I keep my best friend. The kind one. And the real Jamie stays in the mirror. Forever. |
-| 16 | 1:37 | Sam looks into the lens. Two cards: **A: Bring back the real Jamie** · **B: Keep the one who never did it.** Cut to black. | **SAM:** So what do I do? A: bring back the real Jamie. Or B: keep the one who never did it. |
+| 1 | 0:00 | Night, a bench outside the chip shop. Sam's phone buzzes. A text from **Jamie**: *Sam. That's not me next to you.* Sam turns his head slowly. Jamie sits beside him, smiling, eating chips with his left hand. | **SAM:** My best friend texted me. He was sitting right next to me. |
+| 2 | 0:06 | Ashby Woods at night: search-party torches. Dawn: Jamie walks out of the trees, mud to his knees. | **SAM:** Three weeks ago, Jamie got lost in Ashby Woods. He walked out the next morning. No phone. No memory of that night. |
+| 3 | 0:14 | Three quick scenes: Jamie writing with his left hand; Jamie handing his little brother his games console; Jamie saying sorry to a kid at school, who stares. | **SAM:** And he came back different. He said sorry to people. Jamie never said sorry. |
+| 4 | 0:22 | The bench. Three texts land, one after another: *I'm behind the glass.* · *Ashby Woods.* · *Come alone.* | **JAMIE:** (cheerful, chips) Who's that? **SAM:** No one. |
+| 5 | 0:28 | Night, the woods. Sam with a torch. Mirrors hang from every branch, turning slowly. In each one, a face presses against the glass from the inside. | **SAM:** I thought something had stolen him. Then I saw the mirrors. In every one, someone from our town. Even my maths teacher. I saw her this morning. |
+| 6 | 0:41 | One mirror: Jamie, pounding on the glass. Behind Sam, something steps out of the trees: very tall, thin, in a long dark coat. Where its face should be, a mirror. Sam sees himself in it. | **IT:** (gently, in Sam's own voice) Hello, Sam. He talks about you. |
+| 7 | 0:48 | Sam backs off; it tilts its head, a second after he does, like a slow reflection. | **SAM:** Let him go. **IT:** He came here crying. He said, "Take the part of me that did it." So I took him. And I sent back a Jamie who never did it. |
+| 8 | 0:59 | Jamie's mirror begins to fog over from the edges. | **IT:** There can only be one Jamie. Bring me the other one, and they swap. One goes home. One stays behind the glass, forever. **SAM:** I'll go to the police. **IT:** Then they'll take the one who never did anything. Hurry. His glass is going dark. |
+| 9 | 1:11 | Sam's phone: *Get me out. And don't tell anyone about Mill Lane. We'll forget it ever happened.* Insert: a police poster on a Mill Lane lamppost: *HIT AND RUN · Girl, 14, critical · The driver did not stop.* | **SAM:** He wasn't sorry. He just wanted out. |
+| 10 | 1:19 | Sam's doorstep. The copy holds a jar of coins and a hand-made sign: *FOR ELLIE*. | **JAMIE:** It's for the girl from Mill Lane. I don't know why. I just feel like I owe her. |
+| 11 | 1:26 | Dusk, the treeline. A mirror turns on a branch; in it, the real Jamie, fading. The copy sees him, and understands. | **JAMIE:** (quietly) That's me, isn't it? ⋯ It's okay, Sam. You choose. |
+| 12 | 1:34 | Sam, close. | **SAM:** If I bring back the real Jamie, my best friend comes home. But he'll lie about that girl forever, and this Jamie, who never hurt anyone, goes behind the glass. |
+| 13 | 1:43 | The copy, waiting, smiling at Sam. | **SAM:** If I keep this Jamie, the real one, my friend since we were five, stays in the dark. Forever. |
+| 14 | 1:49 | Sam looks into the lens. Two cards: **A: Bring back the real Jamie** · **B: Keep the one who never did it.** Black. | **SAM:** So what do I do? A: bring back the real Jamie. Or B: keep the one who never did it. |
 
-**Length:** about 265 words, so about 100–105 s with the silent beat.
+**Length:** about 300 words, so about 105–110 s.
 
-## Production notes (current system)
+## What changed, and why
+1. **The opening:** Sam gets a text saying *"That's not me next to you"* from his best friend, who is sitting right next to him. The question "what happened to Jamie?" lands in the first five seconds. The left-handed chips are now just the detail that confirms it.
+2. **The mystery:**
+   - Viewers learn things at the same moment Sam does.
+   - The copy gets memorable scenes, not a description: the left-handed writing, giving away his console, saying sorry.
+   - Each text reveals something new: he's trapped, where he is, then what he did.
+3. **The creature:**
+   - A mirror where its face should be, so Sam sees himself.
+   - It speaks gently, in Sam's own voice.
+   - It copies Sam's movements a second late.
+   - Its first line is polite and wrong: "Hello, Sam. He talks about you."
+   - No roaring and no lore: it says it only fixes people, and a swap is the only fix it does.
+4. **The thriller, each discovery worse than the one before:**
+   - Sam thinks something stole Jamie.
+   - Then the woods are full of mirrors holding people from the town, his own maths teacher among them.
+   - Then he learns Jamie asked for it.
+   - Then the real Jamie's text shows he isn't sorry: "don't tell anyone, we'll forget it ever happened".
+   - A clock runs throughout: his glass is fogging over.
+5. **The logic:** the swap is symmetric. One goes home, one stays behind the glass forever. The police idea is raised and shut down in one line: it would punish the innocent copy and still leave the real Jamie trapped.
+6. **The dilemma:**
+   - The copy carries the guilt the original refused. He collects money for the girl he never hit, and when he works it out, he says "It's okay, Sam. You choose."
+   - The real Jamie is still Sam's friend since they were five, and he's fading.
+   - Each option now costs a person Sam loves.
+7. **The ending:**
+   - Both consequences are stated in a single plain sentence each.
+   - Option A brings back a guilty friend who'll lie, and traps an innocent one.
+   - Option B keeps a good friend and abandons the real one.
+   - The final question is the comment prompt itself.
+
+## Production (current system)
 - **Reused:**
-  - the `home` interior (Jamie's kitchen);
-  - `alderRow`, the terraced street at night (Mill Lane);
-  - the `nature` woods with night light;
-  - the phone-screen insert from Night Shift;
-  - the cast generator (Sam, Jamie, his mum, Sam's sister, the search party);
-  - the camera library, the tense and mystery music, night ambience and stings.
+  - `alderRow`, the terraced street at night (the bench, Mill Lane, Sam's doorstep);
+  - the `nature` woods, at night and at dusk;
+  - the `classroom` and `home` sets for the montage;
+  - the phone-screen texts from Night Shift;
+  - the cast generator (Sam, Jamie, his little brother, a kid at school, the search party);
+  - the camera library, the tense and mystery music, night ambience, the phone buzz and stings.
 - **New:**
-  - the Mender (a tall, thin figure prop with a mirror face that can show a card of the trapped Jamie);
-  - hanging mirrors;
-  - the photo insert (two variants: scar left, scar right);
-  - the police poster;
-  - the birthday-card insert (left-handed writing);
+  - the thing in the woods (a tall, thin figure with a mirror face that shows Sam, or the trapped Jamie);
+  - hanging mirrors with faces behind the glass, and one that fogs over;
+  - the Mill Lane police poster;
+  - the jar and the FOR ELLIE sign;
   - the A/B end cards.
-- **Voices:** a young male narrator for Sam, a second young male voice for Jamie, and the Mender as Sam's own voice, softened and layered in the mix. They get a short audition first.
+- **Voices:**
+  - a young male narrator for Sam, and a second young male voice for Jamie (the copy and the texts' author);
+  - "it" in Sam's own voice, softened and layered in the mix.
+
+  They get a short audition before generation.
