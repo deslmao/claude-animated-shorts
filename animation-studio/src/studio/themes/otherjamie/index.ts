@@ -264,7 +264,9 @@ const cctvTex = (sec: number) => stex(`ojCctv${sec}`, 540, 960, (g) => {
   g.fillStyle = "#ff3030"; g.beginPath(); g.arc(398, 178, 11, 0, 7); g.fill(); g.fillStyle = "rgba(235,245,235,0.95)"; g.fillText("REC", 416, 188);
 });
 const cctvRig = (a: At): PropRig => { const root = rigRoot(a), m = mesh(new THREE.PlaneGeometry(0.27, 0.48), card(cctvTex(0), { depthTest: false, toneMapped: false })); m.renderOrder = 10; root.add(m);
-  return { root, update: ({ step = 0, camPos }) => { (m.material as THREE.MeshBasicMaterial).map = cctvTex(Math.floor(step / 7)); m.lookAt(camPos); } }; };  // always square to the lens
+  return { root, update: ({ step = 0, camPos }) => { (m.material as THREE.MeshBasicMaterial).map = cctvTex(Math.floor(step / 7));
+    // hold 0.5 m in front of the lens on the line to its anchor (the camera may push in; the card must not grow)
+    const d = root.position.clone().sub(camPos).normalize().multiplyScalar(0.5); m.position.copy(camPos).add(d).sub(root.position); m.lookAt(camPos); } }; };  // always square to the lens
 /** the police camera's enhanced still (0.27 x 0.48 m insert, facing +z): the car's side window close up, grainy, the
  *  driver inside: blond curls, a red hoodie; ENHANCED, the timestamp */
 const zoomTex = () => stex("ojZoom", 540, 960, (g) => {

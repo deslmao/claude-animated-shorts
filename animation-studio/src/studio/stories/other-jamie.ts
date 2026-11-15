@@ -148,7 +148,7 @@ const shots: ShotSpec[] = [
     props: [{ id: "carDrive", at: IMPACT, variant: "approach", steps: stepsFrom(-0.9) }, CCTV], sfx: [{ t: 1.0, name: "car_skid" }], note: "9 CCTV: the car comes" },
   { cont: true, ...STREET,
     camera: at(CCTV_CAM, CCTV_LOOK, 50),
-    actors: [], props: [{ id: "carDrive", at: IMPACT, variant: "stop", steps: stepsFrom(-0.3) }, { ...CCTV, steps: stepsFrom(0.9) }], sfx: [{ t: 1.2, name: "car_rev" }], kicks: [0.05], note: "9 CCTV: it stops; it drives off" },
+    actors: [], props: [{ id: "carDrive", at: IMPACT, variant: "stop", steps: stepsFrom(-0.3) }, { ...CCTV, steps: stepsFrom(-2.2) }], sfx: [{ t: 1.2, name: "car_rev" }], kicks: [0.05], note: "9 CCTV: it stops; it drives off" },
   { say: "That was Jamie. In his mum's car.", ...STREET,
     ...glide([0, 1.3, 6.5], [0, 1.3, 6.0], 50, [0, 1.3, 6.44], [0, 1.3, 6.0], 46, 2.4), actors: [], props: [{ id: "cctvZoom", at: [0, 1.3, 6.0], steps: STILL }], sfx: [{ t: 0.2, name: "sting_low", gain: -8 }], note: "9 the driver" },
   { say: "Ellie Marsh. Fourteen. She still hasn't woken up.", ...STREET,
