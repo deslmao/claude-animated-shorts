@@ -1,0 +1,65 @@
+{
+ "hash": "14efabb5cd0f81",
+ "text": "Even my maths teacher. I saw her this morning.",
+ "voice": "samNarr",
+ "lead": 0,
+ "end": 2.786,
+ "dur": 2.821224,
+ "words": [
+  {
+   "w": "Even",
+   "t0": 0,
+   "t1": 0.267
+  },
+  {
+   "w": "my",
+   "t0": 0.325,
+   "t1": 0.406
+  },
+  {
+   "w": "maths",
+   "t0": 0.476,
+   "t1": 0.743
+  },
+  {
+   "w": "teacher.",
+   "t0": 0.789,
+   "t1": 1.265
+  },
+  {
+   "w": "I",
+   "t0": 1.428,
+   "t1": 1.474
+  },
+  {
+   "w": "saw",
+   "t0": 1.567,
+   "t1": 1.73
+  },
+  {
+   "w": "her",
+   "t0": 1.776,
+   "t1": 1.858
+  },
+  {
+   "w": "this",
+   "t0": 1.892,
+   "t1": 2.02
+  },
+  {
+   "w": "morning.",
+   "t0": 2.078,
+   "t1": 2.786
+  }
+ ],
+ "voiceId": "B5vjwBxGgp4GLTiUjDxM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-15T01:25:26.898Z"
+}

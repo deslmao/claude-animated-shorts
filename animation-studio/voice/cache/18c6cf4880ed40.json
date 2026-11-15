@@ -1,0 +1,30 @@
+{
+ "hash": "18c6cf4880ed40",
+ "text": "No one.",
+ "voice": "samLine",
+ "lead": 0,
+ "end": 0.836,
+ "dur": 0.862041,
+ "words": [
+  {
+   "w": "No",
+   "t0": 0,
+   "t1": 0.232
+  },
+  {
+   "w": "one.",
+   "t0": 0.348,
+   "t1": 0.836
+  }
+ ],
+ "voiceId": "B5vjwBxGgp4GLTiUjDxM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 1
+ },
+ "created": "2026-11-15T01:25:25.225Z"
+}

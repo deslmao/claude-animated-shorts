@@ -1,0 +1,115 @@
+{
+ "hash": "006e5db64aade7",
+ "text": "If I keep this Jamie, the real one, my friend since we were five, stays in the dark. Forever.",
+ "voice": "samNarr",
+ "lead": 0,
+ "end": 6.409,
+ "dur": 6.452245,
+ "words": [
+  {
+   "w": "If",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "I",
+   "t0": 0.221,
+   "t1": 0.244
+  },
+  {
+   "w": "keep",
+   "t0": 0.325,
+   "t1": 0.546
+  },
+  {
+   "w": "this",
+   "t0": 0.615,
+   "t1": 0.755
+  },
+  {
+   "w": "Jamie,",
+   "t0": 0.824,
+   "t1": 1.405
+  },
+  {
+   "w": "the",
+   "t0": 1.591,
+   "t1": 1.707
+  },
+  {
+   "w": "real",
+   "t0": 1.788,
+   "t1": 2.009
+  },
+  {
+   "w": "one,",
+   "t0": 2.09,
+   "t1": 2.415
+  },
+  {
+   "w": "my",
+   "t0": 2.577,
+   "t1": 2.682
+  },
+  {
+   "w": "friend",
+   "t0": 2.752,
+   "t1": 2.972
+  },
+  {
+   "w": "since",
+   "t0": 3.03,
+   "t1": 3.228
+  },
+  {
+   "w": "we",
+   "t0": 3.251,
+   "t1": 3.32
+  },
+  {
+   "w": "were",
+   "t0": 3.355,
+   "t1": 3.483
+  },
+  {
+   "w": "five,",
+   "t0": 3.529,
+   "t1": 4.005
+  },
+  {
+   "w": "stays",
+   "t0": 4.145,
+   "t1": 4.481
+  },
+  {
+   "w": "in",
+   "t0": 4.528,
+   "t1": 4.586
+  },
+  {
+   "w": "the",
+   "t0": 4.609,
+   "t1": 4.679
+  },
+  {
+   "w": "dark.",
+   "t0": 4.714,
+   "t1": 5.248
+  },
+  {
+   "w": "Forever.",
+   "t0": 5.538,
+   "t1": 6.409
+  }
+ ],
+ "voiceId": "B5vjwBxGgp4GLTiUjDxM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-15T01:25:36.586Z"
+}

@@ -1,0 +1,75 @@
+{
+ "hash": "048ea82ecb4590",
+ "text": "I don't know why. I just feel like I owe her.",
+ "voice": "jamieCopy",
+ "lead": 0,
+ "end": 2.786,
+ "dur": 2.821224,
+ "words": [
+  {
+   "w": "I",
+   "t0": 0,
+   "t1": 0.511
+  },
+  {
+   "w": "don't",
+   "t0": 0.58,
+   "t1": 0.708
+  },
+  {
+   "w": "know",
+   "t0": 0.731,
+   "t1": 0.824
+  },
+  {
+   "w": "why.",
+   "t0": 0.859,
+   "t1": 1.347
+  },
+  {
+   "w": "I",
+   "t0": 1.567,
+   "t1": 1.614
+  },
+  {
+   "w": "just",
+   "t0": 1.695,
+   "t1": 1.811
+  },
+  {
+   "w": "feel",
+   "t0": 1.834,
+   "t1": 1.962
+  },
+  {
+   "w": "like",
+   "t0": 1.997,
+   "t1": 2.101
+  },
+  {
+   "w": "I",
+   "t0": 2.136,
+   "t1": 2.159
+  },
+  {
+   "w": "owe",
+   "t0": 2.229,
+   "t1": 2.368
+  },
+  {
+   "w": "her.",
+   "t0": 2.403,
+   "t1": 2.786
+  }
+ ],
+ "voiceId": "pYDLV125o4CgqP8i49Lg",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-15T01:25:33.979Z"
+}

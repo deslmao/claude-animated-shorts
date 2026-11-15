@@ -1,0 +1,50 @@
+{
+ "hash": "029a2064d4efa2",
+ "text": "Hello, Sam. He talks about you.",
+ "voice": "itVoice",
+ "lead": 0,
+ "end": 2.74,
+ "dur": 2.76898,
+ "words": [
+  {
+   "w": "Hello,",
+   "t0": 0,
+   "t1": 0.441
+  },
+  {
+   "w": "Sam.",
+   "t0": 0.464,
+   "t1": 0.964
+  },
+  {
+   "w": "He",
+   "t0": 1.184,
+   "t1": 1.335
+  },
+  {
+   "w": "talks",
+   "t0": 1.405,
+   "t1": 1.695
+  },
+  {
+   "w": "about",
+   "t0": 1.741,
+   "t1": 2.02
+  },
+  {
+   "w": "you.",
+   "t0": 2.078,
+   "t1": 2.74
+  }
+ ],
+ "voiceId": "B5vjwBxGgp4GLTiUjDxM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.8,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.8
+ },
+ "created": "2026-11-15T01:25:27.428Z"
+}

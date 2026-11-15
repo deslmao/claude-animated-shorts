@@ -1,0 +1,50 @@
+{
+ "hash": "05662a11008562",
+ "text": "Hurry. His glass is going dark.",
+ "voice": "itVoice",
+ "lead": 0,
+ "end": 2.74,
+ "dur": 2.76898,
+ "words": [
+  {
+   "w": "Hurry.",
+   "t0": 0,
+   "t1": 0.639
+  },
+  {
+   "w": "His",
+   "t0": 0.894,
+   "t1": 1.08
+  },
+  {
+   "w": "glass",
+   "t0": 1.138,
+   "t1": 1.428
+  },
+  {
+   "w": "is",
+   "t0": 1.474,
+   "t1": 1.567
+  },
+  {
+   "w": "going",
+   "t0": 1.614,
+   "t1": 1.869
+  },
+  {
+   "w": "dark.",
+   "t0": 1.939,
+   "t1": 2.74
+  }
+ ],
+ "voiceId": "B5vjwBxGgp4GLTiUjDxM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.8,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.8
+ },
+ "created": "2026-11-15T01:25:32.285Z"
+}

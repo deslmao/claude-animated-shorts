@@ -1,0 +1,55 @@
+{
+ "hash": "0fc5bc34c80aa0",
+ "text": "He wasn't sorry. He just wanted out.",
+ "voice": "samNarr",
+ "lead": 0,
+ "end": 2.415,
+ "dur": 2.45551,
+ "words": [
+  {
+   "w": "He",
+   "t0": 0,
+   "t1": 0.139
+  },
+  {
+   "w": "wasn't",
+   "t0": 0.197,
+   "t1": 0.464
+  },
+  {
+   "w": "sorry.",
+   "t0": 0.511,
+   "t1": 0.998
+  },
+  {
+   "w": "He",
+   "t0": 1.219,
+   "t1": 1.324
+  },
+  {
+   "w": "just",
+   "t0": 1.382,
+   "t1": 1.544
+  },
+  {
+   "w": "wanted",
+   "t0": 1.591,
+   "t1": 1.858
+  },
+  {
+   "w": "out.",
+   "t0": 1.916,
+   "t1": 2.415
+  }
+ ],
+ "voiceId": "B5vjwBxGgp4GLTiUjDxM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-15T01:25:32.841Z"
+}

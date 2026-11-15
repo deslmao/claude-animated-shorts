@@ -1,0 +1,65 @@
+{
+ "hash": "0d78c12b0416ba",
+ "text": "Three weeks ago, Jamie got lost in Ashby Woods.",
+ "voice": "samNarr",
+ "lead": 0,
+ "end": 2.972,
+ "dur": 3.004082,
+ "words": [
+  {
+   "w": "Three",
+   "t0": 0,
+   "t1": 0.267
+  },
+  {
+   "w": "weeks",
+   "t0": 0.302,
+   "t1": 0.522
+  },
+  {
+   "w": "ago,",
+   "t0": 0.557,
+   "t1": 0.94
+  },
+  {
+   "w": "Jamie",
+   "t0": 1.068,
+   "t1": 1.358
+  },
+  {
+   "w": "got",
+   "t0": 1.393,
+   "t1": 1.533
+  },
+  {
+   "w": "lost",
+   "t0": 1.579,
+   "t1": 1.765
+  },
+  {
+   "w": "in",
+   "t0": 1.811,
+   "t1": 1.881
+  },
+  {
+   "w": "Ashby",
+   "t0": 1.95,
+   "t1": 2.218
+  },
+  {
+   "w": "Woods.",
+   "t0": 2.276,
+   "t1": 2.972
+  }
+ ],
+ "voiceId": "B5vjwBxGgp4GLTiUjDxM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-15T01:25:22.560Z"
+}

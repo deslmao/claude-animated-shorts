@@ -1,0 +1,45 @@
+{
+ "hash": "1509ce1e757dfa",
+ "text": "I'll go to the police.",
+ "voice": "samLine",
+ "lead": 0,
+ "end": 1.486,
+ "dur": 1.515102,
+ "words": [
+  {
+   "w": "I'll",
+   "t0": 0,
+   "t1": 0.197
+  },
+  {
+   "w": "go",
+   "t0": 0.244,
+   "t1": 0.337
+  },
+  {
+   "w": "to",
+   "t0": 0.395,
+   "t1": 0.464
+  },
+  {
+   "w": "the",
+   "t0": 0.522,
+   "t1": 0.592
+  },
+  {
+   "w": "police.",
+   "t0": 0.639,
+   "t1": 1.486
+  }
+ ],
+ "voiceId": "B5vjwBxGgp4GLTiUjDxM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 1
+ },
+ "created": "2026-11-15T01:25:31.177Z"
+}

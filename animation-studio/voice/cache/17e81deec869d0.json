@@ -1,0 +1,45 @@
+{
+ "hash": "17e81deec869d0",
+ "text": "It's okay, Sam. You choose.",
+ "voice": "jamieQuiet",
+ "lead": 0,
+ "end": 2.368,
+ "dur": 2.403265,
+ "words": [
+  {
+   "w": "It's",
+   "t0": 0,
+   "t1": 0.232
+  },
+  {
+   "w": "okay,",
+   "t0": 0.29,
+   "t1": 0.604
+  },
+  {
+   "w": "Sam.",
+   "t0": 0.639,
+   "t1": 1.08
+  },
+  {
+   "w": "You",
+   "t0": 1.358,
+   "t1": 1.498
+  },
+  {
+   "w": "choose.",
+   "t0": 1.556,
+   "t1": 2.368
+  }
+ ],
+ "voiceId": "pYDLV125o4CgqP8i49Lg",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.86
+ },
+ "created": "2026-11-15T01:25:35.080Z"
+}

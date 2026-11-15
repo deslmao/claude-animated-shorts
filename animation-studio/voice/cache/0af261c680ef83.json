@@ -1,0 +1,80 @@
+{
+ "hash": "0af261c680ef83",
+ "text": "Then I saw the mirrors. In every one, someone from our town.",
+ "voice": "samNarr",
+ "lead": 0,
+ "end": 3.715,
+ "dur": 3.761633,
+ "words": [
+  {
+   "w": "Then",
+   "t0": 0,
+   "t1": 0.197
+  },
+  {
+   "w": "I",
+   "t0": 0.244,
+   "t1": 0.267
+  },
+  {
+   "w": "saw",
+   "t0": 0.337,
+   "t1": 0.488
+  },
+  {
+   "w": "the",
+   "t0": 0.534,
+   "t1": 0.604
+  },
+  {
+   "w": "mirrors.",
+   "t0": 0.65,
+   "t1": 1.184
+  },
+  {
+   "w": "In",
+   "t0": 1.521,
+   "t1": 1.649
+  },
+  {
+   "w": "every",
+   "t0": 1.718,
+   "t1": 1.904
+  },
+  {
+   "w": "one,",
+   "t0": 1.974,
+   "t1": 2.264
+  },
+  {
+   "w": "someone",
+   "t0": 2.357,
+   "t1": 2.682
+  },
+  {
+   "w": "from",
+   "t0": 2.705,
+   "t1": 2.833
+  },
+  {
+   "w": "our",
+   "t0": 2.879,
+   "t1": 2.995
+  },
+  {
+   "w": "town.",
+   "t0": 3.042,
+   "t1": 3.715
+  }
+ ],
+ "voiceId": "B5vjwBxGgp4GLTiUjDxM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-15T01:25:26.381Z"
+}

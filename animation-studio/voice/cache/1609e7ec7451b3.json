@@ -1,0 +1,55 @@
+{
+ "hash": "1609e7ec7451b3",
+ "text": "It's for the girl from Mill Lane.",
+ "voice": "jamieCopy",
+ "lead": 0,
+ "end": 2.09,
+ "dur": 2.115918,
+ "words": [
+  {
+   "w": "It's",
+   "t0": 0,
+   "t1": 0.197
+  },
+  {
+   "w": "for",
+   "t0": 0.232,
+   "t1": 0.325
+  },
+  {
+   "w": "the",
+   "t0": 0.36,
+   "t1": 0.43
+  },
+  {
+   "w": "girl",
+   "t0": 0.476,
+   "t1": 0.708
+  },
+  {
+   "w": "from",
+   "t0": 0.766,
+   "t1": 0.917
+  },
+  {
+   "w": "Mill",
+   "t0": 0.987,
+   "t1": 1.196
+  },
+  {
+   "w": "Lane.",
+   "t0": 1.289,
+   "t1": 2.09
+  }
+ ],
+ "voiceId": "pYDLV125o4CgqP8i49Lg",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-15T01:25:33.365Z"
+}

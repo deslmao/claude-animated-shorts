@@ -1,0 +1,30 @@
+{
+ "hash": "0fcc50162fdfeb",
+ "text": "Who's that?",
+ "voice": "jamieCopy",
+ "lead": 0,
+ "end": 0.975,
+ "dur": 1.018776,
+ "words": [
+  {
+   "w": "Who's",
+   "t0": 0,
+   "t1": 0.267
+  },
+  {
+   "w": "that?",
+   "t0": 0.313,
+   "t1": 0.975
+  }
+ ],
+ "voiceId": "pYDLV125o4CgqP8i49Lg",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-15T01:25:24.861Z"
+}

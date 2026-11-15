@@ -1,0 +1,55 @@
+{
+ "hash": "080a1e762bc7dd",
+ "text": "He was sitting right next to me.",
+ "voice": "samNarr",
+ "lead": 0,
+ "end": 1.625,
+ "dur": 1.671837,
+ "words": [
+  {
+   "w": "He",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "was",
+   "t0": 0.186,
+   "t1": 0.279
+  },
+  {
+   "w": "sitting",
+   "t0": 0.313,
+   "t1": 0.546
+  },
+  {
+   "w": "right",
+   "t0": 0.604,
+   "t1": 0.789
+  },
+  {
+   "w": "next",
+   "t0": 0.824,
+   "t1": 1.033
+  },
+  {
+   "w": "to",
+   "t0": 1.068,
+   "t1": 1.115
+  },
+  {
+   "w": "me.",
+   "t0": 1.173,
+   "t1": 1.625
+  }
+ ],
+ "voiceId": "B5vjwBxGgp4GLTiUjDxM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-15T01:25:22.041Z"
+}

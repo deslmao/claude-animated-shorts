@@ -41,6 +41,13 @@ export const VOICES: Record<string, VoicePreset> = {
   granWhisper: { name: "Lily - Velvety Actress", voiceId: "pFZP5JQG7iQjIQuC4Bku", model: MODEL, settings: { ...CHANNEL, stability: 0.55, style: 0.1, speed: 0.88 }, note: "Gran (The Whale City), whispering, gentle" },
   mayor: { name: "Daniel - Steady Broadcaster", voiceId: "onwK4e9ZLuTAKqWW03F9", model: MODEL, settings: { ...CHANNEL, stability: 0.55, style: 0.15, speed: 0.95 }, note: "the Mayor (The Whale City): pleasant, quiet" },
   mayorSharp: { name: "Daniel - Steady Broadcaster", voiceId: "onwK4e9ZLuTAKqWW03F9", model: MODEL, settings: { ...CHANNEL, stability: 0.35, style: 0.35, speed: 1.0 }, note: "the Mayor (The Whale City), alarmed: \"Don't you dare!\"" },
+  // The Other Jamie (voice-library voices, auditioned: productions/other-jamie/narration/audition-notes.md): Sam is
+  // Astro (a young British storyteller); the thing in the woods is Sam's own voice, slow and flat; Jamie is Toby
+  samNarr: { name: "Astro - Smooth, Strong and Confident", voiceId: "B5vjwBxGgp4GLTiUjDxM", model: MODEL, settings: { ...CHANNEL, stability: 0.5, style: 0.25, speed: 0.95 }, note: "Sam narrating (The Other Jamie)" },
+  samLine: { name: "Astro - Smooth, Strong and Confident", voiceId: "B5vjwBxGgp4GLTiUjDxM", model: MODEL, settings: { ...CHANNEL, stability: 0.4, style: 0.3, speed: 1.0 }, note: "Sam speaking in the scene (The Other Jamie)" },
+  itVoice: { name: "Astro - Smooth, Strong and Confident", voiceId: "B5vjwBxGgp4GLTiUjDxM", model: MODEL, settings: { ...CHANNEL, stability: 0.8, style: 0.0, speed: 0.8 }, note: "the thing in the woods: Sam's own voice, slow, gentle and flat (The Other Jamie)" },
+  jamieCopy: { name: "Toby - Raspy, Youthful and Articulate", voiceId: "pYDLV125o4CgqP8i49Lg", model: MODEL, settings: { ...CHANNEL, stability: 0.5, style: 0.2, speed: 0.95 }, note: "Jamie, the copy (The Other Jamie)" },
+  jamieQuiet: { name: "Toby - Raspy, Youthful and Articulate", voiceId: "pYDLV125o4CgqP8i49Lg", model: MODEL, settings: { ...CHANNEL, stability: 0.45, style: 0.25, speed: 0.86 }, note: "Jamie, the copy, quiet: \"That's me, isn't it?\" (The Other Jamie)" },
   liamScared: { name: "Liam - Energetic, Social Media Creator", voiceId: "TX3LPaxmHKxFdv7VOQHJ", model: MODEL, settings: { ...CHANNEL, stability: 0.3, style: 0.35, speed: 0.9 }, note: "Milo, frightened and desperate (Part 2 rewrite review take)" },
 };
 

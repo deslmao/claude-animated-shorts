@@ -1,0 +1,45 @@
+{
+ "hash": "1f1617c2dd7ece",
+ "text": "Sam? That's me, isn't it?",
+ "voice": "jamieQuiet",
+ "lead": 0,
+ "end": 2.322,
+ "dur": 2.35102,
+ "words": [
+  {
+   "w": "Sam?",
+   "t0": 0,
+   "t1": 0.627
+  },
+  {
+   "w": "That's",
+   "t0": 1.138,
+   "t1": 1.405
+  },
+  {
+   "w": "me,",
+   "t0": 1.463,
+   "t1": 1.66
+  },
+  {
+   "w": "isn't",
+   "t0": 1.683,
+   "t1": 1.892
+  },
+  {
+   "w": "it?",
+   "t0": 1.927,
+   "t1": 2.322
+  }
+ ],
+ "voiceId": "pYDLV125o4CgqP8i49Lg",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.86
+ },
+ "created": "2026-11-15T01:25:34.547Z"
+}

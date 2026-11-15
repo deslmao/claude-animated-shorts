@@ -1,0 +1,90 @@
+{
+ "hash": "135f014cbabaf0",
+ "text": "He came here crying. He said, take the part of me that did it.",
+ "voice": "itVoice",
+ "lead": 0,
+ "end": 4.412,
+ "dur": 4.440816,
+ "words": [
+  {
+   "w": "He",
+   "t0": 0,
+   "t1": 0.197
+  },
+  {
+   "w": "came",
+   "t0": 0.267,
+   "t1": 0.534
+  },
+  {
+   "w": "here",
+   "t0": 0.58,
+   "t1": 0.766
+  },
+  {
+   "w": "crying.",
+   "t0": 0.824,
+   "t1": 1.474
+  },
+  {
+   "w": "He",
+   "t0": 1.881,
+   "t1": 2.009
+  },
+  {
+   "w": "said,",
+   "t0": 2.067,
+   "t1": 2.31
+  },
+  {
+   "w": "take",
+   "t0": 2.334,
+   "t1": 2.612
+  },
+  {
+   "w": "the",
+   "t0": 2.659,
+   "t1": 2.728
+  },
+  {
+   "w": "part",
+   "t0": 2.786,
+   "t1": 3.077
+  },
+  {
+   "w": "of",
+   "t0": 3.123,
+   "t1": 3.17
+  },
+  {
+   "w": "me",
+   "t0": 3.239,
+   "t1": 3.344
+  },
+  {
+   "w": "that",
+   "t0": 3.402,
+   "t1": 3.564
+  },
+  {
+   "w": "did",
+   "t0": 3.634,
+   "t1": 3.843
+  },
+  {
+   "w": "it.",
+   "t0": 3.901,
+   "t1": 4.412
+  }
+ ],
+ "voiceId": "B5vjwBxGgp4GLTiUjDxM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.8,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.8
+ },
+ "created": "2026-11-15T01:25:28.414Z"
+}

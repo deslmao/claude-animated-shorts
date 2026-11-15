@@ -1,0 +1,65 @@
+{
+ "hash": "1fcecd6f39c02d",
+ "text": "Then they'll take the one who never did anything.",
+ "voice": "itVoice",
+ "lead": 0,
+ "end": 2.926,
+ "dur": 2.951837,
+ "words": [
+  {
+   "w": "Then",
+   "t0": 0,
+   "t1": 0.244
+  },
+  {
+   "w": "they'll",
+   "t0": 0.29,
+   "t1": 0.522
+  },
+  {
+   "w": "take",
+   "t0": 0.569,
+   "t1": 0.801
+  },
+  {
+   "w": "the",
+   "t0": 0.848,
+   "t1": 0.917
+  },
+  {
+   "w": "one",
+   "t0": 1.022,
+   "t1": 1.231
+  },
+  {
+   "w": "who",
+   "t0": 1.254,
+   "t1": 1.37
+  },
+  {
+   "w": "never",
+   "t0": 1.44,
+   "t1": 1.672
+  },
+  {
+   "w": "did",
+   "t0": 1.741,
+   "t1": 1.939
+  },
+  {
+   "w": "anything.",
+   "t0": 1.997,
+   "t1": 2.926
+  }
+ ],
+ "voiceId": "B5vjwBxGgp4GLTiUjDxM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.8,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.8
+ },
+ "created": "2026-11-15T01:25:31.727Z"
+}

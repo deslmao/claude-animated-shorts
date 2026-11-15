@@ -1,0 +1,85 @@
+{
+ "hash": "1e6af5cfd9eb3a",
+ "text": "He walked out the next morning. No phone. No memory of that night.",
+ "voice": "samNarr",
+ "lead": 0,
+ "end": 4.272,
+ "dur": 4.310204,
+ "words": [
+  {
+   "w": "He",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "walked",
+   "t0": 0.197,
+   "t1": 0.441
+  },
+  {
+   "w": "out",
+   "t0": 0.476,
+   "t1": 0.592
+  },
+  {
+   "w": "the",
+   "t0": 0.627,
+   "t1": 0.697
+  },
+  {
+   "w": "next",
+   "t0": 0.731,
+   "t1": 0.917
+  },
+  {
+   "w": "morning.",
+   "t0": 0.964,
+   "t1": 1.416
+  },
+  {
+   "w": "No",
+   "t0": 1.823,
+   "t1": 1.997
+  },
+  {
+   "w": "phone.",
+   "t0": 2.055,
+   "t1": 2.519
+  },
+  {
+   "w": "No",
+   "t0": 2.775,
+   "t1": 2.914
+  },
+  {
+   "w": "memory",
+   "t0": 2.995,
+   "t1": 3.262
+  },
+  {
+   "w": "of",
+   "t0": 3.309,
+   "t1": 3.367
+  },
+  {
+   "w": "that",
+   "t0": 3.425,
+   "t1": 3.564
+  },
+  {
+   "w": "night.",
+   "t0": 3.646,
+   "t1": 4.272
+  }
+ ],
+ "voiceId": "B5vjwBxGgp4GLTiUjDxM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-15T01:25:23.062Z"
+}

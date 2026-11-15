@@ -1,0 +1,40 @@
+{
+ "hash": "0004b1bcdc3208",
+ "text": "Jamie never said sorry.",
+ "voice": "samNarr",
+ "lead": 0,
+ "end": 1.533,
+ "dur": 1.567347,
+ "words": [
+  {
+   "w": "Jamie",
+   "t0": 0,
+   "t1": 0.313
+  },
+  {
+   "w": "never",
+   "t0": 0.348,
+   "t1": 0.534
+  },
+  {
+   "w": "said",
+   "t0": 0.58,
+   "t1": 0.755
+  },
+  {
+   "w": "sorry.",
+   "t0": 0.801,
+   "t1": 1.533
+  }
+ ],
+ "voiceId": "B5vjwBxGgp4GLTiUjDxM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-15T01:25:24.410Z"
+}

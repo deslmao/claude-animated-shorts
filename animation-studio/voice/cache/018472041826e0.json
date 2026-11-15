@@ -1,0 +1,70 @@
+{
+ "hash": "018472041826e0",
+ "text": "And I sent back a Jamie who never did it.",
+ "voice": "itVoice",
+ "lead": 0,
+ "end": 2.786,
+ "dur": 2.821224,
+ "words": [
+  {
+   "w": "And",
+   "t0": 0,
+   "t1": 0.209
+  },
+  {
+   "w": "I",
+   "t0": 0.279,
+   "t1": 0.302
+  },
+  {
+   "w": "sent",
+   "t0": 0.395,
+   "t1": 0.65
+  },
+  {
+   "w": "back",
+   "t0": 0.697,
+   "t1": 0.906
+  },
+  {
+   "w": "a",
+   "t0": 0.975,
+   "t1": 0.998
+  },
+  {
+   "w": "Jamie",
+   "t0": 1.091,
+   "t1": 1.474
+  },
+  {
+   "w": "who",
+   "t0": 1.521,
+   "t1": 1.66
+  },
+  {
+   "w": "never",
+   "t0": 1.73,
+   "t1": 1.974
+  },
+  {
+   "w": "did",
+   "t0": 2.032,
+   "t1": 2.218
+  },
+  {
+   "w": "it.",
+   "t0": 2.276,
+   "t1": 2.786
+  }
+ ],
+ "voiceId": "B5vjwBxGgp4GLTiUjDxM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.8,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.8
+ },
+ "created": "2026-11-15T01:25:29.418Z"
+}
