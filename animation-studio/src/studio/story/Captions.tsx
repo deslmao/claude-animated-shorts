@@ -20,7 +20,7 @@ export const Captions: React.FC<{ groups: CaptionGroup[] }> = ({ groups }) => {
   useEffect(() => { loadFont().then(() => continueRender(handle)).catch((e) => cancelRender(e)); }, [handle]);
   const g = groups.find((x) => f >= x.f0 && f < x.f1);
   if (!g) return null;
-  const chars = g.text.length, size = Math.min(96, MAX_W / Math.max(1, chars * 0.6));
+  const chars = g.text.length, size = g.sub ? 58 : Math.min(96, MAX_W / Math.max(1, chars * 0.6));
   const pop = 1 + 0.09 * Math.max(0, 1 - (f - g.f0) / 3);
   return (
     <AbsoluteFill style={{ pointerEvents: "none" }}>
@@ -28,7 +28,7 @@ export const Captions: React.FC<{ groups: CaptionGroup[] }> = ({ groups }) => {
         <div style={{
           fontFamily: `${FAMILY}, "Arial Black", sans-serif`, fontWeight: 900, fontSize: size, lineHeight: 1, color: "#ffffff",
           WebkitTextStroke: `${(size * 0.16).toFixed(1)}px ${INK}`, paintOrder: "stroke fill", letterSpacing: "0.01em",
-          textShadow: `0 ${(size * 0.07).toFixed(1)}px 0 ${INK}`, whiteSpace: "nowrap", maxWidth: MAX_W, textAlign: "center",
+          textShadow: `0 ${(size * 0.07).toFixed(1)}px 0 ${INK}`, whiteSpace: g.sub ? "normal" : "nowrap", maxWidth: MAX_W, textAlign: "center", ...(g.sub ? { lineHeight: 1.15 } : {}),
           transform: `scale(${pop.toFixed(3)})`,
         }}>{g.text}</div>
       </div>

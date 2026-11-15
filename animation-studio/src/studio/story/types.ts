@@ -67,7 +67,9 @@ export type LinePause = { after: string; n?: number; s: number; cut?: number };
  *  as part of that moment (a surprised "thirty-one?" right after a count); not spoken and not captioned. Lines
  *  without it keep their exact cache keys */
 export type LineContext = { before?: string; after?: string };
-export type Line = { text: string; who?: string; voice?: string; gap?: number; pauses?: LinePause[]; context?: LineContext };
+/** sub (What Ollie Says at 3 A.M.): a translated subtitle shown for the whole line INSTEAD of its word captions (a line
+ *  spoken in another language); "" shows nothing (the viewer isn't meant to understand yet). Not sent to the voice */
+export type Line = { text: string; who?: string; voice?: string; gap?: number; pauses?: LinePause[]; context?: LineContext; sub?: string };
 export type ActorSpec = {
   who: string;                // key into storyboard.cast
   at: Where;

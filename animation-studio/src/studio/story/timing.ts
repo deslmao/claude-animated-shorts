@@ -27,7 +27,9 @@ export type Placed = { shot: number; who: string; voice: string; text: string; h
   /** absolute seconds: when the clip's audio file starts / its first word / last word */
   fileAt: number; start: number; end: number; clip: Clip; words: Word[] /* absolute times */;
   /** a line with pauses: its audio in pieces, file seconds [from, to) placed at absolute time at (absent: the whole file at fileAt) */
-  segs?: { from: number; to?: number; at: number }[] };
+  segs?: { from: number; to?: number; at: number }[];
+  /** a translated subtitle replacing this line's word captions ("" = none) */
+  sub?: string };
 export type Timing = { sb: Storyboard; lines: Placed[]; missing: Placed[]; problems: string[]; total: number };
 
 export const linesOf = (s: ShotSpec): Line[] => (s.say === undefined ? [] : (Array.isArray(s.say) ? s.say : [s.say]).map((l) => (typeof l === "string" ? { text: l } : l)));
@@ -82,6 +84,7 @@ export const resolve = (sb0: Storyboard, narr?: Narration): Timing => {
       const fileAt = cursor - clip.lead;
       const p: Placed = { shot: k, who: l.who ?? "narrator", voice, text: l.text, hash, estimated: !have, fileAt, start: cursor, end: fileAt + clip.end, clip,
         words: clip.words.map((w) => ({ w: w.w, t0: fileAt + w.t0, t1: fileAt + w.t1 })) };
+      if (l.sub !== undefined) p.sub = l.sub;
       if (l.pauses?.length) Object.assign(p, pausedLine(p, l.pauses, (m) => problems.push(`shot ${k + 1}: ${m}`)));
       here.push(p); lines.push(p);
       cursor = p.end + LINE_GAP;

@@ -79,3 +79,31 @@ Part 1 never shows the ritual itself, only its sounds and its traces. This proof
 2. **Child voice quality** is unknown until the audition (`voice-audition-plan.md`). This is the biggest risk to Part 1.
 3. **Opening hook:** the 3:00 voice arrives at second 4, after the knocks. I'll render the opening both ways as stills and a short clip for you to choose, before the full preview.
 4. **Night brightness:** the roof stills were dark. Part 1's night scenes will be graded brighter, and you'll see them in the key-frame stills.
+
+## 6. Key-frame stage (reached; awaiting approval)
+- **Built:** the kitchen (`ferryKitchen`), Ava's door, eleven insert cards in one prop (`olInsert`), translated subtitles for Polish lines, and the storyboard `ollie-1` (32 shots).
+- **No new sounds were needed:** the library's `knock` is already three knocks, and `blip_up`, `clock_tick`, `creak`, `step_floor`, `latch_click` and `sting_low` cover the rest.
+- **Stills:** `visual-tests/part1-hooks-v1.jpg` (both openings), `part1-keyframes-v1.jpg` (24 key frames), `part1-ending-v1.jpg`.
+- **Archive check:** with six missed nights (8–13 Sep 2026), clips 1, 388, 412, 903 and 1,210–1,214 all fall on the dates in `story-lock.md`.
+
+### The two openings
+| | Option A (as scripted) | Option B |
+|---|---|---|
+| Order | Three knocks answered → Ava smiles → 2:59 becomes 3:00 → the voice → she records → she knocks, nothing | 2:59 becomes 3:00 → the voice → she records → she knocks, nothing → footsteps past her door → the window |
+| Hook lands at | About second 4 | Second 0 |
+| The answered knock | Shown first, so the silence later hurts | Moves to the evening tuck-in ("Three knocks?" "Three knocks.") and night two |
+
+### Fixed at this stage
+- Bedroom windows showed a daytime garden at night; they now show a dark pane.
+- The gate shot showed Kate's face; she and Ollie now stand with their backs to us, far off.
+- The shed blocked Ava's view of the gate; it moved to the other side of the garden.
+- Three close-ups were framed too tight or too high.
+- Kate was out of frame in the kitchen wide shot; she now stands at the counter.
+- Ava read child-sized at the tuck-in.
+- The scarred-palm insert was redrawn.
+
+### Known limits at this stage
+- **Length:** with estimated voice timing the film runs 73 s, not the planned 104 s. Real narration and the planned silent holds will lengthen it; the holds are set after the voices exist.
+- **Voices** in the storyboard are placeholders.
+- **Insert art** (feet, wrist, the 2008 flash) is a first pass.
+- **The garden at night** is still quite green.

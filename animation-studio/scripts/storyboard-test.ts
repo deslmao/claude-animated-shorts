@@ -21,8 +21,10 @@ for (const sb of STORIES) {
   tm.sb.shots.forEach((s, k) => { const ls = tm.lines.filter((l) => l.shot === k); console.log(`  shot ${k + 1}  ${(s.dur ?? 0).toFixed(2)} s  ${ls.map((l) => `${l.who === "narrator" ? "" : l.who + ": "}"${l.text}" @${l.start.toFixed(2)}-${l.end.toFixed(2)}`).join(" / ") || "(no lines)"}`); });
   // captions: every spoken word is captioned once, groups are in order and never overlap
   if (sb.captions !== false && tm.lines.length) {
-    const g = captionGroups(tm.lines, film.total), nw = tm.lines.reduce((n, l) => n + l.words.length, 0), cw = g.reduce((n, x) => n + x.text.split(" ").length, 0);
-    const ok = cw === nw && g.every((x, i) => x.f1 > x.f0 && (i === 0 || x.f0 >= g[i - 1].f1) && x.f1 <= film.total);
+    // a line with a translated subtitle (Line.sub) has ONE subtitle group instead of word captions ("" = none)
+    const g = captionGroups(tm.lines, film.total), nw = tm.lines.filter((l) => l.sub === undefined).reduce((n, l) => n + l.words.length, 0), cw = g.filter((x) => !x.sub).reduce((n, x) => n + x.text.split(" ").length, 0);
+    const subsOk = g.filter((x) => x.sub).length === tm.lines.filter((l) => l.sub && l.words.length).length;
+    const ok = cw === nw && subsOk && g.every((x, i) => x.f1 > x.f0 && (i === 0 || x.f0 >= g[i - 1].f1) && x.f1 <= film.total);
     console.log(`  captions: ${g.length} groups for ${nw} words, ${ok ? "in order, no overlaps" : "PROBLEM"}`);
     console.log(`  caption height per shot (clear of every face): ${captionHeights(film).map((sg) => sg.map((x) => `${Math.round(x.y * 100)}%`).join("/")).join(", ")}`);
     if (!ok) bad++;
