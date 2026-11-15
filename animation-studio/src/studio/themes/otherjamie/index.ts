@@ -216,12 +216,12 @@ const leftHandTex = () => stex("ojLeft", 640, 640, (g) => {
 const choiceTex = () => stex("ojChoice", 720, 1280, (g) => {
   g.fillStyle = "#07080c"; g.fillRect(0, 0, 720, 1280);
   const one = (y: number, L: string, c: string, t1: string, t2: string) => {
-    g.fillStyle = c; rr(g, 70, y, 580, 360, 40); g.fill(); g.strokeStyle = "#ffffff"; g.lineWidth = 8; g.stroke();
-    g.fillStyle = "#ffffff"; g.font = FONT(150); g.textAlign = "center"; g.fillText(L, 360, y + 150);
-    g.font = FONT(46); g.fillText(t1, 360, y + 240); g.fillText(t2, 360, y + 300);
+    g.fillStyle = c; rr(g, 70, y, 580, 320, 40); g.fill(); g.strokeStyle = "#ffffff"; g.lineWidth = 8; g.stroke();
+    g.fillStyle = "#ffffff"; g.font = FONT(130); g.textAlign = "center"; g.fillText(L, 360, y + 130);
+    g.font = FONT(46); g.fillText(t1, 360, y + 215); g.fillText(t2, 360, y + 272);
   };
-  one(230, "A", "#1f4fb8", "BRING BACK THE", "REAL JAMIE");
-  one(690, "B", "#b8423a", "KEEP THE ONE WHO", "NEVER DID IT");
+  one(70, "A", "#1f4fb8", "BRING BACK THE", "REAL JAMIE");                                        // both in the top 58 %:
+  one(420, "B", "#b8423a", "KEEP THE ONE WHO", "NEVER DID IT");                                   // the captions sit below them
 });
 /** a torch beam: a soft cone of light (5 m long) from Sam's torch, `at` = the torch, pointing along local +z */
 const beamRig = (a: At): PropRig => {
