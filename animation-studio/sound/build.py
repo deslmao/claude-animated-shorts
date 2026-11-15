@@ -48,6 +48,18 @@ def decode(path):
     return np.frombuffer(p.stdout, np.float32).astype(np.float64)
 
 
+# voice effects (a preset's fx). uncanny: ~3 semitones down at the same length (asetrate lowers the pitch and slows
+# it; atempo restores the length), a hollow double echo, and the natural voice faint underneath
+FX = {"uncanny": "asetrate={sr}*0.84,aresample={sr},atempo=1.1905,aecho=0.8:0.6:45|110:0.35|0.22,lowpass=f=6500"}
+
+
+def decode_fx(path, fx):
+    p = subprocess.run(["ffmpeg", "-v", "error", "-i", path, "-ac", "1", "-ar", str(SR), "-af", FX[fx].format(sr=SR), "-f", "f32le", "-"], capture_output=True, check=True)
+    low, dry = np.frombuffer(p.stdout, np.float32).astype(np.float64), decode(path)
+    n = max(len(low), len(dry)); out = np.zeros(n); out[:len(low)] += low; out[:len(dry)] += dry * 0.22
+    return out
+
+
 def lu(x):
     v = integrated(x)
     return v if np.isfinite(v) else -99.0
@@ -72,7 +84,7 @@ def main(plan_path):
     # ---------------- voice
     voice = np.zeros((2, N))
     for v in P["voice"]:
-        x = decode(v["file"])
+        x = decode_fx(v["file"], v["fx"]) if v.get("fx") in FX else decode(v["file"])
         if "from" in v:  # a piece of a line with pauses inside it (cut in a measured silence; 5 ms fades against clicks)
             x = x[int(round(v["from"] * SR)): int(round(v["to"] * SR)) if "to" in v else len(x)].copy()
             f = min(len(x) // 2, int(0.005 * SR))

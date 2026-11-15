@@ -1,17 +1,17 @@
 {
  "composition": "Short-other-jamie",
- "fingerprint": "179c5b34443048",
+ "fingerprint": "01309daf41e230",
  "engine": "sound-2",
- "frames": 3250,
- "seconds": 108.33333333333333,
- "lines": 30,
- "lufs": -14.1,
- "truePeak": -1.5,
+ "frames": 3535,
+ "seconds": 117.83333333333333,
+ "lines": 34,
+ "lufs": -14.2,
+ "truePeak": -1.6,
  "stems": {
-  "voice_lufs": -15.18,
+  "voice_lufs": -16.04,
   "music_vs_voice_lu": -13.0,
-  "ambience_vs_voice_lu": -19.95,
-  "sfx_cues": 12
+  "ambience_vs_voice_lu": -19.94,
+  "sfx_cues": 17
  },
- "built": "2026-11-15T01:41:05Z"
+ "built": "2026-11-15T03:49:18Z"
 }

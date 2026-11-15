@@ -1,0 +1,60 @@
+{
+ "hash": "05bd3e369d4c05",
+ "text": "Ellie Marsh. Fourteen. She still hasn't woken up.",
+ "voice": "samNarr",
+ "lead": 0,
+ "end": 3.344,
+ "dur": 3.369796,
+ "words": [
+  {
+   "w": "Ellie",
+   "t0": 0,
+   "t1": 0.267
+  },
+  {
+   "w": "Marsh.",
+   "t0": 0.325,
+   "t1": 0.685
+  },
+  {
+   "w": "Fourteen.",
+   "t0": 0.731,
+   "t1": 1.405
+  },
+  {
+   "w": "She",
+   "t0": 1.741,
+   "t1": 1.881
+  },
+  {
+   "w": "still",
+   "t0": 1.927,
+   "t1": 2.136
+  },
+  {
+   "w": "hasn't",
+   "t0": 2.194,
+   "t1": 2.415
+  },
+  {
+   "w": "woken",
+   "t0": 2.45,
+   "t1": 2.728
+  },
+  {
+   "w": "up.",
+   "t0": 2.786,
+   "t1": 3.344
+  }
+ ],
+ "voiceId": "B5vjwBxGgp4GLTiUjDxM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-15T03:36:27.866Z"
+}

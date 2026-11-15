@@ -738,6 +738,32 @@ def founders_bell(r):
     out = ring.copy(); out[:len(strike)] += strike
     return fades(out, 0.001, 0.6) * 0.9
 
+
+# ------------------------------------------------------------------ The Other Jamie
+def msg_chime(r):
+    """a text message arriving (0.9 s): a soft, clear two-note chime with a short phone vibration under it"""
+    def note(f, d):
+        t = tt(d); return (np.sin(TAU * f * t) + 0.35 * np.sin(TAU * 2 * f * t) + 0.12 * np.sin(TAU * 3.01 * f * t)) * np.exp(-t / 0.16) * np.clip(t / 0.003, 0, 1)
+    tone = _sum((note(1318.5, 0.5) * 0.5, 0.0), (note(1760.0, 0.6) * 0.55, 0.11))
+    t = tt(0.35); buzz = bp(r.standard_normal(len(t)), 120, 400, 1) * (np.sin(TAU * 170 * t) > 0) * _env(t, 0.01, 0.2) * 0.25
+    return fades(_sum((tone, 0.0), (buzz, 0.0)), 0.001, 0.1) * 0.8
+
+
+def car_skid(r):
+    """a car braking hard into an impact (1.4 s): tyres screeching, then a heavy thump"""
+    t = tt(1.0); f = 2600 - 900 * t
+    sq = np.sin(phase(f + 120 * smooth_noise(len(t), r, 20.0))) * 0.4 + bp(r.standard_normal(len(t)), 1800, 4200, 1) * 0.5
+    sq *= np.clip(t / 0.05, 0, 1) * np.clip((1.0 - t) / 0.15, 0, 1)
+    ti = tt(0.5); hit = (np.sin(phase(70 + 60 * np.exp(-ti / 0.03))) * 0.9 + lp(colored(len(ti), r, 1.0), 900) * 0.6) * _env(ti, 0.002, 0.18)
+    return fades(_sum((sq * 0.6, 0.0), (hit, 0.92)), 0.005, 0.15)
+
+
+def car_rev(r):
+    """a car pulling away fast (2.2 s): an engine revving up and fading off down the road"""
+    t = tt(2.2); f0 = 38 + 55 * np.clip(t / 1.2, 0, 1) ** 0.7
+    eng = sum(np.sin(k * phase(f0)) / k for k in range(1, 7)) * (1 + 0.2 * np.sin(TAU * 7 * t))
+    return fades(lp(eng, 1400) * np.clip(t / 0.08, 0, 1) * np.exp(-np.maximum(t - 0.8, 0) / 0.6) * 0.5, 0.01, 0.3)
+
 SFX = {
     "pop": pop, "ding": ding, "blip_up": blip_up, "boing": boing, "poof": poof, "twinkle": twinkle, "impact": impact,
     "thud": thud, "party_pop": party_pop, "drip": drip, "steam": steam, "snore_soft": snore_soft, "ring_ding": ring_ding,
@@ -755,6 +781,7 @@ SFX = {
     "storm_wind": storm_wind, "ground_crack": ground_crack,
     "fire_bell": fire_bell, "kids_chatter": kids_chatter, "chair_scrape": chair_scrape, "camera_shutter": camera_shutter, "fire_roar": fire_roar, "cough": cough,
     "whale_groan": whale_groan, "whale_breath": whale_breath, "whale_blow": whale_blow, "baby_cry": baby_cry, "crowd_cheer": crowd_cheer, "water_pour": water_pour, "founders_bell": founders_bell,
+    "msg_chime": msg_chime, "car_skid": car_skid, "car_rev": car_rev,
 }
 
 

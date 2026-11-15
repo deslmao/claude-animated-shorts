@@ -4,7 +4,10 @@
 // No credentials here: the API key lives only in the environment's network secret (see docs/VOICE.md).
 
 export type VoiceSettings = { stability: number; similarity_boost: number; style: number; use_speaker_boost: boolean; speed: number };
-export type VoicePreset = { name: string; voiceId: string; model: string; settings: VoiceSettings; note: string };
+/** fx (optional, applied in the soundtrack mix, never to the generated clip): "uncanny" = the same voice pitched
+ *  down about 3 semitones at the same length (timings and lip-sync unchanged), a hollow echo, the natural voice faint
+ *  underneath (a thing speaking in someone else's voice) */
+export type VoicePreset = { name: string; voiceId: string; model: string; settings: VoiceSettings; note: string; fx?: "uncanny" };
 
 /** the channel's settings: the audition settings (stability 0.5, similarity 0.75), no style exaggeration, and a slight
  *  speed-up toward the reference pace (3.5-4.1 words/s; George reads ~3.1 words/s at speed 1.0) */
@@ -45,7 +48,7 @@ export const VOICES: Record<string, VoicePreset> = {
   // Astro (a young British storyteller); the thing in the woods is Sam's own voice, slow and flat; Jamie is Toby
   samNarr: { name: "Astro - Smooth, Strong and Confident", voiceId: "B5vjwBxGgp4GLTiUjDxM", model: MODEL, settings: { ...CHANNEL, stability: 0.5, style: 0.25, speed: 0.95 }, note: "Sam narrating (The Other Jamie)" },
   samLine: { name: "Astro - Smooth, Strong and Confident", voiceId: "B5vjwBxGgp4GLTiUjDxM", model: MODEL, settings: { ...CHANNEL, stability: 0.4, style: 0.3, speed: 1.0 }, note: "Sam speaking in the scene (The Other Jamie)" },
-  itVoice: { name: "Astro - Smooth, Strong and Confident", voiceId: "B5vjwBxGgp4GLTiUjDxM", model: MODEL, settings: { ...CHANNEL, stability: 0.8, style: 0.0, speed: 0.8 }, note: "the thing in the woods: Sam's own voice, slow, gentle and flat (The Other Jamie)" },
+  itVoice: { name: "Astro - Smooth, Strong and Confident", voiceId: "B5vjwBxGgp4GLTiUjDxM", model: MODEL, settings: { ...CHANNEL, stability: 0.8, style: 0.0, speed: 0.8 }, note: "the thing in the woods: Sam's own voice, slow, gentle and flat, made uncanny in the mix (The Other Jamie)", fx: "uncanny" },
   jamieCopy: { name: "Toby - Raspy, Youthful and Articulate", voiceId: "pYDLV125o4CgqP8i49Lg", model: MODEL, settings: { ...CHANNEL, stability: 0.5, style: 0.2, speed: 0.95 }, note: "Jamie, the copy (The Other Jamie)" },
   jamieQuiet: { name: "Toby - Raspy, Youthful and Articulate", voiceId: "pYDLV125o4CgqP8i49Lg", model: MODEL, settings: { ...CHANNEL, stability: 0.45, style: 0.25, speed: 0.86 }, note: "Jamie, the copy, quiet: \"That's me, isn't it?\" (The Other Jamie)" },
   liamScared: { name: "Liam - Energetic, Social Media Creator", voiceId: "TX3LPaxmHKxFdv7VOQHJ", model: MODEL, settings: { ...CHANNEL, stability: 0.3, style: 0.35, speed: 0.9 }, note: "Milo, frightened and desperate (Part 2 rewrite review take)" },

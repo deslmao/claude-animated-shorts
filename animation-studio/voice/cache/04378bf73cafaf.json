@@ -1,0 +1,90 @@
+{
+ "hash": "04378bf73cafaf",
+ "text": "So I looked up Mill Lane. The police had put out the camera footage.",
+ "voice": "samNarr",
+ "lead": 0,
+ "end": 4.087,
+ "dur": 4.127347,
+ "words": [
+  {
+   "w": "So",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "I",
+   "t0": 0.244,
+   "t1": 0.267
+  },
+  {
+   "w": "looked",
+   "t0": 0.325,
+   "t1": 0.557
+  },
+  {
+   "w": "up",
+   "t0": 0.604,
+   "t1": 0.685
+  },
+  {
+   "w": "Mill",
+   "t0": 0.755,
+   "t1": 0.94
+  },
+  {
+   "w": "Lane.",
+   "t0": 1.022,
+   "t1": 1.498
+  },
+  {
+   "w": "The",
+   "t0": 1.718,
+   "t1": 1.834
+  },
+  {
+   "w": "police",
+   "t0": 1.881,
+   "t1": 2.183
+  },
+  {
+   "w": "had",
+   "t0": 2.218,
+   "t1": 2.299
+  },
+  {
+   "w": "put",
+   "t0": 2.345,
+   "t1": 2.543
+  },
+  {
+   "w": "out",
+   "t0": 2.612,
+   "t1": 2.775
+  },
+  {
+   "w": "the",
+   "t0": 2.81,
+   "t1": 2.879
+  },
+  {
+   "w": "camera",
+   "t0": 2.926,
+   "t1": 3.228
+  },
+  {
+   "w": "footage.",
+   "t0": 3.274,
+   "t1": 4.087
+  }
+ ],
+ "voiceId": "B5vjwBxGgp4GLTiUjDxM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-15T03:36:26.645Z"
+}

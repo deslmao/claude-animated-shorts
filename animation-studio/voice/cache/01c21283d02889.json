@@ -1,0 +1,55 @@
+{
+ "hash": "01c21283d02889",
+ "text": "That was Jamie. In his mum's car.",
+ "voice": "samNarr",
+ "lead": 0,
+ "end": 2.508,
+ "dur": 2.533878,
+ "words": [
+  {
+   "w": "That",
+   "t0": 0,
+   "t1": 0.232
+  },
+  {
+   "w": "was",
+   "t0": 0.279,
+   "t1": 0.383
+  },
+  {
+   "w": "Jamie.",
+   "t0": 0.441,
+   "t1": 0.975
+  },
+  {
+   "w": "In",
+   "t0": 1.231,
+   "t1": 1.37
+  },
+  {
+   "w": "his",
+   "t0": 1.416,
+   "t1": 1.521
+  },
+  {
+   "w": "mum's",
+   "t0": 1.579,
+   "t1": 1.811
+  },
+  {
+   "w": "car.",
+   "t0": 1.858,
+   "t1": 2.508
+  }
+ ],
+ "voiceId": "B5vjwBxGgp4GLTiUjDxM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-15T03:36:27.238Z"
+}

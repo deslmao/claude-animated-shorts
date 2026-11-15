@@ -1,0 +1,45 @@
+{
+ "hash": "14c08a46fe1478",
+ "text": "Hey. I'm sorry. For everything.",
+ "voice": "jamieCopy",
+ "lead": 0,
+ "end": 2.74,
+ "dur": 2.76898,
+ "words": [
+  {
+   "w": "Hey.",
+   "t0": 0,
+   "t1": 0.557
+  },
+  {
+   "w": "I'm",
+   "t0": 0.848,
+   "t1": 1.033
+  },
+  {
+   "w": "sorry.",
+   "t0": 1.091,
+   "t1": 1.544
+  },
+  {
+   "w": "For",
+   "t0": 1.881,
+   "t1": 2.032
+  },
+  {
+   "w": "everything.",
+   "t0": 2.078,
+   "t1": 2.74
+  }
+ ],
+ "voiceId": "pYDLV125o4CgqP8i49Lg",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-15T03:36:25.406Z"
+}

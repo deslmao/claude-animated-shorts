@@ -10,6 +10,7 @@ import fs from "node:fs";
 import { spawnSync } from "node:child_process";
 import { STORIES } from "../src/studio/stories";
 import { NARRATION } from "../src/studio/stories/voice";
+import { VOICES } from "../src/studio/voice/voices";
 import { compile } from "../src/studio/story/compile";
 import { validate } from "../src/studio/story/validate";
 import { soundtrackFingerprint, SOUNDTRACK_ENGINE } from "../src/studio/story/fingerprint";
@@ -35,7 +36,8 @@ const seed = parseInt(soundtrackFingerprint({ ...sb, shots: [], ...((sb.engine ?
 const job = {
   id: sb.id, composition: comp, frames: film.total, seconds: film.total / 30, seed,
   fingerprint: soundtrackFingerprint(sb, narr), engine: SOUNDTRACK_ENGINE,
-  voice: tm.lines.flatMap((l) => (l.segs ? l.segs.map((g) => ({ file: `voice/cache/${l.hash}.mp3`, at: g.at, from: g.from, ...(g.to !== undefined ? { to: g.to } : {}) })) : [{ file: `voice/cache/${l.hash}.mp3`, at: l.fileAt }])),
+  voice: tm.lines.flatMap((l) => { const fx = VOICES[l.voice]?.fx ? { fx: VOICES[l.voice].fx } : {};
+    return l.segs ? l.segs.map((g) => ({ file: `voice/cache/${l.hash}.mp3`, at: g.at, from: g.from, ...(g.to !== undefined ? { to: g.to } : {}), ...fx })) : [{ file: `voice/cache/${l.hash}.mp3`, at: l.fileAt, ...fx }]; }),
   words: tm.lines.flatMap((l) => l.words.map((w) => [w.t0, w.t1])),
   shots: film.shots.map((s, i) => ({ t0: s.a / 30, t1: s.b / 30, ambience: plan.ambience[i] })),
   music: plan.sections ? { sections: plan.sections, button_t: plan.button_t, gain_db: plan.musicGain, ...(plan.drop_t !== undefined ? { drop_t: plan.drop_t } : {}) } : null,

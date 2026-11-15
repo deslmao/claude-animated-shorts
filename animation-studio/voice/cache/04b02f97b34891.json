@@ -1,0 +1,45 @@
+{
+ "hash": "04b02f97b34891",
+ "text": "Here. Keep it. It's yours.",
+ "voice": "jamieCopy",
+ "lead": 0,
+ "end": 1.44,
+ "dur": 1.48898,
+ "words": [
+  {
+   "w": "Here.",
+   "t0": 0,
+   "t1": 0.29
+  },
+  {
+   "w": "Keep",
+   "t0": 0.337,
+   "t1": 0.499
+  },
+  {
+   "w": "it.",
+   "t0": 0.534,
+   "t1": 0.604
+  },
+  {
+   "w": "It's",
+   "t0": 0.627,
+   "t1": 0.755
+  },
+  {
+   "w": "yours.",
+   "t0": 0.789,
+   "t1": 1.44
+  }
+ ],
+ "voiceId": "pYDLV125o4CgqP8i49Lg",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-15T03:36:24.789Z"
+}

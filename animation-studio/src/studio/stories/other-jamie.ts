@@ -13,6 +13,7 @@ const STILL: When[] = [{ t: -0.7 }];
 const STEADY: When[] = Array.from({ length: 80 }, (_, i) => ({ t: -0.7 + i * 0.15 }));
 const POUND: When[] = Array.from({ length: 30 }, (_, i) => ({ t: -0.2 + i * 0.26 }));       // fists on the glass
 const SLOWFADE: When[] = Array.from({ length: 30 }, (_, i) => ({ t: -1.5 + i * 0.35 }));
+const stepsFrom = (t0: number, n = 60): When[] => Array.from({ length: n }, (_, i) => ({ t: t0 + i * 0.15 }));
 const STREET = { set: "alderRow", light: "night" as const }, WOODS = { set: "ashbyWoods", light: "night" as const };
 const DUSK = { set: "ashbyWoods", light: "golden" as const }, DAWN = { set: "ashbyWoods", light: "day" as const };
 const HOME = { set: "home", light: "interior" as const }, SCHOOL = { set: "classroom", light: "interior" as const };
@@ -27,6 +28,9 @@ const PHONE_AT: V3 = [-3.55, 0.95, 6.3];
 const phone = (v: string, steps: When[] = STILL) => ({ id: "jamiePhone", at: PHONE_AT, variant: v, steps });
 const phoneCam = at([-3.55, 0.95, 6.92], PHONE_AT, 40);
 const POSTER: V3 = [3.4, 1.65, 13.25];
+// Mill Lane on the police camera: a high corner camera over the road (the road runs along x, z 6.6..12.6)
+const CCTV_CAM: V3 = [4.5, 5.4, 4.2], CCTV_LOOK: V3 = [-3.2, 0.6, 10.2], IMPACT: V3 = [-2.6, 0, 10.4];
+const CCTV = { id: "cctvOverlay", at: [4.5 - 0.36, 5.4 - 0.22, 4.2 + 0.28] as V3, steps: STEADY };
 // Ashby Woods: the clearing, Jamie's mirror, the others, the thing
 const JAMIE_MIRROR: V3 = [1.3, 1.85, -2.4], SAM_WOODS: V3 = [0.9, 0, 1.2], THING_BEHIND: V3 = [0.35, 0, 3.6];
 const MIRRORS = [
@@ -39,12 +43,12 @@ const MIRRORS = [
 const jamieMirror = (v = "jamie", steps: When[] = POUND) => ({ id: "hangingMirror", at: JAMIE_MIRROR, variant: v, yaw: -10, steps });
 const beam = (who: string, near: V3 = [0.6, 1.2, 2.0]) => ({ id: "torchBeam", at: near, track: { who, offset: [0.25, 0.3] as [number, number] }, steps: STILL });
 const thing = (where: V3, v = "sam", steps: When[] = STILL, yaw = 180) => ({ id: "mirrorThing", at: where, variant: v, yaw, steps });
-const CAST: Record<string, string | { extra: number; era: "modern" }> = { samOJ: "samOJ", jamie: "jamie", jamieMud: "jamieMud", brother: "brother", schoolKid: "schoolKid" };
+const CAST: Record<string, string | { extra: number; era: "modern" }> = { samOJ: "samOJ", jamie: "jamie", jamieMud: "jamieMud", brother: "brother", schoolKid: "schoolKid", ellie: "ellie" };
 for (let k = 0; k < 4; k++) CAST[`s${k}`] = { extra: 500 + k, era: "modern" };
 
 const shots: ShotSpec[] = [
   // ======== 1: the hook. The text from Jamie, who is sitting right next to Sam
-  { ...STREET, dur: 1.9, camera: phoneCam, actors: [], props: [phone("hook")], sfx: [{ t: 0.05, name: "phone_buzz" }], note: "1 the text" },
+  { ...STREET, dur: 1.9, camera: phoneCam, actors: [], props: [phone("hook")], sfx: [{ t: 0.05, name: "msg_chime" }], note: "1 the text" },
   { say: { text: "My best friend texted me.", who: undefined }, ...STREET,
     camera: at([-3.45, 0.98, 6.5], [-3.58, 0.88, 5.3], 38),
     actors: [{ who: "samOJ", at: SAM_BENCH, mode: "sit", act: "nervous", facing: "camera", hold: "phone", beats: [{ t: 0.5, look: "right" }] }, { who: "jamie", at: JAMIE_BENCH, mode: "sit", act: "happy", facing: "camera", hold: "chips" }],
@@ -65,18 +69,18 @@ const shots: ShotSpec[] = [
   // ======== 3: different
   { say: { text: "And he came back different.", who: undefined }, ...SCHOOL, hold: 0.3,
     camera: at([0.3, 1.25, 2.55], [0.3, 1.25, 2.0], 40), actors: [], props: [{ id: "leftHandCard", at: [0.3, 1.25, 2.0], steps: STILL }], note: "3 the left hand" },
-  { ...HOME, dur: 1.7,
+  { say: jamie("Here. Keep it. It's yours."), ...HOME,
     camera: { move: "frame", on: ["jamie", "brother"], size: "medium", from: 20 },
     actors: [{ who: "jamie", at: "a", act: "happy", hold: "joystick", gesture: "offer", facing: "toward:brother", beats: [{ t: 0.9, hold: null }] }, { who: "brother", at: "b", act: "excited", facing: "toward:jamie", beats: [{ t: 0.9, hold: "joystick" }] }], note: "3 the console" },
-  { say: "He said sorry to people.", ...SCHOOL,
+  { say: jamie("Hey. I'm sorry. For everything."), ...SCHOOL,
     camera: { move: "frame", on: ["jamie", "schoolKid"], size: "medium", from: 25 },
     actors: [{ who: "jamie", at: "a", act: "embarrassed", gesture: "talk", facing: "toward:schoolKid" }, { who: "schoolKid", at: "b", act: "confused", facing: "toward:jamie" }], note: "3 sorry" },
-  { say: "Jamie never said sorry.", ...SCHOOL,
+  { say: "Jamie never said sorry. Not once.", ...SCHOOL,
     camera: { move: "frame", on: ["samOJ"], size: "close", from: -15 },
     actors: [{ who: "samOJ", at: "c", act: "suspicious", facing: "toward:jamie" }, { who: "jamie", at: "a", act: "happy", facing: "toward:schoolKid" }], note: "3 Sam watches" },
   // ======== 4: the summons
   { ...STREET, dur: 2.6, camera: phoneCam, actors: [], props: [phone("summons", [{ t: -0.7 }, { t: 0.15 }, { t: 0.95 }, { t: 1.75 }])],
-    sfx: [{ t: 0.2, name: "phone_buzz" }, { t: 1.0, name: "phone_buzz" }, { t: 1.8, name: "phone_buzz" }], note: "4 three texts" },
+    sfx: [{ t: 0.2, name: "msg_chime" }, { t: 1.0, name: "msg_chime" }, { t: 1.8, name: "msg_chime" }], note: "4 three texts" },
   { say: [jamie("Who's that?"), sam("No one.")], ...STREET,
     camera: { move: "frame", on: ["samOJ", "jamie"], size: "medium", from: 0 },
     actors: [{ who: "jamie", at: JAMIE_BENCH, mode: "sit", act: "happy", facing: "toward:samOJ", hold: "chips" }, { who: "samOJ", at: SAM_BENCH, mode: "sit", act: "nervous", facing: "camera", hold: "phone", beats: [{ t: 0.9, look: "down" }] }],
@@ -102,7 +106,7 @@ const shots: ShotSpec[] = [
     camera: { move: "frame", on: ["samOJ"], size: "close", from: 170 },
     actors: [{ who: "samOJ", at: SAM_WOODS, act: "shock", hold: "flashlight", facing: 1, beats: [{ t: 0.2, look: "camera" }] }], props: [beam("samOJ")], note: "6 Sam turns" },
   { say: it("Hello, Sam. He talks about you."), ...WOODS, mood: "tense",
-    ...glide([0.5, 0.7, 1.4], [0.35, 2.4, 3.6], 46, [0.5, 0.8, 1.9], [0.35, 2.5, 3.6], 40, 3.2),
+    ...glide([0.45, 1.3, 1.6], [0.35, 2.55, 3.6], 44, [0.42, 1.55, 2.2], [0.35, 2.65, 3.6], 38, 3.2),
     actors: [], props: [thing(THING_BEHIND, "sam", [{ t: -0.7 }, { t: 1.6 }, { t: 2.6 }])], note: "6 hello, Sam (in his voice)" },
   // ======== 7: what it did
   { say: [sam("Let him go.")], ...WOODS,
@@ -118,10 +122,17 @@ const shots: ShotSpec[] = [
     camera: { move: "overShoulder", over: "samOJ", at: "mirrorThing" },
     actors: [{ who: "samOJ", at: SAM_WOODS, act: "scared", hold: "flashlight", facing: 1 }], props: [thing(THING_BEHIND, "sam", [{ t: -0.7 }, { t: -0.6 }, { t: 0.4 }])], note: "7 its hand comes up" },
   // ======== 8: the rule; the clock
-  { say: it("There can only be one Jamie. Bring me the other one, and they swap. One goes home. One stays behind the glass, forever."), ...WOODS,
-    camera: at([1.4, 1.6, 0.4], [0.5, 1.9, 3.0], 44),
-    actors: [{ who: "samOJ", at: SAM_WOODS, act: "scared", hold: "flashlight", facing: 1 }], cams: [{ t: 0, ...at([1.4, 1.6, 0.4], [0.5, 1.9, 3.0], 44), blockOk: true }, { t: 0.1, ...at([1.25, 1.65, 0.9], [0.5, 2.0, 3.0], 40), glide: 5.0, blockOk: true }, { word: "stays", ...at([1.2, 1.85, -1.3], JAMIE_MIRROR, 40) }],
-    props: [thing(THING_BEHIND, "sam", [{ t: -0.7 }, { t: 2.0 }, { t: 3.6 }]), beam("samOJ"), jamieMirror()], note: "8 the swap" },
+  { say: it("There can only be one Jamie. Bring me the other one, and they swap. One goes home. One stays behind the glass, forever."), ...WOODS, until: { word: "one", n: 3 },
+    ...glide([1.4, 1.6, 0.4], [0.5, 1.9, 3.0], 44, [1.25, 1.65, 0.9], [0.5, 2.0, 3.0], 40, 3.6),
+    actors: [{ who: "samOJ", at: SAM_WOODS, act: "scared", hold: "flashlight", facing: 1 }],
+    props: [thing(THING_BEHIND, "sam", [{ t: -0.7 }, { t: 1.4 }, { t: 2.6 }]), beam("samOJ")], note: "8 the swap" },
+  { cont: true, ...STREET, until: { word: "one", n: 4 },
+    camera: at([-3.12, 0.98, 6.65], [-2.82, 0.86, 5.3], 40),
+    actors: [{ who: "jamie", at: JAMIE_BENCH, mode: "sit", act: "happy", facing: "camera", hold: "chips", gesture: "eat" }],
+    props: [{ id: "snapChair", at: BENCH, variant: "bench" }], note: "8 one goes home: the copy" },
+  { cont: true, ...WOODS,
+    ...glide([1.2, 1.85, -1.1], JAMIE_MIRROR, 42, [1.24, 1.85, -1.5], JAMIE_MIRROR, 38, 2.0), actors: [], props: [jamieMirror()],
+    sfx: [{ t: 0.1, name: "knock", gain: -6 }], note: "8 one stays behind the glass: the real Jamie" },
   { say: sam("I'll go to the police."), ...WOODS,
     camera: { move: "frame", on: ["samOJ"], size: "close", from: 160 },
     actors: [{ who: "samOJ", at: SAM_WOODS, act: "angry", hold: "flashlight", facing: 1 }], props: [beam("samOJ")], note: "8 police" },
@@ -130,9 +141,18 @@ const shots: ShotSpec[] = [
   { say: it("Hurry. His glass is going dark."), ...WOODS,
     ...glide([1.2, 1.85, -1.2], JAMIE_MIRROR, 40, [1.26, 1.85, -1.7], JAMIE_MIRROR, 36, 2.6), actors: [], props: [jamieMirror("jamieFade", SLOWFADE)], note: "8 the glass fogs" },
   // ======== 9: what the real Jamie wants; what he did
-  { ...STREET, dur: 3.2, camera: phoneCam, actors: [], props: [phone("real", [{ t: -0.7 }, { t: 0.3 }])], sfx: [{ t: 0.35, name: "phone_buzz" }], note: "9 get me out" },
-  { ...STREET, dur: 2.6,
-    ...glide([3.4, 1.6, 11.6], POSTER, 40, [3.4, 1.62, 12.35], POSTER, 38, 2.4), actors: [], props: [{ id: "appealPoster", at: POSTER, yaw: 180, steps: STILL }, { id: "streetLamp", at: [3.4, 0, 13.4] as V3 }], sfx: [{ t: 0.3, name: "sting_low", gain: -8 }], note: "9 the Mill Lane poster" },
+  { ...STREET, dur: 3.2, camera: phoneCam, actors: [], props: [phone("real", [{ t: -0.7 }, { t: 0.3 }])], sfx: [{ t: 0.35, name: "msg_chime" }], note: "9 get me out" },
+  { say: "So I looked up Mill Lane. The police had put out the camera footage.", ...STREET, mood: "stormPulse", until: { word: "police" },
+    camera: at(CCTV_CAM, CCTV_LOOK, 50),
+    actors: [{ who: "ellie", at: [-2.6, 0, 13.2], act: "neutral", walk: { to: [-2.6, 0, 11.0], t0: 0, t1: 1.8, view: "front" } }],
+    props: [{ id: "carDrive", at: IMPACT, variant: "approach", steps: stepsFrom(-0.9) }, CCTV], sfx: [{ t: 1.0, name: "car_skid" }], note: "9 CCTV: the car comes" },
+  { cont: true, ...STREET,
+    camera: at(CCTV_CAM, CCTV_LOOK, 50),
+    actors: [], props: [{ id: "carDrive", at: IMPACT, variant: "stop", steps: stepsFrom(-0.3) }, { ...CCTV, steps: stepsFrom(0.9) }], sfx: [{ t: 1.2, name: "car_rev" }], kicks: [0.05], note: "9 CCTV: it stops; it drives off" },
+  { say: "That was Jamie. In his mum's car.", ...STREET,
+    ...glide([0, 1.3, 6.5], [0, 1.3, 6.0], 50, [0, 1.3, 6.44], [0, 1.3, 6.0], 46, 2.4), actors: [], props: [{ id: "cctvZoom", at: [0, 1.3, 6.0], steps: STILL }], sfx: [{ t: 0.2, name: "sting_low", gain: -8 }], note: "9 the driver" },
+  { say: "Ellie Marsh. Fourteen. She still hasn't woken up.", ...STREET,
+    ...glide([3.4, 1.6, 11.6], POSTER, 40, [3.4, 1.62, 12.35], POSTER, 38, 3.0), actors: [], props: [{ id: "appealPoster", at: POSTER, yaw: 180, steps: STILL }, { id: "streetLamp", at: [3.4, 0, 13.4] as V3 }], note: "9 the Mill Lane poster" },
   { say: "He wasn't sorry. He just wanted out.", ...WOODS,
     camera: { move: "frame", on: ["samOJ"], size: "close", from: 140 },
     actors: [{ who: "samOJ", at: SAM_WOODS, act: "sad", hold: "flashlight", facing: -1, beats: [{ t: 0.4, look: "down" }] }], props: [beam("samOJ")], note: "9 he wasn't sorry" },
@@ -164,11 +184,10 @@ const shots: ShotSpec[] = [
     camera: { move: "frame", on: ["jamie"], size: "close", from: 170 }, cams: [{ word: "dark", ...at([0.5, 2.1, 16.7], [0.5, 2.1, 15.8], 36) }],
     actors: [{ who: "jamie", at: [1.0, 0, 18.3], act: "happy", facing: "toward:samOJ" }, { who: "samOJ", at: [0.0, 0, 18.0], act: "sad", facing: "toward:jamie" }],
     props: [{ id: "hangingMirror", at: [0.5, 2.1, 15.8] as V3, variant: "jamieFade", steps: SLOWFADE.map((s) => ({ t: (s.t as number) - 9 })) }], note: "13 option B" },
-  { say: "So what do I do?", ...DUSK,
-    camera: { move: "frame", on: ["samOJ"], size: "close", from: 180 },
-    actors: [{ who: "samOJ", at: [0.0, 0, 18.0], act: "sad", facing: "camera" }], note: "14 to the lens" },
-  { say: "A: bring back the real Jamie. Or B: keep the one who never did it.", ...DUSK, hold: 1.6,
-    camera: at([0, 1.5, 21.0], [0, 1.5, 20.0], 48), actors: [], props: [{ id: "choiceCards", at: [0, 1.5, 20.0], steps: STILL }], note: "14 A or B" },
+  { say: ["So what do I do?", "A: bring back the real Jamie. Or B: keep the one who never did it."], ...DUSK, hold: 2.2, mood: "tense",
+    ...glide([0, 1.15, 21.8], [0, 2.0, 16.4], 52, [0, 1.2, 21.2], [0, 2.05, 16.4], 48, 6.0),
+    actors: [{ who: "samOJ", at: [0.0, 0, 18.0], act: "confused", facing: "camera", gesture: "scratchHead", beats: [{ word: "bring", look: "left" }, { word: "keep", look: "right" }, { word: "did", look: "camera", gesture: "shrug" }] }],
+    props: [{ id: "choiceFloat", at: [-0.8, 3.0, 15.6], variant: "A", steps: stepsFrom(0.2) }, { id: "choiceFloat", at: [0.8, 3.1, 15.6], variant: "B", steps: stepsFrom(0.5) }], sfx: [{ t: 0.3, name: "whoosh_long", gain: -6 }, { t: 0.6, name: "whoosh_long", gain: -8 }], note: "14 A or B: Sam, lost; the choices flying" },
 ];
 
 export const OTHER_JAMIE: Storyboard = {

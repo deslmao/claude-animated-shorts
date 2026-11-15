@@ -231,6 +231,76 @@ const beamRig = (a: At): PropRig => {
   return { root, update: () => undefined };
 };
 
+
+// ---------------------------------------------------------------- the hit-and-run, on the police camera
+/** carDrive: Jamie's mum's car (a small dark-blue hatchback, 3.9 m) driving along local +x with its headlights on.
+ *  Variant approach: from 14 m back it reaches the `at` point on its 15th step (give it steady steps, every 0.15 s);
+ *  stop: it sits 1.5 m past the `at` point, brake lights on, until its 10th step, then pulls away fast. `at` = where
+ *  it hits, on the road (yaw to set the road's direction). */
+const carRig = (a: At, v = "approach"): PropRig => {
+  const root = rigRoot(a), car = new THREE.Group(); root.add(car);
+  const body = new THREE.MeshLambertMaterial({ color: "#26365a" }), glass = new THREE.MeshLambertMaterial({ color: "#1a2230" }), tyre = new THREE.MeshLambertMaterial({ color: "#121214" });
+  car.add(mesh(new THREE.BoxGeometry(3.9, 0.7, 1.7), body, 0, 0.6, 0)); car.add(mesh(new THREE.BoxGeometry(2.3, 0.6, 1.55), body, -0.35, 1.2, 0));
+  car.add(mesh(new THREE.BoxGeometry(2.25, 0.46, 1.58), glass, -0.35, 1.22, 0));
+  for (const [x, z] of [[1.25, 0.82], [1.25, -0.82], [-1.25, 0.82], [-1.25, -0.82]]) car.add(mesh(new THREE.CylinderGeometry(0.33, 0.33, 0.22, 16).rotateX(Math.PI / 2), tyre, x, 0.33, z));
+  const head = new THREE.MeshBasicMaterial({ color: "#fff6d8" }), brake = new THREE.MeshBasicMaterial({ color: "#5a1010" });
+  for (const z of [0.55, -0.55]) { car.add(mesh(new THREE.BoxGeometry(0.05, 0.16, 0.34), head, 1.96, 0.72, z)); car.add(mesh(new THREE.BoxGeometry(0.05, 0.14, 0.3), brake, -1.96, 0.74, z)); }
+  const cone = mesh(new THREE.ConeGeometry(2.2, 9, 20, 1, true).rotateZ(Math.PI / 2).translate(6.4, 0.55, 0), new THREE.MeshBasicMaterial({ color: "#fff3c8", transparent: true, opacity: 0.1, depthWrite: false, side: THREE.DoubleSide, blending: THREE.AdditiveBlending })); car.add(cone);
+  return { root, update: ({ step = 0 }) => {
+    if (v === "approach") { car.position.x = -14 + Math.min(step, 16) * (14 / 15); brake.color.set("#5a1010"); }
+    else { const go = Math.max(0, step - 10); car.position.x = 1.5 + go * go * 0.09; brake.color.set(go > 0 ? "#5a1010" : "#ff2a2a"); }
+  } };
+};
+/** the police-camera look over a shot (an overlay card 0.27 x 0.48 m, facing +z, ~0.5 m in front of an `at` camera
+ *  with fov 50): scanlines, a green-grey tint and a vignette, the camera's name, a timestamp ticking each step, REC */
+const cctvTex = (sec: number) => stex(`ojCctv${sec}`, 540, 960, (g) => {
+  g.clearRect(0, 0, 540, 960);
+  const vg = g.createRadialGradient(270, 480, 200, 270, 480, 620); vg.addColorStop(0, "rgba(10,20,16,0)"); vg.addColorStop(1, "rgba(5,10,8,0.85)"); g.fillStyle = vg; g.fillRect(0, 0, 540, 960);
+  g.fillStyle = "rgba(120,160,130,0.10)"; g.fillRect(0, 0, 540, 960);
+  for (let y = 0; y < 960; y += 4) { g.fillStyle = "rgba(0,0,0,0.16)"; g.fillRect(0, y, 540, 2); }
+  g.strokeStyle = "rgba(230,240,230,0.9)"; g.lineWidth = 4; for (const [x, y, dx, dy] of [[66, 140, 1, 1], [474, 140, -1, 1], [66, 872, 1, -1], [474, 872, -1, -1]] as const) { g.beginPath(); g.moveTo(x, y + dy * 44); g.lineTo(x, y); g.lineTo(x + dx * 44, y); g.stroke(); }
+  g.fillStyle = "rgba(235,245,235,0.95)"; g.font = "bold 30px 'DejaVu Sans Mono', monospace"; g.textAlign = "left"; g.fillText("POLICE CCTV", 84, 188); g.fillText("MILL LANE · CAM 03", 84, 226);
+  g.fillText(`FRI  23:04:${String(17 + sec).padStart(2, "0")}`, 84, 846);
+  g.fillStyle = "#ff3030"; g.beginPath(); g.arc(398, 178, 11, 0, 7); g.fill(); g.fillStyle = "rgba(235,245,235,0.95)"; g.fillText("REC", 416, 188);
+});
+const cctvRig = (a: At): PropRig => { const root = rigRoot(a), m = mesh(new THREE.PlaneGeometry(0.27, 0.48), card(cctvTex(0), { depthTest: false, toneMapped: false })); m.renderOrder = 10; root.add(m);
+  return { root, update: ({ step = 0, camPos }) => { (m.material as THREE.MeshBasicMaterial).map = cctvTex(Math.floor(step / 7)); m.lookAt(camPos); } }; };  // always square to the lens
+/** the police camera's enhanced still (0.27 x 0.48 m insert, facing +z): the car's side window close up, grainy, the
+ *  driver inside: blond curls, a red hoodie; ENHANCED, the timestamp */
+const zoomTex = () => stex("ojZoom", 540, 960, (g) => {
+  g.fillStyle = "#1a201c"; g.fillRect(0, 0, 540, 960);
+  g.fillStyle = "#2b3a52"; g.fillRect(0, 300, 540, 520); g.fillStyle = "#0c1014"; rr(g, 40, 330, 460, 330, 26); g.fill();       // the car door, the window
+  g.strokeStyle = INK; g.lineWidth = 7;
+  g.fillStyle = "#b8423a"; g.beginPath(); g.ellipse(270, 690, 190, 140, 0, Math.PI, 0); g.fill(); g.stroke();                  // red hoodie
+  g.fillStyle = "#e9c6a6"; g.beginPath(); g.arc(270, 500, 96, 0, 7); g.fill(); g.stroke();
+  g.fillStyle = "#c9a24a"; for (let i = -4; i <= 4; i++) { g.beginPath(); g.arc(270 + i * 23, 420 + Math.abs(i) * 8, 24, 0, 7); g.fill(); g.stroke(); }
+  for (const s of [-1, 1]) { g.fillStyle = INK; g.beginPath(); g.arc(270 + s * 34, 505, 8, 0, 7); g.fill(); }
+  g.fillStyle = "#c9c2b0"; g.fillRect(320, 600, 140, 22);                                                                    // his hands on the wheel
+  const img = g.getImageData(0, 0, 540, 960); let s = 3; const r = () => ((s = (s * 16807) % 2147483647) / 2147483647);
+  for (let i = 0; i < img.data.length; i += 4) { const n = (r() - 0.5) * 60, gray = (img.data[i] * 0.4 + img.data[i + 1] * 0.45 + img.data[i + 2] * 0.15); for (let c = 0; c < 3; c++) img.data[i + c] = Math.max(0, Math.min(255, gray * 0.55 + img.data[i + c] * 0.45 + n)); }
+  g.putImageData(img, 0, 0);
+  for (let y = 0; y < 960; y += 4) { g.fillStyle = "rgba(0,0,0,0.18)"; g.fillRect(0, y, 540, 2); }
+  g.fillStyle = "rgba(235,245,235,0.95)"; g.font = "bold 30px 'DejaVu Sans Mono', monospace"; g.textAlign = "left"; g.fillText("POLICE CCTV · ENHANCED", 40, 90); g.fillText("FRI  23:04:19", 40, 900);
+  g.strokeStyle = "rgba(255,60,60,0.9)"; g.lineWidth = 5; g.strokeRect(150, 380, 240, 260);
+});
+/** a choice flying behind Sam at the end (0.9 x 0.55 m card, facing +z): variant A (BRING BACK THE REAL JAMIE, blue)
+ *  or B (KEEP THE ONE WHO NEVER DID IT, red). It swoops in over its first ~6 steps, then drifts and turns slowly,
+ *  bobbing (give it steady steps). `at` = where it settles. */
+const floatTex = (v: string) => stex(`ojFloat${v}`, 720, 440, (g) => {
+  const c = v === "A" ? "#1f4fb8" : "#b8423a", t1 = v === "A" ? "BRING BACK THE" : "KEEP THE ONE WHO", t2 = v === "A" ? "REAL JAMIE" : "NEVER DID IT";
+  g.clearRect(0, 0, 720, 440); g.fillStyle = c; rr(g, 12, 12, 696, 416, 44); g.fill(); g.strokeStyle = "#ffffff"; g.lineWidth = 10; g.stroke();
+  g.fillStyle = "#ffffff"; g.font = FONT(150); g.textAlign = "center"; g.fillText(v, 360, 175); g.font = FONT(52); g.fillText(t1, 360, 280); g.fillText(t2, 360, 345);
+});
+const floatRig = (a: At, v = "A"): PropRig => {
+  const root = rigRoot(a), m = mesh(new THREE.PlaneGeometry(0.9, 0.55), card(floatTex(v), { toneMapped: false })); root.add(m);
+  const side = v === "A" ? -1 : 1;
+  return { root, update: ({ step = 0, camPos }) => {
+    const k = Math.min(1, step / 6), e = 1 - (1 - k) * (1 - k);
+    m.position.set(side * (1 - e) * 5 + Math.sin(step * 0.09 + side) * 0.12, (1 - e) * 2.5 + Math.sin(step * 0.14 + side * 2) * 0.1, -(1 - e) * 3);
+    m.lookAt(camPos); m.rotation.z += Math.sin(step * 0.07 + side) * 0.12; m.scale.setScalar(0.5 + e * 0.8);
+  } };
+};
+
 // ---------------------------------------------------------------- characters and items
 // Sam: 16, short brown hair, a blue-grey hoodie; Jamie: 16, dirty-blond curls, his red hoodie (the copy and the real
 // Jamie look the same); jamieMud: walking out of the woods, mud to his knees; his little brother; a kid at school.
@@ -238,6 +308,7 @@ const SAM: Look = { name: "Sam", build: "lanky", skin: "#f0c8a8", seed: 401, hai
 const JAMIE: Look = { name: "Jamie", build: "adult", skin: "#f0c8a8", seed: 402, hair: { style: "curly", color: "#c9a24a" }, top: { style: "hoodie", color: "#b8423a" }, legs: "#3a3d47", shoes: "#2a2a2e" };
 const JAMIE_MUD: Look = { ...JAMIE, name: "Jamie (out of the woods)", legs: "#6a4a32", shoes: "#4a3424" };
 const BROTHER: Look = { name: "Jamie's brother", build: "kid", skin: "#f0c8a8", seed: 403, hair: { style: "curly", color: "#d4b05a" }, top: { style: "tee", color: "#5d8a3a" }, legs: "#3a4a6a", shoes: "#c0353a" };
+const ELLIE: Look = { name: "Ellie", build: "petite", skin: "#f1c9a8", seed: 405, hair: { style: "long", color: "#6a3a22" }, top: { style: "hoodie", color: "#3f5f9a" }, legs: "#3a3d47", shoes: "#e8e8e8" };
 const SCHOOLKID: Look = { name: "A kid at school", build: "petite", skin: "#c99067", seed: 404, hair: { style: "side", color: "#2a201a" }, glasses: { style: "round", color: INK }, top: { style: "sweater", color: "#2f4a7a" }, legs: "#3a3d47", shoes: "#2a2a2e" };
 const flashlightItem = (p: Pen, x: number, y: number, u: number, s: number) => {
   const cx = x + 4 * u * s, cy = y - 1 * u;
@@ -283,12 +354,13 @@ export const OTHERJAMIE_THEME: Theme = {
   mood: "tense",
   ambience: { ashbyWoods: "amb_nature_night" },
   steps: { ashbyWoods: "step_grass" },
-  characters: { samOJ: SAM, jamie: JAMIE, jamieMud: JAMIE_MUD, brother: BROTHER, schoolKid: SCHOOLKID },
+  characters: { samOJ: SAM, jamie: JAMIE, jamieMud: JAMIE_MUD, brother: BROTHER, schoolKid: SCHOOLKID, ellie: ELLIE },
   characterMeta: {
     samOJ: { name: "Sam", desc: "16, lanky; short brown hair, a blue-grey hoodie, jeans, white trainers", personality: "Jamie's best friend since they were five; quiet, watchful (The Other Jamie)", themes: ["horror", "teen"], tags: ["teen", "boy", "protagonist", "narrator"] },
     jamie: { name: "Jamie", desc: "16; dirty-blond curls, a red hoodie, dark jeans", personality: "Sam's best friend; the copy who came back from the woods (kind, sorry, left-handed), and the real one behind the glass (The Other Jamie)", themes: ["horror", "teen"], tags: ["teen", "boy", "friend", "doppelganger"] },
     jamieMud: { name: "Jamie (out of the woods)", desc: "Jamie walking out of Ashby Woods, mud to his knees", personality: "as Jamie", themes: ["horror"], tags: ["teen", "boy"], outfitOf: "jamie" },
     brother: { name: "Jamie's little brother", desc: "about 8; blond curls, a green T-shirt", personality: "Jamie's little brother (The Other Jamie)", themes: ["family"], tags: ["child", "boy", "brother"] },
+    ellie: { name: "Ellie Marsh", desc: "14; long brown hair, a blue hoodie, white trainers", personality: "the girl hit by a car on Mill Lane (The Other Jamie)", themes: ["crime"], tags: ["teen", "girl", "victim"] },
     schoolKid: { name: "A kid at school", desc: "small; side-parted dark hair, round glasses, a navy school jumper", personality: "a kid Jamie used to pick on (The Other Jamie)", themes: ["school"], tags: ["teen", "boy", "background"] },
   },
   items: {
@@ -314,6 +386,14 @@ export const OTHERJAMIE_THEME: Theme = {
       build: () => undefined, rig: still(() => mesh(new THREE.PlaneGeometry(0.4, 0.4), card(leftHandTex()))), steps: ["it shows"] },
     choiceCards: { name: "A / B choice cards", desc: "the ending: A BRING BACK THE REAL JAMIE (blue) over B KEEP THE ONE WHO NEVER DID IT (red), on black; an ink card 0.5 x 0.89 m facing +z: fill the frame from ~1 m with an `at` camera", category: "theme", themes: ["interactive"], tags: ["choice", "vote", "ending", "card"], radius: 0.05, height: 0.89,
       build: () => undefined, rig: still(() => mesh(new THREE.PlaneGeometry(0.5, 0.889), card(choiceTex(), { toneMapped: false }))), steps: ["it shows"] },
+    carDrive: { name: "Car (driving, headlights on)", desc: "a small dark-blue hatchback (3.9 m) driving along local +x, headlights on; `at` = the point of impact on the road. Variant approach (from 14 m back, reaching `at` on its 15th step: give it steady steps every 0.15 s) or stop (stopped 1.5 m past `at`, brake lights on, pulling away fast after its 10th step)", category: "theme", themes: ["street", "crime"], tags: ["car", "vehicle", "drive", "hit and run"], radius: 0.05, height: 1.5,
+      build: () => undefined, rig: (a, v) => carRig(a, v ?? "approach"), steps: ["it drives"], stepCount: () => 400, variants: { approach: () => undefined, stop: () => undefined } },
+    cctvOverlay: { name: "Police CCTV overlay", desc: "the police-camera look over a shot: an overlay card 0.27 x 0.48 m facing +z, ~0.5 m in front of an `at` camera (fov 50): scanlines, tint, vignette, POLICE CCTV · MILL LANE · CAM 03, REC, a timestamp ticking each ~7 steps (give it steady steps)", category: "theme", themes: ["crime"], tags: ["cctv", "camera", "overlay", "security"], radius: 0.05, height: 0.48,
+      build: () => undefined, rig: (a) => cctvRig(a), steps: ["it ticks"], stepCount: () => 400 },
+    cctvZoom: { name: "CCTV still, enhanced (insert)", desc: "the police camera's enhanced still: the car's side window close up, grainy, the driver in a red hoodie with blond curls, ENHANCED and the timestamp; an ink card 0.27 x 0.48 m facing +z, ~0.5 m from an `at` camera (fov 50)", category: "theme", themes: ["crime"], tags: ["cctv", "insert", "evidence", "driver"], radius: 0.05, height: 0.48,
+      build: () => undefined, rig: still(() => mesh(new THREE.PlaneGeometry(0.27, 0.48), card(zoomTex()))), steps: ["it shows"] },
+    choiceFloat: { name: "Flying choice card", desc: "one of the two endings flying in the air (0.9 x 0.55 m card, always turned to the camera): variant A (BRING BACK THE REAL JAMIE, blue) or B (KEEP THE ONE WHO NEVER DID IT, red); it swoops in from the side over its first ~6 steps, then drifts, bobs and tilts (give it steady steps); `at` = where it settles", category: "theme", themes: ["interactive"], tags: ["choice", "vote", "ending", "card", "floating"], radius: 0.05, height: 0.55,
+      build: () => undefined, rig: (a, v) => floatRig(a, v ?? "A"), steps: ["it flies"], stepCount: () => 400, variants: { A: () => undefined, B: () => undefined } },
     torchBeam: { name: "Torch beam", desc: "a soft cone of torchlight 5 m long from a torch, `at` = the torch lens, pointing along local +z (yaw to aim it)", category: "theme", themes: ["night", "horror"], tags: ["light", "beam", "torch", "flashlight"], radius: 0.05, height: 0.2,
       build: () => undefined, rig: (a) => beamRig(a), steps: ["it shows"] },
   },
