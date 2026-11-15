@@ -2,7 +2,7 @@
 
 **Video:** `Short-whale-city.mp4` (1080x1920, 30 fps, 1:45.5). Download it from render run 29's artifact `Short-whale-city-run29`; see `QA-REPORT.md` for the steps.
 
-**Thumbnail:** `thumbnail-youtube-1280x720.jpg` (1280x720, JPEG quality 95)
+**Cover (YouTube Shorts / Instagram Reels):** `cover-vertical-1080x1920.jpg` (1080x1920, 9:16, JPEG quality 95)
 
 ## Title
 ```
