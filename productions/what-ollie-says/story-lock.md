@@ -97,23 +97,41 @@ It carries the archive (39 s), Kuba's survival (21 s), the roof (20 s) and the v
 | 2009 | A passport is issued in her maiden name (it expired in 2019 and she keeps it in the tin). In March she moves to England, aged 21, as "Kate". |
 | 2010 | Kuba is adopted in Wrocław as **Jakub Lis** and told his mother drowned. Kate marries Mark Harper and tells him her family died in a flood. She never mentions a son. |
 | 3 Jan 2011 | Ava is born. Every 14 July from now on is "Mum's sad day": circled on the calendar, spent in bed. |
-| 9 Jun 2020 | Ollie is born, with Kate's dark curls (and Kuba's face). Mark puts a nursery camera on Ollie's shelf. It saves a clip whenever it hears sound at night, to a hub that never deletes. He tells Ollie: *"If you're scared, tell the camera. Daddy can hear."* |
+| 9 Jun 2020 | Ollie is born, with dark curls (Kuba's hair and face). Mark puts a nursery camera on Ollie's shelf. It saves a clip whenever it hears sound at night, to a hub that never deletes. He tells Ollie: *"If you're scared, tell the camera. Daddy can hear."* |
 | 14 Jul 2023 | The 15th anniversary, five weeks after Ollie turned three: **clip 1**. |
 | 2023–Aug 2026 | Every night at the bedside in the old house. The family hasn't been away overnight since Ollie was born (shift work, money). |
 | Summer 2026 | Ollie hides in Kate's wardrobe during hide-and-seek and finds the tin. He puts a dinosaur sticker on the lid. Kate takes the photo from him: *"That's a little boy from before you were born."* |
-| 7–11 Sep 2026 | The move to **4 Ferry Lane**, by the river. The camera is unplugged for five nights. Mark starts night shifts at the water treatment works and fits a top bolt on the back door, plus a garden camera. Ava's room now shares a wall with Ollie's. Kate's window opens onto the extension's flat roof. |
+| 7–13 Sep 2026 | The move to **4 Ferry Lane**, by the river. The camera is packed on Mon 7 Sep and plugged back in on Sun 13 Sep, so it misses six 03:00s (8–13 Sep). Mark starts night shifts at the water treatment works and fits a top bolt on the back door, plus a garden camera. Ava's room now shares a wall with Ollie's. Kate's window opens onto the extension's flat roof. |
 | Late Sep 2026 | The first heavy rain on the flat roof below her window. The ritual walks out to the garden for the first time. |
 | Oct–Nov 2026 | Every wet night the river creeps further up the lawn, and the letting go happens nearer the water. One October night Ollie pretends to be asleep: she walks into the river alone, calling, until he runs down. |
-| 13 Nov 2026, 03:00 | **Clip 1,214** (episode 3's night). 14 July 2023 to 13 November 2026 is 1,219 nights; minus the 5 unplugged nights, that's **1,214 clips**. |
+| 14 Nov 2026, 03:00 | **Clip 1,214** (episode 3's night, the river). 14 July 2023 to 14 November 2026 is 1,220 nights; minus the 6 missed during the move, that's **1,214 clips**. Ava opens the archive later that day. |
+
+### The archive, checked
+| Clip | Date (03:00) | Ollie's age | What it shows |
+|---|---|---|---|
+| 1 | Fri 14 Jul 2023 | 3 years 1 month | Kate whispers both parts; Ollie echoes (old house) |
+| 388 | Sun 4 Aug 2024 | 4 years 1 month | "Daddy, Mama did the water game again" (old house) |
+| 412 | Wed 28 Aug 2024 | 4 years 2 months | "Mama, don't be sad": she lies down beside his bed (old house) |
+| 903 | Thu 1 Jan 2026 | 5 years 6 months (away at a sleepover) | The empty bed (old house) |
+| (garden camera) | a night in Oct 2026 | 6 years 4 months | Kate walks into the river alone; Ollie runs down |
+| 1,210 | Tue 10 Nov 2026 | 6 years 5 months | Episode 1, night 1 |
+| 1,211 | Wed 11 Nov 2026 | | Episode 1, night 2 |
+| 1,212 | Thu 12 Nov 2026 | | Episode 2 (also on Ava's hidden phone) |
+| 1,213 | Fri 13 Nov 2026 | | Unwatched: Kate unlocks her own door, asleep |
+| 1,214 | Sat 14 Nov 2026 | | Episode 3: the river |
+| 1,215 | weeks later (Finale B only) | | Kate, awake: "Goodnight, Ollie" |
+
+**Rule:** up to 7 Sep 2026, clip *n* is the night of 14 Jul 2023 plus *n* − 1 days. After the move, subtract the 6 missed nights.
+**Check:** 14 Jul 2023 to 10 Nov 2026 inclusive is 1,216 nights; minus 6 is clip 1,210.
 
 ### The series calendar
 | Episode | Days covered |
 |---|---|
 | 1 | Night Mon 9 to Tue 10 Nov (night 1); Tue morning; night Tue 10 to Wed 11 (night 2) |
 | 2 | Wed evening (Ava hides her old phone); 03:00 Thu 12 (the footage); Thu morning; Thu evening (Kate locks herself in) |
-| 3 | Thu 12 afternoon (the tin; message sent to the memorial page); Thu evening (flood alert); 03:00 Fri 13 (the river) |
-| 4 | Fri 13 morning (Ava tells Mark); day (the archive); evening (Mark called in; Kate locked in); 23:04 (Ewa's reply); 03:00 Sat 14 (the roof) |
-| 5 | 03:00 Sat 14 to dawn; then days and weeks after |
+| 3 | 03:00 Fri 13: nobody watches (Ava heard Mum lock herself in and believes it worked; it didn't: clip 1,213). Fri 13 afternoon, after school (the tin, which Ollie named at Thursday bedtime; message sent to the memorial page); Fri evening (flood alert; Mark on nights); 03:00 Sat 14 (the river: clip 1,214) |
+| 4 | Sat 14 morning (Ava tells Mark; it's his night off); day (the archive: 1,214 clips); evening (Mark called in; Kate locked in); 23:04 (Ewa's reply); 03:00 Sun 15 (the roof; the nursery camera hears nothing in Ollie's empty room, so no clip) |
+| 5 | 03:00 Sun 15 to dawn; then days and weeks after (Finale A: no new clips on Mon 16, Tue 17, Wed 18, Thu 19; Finale B: clip 1,215 weeks later) |
 
 ## 3. The characters (the locked bible)
 
@@ -121,7 +139,7 @@ It carries the archive (39 s), Kuba's survival (21 s), the roof (20 s) and the v
 |---|---|---|---|---|
 | **Ava Harper**, 15 | Straight brown hair in a loose ponytail, freckles. Oversized grey hoodie with a yellow felt star (Ollie stuck it on). Night: navy cloud-print pyjama bottoms and the hoodie. | English, British, natural teen | Ep1: Ollie says Polish lines, and a woman shouts "Take him" outside. Ep2: it's Mum, it's a script, and "Kuba". Ep3: Mum's real name, the flood, the photo, the memorial, the note, the river, Ollie's reason. Ep4: the whole truth. | Wants to protect Ollie and understand Mum. Fears losing both. |
 | **Ollie Harper**, 6 | Dark curls, big eyes, gap tooth. Night: green dinosaur pyjamas. Day: red jumper. In the old-house clips (ages 3–5): blue rocket pyjamas, a smaller build. | Child; English, plus L1 and L5 in Polish | Knows only his words, that "Mama's sad at night", and that she goes in the water alone if he doesn't play. Calls her **"Mummy" by day and "Mama" at night.** | Wants Mama not to be sad. Fears the cold water. |
-| **Kate Harper** (Katarzyna Wiśniewska), 38 | Dark curls tied low, pale, tired eyes. Oatmeal knit cardigan with pockets, always on. Pale diagonal scar across her **right palm**. Night: long grey nightdress and the cardigan. Asleep: eyes open, unblinking. | English with a faint Polish accent; Polish at night | Knows the roof and the 2008 sleepwalking. Doesn't know what she does now, until episode 2 (one clip). Believes Kuba drowned. | Wants her past kept out of her family. Fears being seen as the mother who let go. |
+| **Kate Harper** (Katarzyna Wiśniewska), 38 | Long dark hair (changed from curls after the bedside test: with Ollie's curls she read as a child), pale, tired eyes. Oatmeal knit cardigan with pockets, always on. Pale diagonal scar across her **right palm**. Night: long grey nightdress and the cardigan. Asleep: eyes open, unblinking. | English with a faint Polish accent; Polish at night | Knows the roof and the 2008 sleepwalking. Doesn't know what she does now, until episode 2 (one clip). Believes Kuba drowned. | Wants her past kept out of her family. Fears being seen as the mother who let go. |
 | **Mark Harper**, 42 | Stocky, sandy hair, stubble. Water-company hi-vis (navy and yellow). | English, warm, tired | Kate is Polish, and lost her family in a flood. Learns about the sleepwalking in episode 4. Learns about Kuba only in Finale B. | Wants a fresh start. Fears Kate's "July days". |
 | **Kasia**, 20 (2008) | Kate younger: long loose dark curls, a dark green cardigan over a nightdress, soaked. | Kate's voice, younger | | |
 | **Kuba**, 3 (2008) | Dark curls (Ollie's face), red star pyjamas, **one blue sock with a white stripe**. | A small child | | |

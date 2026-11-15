@@ -13,6 +13,10 @@
 | [`episodes/ep5b-wake-her.md`](episodes/ep5b-wake-her.md) | Finale B, "Wake Her" (~95 s) |
 | [`visual-and-assets.md`](visual-and-assets.md) | Five looks, shot language, key sequences, characters, sets, props, the engine additions needed, and sound |
 | [`production-plan.md`](production-plan.md) | Identifiers, approval gates G0–G8, build order, voices, time and cost estimates, vote logistics, risks |
+| [`part1-plan.md`](part1-plan.md) | **Current plan:** Part 1 only. Verified acting capabilities, the bedside solution, Part 1 assets, estimate, blockers |
+| [`polish-verification.md`](polish-verification.md) | Every Polish line and on-screen text, for a native speaker to check |
+| [`voice-audition-plan.md`](voice-audition-plan.md) | The child voice audition (after the Polish check) |
+| [`visual-tests/`](visual-tests/) | Roof stills (v1, with known weaknesses) and bedside ritual stills |
 | [`qa-review.md`](qa-review.md) | Pre-production QA: what was fixed, what passed, and open items |
 
 **Approving G0 means approving:**

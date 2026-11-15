@@ -15,7 +15,9 @@ import type { Look } from "../../characters/figure";
 import { Batch, quadUp } from "../../materials/geo";
 import { grassHD } from "../../materials/paint";
 import { concreteHD, dirtHD } from "../../materials/paint2";
+import { buildRoom } from "../../sets/room";
 import { At, col, tex, glow, box, rbox, cyl, sph } from "../../props/kit";
+import { floorMat } from "../../props/interior";
 import { house } from "../../props/outdoor";
 import { tree, fence } from "../../props/nature";
 import { NOINK } from "../../look/ink";
@@ -174,6 +176,70 @@ const ferryBack = () => {
   return { root, env: { clouds: false }, spots: FERRY_SPOTS, views: FERRY_VIEWS };
 };
 
+// ---------------------------------------------------------------- sets: ollieRoom, avaRoom (Part 1)
+// Two small bedrooms that share a wall: Ollie's RIGHT wall (x = +1.7) is Ava's LEFT wall (x = -1.7). Each room is
+// 3.4 wide, 3.2 deep, 2.5 high, open toward +z (the camera side); the back wall (z = -1.6) has the garden window.
+// Beds stand with their heads at the shared wall, 0.85 m off the back wall, so someone can kneel BEHIND the bed,
+// facing the camera: an actor placed there 0.36 m below the floor reads as kneeling (the bed hides the legs).
+const BED_TOP = 0.45, KNEEL_DROP = -0.36;
+/** a single bed along x, head at x1 (sign = which way the head is): frame, mattress, pillow, headboard, a duvet over
+ *  the foot two-thirds (its top 0.17 over the mattress) */
+const bed = (b: Batch, I: THREE.Matrix4, xFoot: number, xHead: number, z0: number, z1: number, duvet: string, wood = "#b98c5a") => {
+  const lo = Math.min(xFoot, xHead), hi = Math.max(xFoot, xHead), dir = Math.sign(xHead - xFoot), zc = (z0 + z1) / 2;
+  box(b, col(wood), I, lo, hi, 0.12, 0.3, z0, z1); box(b, col("#efe9dd"), I, lo + 0.02, hi - 0.02, 0.3, BED_TOP, z0 + 0.02, z1 - 0.02);
+  for (const [x, z] of [[lo + 0.05, z0 + 0.05], [hi - 0.05, z0 + 0.05], [lo + 0.05, z1 - 0.05], [hi - 0.05, z1 - 0.05]] as const) box(b, col(wood), I, x - 0.04, x + 0.04, 0, 0.12, z - 0.04, z + 0.04);
+  box(b, col(wood), I, xHead - (dir > 0 ? 0.06 : 0), xHead + (dir > 0 ? 0 : 0.06), 0.12, 1.0, z0, z1);                    // headboard
+  rbox(b, col("#f6f1e6"), I, xHead - dir * 0.3, BED_TOP, zc, 0.42, 0.13, z1 - z0 - 0.16, 0.05);                            // pillow
+  const dEnd = xHead - dir * 0.62;
+  rbox(b, col(duvet), I, (xFoot + dEnd) / 2, BED_TOP, zc, Math.abs(dEnd - xFoot), 0.17, z1 - z0 + 0.06, 0.06);             // duvet
+};
+const dinoWall = () => stex("olDinoWall", 256, 256, (g) => {
+  g.fillStyle = "#b9cfd6"; g.fillRect(0, 0, 256, 256); g.fillStyle = "rgba(95,143,60,0.55)";
+  for (const [x, y] of [[40, 60], [170, 30], [110, 150], [220, 200], [30, 215]]) { g.beginPath(); g.ellipse(x, y, 20, 10, 0, 0, 7); g.fill(); g.fillRect(x + 12, y - 16, 6, 14); g.beginPath(); g.moveTo(x - 18, y); g.lineTo(x - 36, y - 8); g.lineTo(x - 18, y + 5); g.fill(); g.fillRect(x - 10, y + 6, 4, 10); g.fillRect(x + 6, y + 6, 4, 10); }
+});
+const OLLIE_SPOTS: Record<string, V3> = { bed: [1.0, BED_TOP, -0.38], asleep: [1.08, -0.12, -0.38], kneel: [0.75, KNEEL_DROP, -1.12], tuck: [0.4, 0, 0.55], behind: [0.55, 0, -1.15], door: [-1.3, 0, 1.0], floor: [0, 0, 0.9] };
+const OLLIE_VIEWS: View[] = [
+  { name: "bedside", pos: [-0.5, 1.5, 2.4], look: [0.85, 1.2, -0.6], fov: 50 },
+  { name: "shelfCam", pos: [-1.45, 1.7, 0.9], look: [0.9, 0.7, -0.5], fov: 55, establishing: true },
+];
+const ollieRoom = () => {
+  const root = new THREE.Group(), b = new Batch(), I = new THREE.Matrix4();
+  buildRoom(root, { w: 3.4, d: 3.2, h: 2.5, floor: floorMat(), wall: tex("olDino", dinoWall, 3, 2), trim: "#f1ece0", openings: [{ wall: "back", at: -0.75, w: 1.0, h: 1.2, sill: 0.95, view: "garden" }] });
+  bed(b, I, 0.08, 1.62, -0.75, 0.0, "#4f7fb3");
+  box(b, col("#e8e2d6"), I, -1.68, -1.42, 1.5, 1.54, 0.2, 1.3); box(b, col("#f4f1ea"), I, -1.6, -1.5, 1.54, 1.66, 0.7, 0.8); sph(b, col("#15171b"), I, -1.5, 1.6, 0.75, 0.025, 0.025, 0.025, 10); // the shelf and the nursery camera
+  for (const [z, c] of [[0.35, "#5f8f3c"], [1.1, "#d97a3a"]] as const) rbox(b, col(c), I, -1.56, 1.54, z, 0.12, 0.14, 0.2, 0.04);     // toy dinosaurs on the shelf
+  rbox(b, col("#d9b25a"), I, -1.2, 0, -1.2, 0.5, 0.5, 0.45, 0.04); sph(b, glow("olNightLight", () => ({ color: "#ffd9a0" })), I, -1.2, 0.6, -1.2, 0.09, 0.1, 0.09, 12); // toy box + night light
+  rbox(b, col("#c85a4a"), I, 0.3, 0.0, 0.75, 1.5, 0.015, 1.0, 0.01);                                                     // rug
+  b.build(root, true);
+  return { root, env: { clouds: false }, spots: OLLIE_SPOTS, views: OLLIE_VIEWS };
+};
+const fairyWall = () => stex("olAvaWall", 256, 256, (g) => { g.fillStyle = "#c9b7c9"; g.fillRect(0, 0, 256, 256); g.fillStyle = "rgba(255,255,255,0.12)"; for (let y = 0; y < 256; y += 32) g.fillRect(0, y, 256, 2); });
+const drawingTex = () => stex("olDrawing", 256, 192, (g) => {
+  g.fillStyle = "#fbf7ec"; g.fillRect(0, 0, 256, 192); g.lineCap = "round";
+  const fig = (x: number, h: number, c: string) => { g.strokeStyle = c; g.lineWidth = 6; g.beginPath(); g.arc(x, 150 - h, 16, 0, 7); g.stroke(); g.beginPath(); g.moveTo(x, 166 - h); g.lineTo(x, 150); g.moveTo(x - 18, 132 - h / 2); g.lineTo(x + 18, 132 - h / 2); g.moveTo(x, 150); g.lineTo(x - 12, 176); g.moveTo(x, 150); g.lineTo(x + 12, 176); g.stroke(); };
+  fig(95, 40, "#3f8f4a"); fig(165, 78, "#7a5ac8"); g.fillStyle = "#e0a43a"; g.beginPath(); g.arc(222, 34, 18, 0, 7); g.fill();
+  g.fillStyle = "#c0392b"; g.font = "bold 26px 'DejaVu Sans', sans-serif"; g.textAlign = "center"; g.fillText("ME + AVA", 128, 30);
+});
+const AVA_SPOTS: Record<string, V3> = { bed: [-1.0, BED_TOP, -0.38], asleep: [-1.08, -0.12, -0.38], bedEdge: [-0.6, BED_TOP, 0.05], window: [0.75, 0, -1.05], door: [1.3, 0, 1.0], floor: [0, 0, 0.9] };
+const AVA_VIEWS: View[] = [
+  { name: "bedWall", pos: [0.9, 1.15, 1.5], look: [-1.1, 0.95, -0.4], fov: 45 },
+  { name: "window", pos: [0.3, 1.5, 1.4], look: [0.75, 1.5, -1.6], fov: 50, establishing: true },
+];
+const avaRoom = () => {
+  const root = new THREE.Group(), b = new Batch(), I = new THREE.Matrix4();
+  buildRoom(root, { w: 3.4, d: 3.2, h: 2.5, floor: floorMat(), wall: tex("olAvaW", fairyWall, 3, 2), trim: "#f1ece0", openings: [{ wall: "back", at: 0.75, w: 1.0, h: 1.2, sill: 0.95, view: "garden" }] });
+  bed(b, I, -0.08, -1.62, -0.75, 0.0, "#8a6fb0", "#e8e2d6");
+  // the shared wall (x = -1.7): Ollie's drawing and a string of fairy lights over the bed
+  b.add(new THREE.PlaneGeometry(0.44, 0.33), new THREE.MeshLambertMaterial({ map: drawingTex() }), new THREE.Matrix4().makeTranslation(-1.615, 1.5, -0.2).multiply(new THREE.Matrix4().makeRotationY(Math.PI / 2)));
+  for (let i = 0; i < 9; i++) sph(b, glow("olFairy" + (i % 3), () => ({ color: ["#ffd98a", "#ffb0c8", "#bfe0ff"][i % 3] })), I, -1.62, 1.95 - Math.sin((i / 8) * Math.PI) * 0.14, -1.35 + i * 0.26, 0.03, 0.03, 0.03, 8);
+  rbox(b, col("#e8e2d6"), I, -1.45, 0, 0.35, 0.4, 0.5, 0.38, 0.03); box(b, col("#15171b"), I, -1.55, -1.35, 0.5, 0.6, 0.27, 0.43);   // bedside table and the LED clock (its digits are an insert)
+  box(b, glow("olClockRed", () => ({ color: "#ff3b30" })), I, -1.349, -1.348, 0.52, 0.58, 0.29, 0.41);
+  rbox(b, col("#d8cdb8"), I, 1.25, 0, -1.2, 0.8, 0.74, 0.5, 0.03);                                                       // desk
+  rbox(b, col("#7a6aa8"), I, -0.2, 0.0, 0.8, 1.4, 0.015, 1.0, 0.01);
+  b.build(root, true);
+  return { root, env: { clouds: false }, spots: AVA_SPOTS, views: AVA_VIEWS };
+};
+
 // ---------------------------------------------------------------- props
 /** ferryWater: the river and the flood at night (dark, rippling, lamp glints), absolute in ferryBack whatever `at` is.
  *  Variants: river (the river only, 1.1 m below the path), lawn (over the path and the bottom of the lawn, from z 15),
@@ -205,10 +271,10 @@ const rainRig = (a: At): PropRig => {
 };
 
 // ---------------------------------------------------------------- characters
-// Kate (Katarzyna): 38, dark curls, pale, an oatmeal cardigan over a long grey nightdress, barefoot; the scar is an
+// Kate (Katarzyna): 38, long dark hair (an adult silhouette next to Ollie's curls), pale, an oatmeal cardigan over a long grey nightdress, barefoot; the scar is an
 // insert. Ava: 15, brown ponytail, oversized grey hoodie, navy pyjama bottoms, socks. Ollie: 6, dark curls (Kate's),
 // green dinosaur pyjamas (stripes stand in for the print), barefoot. Mark: 42, sandy hair, water-company hi-vis.
-const KATE: Look = { name: "Kate", build: "adult", skin: "#f0d2b8", seed: 501, hair: { style: "curly", color: "#2a1d17" },
+const KATE: Look = { name: "Kate", build: "adult", skin: "#f0d2b8", seed: 501, hair: { style: "long", color: "#2a1d17" },
   top: { style: "dress", color: "#8e939b" }, layer: { style: "cardigan", color: "#d6c6a2" }, legs: "#f0d2b8", shoes: "#f0d2b8" };
 const AVA: Look = { name: "Ava", build: "petite", skin: "#f3cfb2", seed: 502, hair: { style: "ponytail", color: "#5c3d27" },
   top: { style: "hoodie", color: "#8b9098", accent: "#f2c94c" }, legs: "#2a3350", shoes: "#dcd7cf" };
@@ -226,7 +292,7 @@ export const OLLIE_THEME: Theme = {
   steps: { ferryBack: "step_stone" },
   characters: { kate: KATE, ava: AVA, ollie: OLLIE, mark: MARK },
   characterMeta: {
-    kate: { name: "Kate Harper", desc: "38; dark curls; pale; an oatmeal cardigan over a long grey nightdress; barefoot", personality: "a mother who relives the night of a flood in her sleep (What Ollie Says at 3 A.M.); asleep, her eyes stay open (blink: false)", themes: ["horror", "home", "family"], tags: ["mother", "female", "sleepwalker"] },
+    kate: { name: "Kate Harper", desc: "38; long dark hair; pale; an oatmeal cardigan over a long grey nightdress; barefoot", personality: "a mother who relives the night of a flood in her sleep (What Ollie Says at 3 A.M.); asleep, her eyes stay open (blink: false)", themes: ["horror", "home", "family"], tags: ["mother", "female", "sleepwalker"] },
     ava: { name: "Ava Harper", desc: "15; brown ponytail; an oversized grey hoodie; navy pyjama bottoms; socks", personality: "the big sister who investigates and protects her brother (What Ollie Says at 3 A.M.)", themes: ["horror", "home", "family"], tags: ["teen", "girl", "sister"] },
     ollie: { name: "Ollie Harper", desc: "6; dark curls; green dinosaur pyjamas; barefoot at night", personality: "a little boy who says his mother's words at 3 a.m. to keep her out of the water (What Ollie Says at 3 A.M.)", themes: ["horror", "home", "family"], tags: ["child", "boy", "brother"] },
     mark: { name: "Mark Harper", desc: "42; stocky; sandy hair; a yellow water-company hi-vis over a navy shirt", personality: "a kind, tired father on night shifts (What Ollie Says at 3 A.M.)", themes: ["home", "family", "work"], tags: ["father", "male", "hi-vis"] },
@@ -237,7 +303,11 @@ export const OLLIE_THEME: Theme = {
     rain: { name: "Rain (falling, around the camera)", desc: "heavy rain: thin streaks falling all round the camera (1.2-15 m), never inside the house at 4 Ferry Lane (z < 0.05); camera-relative, so `at` can be any point in the shot (its look point); give it steady steps 0.15 s apart (its clock)", category: "theme", themes: ["night", "weather", "horror"], tags: ["rain", "weather", "storm"], radius: 0.05, height: 0.1,
       build: () => undefined, rig: (a) => rainRig(a), steps: ["it falls"], stepCount: () => 2000 },
   },
-  sets: { ferryBack: { id: "ferryBack", title: "4 Ferry Lane, the back at night: the kitchen extension's flat roof under the open bedroom window, the garden down to the river", lights: ["night"], build: ferryBack } },
-  layouts: { ferryBack: { spots: FERRY_SPOTS, views: FERRY_VIEWS } },
-  setMeta: { ferryBack: { name: "4 Ferry Lane (back, night)", desc: "the house's rear wall faces +z at z 0 (x -3..3). The kitchen extension x -3..0.6, z 0..3.4, its flat felt roof at y 2.72 with a 30 cm brick upstand (top 3.02) on the open edges; actors stand on the roof at y 2.72 (spots roofEdge, roofEdgeOllie, roofWindow, roofMid, roofWall). Kate and Mark's bedroom behind the open sash window (x -1.75..-0.65, sill 3.22), floor 2.8 (spots roomWindow, roomBed, roomDoor). Patio z 3.4..5.2, lawn to the back fence and gate at z 21, river beyond; add ferryWater for the water and rain for the weather", themes: ["horror", "home", "night", "river"], tags: ["house", "garden", "roof", "river", "flood", "bedroom", "window"] } },
+  sets: { ollieRoom: { id: "ollieRoom", title: "Ollie's bedroom at 4 Ferry Lane: his bed against the wall he shares with Ava, the shelf with the nursery camera", lights: ["interiorCool", "night", "interior"], build: ollieRoom },
+    avaRoom: { id: "avaRoom", title: "Ava's bedroom: her bed against the shared wall, Ollie's drawing and fairy lights over it, the window on the garden", lights: ["interiorCool", "night", "interior"], build: avaRoom },
+    ferryBack: { id: "ferryBack", title: "4 Ferry Lane, the back at night: the kitchen extension's flat roof under the open bedroom window, the garden down to the river", lights: ["night"], build: ferryBack } },
+  layouts: { ferryBack: { spots: FERRY_SPOTS, views: FERRY_VIEWS }, ollieRoom: { spots: OLLIE_SPOTS, views: OLLIE_VIEWS }, avaRoom: { spots: AVA_SPOTS, views: AVA_VIEWS } },
+  setMeta: { ollieRoom: { name: "Ollie's bedroom", desc: "a small boy's bedroom (3.4 x 3.2 m, open toward +z): the bed along x with its head at the right wall (the wall shared with Ava's room), 0.85 m off the back wall; spots bed (sitting up in bed: mode sit), asleep (only the head above the duvet), kneel (BEHIND the bed, 0.36 m below the floor: reads as kneeling at the bedside), tuck, door, floor; the shelf with the nursery camera on the left wall; the garden window in the back wall", themes: ["home", "family", "horror"], tags: ["bedroom", "child", "bed", "night"] },
+    avaRoom: { name: "Ava's bedroom", desc: "a teenager's bedroom (3.4 x 3.2 m, open toward +z), the mirror of Ollie's: the bed's head at the LEFT wall (the wall shared with Ollie's room) under his crayon drawing and a string of fairy lights; a bedside table with a red LED clock; spots bed, asleep, bedEdge, window, door, floor", themes: ["home", "family", "horror"], tags: ["bedroom", "teen", "bed", "night"] },
+    ferryBack: { name: "4 Ferry Lane (back, night)", desc: "the house's rear wall faces +z at z 0 (x -3..3). The kitchen extension x -3..0.6, z 0..3.4, its flat felt roof at y 2.72 with a 30 cm brick upstand (top 3.02) on the open edges; actors stand on the roof at y 2.72 (spots roofEdge, roofEdgeOllie, roofWindow, roofMid, roofWall). Kate and Mark's bedroom behind the open sash window (x -1.75..-0.65, sill 3.22), floor 2.8 (spots roomWindow, roomBed, roomDoor). Patio z 3.4..5.2, lawn to the back fence and gate at z 21, river beyond; add ferryWater for the water and rain for the weather", themes: ["horror", "home", "night", "river"], tags: ["house", "garden", "roof", "river", "flood", "bedroom", "window"] } },
 };

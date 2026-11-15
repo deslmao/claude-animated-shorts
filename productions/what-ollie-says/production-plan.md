@@ -4,6 +4,8 @@
 
 **Follows:** the existing Thinkora pipeline (`docs/PRODUCTION.md`) and the CLAUDE.md production rules. No system redesign.
 
+> **Update (owner's decision):** Part 1 is produced and published first; the rest waits for the audience response. The working plan is [`part1-plan.md`](part1-plan.md). The gates below still apply, but only Part 1 moves through them now. The Polish check and the child voice audition come **before** the storyboard is finished.
+
 ## 1. Identifiers
 | Episode | Story id / composition | Runtime | Frames (30 fps) | Spoken characters (approx.) |
 |---|---|---|---|---|

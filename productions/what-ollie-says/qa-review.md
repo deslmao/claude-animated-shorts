@@ -14,7 +14,8 @@ These are concrete findings only. Where I found something, I fixed it in the pac
 | 7 | The deleted clip in episode 2 had an "Ava restores it" beat with no payoff. | Cut. The episode 2 beat is now Kate locking herself in (sympathy, plus the key and the roof set up). |
 | 8 | The footprints and locked-door alibi from development were fake suspense, since the audience saw Mum in episode 2. | Cut (in the story lock). The lock now means Kate fears herself, and fails twice: she unlocks it asleep, then goes out of the window. |
 | 9 | Night 1 in episode 1: Ava would have heard the L4 shout too. | Night 1 hears only a *muffled* shout through a closed window. She opens it for L5. Night 2 records L4 clearly. |
-| 10 | 1,214 clips: 14 July 2023 to 13 November 2026 is 1,219 nights. | Locked: minus the 5 nights the camera was unplugged for the move, and no nights away (shift work). The date arithmetic was checked. |
+| 10 | 1,214 clips. | Recalculated after the calendar fix (#11): 14 July 2023 to 14 November 2026 is 1,220 nights, minus 6 missed during the move. See "The archive, checked" in `story-lock.md`. |
+| 11 | **Calendar error found by the independent review:** Ollie names the tin at Thursday bedtime, but Ava searched for it on Thursday afternoon. An earlier version of this file wrongly listed the calendar as checked. | Episode 3 now happens on Friday 13 (the river at 03:00 Sat 14), episode 4 on Saturday 14 (the roof at 03:00 Sun 15). Every clip date, Ollie's age in each clip and the Finale A weekdays were recalculated. |
 
 ## 2. Checks passed
 | Check | Result |
