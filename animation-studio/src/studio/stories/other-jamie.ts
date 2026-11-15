@@ -25,7 +25,7 @@ const it = (text: string): Line => ({ text, voice: "itVoice" });
 const BENCH: V3 = [-3.2, 0.46, 5.25], SAM_BENCH: V3 = [-3.58, 0, 5.3], JAMIE_BENCH: V3 = [-2.82, 0, 5.3];
 const PHONE_AT: V3 = [-3.55, 0.95, 6.3];
 const phone = (v: string, steps: When[] = STILL) => ({ id: "jamiePhone", at: PHONE_AT, variant: v, steps });
-const phoneCam = at([-3.55, 0.95, 6.74], PHONE_AT, 40);
+const phoneCam = at([-3.55, 0.95, 6.92], PHONE_AT, 40);
 const POSTER: V3 = [3.4, 1.65, 13.25];
 // Ashby Woods: the clearing, Jamie's mirror, the others, the thing
 const JAMIE_MIRROR: V3 = [1.3, 1.85, -2.4], SAM_WOODS: V3 = [0.9, 0, 1.2], THING_BEHIND: V3 = [0.35, 0, 3.6];
@@ -46,11 +46,11 @@ const shots: ShotSpec[] = [
   // ======== 1: the hook. The text from Jamie, who is sitting right next to Sam
   { ...STREET, dur: 1.9, camera: phoneCam, actors: [], props: [phone("hook")], sfx: [{ t: 0.05, name: "phone_buzz" }], note: "1 the text" },
   { say: { text: "My best friend texted me.", who: undefined }, ...STREET,
-    camera: { move: "frame", on: ["samOJ"], size: "close", from: 10 },
+    camera: at([-3.45, 0.98, 6.5], [-3.58, 0.88, 5.3], 38),
     actors: [{ who: "samOJ", at: SAM_BENCH, mode: "sit", act: "nervous", facing: "camera", hold: "phone", beats: [{ t: 0.5, look: "right" }] }, { who: "jamie", at: JAMIE_BENCH, mode: "sit", act: "happy", facing: "camera", hold: "chips" }],
     props: [{ id: "snapChair", at: BENCH, variant: "bench" }], note: "1 Sam turns" },
   { say: "He was sitting right next to me.", ...STREET,
-    camera: { move: "frame", on: ["jamie"], size: "close", from: -20 },
+    camera: at([-3.12, 0.98, 6.65], [-2.82, 0.86, 5.3], 40),
     actors: [{ who: "jamie", at: JAMIE_BENCH, mode: "sit", act: "happy", facing: "toward:samOJ", hold: "chips", gesture: "eat", beats: [{ t: 0.9, look: "camera" }] }, { who: "samOJ", at: SAM_BENCH, mode: "sit", act: "nervous", facing: "toward:jamie", hold: "phone" }],
     props: [{ id: "snapChair", at: BENCH, variant: "bench" }], note: "1 Jamie, chips, smiling" },
   // ======== 2: the woods; he walks out
@@ -86,10 +86,10 @@ const shots: ShotSpec[] = [
     camera: { move: "follow", on: "samOJ", size: "medium", from: 160 },
     actors: [{ who: "samOJ", at: [0.4, 0, 12], act: "scared", hold: "flashlight", walk: { to: [0.6, 0, 8.6], t0: 0.05, t1: 1.8, view: "back" } }], props: [beam("samOJ")], note: "5 into the woods" },
   { say: "Then I saw the mirrors. In every one, someone from our town.", ...WOODS,
-    ...glide([0.4, 1.6, 6.4], [0.3, 2.0, -2.2], 70, [0.4, 1.65, 5.2], [0.3, 2.0, -2.4], 64, 4.0),
+    ...glide([0.4, 1.75, 4.6], [0.3, 2.05, -2.2], 66, [0.4, 1.8, 3.4], [0.3, 2.05, -2.4], 60, 4.0),
     actors: [], props: [...MIRRORS, jamieMirror("jamie", STILL.concat(POUND.slice(20)))], sfx: [{ t: 0.3, name: "sting_low", gain: -6 }], note: "5 the mirrors" },
   { say: "Even my maths teacher. I saw her this morning.", ...WOODS,
-    ...glide([-1.95, 2.0, -0.2], [-2.4, 2.0, -1.2], 36, [-2.1, 2.0, -0.6], [-2.4, 2.0, -1.2], 32, 2.6), actors: [], props: [MIRRORS[0]], note: "5 Mrs Hale" },
+    ...glide([-1.75, 2.0, -0.45], [-2.0, 2.0, -1.6], 38, [-1.85, 2.0, -0.85], [-2.0, 2.0, -1.6], 34, 2.6), actors: [], props: [MIRRORS[0]], note: "5 Mrs Hale" },
   { ...WOODS, dur: 2.0,
     ...glide([1.15, 1.85, -0.9], JAMIE_MIRROR, 44, [1.22, 1.85, -1.5], JAMIE_MIRROR, 40, 1.8), actors: [], props: [jamieMirror()],
     sfx: [{ t: 0.1, name: "knock", gain: -4 }, { t: 0.9, name: "knock", gain: -4 }], note: "6 Jamie behind the glass" },
@@ -148,7 +148,7 @@ const shots: ShotSpec[] = [
   // ======== 11: the treeline
   { ...DUSK, dur: 2.6, mood: "hush",
     camera: at([0.9, 1.3, 25.5], [0.5, 1.5, 16], 44),
-    actors: [{ who: "samOJ", at: [-0.2, 0, 21], act: "sad", walk: { to: [0.0, 0, 18.0], t0: 0.1, t1: 2.5, view: "back" } }, { who: "jamie", at: [1.0, 0, 21.3], act: "neutral", walk: { to: [1.0, 0, 18.3], t0: 0.1, t1: 2.5, view: "back" } }],
+    actors: [{ who: "samOJ", at: [-0.2, 0, 21], act: "sad", back: true, walk: { to: [0.0, 0, 18.0], t0: 0.1, t1: 2.5, view: "back" } }, { who: "jamie", at: [1.0, 0, 21.3], act: "neutral", back: true, walk: { to: [1.0, 0, 18.3], t0: 0.1, t1: 2.5, view: "back" } }],
     props: [{ id: "hangingMirror", at: [0.5, 2.1, 15.8] as V3, variant: "jamieFade", steps: SLOWFADE.map((s) => ({ t: (s.t as number) - 4 })) }], note: "11 to the treeline" },
   { say: { text: "Sam? That's me, isn't it?", who: "narrator", voice: "jamieQuiet" }, ...DUSK,
     ...glide([0.6, 2.1, 17.0], [0.5, 2.1, 15.8], 36, [0.55, 2.1, 16.6], [0.5, 2.1, 15.8], 32, 2.4), actors: [], props: [{ id: "hangingMirror", at: [0.5, 2.1, 15.8] as V3, variant: "jamieFade", steps: SLOWFADE.map((s) => ({ t: (s.t as number) - 6 })) }], note: "11 that's me" },

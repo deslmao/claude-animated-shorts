@@ -155,7 +155,7 @@ const thingRig = (a: At, v = "sam"): PropRig => {
 const MSGS: Record<string, string[]> = {
   hook: ["Sam. That's not me next to you."],
   summons: ["Sam. That's not me next to you.", "I'm behind the glass.", "Ashby Woods.", "Come alone."],
-  real: ["I'm behind the glass.", "Ashby Woods.", "Come alone.", "Get me out. And don't tell anyone about Mill Lane. We'll forget it ever happened."],
+  real: ["Ashby Woods.", "Come alone.", "Get me out. And don't tell anyone about Mill Lane. We'll forget it ever happened."],
 };
 const wrap = (g: CanvasRenderingContext2D, s: string, w: number) => { const out: string[] = []; let line = ""; for (const word of s.split(" ")) { const t = line ? line + " " + word : word; if (g.measureText(t).width > w && line) { out.push(line); line = word; } else line = t; } if (line) out.push(line); return out; };
 const phoneTex = (v: string, n: number) => stex(`ojPhone${v}${n}`, 640, 1024, (g) => {
@@ -167,9 +167,9 @@ const phoneTex = (v: string, n: number) => stex(`ojPhone${v}${n}`, 640, 1024, (g
   g.fillStyle = "#c9a24a"; g.beginPath(); g.arc(178, 146, 28, 0, 7); g.fill(); g.fillStyle = "#1c2230"; g.font = FONT(30); g.textAlign = "center"; g.fillText("J", 178, 157);
   g.fillStyle = "#ffffff"; g.font = FONT(38); g.textAlign = "left"; g.fillText("Jamie", 222, 158);
   g.fillStyle = "#8a93a6"; g.font = FONT(22, "normal"); g.fillText(v === "hook" ? "11:47 PM" : "11:52 PM", 400, 158);
-  const list = MSGS[v].slice(0, Math.max(1, n)); let y = v === "real" && n >= 4 ? 250 : 240;
+  const list = MSGS[v].slice(0, Math.max(1, n)); let y = 240;
   list.forEach((m, i) => {
-    const last = i === list.length - 1, size = last ? 40 : 30; g.font = FONT(size); const lines = wrap(g, m, 300), bh = lines.length * (size + 12) + 28;
+    const last = i === list.length - 1, size = last ? (v === "real" ? 36 : 40) : 30; g.font = FONT(size); const lines = wrap(g, m, 300), bh = lines.length * (size + 12) + 28;
     g.fillStyle = last ? "#2f6fdb" : "#2a3142"; rr(g, 146, y, 336, bh, 26); g.fill();
     g.fillStyle = "#ffffff"; lines.forEach((ln, j) => g.fillText(ln, 168, y + 22 + size + j * (size + 12) - 8));
     y += bh + 22;
@@ -178,7 +178,7 @@ const phoneTex = (v: string, n: number) => stex(`ojPhone${v}${n}`, 640, 1024, (g
 });
 const phoneRig = (a: At, v = "hook"): PropRig => {
   const root = rigRoot(a), m = mesh(new THREE.PlaneGeometry(0.25, 0.4), card(phoneTex(v, 1), { toneMapped: false })); root.add(m);
-  return { root, update: ({ step = 0 }) => { const n = v === "hook" ? 1 : v === "real" ? (step > 1.5 ? 4 : 3) : Math.max(1, Math.min(4, Math.floor(step + 1))); (m.material as THREE.MeshBasicMaterial).map = phoneTex(v, n); } };
+  return { root, update: ({ step = 0 }) => { const n = v === "hook" ? 1 : v === "real" ? (step > 1.5 ? 3 : 2) : Math.max(1, Math.min(4, Math.floor(step + 1))); (m.material as THREE.MeshBasicMaterial).map = phoneTex(v, n); } };
 };
 /** the police appeal on a lamppost (0.42 x 0.6 m, facing +z): POLICE APPEAL · HIT AND RUN · MILL LANE · FRIDAY 11PM,
  *  a school photo of Ellie, ELLIE MARSH, 14 · CRITICAL · THE DRIVER DID NOT STOP · Did you see anything? */
