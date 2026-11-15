@@ -213,7 +213,7 @@ const bellRig = (a: At, v = "tied"): PropRig => {
 };
 /** whaleEye: the whale's eye on its flank (5 m across), `at` = its centre, facing +z; shut until its first step, then
  *  the lids open over the next step; it then looks about slowly. */
-const eyeRig = (a: At): PropRig => {
+const eyeRig = (a: At, v?: string): PropRig => {
   const root = rigRoot(a), skin = new THREE.MeshLambertMaterial({ map: skinTex(), emissive: "#2a3644" });
   root.add(mesh(new THREE.SphereGeometry(3.3, 32, 20), skin, 0, 0, -3.0));                       // the mound around it (behind the eye)
   const ball = new THREE.Group(); ball.position.set(0, 0, 0.6); root.add(ball);
@@ -221,10 +221,17 @@ const eyeRig = (a: At): PropRig => {
   ball.add(mesh(new THREE.CircleGeometry(0.95, 40), new THREE.MeshBasicMaterial({ color: "#6a4428" }), 0, 0, 0.04));
   ball.add(mesh(new THREE.CircleGeometry(0.45, 32), new THREE.MeshBasicMaterial({ color: "#0c0a0a" }), 0, 0, 0.06));
   ball.add(mesh(new THREE.CircleGeometry(0.26, 20), new THREE.MeshBasicMaterial({ color: "#ffffff" }), 0.32, 0.32, 0.08));
-  const lid = (s: number) => { const g = new THREE.Group(); const m = mesh(new THREE.CircleGeometry(2.25, 40, s > 0 ? 0 : Math.PI, Math.PI), skin, 0, 0, 0.12); g.add(m); root.add(g); return g; };
+  const lid = (s: number) => { const g = new THREE.Group(); const m = mesh(new THREE.CircleGeometry(2.25, 40, s > 0 ? 0 : Math.PI, Math.PI), skin, 0, 0, 0.75); g.add(m); root.add(g); return g; };  // in front of the eyeball
   const up = lid(1), dn = lid(-1);
+  if (v === "shut") {                                                                             // asleep: pale lids, a dark curved lash line
+    const pale = new THREE.MeshBasicMaterial({ color: "#9aa4ae" }); for (const g of [up, dn]) (g.children[0] as THREE.Mesh).material = pale;
+    const ink = new THREE.MeshBasicMaterial({ color: "#1c1f26" });
+    const R = 4.2, cy = R - 0.5, half = 0.5;                                                     // a gentle curve across the eye
+    root.add(mesh(new THREE.TorusGeometry(R, 0.2, 8, 40, 2 * half).rotateZ(-Math.PI / 2 - half), ink, 0, cy, 0.9));
+    for (let k = 0; k < 5; k++) { const ang = -Math.PI / 2 - half * 0.8 + k * half * 0.4, m = mesh(new THREE.BoxGeometry(0.14, 0.75, 0.05), ink, Math.cos(ang) * (R + 0.3), cy + Math.sin(ang) * (R + 0.3), 0.9); m.rotation.z = ang + Math.PI / 2; root.add(m); }
+  }
   root.add(mesh(new THREE.TorusGeometry(2.2, 0.32, 10, 48), skin, 0, 0, 0.12));
-  return { root, update: ({ step = 0 }) => { const o = Math.min(1, Math.max(0, step - 1)); up.position.y = o * 1.9; dn.position.y = -o * 1.6; up.scale.y = 1 - o * 0.55; dn.scale.y = 1 - o * 0.55; ball.position.x = Math.sin(step * 0.4) * 0.15 * o; } };
+  return { root, update: ({ step = 0 }) => { const o = v === "shut" ? 0 : Math.min(1, Math.max(0, step - 1)); up.position.y = o * 1.9; dn.position.y = -o * 1.6; up.scale.y = 1 - o * 0.55; dn.scale.y = 1 - o * 0.55; ball.position.x = Math.sin(step * 0.4) * 0.15 * o; } };
 };
 /** whaleTail: the whale's tail flukes (24 m across) far behind the city: hidden under the sea until its first step,
  *  rising out over the next two (water streaming off), then slapping down. `at` = where it breaks the surface. */
@@ -361,8 +368,8 @@ export const WHALECITY_THEME: Theme = {
       build: () => undefined, rig: (a) => { const root = rigRoot(a); root.add(mesh(new THREE.PlaneGeometry(0.8, 0.6), cardMat(tapestryTex()))); return { root, update: () => undefined }; }, steps: ["it shows"] },
     foundersBell: { name: "The founders' bell", desc: "the founders' bronze ship's bell (0.7 m) hanging in a wooden frame (3 m), its mouth 2 m up, `at` = the frame's centre (the frame runs along local x); variant tied (the clapper lashed with old rope: silenced) or free (the lashing cut, the bell rope hanging to 1.5 m); with free, each step is one swing of the bell", category: "theme", themes: ["fantasy", "sea", "history"], tags: ["bell", "ship's bell", "rope", "frame"], radius: 0.3, height: 3.1,
       build: () => undefined, rig: (a, v) => bellRig(a, v ?? "tied"), steps: ["it swings"], stepCount: () => 400, variants: { tied: () => undefined, free: () => undefined } },
-    whaleEye: { name: "The whale's eye", desc: "the whale's eye (5 m across, in a mound of skin), `at` = its centre, facing +z; shut until its second step, then opening; then it looks about", category: "theme", themes: ["fantasy", "whale"], tags: ["eye", "whale", "awake"], radius: 3.3, height: 6,
-      build: () => undefined, rig: (a) => eyeRig(a), steps: ["it opens"], stepCount: () => 400 },
+    whaleEye: { name: "The whale's eye", desc: "the whale's eye (5 m across, in a mound of skin), `at` = its centre, facing +z; shut until its second step, then opening; then it looks about; variant shut: always closed (asleep)", category: "theme", themes: ["fantasy", "whale"], tags: ["eye", "whale", "awake"], radius: 3.3, height: 6,
+      build: () => undefined, rig: (a, v) => eyeRig(a, v), steps: ["it opens"], stepCount: () => 400, variants: { shut: () => undefined } },
     whaleTail: { name: "The whale's tail", desc: "the whale's tail flukes (24 m across), `at` = where it breaks the sea, facing +z; variant rest: its tips just out of the water (asleep); otherwise hidden until its first step, rising out over the next two with water streaming off, held, then slapping down after its fourth", category: "theme", themes: ["fantasy", "whale", "sea"], tags: ["tail", "flukes", "whale"], radius: 12, height: 12,
       build: () => undefined, rig: (a, v) => tailRig(a, v), steps: ["it rises"], stepCount: () => 400, variants: { rest: () => undefined } },
     whaleSea: { name: "Moving sea", desc: "the sea as a prop for the whaleRise set, `at` = [0, 0, 0]: variant rise (it drops from 0.5 m to 2.8 m below the old sea level over two steps, water pouring off the quay), glide (2.8 m down, rushing past: the city swimming) or calm; give it steady steps", category: "theme", themes: ["fantasy", "sea"], tags: ["sea", "water", "waves"], radius: 1, height: 0.1,
