@@ -37,7 +37,7 @@ These are concrete findings only. Where I found something, I fixed it in the pac
 | O1 | **All Polish unverified** | Wrong forms would break immersion for Polish viewers and the A mechanism (address forms, a toddler saying *Obiecałaś*) | Gate G1 before any narration |
 | O2 | **Episode 4 is ~112 s** | Over the 105 s target | Keep it: it holds the two biggest reveals. Fallback trims if needed: drop clip 903 (−5 s) and shorten the time-lapse (−2 s), giving about 105 s. That loses the "without the child it never ends" evidence, which ep3's line partly covers. |
 | O3 | **Child-peril intensity on the roof** | Platform and audience sensitivity | Staging rules are locked. Owner sign-off at G3 frame 8. |
-| O4 | **Finale A: "Nobody. Sorry."** | Viewers may judge Ava harshly | Intended: it's the cost of choosing A. If you want it softer, Ava leaves the message unanswered, but that ending is weaker. |
+| O4 | **Finale A's reply to Ewa** | Viewers may judge Ava harshly | **Decided by the owner:** "I can't tell you. I'm sorry." It keeps the cost, and Kuba is still not reunited with his mother. |
 | O5 | **No-blink and toddler-scale engine work** | Kate's sleepwalking tell, and Kuba's age | Part of G2; still checks per shot |
 | O6 | **Child voice quality** | Ollie carries the hook | G4 audition with several candidates |
 | O7 | **New-viewer entry at parts 2–5** | Shorts are often found mid-series | Each part opens on its own hook. Add "Part X of 5" to the title overlay and the description; no extra recap time needed. |

@@ -81,6 +81,8 @@ export type ActorSpec = {
   nod?: (number | WordRef)[];  // nod start times (or words)
   shake?: (number | WordRef)[]; // head-shake start times (or words)
   idle?: number;              // idle life amount (default 1, 0 = still)
+  /** false = never blinks (eyes held open: a sleepwalker, What Ollie Says at 3 A.M.); default true */
+  blink?: boolean;
   /** walk (or run) in profile from `at` to `to`, between t0 and t1 seconds (or from / until spoken words) */
   walk?: { to: Where; t0: number; t1: number; mode?: "walk" | "run" | "ride"; from?: WordRef; until?: WordRef;
     /** stairs (Video 06): the foot contacts between `at` and `to` (one per stride half, e.g. the middle of every second

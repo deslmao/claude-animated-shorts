@@ -481,7 +481,7 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
         const tqa = t0 + tq;
         const { base, held } = basePoseAt(a, tq);
         const swaps = (a.beats ?? []).map((x) => t0 + (x.t ?? 0));
-        const life = { ...idle(tqa, seed, a.idle ?? 1), blink: lidAt(tqa, seed, swaps) };
+        const life = { ...idle(tqa, seed, a.idle ?? 1), blink: a.blink === false ? 0 : lidAt(tqa, seed, swaps) };
         // voiced lines: the mouth follows the narration's word timings; otherwise the stand-in talking rhythm
         const talking = a.speech?.length ? speakAt(tq, a.speech, seed)
           : (a.talk ?? []).map(([x, y]) => talkAt(tqa, t0 + x, t0 + y, seed, (base.expr as Expr) ?? "talk")).find((x) => Object.keys(x).length) ?? {};

@@ -61,7 +61,7 @@ export type Look = {
 export type Expr =
   | "neutral" | "stern" | "grin" | "laugh" | "whistle" | "nervous" | "shock" | "relief" | "relief_open" | "dazed" | "pained"
   | "smile" | "smile_closed" | "lick"
-  | "thinking" | "confused" | "angry" | "sad" | "suspicious" | "excited" | "scared" | "sleepy" | "proud" | "disgusted"
+  | "thinking" | "confused" | "angry" | "sad" | "suspicious" | "excited" | "scared" | "sleepy" | "blank" | "proud" | "disgusted"
   | "determined" | "wink" | "talk" | "talk_wide" | "embarrassed";
 type Eye3 = EyeK | "wide" | "pin" | "angry" | "sad" | "up" | "closed";
 type Mouth3 = MouthK | "frownDeep" | "grit" | "side" | "yawn" | "zig" | "talkA" | "talkB" | "smug" | "openSmile" | "tongue" | "flat";
@@ -92,6 +92,8 @@ export const FACES: Record<Expr, FaceDef> = {
   excited: { eye: ["wide", "wide"], brow: B(-8, -7), mouth: "openSmile" },
   scared: { eye: ["pin", "pin"], brow: B(-7, 3), mouth: "grit", sweat: true },
   sleepy: { eye: ["closed", "closed"], brow: B(1, 2), mouth: "yawn" },
+  /** a sleepwalker (What Ollie Says at 3 A.M.): wide, fixed eyes, level brows, a flat mouth; pair with `blink: false` */
+  blank: { eye: ["wide", "wide"], brow: B(0, 0), mouth: "flat" },
   proud: { eye: ["closed", "closed"], brow: B(-3, -4), mouth: "smug" },
   disgusted: { eye: ["squeeze", "slit"], brow: [[5, 0], [3, -1]], mouth: "tongue" },
   determined: { eye: ["angry", "angry"], brow: B(4, -3), mouth: "flat" },

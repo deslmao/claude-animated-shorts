@@ -23,7 +23,7 @@
 | 6 | 0:38–0:47 (9 s) | Inside. Ava guides them through the window. Kate lies on her bed and **closes her eyes**: properly asleep for the first time on screen, breathing slowly. Ollie curls in beside her. Ava pulls the duvet over them, then sits on the floor with her back to the bed, soaked, watching the window turn grey. | Wide, the bedroom → close-up of Kate's eyelids closing → wide: Ava on the floor, dawn | none | Calm breathing, the rain easing | Peace. |
 | 7 | 0:47–0:54 (7 s) | 6:02 a.m. Mark bursts in, his hi-vis wet. He sees them. He kneels and holds Ava. | Doorway → close-up of Ava → embrace | MARK: Ava? / AVA: She sleepwalked. I got her back to bed. | Door, his breath | **Ava chooses** not to tell him about Kuba. |
 | 8 | 0:54–1:06 (12 s) | **Days later:** the nursery-cam app on Ava's phone shows "03:00: no new clips", night after night (Sat, Sun, Mon, Tue); the counter stays at 1,214. **The kitchen, morning:** a FOR SALE board through the window. Kate, lighter, humming, flips pancakes. | PH insert (swipes) → kitchen medium → close-up of Kate → close-up of Ava | KATE: I had the strangest dream. A man in a tree… waving. (She smiles: her first real smile.) / AVA: (a beat) Sounds nice. | Pan sizzle, Kate humming, the warm motif | It worked, and the clips have stopped. She remembers only a gentle image. |
-| 9 | 1:06–1:16 (10 s) | Night, Ava's room. Ewa's message: "Who are you?" She types "His sister." She deletes it. She types "Nobody. Sorry." She looks at the wall: Ollie beyond it, Mum down the landing. She sends it. "Delivered." She turns the phone face-down. | PH insert (typing and deleting, each held 1.2 s) → close-up of Ava → insert the phone going face-down | none | Keyboard taps, the send sound. The music stops. | **The cost:** she cuts Kuba off from his mother, to protect her. |
+| 9 | 1:06–1:16 (10 s) | Night, Ava's room. Ewa's message: "Who are you?" She types "His sister." She deletes it. She types "I can't tell you. I'm sorry." She looks at the wall: Ollie beyond it, Mum down the landing. She sends it. "Delivered." She turns the phone face-down. | PH insert (typing and deleting, each held 1.2 s) → close-up of Ava → insert the phone going face-down | none | Keyboard taps, the send sound. The music stops. | **The cost:** she cuts Kuba off from his mother, to protect her. |
 | 10 | 1:16–1:28 (12 s) | Clock 2:59 → 3:00. Silence: no voice. Ava knocks three times. Three knocks come back. She lies on her side, eyes open, watching the wall. Pull back through the window to the house at night, with the river quiet: **only Ava's window is lit.** End card: "WHAT OLLIE SAYS AT 3 A.M. · END". | Insert clock → close-up of Ava → slow pull-out to the exterior (a gentle drone-height wide) | none | Three knocks, three answered. Then the river, very soft. | Final image: the secret has moved to her. **She's the one awake at 3:00 now.** |
 
 ## Script
@@ -93,7 +93,7 @@ She smiles: a real one. Ava has never seen it before.
 
 **INT. AVA'S BEDROOM. NIGHT.**
 Her phone: Ewa's message. *Who are you?*
-She types: *His sister.* She deletes it. She types: *Nobody. Sorry.*
+She types: *His sister.* She deletes it. She types: *I can't tell you. I'm sorry.*
 She looks at the wall: Ollie on the other side, her mother down the landing. She sends it. *Delivered.*
 She turns the phone face-down.
 
