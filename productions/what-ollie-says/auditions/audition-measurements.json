@@ -1,0 +1,107 @@
+{
+ "toddler_teddy_L1": {
+  "hz": 229,
+  "lang": "pol",
+  "heard": "Mamo, woda jest przy drzwiach",
+  "match": true
+ },
+ "toddler_teddy_L5": {
+  "hz": 308,
+  "lang": "pol",
+  "heard": "Obiecałaś, że nie puścisz",
+  "match": true
+ },
+ "toddler_leo_L1": {
+  "hz": 291,
+  "lang": "pol",
+  "heard": "Mamo, woda jest przy drzwiach",
+  "match": true
+ },
+ "toddler_leo_L5": {
+  "hz": 172,
+  "lang": "pol",
+  "heard": "Obiecałaś, że nie puścisz",
+  "match": true
+ },
+ "toddler_mini_L1": {
+  "hz": 281,
+  "lang": "pol",
+  "heard": "Mamo, woda jest przy drzwiach",
+  "match": true
+ },
+ "toddler_mini_L5": {
+  "hz": 291,
+  "lang": "pol",
+  "heard": "Obiecałaś, że nie puścisz",
+  "match": true
+ },
+ "kate_kasia_L2": {
+  "hz": 176,
+  "lang": "pol",
+  "heard": "Kubuś, trzymaj mnie za rękę",
+  "match": true
+ },
+ "kate_kasia_L4": {
+  "hz": 204,
+  "lang": "pol",
+  "heard": "Weź go",
+  "match": true
+ },
+ "kate_paula_L2": {
+  "hz": 229,
+  "lang": "pol",
+  "heard": "Kubuś, trzymaj mnie za rękę",
+  "match": true
+ },
+ "kate_paula_L4": {
+  "hz": 288,
+  "lang": "bul",
+  "heard": "Въж го!",
+  "match": false
+ },
+ "kate_agnieszka_L2": {
+  "hz": 200,
+  "lang": "pol",
+  "heard": "Kubuś, trzymaj mnie za rękę",
+  "match": true
+ },
+ "kate_agnieszka_L4": {
+  "hz": 211,
+  "lang": "pol",
+  "heard": "Weź go!",
+  "match": true
+ },
+ "ollie_teddy": {
+  "hz": 320
+ },
+ "ollie_leo": {
+  "hz": 242
+ },
+ "ollie_valf": {
+  "hz": 340
+ },
+ "kate_kasia_en": {
+  "hz": 183
+ },
+ "kate_paula_en": {
+  "hz": 250
+ },
+ "kate_agnieszka_en": {
+  "hz": 183
+ },
+ "design_kate_1": {
+  "hz": 254,
+  "lang": "pol",
+  "heard": "Kubuś, trzymaj mnie za rękę. Nie puszczę cię. Obiecuję. I haven't spoken it in eighteen years. He was my son"
+ },
+ "design_kate_2": {
+  "hz": 232,
+  "lang": "pol",
+  "heard": "Kubuś, trzymaj mnie za rękę. Nie puszczę cię, obiecuję. I haven't spoken it in eighteen years. He was my son"
+ },
+ "design_kate_3": {
+  "hz": 211,
+  "lang": "pol",
+  "heard": "Kubuś, trzymaj mnie za rękę. Nie puszczę cię. Obiecuję. I haven't spoken it in eighteen years. He was my son"
+ }
+}

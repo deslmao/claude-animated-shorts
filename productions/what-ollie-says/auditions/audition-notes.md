@@ -51,3 +51,24 @@ Built-in voices only: Jessica for the toddler, raw and pitched up by resampling 
 **Narration:** 40 lines (39 distinct), 859 characters of the free 10,000.
 - **Review track:** `part1-dialogue-v1.mp3`, with its page `part1-dialogue-v1.html`.
 - **Length:** 120 s with the real voices.
+
+## Audition on the Creator plan (17 Nov 2026)
+The owner bought Creator. 130,255 characters were available; the audition used 636, plus Voice Design for Kate. Page: `audition-v2.html`; numbers in `audition-measurements.json`.
+
+**Voice Design refused both child prompts** under ElevenLabs' safety guidelines (it doesn't create children's voices). That was respected, not worked around. The child roles use library character voices.
+
+| Take | Pitch | Round trip |
+|---|---|---|
+| Toddler: Mini L1 / L5 | 281 / 291 Hz | exact / exact |
+| Toddler: Teddy Twinkle L1 / L5 | 229 / 308 Hz | exact / exact |
+| Toddler: Leo L1 / L5 | 291 / 172 Hz | exact / exact |
+| Ollie: Leo / Teddy / Valf (English) | 242 / 320 / 340 Hz | |
+| Kate: Kasia L2 / L4 / English | 176 / 204 / 183 Hz | exact / exact |
+| Kate: Agnieszka L2 / L4 / English | 200 / 211 / 183 Hz | exact / exact |
+| Kate: Paula L2 / L4 / English | 229 / 288 / 250 Hz | exact / **heard as Bulgarian** |
+| Kate: Voice Design 1 / 2 / 3 | 254 / 232 / 211 Hz | all Polish, exact |
+
+**Provisional recommendation (from measurements; the owner decides by ear):**
+- **Toddler:** Mini, the steadiest pitch across both lines.
+- **Ollie:** Leo, the only candidate lower than the toddler, so he reads as the older child. He has a light Spanish accent and isn't British.
+- **Kate:** Kasia, native Polish, and both Polish lines exact.

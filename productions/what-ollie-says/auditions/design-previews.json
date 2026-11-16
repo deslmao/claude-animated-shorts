@@ -1,1 +1,23 @@
-{}
+{
+ "kate": {
+  "description": "A Polish woman in her late thirties who has lived in England for years: warm, tired, low and quiet, a faint Polish accent in English, fully native when she speaks Polish.",
+  "text": "Kubuś, trzymaj mnie za rękę. Nie puszczę cię. Obiecuję. I haven't spoken it in eighteen years. He was my son.",
+  "previews": [
+   {
+    "file": "design_kate_1.mp3",
+    "generated_voice_id": "3EpwRGKKvAtGUUALi6Cd",
+    "duration": 7.342208333333334
+   },
+   {
+    "file": "design_kate_2.mp3",
+    "generated_voice_id": "bAvGQmKNKcssbCl2JOPZ",
+    "duration": 7.472833333333333
+   },
+   {
+    "file": "design_kate_3.mp3",
+    "generated_voice_id": "N3AwA1Oi9kqYTaMvpWH9",
+    "duration": 10.529166666666667
+   }
+  ]
+ }
+}
