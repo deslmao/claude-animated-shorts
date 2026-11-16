@@ -1,0 +1,25 @@
+{
+ "hash": "01f43bcd5af205",
+ "text": "Ava?",
+ "voice": "olOllie",
+ "lead": 0,
+ "end": 0.882,
+ "dur": 0.914286,
+ "words": [
+  {
+   "w": "Ava?",
+   "t0": 0,
+   "t1": 0.882
+  }
+ ],
+ "voiceId": "1tDEBGOo8EqEPApM49eJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.9
+ },
+ "created": "2026-11-16T20:59:56.771Z"
+}

@@ -1,6 +1,6 @@
 // What Ollie Says at 3 A.M., Part 1: "3:00": the FINAL screenplay (productions/what-ollie-says/episodes/ep1-3am.md,
-// scene numbers in the notes). Voices: built-in ElevenLabs voices (free tier),
-// cast in productions/what-ollie-says/auditions/audition-notes.md; the two children are pitched up after generation.
+// scene numbers in the notes). Voices: library voices (Creator plan), cast in
+// productions/what-ollie-says/auditions/audition-notes.md: Mini (the toddler role), Leo (Ollie), Kasia (Kate), Alice, Daniel.
 // The six ritual lines (story-lock.md §3) are verbatim: L1 and L5 in the toddler voice (the role), L2, L3, L4, L6 Kate's.
 // Every Polish line carries its English subtitle (`sub`). Kate asleep: blink false + the blank face; awake (scene 10): blinks.
 import type { Storyboard, Line, ShotSpec, ActorSpec } from "../story/types";
@@ -13,7 +13,7 @@ type Light = typeof NIGHT | typeof DAY | typeof COOL;
 // [PL provisional] story-lock.md §3, in order
 const L1 = "Mamo, woda jest przy drzwiach.", L2 = "Kubuś, trzymaj mnie za rękę.", L3 = "Nie puszczę cię. Obiecuję.";
 const L4 = "Weź go!", L5 = "Obiecałaś, że nie puścisz.", L6 = "Przepraszam.";
-const TODDLER = "olToddler";   // the toddler voice (the role): Jessica, pitched up after generation
+const TODDLER = "olToddler";   // the toddler voice (the role): Mini
 const ava = (text: string): Line => ({ text, who: "ava" });
 const ollie = (text: string): Line => ({ text, who: "ollie" });
 const ollieT = (text: string): Line => ({ text, who: "ollieT" });
@@ -44,7 +44,7 @@ const EDGE_KATE: V = [1.5, 0, 11.0], EDGE_OLLIE: V = [2.0, 0, 11.7], DEEP_OLLIE:
 export const OLLIE_1: Storyboard = {
   id: "ollie-1", title: "What Ollie Says at 3 A.M. · Part 1: 3:00",
   cast: { ava: "ava", ollie: "ollie", ollieT: "ollieTowel", kate: "kate", mark: "mark" },
-  voice: "olAva", voices: { ava: "olAva", ollie: "olOllie", ollieT: "olOllie", kate: "olKate", mark: "olMark" },   // cast (free tier: built-in voices)
+  voice: "olAva", voices: { ava: "olAva", ollie: "olOllie", ollieT: "olOllie", kate: "olKate", mark: "olMark" },   // cast (audition-notes.md)
   music: { mood: "hush", gain: -6 }, engine: 3, autoSfx: false,
   shots: [
     // ================= SCENE 1 · 03:00 Wed 11 · seen through Ava's phone =================

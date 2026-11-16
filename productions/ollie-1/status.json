@@ -83,33 +83,33 @@
   },
   "approval": {
    "state": "done",
-   "at": "2026-11-16T09:52:53.127Z",
+   "at": "2026-11-16T20:59:47.340Z",
    "inputs": "0fc6eba59797bf",
-   "detail": "approval recorded: 7 characters"
+   "detail": "approval recorded: 460 characters"
   },
   "narration": {
    "state": "done",
-   "at": "2026-11-16T09:52:56.620Z",
+   "at": "2026-11-16T21:00:02.597Z",
    "inputs": "0fc6eba59797bf",
    "detail": "generated 40 lines (cache)"
   },
   "sound": {
    "state": "done",
-   "at": "2026-11-16T09:55:05.167Z",
-   "inputs": "09fa29d5d8b073",
-   "detail": "soundtrack built: -14.1 LUFS"
+   "at": "2026-11-16T21:05:11.178Z",
+   "inputs": "05dc45aa4f698a",
+   "detail": "soundtrack built: -14.2 LUFS"
   },
   "checks": {
    "state": "done",
-   "at": "2026-11-16T09:55:25.427Z",
-   "inputs": "09fa29d5d8b073",
+   "at": "2026-11-16T21:05:28.211Z",
+   "inputs": "05dc45aa4f698a",
    "detail": "preflight PASS; library intact"
   }
  },
  "approval": {
   "scriptHash": "0fc6eba59797bf",
-  "chars": 7,
-  "at": "2026-11-16T09:52:53.127Z",
+  "chars": 460,
+  "at": "2026-11-16T20:59:47.339Z",
   "by": "the owner, in the conversation"
  }
 }

@@ -1,0 +1,35 @@
+{
+ "hash": "03cc60a68b7ca7",
+ "text": "Mummy, what's Polish?",
+ "voice": "olOllie",
+ "lead": 0,
+ "end": 1.625,
+ "dur": 1.671837,
+ "words": [
+  {
+   "w": "Mummy,",
+   "t0": 0,
+   "t1": 0.406
+  },
+  {
+   "w": "what's",
+   "t0": 0.43,
+   "t1": 0.615
+  },
+  {
+   "w": "Polish?",
+   "t0": 0.662,
+   "t1": 1.625
+  }
+ ],
+ "voiceId": "1tDEBGOo8EqEPApM49eJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.9
+ },
+ "created": "2026-11-16T20:59:50.922Z"
+}

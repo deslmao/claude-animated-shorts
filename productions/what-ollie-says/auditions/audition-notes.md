@@ -72,3 +72,17 @@ The owner bought Creator. 130,255 characters were available; the audition used 6
 - **Toddler:** Mini, the steadiest pitch across both lines.
 - **Ollie:** Leo, the only candidate lower than the toddler, so he reads as the older child. He has a light Spanish accent and isn't British.
 - **Kate:** Kasia, native Polish, and both Polish lines exact.
+
+## Final Part 1 cast (owner: "go with yours")
+| Role | Voice |
+|---|---|
+| Toddler voice | Mini |
+| Ollie | Leo |
+| Kate | Kasia (awake, asleep, shout) |
+| Ava | Alice |
+| Mark | Daniel |
+
+- **No pitch processing:** `pitch.sh` is retired.
+- **Levelling:** the library voices came out between -14 and -40 LUFS, and the soundtrack builder mixes clips as generated. `level.py` sets the new cast's clips to -21 LUFS (Kate asleep -23, the shouts about -18) with gain and a limiter only. Durations are unchanged, and the originals are kept as `.orig.mp3`. Run it after any narration regeneration.
+- **Narration:** 460 new characters, 814 used of 130,255.
+- **Soundtrack:** -14.2 LUFS; preflight passes; the film runs about 124 s.

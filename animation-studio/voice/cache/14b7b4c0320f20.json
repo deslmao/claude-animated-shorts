@@ -1,0 +1,45 @@
+{
+ "hash": "14b7b4c0320f20",
+ "text": "Mamo, woda jest przy drzwiach.",
+ "voice": "olToddler",
+ "lead": 0,
+ "end": 2.043,
+ "dur": 2.089796,
+ "words": [
+  {
+   "w": "Mamo,",
+   "t0": 0,
+   "t1": 0.43
+  },
+  {
+   "w": "woda",
+   "t0": 0.476,
+   "t1": 0.766
+  },
+  {
+   "w": "jest",
+   "t0": 0.789,
+   "t1": 0.952
+  },
+  {
+   "w": "przy",
+   "t0": 0.998,
+   "t1": 1.173
+  },
+  {
+   "w": "drzwiach.",
+   "t0": 1.231,
+   "t1": 2.043
+  }
+ ],
+ "voiceId": "nUX4UWK0Tf1qh5zvFZWR",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.85
+ },
+ "created": "2026-11-16T20:59:49.038Z"
+}

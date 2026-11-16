@@ -1,0 +1,40 @@
+{
+ "hash": "09f665e8aab55f",
+ "text": "Go to bed, Ava.",
+ "voice": "olKate",
+ "lead": 0,
+ "end": 1.3,
+ "dur": 1.332245,
+ "words": [
+  {
+   "w": "Go",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "to",
+   "t0": 0.232,
+   "t1": 0.29
+  },
+  {
+   "w": "bed,",
+   "t0": 0.36,
+   "t1": 0.557
+  },
+  {
+   "w": "Ava.",
+   "t0": 0.592,
+   "t1": 1.3
+  }
+ ],
+ "voiceId": "2IG19NvuEAFSWMSkq7wB",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.1,
+  "use_speaker_boost": true,
+  "speed": 0.9
+ },
+ "created": "2026-11-16T20:59:51.966Z"
+}

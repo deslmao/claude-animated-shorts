@@ -1,0 +1,45 @@
+{
+ "hash": "05c290330e7702",
+ "text": "Not tonight, Mama. I'm tired.",
+ "voice": "olOllie",
+ "lead": 0,
+ "end": 2.647,
+ "dur": 2.690612,
+ "words": [
+  {
+   "w": "Not",
+   "t0": 0,
+   "t1": 0.313
+  },
+  {
+   "w": "tonight,",
+   "t0": 0.348,
+   "t1": 0.755
+  },
+  {
+   "w": "Mama.",
+   "t0": 0.778,
+   "t1": 1.231
+  },
+  {
+   "w": "I'm",
+   "t0": 1.463,
+   "t1": 1.625
+  },
+  {
+   "w": "tired.",
+   "t0": 1.707,
+   "t1": 2.647
+  }
+ ],
+ "voiceId": "1tDEBGOo8EqEPApM49eJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.9
+ },
+ "created": "2026-11-16T20:59:53.564Z"
+}

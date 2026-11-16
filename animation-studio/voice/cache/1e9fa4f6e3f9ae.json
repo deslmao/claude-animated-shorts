@@ -1,0 +1,40 @@
+{
+ "hash": "1e9fa4f6e3f9ae",
+ "text": "Obiecałaś, że nie puścisz.",
+ "voice": "olToddler",
+ "lead": 0,
+ "end": 2.09,
+ "dur": 2.115918,
+ "words": [
+  {
+   "w": "Obiecałaś,",
+   "t0": 0,
+   "t1": 0.755
+  },
+  {
+   "w": "że",
+   "t0": 0.778,
+   "t1": 0.882
+  },
+  {
+   "w": "nie",
+   "t0": 0.94,
+   "t1": 1.057
+  },
+  {
+   "w": "puścisz.",
+   "t0": 1.115,
+   "t1": 2.09
+  }
+ ],
+ "voiceId": "nUX4UWK0Tf1qh5zvFZWR",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.85
+ },
+ "created": "2026-11-16T20:59:55.831Z"
+}

@@ -4,6 +4,7 @@
 # in src/studio/stories/voice/ollie-1.ts stay valid. Idempotent: the original is kept as <hash>.orig.mp3 and every run
 # re-derives from it. Run from animation-studio/, then continue with: npm run short -- ollie-1 --until checks
 set -euo pipefail
+echo "pitch.sh is retired: Part 1 was recast with library child voices (Creator plan), which are not processed."; exit 0
 cd "$(dirname "$0")/../../../animation-studio"
 for j in voice/cache/*.json; do
   v=$(python3 -c "import json,sys; print(json.load(open(sys.argv[1])).get('voice',''))" "$j")
