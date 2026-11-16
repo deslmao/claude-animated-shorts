@@ -1,7 +1,7 @@
 # What Ollie Says at 3 A.M. · Part 1: 3:00: narration approval
 
 **Cost:** 40 new lines, **852 characters** (about 852 credits on eleven_multilingual_v2).
-**Estimated length:** 111.0 s (163 words; the real length is known after generation).
+**Estimated length:** 112.0 s (163 words; the real length is known after generation).
 **Voice:** Jessica - Playful, Bright, Warm, Alice - Clear, Engaging Educator, Lily - Velvety Actress, Liam - Energetic, Social Media Creator, Brian - Deep, Resonant and Comforting.
 
 ## Script

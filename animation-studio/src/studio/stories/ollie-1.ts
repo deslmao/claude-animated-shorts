@@ -124,14 +124,14 @@ export const OLLIE_1: Storyboard = {
     { say: role(L1, "Mama, the water's at the door."), set: "ollieRoom", light: NIGHT, hold: 0.5, ...lock(at([0.1, 0.55, 1.15], [1.0, 0.95, -0.38], 46)),
       actors: [{ who: "ollie", at: "bed", mode: "sit", act: "neutral", face: "trance", keepFace: true, facing: -1, idle: 0.3 }], note: "7 bolt upright, eyes shut: the opening frame, from the floor" },
     { say: ava("Mum? He's doing it again"), set: "ollieRoom", light: NIGHT, hold: 0.2, ...lock(at([1.1, 1.05, 1.5], [-1.3, 1.3, 0.85], 44)), sfx: [{ t: 0, name: "creak", gain: -4 }],
-      actors: [{ who: "kate", at: [-1.3, 0, 0.85], ...KATE_NIGHT, facing: "camera" }, { who: "ava", at: OLLIE_FLOOR_AVA, mode: "sit", act: "scared", face: "scared", facing: "toward:kate" }], note: "7 the door: Kate, eyes wide open, unblinking" },
+      actors: [{ who: "kate", at: [-1.3, 0, 0.85], ...KATE_NIGHT, facing: "camera" }, { who: "ava", at: OLLIE_FLOOR_AVA, mode: "sit", act: "scared", face: "shock", keepFace: true, facing: "toward:kate" }], note: "7 the door: Kate, eyes wide open, unblinking" },
     { say: kate(L2, "Kuba, hold my hand."), set: "ollieRoom", light: NIGHT, hold: 0.5, ...lock(at([-0.35, 1.15, 1.15], [0.88, 1.05, -0.75], 36)),
       actors: [{ who: "kate", at: "kneel", ...KATE_NIGHT, facing: "toward:ollie", gesture: "offer", reach: "ollie" },
         { who: "ollie", at: "bed", mode: "sit", act: "neutral", face: "trance", facing: "toward:kate", gesture: "offer", reach: "kate" }], note: "7 she walks past Ava, kneels, takes his hand: L2" },
     { say: ava("Mum, stop. You're scaring me."), set: "ollieRoom", light: NIGHT, hold: 1.6, ...lock(at([1.5, 1.5, 3.1], [-0.3, 1.0, 0.5], 54)),
       actors: [{ who: "kate", at: [-0.2, 0, 0.55], ...KATE_NIGHT, walk: { to: [-1.45, 0, 1.15], t0: 1.6, t1: 3.2 } },
         { who: "ollie", at: [0.25, 0, 0.45], act: "neutral", face: "trance", walk: { to: [-1.0, 0, 1.05], t0: 1.6, t1: 3.2 } },
-        { who: "ava", at: [0.45, 0, 0.75], act: "scared", face: "scared", facing: "toward:kate", gesture: "offer", reach: "kate", beats: [{ t: 2.0, gesture: "hang" }] }], note: "7 Ava grabs her wrist; Kate doesn't look; they walk out, her hand slides off" },
+        { who: "ava", at: [0.45, 0, 0.75], act: "scared", face: "shock", keepFace: true, facing: "toward:kate", gesture: "offer", reach: "kate", beats: [{ t: 2.0, gesture: "hang" }] }], note: "7 Ava grabs her wrist; Kate doesn't look; they walk out, her hand slides off" },
 
     // ================= SCENE 8 · the kitchen, the bolt, the garden =================
     { set: "ferryKitchenNight", light: NIGHT, dur: 2.4, ...lock(at([-0.3, 1.45, 2.4], [1.4, 1.0, -0.2], 48)),
@@ -167,7 +167,7 @@ export const OLLIE_1: Storyboard = {
     insert("flash08", 1.1, "9 her hand opens; his small fingers slide out of hers", { ...STORM, sfx: [{ t: 0.1, name: "splash", gain: -12 }] }),
     { say: ava("MUM!"), set: "ferryBack", light: NIGHT, dur: 2.8, hold: 0.9, ...lock(at([3.1, 1.8, 4.8], [1.5, 0.9, 10.0], 44)), ...STORM,
       actors: [{ who: "kate", at: [1.25, 0, 10.6], ...KATE_NIGHT, walk: { to: [1.0, 0, 6.9], t0: 0, t1: 2.6, view: "front" } },
-        { who: "ava", at: [2.7, 0, 6.8], act: "neutral", face: "scared", facing: "toward:kate", gesture: "crossArms" },
+        { who: "ava", at: [2.7, 0, 6.8], act: "neutral", face: "shock", keepFace: true, facing: "toward:kate", gesture: "crossArms" },
         { who: "ollie", at: EDGE_OLLIE, act: "neutral", face: "trance", facing: "camera" }],
       props: GARDEN([1.7, 0.5, 10.5]), note: "9 Kate walks back up the lawn, calm, past her daughter; MUM! reaches nothing; Ollie alone in the water" },
     insert("pull", 1.4, "9 the water moves: Vs running against the current, dragging his pyjama legs", { ...STORM, sfx: [{ t: 0.1, name: "water_pour", gain: -10 }] }),
@@ -186,7 +186,7 @@ export const OLLIE_1: Storyboard = {
         { who: "ollie", at: DEEP_OLLIE, act: "scared", face: "scared", facing: "toward:ava", gesture: "offer", reach: "ava" }],
       props: GARDEN([2.1, 0.5, 12.4]), sfx: [{ t: 0.3, name: "splash", gain: -4 }], note: "9 under the arms; she heaves; the water drags her a step" },
     { set: "ferryBack", light: NIGHT, dur: 2.8, ...lock(at([1.0, 1.4, 7.6], [2.2, 0.4, 10.1], 44)), ...STORM,
-      actors: [{ who: "ava", at: [2.0, 0, 10.0], mode: "sit", act: "scared", face: "scared", facing: "toward:ollie", gesture: "offer", reach: "ollie" }, { who: "ollie", at: [1.55, 0, 10.2], mode: "sit", act: "scared", face: "scared", facing: "toward:ava" }],
+      actors: [{ who: "ava", at: [2.0, 0, 10.0], mode: "sit", act: "scared", face: "shock", keepFace: true, facing: "toward:ollie", gesture: "offer", reach: "ollie" }, { who: "ollie", at: [1.55, 0, 10.2], mode: "sit", act: "scared", face: "scared", facing: "toward:ava" }],
       props: GARDEN([2.6, 0, 11.0], true), sfx: [{ t: 0, name: "thud" }, { t: 0.15, name: "whoosh_low", gain: -4 }, { t: 2.1, name: "thud", gain: -12 }], note: "9 backward onto the lawn; the water lets go with a hiss and goes still; the back door bangs" },
 
     // ================= SCENE 10 · the kitchen, 03:21 =================
@@ -195,7 +195,7 @@ export const OLLIE_1: Storyboard = {
       camera: at([0.05, 1.3, 3.0], [0.05, 1.0, -0.3], 50),
       cams: [{ t: 0, ...at([0.05, 1.3, 3.0], [0.05, 1.0, -0.3], 50), blockOk: true }, { word: "That's", ...at([0.45, 1.0, 1.4], [0.45, 0.95, -0.4], 30), cut: true, blockOk: true },
         { word: "How", ...at([-0.35, 1.05, 1.4], [-0.35, 1.0, -0.4], 30), cut: true, blockOk: true }, { word: "Mummy", ...at([0.45, 1.0, 1.4], [0.45, 0.95, -0.4], 30), cut: true, blockOk: true }],
-      actors: [{ who: "ollieT", at: BENCH_OLLIE, mode: "sit", act: "scared", face: "sad", keepFace: true, facing: "toward:ava" }, { who: "ava", at: BENCH_AVA, mode: "sit", act: "neutral", face: "scared", keepFace: true, facing: "toward:ollieT", gesture: "crossArms" }], note: "10 a towel round him, both shaking" },
+      actors: [{ who: "ollieT", at: BENCH_OLLIE, mode: "sit", act: "scared", face: "sad", keepFace: true, facing: "toward:ava" }, { who: "ava", at: BENCH_AVA, mode: "sit", act: "neutral", face: "shock", keepFace: true, facing: "toward:ollieT", gesture: "crossArms" }], note: "10 a towel round him, both shaking" },
     { say: kate("Why are you two up?"), set: "ferryKitchenNight", light: COOL, hold: 0.5, ...lock(at([0.3, 1.5, 0.7], [1.7, 1.45, 1.55], 36)),
       actors: [{ who: "kate", at: "stairs", act: "neutral", face: "confused", keepFace: true, facing: "camera", beats: [{ t: 1.4, face: "shock" }] }], note: "10 Kate in the doorway, rubbing her eyes; she BLINKS: awake. Then she sees" },
     { say: ava("Mum. Who's Kuba?"), set: "ferryKitchenNight", light: COOL, hold: 0.9, ...lock(at([-0.35, 1.05, 1.4], [-0.35, 1.0, -0.4], 30)),
