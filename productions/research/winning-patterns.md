@@ -56,6 +56,15 @@ Techniques taken from the Shorts the owner analysed (17 Nov 2026). **Record the 
    - Countries: US 38%, Philippines 12%, India 7%, Australia 7%, UK 5%.
 7. **Titles:** the concrete impossible-detail pattern ("She Counted 31 Pupils. The Register Said 30.").
 
+**Instagram (17 Nov 2026):**
+- **Views are flat:** every reel sits at about 1,400–2,400, so Instagram isn't separating hits from misses yet.
+- **Engagement does separate them:**
+  - *One Too Many*: 118 interactions; Whale City: 88; Float Away: 83.
+  - *The Extra Door*: **9 comments**, the most of any reel, against 7 on YouTube's 21k-view *One Too Many*.
+  - The vote drives comments, and the story drives watch time. Use both.
+- **Reel covers are random frames,** several caught mid-caption ("over here!", "heat", "a room and"). Every reel needs a deliberate cover: the hook image plus 3–5 words of title.
+- **Instagram rewards sends,** so add a share prompt to the caption ("Send this to the person who always…", as the train series does).
+
 ## Hook types that worked
 | Type | Example | Why it works |
 |---|---|---|
