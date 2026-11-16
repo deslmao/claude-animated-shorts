@@ -91,9 +91,9 @@ export const OLLIE_1: Storyboard = {
 
     // ================= SCENE 4 · the tin, minutes later =================
     insert("tinLid", 1.7, "4 under the bed: the tin, Ollie's dinosaur sticker, her thumb on it", { sfx: [{ t: 0.3, name: "swish_soft", gain: -8 }] }),
-    insert("tinOpen", 2.8, "4 the dry tissue, the WET photo; the drop runs onto her fingers", { sfx: [{ t: 1.3, name: "drip", gain: -4 }] }, [{ t: 1.3 }]),
+    insert("tinOpen", 2.8, "4 the dry tissue, the WET photo; the drop runs onto her fingers", { sfx: [{ t: 1.3, name: "drip", gain: -4 }] }, [{ t: 0.6 }]),
     insert("photoBack", 1.9, "4 the back: Kubuś · 2008"),
-    insert("match", 3.0, "4 beside Ollie's school photo; laid over it: the same face; a tear runs", { sfx: [{ t: 1.4, name: "sting_low", gain: -10 }] }, [{ t: 1.4 }]),
+    insert("match", 3.0, "4 beside Ollie's school photo; laid over it: the same face; a tear runs", { sfx: [{ t: 1.4, name: "sting_low", gain: -10 }] }, [{ t: 0.7 }]),
     { say: ava("…what?"), set: "ferryBack", light: NIGHT, hold: 0.6, ...lock(at([-0.95, 4.0, -0.9], [0.15, 3.95, -1.3], 40)),
       actors: [{ who: "ava", at: AVA_KATEROOM, act: "shock", face: "shock", keepFace: true, facing: "camera" }], note: "4 Ava, a whisper" },
 
@@ -120,7 +120,7 @@ export const OLLIE_1: Storyboard = {
         { who: "ava", at: OLLIE_FLOOR_AVA, mode: "sit", act: "neutral", keepFace: true, facing: "toward:ollie", gesture: "offer", reach: "ollie", beats: [{ word: "Mama", n: 2, face: "shock" }] }], note: "6 she touches his shoulder; eyes shut, his own voice; she goes still" },
 
     // ================= SCENE 7 · 03:00 Thu 12 =================
-    insert("phoneClock", 1.8, "7 02:59 -> 03:00", { sfx: [{ t: 1.0, name: "clock_tick", gain: -4 }] }, [{ t: 1.0 }], "ollieRoom"),
+    insert("phoneClock", 1.8, "7 02:59 -> 03:00", { sfx: [{ t: 1.0, name: "clock_tick", gain: -4 }] }, [{ t: 0.3 }], "ollieRoom"),
     { say: role(L1, "Mama, the water's at the door."), set: "ollieRoom", light: NIGHT, hold: 0.5, ...lock(at([0.1, 0.55, 1.15], [1.0, 0.95, -0.38], 46)),
       actors: [{ who: "ollie", at: "bed", mode: "sit", act: "neutral", face: "trance", keepFace: true, facing: -1, idle: 0.3 }], note: "7 bolt upright, eyes shut: the opening frame, from the floor" },
     { say: ava("Mum? He's doing it again"), set: "ollieRoom", light: NIGHT, hold: 0.2, ...lock(at([1.1, 1.05, 1.5], [-1.3, 1.3, 0.85], 44)), sfx: [{ t: 0, name: "creak", gain: -4 }],
