@@ -1,209 +1,238 @@
 # What Ollie Says at 3 A.M.: story lock
 
-**Status: LOCKED (15 Nov 2026), pending the owner's approval of the package.**
-The beat sheets and scripts in `episodes/` follow this file exactly. Change this file first if anything has to change.
+**Status: LOCKED, 16 Nov 2026, approved by the owner.** This replaces the 15 Nov version, whose truth was not supernatural.
+The five parts are in [`series-outline.md`](series-outline.md). The scripts in `episodes/` predate this lock and are
+reference only. If anything has to change, change this file first.
 
-**Polish:** every Polish line and every piece of on-screen Polish text is marked **[PL provisional]**. None of it has been checked by a native speaker. A native check is a gate before narration (see `production-plan.md`).
+**Polish:** every Polish line and every piece of on-screen Polish is **[PL provisional]**. None of it has been checked
+by a native speaker. No narration is generated until every line has been checked (`production-plan.md`, gate G1).
 
-## 1. Final continuity decisions
-These are the five points left open at the end of story development, now settled.
+## 1. The truth in one paragraph
+- **2008:** in a flood in Wierzbno, Poland, Kasia (20) held her son Kuba (3) out over the water to the volunteer firefighter Tomasz, shouted "Take him!", and let go, breaking her promise never to let go. She saw the boat overturn by the willows and believes Kuba drowned.
+- **What she never saw:** Tomasz tied Kuba into a willow with his belt and drowned going back for others. Kuba was found alive that afternoon. He is now Jakub Lis, 21, in Poland, and believes his mother drowned.
+- **What follows her:** the debt of that letting go. Since 14 July 2023, the night returns through her every night at 3:00, with her son Ollie cast in Kuba's place.
+- **Now:** the family has moved beside a river, and the night can reach real water.
 
-### 1.1 The six-line ritual: one sequence everywhere
-The ritual is the last two hours on the roof in 2008, compressed into a few minutes. The lines are always spoken in the order they were really spoken.
+## 2. The supernatural rules (locked; nothing else exists)
+1. **The debt.** Wierzbno's saying: *"What you let go of over the water, the water takes."*
+   - It's the act, not the words. A mother opened her hand over floodwater and gave her child away. Who she was shouting to doesn't matter.
+   - Tomasz was never given; he went into the water by his own choice, so his death doesn't pay it. The gift is still "in the air": let go, never received.
+2. **The night holds only what Kate saw.**
+   - Her memory ends with the boat going under. Inside the night the rescue doesn't exist, which is why the debt stays open.
+   - The water isn't a mind that could recognise Tomasz. It is a debt acting inside a memory, and Tomasz is outside that memory.
+   - The water acts only inside the night.
+   - Words in the child's place can **add to** her memory (clip 412) but not **contradict** it (clip 1,207). This follows from the night being made of her memory; it is not a separate rule.
+3. **When:** 3:00, the minute the water reached her door in 2008. Every night since 14 July 2023, the 15th anniversary.
+4. **Who:** a son of hers, at the age Kuba was.
+   - You can only give away what is yours, and the moment is a three-year-old being let go. Between 2008 and 2020 she had no son.
+   - Ollie turned three on 9 June 2023, and the night returned on its own date five weeks later.
+   - **Ollie is cast, not possessed.** Inside the night Kuba's words come out of him, in Polish he never learned and in a three-year-old's voice, identical every night because it is the same moment replaying. He experiences it as a dream he plays along with: "the water game".
+5. **Strength grows with the water's nearness.**
+   - **Old house:** the bedside only. Her hand opened over a bed and nothing could take him; there was a damp patch where he'd been.
+   - **After the September 2026 move:** further out each night.
+   - **From early November:** the river reaches the place where she lets go.
+   - **Part 3:** the water comes into the house.
+   - At 3:00 the river rises **only over their garden**. By morning it is back in its banks.
+   - The water marks what belongs to the night: the photo and the sock in the tin, Ollie's feet, a damp patch where he stood.
+6. **What reaches Kate inside the night:** only the night's own words, which are the child's voice (in the role) and her name from that night, **"Kasia"**. Her married name, "Mum", English shouted by Ava, light and touch don't reach her.
+   - In 2008, nurses could wake her by shaking her because the night was weak: no boy, only searching for water.
+7. **Daytime knowledge never enters the night.** Kate knows about the nights from Part 2 onward, and it changes nothing.
+8. **Without the boy,** the night searches for him and walks Kate to the water alone.
+9. **How a night can end for good:**
+   - (a) the boy is let go over real water and taken;
+   - (b) the true ending is spoken in the child's place (Finale A);
+   - (c) Kate, awake inside the night, holds on (Finale B).
 
-| # | Speaker | Polish [PL provisional] | Subtitle | 2008: when | In the house, now |
+**What these rules close off:**
+- **Throw away the tin:** the objects are only marked; they don't cause it.
+- **Lock the doors:** the night opens her own lock (Part 2), comes under a locked door (Part 3), and goes out of the window (Part 4).
+- **Move away:** it follows Kate wherever she sleeps.
+- **Send Ollie elsewhere:** she walks into the water alone (Part 2).
+- **Tell her the truth by day:** see rule 7.
+
+## 3. The ritual: six lines, always in this order
+| # | Speaker | Polish [PL provisional] | Subtitle | 2008 | In the house now |
 |---|---|---|---|---|---|
-| L1 | **child** | *Mamo, woda jest przy drzwiach.* | Mama, the water's at the door. | 03:00. Kuba wakes her. | At the bedside, once she has his hand. |
-| L2 | Kate | *Kubuś, trzymaj mnie za rękę.* | Kuba, hold my hand. | 03:02. She lifts him toward the loft hatch. | At the bedside. He gets up. |
-| L3 | Kate (whisper) | *Nie puszczę cię. Obiecuję.* | I won't let go of you. I promise. | ~04:30, on the roof, in the rain. | Walking hand in hand. |
-| L4 | Kate (shout) | *Weź go!* | Take him! | 05:10. She hands him down to Tomasz in the boat. | At the edge: of the bed (old house), the water (river house) or the roof (episode 4). She lifts his hand and arm toward the dark. |
-| L5 | **child** | *Obiecałaś, że nie puścisz.* | You promised you wouldn't let go. | 05:10. Kuba screams as he's lifted into the boat. | At the edge. |
-| L6 | Kate | *Przepraszam.* | I'm sorry. | 05:10, as his fingers leave hers. | She opens her hand, turns, walks back to bed. |
+| L1 | **child** | *Mamo, woda jest przy drzwiach.* | Mama, the water's at the door. | 03:00. Kuba wakes her. | At 3:00, wherever the boy is (Part 2: in Ava's room) |
+| L2 | Kate | *Kubuś, trzymaj mnie za rękę.* | Kuba, hold my hand. | 03:02. Toward the loft hatch. | At the bedside; he gets up |
+| L3 | Kate (whisper) | *Nie puszczę cię. Obiecuję.* | I won't let go of you. I promise. | ~04:30, on the roof, in the rain | Walking hand in hand |
+| L4 | Kate (shout) | *Weź go!* | Take him! | 05:10. To Tomasz in the boat. | At the edge: of the bed (old house), the water (river house), the flooded floor (Part 3) or the roof (Parts 4–5). She lifts his arm toward the dark. |
+| L5 | **child** | *Obiecałaś, że nie puścisz.* | You promised you wouldn't let go. | 05:10. Kuba screams as he's lifted. | At the edge |
+| L6 | Kate | *Przepraszam.* | I'm sorry. | 05:10, as his fingers leave hers | Her hand opens; she walks back to bed |
 
-**Who speaks:** Kate speaks L2, L3, L4 and L6. The child speaks L1 and L5.
+- **Ollie was never taught.** The toddler-voiced Polish is there from clip 1.
+- **Other words in the child's place:**
+  - If they **continue** her memory, the night responds and ends differently (clip 412: "Mama, don't be sad", and she lies down beside his bed).
+  - If they **contradict** it, the night goes on and repeats L4 (clip 1,207; the first attempt in Finale A).
 
-**How Ollie learned it:**
-- **14 Jul 2023 to about Sep 2023 (Ollie aged 3):** at L1 and L5 Kate waits, then whispers the child's line herself, and Ollie echoes it word by word (clip 1).
-- **From about Oct 2023:** she waits in silence and Ollie says L1 and L5 alone. She never prompts again.
+## 4. Chronology
 
-**What starts it:** she has the child's hand and hears L1. Until she does, she waits at the child's place.
-
-**What ends it:** the child's words at the L5 moment.
-- **L5 itself:** L6, she lets go, and she walks back to bed. She never brings him back; Ollie returns on his own.
-- **Other words from the child, in the role:** she responds to them, and that response ends the night. In clip 412, "Mama, don't be sad" made her lie down beside his bed and sleep until morning.
-
-**If there is no child:**
-- She waits at the child's place. If it stays empty, she searches, whispering then calling *"Kubuś?"* (Kuba?), the way she called after the boat went over.
-- In the river house the search heads toward the water.
-- This is why Ollie never refuses: *"If I don't say my words, Mama goes in the water by herself."*
-
-### 1.2 Why Finale A can work (the story's rules, not therapy)
-1. **She hears only that night.** Her name, "Mum" and the lights do nothing. A child speaking as Kuba, to "Mama", in Polish, at the right moment, reaches her. Ollie's voice has changed from 3 to 6 and she has never noticed, so Ava's voice can stand in.
-2. **The child's line at the L5 moment decides how the night ends** (clip 412, shown in episode 4).
-3. **Her memory of the night stops at one image:** the boat flipping by the willows with Tomasz and her son in it, at 05:15. She knew Tomasz; he was the village's volunteer firefighter, and in the episode 4 flashback she shouts his name.
-4. **Ava's first line** ("Tomasz is holding me. I'm alive") claims an ending without the place where her memory stops, and the dream rejects it: Kate repeats L4.
-   **Ava's second line** starts exactly at that place and carries on past it: "He tied me to the willow. With his belt." The willows are what Kate saw; the belt is what she couldn't see. That is information about the rescue only Ewa's message gave Ava.
-5. **So the dream gets a different L5:** one where the child is safe. Kate doesn't say L6; she holds on, and the night ends.
-6. **We never claim this cures anything.** We only show that the 3 a.m. clips stop.
-
-### 1.3 Episode 4 runs 110 s (target 85–105)
-It carries the archive (39 s), Kuba's survival (21 s), the roof (20 s) and the vote (7 s). Cutting it under 105 s would rush the two biggest reveals. The timing is in `episodes/ep4-1214-nights.md`.
-
-### 1.4 Roof staging rules (episodes 4 and 5)
-- The kitchen extension's flat roof is 2.7 m above the garden. It has a **30 cm brick upstand at the edge with a gutter**, and the floodwater is below. Nobody hangs over the edge and nobody falls.
-- **The most dangerous image we show:**
-  - Kate standing at the upstand, lifting Ollie's arm out over it toward the dark water;
-  - Ollie's bare toes on the wet upstand (an insert);
-  - in Finale A, his heel slipping on the wet brick while Ava's fist is already in his pyjama top.
-- **Tension comes from:**
-  - **sound:** rain on the felt roof, the river, his breathing;
-  - **framing:** low angles from the window, inserts of the hand, toes and gutter, never the drop;
-  - **Ava's reactions.**
-- When anyone slips, cut on the slip and show the grip, never the fall.
-
-### 1.5 Polish
-- All Polish is provisional. It covers the lines in 1.1 and the finale lines in section 6, plus every on-screen text: the passport, the nurse's note, the memorial, the photo caption, the page name and Ewa's message.
-- No episode is narrated or rendered until a native speaker has checked every line, including:
-  - the forms of address *Kubuś* / *Kubusiu*;
-  - whether a three-year-old would say *Obiecałaś*.
-
-## 2. The underlying truth (the locked chronology)
-
-### 2008: Wierzbno (a fictional village, a fictional regional flood)
+### 2008: Wierzbno (a fictional village and a fictional regional flood)
 | Time | Event |
 |---|---|
 | 12 Feb 1988 | Katarzyna (Kasia) Wiśniewska is born, and raised by her grandmother Helena. |
 | 3 May 2005 | Jakub (Kuba) is born. Kasia is 17; the father isn't involved. |
-| 14 Jul 2008, ~02:40 | The levee upstream gives way. |
-| 03:00 | Water reaches the house; the kitchen clock stops at 3:00 as it shorts. Kuba wakes her: **L1**. |
+| Mon 14 Jul 2008, ~02:40 | The levee upstream gives way. |
+| 03:00 | The water reaches the house; the kitchen clock stops at 3:00. **L1.** |
 | 03:02 | **L2.** Kasia, Kuba and Helena climb through the loft hatch onto the roof. Kuba loses one sock (blue knit, white stripe); Kasia keeps the other in her cardigan pocket. |
-| ~04:30 | In the rain he's crying: **L3**. |
-| 05:10 | First light. Tomasz Kowal (34, the village's volunteer firefighter) comes in his small boat, carrying two elderly neighbours, the Nowickis. Kasia shouts his name. There's room for one small child. He loops the bow line round the chimney. **L4, L5, L6:** Kuba is handed down. |
-| 05:12 | A surge. The bow line snaps taut; Kasia grabs it, and it tears through her right palm (the scar). The loop breaks and the boat spins away. |
-| 05:15 | 150 m away, by the willows on the old mill-race, she sees the boat flip. The hull floats upside down with no one on it. *She believes Kuba drowned because she let go.* |
-| 05:16 (unseen by her) | Tomasz, holding Kuba, catches a willow, climbs to a fork and buckles Kuba to the trunk with his firefighter's belt. He goes back for the Nowickis clinging to the hull and is swept away. The Nowickis reach the church roof. |
+| ~04:30 | **L3**, in the rain. |
+| 05:10 | First light. Tomasz Kowal (34, the village's volunteer firefighter) comes in his small boat with two elderly neighbours, the Nowickis. Kasia shouts his name. There's room for one small child. Kasia sees his wide firefighter's belt as he reaches up. **L4, L5, L6:** Kuba is handed down. |
+| 05:12 | A surge. The bow line tears through Kasia's right palm (the scar) and the boat spins away. |
+| 05:15 | 150 m away, by the willows on the old mill-race, she sees the boat flip. **Her memory of the night ends here.** |
+| 05:16 (unseen) | Tomasz, holding Kuba, climbs a willow and buckles him to the trunk with his belt. He goes back for the Nowickis and is swept away. The Nowickis reach the church roof. |
 | ~06:00 | Kasia's roof gives way. Helena drowns. Kasia is swept downstream. |
-| ~08:00 | Kasia is pulled out 15 km downstream, unconscious, with no ID, and taken to a district hospital as an unidentified woman ("NN"). |
-| 13:00 | A helicopter crew finds Kuba buckled in the willow, with the belt stamped "OSP Wierzbno – T. Kowal". He's taken to a children's hospital, mute, able to say only "Kuba", and logged as an unidentified boy of about 3. |
-| 15 Jul, 03:00 | Nurses find Kasia at the ward window, sleepwalking. She doesn't respond to her name. Woken suddenly, she panics and cuts her arm on the glass. Her file note: *do not wake suddenly*. |
-| 16 Jul, morning | The local paper's missing list: *Helena W., Katarzyna W., Jakub W.* That afternoon she walks out of hospital. She takes the wristband and the note, and still has the sock in her pocket. |
-| 21 Jul | The Nowickis identify Kuba. His mother is missing, presumed drowned. He goes into foster care. |
-| 2009 | The memorial is unveiled: **HELENA WIŚNIEWSKA 79**, **KATARZYNA WIŚNIEWSKA 20, missing**, and **TOMASZ KOWAL 34, "gave his life saving a child"**. Kuba isn't on it. |
+| ~08:00 | She is pulled out 15 km downstream, unconscious, with no ID, and logged at a district hospital as an unknown woman (wristband "NN"). |
+| 13:00 | A helicopter crew finds Kuba buckled in the willow, with the belt stamped "OSP Wierzbno – T. Kowal". |
+| Tue 15 Jul, 03:00 | Nurses find her at the ward window, facing the flood. Shaken awake, she panics and cuts her arm on the glass. File note: *do not wake suddenly.* |
+| Wed 16 Jul (day 3) | She reads the newspaper's missing list (*Helena W., Katarzyna W., Jakub W.*), takes it as proof her son is dead, and walks out without giving her name. She takes the wristband and the note, and still has the sock. Out of shame she never contacts the village again, so **Wierzbno never learns she lived.** |
+| 21 Jul | The Nowickis identify Kuba. He goes into foster care. |
+| 2009 | The memorial: **HELENA WIŚNIEWSKA 79**, **KATARZYNA WIŚNIEWSKA 20, missing**, and **TOMASZ KOWAL 34, "gave his life saving a child"**. Kuba isn't on it, because he lived. |
 
 ### Since then
 | Date | Event |
 |---|---|
-| Oct 2008 | In Kraków, Kasia replaces her ID; police close her missing record at her request. *Off-screen only.* |
-| 2009 | A passport is issued in her maiden name (it expired in 2019 and she keeps it in the tin). In March she moves to England, aged 21, as "Kate". |
+| 2009 | A passport in her maiden name (expired 2019; kept in the tin). In March she moves to England, aged 21, as "Kate". |
 | 2010 | Kuba is adopted in Wrocław as **Jakub Lis** and told his mother drowned. Kate marries Mark Harper and tells him her family died in a flood. She never mentions a son. |
-| 3 Jan 2011 | Ava is born. Every 14 July from now on is "Mum's sad day": circled on the calendar, spent in bed. |
-| 9 Jun 2020 | Ollie is born, with dark curls (Kuba's hair and face). Mark puts a nursery camera on Ollie's shelf. It saves a clip whenever it hears sound at night, to a hub that never deletes. He tells Ollie: *"If you're scared, tell the camera. Daddy can hear."* |
-| 14 Jul 2023 | The 15th anniversary, five weeks after Ollie turned three: **clip 1**. |
-| 2023–Aug 2026 | Every night at the bedside in the old house. The family hasn't been away overnight since Ollie was born (shift work, money). |
-| Summer 2026 | Ollie hides in Kate's wardrobe during hide-and-seek and finds the tin. He puts a dinosaur sticker on the lid. Kate takes the photo from him: *"That's a little boy from before you were born."* |
-| 7–13 Sep 2026 | The move to **4 Ferry Lane**, by the river. The camera is packed on Mon 7 Sep and plugged back in on Sun 13 Sep, so it misses six 03:00s (8–13 Sep). Mark starts night shifts at the water treatment works and fits a top bolt on the back door, plus a garden camera. Ava's room now shares a wall with Ollie's. Kate's window opens onto the extension's flat roof. |
-| Late Sep 2026 | The first heavy rain on the flat roof below her window. The ritual walks out to the garden for the first time. |
-| Oct–Nov 2026 | Every wet night the river creeps further up the lawn, and the letting go happens nearer the water. One October night Ollie pretends to be asleep: she walks into the river alone, calling, until he runs down. |
-| 14 Nov 2026, 03:00 | **Clip 1,214** (episode 3's night, the river). 14 July 2023 to 14 November 2026 is 1,220 nights; minus the 6 missed during the move, that's **1,214 clips**. Ava opens the archive later that day. |
+| 3 Jan 2011 | Ava is born. Every 14 July is "Mum's sad day". |
+| 9 Jun 2020 | Ollie is born, with Kuba's curls and face. Mark puts a nursery camera on Ollie's shelf. It saves a clip whenever it hears sound at night, to a hub that never deletes. |
+| **Fri 14 Jul 2023, 03:00** | **The night begins: clip 1.** Old house, at the bedside, about three minutes, whispered. |
+| 2023 to Sep 2026 | **Why nobody noticed:**<br>• Ava's room was on another floor.<br>• Mark sleeps heavily and some nights works.<br>• The damp patch was blamed on a leaking radiator.<br>• At four Ollie told Dad ("Mama did the water game again", clip 388), and Dad thought it was a dream.<br>• Nobody watched the camera.<br>• Kate woke with wet feet and a sore hand, and hid it, afraid she was ill. |
+| Mon 7 Sep 2026 | Clip 1,152, the last in the old house. The camera is packed that day for the move to **4 Ferry Lane**, by the river. |
+| 8–13 Sep 2026 | **Six missed 03:00s** (Tue 8, Wed 9, Thu 10, Fri 11, Sat 12, Sun 13). The camera is plugged back in during the day on Sun 13. |
+| Mon 14 Sep 2026 | Clip 1,153, the first at Ferry Lane. Mark is on night shifts at the water treatment works. Ava's room now shares a wall with Ollie's. Kate's window opens onto the extension's flat roof. |
+| Sep–Oct 2026 | The night reaches further each night: out of the room, down the stairs, into the garden. The river begins rising at 3:00. Every morning the garden has drained. |
+| Early Nov 2026 | The river reaches the place where she lets go. |
+| 11–15 Nov 2026 | Parts 1–5 (section 5). |
 
-### The archive, checked
-| Clip | Date (03:00) | Ollie's age | What it shows |
+## 5. The archive and the series calendar (verified 16 Nov 2026)
+**Rule:**
+- Up to Mon 7 Sep 2026, clip *n* is the 03:00 of 14 Jul 2023 plus *n* − 1 days.
+- From Mon 14 Sep, subtract the six missed nights.
+- The camera saves a clip whenever it hears sound at night. Every night from 14 Jul 2023 has one, because the night always starts with the child's voice in or next to Ollie's room.
+
+**Checks** (computed day by day; weekdays checked against the calendar):
+- 14 Jul 2023 to 14 Nov 2026 inclusive is 1,220 nights. Minus the 6 missed, that's **1,214**.
+- From 14 Sep 2026 (clip 1,153), 7 Nov is 54 days later: 1,153 + 54 = **1,207**. 14 Nov is 61 days later: **1,214**.
+
+| 03:00 on | Clip | Ollie's age | What it shows |
 |---|---|---|---|
-| 1 | Fri 14 Jul 2023 | 3 years 1 month | Kate whispers both parts; Ollie echoes (old house) |
-| 388 | Sun 4 Aug 2024 | 4 years 1 month | "Daddy, Mama did the water game again" (old house) |
-| 412 | Wed 28 Aug 2024 | 4 years 2 months | "Mama, don't be sad": she lies down beside his bed (old house) |
-| 903 | Thu 1 Jan 2026 | 5 years 6 months (away at a sleepover) | The empty bed (old house) |
-| (garden camera) | a night in Oct 2026 | 6 years 4 months | Kate walks into the river alone; Ollie runs down |
-| 1,210 | Tue 10 Nov 2026 | 6 years 5 months | Episode 1, night 1 |
-| 1,211 | Wed 11 Nov 2026 | | Episode 1, night 2 |
-| 1,212 | Thu 12 Nov 2026 | | Episode 2 (also on Ava's hidden phone) |
-| 1,213 | Fri 13 Nov 2026 | | Unwatched: Kate unlocks her own door, asleep |
-| 1,214 | Sat 14 Nov 2026 | | Episode 3: the river |
-| 1,215 | weeks later (Finale B only) | | Kate, awake: "Goodnight, Ollie" |
+| Fri 14 Jul 2023 | 1 | 3 y 1 m | The first night (old house): untaught Polish in a toddler's voice |
+| Sun 4 Aug 2024 | 388 | 4 y 1 m | "Daddy, Mama did the water game again" |
+| Wed 28 Aug 2024 | 412 | 4 y 2 m | "Mama, don't be sad": she lies down beside his bed |
+| Thu 1 Jan 2026 | 903 | 5 y 6 m | Ollie at a sleepover: the empty bed, water pooling where a child should be |
+| Mon 7 Sep 2026 | 1,152 | 6 y 2 m | The last night in the old house |
+| Tue 8 to Sun 13 Sep | none | | Six missed nights (the move) |
+| Mon 14 Sep 2026 | 1,153 | 6 y 3 m | The first night at Ferry Lane |
+| Sat 7 Nov 2026 | 1,207 | 6 y 4 m | "I didn't fall in, Mama! I'm here!" is rejected and the night goes on (the river part is on the garden camera, same night) |
+| Tue 10 Nov 2026 | 1,210 | 6 y 5 m | Never watched |
+| **Wed 11 Nov** | **1,211** | 6 y 5 m | **Part 1:** Ava films the voice |
+| **Thu 12 Nov** | **1,212** | | **Part 1:** the river |
+| **Fri 13 Nov** | **1,213** | | **Part 2:** Ollie's voice from Ava's room, through the shared wall; Kate wades in alone |
+| **Sat 14 Nov** | **1,214** | | **Part 3:** the water in the house. Ava opens the archive later that day: 1,214 clips. |
+| **Sun 15 Nov** | **1,215** | | **Parts 4–5:** the roof. Ollie's voice through the wall again; not in the archive Ava opened. |
+| weeks later | **1,216** | | **Finale B only:** Kate, awake: "Goodnight, Ollie." |
 
-**Rule:** up to 7 Sep 2026, clip *n* is the night of 14 Jul 2023 plus *n* − 1 days. After the move, subtract the 6 missed nights.
-**Check:** 14 Jul 2023 to 10 Nov 2026 inclusive is 1,216 nights; minus 6 is clip 1,210.
-
-### The series calendar
-| Episode | Days covered |
+**The days:**
+| Part | Days |
 |---|---|
-| 1 | Night Mon 9 to Tue 10 Nov (night 1); Tue morning; night Tue 10 to Wed 11 (night 2) |
-| 2 | Wed evening (Ava hides her old phone); 03:00 Thu 12 (the footage); Thu morning; Thu evening (Kate locks herself in) |
-| 3 | 03:00 Fri 13: nobody watches (Ava heard Mum lock herself in and believes it worked; it didn't: clip 1,213). Fri 13 afternoon, after school (the tin, which Ollie named at Thursday bedtime; message sent to the memorial page); Fri evening (flood alert; Mark on nights); 03:00 Sat 14 (the river: clip 1,214) |
-| 4 | Sat 14 morning (Ava tells Mark; it's his night off); day (the archive: 1,214 clips); evening (Mark called in; Kate locked in); 23:04 (Ewa's reply); 03:00 Sun 15 (the roof; the nursery camera hears nothing in Ollie's empty room, so no clip) |
-| 5 | 03:00 Sun 15 to dawn; then days and weeks after (Finale A: no new clips on Mon 16, Tue 17, Wed 18, Thu 19; Finale B: clip 1,215 weeks later) |
+| 1 | Night 03:00 Wed 11 (the voice); Wed 11 breakfast, evening (the photo), Dad to his night shift; night 03:00 Thu 12 (the river), then the kitchen |
+| 2 | Dawn and day Thu 12 (the dry neighbours, the confession); Mark on nights; night 03:00 Fri 13 |
+| 3 | Fri 13: Mark home at 06:00; Ava researches after school; Mark swaps his shift; the plan; night 03:00 Sat 14 |
+| 4 | Sat 14: the archive; evening, Mark called out to the flood, Kate locked in, Ewa's reply; night 03:00 Sun 15 (the roof) |
+| 5 | 03:00 Sun 15 to dawn, then the weeks after. A: the clips stop after 1,215. B: clip 1,216 weeks later. |
 
-## 3. The characters (the locked bible)
+**Ages in November 2026:**
+| Character | Born | Age |
+|---|---|---|
+| Kate | 12 Feb 1988 | 38 (17 at Kuba's birth, 20 at the flood) |
+| Kuba / Jakub | 3 May 2005 | 21 (3 y 2 m at the flood) |
+| Ava | 3 Jan 2011 | 15 |
+| Ollie | 9 Jun 2020 | 6 (turned 3 five weeks before the first night) |
 
-| Character | Look | Voice | Knows by the end of… | Wants / fears |
-|---|---|---|---|---|
-| **Ava Harper**, 15 | Straight brown hair in a loose ponytail, freckles. Oversized grey hoodie with a yellow felt star (Ollie stuck it on). Night: navy cloud-print pyjama bottoms and the hoodie. | English, British, natural teen | Ep1: Ollie says Polish lines, and a woman shouts "Take him" outside. Ep2: it's Mum, it's a script, and "Kuba". Ep3: Mum's real name, the flood, the photo, the memorial, the note, the river, Ollie's reason. Ep4: the whole truth. | Wants to protect Ollie and understand Mum. Fears losing both. |
-| **Ollie Harper**, 6 | Dark curls, big eyes, gap tooth. Night: green dinosaur pyjamas. Day: red jumper. In the old-house clips (ages 3–5): blue rocket pyjamas, a smaller build. | Child; English, plus L1 and L5 in Polish | Knows only his words, that "Mama's sad at night", and that she goes in the water alone if he doesn't play. Calls her **"Mummy" by day and "Mama" at night.** | Wants Mama not to be sad. Fears the cold water. |
-| **Kate Harper** (Katarzyna Wiśniewska), 38 | Long dark hair (changed from curls after the bedside test: with Ollie's curls she read as a child), pale, tired eyes. Oatmeal knit cardigan with pockets, always on. Pale diagonal scar across her **right palm**. Night: long grey nightdress and the cardigan. Asleep: eyes open, unblinking. | English with a faint Polish accent; Polish at night | Knows the roof and the 2008 sleepwalking. Doesn't know what she does now, until episode 2 (one clip). Believes Kuba drowned. | Wants her past kept out of her family. Fears being seen as the mother who let go. |
-| **Mark Harper**, 42 | Stocky, sandy hair, stubble. Water-company hi-vis (navy and yellow). | English, warm, tired | Kate is Polish, and lost her family in a flood. Learns about the sleepwalking in episode 4. Learns about Kuba only in Finale B. | Wants a fresh start. Fears Kate's "July days". |
-| **Kasia**, 20 (2008) | Kate younger: long loose dark curls, a dark green cardigan over a nightdress, soaked. | Kate's voice, younger | | |
-| **Kuba**, 3 (2008) | Dark curls (Ollie's face), red star pyjamas, **one blue sock with a white stripe**. | A small child | | |
-| **Jakub "Kuba" Lis**, 21 (Finale B only, on a video call) | Short dark curls, Ollie's eyes, a grey hoodie, a kitchen behind him. | Polish | Believes his mother drowned. Every July he brings flowers for Tomasz and for her. | |
-| **Tomasz Kowal**, 34 (2008) | A volunteer firefighter: navy jacket with reflective stripes, helmet with a headlamp, wide belt with a buckle, moustache. | Only effort sounds | | |
-| **The Nowickis** (2008) | Two elderly figures in blankets in the boat, at silhouette level. | None | | |
-| **Ewa Kowal** | Never seen. Her message only. | Ava's voice reads it | | |
+The flood was 18 years ago, so Kate's "I haven't spoken it in eighteen years" is correct.
 
-## 4. Prop and continuity ledger (only what the plot depends on)
-| Object | First seen | Where and in what state | Payoff |
+## 6. The endings: mechanism (detail in `series-outline.md`)
+**Ending A: the true ending.**
+- **Set up in Part 4:**
+  - clip 412 is accepted, because it continues her memory;
+  - clip 1,207 is rejected, because it contradicts it;
+  - Ava realises the true ending must start where Mum's memory stops.
+- **On the roof:**
+  - The first attempt ("I'm alive, Mama" alone) hooks onto nothing and is rejected. "Weź go!" again, and his heel slips.
+  - The second attempt starts at the willows, names Tomasz, and uses the belt Kate saw.
+- **Why it works:** "Take him!" was answered by Tomasz. The boy was received by a person, not by the water, so nothing is owed.
+- **What it costs:** Kate still believes she killed her son, and Ava chooses silence.
+
+**Ending B: wake her.**
+- **How:** "KASIA!" reaches her, because it is the night's own word. She wakes inside 2008 and, awake, holds on, which takes the gift back and keeps her promise.
+- **The risk:** panic (the 2008 note).
+- **What it costs:** Mark, the family, and Jakub's "Why didn't you look for me?"
+
+**In both endings,** Kuba is alive and in Poland, and is never a ghost: the voice is the moment, not the boy.
+
+## 7. Roof staging rules (Parts 4 and 5)
+- **The roof:** the kitchen extension's flat roof is 2.7 m above the garden, with a **30 cm brick upstand and a gutter** at the edge. The floodwater is below. Nobody hangs over the edge and nobody falls.
+- **The most dangerous images:**
+  - Kate at the upstand, lifting Ollie's arm out toward the dark water;
+  - Ollie's bare toes on the wet upstand (an insert);
+  - in Finale A, his heel slipping while Ava's fist is already in his pyjama top.
+- **Tension comes from** the sound (rain on the felt roof, the river, his breathing), the framing (low angles from the window; inserts of the hand, toes and gutter, never the drop) and Ava's reactions.
+- **When anyone slips,** cut on the slip and show the grip, never the fall.
+
+## 8. The characters
+| Character | Look | Voice | Knows |
 |---|---|---|---|
-| The shared wall and three knocks | Ep1 B1 | Between Ava's and Ollie's rooms | The final images of both finales |
-| Ava's red LED bedside clock | Ep1 B2 | 2:59 → 3:00 | Opens nights in episodes 1, 3, 4 and both finales |
-| Top bolt on the back door | Ep1 B5 / B8 | Found open every morning (Kate opens it; Ollie can't reach to close it) | Ep3: Kate slides it open, asleep |
-| Nursery camera on Ollie's shelf | Ep1 B9 | "Daddy says it hears me if I'm scared" | Ep4: clip 388 (Ollie aged 4), "Daddy, Mama did the water game again"; Finale B: clip 1,215 |
-| Hub box in the airing cupboard | Ep4 B2 | Mark: "saves every sound" | The 1,214 clips |
-| Garden camera under the back eave | Ep1 B8 (seen) | | Ep4: October river clip and the November time-lapse |
-| Kate's scar (right palm) | Ep1 B7 | Grips Ollie's wrist hard (red marks) | Ep4: the rope; Finale B: that hand doesn't let go |
-| Kate's cardigan and the key | Ep2 B9 | She locks her door from inside and pockets the key | Ep3: she unlocks it asleep. Ep4: Mark locks it from outside and gives Ava the key, so Kate goes out of the window |
-| Ava's old phone (hidden camera) | Ep2 B1 | Behind a toy stegosaurus on Ollie's shelf | The ep2 footage |
-| The tin (with dinosaur sticker) | Ep2 B11 (named) / Ep3 B1 | Back of Kate's wardrobe: Kuba photo, expired passport, wristband "NN", nurse's note, one blue sock | Ep3 investigation; Ep4 flashback (the other sock on the toddler) |
-| Kuba photo ("Kubuś, 3 latka · 2008") | Ep3 B1 | A curly toddler on a swing who looks like Ollie | Theories (reincarnation); explained as brothers |
-| Ollie's school photo on the landing | Ep3 B2 | | Side-by-side with the Kuba photo |
-| Kitchen calendar, 14 July circled | Ep3 B4 | | Mum's sad day = the flood |
-| Flood alerts on the phones | Ep3 B8, Ep4 B10 | | The water level; Mark called in |
-| Translator app on Ava's phone | Ep1 B6 | | Every Polish discovery; ep4 practice; Finale A |
-| Memorial page and Ava's message | Ep3 B5–B6 | | Ewa's reply in episode 4 |
-| Ava's prepared Polish (A1 and A2 on the translator) | Ep4 B13 | Ewa's details typed as Kuba's words | Finale A: first line rejected, the willow line lands |
-| Pinky promise ("wait for me") | Ep4 B11 | | Ollie keeps silent at L5 on the roof, which holds the vote moment |
+| **Ava Harper**, 15 | Straight brown hair in a loose ponytail, freckles, an oversized grey hoodie with a yellow felt star. Night: navy cloud-print pyjama bottoms and the hoodie. | English, British, natural teen | **Part 1:** the voice, the wet photo, the river. **Part 2:** Kuba "drowned"; the saying; the trap. **Part 3:** NN, "Kasia", Tomasz, no Kuba on the stone. **Part 4:** the archive rules and that Kuba is alive. |
+| **Ollie Harper**, 6 | Dark curls, big eyes, gap tooth. Night: green dinosaur pyjamas. Day: red jumper. Old-house clips (ages 3–5): blue rocket pyjamas, a smaller build. | Child; the role speaks in a three-year-old's voice | Only the game, that Mama is sad at night, and that she goes in the water alone if he doesn't play. Says **"Mummy" by day, "Mama" at night.** |
+| **Kate Harper** (Katarzyna Wiśniewska), 38 | Long dark hair, pale, tired eyes. Oatmeal cardigan with pockets. Pale diagonal scar across her **right palm**. Night: long grey nightdress and the cardigan. In the night: eyes open, unblinking. | English with a faint Polish accent; Polish in the night | The roof. Learns about the nights in Part 2. Believes Kuba drowned (until Finale B). |
+| **Mark Harper**, 42 | Stocky, sandy hair, stubble, water-company hi-vis. | English, warm, tired | Kate is Polish and lost her family in a flood. Learns about the sleepwalking and sees the water in Part 3. Learns about Kuba only in Finale B. |
+| **Kasia**, 20 (2008) | Kate younger: long loose dark hair, a dark green cardigan over a nightdress, soaked. | Kate's voice, younger | |
+| **Kuba**, 3 (2008) | Dark curls (Ollie's face), red star pyjamas, **one blue sock with a white stripe**. | A small child | |
+| **Jakub Lis**, 21 (Finale B, video call) | Short dark curls, Ollie's eyes, a grey hoodie. | Polish | Believes his mother drowned. |
+| **Tomasz Kowal**, 34 (2008) | A volunteer firefighter: navy jacket with reflective stripes, helmet with a headlamp, **wide belt with a buckle**, moustache. | Only effort sounds | |
+| **The Nowickis** (2008) | Two elderly figures in blankets in the boat, at silhouette level. | None | |
+| **Ewa Kowal** | Never seen; her message only. | Read by Ava's voice | |
 
-## 5. Rules of the sleepwalking (summary for writers and animators)
-1. 03:00, most nights. Asleep, with **eyes open and unblinking**: no blinks at all while asleep. This is the animation tell.
-2. She walks and kneels slowly, with no hurry. She looks through people.
-3. She doesn't respond to her name, "Mum", light or touch short of shaking. A child speaking as Kuba, to "Mama", reaches her.
-4. **The order is fixed:** L1 to L6. She doesn't start without L1, and doesn't finish without the child's words at the L5 moment.
-5. **Without the child:** she waits, then searches, calling *"Kubuś?"*, toward water if there is water.
-6. **Afterwards:** no memory. In the morning she's tired, her palm aches, and sometimes her feet are cold.
-7. **Woken suddenly:** panic, with no sense of where she is (the 2008 note). That's the risk in option B.
+## 9. Props and continuity (only what the plot depends on)
+| Object | First seen | Payoff |
+|---|---|---|
+| The tin (under Kate's bed in Part 1) | Part 1 | The photo; in Part 3, the wristband "NN" and the sock |
+| Kuba photo, "Kubuś · 2008", always wet; the tin dry | Part 1 | Side by side with Ollie's school photo; dries in Finale A |
+| Kate's scar (right palm) | Part 1, breakfast | The 2008 rope; Finale B: that hand holds on |
+| The back door's top bolt | Part 1 | Part 3: locked, with the keys in Mark's pocket, and the water comes under it anyway |
+| Nursery camera on Ollie's shelf; the hub | Part 1 (planted) | Part 4's archive; Finale B, clip 1,216 |
+| The garden camera under the back eave | Part 1 (seen) | Part 4: the river climbing the lawn; the river view of night 1,207 |
+| Ava's phone footage | Part 1 | Part 2: the confrontation |
+| Kate's door lock | Part 2 | She unlocks it in her sleep. Part 4: locked from outside, she goes out of the window. |
+| Memorial page and Ava's message | Part 3 | Ewa's reply in Part 4 |
+| The belt | Part 4 flashback | Finale A: the detail that hooks onto Kate's memory |
+| The pinkie promise ("wait for me") | Part 4 | Ollie stays silent at L5 on the roof, which holds the vote moment |
 
-## 6. Every Polish line [PL provisional]
-| ID | Line | Speaker | Subtitle | Episodes |
+## 10. Every Polish line [PL provisional]
+| ID | Line | Speaker | Subtitle | Parts |
 |---|---|---|---|---|
-| L1 | Mamo, woda jest przy drzwiach. | Ollie / Kuba | Mama, the water's at the door. | 1, 2, 3, 4, A, B |
-| L2 | Kubuś, trzymaj mnie za rękę. | Kate | Kuba, hold my hand. | 2, 3, 4 |
-| L3 | Nie puszczę cię. Obiecuję. | Kate / Kasia | I won't let go of you. I promise. | 2, 3 (flash), 4 |
-| L4 | Weź go! | Kate / Kasia | Take him! | 1, 3, 4, A |
-| L5 | Obiecałaś, że nie puścisz. | Ollie / Kuba | You promised you wouldn't let go. | 1, 3, 4 (flash) |
-| L6 | Przepraszam. | Kate | I'm sorry. | 3 |
-| P7 | Kubuś? … Kubuś! | Kate | Kuba? … Kuba! | 4 |
-| P8 | Tomasz! | Kasia | Tomasz! | 4 (flash) |
-| A1 | Mamo… Tomasz mnie trzyma. Żyję. | Ava | Mama… Tomasz is holding me. I'm alive. | 4 (practice), A |
-| A2 | Przywiązał mnie do wierzby. Paskiem. Żyję, mamo. | Ava | He tied me to the willow. With his belt. I'm alive, Mama. | A |
-| A3 | Żyjesz… | Kate | You're alive… | A |
-| A4 | Dobranoc, Kubusiu. | Kate | Goodnight, Kuba. | A |
-| B1 | Mamo? | Jakub | Mum? | B |
-| B2 | Kubuś. | Kate | Kuba. | B |
-| B3 | Dlaczego mnie nie szukałaś? | Jakub | Why didn't you look for me? | B |
-| B4 | Myślałam, że cię zabiłam. | Kate | I thought I'd killed you. | B |
+| L1–L6 | see section 3 | | | 1–5 |
+| P7 | Kubuś? … Kubuś! | Kate | Kuba? … Kuba! | 2 |
+| P8 | Tomasz! | Kasia | Tomasz! | 4 (flashback) |
+| S1 | Co puścisz nad wodą, to woda zabierze. | Kate (quoting her grandmother) | What you let go of over the water, the water takes. | 2 |
+| A1 | Żyję, mamo. | Ollie, from Ava's whisper (rejected) | I'm alive, Mama. | 5A |
+| A2 | Łódka przewróciła się przy wierzbach. Tomasz mnie trzymał. Wszedł na wierzbę i przywiązał mnie do niej paskiem. Znaleźli mnie po południu. Żyję. | Ollie, from Ava's whisper | The boat turned over by the willows. Tomasz held me. He climbed the willow and tied me to it with his belt. They found me that afternoon. I'm alive. | 4 (prepared), 5A |
+| A3 | Żyjesz… | Kate | You're alive… | 5A (to reconfirm when Finale A is scripted) |
+| A4 | Dobranoc, Kubusiu. | Kate | Goodnight, Kuba. | 5A (to reconfirm) |
+| K | Kasia! | Ava | | 5B |
+| B1 | Mamo? | Jakub | Mum? | 5B |
+| B2 | Kubuś. | Kate | Kuba. | 5B |
+| B3 | Dlaczego mnie nie szukałaś? | Jakub | Why didn't you look for me? | 5B |
+| B4 | Myślałam, że cię zabiłam. | Kate | I thought I'd killed you. | 5B |
+
+**For the native speaker to check as well:** the forms of address *Kubuś* / *Kubusiu*, and whether a three-year-old would say *Obiecałaś*.
 
 **On-screen Polish (also provisional):**
-- **Passport:** "KATARZYNA WIŚNIEWSKA · 12.02.1988 · WIERZBNO", issued 2009, expired 2019.
-- **The photo's back:** "Kubuś, 3 latka · 2008".
+- **The photo's back:** "Kubuś · 2008".
 - **Wristband:** "NN · K · ok. 20 l."
-- **Nurse's note:** about 4 lines, translated on screen by the translator app.
+- **Passport:** "KATARZYNA WIŚNIEWSKA · 12.02.1988 · WIERZBNO".
 - **Memorial:** "HELENA WIŚNIEWSKA 79 / KATARZYNA WIŚNIEWSKA 20 — zaginiona / TOMASZ KOWAL 34 — oddał życie, ratując dziecko".
-- **Page name:** "Wierzbno — Pamiętamy" (Wierzbno — We Remember).
-- **Ewa's message in Polish:** shown in Finale B, about 45 words.
+- **Page name:** "Wierzbno — Pamiętamy".
+- **Memorial comment:** "Kasia i jej mały Kuba. Wciąż zapalamy świeczkę." (Kasia and her little Kuba. We still light a candle.)
+- **Belt stamp:** "OSP Wierzbno – T. Kowal".
+- **Ewa's message:** about 45 words, written when Part 4 is scripted.

@@ -1,4 +1,7 @@
 # Episode 5, Finale A: Answer as Kuba
+
+> **Superseded (16 Nov 2026).** This script predates the locked supernatural story and is kept for reference only. The locked version is [`../series-outline.md`](../series-outline.md), with the rules and dates in [`../story-lock.md`](../story-lock.md). The script will be rewritten from the outline.
+
 **Runtime:** about 88 s. Produced only if **A** wins the vote.
 
 **Purpose:**

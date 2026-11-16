@@ -4,6 +4,8 @@
 
 **Status:** awaiting approval of this plan. No previews, paid narration or final render have been started.
 
+> **16 Nov 2026: the story is locked** (`story-lock.md`, `series-outline.md`). Part 1 is section H plus the six supernatural changes, with the dates above. The storyboard and key frames described below (`ollie-1`, 32 shots) predate the lock and are unchanged. Nothing in production moves until the Part 1 script has been reviewed scene by scene.
+
 ## 1. Verified character-action capabilities
 Checked directly in `characters/figure.ts` and `story/types.ts`.
 
@@ -84,7 +86,7 @@ Part 1 never shows the ritual itself, only its sounds and its traces. This proof
 - **Built:** the kitchen (`ferryKitchen`), Ava's door, eleven insert cards in one prop (`olInsert`), translated subtitles for Polish lines, and the storyboard `ollie-1` (32 shots).
 - **No new sounds were needed:** the library's `knock` is already three knocks, and `blip_up`, `clock_tick`, `creak`, `step_floor`, `latch_click` and `sting_low` cover the rest.
 - **Stills:** `visual-tests/part1-hooks-v1.jpg` (both openings), `part1-keyframes-v1.jpg` (24 key frames), `part1-ending-v1.jpg`.
-- **Archive check:** with six missed nights (8–13 Sep 2026), clips 1, 388, 412, 903 and 1,210–1,214 all fall on the dates in `story-lock.md`.
+- **Archive check (re-verified 16 Nov 2026 for the locked story):** with six missed nights (8–13 Sep 2026), clips 1, 388, 412, 903, 1,207 and 1,210–1,215 all fall on the dates in `story-lock.md` §5. Part 1's two nights are now 03:00 Wed 11 Nov (clip 1,211, the voice) and 03:00 Thu 12 Nov (clip 1,212, the river).
 
 ### The two openings
 | | Option A (as scripted) | Option B |

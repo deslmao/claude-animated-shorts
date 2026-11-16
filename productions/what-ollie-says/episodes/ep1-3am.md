@@ -1,4 +1,7 @@
 # Episode 1: 3:00
+
+> **Superseded (16 Nov 2026).** This script predates the locked supernatural story and is kept for reference only. The locked version is [`../series-outline.md`](../series-outline.md), with the rules and dates in [`../story-lock.md`](../story-lock.md). The script will be rewritten from the outline.
+
 **Runtime:** about 104 s.
 
 **Purpose:** hook the audience, make them love the brother and sister, and leave them with one burning question: *who is out there with Ollie at 3 a.m.?*

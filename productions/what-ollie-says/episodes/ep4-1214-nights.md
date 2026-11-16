@@ -1,4 +1,7 @@
 # Episode 4: 1,214 Nights
+
+> **Superseded (16 Nov 2026).** This script predates the locked supernatural story and is kept for reference only. The locked version is [`../series-outline.md`](../series-outline.md), with the rules and dates in [`../story-lock.md`](../story-lock.md). The script will be rewritten from the outline.
+
 **Runtime:** about 112 s, deliberately over the 105 s target.
 
 **Purpose:**

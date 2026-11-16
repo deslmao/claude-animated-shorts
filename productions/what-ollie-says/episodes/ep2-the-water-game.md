@@ -1,4 +1,7 @@
 # Episode 2: The Water Game
+
+> **Superseded (16 Nov 2026).** This script predates the locked supernatural story and is kept for reference only. The locked version is [`../series-outline.md`](../series-outline.md), with the rules and dates in [`../story-lock.md`](../story-lock.md). The script will be rewritten from the outline.
+
 **Runtime:** about 90 s.
 
 **Purpose:** reveal that the woman is Mum, that it follows a script, that it has a name, and that Mum is hiding it. Then give Mum a secret son.

@@ -1,4 +1,7 @@
 # Episode 5, Finale B: Wake Her
+
+> **Superseded (16 Nov 2026).** This script predates the locked supernatural story and is kept for reference only. The locked version is [`../series-outline.md`](../series-outline.md), with the rules and dates in [`../story-lock.md`](../story-lock.md). The script will be rewritten from the outline.
+
 **Runtime:** about 95 s. Produced only if **B** wins the vote.
 
 **Purpose:** the truth, awake, at real risk. This time Kate holds on. Everyone learns everything, and pays for it.
