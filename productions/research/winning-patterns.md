@@ -56,6 +56,29 @@ Techniques taken from the Shorts the owner analysed (17 Nov 2026). **Record the 
    - Countries: US 38%, Philippines 12%, India 7%, Australia 7%, UK 5%.
 7. **Titles:** the concrete impossible-detail pattern ("She Counted 31 Pupils. The Register Said 30.").
 
+**Script measurements (from the pipeline's line timings) against YouTube retention:**
+| Video | Stayed | Avg viewed | Words/min | Silent | Longest gap |
+|---|---|---|---|---|---|
+| One Too Many | 85.5% | 79.6% | 152 | 17% | 2.2 s |
+| Whale City | 75.9% | 54.5% | 130 | 36% | 8.9 s |
+| Doorway | 68.0% | 50.1% | 194 | 6% | 0.5 s |
+| Float Away | 66.6% | 50.0% | 136 | 37% | 5.3 s |
+| Pirates | 65.2% | 72.5% | 197 | 8% | 1.0 s |
+| Extra Door | 61.8% | 52.7% | 61 | 62% | 10.0 s |
+| Tickle | 61.0% | 50.9% | 187 | 7% | 0.4 s |
+| Marathon | 52.5% | 54.8% | 173 | 6% | 0.5 s |
+
+- **Explainers answer their own hook at once,** so there's no reason to stay, even with no silence.
+- **Stories with good hooks lose people in their silences** (Whale City, Float Away, Extra Door).
+- **Fragment hooks lose people at once** ("A car ride. Rat poison. A nap."; "…six… seven… …eight?").
+- **Script gate for every new video:**
+  - the first sentence is a complete, concrete, impossible situation;
+  - its question isn't answered until late;
+  - narration at about 150 words a minute;
+  - 20% silent or less;
+  - no gap over 2 s unless it's action with sound;
+  - an ending that loops back to the start.
+
 **Instagram (17 Nov 2026):**
 - **Views are flat:** every reel sits at about 1,400–2,400, so Instagram isn't separating hits from misses yet.
 - **Engagement does separate them:**
