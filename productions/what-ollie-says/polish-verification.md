@@ -1,10 +1,10 @@
 # Polish verification sheet (for a native Polish speaker)
 
-**Status: nothing here has been checked.** No narration will be generated until every row is confirmed or corrected.
+**Status: nothing here has been checked.** Section A is all Part 1 needs. Section B's A1–A4 lines predate the story lock; `story-lock.md` §10 is current for later parts. No narration will be generated until every row is confirmed or corrected.
 
 **Context for the reviewer:**
 - A mother (Kasia, 20 in 2008, from a village) and her three-year-old son Kuba are on a roof in a flood.
-- Eighteen years later, in England, she repeats the same words in her sleep, and her six-year-old English son has learned the child's lines by heart.
+- Eighteen years later, in England, she says the same words at night, and the child's lines come out of her six-year-old English son in a small child's voice. He doesn't understand them.
 - The language should be plain, spoken, everyday Polish: what a young village mother and a small child would really say.
 
 **Please check each line for:**
@@ -14,19 +14,20 @@
 
 Write a correction or "OK" in the last column.
 
-## A. Part 1 (needed first)
+## A. Part 1 (needed first: all six ritual lines and the photo text)
 | ID | Polish (provisional) | English meaning | Speaker and delivery | OK / correction |
 |---|---|---|---|---|
-| L1 | Mamo, woda jest przy drzwiach. | Mama, the water's at the door. | A small child, calm and sleepy (recited) | |
+| L1 | Mamo, woda jest przy drzwiach. | Mama, the water's at the door. | A small child (about 3), calm and sleepy | |
+| L2 | Kubuś, trzymaj mnie za rękę. | Kuba, hold my hand. | The mother, flat and tender | |
+| L3 | Nie puszczę cię. Obiecuję. | I won't let go of you. I promise. | The mother, whispering | |
 | L4 | Weź go! | Take him! | The mother, shouting to a rescuer in a boat | |
-| L5 | Obiecałaś, że nie puścisz. | You promised you wouldn't let go. | A small child, thin and frightened | |
+| L5 | Obiecałaś, że nie puścisz. | You promised you wouldn't let go. | A small child (about 3), thin and broken | |
+| L6 | Przepraszam. | I'm sorry. | The mother, softly | |
+| Photo back (on screen) | Kubuś · 2008 | Kuba · 2008 | Faded handwriting | |
 
 ## B. Later parts (check now if possible, so the whole ritual is consistent)
 | ID | Polish (provisional) | English meaning | Speaker and delivery | OK / correction |
 |---|---|---|---|---|
-| L2 | Kubuś, trzymaj mnie za rękę. | Kuba, hold my hand. | The mother, whispering | |
-| L3 | Nie puszczę cię. Obiecuję. | I won't let go of you. I promise. | The mother, whispering | |
-| L6 | Przepraszam. | I'm sorry. | The mother, whispering | |
 | P7 | Kubuś? … Kubuś! | Kuba? … Kuba! | The mother, searching, then calling | |
 | P8 | Tomasz! | Tomasz! | The mother, shouting a neighbour's name | |
 | A1 | Mamo… Tomasz mnie trzyma. Żyję. | Mama… Tomasz is holding me. I'm alive. | A 15-year-old English girl speaking as the child (learner's accent is fine) | |
@@ -41,7 +42,6 @@ Write a correction or "OK" in the last column.
 ## C. On-screen text (later parts)
 | Where | Polish (provisional) | English meaning | OK / correction |
 |---|---|---|---|
-| Back of a photo | Kubuś, 3 latka · 2008 | Kuba, age 3 · 2008 | |
 | Passport | KATARZYNA WIŚNIEWSKA · 12.02.1988 · WIERZBNO | Name, date of birth, place of birth | |
 | Hospital wristband | NN · K · ok. 20 l. | Unidentified · female · about 20 | |
 | Memorial stone | HELENA WIŚNIEWSKA 79 / KATARZYNA WIŚNIEWSKA 20 — zaginiona / TOMASZ KOWAL 34 — oddał życie, ratując dziecko | …, missing / … gave his life saving a child | |

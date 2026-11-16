@@ -2,7 +2,7 @@
 
 **Status: LOCKED, 16 Nov 2026, approved by the owner.** The rules and dates come from [`story-lock.md`](story-lock.md).
 The files in `episodes/` predate this outline and are kept only for reference. Each episode script will be written
-again from this outline, starting with the scene-by-scene review of Part 1.
+again from this outline, starting with Part 1 (done: `episodes/ep1-3am.md`).
 
 **Release:** Part 1 is produced and published first. The remaining parts wait for the audience response.
 
@@ -16,52 +16,28 @@ again from this outline, starting with the scene-by-scene review of Part 1.
 
 ---
 
-## Part 1 · 3:00 (approved; only the dates added)
-
+## Part 1 · 3:00 (final screenplay: [`episodes/ep1-3am.md`](episodes/ep1-3am.md))
 **Dates:**
 - The hook is 03:00 on Wed 11 Nov (clip 1,211).
 - Breakfast, the evening and Dad leaving for his night shift are all Wed 11.
-- The river is 03:00 on Thu 12 Nov (clip 1,212), then the kitchen straight afterwards.
+- The river is 03:00 on Thu 12 Nov (clip 1,212); the kitchen ending is at 03:21.
 
-**Approved beat sheet (section H), unchanged:**
+**Built from** the approved section H beat sheet and the six agreed supernatural changes. The screenplay adds:
+- all six ritual lines (L3 on the walk);
+- Ava locking the top bolt;
+- Ollie knowing Kuba from the tin ("Mummy showed me");
+- a new ending: Kate, awake: "He was my son." Ollie: "You call me Kuba. Every night."
 
-**Premise:** a teenager discovers that her six-year-old brother speaks a dead boy's words in his sleep, and that every
-night at 3 a.m. their sleeping mother walks him to the flooded river and lets go.
-
-| Time | Beat |
-|---|---|
-| 0:00–0:07 | **Hook.** The dark bedroom. Ollie sits bolt upright, eyes shut, speaking calm Polish, subtitled "Mama, the water's at the door." Ava films from the doorway; her phone shows 03:00. |
-| 0:07–0:20 | **Breakfast.** Ava plays the clip and Kate's face drains; the scar on her palm. "Where did he hear that?" "You tell me." "I haven't spoken it in eighteen years." Ollie: "Mummy, what's Polish?" |
-| 0:20–0:30 | **Evening.** Through Mum's half-open door: Kate on the floor, crying over a tin and a photo. She pushes it under the bed. "Go to bed, Ava." |
-| 0:30–0:42 | **The photo.** Ava slides the tin out from under the bed: a toddler on a swing, Ollie's face. On the back: *Kubuś · 2008*. Side by side with Ollie's school photo. |
-| 0:42–0:48 | **Dad.** "Did Mum have a baby before us?" "What? No." "Night shift. Lock the back door, river's up." |
-| 0:48–0:55 | **Bedtime.** "Shout if you need me." "I'm six, I'm not scared." He clutches her sleeve. Later, Ava on his floor at 2:58 touches his shoulder. Eyes shut: "Not tonight, Mama. I'm tired." |
-| 0:55–1:05 | **3:00.** The door opens: Kate, eyes wide, unblinking. "Mum?" She walks past Ava, kneels and takes Ollie's hand. Ollie (Polish): "Mama, the water's at the door." Kate (Polish): "Kuba, hold my hand." |
-| 1:05–1:15 | **The walk.** Ava follows, filming: the back door bolt, the rain, the garden, the river spilled over the lawn. |
-| 1:15–1:28 | **The river.** At the water's edge Kate lifts his hand toward the dark. "Take him!" "You promised you wouldn't let go." "I'm sorry." Her hand opens (insert). She walks back past Ava, seeing nothing. Ollie is alone, ankle-deep. The phone drops; Ava runs and scoops him up. |
-| 1:28–1:40 | **Cliffhanger.** The kitchen, a towel, the photo on the table. "Ollie, who's this?" "That's Kuba." "Who's Kuba?" "Me. At night-time." Black. |
-
-**The six agreed supernatural changes, unchanged:**
-
-| Beat | Change |
-|---|---|
-| 0:00–0:07 Hook | Ollie's Polish is in a **younger voice than his own**. Overlay: *"He's six. He's never heard Polish. That isn't his voice."* |
-| 0:20–0:30 Kate crying | She is **drying the photo with a tea towel**, crying. |
-| 0:30–0:42 The photo | The photo is **wet**: a drop runs off the corner. The tin is bone dry. |
-| 0:42–0:48 Dad | "River's high, but it never comes over on our side. Lock the back door." |
-| 1:05–1:15 The walk | In the high wide, **the water stops exactly at the fence**. Next door's lawn is dry. |
-| 1:15–1:28 The river | After her hand opens, **the water pulls**: ripples run against the flow and tug at Ollie's pyjamas. When Ava lifts him, the water lets go with a hiss. |
-
-**Question it leaves:** *is Ollie becoming her dead son?*
+**Question it leaves:** *what is happening to Ollie every night, and what happened to Kuba?*
 
 ---
 
 ## Part 2 · The Water Game
 **Dates:** dawn and day on Thu 12 Nov. Mark is on his night shift. The night is 03:00 Fri 13 Nov (clip 1,213).
 
-- **Hook:** dawn. Their garden is drowned, and next door's lawn is bone dry.
+- **Hook:** dawn. The garden has drained back into the river (rule 5). Ava finds her phone in the wet grass where she dropped it and plays it back: their lawn under black water, standing against the fence, and next door's bone dry. The neighbours: "Flood? What flood?"
 - **Discovery:**
-  - Ava confronts Kate with the footage. Kate breaks: *"I had a son before you. He drowned. I let go of him."*
+  - Ava confronts Kate with the footage. Kate breaks; she said in Part 1 that Kuba was her son, and now she says the rest: *"He drowned. I let go of him."*
   - Then, white-faced, Kate repeats her grandmother's saying: *"What you let go of over the water, the water takes."*
   - She asks Ava not to tell Dad.
 - **They try to stop it:** Kate locks herself in her room. Ollie sleeps in Ava's room. Ava's door has no lock.

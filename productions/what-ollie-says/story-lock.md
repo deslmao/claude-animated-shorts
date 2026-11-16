@@ -97,6 +97,7 @@ by a native speaker. No narration is generated until every line has been checked
 | 9 Jun 2020 | Ollie is born, with Kuba's curls and face. Mark puts a nursery camera on Ollie's shelf. It saves a clip whenever it hears sound at night, to a hub that never deletes. |
 | **Fri 14 Jul 2023, 03:00** | **The night begins: clip 1.** Old house, at the bedside, about three minutes, whispered. |
 | 2023 to Sep 2026 | **Why nobody noticed:**<br>• Ava's room was on another floor.<br>• Mark sleeps heavily and some nights works.<br>• The damp patch was blamed on a leaking radiator.<br>• At four Ollie told Dad ("Mama did the water game again", clip 388), and Dad thought it was a dream.<br>• Nobody watched the camera.<br>• Kate woke with wet feet and a sore hand, and hid it, afraid she was ill. |
+| Summer 2026 | Ollie finds Kate's biscuit tin and puts a dinosaur sticker on the lid. Kate looks through it with him, shows him the photo, names the boy ("That's Kuba") and cries. This is how Ollie knows the face in Part 1, by day. |
 | Mon 7 Sep 2026 | Clip 1,152, the last in the old house. The camera is packed that day for the move to **4 Ferry Lane**, by the river. |
 | 8–13 Sep 2026 | **Six missed 03:00s** (Tue 8, Wed 9, Thu 10, Fri 11, Sat 12, Sun 13). The camera is plugged back in during the day on Sun 13. |
 | Mon 14 Sep 2026 | Clip 1,153, the first at Ferry Lane. Mark is on night shifts at the water treatment works. Ava's room now shares a wall with Ollie's. Kate's window opens onto the extension's flat roof. |
@@ -136,7 +137,7 @@ by a native speaker. No narration is generated until every line has been checked
 | Part | Days |
 |---|---|
 | 1 | Night 03:00 Wed 11 (the voice); Wed 11 breakfast, evening (the photo), Dad to his night shift; night 03:00 Thu 12 (the river), then the kitchen |
-| 2 | Dawn and day Thu 12 (the dry neighbours, the confession); Mark on nights; night 03:00 Fri 13 |
+| 2 | Dawn Thu 12: the garden has drained (rule 5), and Ava's phone, found in the grass, holds the proof; day Thu 12 (the dry neighbours, the confession); Mark on nights; night 03:00 Fri 13 |
 | 3 | Fri 13: Mark home at 06:00; Ava researches after school; Mark swaps his shift; the plan; night 03:00 Sat 14 |
 | 4 | Sat 14: the archive; evening, Mark called out to the flood, Kate locked in, Ewa's reply; night 03:00 Sun 15 (the roof) |
 | 5 | 03:00 Sun 15 to dawn, then the weeks after. A: the clips stop after 1,215. B: clip 1,216 weeks later. |
@@ -182,9 +183,9 @@ The flood was 18 years ago, so Kate's "I haven't spoken it in eighteen years" is
 ## 8. The characters
 | Character | Look | Voice | Knows |
 |---|---|---|---|
-| **Ava Harper**, 15 | Straight brown hair in a loose ponytail, freckles, an oversized grey hoodie with a yellow felt star. Night: navy cloud-print pyjama bottoms and the hoodie. | English, British, natural teen | **Part 1:** the voice, the wet photo, the river. **Part 2:** Kuba "drowned"; the saying; the trap. **Part 3:** NN, "Kasia", Tomasz, no Kuba on the stone. **Part 4:** the archive rules and that Kuba is alive. |
+| **Ava Harper**, 15 | Straight brown hair in a loose ponytail, freckles, an oversized grey hoodie with a yellow felt star. Night: navy cloud-print pyjama bottoms and the hoodie. | English, British, natural teen | **Part 1:** the voice, the wet photo, the river, and that Kuba was Mum's son. **Part 2:** Kuba "drowned"; the saying; the trap. **Part 3:** NN, "Kasia", Tomasz, no Kuba on the stone. **Part 4:** the archive rules and that Kuba is alive. |
 | **Ollie Harper**, 6 | Dark curls, big eyes, gap tooth. Night: green dinosaur pyjamas. Day: red jumper. Old-house clips (ages 3–5): blue rocket pyjamas, a smaller build. | Child; the role speaks in a three-year-old's voice | Only the game, that Mama is sad at night, and that she goes in the water alone if he doesn't play. Says **"Mummy" by day, "Mama" at night.** |
-| **Kate Harper** (Katarzyna Wiśniewska), 38 | Long dark hair, pale, tired eyes. Oatmeal cardigan with pockets. Pale diagonal scar across her **right palm**. Night: long grey nightdress and the cardigan. In the night: eyes open, unblinking. | English with a faint Polish accent; Polish in the night | The roof. Learns about the nights in Part 2. Believes Kuba drowned (until Finale B). |
+| **Kate Harper** (Katarzyna Wiśniewska), 38 | Long dark hair, pale, tired eyes. Oatmeal cardigan with pockets. Pale diagonal scar across her **right palm**. Night: long grey nightdress and the cardigan. In the night: eyes open, unblinking. | English with a faint Polish accent; Polish in the night | The roof. At the end of Part 1 she wakes to find the children soaked and hears Ollie say she calls him Kuba every night; in Part 2 she sees it on the footage. Believes Kuba drowned (until Finale B). |
 | **Mark Harper**, 42 | Stocky, sandy hair, stubble, water-company hi-vis. | English, warm, tired | Kate is Polish and lost her family in a flood. Learns about the sleepwalking and sees the water in Part 3. Learns about Kuba only in Finale B. |
 | **Kasia**, 20 (2008) | Kate younger: long loose dark hair, a dark green cardigan over a nightdress, soaked. | Kate's voice, younger | |
 | **Kuba**, 3 (2008) | Dark curls (Ollie's face), red star pyjamas, **one blue sock with a white stripe**. | A small child | |
@@ -196,7 +197,7 @@ The flood was 18 years ago, so Kate's "I haven't spoken it in eighteen years" is
 ## 9. Props and continuity (only what the plot depends on)
 | Object | First seen | Payoff |
 |---|---|---|
-| The tin (under Kate's bed in Part 1) | Part 1 | The photo; in Part 3, the wristband "NN" and the sock |
+| The tin, with Ollie's dinosaur sticker on the lid (under Kate's bed in Part 1) | Part 1 | The photo; Ollie's "Mummy showed me. In her tin."; in Part 3, the wristband "NN" and the sock |
 | Kuba photo, "Kubuś · 2008", always wet; the tin dry | Part 1 | Side by side with Ollie's school photo; dries in Finale A |
 | Kate's scar (right palm) | Part 1, breakfast | The 2008 rope; Finale B: that hand holds on |
 | The back door's top bolt | Part 1 | Part 3: locked, with the keys in Mark's pocket, and the water comes under it anyway |
