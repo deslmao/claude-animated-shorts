@@ -1,0 +1,25 @@
+{
+ "hash": "120fb4912eeb7a",
+ "text": "Przepraszam.",
+ "voice": "olKateNight",
+ "lead": 0,
+ "end": 1.161,
+ "dur": 1.201633,
+ "words": [
+  {
+   "w": "Przepraszam.",
+   "t0": 0,
+   "t1": 1.161
+  }
+ ],
+ "voiceId": "pFZP5JQG7iQjIQuC4Bku",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.75,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.85
+ },
+ "created": "2026-11-16T09:51:19.131Z"
+}

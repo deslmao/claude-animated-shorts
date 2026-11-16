@@ -1,8 +1,8 @@
 # What Ollie Says at 3 A.M. · Part 1: 3:00: narration approval
 
-**Cost:** 40 new lines, **852 characters** (about 852 credits on eleven_multilingual_v2).
-**Estimated length:** 112.0 s (163 words; the real length is known after generation).
-**Voice:** Jessica - Playful, Bright, Warm, Alice - Clear, Engaging Educator, Lily - Velvety Actress, Liam - Energetic, Social Media Creator, Brian - Deep, Resonant and Comforting.
+**Cost:** 1 new lines, **7 characters** (about 7 credits on eleven_multilingual_v2).
+**Estimated length:** 119.9 s (163 words; the real length is known after generation).
+**Voice:** Jessica - Playful, Bright, Warm, Alice - Clear, Engaging Educator, Lily - Velvety Actress, Daniel - Steady Broadcaster.
 
 ## Script
 
@@ -47,4 +47,4 @@
 52. **kate:** He was my son.
 53. **ollieT:** You call me Kuba. Every night.
 
-Approve in the conversation; then: `npm run short -- ollie-1 --approve-narration 852`
+Approve in the conversation; then: `npm run short -- ollie-1 --approve-narration 7`

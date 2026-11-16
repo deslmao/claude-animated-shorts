@@ -1,0 +1,30 @@
+{
+ "hash": "1111c055641904",
+ "text": "Weź go!",
+ "voice": "olKateShout",
+ "lead": 0,
+ "end": 0.743,
+ "dur": 0.783673,
+ "words": [
+  {
+   "w": "Weź",
+   "t0": 0,
+   "t1": 0.244
+  },
+  {
+   "w": "go!",
+   "t0": 0.313,
+   "t1": 0.743
+  }
+ ],
+ "voiceId": "pFZP5JQG7iQjIQuC4Bku",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.35,
+  "similarity_boost": 0.75,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1
+ },
+ "created": "2026-11-16T09:51:18.144Z"
+}

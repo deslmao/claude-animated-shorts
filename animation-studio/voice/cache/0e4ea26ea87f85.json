@@ -1,0 +1,30 @@
+{
+ "hash": "0e4ea26ea87f85",
+ "text": "That's Kuba.",
+ "voice": "olOllie",
+ "lead": 0,
+ "end": 1.068,
+ "dur": 1.097143,
+ "words": [
+  {
+   "w": "That's",
+   "t0": 0,
+   "t1": 0.29
+  },
+  {
+   "w": "Kuba.",
+   "t0": 0.348,
+   "t1": 1.068
+  }
+ ],
+ "voiceId": "pFZP5JQG7iQjIQuC4Bku",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.1,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-16T09:51:21.325Z"
+}

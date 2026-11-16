@@ -30,3 +30,24 @@ Built-in voices only: Jessica for the toddler, raw and pitched up by resampling 
 - **The round trip works:** every Polish take came back as Polish, word for word.
 - **What a measurement can't show:** whether the pitched voice sounds like a real child or like processed audio. That needs the owner's ears.
 - **Licensing:** the free plan is generally not licensed for commercial use and requires attribution. Check the current ElevenLabs terms before publishing anything voiced on it.
+
+## Casting under the free tier (owner: "accept the free fallback", 17 Nov 2026)
+| Role | Preset | Voice | Treatment |
+|---|---|---|---|
+| Toddler (L1, L5) | `olToddler` | Jessica | +7 semitones after generation (about 290–380 Hz) |
+| Ollie, 6 | `olOllie` | Lily | +8 semitones after generation. First tried at +5, which measured 208 Hz, lower than Ava. |
+| Kate, awake | `olKate` | Lily | as recorded (about 184 Hz) |
+| Kate, asleep (L2, L3, L6) | `olKateNight` | Lily | flat, slow (stability 0.75, speed 0.85) |
+| Kate, L4 shout | `olKateShout` | Lily | (stability 0.35, style 0.4) |
+| Ava | `olAva` | Alice | as recorded |
+| Mark | `olMark` | Daniel | as recorded |
+
+**How the pitch is applied:** `pitch.sh` runs after narration. It uses rubberband with tempo 1, so durations are unchanged and the word timings stay valid. It keeps the originals as `<hash>.orig.mp3`.
+
+**Round trip on every Polish line, as heard in the film:** all six match word for word.
+- L4 *Weź go!* first came back as the English "There you go". It is now generated with Polish context the model hears but doesn't speak ("Tomasz! Tomasz, tutaj! Szybko!") and comes back as Polish.
+- *Przepraszam* is labelled Hungarian by language detection, as single words often are, but the words are exact.
+
+**Narration:** 40 lines (39 distinct), 859 characters of the free 10,000.
+- **Review track:** `part1-dialogue-v1.mp3`, with its page `part1-dialogue-v1.html`.
+- **Length:** 120 s with the real voices.

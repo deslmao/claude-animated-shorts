@@ -1,0 +1,40 @@
+{
+ "hash": "1043b6daa3f6dd",
+ "text": "He was my son.",
+ "voice": "olKate",
+ "lead": 0,
+ "end": 1.3,
+ "dur": 1.332245,
+ "words": [
+  {
+   "w": "He",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "was",
+   "t0": 0.209,
+   "t1": 0.325
+  },
+  {
+   "w": "my",
+   "t0": 0.406,
+   "t1": 0.499
+  },
+  {
+   "w": "son.",
+   "t0": 0.592,
+   "t1": 1.3
+  }
+ ],
+ "voiceId": "pFZP5JQG7iQjIQuC4Bku",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0.1,
+  "use_speaker_boost": true,
+  "speed": 0.9
+ },
+ "created": "2026-11-16T09:51:23.907Z"
+}

@@ -1,0 +1,50 @@
+{
+ "hash": "04b6b406bc7900",
+ "text": "What? No. Why, what's she said?",
+ "voice": "olMark",
+ "lead": 0,
+ "end": 2.972,
+ "dur": 3.004082,
+ "words": [
+  {
+   "w": "What?",
+   "t0": 0,
+   "t1": 0.464
+  },
+  {
+   "w": "No.",
+   "t0": 0.929,
+   "t1": 1.347
+  },
+  {
+   "w": "Why,",
+   "t0": 1.683,
+   "t1": 1.904
+  },
+  {
+   "w": "what's",
+   "t0": 1.927,
+   "t1": 2.113
+  },
+  {
+   "w": "she",
+   "t0": 2.136,
+   "t1": 2.241
+  },
+  {
+   "w": "said?",
+   "t0": 2.31,
+   "t1": 2.972
+  }
+ ],
+ "voiceId": "onwK4e9ZLuTAKqWW03F9",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.1,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-16T09:51:11.559Z"
+}

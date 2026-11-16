@@ -1,0 +1,40 @@
+{
+ "hash": "0c9d5cd1adcda1",
+ "text": "Nie puszczę cię. Obiecuję.",
+ "voice": "olKateNight",
+ "lead": 0,
+ "end": 2.183,
+ "dur": 2.220408,
+ "words": [
+  {
+   "w": "Nie",
+   "t0": 0,
+   "t1": 0.209
+  },
+  {
+   "w": "puszczę",
+   "t0": 0.267,
+   "t1": 0.662
+  },
+  {
+   "w": "cię.",
+   "t0": 0.731,
+   "t1": 1.045
+  },
+  {
+   "w": "Obiecuję.",
+   "t0": 1.103,
+   "t1": 2.183
+  }
+ ],
+ "voiceId": "pFZP5JQG7iQjIQuC4Bku",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.75,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.85
+ },
+ "created": "2026-11-16T09:51:17.717Z"
+}

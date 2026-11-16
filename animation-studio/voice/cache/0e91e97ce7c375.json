@@ -1,0 +1,60 @@
+{
+ "hash": "0e91e97ce7c375",
+ "text": "Mummy showed me. In her tin. She cried.",
+ "voice": "olOllie",
+ "lead": 0,
+ "end": 2.461,
+ "dur": 2.507755,
+ "words": [
+  {
+   "w": "Mummy",
+   "t0": 0,
+   "t1": 0.302
+  },
+  {
+   "w": "showed",
+   "t0": 0.36,
+   "t1": 0.604
+  },
+  {
+   "w": "me.",
+   "t0": 0.65,
+   "t1": 0.789
+  },
+  {
+   "w": "In",
+   "t0": 0.813,
+   "t1": 0.894
+  },
+  {
+   "w": "her",
+   "t0": 0.964,
+   "t1": 1.057
+  },
+  {
+   "w": "tin.",
+   "t0": 1.115,
+   "t1": 1.533
+  },
+  {
+   "w": "She",
+   "t0": 1.567,
+   "t1": 1.672
+  },
+  {
+   "w": "cried.",
+   "t0": 1.741,
+   "t1": 2.461
+  }
+ ],
+ "voiceId": "pFZP5JQG7iQjIQuC4Bku",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.1,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-16T09:51:22.391Z"
+}

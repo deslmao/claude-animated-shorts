@@ -1,0 +1,25 @@
+{
+ "hash": "072ee47a2135e3",
+ "text": "Please.",
+ "voice": "olKate",
+ "lead": 0,
+ "end": 0.975,
+ "dur": 1.018776,
+ "words": [
+  {
+   "w": "Please.",
+   "t0": 0,
+   "t1": 0.975
+  }
+ ],
+ "voiceId": "pFZP5JQG7iQjIQuC4Bku",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0.1,
+  "use_speaker_boost": true,
+  "speed": 0.9
+ },
+ "created": "2026-11-16T09:51:09.433Z"
+}

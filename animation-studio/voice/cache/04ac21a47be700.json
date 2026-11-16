@@ -1,0 +1,25 @@
+{
+ "hash": "04ac21a47be700",
+ "text": "MUM!",
+ "voice": "olAva",
+ "lead": 0,
+ "end": 0.743,
+ "dur": 0.783673,
+ "words": [
+  {
+   "w": "MUM!",
+   "t0": 0,
+   "t1": 0.743
+  }
+ ],
+ "voiceId": "Xb7hH8MSUJpSbSDYk0k2",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.15,
+  "use_speaker_boost": true,
+  "speed": 1
+ },
+ "created": "2026-11-16T09:51:19.507Z"
+}

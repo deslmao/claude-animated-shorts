@@ -1,0 +1,55 @@
+{
+ "hash": "0c16bc39a982f5",
+ "text": "I haven't spoken it in eighteen years.",
+ "voice": "olKate",
+ "lead": 0,
+ "end": 2.508,
+ "dur": 2.533878,
+ "words": [
+  {
+   "w": "I",
+   "t0": 0,
+   "t1": 0.104
+  },
+  {
+   "w": "haven't",
+   "t0": 0.197,
+   "t1": 0.43
+  },
+  {
+   "w": "spoken",
+   "t0": 0.464,
+   "t1": 0.871
+  },
+  {
+   "w": "it",
+   "t0": 0.906,
+   "t1": 0.987
+  },
+  {
+   "w": "in",
+   "t0": 1.033,
+   "t1": 1.091
+  },
+  {
+   "w": "eighteen",
+   "t0": 1.161,
+   "t1": 1.579
+  },
+  {
+   "w": "years.",
+   "t0": 1.672,
+   "t1": 2.508
+  }
+ ],
+ "voiceId": "pFZP5JQG7iQjIQuC4Bku",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0.1,
+  "use_speaker_boost": true,
+  "speed": 0.9
+ },
+ "created": "2026-11-16T09:51:06.587Z"
+}

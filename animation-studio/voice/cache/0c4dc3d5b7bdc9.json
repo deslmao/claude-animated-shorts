@@ -1,0 +1,45 @@
+{
+ "hash": "0c4dc3d5b7bdc9",
+ "text": "Kubuś, trzymaj mnie za rękę.",
+ "voice": "olKateNight",
+ "lead": 0,
+ "end": 2.136,
+ "dur": 2.168163,
+ "words": [
+  {
+   "w": "Kubuś,",
+   "t0": 0,
+   "t1": 0.488
+  },
+  {
+   "w": "trzymaj",
+   "t0": 0.511,
+   "t1": 0.848
+  },
+  {
+   "w": "mnie",
+   "t0": 0.906,
+   "t1": 1.068
+  },
+  {
+   "w": "za",
+   "t0": 1.115,
+   "t1": 1.219
+  },
+  {
+   "w": "rękę.",
+   "t0": 1.277,
+   "t1": 2.136
+  }
+ ],
+ "voiceId": "pFZP5JQG7iQjIQuC4Bku",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.75,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.85
+ },
+ "created": "2026-11-16T09:51:16.121Z"
+}

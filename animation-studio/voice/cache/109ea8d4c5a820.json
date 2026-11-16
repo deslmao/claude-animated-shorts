@@ -1,0 +1,45 @@
+{
+ "hash": "109ea8d4c5a820",
+ "text": "Why are you two up?",
+ "voice": "olKate",
+ "lead": 0,
+ "end": 1.254,
+ "dur": 1.28,
+ "words": [
+  {
+   "w": "Why",
+   "t0": 0,
+   "t1": 0.255
+  },
+  {
+   "w": "are",
+   "t0": 0.29,
+   "t1": 0.383
+  },
+  {
+   "w": "you",
+   "t0": 0.418,
+   "t1": 0.511
+  },
+  {
+   "w": "two",
+   "t0": 0.592,
+   "t1": 0.731
+  },
+  {
+   "w": "up?",
+   "t0": 0.824,
+   "t1": 1.254
+  }
+ ],
+ "voiceId": "pFZP5JQG7iQjIQuC4Bku",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0.1,
+  "use_speaker_boost": true,
+  "speed": 0.9
+ },
+ "created": "2026-11-16T09:51:22.908Z"
+}

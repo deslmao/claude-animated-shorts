@@ -51,6 +51,17 @@ export const VOICES: Record<string, VoicePreset> = {
   itVoice: { name: "Astro - Smooth, Strong and Confident", voiceId: "B5vjwBxGgp4GLTiUjDxM", model: MODEL, settings: { ...CHANNEL, stability: 0.8, style: 0.0, speed: 0.8 }, note: "the thing in the woods: Sam's own voice, slow, gentle and flat, made uncanny in the mix (The Other Jamie)", fx: "uncanny" },
   jamieCopy: { name: "Toby - Raspy, Youthful and Articulate", voiceId: "pYDLV125o4CgqP8i49Lg", model: MODEL, settings: { ...CHANNEL, stability: 0.5, style: 0.2, speed: 0.95 }, note: "Jamie, the copy (The Other Jamie)" },
   jamieQuiet: { name: "Toby - Raspy, Youthful and Articulate", voiceId: "pYDLV125o4CgqP8i49Lg", model: MODEL, settings: { ...CHANNEL, stability: 0.45, style: 0.25, speed: 0.86 }, note: "Jamie, the copy, quiet: \"That's me, isn't it?\" (The Other Jamie)" },
+  // What Ollie Says at 3 A.M. Part 1 (productions/what-ollie-says/auditions/audition-notes.md): the ElevenLabs free tier
+  // allows built-in voices only, so the two children are adult voices pitched up AFTER generation (duration kept, so
+  // the word timings stay valid): the toddler role (Kuba's words out of Ollie) is Jessica +7 semitones, Ollie's own
+  // voice is Lily +8 semitones (productions/what-ollie-says/auditions/pitch.sh). The ritual lines keep one preset each
+  olToddler: { name: "Jessica - Playful, Bright, Warm", voiceId: "cgSgspJ2msm6clMCkdW9", model: MODEL, settings: { ...CHANNEL, stability: 0.45, style: 0, speed: 0.85 }, note: "the toddler voice (What Ollie Says at 3 A.M.): L1 and L5; pitched +7 semitones after generation" },
+  olOllie: { name: "Lily - Velvety Actress", voiceId: "pFZP5JQG7iQjIQuC4Bku", model: MODEL, settings: { ...CHANNEL, stability: 0.5, style: 0.1, speed: 0.95 }, note: "Ollie, 6 (What Ollie Says at 3 A.M.); pitched +8 semitones after generation" },
+  olKate: { name: "Lily - Velvety Actress", voiceId: "pFZP5JQG7iQjIQuC4Bku", model: MODEL, settings: { ...CHANNEL, stability: 0.55, style: 0.1, speed: 0.9 }, note: "Kate, awake (What Ollie Says at 3 A.M.): quiet, tired" },
+  olKateNight: { name: "Lily - Velvety Actress", voiceId: "pFZP5JQG7iQjIQuC4Bku", model: MODEL, settings: { ...CHANNEL, stability: 0.75, style: 0, speed: 0.85 }, note: "Kate asleep, the ritual (L2, L3, L6): flat, tender, far away" },
+  olKateShout: { name: "Lily - Velvety Actress", voiceId: "pFZP5JQG7iQjIQuC4Bku", model: MODEL, settings: { ...CHANNEL, stability: 0.35, style: 0.4, speed: 1.0 }, note: "Kate asleep, L4: the shout (Weź go!)" },
+  olAva: { name: "Alice - Clear, Engaging Educator", voiceId: "Xb7hH8MSUJpSbSDYk0k2", model: MODEL, settings: { ...CHANNEL, stability: 0.45, style: 0.15, speed: 1.0 }, note: "Ava, 15 (What Ollie Says at 3 A.M.)" },
+  olMark: { name: "Daniel - Steady Broadcaster", voiceId: "onwK4e9ZLuTAKqWW03F9", model: MODEL, settings: { ...CHANNEL, stability: 0.5, style: 0.1, speed: 0.95 }, note: "Mark, 42 (What Ollie Says at 3 A.M.): warm, tired" },
   liamScared: { name: "Liam - Energetic, Social Media Creator", voiceId: "TX3LPaxmHKxFdv7VOQHJ", model: MODEL, settings: { ...CHANNEL, stability: 0.3, style: 0.35, speed: 0.9 }, note: "Milo, frightened and desperate (Part 2 rewrite review take)" },
 };
 

@@ -1,0 +1,35 @@
+{
+ "hash": "1c8145d5bdbca0",
+ "text": "You tell me.",
+ "voice": "olAva",
+ "lead": 0,
+ "end": 1.022,
+ "dur": 1.07102,
+ "words": [
+  {
+   "w": "You",
+   "t0": 0,
+   "t1": 0.197
+  },
+  {
+   "w": "tell",
+   "t0": 0.267,
+   "t1": 0.476
+  },
+  {
+   "w": "me.",
+   "t0": 0.546,
+   "t1": 1.022
+  }
+ ],
+ "voiceId": "Xb7hH8MSUJpSbSDYk0k2",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.15,
+  "use_speaker_boost": true,
+  "speed": 1
+ },
+ "created": "2026-11-16T09:51:05.927Z"
+}

@@ -1,0 +1,50 @@
+{
+ "hash": "07f372103bd890",
+ "text": "You call me Kuba. Every night.",
+ "voice": "olOllie",
+ "lead": 0,
+ "end": 1.858,
+ "dur": 1.906939,
+ "words": [
+  {
+   "w": "You",
+   "t0": 0,
+   "t1": 0.139
+  },
+  {
+   "w": "call",
+   "t0": 0.197,
+   "t1": 0.337
+  },
+  {
+   "w": "me",
+   "t0": 0.383,
+   "t1": 0.453
+  },
+  {
+   "w": "Kuba.",
+   "t0": 0.499,
+   "t1": 0.952
+  },
+  {
+   "w": "Every",
+   "t0": 1.173,
+   "t1": 1.405
+  },
+  {
+   "w": "night.",
+   "t0": 1.451,
+   "t1": 1.858
+  }
+ ],
+ "voiceId": "pFZP5JQG7iQjIQuC4Bku",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.1,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-16T09:51:24.464Z"
+}

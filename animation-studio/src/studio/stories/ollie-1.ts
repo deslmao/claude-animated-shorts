@@ -1,6 +1,6 @@
 // What Ollie Says at 3 A.M., Part 1: "3:00": the FINAL screenplay (productions/what-ollie-says/episodes/ep1-3am.md,
-// scene numbers in the notes). Voices are PLACEHOLDERS until the Polish check and the voice audition
-// (voice-audition-plan.md): no narration has been generated, so the timing is estimated.
+// scene numbers in the notes). Voices: built-in ElevenLabs voices (free tier),
+// cast in productions/what-ollie-says/auditions/audition-notes.md; the two children are pitched up after generation.
 // The six ritual lines (story-lock.md §3) are verbatim: L1 and L5 in the toddler voice (the role), L2, L3, L4, L6 Kate's.
 // Every Polish line carries its English subtitle (`sub`). Kate asleep: blink false + the blank face; awake (scene 10): blinks.
 import type { Storyboard, Line, ShotSpec, ActorSpec } from "../story/types";
@@ -13,15 +13,15 @@ type Light = typeof NIGHT | typeof DAY | typeof COOL;
 // [PL provisional] story-lock.md §3, in order
 const L1 = "Mamo, woda jest przy drzwiach.", L2 = "Kubuś, trzymaj mnie za rękę.", L3 = "Nie puszczę cię. Obiecuję.";
 const L4 = "Weź go!", L5 = "Obiecałaś, że nie puścisz.", L6 = "Przepraszam.";
-const TODDLER = "wrenWhisper";   // placeholder for the toddler voice (the role): cast at the audition
+const TODDLER = "olToddler";   // the toddler voice (the role): Jessica, pitched up after generation
 const ava = (text: string): Line => ({ text, who: "ava" });
 const ollie = (text: string): Line => ({ text, who: "ollie" });
 const ollieT = (text: string): Line => ({ text, who: "ollieT" });
-const kate = (text: string, sub?: string): Line => (sub ? { text, who: "kate", sub } : { text, who: "kate" });
+const kate = (text: string, sub?: string, voice?: string): Line => ({ text, who: "kate", ...(sub ? { sub } : {}), ...(voice ? { voice } : {}) });
 const mark = (text: string): Line => ({ text, who: "mark" });
 const role = (text: string, sub: string): Line => ({ text, who: "ollie", voice: TODDLER, sub });   // Kuba's words, out of Ollie
 /** Ava behind her phone (not in the shot) */
-const avaOff = (text: string): Line => ({ text, who: "narrator", voice: "alice" });
+const avaOff = (text: string): Line => ({ text, who: "narrator", voice: "olAva" });
 const lock = (c: ReturnType<typeof at>) => ({ camera: c, cams: [{ t: 0, ...c, blockOk: true }] });
 // a close insert: the 9:16 card in the open side of a room, the camera 1 m in front of it
 const CARD: V = [0, 1.4, 3.2], CARD_CAM = at([0, 1.4, 4.2], CARD, 51);
@@ -44,7 +44,7 @@ const EDGE_KATE: V = [1.5, 0, 11.0], EDGE_OLLIE: V = [2.0, 0, 11.7], DEEP_OLLIE:
 export const OLLIE_1: Storyboard = {
   id: "ollie-1", title: "What Ollie Says at 3 A.M. · Part 1: 3:00",
   cast: { ava: "ava", ollie: "ollie", ollieT: "ollieTowel", kate: "kate", mark: "mark" },
-  voice: "alice", voices: { ava: "alice", ollie: "liamQuiet", ollieT: "liamQuiet", kate: "granWhisper", mark: "brian" },   // placeholders
+  voice: "olAva", voices: { ava: "olAva", ollie: "olOllie", ollieT: "olOllie", kate: "olKate", mark: "olMark" },   // cast (free tier: built-in voices)
   music: { mood: "hush", gain: -6 }, engine: 3, autoSfx: false,
   shots: [
     // ================= SCENE 1 · 03:00 Wed 11 · seen through Ava's phone =================
@@ -125,7 +125,7 @@ export const OLLIE_1: Storyboard = {
       actors: [{ who: "ollie", at: "bed", mode: "sit", act: "neutral", face: "trance", keepFace: true, facing: -1, idle: 0.3 }], note: "7 bolt upright, eyes shut: the opening frame, from the floor" },
     { say: ava("Mum? He's doing it again"), set: "ollieRoom", light: NIGHT, hold: 0.2, ...lock(at([1.1, 1.05, 1.5], [-1.3, 1.3, 0.85], 44)), sfx: [{ t: 0, name: "creak", gain: -4 }],
       actors: [{ who: "kate", at: [-1.3, 0, 0.85], ...KATE_NIGHT, facing: "camera" }, { who: "ava", at: OLLIE_FLOOR_AVA, mode: "sit", act: "scared", face: "shock", keepFace: true, facing: "toward:kate" }], note: "7 the door: Kate, eyes wide open, unblinking" },
-    { say: kate(L2, "Kuba, hold my hand."), set: "ollieRoom", light: NIGHT, hold: 0.5, ...lock(at([-0.35, 1.15, 1.15], [0.88, 1.05, -0.75], 36)),
+    { say: kate(L2, "Kuba, hold my hand.", "olKateNight"), set: "ollieRoom", light: NIGHT, hold: 0.5, ...lock(at([-0.35, 1.15, 1.15], [0.88, 1.05, -0.75], 36)),
       actors: [{ who: "kate", at: "kneel", ...KATE_NIGHT, facing: "toward:ollie", gesture: "offer", reach: "ollie" },
         { who: "ollie", at: "bed", mode: "sit", act: "neutral", face: "trance", facing: "toward:kate", gesture: "offer", reach: "kate" }], note: "7 she walks past Ava, kneels, takes his hand: L2" },
     { say: ava("Mum, stop. You're scaring me."), set: "ollieRoom", light: NIGHT, hold: 1.6, ...lock(at([1.5, 1.5, 3.1], [-0.3, 1.0, 0.5], 54)),
@@ -146,14 +146,14 @@ export const OLLIE_1: Storyboard = {
       actors: [{ who: "kate", at: [1.5, 0, 7.6], ...KATE_NIGHT, walk: { to: [1.55, 0, 10.4], t0: 0, t1: 4.0, view: "back" } },
         { who: "ollie", at: [2.0, 0, 7.6], act: "neutral", face: "trance", walk: { to: [2.05, 0, 10.4], t0: 0, t1: 4.0, view: "back" } }],
       props: GARDEN([2.6, 0, 13.5]), note: "8 THE HIGH WIDE: black water over our lawn only, stopping dead at the fence; next door's lawn dry under their security light" },
-    { say: kate(L3, "I won't let go of you. I promise."), set: "ferryBack", light: NIGHT, dur: 3.2, hold: 0.4, camera: at([1.8, 1.2, 13.6], [1.75, 1.1, 9.0], 42),
+    { say: kate(L3, "I won't let go of you. I promise.", "olKateNight"), set: "ferryBack", light: NIGHT, dur: 3.2, hold: 0.4, camera: at([1.8, 1.2, 13.6], [1.75, 1.1, 9.0], 42),
       cams: [{ t: 0, ...at([1.8, 1.2, 13.6], [1.75, 1.1, 9.0], 42), blockOk: true }, { t: 0.1, ...at([1.8, 1.15, 13.1], [1.75, 1.05, 9.6], 42), glide: 2.6, blockOk: true }], ...STORM,
       actors: [{ who: "kate", at: [1.5, 0, 8.2], ...KATE_NIGHT, facing: "toward:ollie", walk: { to: [1.55, 0, 10.6], t0: 0, t1: 3.0, view: "front" } },
         { who: "ollie", at: [2.0, 0, 8.2], act: "neutral", face: "trance", walk: { to: [2.05, 0, 10.6], t0: 0, t1: 3.0, view: "front" } }],
       props: GARDEN([1.7, 0.5, 9.5]), note: "8 toward the water, hand in hand; she bends to him: L3 (the promise)" },
 
     // ================= SCENE 9 · the water's edge =================
-    { say: kate(L4, "Take him!"), set: "ferryBack", light: NIGHT, dur: 1.9, hold: 0.3, camera: at([1.85, 1.15, 15.0], [1.75, 1.0, 11.3], 44),
+    { say: { ...kate(L4, "Take him!", "olKateShout"), context: { before: "Tomasz! Tomasz, tutaj! Szybko!" } }, set: "ferryBack", light: NIGHT, dur: 1.9, hold: 0.3, camera: at([1.85, 1.15, 15.0], [1.75, 1.0, 11.3], 44),
       cams: [{ t: 0, ...at([1.85, 1.15, 15.0], [1.75, 1.0, 11.3], 44), blockOk: true }, { t: 0.1, ...at([1.82, 1.1, 14.2], [1.75, 1.0, 11.3], 44), glide: 1.4, blockOk: true }], ...STORM,
       actors: [{ who: "kate", at: EDGE_KATE, ...KATE_NIGHT, facing: "toward:ollie", gesture: "offer", reach: "ollie" },
         { who: "ollie", at: EDGE_OLLIE, act: "neutral", face: "trance", facing: "toward:kate", gesture: "offer", reach: "kate" }],
@@ -161,7 +161,7 @@ export const OLLIE_1: Storyboard = {
     { say: role(L5, "You promised you wouldn't let go."), set: "ferryBack", light: NIGHT, hold: 0.5, ...lock(at([0.95, 0.9, 13.5], [2.0, 0.85, 11.7], 38)), ...STORM,
       actors: [{ who: "ollie", at: EDGE_OLLIE, act: "neutral", face: "trance", keepFace: true, facing: -1, gesture: "crossArms" }],
       props: GARDEN([2.0, 0.5, 11.7]), note: "9 the toddler voice, small and broken: L5" },
-    { say: kate(L6, "I'm sorry."), set: "ferryBack", light: NIGHT, dur: 1.4, hold: 0.2, ...lock(at([2.55, 1.45, 12.4], [1.5, 1.5, 11.0], 32)), ...STORM,
+    { say: kate(L6, "I'm sorry.", "olKateNight"), set: "ferryBack", light: NIGHT, dur: 1.4, hold: 0.2, ...lock(at([2.55, 1.45, 12.4], [1.5, 1.5, 11.0], 32)), ...STORM,
       actors: [{ who: "kate", at: EDGE_KATE, ...KATE_NIGHT, facing: 1 }],
       props: GARDEN([1.5, 1.0, 11.0]), note: "9 softly: L6" },
     insert("flash08", 1.1, "9 her hand opens; his small fingers slide out of hers", { ...STORM, sfx: [{ t: 0.1, name: "splash", gain: -12 }] }),

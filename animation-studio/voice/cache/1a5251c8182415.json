@@ -1,0 +1,95 @@
+{
+ "hash": "1a5251c8182415",
+ "text": "River's high, but it never comes over on our side. Lock the back door, yeah?",
+ "voice": "olMark",
+ "lead": 0,
+ "end": 5.759,
+ "dur": 5.799184,
+ "words": [
+  {
+   "w": "River's",
+   "t0": 0,
+   "t1": 0.383
+  },
+  {
+   "w": "high,",
+   "t0": 0.441,
+   "t1": 0.987
+  },
+  {
+   "w": "but",
+   "t0": 1.393,
+   "t1": 1.544
+  },
+  {
+   "w": "it",
+   "t0": 1.579,
+   "t1": 1.649
+  },
+  {
+   "w": "never",
+   "t0": 1.695,
+   "t1": 1.892
+  },
+  {
+   "w": "comes",
+   "t0": 1.95,
+   "t1": 2.194
+  },
+  {
+   "w": "over",
+   "t0": 2.264,
+   "t1": 2.508
+  },
+  {
+   "w": "on",
+   "t0": 2.577,
+   "t1": 2.67
+  },
+  {
+   "w": "our",
+   "t0": 2.728,
+   "t1": 2.879
+  },
+  {
+   "w": "side.",
+   "t0": 2.937,
+   "t1": 3.506
+  },
+  {
+   "w": "Lock",
+   "t0": 4.145,
+   "t1": 4.342
+  },
+  {
+   "w": "the",
+   "t0": 4.4,
+   "t1": 4.47
+  },
+  {
+   "w": "back",
+   "t0": 4.505,
+   "t1": 4.679
+  },
+  {
+   "w": "door,",
+   "t0": 4.737,
+   "t1": 5.062
+  },
+  {
+   "w": "yeah?",
+   "t0": 5.108,
+   "t1": 5.759
+  }
+ ],
+ "voiceId": "onwK4e9ZLuTAKqWW03F9",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.1,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-16T09:51:13.039Z"
+}
