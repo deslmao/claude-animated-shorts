@@ -70,7 +70,29 @@ The old `ollie-1` storyboard (32 shots) follows the superseded script. Its sets,
 - after step 6 (the preview);
 - after step 8 (the final).
 
-## 5. Remaining real risks
+## 5. Progress: stills stage (awaiting the owner's visual approval)
+**Built (additions only, `themes/ollie/`):**
+- `ferryWater` variant `garden`, with the security light;
+- the `olPhoneCam` overlay;
+- ten insert cards: the nine planned plus `photoTable`, the wet photo on the kitchen table;
+- the `ollieTowel` look;
+- `ferryKitchenNight`, the same kitchen with a dark window and dark door glass, for the night scenes.
+
+**Engine (narrow, opt-in; replaces handoff item 5):**
+- **Why it was needed:** a speaking actor's whole face was swapped for a talking face. That opened Ollie's eyes during the hook line and broke Kate's sleepwalker stare on every ritual line, and a `FACES` entry alone couldn't fix it.
+- **What was added:**
+  - an actor flag, `keepFace: true`: the authored eyes and brows stay, and only the mouth talks;
+  - a `trance` face: eyes shut, a flat mouth.
+- **What it changes:** nothing in any other film, because the flag defaults to off.
+
+**Storyboard:** `ollie-1` is rewritten to the final screenplay: 55 shots, about 111 s with placeholder voices.
+- All six ritual lines are verbatim and subtitled.
+- `--until checks` passes, stopping at the narration-approval gate as intended.
+
+**Stills:** about 60 half-scale key frames (two rounds), with one correction pass on the frames that needed it.
+- The approval sheets are `visual-tests/part1-keyframes-v2-a.jpg` and `-b.jpg`.
+
+## 6. Remaining real risks
 1. **The toddler voice speaking Polish.** If no voice passes, the audition plan's fallbacks apply.
 2. **The `garden` water reading clearly at phone size** (the edge at the fence, the dry lawn next door). This is checked first, in the step 3 stills.
 3. **Runtime:** about 102 s. With real voices it can drift by a few seconds; the holds are set after narration, and no scene is padded.
