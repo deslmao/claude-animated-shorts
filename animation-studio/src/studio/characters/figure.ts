@@ -62,7 +62,7 @@ export type Expr =
   | "neutral" | "stern" | "grin" | "laugh" | "whistle" | "nervous" | "shock" | "relief" | "relief_open" | "dazed" | "pained"
   | "smile" | "smile_closed" | "lick"
   | "thinking" | "confused" | "angry" | "sad" | "suspicious" | "excited" | "scared" | "sleepy" | "blank" | "proud" | "disgusted"
-  | "determined" | "wink" | "talk" | "talk_wide" | "embarrassed";
+  | "determined" | "wink" | "talk" | "talk_wide" | "embarrassed" | "trance";
 type Eye3 = EyeK | "wide" | "pin" | "angry" | "sad" | "up" | "closed";
 type Mouth3 = MouthK | "frownDeep" | "grit" | "side" | "yawn" | "zig" | "talkA" | "talkB" | "smug" | "openSmile" | "tongue" | "flat";
 /** eyes [back, front]; brows per eye [inner, outer] offsets in u (+ = down); look = gaze [x, y]; sweat drop */
@@ -101,8 +101,13 @@ export const FACES: Record<Expr, FaceDef> = {
   talk: { eye: ["dot", "dot"], brow: B(-2, -2), mouth: "talkA" },
   talk_wide: { eye: ["dot", "dot"], brow: B(-4, -3), mouth: "talkB" },
   embarrassed: { eye: ["happy", "happy"], brow: B(-3, 3), mouth: "wave", sweat: true },
+  /** a child speaking in his sleep (What Ollie Says at 3 A.M.): eyes shut, level brows, a flat mouth */
+  trance: { eye: ["closed", "closed"], brow: B(0, 0), mouth: "flat" },
 };
 export const EXPRESSIONS = Object.keys(FACES) as Expr[];
+/** a face, or "<face>|<talking face>" (an actor with `keepFace` speaking): the face's eyes and brows with the talking
+ *  face's mouth */
+const faceOf = (expr: Expr): FaceDef => { const [b, m] = (expr as string).split("|"); const F = FACES[b as Expr] ?? FACES.neutral; return m ? { ...F, mouth: (FACES[m as Expr] ?? F).mouth } : F; };
 
 const eye3 = (p: Pen, kind: Eye3, x: number, ey: number, u: number, side: number, look: [number, number], skin: string, shockK = 1) => {
   const lx = x + look[0] * 3 * u, ly = ey + look[1] * 3 * u, lw = 3.8 * u;
@@ -153,7 +158,7 @@ const isRound = (k: Eye3) => k === "shock" || k === "shockHalf" || k === "wide" 
 /** front / 3-4 face; facing -1 | 0 | 1 slides the features toward the facing side */
 const faceFront3 = (p: Pen, cx: number, cy: number, W: number, expr: Expr, facing: number, look: [number, number], lid: number,
   skin: string, fo: FaceOpts) => {
-  const u = W / 100, F = FACES[expr], fx = cx + 7 * u * facing, gaze: [number, number] = F.look ? [F.look[0] * (facing || 1) + look[0], F.look[1] + look[1]] : look;
+  const u = W / 100, F = faceOf(expr), fx = cx + 7 * u * facing, gaze: [number, number] = F.look ? [F.look[0] * (facing || 1) + look[0], F.look[1] + look[1]] : look;
   const round = isRound(F.eye[0] as Eye3);
   const ex = (round ? 12.5 : 13) * u, ey = cy;
   const eyes: number[] = [];
@@ -958,7 +963,7 @@ export const figureSide = (p: Pen, L: Look, pose: SidePose) => {
   p.rot = null;
 };
 const faceSide3 = (p: Pen, L: Look, hx: number, hy: number, W: number, expr: Expr, lid: number, skin: string) => {
-  const u = W / 100, F = FACES[expr], ex = hx + 27 * u, ey = hy, base = F.eye[1];
+  const u = W / 100, F = faceOf(expr), ex = hx + 27 * u, ey = hy, base = F.eye[1];
   const kind: Eye3 = base === "wide" || base === "pin" || base === "angry" || base === "sad" || base === "up" || base === "closed"
     ? (lid >= 1 && base !== "closed" ? "dash" : base) : eyeKind(base as EyeK, lid);
   eye3(p, kind, ex, ey, u, 1, [0.6, F.look?.[1] ?? 0], skin, L.eyes?.shock ?? 1);

@@ -258,12 +258,14 @@ const calendarTex = () => stex("olCalendar", 256, 320, (g) => {
   g.fillStyle = "#fbf8f0"; g.fillRect(0, 0, 256, 320); g.fillStyle = "#3f6f9a"; g.fillRect(0, 0, 256, 64); g.fillStyle = "#ffffff"; g.font = "bold 34px 'DejaVu Sans', sans-serif"; g.textAlign = "center"; g.fillText("NOVEMBER", 128, 44);
   g.fillStyle = "#4a4a52"; g.font = "bold 20px 'DejaVu Sans', sans-serif"; for (let d = 1; d <= 30; d++) { const k = d + 5; g.fillText(String(d), 22 + (k % 7) * 35, 100 + Math.floor(k / 7) * 42); }
 });
-const ferryKitchen = () => {
+/** night = true: the same kitchen after dark (Part 1's night scenes): a dark pane in the garden window and dark door glass */
+const ferryKitchen = (night = false) => {
   const root = new THREE.Group(), b = new Batch(), I = new THREE.Matrix4();
   buildRoom(root, { w: 4.4, d: 3.6, h: 2.5, floor: floorMat(), wall: tex("olKitWall", () => stex("olKitW", 128, 128, (g) => { g.fillStyle = "#e6d9b8"; g.fillRect(0, 0, 128, 128); }), 1, 1), trim: "#f1ece0",
     openings: [{ wall: "back", at: -1.0, w: 1.3, h: 1.0, sill: 1.1, view: "garden" }, { wall: "back", at: 1.35, w: 0.9, h: 2.05, sill: 0, kind: "door" }] });
   // the back door: a half-glazed leaf in the opening, the brass top bolt (slid shut), the handle
-  box(b, col("#34506e"), I, 0.92, 1.78, 0.02, 2.03, -1.86, -1.825); box(b, col("#9fb6c4"), I, 1.05, 1.65, 1.15, 1.9, -1.819, -1.815);
+  box(b, col("#34506e"), I, 0.92, 1.78, 0.02, 2.03, -1.86, -1.825); box(b, col(night ? "#1b2230" : "#9fb6c4"), I, 1.05, 1.65, 1.15, 1.9, -1.819, -1.815);
+  if (night) box(b, glow("olNightPane", () => ({ color: "#131d36" })), I, -1.65, -0.35, 1.1, 2.1, -1.87, -1.86);          // the window at night
   box(b, col("#c9a74a"), I, 1.58, 1.82, 1.93, 1.99, -1.815, -1.79); box(b, col("#c9a74a"), I, 1.62, 1.7, 1.0, 1.04, -1.815, -1.77);
   counter(b, { x: -1.0, z: -1.45 }, 1.8); fridge(b, { x: -1.85, z: -1.38, y: 0.003 }); stove(b, { x: -1.85, z: 0.1, yaw: Math.PI / 2 }); counter(b, { x: -1.85, z: 1.0, yaw: Math.PI / 2 }, 1.0);
   // the table, a bench behind it (against nothing: actors sit on its far side), two chairs
@@ -297,6 +299,60 @@ const bubble = (g: CanvasRenderingContext2D, y: number, small: string, lines: st
   g.fillStyle = "#ffffff"; g.font = F(hot ? 96 : 60); lines.forEach((l, i) => g.fillText(l, 86, y + 132 + i * (hot ? 100 : 82)));
   return y + h + 36;
 };
+// Part 1 insert helpers: one child's face for both photos (Kuba in 2008, Ollie now: the same face is the point)
+const kidFace = (g: CanvasRenderingContext2D, cx: number, cy: number, r: number, laugh: boolean) => {
+  g.fillStyle = "#2a1d17"; for (let i = 0; i < 13; i++) { const a = Math.PI * (0.88 + i * 0.104); g.beginPath(); g.arc(cx + Math.cos(a) * r * 0.92, cy + Math.sin(a) * r * 0.9, r * 0.3, 0, 7); g.fill(); }
+  g.fillStyle = "#f0d2b8"; g.beginPath(); g.ellipse(cx, cy + r * 0.08, r * 0.84, r * 0.9, 0, 0, 7); g.fill(); g.lineWidth = Math.max(4, r * 0.05); g.strokeStyle = PLUM; g.stroke();
+  g.fillStyle = "#2a1d17"; for (let i = 0; i < 6; i++) { g.beginPath(); g.arc(cx - r * 0.55 + i * r * 0.22, cy - r * 0.62 + (i % 2) * r * 0.07, r * 0.2, 0, 7); g.fill(); }
+  for (const s of [-1, 1]) {
+    g.fillStyle = PLUM; g.beginPath(); g.ellipse(cx + s * r * 0.32, cy + r * 0.04, r * 0.09, laugh ? r * 0.06 : r * 0.12, 0, 0, 7); g.fill();
+    if (!laugh) { g.fillStyle = "#ffffff"; g.beginPath(); g.arc(cx + s * r * 0.32 + r * 0.03, cy - r * 0.01, r * 0.03, 0, 7); g.fill(); }
+    g.fillStyle = "rgba(225,110,100,0.35)"; g.beginPath(); g.ellipse(cx + s * r * 0.5, cy + r * 0.3, r * 0.14, r * 0.09, 0, 0, 7); g.fill();
+  }
+  g.strokeStyle = PLUM; g.lineWidth = Math.max(3, r * 0.04); g.beginPath(); g.arc(cx, cy + r * 0.2, r * 0.07, 0.2, Math.PI - 0.2); g.stroke();
+  if (laugh) { g.fillStyle = "#6a2030"; g.beginPath(); g.moveTo(cx - r * 0.26, cy + r * 0.38); g.quadraticCurveTo(cx, cy + r * 0.82, cx + r * 0.26, cy + r * 0.38); g.closePath(); g.fill(); g.stroke(); }
+  else { g.beginPath(); g.arc(cx, cy + r * 0.3, r * 0.24, 0.35, Math.PI - 0.35); g.stroke(); }
+};
+/** the 2008 photo: a curly toddler laughing on a swing, a faded print with a white border; wet = beads and a sheen.
+ *  The face sits at (x + w/2, y + 0.42 h), radius 0.2 w: the same place as in olliePhoto, so the two line up */
+const kubaPhoto = (g: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, rot: number, wet: boolean) => {
+  g.save(); g.translate(x + w / 2, y + h / 2); g.rotate(rot); g.translate(-w / 2, -h / 2);
+  g.fillStyle = "#f4f0e6"; g.fillRect(0, 0, w, h); const bg = g.createLinearGradient(0, 0, 0, h); bg.addColorStop(0, "#a9c0b9"); bg.addColorStop(1, "#d2c79d");
+  const m = w * 0.06; g.fillStyle = bg; g.fillRect(m, m, w - 2 * m, h - 2 * m);
+  g.fillStyle = "rgba(90,120,80,0.5)"; g.fillRect(m, h * 0.78, w - 2 * m, h * 0.22 - m);
+  g.strokeStyle = "#5a5048"; g.lineWidth = w * 0.012; for (const s of [-1, 1]) { g.beginPath(); g.moveTo(w / 2 + s * w * 0.3, m); g.lineTo(w / 2 + s * w * 0.3, h * 0.7); g.stroke(); }
+  g.fillStyle = "#b8342c"; g.beginPath(); g.ellipse(w / 2, h * 0.68, w * 0.26, h * 0.13, 0, 0, 7); g.fill(); g.lineWidth = w * 0.012; g.strokeStyle = PLUM; g.stroke();   // red jumper
+  g.fillStyle = "#7a5a3a"; g.fillRect(w * 0.16, h * 0.76, w * 0.68, h * 0.035);                                                         // the seat
+  kidFace(g, w / 2, h * 0.42, w * 0.2, true);
+  if (wet) {
+    const sh = g.createLinearGradient(0, 0, w, h); sh.addColorStop(0.3, "rgba(255,255,255,0)"); sh.addColorStop(0.45, "rgba(255,255,255,0.22)"); sh.addColorStop(0.6, "rgba(255,255,255,0)"); g.fillStyle = sh; g.fillRect(0, 0, w, h);
+    const r = rnd(17); for (let i = 0; i < 22; i++) { const bx = r() * w, by = r() * h, br = w * (0.012 + r() * 0.02); g.fillStyle = "rgba(200,228,245,0.75)"; g.beginPath(); g.ellipse(bx, by, br, br * 1.3, 0, 0, 7); g.fill(); g.fillStyle = "rgba(255,255,255,0.9)"; g.beginPath(); g.arc(bx - br * 0.3, by - br * 0.4, br * 0.3, 0, 7); g.fill(); }
+  }
+  g.lineWidth = w * 0.015; g.strokeStyle = PLUM; g.strokeRect(0, 0, w, h); g.restore();
+};
+/** Ollie's school photo in a wooden frame: the school-photo blue, a red jumper, the same face (smiling) */
+const olliePhoto = (g: CanvasRenderingContext2D, x: number, y: number, w: number, h: number) => {
+  g.fillStyle = "#9a6b42"; g.fillRect(x - w * 0.07, y - w * 0.07, w * 1.14, h + w * 0.14); g.lineWidth = w * 0.015; g.strokeStyle = PLUM; g.strokeRect(x - w * 0.07, y - w * 0.07, w * 1.14, h + w * 0.14);
+  const bg = g.createRadialGradient(x + w / 2, y + h * 0.4, w * 0.1, x + w / 2, y + h * 0.4, w * 0.8); bg.addColorStop(0, "#7d9cc4"); bg.addColorStop(1, "#3e5d86"); g.fillStyle = bg; g.fillRect(x, y, w, h);
+  g.fillStyle = "#c0392b"; g.beginPath(); g.ellipse(x + w / 2, y + h * 0.95, w * 0.42, h * 0.28, 0, Math.PI, 0); g.fill(); g.strokeStyle = PLUM; g.lineWidth = w * 0.012; g.stroke();
+  g.fillStyle = "#f2c94c"; g.beginPath(); g.arc(x + w * 0.66, y + h * 0.82, w * 0.04, 0, 7); g.fill();
+  kidFace(g, x + w / 2, y + h * 0.42, w * 0.2, false);
+};
+/** a small green dinosaur sticker with its white die-cut edge, one corner peeling */
+const dino = (g: CanvasRenderingContext2D, cx: number, cy: number, s: number) => {
+  const shape = () => { g.beginPath(); g.ellipse(cx, cy, 120 * s, 62 * s, 0, 0, 7); g.moveTo(cx + 80 * s, cy - 30 * s); g.ellipse(cx + 120 * s, cy - 70 * s, 50 * s, 34 * s, -0.3, 0, 7); g.moveTo(cx - 100 * s, cy); g.lineTo(cx - 210 * s, cy - 40 * s); g.lineTo(cx - 100 * s, cy + 30 * s); };
+  g.save(); g.lineJoin = "round"; g.lineWidth = 34 * s; g.strokeStyle = "#ffffff"; shape(); g.stroke(); g.fillStyle = "#5fa83c"; shape(); g.fill(); g.lineWidth = 6 * s; g.strokeStyle = PLUM; shape(); g.stroke();
+  for (const dx of [-50, 40]) { g.fillStyle = "#5fa83c"; g.fillRect(cx + dx * s, cy + 40 * s, 26 * s, 54 * s); g.strokeRect(cx + dx * s, cy + 40 * s, 26 * s, 54 * s); }
+  g.fillStyle = PLUM; g.beginPath(); g.arc(cx + 135 * s, cy - 82 * s, 8 * s, 0, 7); g.fill();
+  g.fillStyle = "#d9d6cf"; g.beginPath(); g.moveTo(cx + 150 * s, cy + 40 * s); g.lineTo(cx + 190 * s, cy + 30 * s); g.lineTo(cx + 160 * s, cy + 80 * s); g.fill(); g.restore();
+};
+const lockScreen = (g: CanvasRenderingContext2D, time: string) => {
+  const bg = g.createLinearGradient(0, 0, 0, IH); bg.addColorStop(0, "#10142a"); bg.addColorStop(1, "#2a1a3a"); g.fillStyle = bg; g.fillRect(0, 0, IW, IH);
+  g.fillStyle = "#c9cfe0"; g.font = F(40, "normal"); g.textAlign = "center"; g.fillText("Thursday 12 November", IW / 2, 360);
+  g.fillStyle = "#f2f4fa"; g.font = "200px 'DejaVu Sans', sans-serif"; g.fillText(time, IW / 2, 600);
+  for (const x of [130, IW - 130]) { g.fillStyle = "rgba(255,255,255,0.14)"; g.beginPath(); g.arc(x, 1290, 62, 0, 7); g.fill(); }
+};
+const vignette = (g: CanvasRenderingContext2D, c: string) => { const v = g.createRadialGradient(IW / 2, IH / 2, IW * 0.35, IW / 2, IH / 2, IH * 0.75); v.addColorStop(0, "rgba(0,0,0,0)"); v.addColorStop(1, c); g.fillStyle = v; g.fillRect(0, 0, IW, IH); };
 const INSERTS: Record<string, (g: CanvasRenderingContext2D, step: number) => void> = {
   // Ava's knuckles on the shared wall: lilac wall, two fairy lights, her fist and hoodie cuff, three knock marks
   knock: (g) => {
@@ -370,6 +426,118 @@ const INSERTS: Record<string, (g: CanvasRenderingContext2D, step: number) => voi
     for (let k = 0; k < 4; k++) blob(g, [[60, 715 + k * 44], [150, 708 + k * 44], [150, 745 + k * 44], [60, 750 + k * 44]], "#f0d2b8", 8);
     g.fillStyle = "rgba(200,60,50,0.62)"; for (let k = 0; k < 4; k++) { g.save(); g.translate(300 + k * 46, 790); g.rotate(-0.12); g.beginPath(); g.roundRect(-16, -110, 32, 220, 16); g.fill(); g.restore(); }
   },
+  // ---- Part 1 (final screenplay) ----
+  // Ava's phone lock screen: step 0 = 02:59, step >= 1 = 03:00 (Thursday 12 November)
+  phoneClock: (g, step) => lockScreen(g, step >= 1 ? "03:00" : "02:59"),
+  phone258: (g) => lockScreen(g, "02:58"),
+  // Kate on the edge of her bed: a tea towel pressed to the photo on her lap; tears falling
+  towelPhoto: (g) => {
+    g.fillStyle = "#6f747c"; g.fillRect(0, 0, IW, IH); g.strokeStyle = "rgba(40,40,50,0.35)"; g.lineWidth = 10; for (const x of [120, 330, 610, 740]) { g.beginPath(); g.moveTo(x, 0); g.quadraticCurveTo(x + 40, IH / 2, x - 20, IH); g.stroke(); }
+    kubaPhoto(g, 150, 520, 520, 640, -0.08, true);
+    g.save(); g.translate(430, 640); g.rotate(0.22); blob(g, [[-260, -230], [230, -260], [260, 160], [-230, 200]], "#f4efe6");                 // the tea towel
+    g.strokeStyle = "rgba(190,60,55,0.75)"; g.lineWidth = 14; for (const k of [-160, -60, 40, 140]) { g.beginPath(); g.moveTo(k, -240); g.lineTo(k + 20, 180); g.stroke(); g.beginPath(); g.moveTo(-240, k * 0.9); g.lineTo(240, k * 0.9 - 20); g.stroke(); } g.restore();
+    blob(g, [[IW + 60, 300], [IW + 60, 620], [700, 640], [640, 420]], "#d6c6a2");                                         // cardigan cuff
+    blob(g, [[680, 380], [690, 660], [470, 700], [380, 600], [420, 430], [560, 360]], "#f0d2b8");                         // her hand, pressing
+    g.fillStyle = "rgba(190,225,245,0.9)"; for (const [x, y, s] of [[300, 300, 1], [360, 180, 0.7]] as const) { g.beginPath(); g.moveTo(x, y - 40 * s); g.quadraticCurveTo(x + 24 * s, y, x, y + 22 * s); g.quadraticCurveTo(x - 24 * s, y, x, y - 40 * s); g.fill(); }
+    vignette(g, "rgba(20,12,8,0.7)");
+  },
+  // the biscuit tin under Mum's bed: the lid, Ollie's dinosaur sticker, Ava's thumb on it
+  tinLid: (g) => {
+    g.fillStyle = "#4a4039"; g.fillRect(0, 0, IW, IH); const r = rnd(41); for (let i = 0; i < 900; i++) { g.fillStyle = r() > 0.5 ? "rgba(255,255,255,0.04)" : "rgba(0,0,0,0.12)"; g.fillRect(r() * IW, r() * IH, 4, 4); }
+    g.fillStyle = "rgba(0,0,0,0.55)"; g.fillRect(0, 0, IW, 260);                                                                    // under the bed
+    g.fillStyle = "#3d6a8f"; g.beginPath(); g.roundRect(90, 360, 630, 820, 70); g.fill(); g.lineWidth = 14; g.strokeStyle = PLUM; g.stroke();
+    g.strokeStyle = "#c9a74a"; g.lineWidth = 16; g.beginPath(); g.roundRect(120, 390, 570, 760, 54); g.stroke();
+    g.fillStyle = "rgba(240,220,170,0.25)"; for (const [x, y] of [[230, 520], [560, 980], [250, 1030], [600, 560]]) for (let k = 0; k < 5; k++) { g.beginPath(); g.ellipse(x + Math.cos(k * 1.26) * 34, y + Math.sin(k * 1.26) * 34, 22, 12, k * 1.26, 0, 7); g.fill(); }
+    dino(g, 405, 760, 1.25);
+    blob(g, [[-60, 1120], [260, 1000], [360, 1080], [300, 1240], [-60, 1300]], "#8b9098");                                // her hoodie cuff
+    blob(g, [[250, 1010], [420, 900], [480, 960], [400, 1060], [300, 1100]], "#f3cfb2");                                  // her thumb on the sticker
+  },
+  // the open tin: dry, crisp tissue paper; the photo on top, beaded with water; step 1 = the drop has run onto her fingers
+  tinOpen: (g, step) => {
+    g.fillStyle = "#4a4039"; g.fillRect(0, 0, IW, IH);
+    g.fillStyle = "#8d99a1"; g.beginPath(); g.roundRect(40, 160, 730, 1120, 60); g.fill(); g.lineWidth = 14; g.strokeStyle = PLUM; g.stroke();
+    g.fillStyle = "#f6f3ec"; g.beginPath(); g.roundRect(80, 200, 650, 1040, 40); g.fill();                                        // tissue paper, bone dry
+    g.strokeStyle = "rgba(150,140,130,0.45)"; g.lineWidth = 4; const r = rnd(12); for (let i = 0; i < 16; i++) { const x = 90 + r() * 620, y = 210 + r() * 1010; g.beginPath(); g.moveTo(x, y); g.lineTo(x + 60 + r() * 120, y + (r() - 0.5) * 90); g.stroke(); }
+    kubaPhoto(g, 150, 330, 510, 640, 0.05, true);
+    blob(g, [[620, 1000], [720, 980], [760, 1100], [700, 1200], [600, 1160]], "#f3cfb2");                                 // her fingers at the corner
+    const drop = (x: number, y: number, s: number) => { g.fillStyle = "rgba(200,230,250,0.95)"; g.beginPath(); g.moveTo(x, y - 34 * s); g.quadraticCurveTo(x + 22 * s, y, x, y + 20 * s); g.quadraticCurveTo(x - 22 * s, y, x, y - 34 * s); g.fill(); g.lineWidth = 4; g.strokeStyle = "rgba(60,90,110,0.8)"; g.stroke(); };
+    if (step >= 1) { drop(670, 1080, 1.1); g.strokeStyle = "rgba(200,230,250,0.6)"; g.lineWidth = 8; g.beginPath(); g.moveTo(640, 985); g.lineTo(665, 1050); g.stroke(); }
+    else drop(632, 1000, 1.3);
+  },
+  // the back of the photo: faded ink, "Kubuś · 2008" [PL provisional]; the wet soaking through
+  photoBack: (g) => {
+    g.fillStyle = "#4a4039"; g.fillRect(0, 0, IW, IH);
+    g.save(); g.translate(IW / 2, 700); g.rotate(-0.05); g.fillStyle = "#eee5cf"; g.fillRect(-300, -380, 600, 760); g.lineWidth = 12; g.strokeStyle = PLUM; g.strokeRect(-300, -380, 600, 760);
+    g.fillStyle = "rgba(120,110,90,0.18)"; g.font = F(26, "normal"); g.textAlign = "center"; for (let y = -340; y < 360; y += 70) g.fillText("FOTO · PAPIER · FOTO · PAPIER", 0, y);
+    g.fillStyle = "rgba(110,120,120,0.28)"; for (const [x, y, rx, ry] of [[-120, -150, 90, 60], [140, 90, 120, 70], [-60, 230, 70, 50], [180, -260, 60, 40]]) { g.beginPath(); g.ellipse(x, y, rx, ry, 0.4, 0, 7); g.fill(); }
+    g.fillStyle = "#33508c"; g.font = "italic 92px 'DejaVu Serif', Georgia, serif"; g.fillText("Kubuś · 2008", 0, 30); g.restore();
+    blob(g, [[620, 1120], [740, 1080], [790, 1260], [700, 1340], [600, 1250]], "#f3cfb2");
+  },
+  // the match: step 0 = the 2008 photo held beside Ollie's school photo; step 1 = laid over it, the faces line up, a drop runs down the cheek like a tear
+  match: (g, step) => {
+    g.fillStyle = "#8a7660"; g.fillRect(0, 0, IW, IH); g.fillStyle = "#6b4e3a"; g.fillRect(0, 1060, IW, IH - 1060);                  // wallpaper, the bedside table
+    const glowG = g.createRadialGradient(640, 520, 40, 640, 520, 700); glowG.addColorStop(0, "rgba(255,213,154,0.35)"); glowG.addColorStop(1, "rgba(0,0,0,0)"); g.fillStyle = glowG; g.fillRect(0, 0, IW, IH);
+    if (step < 1) {
+      olliePhoto(g, 430, 520, 330, 430);
+      kubaPhoto(g, 50, 500, 330, 430, -0.04, true);
+      blob(g, [[-60, 860], [150, 880], [200, 1010], [-60, 1060]], "#f3cfb2");
+    } else {
+      olliePhoto(g, 175, 330, 460, 600);
+      g.save(); g.globalAlpha = 0.62; kubaPhoto(g, 175, 330, 460, 600, 0, false); g.restore();
+      // the tear: a bright drop running down the toddler's cheek, its wet trail above it
+      const fx = 405 + 0.32 * 92, fy = 582 + 12;                                                                    // under the toddler's right eye
+      g.strokeStyle = "rgba(210,235,250,0.85)"; g.lineWidth = 10; g.lineCap = "round"; g.beginPath(); g.moveTo(fx, fy); g.quadraticCurveTo(fx + 6, fy + 45, fx + 3, fy + 85); g.stroke();
+      g.fillStyle = "rgba(220,240,255,0.95)"; g.beginPath(); g.moveTo(fx + 3, fy + 70); g.quadraticCurveTo(fx + 25, fy + 108, fx + 3, fy + 126); g.quadraticCurveTo(fx - 19, fy + 108, fx + 3, fy + 70); g.fill(); g.lineWidth = 4; g.strokeStyle = "rgba(60,90,110,0.8)"; g.stroke();
+    }
+  },
+  // the pull: V-shaped ripples running against the current toward Ollie's shins; his pyjama legs dragged back
+  pull: (g) => {
+    const wg = g.createLinearGradient(0, 0, 0, IH); wg.addColorStop(0, "#22343a"); wg.addColorStop(1, "#0b1316"); g.fillStyle = wg; g.fillRect(0, 0, IW, IH);
+    const r = rnd(7); for (let i = 0; i < 40; i++) { g.fillStyle = `rgba(240,215,160,${0.2 + r() * 0.4})`; g.fillRect(r() * IW, 650 + r() * 790, 16 + r() * 30, 3); }
+    for (const cx of [300, 500]) {                                                                                        // the legs, the cloth dragged toward the bottom-left
+      blob(g, [[cx - 80, -60], [cx + 80, -60], [cx + 60, 780], [cx - 110, 800]], "#5e8f3c");
+      g.strokeStyle = "#9cc46a"; g.lineWidth = 16; for (let y = 60; y < 760; y += 90) { g.beginPath(); g.moveTo(cx - 78 - y * 0.03, y); g.lineTo(cx + 76 - y * 0.02, y + 20); g.stroke(); }
+      g.strokeStyle = "rgba(27,18,34,0.7)"; g.lineWidth = 8; for (const k of [0, 1, 2]) { g.beginPath(); g.moveTo(cx + 50, 420 + k * 110); g.quadraticCurveTo(cx - 20, 520 + k * 110, cx - 120, 620 + k * 110); g.stroke(); }
+      g.fillStyle = "rgba(40,70,60,0.6)"; g.beginPath(); g.ellipse(cx - 20, 790, 120, 30, 0, 0, 7); g.fill();             // where the shin goes under
+    }
+    g.strokeStyle = "rgba(225,240,245,0.9)"; g.lineWidth = 6; g.beginPath(); g.moveTo(0, 770); g.bezierCurveTo(250, 740, 560, 800, IW, 760); g.stroke();   // the waterline
+    g.lineCap = "round";
+    for (let k = 0; k < 5; k++) {                                                                                         // the Vs, nested, pointing at his legs
+      const tipX = 400 - k * 30, tipY = 870 + k * 120, w = 170 + k * 90, a = 0.95 - k * 0.15;
+      g.strokeStyle = `rgba(200,225,230,${a})`; g.lineWidth = 12 - k; g.beginPath(); g.moveTo(tipX - w, tipY + w * 0.55); g.lineTo(tipX, tipY); g.lineTo(tipX + w, tipY + w * 0.5); g.stroke();
+    }
+    g.strokeStyle = "rgba(200,220,230,0.35)"; g.lineWidth = 3; const q = rnd(3); for (let i = 0; i < 60; i++) { const x = q() * IW, y = q() * IH; g.beginPath(); g.moveTo(x, y); g.lineTo(x - 10, y + 70); g.stroke(); }
+  },
+  // Kate's feet on the kitchen tiles: wet, grass stuck to them, the hem of her nightdress dripping, wet footprints behind her
+  kateFeet: (g) => {
+    for (let y = 0; y < 9; y++) for (let x = 0; x < 6; x++) { g.fillStyle = (x + y) % 2 ? "#8f969c" : "#b7bdc0"; g.fillRect(x * 140 - (y % 2) * 0, y * 165, 140, 165); }
+    g.fillStyle = "rgba(10,18,30,0.45)"; g.fillRect(0, 0, IW, IH);
+    for (const [x, y, s] of [[470, 120, 0.42], [330, 300, 0.55], [480, 500, 0.7], [320, 720, 0.85]] as const) { g.fillStyle = "rgba(40,55,70,0.7)"; g.beginPath(); g.ellipse(x, y, 46 * s, 95 * s, 0.1, 0, 7); g.fill(); for (let k = 0; k < 5; k++) { g.beginPath(); g.arc(x - 34 * s + k * 17 * s, y - 100 * s - Math.abs(k - 1) * 6 * s, 9 * s, 0, 7); g.fill(); } }
+    blob(g, [[-60, 820], [IW + 60, 790], [IW + 60, 1010], [-60, 1040]], "#8e939b");                                       // the hem
+    g.fillStyle = "#5e636b"; g.fillRect(0, 960, IW, 60);                                                                    // soaked
+    for (const cx of [300, 520]) {
+      blob(g, [[cx - 90, 1000], [cx + 80, 990], [cx + 100, 1290], [cx + 30, 1400], [cx - 70, 1395], [cx - 110, 1280]], "#f0d2b8");
+      g.strokeStyle = "#4f8a3a"; g.lineWidth = 12; g.lineCap = "round"; for (const [x, y, a] of [[cx - 50, 1120, 0.5], [cx + 30, 1200, -0.6], [cx - 10, 1310, 1.1]] as const) { g.beginPath(); g.moveTo(x, y); g.lineTo(x + Math.cos(a) * 75, y + Math.sin(a) * 75); g.stroke(); }
+      g.fillStyle = "rgba(190,215,235,0.8)"; for (const [x, y] of [[cx - 40, 1060], [cx + 50, 1160]]) { g.beginPath(); g.ellipse(x, y, 14, 22, 0.3, 0, 7); g.fill(); }
+    }
+    g.fillStyle = "rgba(190,215,235,0.85)"; for (const x of [150, 420, 690]) { g.beginPath(); g.ellipse(x, 1060, 9, 16, 0, 0, 7); g.fill(); }
+    g.fillStyle = "rgba(160,190,210,0.25)"; g.beginPath(); g.ellipse(410, 1390, 330, 70, 0, 0, 7); g.fill();              // the puddle round her feet
+  },
+  // the photo on the kitchen table at 03:21, still wet: a pool spreading from under it
+  photoTable: (g) => {
+    g.fillStyle = "#7d5a38"; g.fillRect(0, 0, IW, IH); g.strokeStyle = "rgba(60,40,24,0.4)"; g.lineWidth = 5; for (let y = 40; y < IH; y += 70) { g.beginPath(); g.moveTo(0, y); g.bezierCurveTo(260, y + 18, 520, y - 18, IW, y + 6); g.stroke(); }
+    g.fillStyle = "rgba(170,200,215,0.35)"; g.beginPath(); g.ellipse(420, 820, 360, 300, 0.2, 0, 7); g.fill();
+    kubaPhoto(g, 180, 430, 460, 580, 0.12, true);
+    blob(g, [[-60, 1180], [230, 1120], [300, 1230], [220, 1340], [-60, 1360]], "#f3cfb2");                                // Ava's fingers letting go of it
+    g.fillStyle = "rgba(10,18,30,0.35)"; g.fillRect(0, 0, IW, IH);
+  },
+  // the end card
+  endCard: (g) => {
+    g.fillStyle = "#05070a"; g.fillRect(0, 0, IW, IH); g.textAlign = "center";
+    g.fillStyle = "#8b93a5"; g.font = F(34); g.fillText("WHAT OLLIE SAYS AT 3 A.M.", IW / 2, 590);
+    g.fillStyle = "#e9edf5"; g.font = F(58); g.fillText("PART 2", IW / 2, 700); g.font = F(66); g.fillText("THE WATER GAME", IW / 2, 800);
+    g.strokeStyle = "rgba(120,160,175,0.55)"; g.lineWidth = 4; for (let k = 0; k < 3; k++) { g.beginPath(); g.moveTo(200 + k * 30, 870 + k * 22); g.quadraticCurveTo(IW / 2, 850 + k * 22, IW - 200 - k * 30, 870 + k * 22); g.stroke(); }
+  },
 };
 const insertRig = (a: At, v = "knock"): PropRig => {
   const root = rigRoot(a), draw = INSERTS[v] ?? INSERTS.knock, texAt = (st: number) => stex(`olIns_${v}_${st}`, IW, IH, (g) => draw(g, st));
@@ -382,7 +550,30 @@ const insertRig = (a: At, v = "knock"): PropRig => {
  *  Variants: river (the river only, 1.1 m below the path), lawn (over the path and the bottom of the lawn, from z 15),
  *  high (episode 4: over the lawn from z 11). Steady steps make the surface flow. */
 const WATER: Record<string, { y: number; z0: number }> = { river: { y: -1.1, z0: 23.5 }, lawn: { y: 0.04, z0: 15 }, high: { y: 0.06, z0: 11 } };
+/** garden (Part 1): the river risen ONLY over our garden. A flat sheet between our side fences (x -3.2..3.2) from z 10.8,
+ *  across the path to the bank, where it climbs out of the river; a bright edge line where it stops at each fence and
+ *  at its near shore; on the path past the fences it stands in a clean, glassy wall. Next door's lawns stay dry under
+ *  their own lights (a cold security floodlight on the right-hand neighbour's back wall, a warm kitchen light on the left) */
+const GF = { x0: -3.2, x1: 3.2, z0: 10.8, z1: 23.5, y: 0.16 };
+const gardenFloodRig = (a: At): PropRig => {
+  const root = rigRoot(a), inner = new THREE.Group(); inner.position.set(-a.x, -(a.y ?? 0), -a.z); root.add(inner);
+  const wmat = (rx: number, ry: number) => { const t = waterTex().clone(); t.repeat.set(rx, ry); t.needsUpdate = true; return { t, m: new THREE.MeshLambertMaterial({ map: t, color: "#9fb1b4", emissive: "#ffffff", emissiveMap: t, emissiveIntensity: 0.9 }) }; };
+  const w = GF.x1 - GF.x0, len = GF.z1 - GF.z0, flood = wmat(0.7, 1.4), river = wmat(12, 9);
+  const sheet = new THREE.Mesh(new THREE.PlaneGeometry(w, len).rotateX(-Math.PI / 2), flood.m); sheet.position.set(0, GF.y, GF.z0 + len / 2); sheet.receiveShadow = true; inner.add(sheet);
+  const bed = new THREE.Mesh(new THREE.PlaneGeometry(140, 96.5).rotateX(-Math.PI / 2), river.m); bed.position.set(0, -1.1, 23.5 + 48.25); inner.add(bed);
+  const rise = new THREE.Mesh(new THREE.PlaneGeometry(w, 1.49), flood.m); rise.rotation.x = -0.567; rise.position.set(0, (GF.y - 1.1) / 2, 23.9); inner.add(rise);   // climbing out of the river
+  const glassM = new THREE.MeshBasicMaterial({ color: "#4f6d76", transparent: true, opacity: 0.85, side: THREE.DoubleSide, depthWrite: false });
+  for (const x of [GF.x0, GF.x1]) { const wall = new THREE.Mesh(new THREE.PlaneGeometry(GF.z1 - 20.7, GF.y).rotateY(Math.PI / 2), glassM); wall.position.set(x, GF.y / 2, (20.7 + GF.z1) / 2); wall.layers.set(NOINK); inner.add(wall); }
+  const edgeM = new THREE.MeshBasicMaterial({ color: "#d8ecf2", transparent: true, opacity: 0.9, toneMapped: false });
+  for (const x of [GF.x0 + 0.03, GF.x1 - 0.03]) { const e = new THREE.Mesh(new THREE.PlaneGeometry(0.06, len).rotateX(-Math.PI / 2), edgeM); e.position.set(x, GF.y + 0.004, GF.z0 + len / 2); e.layers.set(NOINK); inner.add(e); }
+  const shore = new THREE.Mesh(new THREE.PlaneGeometry(w, 0.06).rotateX(-Math.PI / 2), edgeM); shore.position.set(0, GF.y + 0.004, GF.z0 + 0.03); shore.layers.set(NOINK); inner.add(shore);
+  const sec = new THREE.PointLight("#e6eeff", 6, 20, 1.3); sec.position.set(5.0, 2.7, 1.3); inner.add(sec);
+  const fix = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.16, 0.12), new THREE.MeshBasicMaterial({ color: "#f4f8ff", toneMapped: false })); fix.position.set(5.0, 2.75, 0.08); fix.layers.set(NOINK); inner.add(fix);
+  const kit = new THREE.PointLight("#ffd9a8", 3, 14, 1.4); kit.position.set(-5.0, 2.2, 1.2); inner.add(kit);
+  return { root, update: ({ step = 0 }) => { flood.t.offset.set(step * 0.002, -step * 0.005); river.t.offset.set(step * 0.004, -step * 0.012); } };
+};
 const waterRig = (a: At, v = "river"): PropRig => {
+  if (v === "garden") return gardenFloodRig(a);
   const root = rigRoot(a), w = WATER[v] ?? WATER.river, t = waterTex().clone(); t.repeat.set(12, 9); t.needsUpdate = true;
   const len = 120 - w.z0, m = new THREE.Mesh(new THREE.PlaneGeometry(140, len).rotateX(-Math.PI / 2), new THREE.MeshLambertMaterial({ map: t, color: "#9fb1b4", emissive: "#ffffff", emissiveMap: t, emissiveIntensity: 0.9 }));
   m.position.set(-a.x, w.y - (a.y ?? 0), w.z0 + len / 2 - a.z); m.receiveShadow = true; root.add(m);  // absolute in the set, whatever `at` is
@@ -407,6 +598,32 @@ const rainRig = (a: At): PropRig => {
   } };
 };
 
+/** olPhoneCam (Part 1's hook): Ava's phone camera over a shot, an overlay card 0.27 x 0.48 m held 0.5 m in front of
+ *  an `at` camera with fov 50 (the CCTV-overlay method): corner brackets, REC, the clock 03:00:0s ticking every 7 steps
+ *  (give it steady steps); variant post adds the typed post text */
+const POST = ["He's six.", "He's never heard Polish.", "That isn't his voice."];
+const phoneCamTex = (sec: number, post: boolean) => stex(`olPhoneCam${post ? "P" : ""}${sec}`, 540, 960, (g) => {
+  g.clearRect(0, 0, 540, 960);
+  const vg = g.createRadialGradient(270, 480, 240, 270, 480, 640); vg.addColorStop(0, "rgba(0,0,0,0)"); vg.addColorStop(1, "rgba(0,0,0,0.7)"); g.fillStyle = vg; g.fillRect(0, 0, 540, 960);
+  g.strokeStyle = "rgba(255,255,255,0.9)"; g.lineWidth = 4; for (const [x, y, dx, dy] of [[56, 150, 1, 1], [484, 150, -1, 1], [56, 840, 1, -1], [484, 840, -1, -1]] as const) { g.beginPath(); g.moveTo(x, y + dy * 40); g.lineTo(x, y); g.lineTo(x + dx * 40, y); g.stroke(); }
+  g.fillStyle = "#ff3b30"; g.beginPath(); g.arc(84, 112, 11, 0, 7); g.fill();
+  g.fillStyle = "rgba(255,255,255,0.95)"; g.font = "bold 28px 'DejaVu Sans', sans-serif"; g.textAlign = "left"; g.fillText("REC", 102, 122);
+  g.textAlign = "right"; g.font = "bold 30px 'DejaVu Sans Mono', monospace"; g.fillText(`03:00:${String(sec).padStart(2, "0")}`, 486, 122);
+  g.textAlign = "center"; g.font = "24px 'DejaVu Sans', sans-serif"; g.fillStyle = "rgba(0,0,0,0.45)"; g.beginPath(); g.roundRect(240, 880, 60, 36, 18); g.fill(); g.fillStyle = "rgba(255,255,255,0.9)"; g.fillText("1×", 270, 906);
+  if (post) {
+    g.font = "bold 31px 'DejaVu Sans', sans-serif";
+    POST.forEach((l, i) => { const y = 690 + i * 54, tw = g.measureText(l).width; g.fillStyle = "rgba(0,0,0,0.62)"; g.beginPath(); g.roundRect(270 - tw / 2 - 16, y - 34, tw + 32, 48, 10); g.fill(); g.fillStyle = "#ffffff"; g.fillText(l, 270, y); });
+  }
+});
+const phoneCamRig = (a: At, v = "rec"): PropRig => {
+  const root = rigRoot(a), post = v === "post", mat = new THREE.MeshBasicMaterial({ map: phoneCamTex(0, post), transparent: true, depthTest: false, depthWrite: false, toneMapped: false });
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(0.27, 0.48), mat); m.renderOrder = 10; m.layers.set(NOINK); root.add(m);
+  return { root, update: ({ step = 0, camPos }) => {
+    mat.map = phoneCamTex(Math.floor(step / 7) % 60, post);
+    const d = root.position.clone().sub(camPos).normalize().multiplyScalar(0.5); m.position.copy(camPos).add(d).sub(root.position); m.lookAt(camPos);   // 0.5 m in front of the lens, square to it
+  } };
+};
+
 // ---------------------------------------------------------------- characters
 // Kate (Katarzyna): 38, long dark hair (an adult silhouette next to Ollie's curls), pale, an oatmeal cardigan over a long grey nightdress, barefoot; the scar is an
 // insert. Ava: 15, brown ponytail, oversized grey hoodie, navy pyjama bottoms, socks. Ollie: 6, dark curls (Kate's),
@@ -417,6 +634,8 @@ const AVA: Look = { name: "Ava", build: "petite", skin: "#f3cfb2", seed: 502, ha
   top: { style: "hoodie", color: "#8b9098", accent: "#f2c94c" }, legs: "#2a3350", shoes: "#dcd7cf" };
 const OLLIE: Look = { name: "Ollie", build: "kid", skin: "#f0d2b8", seed: 503, hair: { style: "curly", color: "#2a1d17" },
   top: { style: "stripes", color: "#5e8f3c", accent: "#9cc46a" }, legs: "#5e8f3c", shoes: "#f0d2b8" };
+/** Ollie in Part 1's last scene: wrapped in a pale bath towel (the layer) over his wet pyjamas */
+const OLLIE_TOWEL: Look = { ...OLLIE, name: "Ollie (towel)", layer: { style: "cardigan", color: "#e9e4d8" } };
 const MARK: Look = { name: "Mark", build: "stout", skin: "#e9bf9b", seed: 504, hair: { style: "short", color: "#b08a58" },
   top: { style: "shirt", color: "#2b3954" }, layer: { style: "blazer", color: "#e2dc3c", accent: "#2b3954" }, legs: "#2b2f3a", shoes: "#2a2320" };
 
@@ -427,17 +646,20 @@ export const OLLIE_THEME: Theme = {
   mood: "hush",
   ambience: { "ferryBack:night": "amb_storm", ferryBack: "amb_storm" },
   steps: { ferryBack: "step_stone" },
-  characters: { kate: KATE, ava: AVA, ollie: OLLIE, mark: MARK },
+  characters: { kate: KATE, ava: AVA, ollie: OLLIE, ollieTowel: OLLIE_TOWEL, mark: MARK },
   characterMeta: {
     kate: { name: "Kate Harper", desc: "38; long dark hair; pale; an oatmeal cardigan over a long grey nightdress; barefoot", personality: "a mother who relives the night of a flood in her sleep (What Ollie Says at 3 A.M.); asleep, her eyes stay open (blink: false)", themes: ["horror", "home", "family"], tags: ["mother", "female", "sleepwalker"] },
     ava: { name: "Ava Harper", desc: "15; brown ponytail; an oversized grey hoodie; navy pyjama bottoms; socks", personality: "the big sister who investigates and protects her brother (What Ollie Says at 3 A.M.)", themes: ["horror", "home", "family"], tags: ["teen", "girl", "sister"] },
     ollie: { name: "Ollie Harper", desc: "6; dark curls; green dinosaur pyjamas; barefoot at night", personality: "a little boy who says his mother's words at 3 a.m. to keep her out of the water (What Ollie Says at 3 A.M.)", themes: ["horror", "home", "family"], tags: ["child", "boy", "brother"] },
+    ollieTowel: { name: "Ollie Harper (in a towel)", desc: "6; dark curls; wrapped in a pale bath towel over wet green pyjamas; barefoot", personality: "Ollie just pulled out of the water (What Ollie Says at 3 A.M., Part 1's last scene)", themes: ["horror", "home", "family"], tags: ["child", "boy", "brother", "towel"] },
     mark: { name: "Mark Harper", desc: "42; stocky; sandy hair; a yellow water-company hi-vis over a navy shirt", personality: "a kind, tired father on night shifts (What Ollie Says at 3 A.M.)", themes: ["home", "family", "work"], tags: ["father", "male", "hi-vis"] },
   },
   props: {
-    ferryWater: { name: "River and flood (night)", desc: "the river behind 4 Ferry Lane and its flood, dark rippling water with lamp glints, placed absolutely in ferryBack whatever `at` is (put `at` where the shot looks); variants river (in its bed), lawn (over the bottom of the garden from z 15), high (over the lawn from z 11); steady steps make it flow", category: "theme", themes: ["horror", "night", "flood"], tags: ["water", "river", "flood"], radius: 0.05, height: 0.1,
-      build: () => undefined, rig: (a, v) => waterRig(a, v ?? "river"), steps: ["it flows"], stepCount: () => 2000, variants: { river: () => undefined, lawn: () => undefined, high: () => undefined } },
-    olInsert: { name: "Close insert (What Ollie Says at 3 A.M.)", desc: "an upright 9:16 insert card (0.54 x 0.96 m, facing +z), `at` = its centre: an `at` camera 1.0 m in front at fov 51 sees only the card. Variants: knock (Ava's knuckles on the shared wall), clock (red LED clock: 2:59, then 3:00 at step 1), clock258, rec (her phone recording), trans (the translator: line 1, then both at step 1), transLive (TAKE HIM!), callDad, palm (Kate's scarred palm round a mug), flash08 (2008: a small hand slipping from a woman's, above black water), feet (Ollie's wet feet with grass), wrist (red finger marks)", category: "theme", themes: ["horror", "home", "insert"], tags: ["insert", "close-up", "phone", "clock", "hand", "clue"], radius: 0.05, height: 0.96,
+    ferryWater: { name: "River and flood (night)", desc: "the river behind 4 Ferry Lane and its flood, dark rippling water with lamp glints, placed absolutely in ferryBack whatever `at` is (put `at` where the shot looks); variants river (in its bed), lawn (over the bottom of the garden from z 15), high (over the lawn from z 11), garden (Part 1: ONLY over our garden, between the side fences from z 10.8 to the bank, a bright edge where it stops, next door's lawns dry under their security light); steady steps make it flow", category: "theme", themes: ["horror", "night", "flood"], tags: ["water", "river", "flood"], radius: 0.05, height: 0.1,
+      build: () => undefined, rig: (a, v) => waterRig(a, v ?? "river"), steps: ["it flows"], stepCount: () => 2000, variants: { river: () => undefined, lawn: () => undefined, high: () => undefined, garden: () => undefined } },
+    olPhoneCam: { name: "Phone camera overlay (What Ollie Says at 3 A.M.)", desc: "Ava's phone camera over a shot: an overlay card 0.27 x 0.48 m held 0.5 m in front of an `at` camera (fov 50), wherever the camera moves: corner brackets, REC, the clock 03:00:0s ticking every 7 steps (give it steady steps); variant post adds the typed post text (He's six. / He's never heard Polish. / That isn't his voice.)", category: "theme", themes: ["horror", "phone", "overlay"], tags: ["phone", "camera", "overlay", "recording"], radius: 0.05, height: 0.48,
+      build: () => undefined, rig: (a, v) => phoneCamRig(a, v ?? "rec"), steps: ["it ticks"], stepCount: () => 400, variants: { rec: () => undefined, post: () => undefined } },
+    olInsert: { name: "Close insert (What Ollie Says at 3 A.M.)", desc: "an upright 9:16 insert card (0.54 x 0.96 m, facing +z), `at` = its centre: an `at` camera 1.0 m in front at fov 51 sees only the card. Variants: knock (Ava's knuckles on the shared wall), clock (red LED clock: 2:59, then 3:00 at step 1), clock258, rec (her phone recording), trans (the translator: line 1, then both at step 1), transLive (TAKE HIM!), callDad, palm (Kate's scarred palm round a mug), flash08 (2008: a small hand slipping from a woman's, above black water), feet (Ollie's wet feet with grass), wrist (red finger marks); Part 1: phoneClock (Ava's lock screen 02:59, then 03:00 at step 1), phone258, towelPhoto (Kate's tea towel pressed to the photo), tinLid (the dinosaur sticker, Ava's thumb), tinOpen (dry tissue, the wet photo, a drop; step 1 the drop on her fingers), photoBack (Kubuś · 2008), match (the photo beside Ollie's school photo; step 1 laid over it, a tear), pull (V-ripples dragging his pyjama legs), kateFeet (wet feet, grass, footprints on tiles), photoTable (the wet photo on the kitchen table), endCard (PART 2: THE WATER GAME)", category: "theme", themes: ["horror", "home", "insert"], tags: ["insert", "close-up", "phone", "clock", "hand", "clue"], radius: 0.05, height: 0.96,
       build: () => undefined, rig: (a, v) => insertRig(a, v ?? "knock"), steps: ["its next state"], stepCount: () => 2000,
       variants: Object.fromEntries(Object.keys(INSERTS).map((k) => [k, () => undefined])) },
     rain: { name: "Rain (falling, around the camera)", desc: "heavy rain: thin streaks falling all round the camera (1.2-15 m), never inside the house at 4 Ferry Lane (z < 0.05); camera-relative, so `at` can be any point in the shot (its look point); give it steady steps 0.15 s apart (its clock)", category: "theme", themes: ["night", "weather", "horror"], tags: ["rain", "weather", "storm"], radius: 0.05, height: 0.1,
@@ -445,11 +667,13 @@ export const OLLIE_THEME: Theme = {
   },
   sets: { ollieRoom: { id: "ollieRoom", title: "Ollie's bedroom at 4 Ferry Lane: his bed against the wall he shares with Ava, the shelf with the nursery camera", lights: ["interiorCool", "night", "interior"], build: ollieRoom },
     avaRoom: { id: "avaRoom", title: "Ava's bedroom: her bed against the shared wall, Ollie's drawing and fairy lights over it, the window on the garden", lights: ["interiorCool", "night", "interior"], build: avaRoom },
-    ferryKitchen: { id: "ferryKitchen", title: "The kitchen at 4 Ferry Lane: the table and bench, the stove, the back door with its top bolt, the window on the garden", lights: ["interior", "interiorCool", "night"], build: ferryKitchen },
+    ferryKitchen: { id: "ferryKitchen", title: "The kitchen at 4 Ferry Lane: the table and bench, the stove, the back door with its top bolt, the window on the garden", lights: ["interior", "interiorCool", "night"], build: () => ferryKitchen() },
+    ferryKitchenNight: { id: "ferryKitchenNight", title: "The kitchen at 4 Ferry Lane after dark: a dark window and dark door glass", lights: ["night", "interiorCool", "interior"], build: () => ferryKitchen(true) },
     ferryBack: { id: "ferryBack", title: "4 Ferry Lane, the back at night: the kitchen extension's flat roof under the open bedroom window, the garden down to the river", lights: ["night"], build: ferryBack } },
-  layouts: { ferryBack: { spots: FERRY_SPOTS, views: FERRY_VIEWS }, ollieRoom: { spots: OLLIE_SPOTS, views: OLLIE_VIEWS }, avaRoom: { spots: AVA_SPOTS, views: AVA_VIEWS }, ferryKitchen: { spots: KITCHEN_SPOTS, views: KITCHEN_VIEWS } },
+  layouts: { ferryBack: { spots: FERRY_SPOTS, views: FERRY_VIEWS }, ollieRoom: { spots: OLLIE_SPOTS, views: OLLIE_VIEWS }, avaRoom: { spots: AVA_SPOTS, views: AVA_VIEWS }, ferryKitchen: { spots: KITCHEN_SPOTS, views: KITCHEN_VIEWS }, ferryKitchenNight: { spots: KITCHEN_SPOTS, views: KITCHEN_VIEWS } },
   setMeta: { ollieRoom: { name: "Ollie's bedroom", desc: "a small boy's bedroom (3.4 x 3.2 m, open toward +z): the bed along x with its head at the right wall (the wall shared with Ava's room), 0.85 m off the back wall; spots bed (sitting up in bed: mode sit), asleep (only the head above the duvet), kneel (BEHIND the bed, 0.36 m below the floor: reads as kneeling at the bedside), tuck, door, floor; the shelf with the nursery camera on the left wall; the garden window in the back wall", themes: ["home", "family", "horror"], tags: ["bedroom", "child", "bed", "night"] },
     avaRoom: { name: "Ava's bedroom", desc: "a teenager's bedroom (3.4 x 3.2 m, open toward +z), the mirror of Ollie's: the bed's head at the LEFT wall (the wall shared with Ollie's room) under his crayon drawing and a string of fairy lights; a bedside table with a red LED clock; spots bed, asleep, bedEdge, window, door, floor", themes: ["home", "family", "horror"], tags: ["bedroom", "teen", "bed", "night"] },
     ferryKitchen: { name: "Kitchen, 4 Ferry Lane", desc: "the family kitchen (4.4 x 3.6 m, open toward +z): back wall with the garden window over the counter (x -1.0) and the half-glazed back door (x 1.35) with a brass top bolt; a table in the middle with a bench behind it (spot tableBack, mode sit) and two chairs (tableL, tableR); stove on the left wall (spot stove); the calendar on the right wall; spots door, stairs, floor", themes: ["home", "family"], tags: ["kitchen", "table", "door", "bolt", "breakfast"] },
+    ferryKitchenNight: { name: "Kitchen, 4 Ferry Lane (night)", desc: "after dark (a dark pane in the garden window, dark door glass): the family kitchen (4.4 x 3.6 m, open toward +z): back wall with the garden window over the counter (x -1.0) and the half-glazed back door (x 1.35) with a brass top bolt; a table in the middle with a bench behind it (spot tableBack, mode sit) and two chairs (tableL, tableR); stove on the left wall (spot stove); the calendar on the right wall; spots door, stairs, floor", themes: ["home", "family"], tags: ["kitchen", "table", "door", "bolt", "breakfast"] },
     ferryBack: { name: "4 Ferry Lane (back, night)", desc: "the house's rear wall faces +z at z 0 (x -3..3). The kitchen extension x -3..0.6, z 0..3.4, its flat felt roof at y 2.72 with a 30 cm brick upstand (top 3.02) on the open edges; actors stand on the roof at y 2.72 (spots roofEdge, roofEdgeOllie, roofWindow, roofMid, roofWall). Kate and Mark's bedroom behind the open sash window (x -1.75..-0.65, sill 3.22), floor 2.8 (spots roomWindow, roomBed, roomDoor). Patio z 3.4..5.2, lawn to the back fence and gate at z 21, river beyond; add ferryWater for the water and rain for the weather", themes: ["horror", "home", "night", "river"], tags: ["house", "garden", "roof", "river", "flood", "bedroom", "window"] } },
 };

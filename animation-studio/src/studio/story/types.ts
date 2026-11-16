@@ -85,6 +85,9 @@ export type ActorSpec = {
   idle?: number;              // idle life amount (default 1, 0 = still)
   /** false = never blinks (eyes held open: a sleepwalker, What Ollie Says at 3 A.M.); default true */
   blink?: boolean;
+  /** true = while speaking only the mouth moves: the eyes and brows stay those of `face` (a sleepwalker's fixed
+   *  stare, a sleeper's shut eyes, grief; What Ollie Says at 3 A.M.); default false (the talking face) */
+  keepFace?: boolean;
   /** walk (or run) in profile from `at` to `to`, between t0 and t1 seconds (or from / until spoken words) */
   walk?: { to: Where; t0: number; t1: number; mode?: "walk" | "run" | "ride"; from?: WordRef; until?: WordRef;
     /** stairs (Video 06): the foot contacts between `at` and `to` (one per stride half, e.g. the middle of every second
