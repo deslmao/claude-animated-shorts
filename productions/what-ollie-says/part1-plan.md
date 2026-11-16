@@ -73,7 +73,7 @@ The old `ollie-1` storyboard (32 shots) follows the superseded script. Its sets,
 ## 5. Progress: stills APPROVED (17 Nov 2026), and `keepFace` approved
 The owner's only change: Ava's frightened face became the wide-eyed `shock` face, held while she speaks. It was checked in five stills.
 
-**Next:** the native Polish check (gate G1, arranged by the owner), then the voice audition, then narration.
+**Gate G1 (17 Nov):** Polish section A verified without a native speaker, by grammatical analysis checked against published references, with no material issues (`polish-verification.md` §A2). Two optional wording notes are left for the owner; the lock is unchanged. **Next:** the voice audition, then narration.
 **Built (additions only, `themes/ollie/`):**
 - `ferryWater` variant `garden`, with the security light;
 - the `olPhoneCam` overlay;
