@@ -1,5 +1,5 @@
 {
- "reused": 43,
+ "reused": 39,
  "missing": [],
  "byKind": {
   "character": [
@@ -34,31 +34,27 @@
   ],
   "sfx": [
    "camera_shutter",
-   "thud",
    "blip_up",
-   "creak",
    "swish_soft",
    "drip",
    "sting_low",
-   "latch_click",
    "clock_tick",
+   "creak",
    "step_floor",
+   "latch_click",
    "storm_wind",
    "splash",
    "water_pour",
+   "thud",
    "whoosh_low"
   ],
   "act": [
    "neutral",
    "suspicious",
    "happy",
-   "determined",
    "sad",
-   "confused",
-   "shock",
-   "nervous",
-   "proud",
-   "scared"
+   "scared",
+   "determined"
   ],
   "ambience": [
    "amb_storm"

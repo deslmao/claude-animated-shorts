@@ -1,0 +1,50 @@
+{
+ "hash": "0c549a25031258",
+ "text": "Kuba. The boy in the photo.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 1.997,
+ "dur": 2.037551,
+ "words": [
+  {
+   "w": "Kuba.",
+   "t0": 0,
+   "t1": 0.569
+  },
+  {
+   "w": "The",
+   "t0": 0.615,
+   "t1": 0.731
+  },
+  {
+   "w": "boy",
+   "t0": 0.778,
+   "t1": 0.94
+  },
+  {
+   "w": "in",
+   "t0": 0.975,
+   "t1": 1.033
+  },
+  {
+   "w": "the",
+   "t0": 1.068,
+   "t1": 1.138
+  },
+  {
+   "w": "photo.",
+   "t0": 1.173,
+   "t1": 1.997
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-16T22:45:25.380Z"
+}

@@ -4,17 +4,17 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-16T22:31:59.324Z",
-   "inputs": "1b59a28ee753e8n",
-   "detail": "valid; 68 warning(s):\n  total length 124.3 s (Shorts target 55-65 s)\n  shot 1 (ollieRoom): light \"night\" on an indoor set\n  shot 2 (ollieRoom): light \"night\" on an indoor set\n  shot 3 (ollieRoom): light \"night\" on an indoor set\n  shot 13 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 17 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 18 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 19 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 20 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 26 (ollieRoom): light \"night\" on an indoor set\n  shot 27 (ollieRoom): light \"night\" on an indoor set\n  shot 28 (ollieRoom): light \"night\" on an indoor set\n  shot 29 (ollieRoom): light \"night\" on an indoor set\n  shot 30 (ollieRoom): light \"night\" on an indoor set\n  shot 31 (ollieRoom): light \"night\" on an indoor set\n  shot 32 (ollieRoom): light \"night\" on an indoor set\n  shot 33 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 34 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 40 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 42 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 55 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 2 (ollieRoom): ollie fills 50 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 3 (ollieRoom): ollie fills 49 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 6 (ferryKitchen): kate fills 44 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 9 (ferryKitchen): kate fills 62 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 9 (ferryKitchen): kate's hand (shrug) is out of frame @1.4s (side): widen the shot or change the gesture\n  shot 10 (ferryKitchen): ollie fills 95 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 12 (ferryBack): kate fills 33 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 14 (ferryBack): kate fills 84 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 15 (ferryBack): ava fills 95 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 15 (ferryBack): ava's hand (present) is out of frame @0.2s (side): widen the shot or change the gesture\n  shot 16 (ferryBack): kate fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 21 (ferryBack): ava's raised hand (spread) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 21 (ferryBack): ava fills 83 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 22 (ferryKitchenNight): mark's hand (shrug) is out of frame @3.0s (side): widen the shot or change the gesture\n  shot 22 (ferryKitchenNight): mark fills 65 % of the frame in the foreground @4.4s (is it hiding the action?)\n  shot 22 (ferryKitchenNight): ava fills 95 % of the frame in the foreground @5.4s (is it hiding the action?)\n  shot 25 (ollieRoom): ollie fills 29 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 27 (ollieRoom): ollie fills 38 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 27 (ollieRoom): ava fills 31 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 27 (ollieRoom): ollie's hand (hang) is out of frame @2.6s (side): widen the shot or change the gesture\n  shot 29 (ollieRoom): ollie fills 41 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 30 (ollieRoom): kate fills 38 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 31 (ollieRoom): kate fills 34 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 31 (ollieRoom): ollie fills 34 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 33 (ferryKitchenNight): ollie fills 30 % of the frame in the foreground @1.0s (is it hiding the action?)\n  shot 33 (ferryKitchenNight): kate fills 29 % of the frame in the foreground @1.2s (is it hiding the action?)\n  shot 34 (ferryKitchenNight): kate fills 29 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 36 (ferryBack): kate's hand (shrug) is out of frame @2.0s (side): widen the shot or change the gesture\n  shot 36 (ferryBack): kate fills 49 % of the frame in the foreground @2.8s (is it hiding the action?)\n  shot 36 (ferryBack): ollie fills 31 % of the frame in the foreground @2.8s (is it hiding the action?)\n  shot 37 (ferryBack): kate fills 29 % of the frame in the foreground @1.6s (is it hiding the action?)\n  shot 37 (ferryBack): ollie fills 35 % of the frame in the foreground @1.6s (is it hiding the action?)\n  shot 38 (ferryBack): ollie fills 59 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 39 (ferryBack): kate fills 72 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 41 (ferryBack): ava fills 28 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 43 (ferryBack): ollie fills 59 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 44 (ferryBack): ollie fills 38 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 45 (ferryBack): ava fills 65 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 46 (ferryBack): ava fills 53 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 46 (ferryBack): ollie fills 31 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 49 (ferryKitchenNight): ollieT fills 94 % of the frame in the foreground @1.4s (is it hiding the action?)\n  shot 49 (ferryKitchenNight): ava fills 95 % of the frame in the foreground @2.4s (is it hiding the action?)\n  shot 50 (ferryKitchenNight): kate fills 68 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 50 (ferryKitchenNight): kate's hand (hang) is out of frame @1.4s (side): widen the shot or change the gesture\n  shot 51 (ferryKitchenNight): ava fills 94 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 52 (ferryKitchenNight): kate fills 55 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 53 (ferryKitchenNight): ollieT fills 90 % of the frame in the foreground @0.0s (is it hiding the action?)"
+   "at": "2026-11-16T22:47:42.318Z",
+   "inputs": "1cd8b7cea2bbbcn",
+   "detail": "valid; 42 warning(s):\n  total length 110.0 s (Shorts target 55-65 s)\n  shot 1 (ollieRoom): light \"night\" on an indoor set\n  shot 2 (ollieRoom): light \"night\" on an indoor set\n  shot 8 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 9 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 10 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 11 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 12 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 13 (ollieRoom): light \"night\" on an indoor set\n  shot 14 (ollieRoom): light \"night\" on an indoor set\n  shot 15 (ollieRoom): light \"night\" on an indoor set\n  shot 16 (ollieRoom): light \"night\" on an indoor set\n  shot 17 (ollieRoom): light \"night\" on an indoor set\n  shot 18 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 24 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 26 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 36 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 2 (ollieRoom): ollie fills 50 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 5 (ferryKitchen): kate fills 44 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 7 (ferryBack): kate fills 33 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 13 (ollieRoom): ollie fills 38 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 13 (ollieRoom): ava fills 31 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 14 (ollieRoom): ava fills 79 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 16 (ollieRoom): kate fills 38 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 17 (ollieRoom): kate fills 34 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 17 (ollieRoom): ollie fills 34 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 18 (ferryKitchenNight): ollie fills 30 % of the frame in the foreground @1.0s (is it hiding the action?)\n  shot 18 (ferryKitchenNight): kate fills 28 % of the frame in the foreground @1.2s (is it hiding the action?)\n  shot 20 (ferryBack): kate's hand (shrug) is out of frame @1.8s (side): widen the shot or change the gesture\n  shot 21 (ferryBack): kate fills 29 % of the frame in the foreground @1.4s (is it hiding the action?)\n  shot 21 (ferryBack): ollie fills 35 % of the frame in the foreground @1.4s (is it hiding the action?)\n  shot 22 (ferryBack): ollie fills 59 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 23 (ferryBack): kate fills 71 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 25 (ferryBack): ava fills 28 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 27 (ferryBack): ollie fills 38 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 28 (ferryBack): ava fills 65 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 29 (ferryBack): ava fills 53 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 29 (ferryBack): ollie fills 31 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 31 (ferryKitchenNight): kate fills 68 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 32 (ferryKitchenNight): ava fills 94 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 33 (ferryKitchenNight): kate fills 55 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 34 (ferryKitchenNight): ollieT fills 90 % of the frame in the foreground @0.0s (is it hiding the action?)"
   },
   "assets": {
    "state": "done",
-   "at": "2026-11-16T22:31:59.327Z",
-   "inputs": "1b59a28ee753e8",
-   "detail": "43 library assets reused, none missing",
+   "at": "2026-11-16T22:47:42.322Z",
+   "inputs": "1cd8b7cea2bbbc",
+   "detail": "39 library assets reused, none missing",
    "data": {
-    "reused": 43,
+    "reused": 39,
     "missing": [],
     "byKind": {
      "character": [
@@ -49,31 +49,27 @@
      ],
      "sfx": [
       "camera_shutter",
-      "thud",
       "blip_up",
-      "creak",
       "swish_soft",
       "drip",
       "sting_low",
-      "latch_click",
       "clock_tick",
+      "creak",
       "step_floor",
+      "latch_click",
       "storm_wind",
       "splash",
       "water_pour",
+      "thud",
       "whoosh_low"
      ],
      "act": [
       "neutral",
       "suspicious",
       "happy",
-      "determined",
       "sad",
-      "confused",
-      "shock",
-      "nervous",
-      "proud",
-      "scared"
+      "scared",
+      "determined"
      ],
      "ambience": [
       "amb_storm"
@@ -83,33 +79,33 @@
   },
   "approval": {
    "state": "done",
-   "at": "2026-11-16T22:31:59.330Z",
-   "inputs": "0fc6eba59797bf",
+   "at": "2026-11-16T22:47:42.325Z",
+   "inputs": "0e382f3d0dddf5",
    "detail": "all narration already generated (no cost)"
   },
   "narration": {
    "state": "done",
-   "at": "2026-11-16T22:31:59.331Z",
-   "inputs": "0fc6eba59797bf",
+   "at": "2026-11-16T22:47:42.326Z",
+   "inputs": "0e382f3d0dddf5",
    "detail": "all lines already generated (cached)"
   },
   "sound": {
    "state": "done",
-   "at": "2026-11-16T22:32:50.695Z",
-   "inputs": "179ee0ee71fac8",
-   "detail": "soundtrack built: -14.2 LUFS"
+   "at": "2026-11-16T22:48:28.494Z",
+   "inputs": "15947e0b8fd655",
+   "detail": "soundtrack built: -14.1 LUFS"
   },
   "checks": {
    "state": "done",
-   "at": "2026-11-16T22:32:55.276Z",
-   "inputs": "179ee0ee71fac8",
+   "at": "2026-11-16T22:48:33.618Z",
+   "inputs": "15947e0b8fd655",
    "detail": "preflight PASS; library intact"
   }
  },
  "approval": {
-  "scriptHash": "0fc6eba59797bf",
-  "chars": 460,
-  "at": "2026-11-16T20:59:47.339Z",
+  "scriptHash": "011decc09bbb68",
+  "chars": 1338,
+  "at": "2026-11-16T22:45:13.668Z",
   "by": "the owner, in the conversation"
  }
 }

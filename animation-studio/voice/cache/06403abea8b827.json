@@ -1,0 +1,125 @@
+{
+ "hash": "06403abea8b827",
+ "text": "And at three a.m. tonight, it happens again. Do you show her the video? Or keep your brother away from her?",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 6.13,
+ "dur": 6.164898,
+ "words": [
+  {
+   "w": "And",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "at",
+   "t0": 0.209,
+   "t1": 0.29
+  },
+  {
+   "w": "three",
+   "t0": 0.348,
+   "t1": 0.58
+  },
+  {
+   "w": "a.m.",
+   "t0": 0.627,
+   "t1": 0.952
+  },
+  {
+   "w": "tonight,",
+   "t0": 0.975,
+   "t1": 1.382
+  },
+  {
+   "w": "it",
+   "t0": 1.416,
+   "t1": 1.533
+  },
+  {
+   "w": "happens",
+   "t0": 1.579,
+   "t1": 1.869
+  },
+  {
+   "w": "again.",
+   "t0": 1.904,
+   "t1": 2.426
+  },
+  {
+   "w": "Do",
+   "t0": 2.891,
+   "t1": 2.995
+  },
+  {
+   "w": "you",
+   "t0": 3.053,
+   "t1": 3.123
+  },
+  {
+   "w": "show",
+   "t0": 3.17,
+   "t1": 3.332
+  },
+  {
+   "w": "her",
+   "t0": 3.379,
+   "t1": 3.448
+  },
+  {
+   "w": "the",
+   "t0": 3.483,
+   "t1": 3.553
+  },
+  {
+   "w": "video?",
+   "t0": 3.587,
+   "t1": 4.122
+  },
+  {
+   "w": "Or",
+   "t0": 4.342,
+   "t1": 4.47
+  },
+  {
+   "w": "keep",
+   "t0": 4.528,
+   "t1": 4.69
+  },
+  {
+   "w": "your",
+   "t0": 4.725,
+   "t1": 4.83
+  },
+  {
+   "w": "brother",
+   "t0": 4.865,
+   "t1": 5.12
+  },
+  {
+   "w": "away",
+   "t0": 5.178,
+   "t1": 5.375
+  },
+  {
+   "w": "from",
+   "t0": 5.422,
+   "t1": 5.561
+  },
+  {
+   "w": "her?",
+   "t0": 5.631,
+   "t1": 6.13
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-16T22:45:30.757Z"
+}

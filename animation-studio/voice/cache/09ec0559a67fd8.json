@@ -1,0 +1,70 @@
+{
+ "hash": "09ec0559a67fd8",
+ "text": "You ask your dad if Mum ever had another baby.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.786,
+ "dur": 2.821224,
+ "words": [
+  {
+   "w": "You",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "ask",
+   "t0": 0.255,
+   "t1": 0.464
+  },
+  {
+   "w": "your",
+   "t0": 0.511,
+   "t1": 0.627
+  },
+  {
+   "w": "dad",
+   "t0": 0.673,
+   "t1": 0.906
+  },
+  {
+   "w": "if",
+   "t0": 0.94,
+   "t1": 1.022
+  },
+  {
+   "w": "Mum",
+   "t0": 1.091,
+   "t1": 1.289
+  },
+  {
+   "w": "ever",
+   "t0": 1.347,
+   "t1": 1.498
+  },
+  {
+   "w": "had",
+   "t0": 1.544,
+   "t1": 1.672
+  },
+  {
+   "w": "another",
+   "t0": 1.718,
+   "t1": 1.962
+  },
+  {
+   "w": "baby.",
+   "t0": 2.009,
+   "t1": 2.786
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-16T22:45:22.442Z"
+}

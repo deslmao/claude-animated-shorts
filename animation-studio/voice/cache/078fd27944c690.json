@@ -1,0 +1,95 @@
+{
+ "hash": "078fd27944c690",
+ "text": "So you sleep on your brother's floor. At two fifty-eight, he mumbles in his sleep.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 5.387,
+ "dur": 5.433469,
+ "words": [
+  {
+   "w": "So",
+   "t0": 0,
+   "t1": 0.186
+  },
+  {
+   "w": "you",
+   "t0": 0.244,
+   "t1": 0.337
+  },
+  {
+   "w": "sleep",
+   "t0": 0.418,
+   "t1": 0.673
+  },
+  {
+   "w": "on",
+   "t0": 0.731,
+   "t1": 0.801
+  },
+  {
+   "w": "your",
+   "t0": 0.848,
+   "t1": 0.952
+  },
+  {
+   "w": "brother's",
+   "t0": 0.998,
+   "t1": 1.335
+  },
+  {
+   "w": "floor.",
+   "t0": 1.382,
+   "t1": 1.939
+  },
+  {
+   "w": "At",
+   "t0": 2.473,
+   "t1": 2.659
+  },
+  {
+   "w": "two",
+   "t0": 2.694,
+   "t1": 2.879
+  },
+  {
+   "w": "fifty-eight,",
+   "t0": 2.961,
+   "t1": 3.738
+  },
+  {
+   "w": "he",
+   "t0": 3.878,
+   "t1": 3.959
+  },
+  {
+   "w": "mumbles",
+   "t0": 4.029,
+   "t1": 4.389
+  },
+  {
+   "w": "in",
+   "t0": 4.435,
+   "t1": 4.505
+  },
+  {
+   "w": "his",
+   "t0": 4.551,
+   "t1": 4.632
+  },
+  {
+   "w": "sleep.",
+   "t0": 4.679,
+   "t1": 5.387
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-16T22:45:23.737Z"
+}

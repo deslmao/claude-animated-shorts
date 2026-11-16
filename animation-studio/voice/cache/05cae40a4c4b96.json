@@ -1,0 +1,80 @@
+{
+ "hash": "05cae40a4c4b96",
+ "text": "The garden is flooded. Only yours. Next door's lawn is completely dry.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.969,
+ "dur": 5.01551,
+ "words": [
+  {
+   "w": "The",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "garden",
+   "t0": 0.221,
+   "t1": 0.522
+  },
+  {
+   "w": "is",
+   "t0": 0.569,
+   "t1": 0.65
+  },
+  {
+   "w": "flooded.",
+   "t0": 0.697,
+   "t1": 1.184
+  },
+  {
+   "w": "Only",
+   "t0": 1.37,
+   "t1": 1.614
+  },
+  {
+   "w": "yours.",
+   "t0": 1.683,
+   "t1": 2.206
+  },
+  {
+   "w": "Next",
+   "t0": 2.67,
+   "t1": 2.914
+  },
+  {
+   "w": "door's",
+   "t0": 2.949,
+   "t1": 3.204
+  },
+  {
+   "w": "lawn",
+   "t0": 3.262,
+   "t1": 3.518
+  },
+  {
+   "w": "is",
+   "t0": 3.564,
+   "t1": 3.634
+  },
+  {
+   "w": "completely",
+   "t0": 3.68,
+   "t1": 4.122
+  },
+  {
+   "w": "dry.",
+   "t0": 4.168,
+   "t1": 4.969
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-16T22:45:26.733Z"
+}

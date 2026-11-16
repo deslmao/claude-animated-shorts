@@ -1,0 +1,90 @@
+{
+ "hash": "12978ccef9deef",
+ "text": "On the back: Kubuś. Two thousand and eight. Three years before you were born.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 5.201,
+ "dur": 5.250612,
+ "words": [
+  {
+   "w": "On",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "the",
+   "t0": 0.197,
+   "t1": 0.267
+  },
+  {
+   "w": "back:",
+   "t0": 0.313,
+   "t1": 0.662
+  },
+  {
+   "w": "Kubuś.",
+   "t0": 0.731,
+   "t1": 1.451
+  },
+  {
+   "w": "Two",
+   "t0": 1.788,
+   "t1": 1.962
+  },
+  {
+   "w": "thousand",
+   "t0": 2.032,
+   "t1": 2.392
+  },
+  {
+   "w": "and",
+   "t0": 2.45,
+   "t1": 2.519
+  },
+  {
+   "w": "eight.",
+   "t0": 2.577,
+   "t1": 2.914
+  },
+  {
+   "w": "Three",
+   "t0": 3.251,
+   "t1": 3.541
+  },
+  {
+   "w": "years",
+   "t0": 3.599,
+   "t1": 3.889
+  },
+  {
+   "w": "before",
+   "t0": 3.947,
+   "t1": 4.214
+  },
+  {
+   "w": "you",
+   "t0": 4.249,
+   "t1": 4.319
+  },
+  {
+   "w": "were",
+   "t0": 4.354,
+   "t1": 4.47
+  },
+  {
+   "w": "born.",
+   "t0": 4.493,
+   "t1": 5.201
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-16T22:45:21.174Z"
+}

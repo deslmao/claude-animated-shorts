@@ -1,0 +1,90 @@
+{
+ "hash": "1b86675e2ac49f",
+ "text": "She's drying it with a tea towel. Then she hides it under her bed.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.04,
+ "dur": 4.075102,
+ "words": [
+  {
+   "w": "She's",
+   "t0": 0,
+   "t1": 0.255
+  },
+  {
+   "w": "drying",
+   "t0": 0.29,
+   "t1": 0.58
+  },
+  {
+   "w": "it",
+   "t0": 0.627,
+   "t1": 0.685
+  },
+  {
+   "w": "with",
+   "t0": 0.72,
+   "t1": 0.824
+  },
+  {
+   "w": "a",
+   "t0": 0.859,
+   "t1": 0.894
+  },
+  {
+   "w": "tea",
+   "t0": 0.94,
+   "t1": 1.103
+  },
+  {
+   "w": "towel.",
+   "t0": 1.149,
+   "t1": 1.66
+  },
+  {
+   "w": "Then",
+   "t0": 2.125,
+   "t1": 2.334
+  },
+  {
+   "w": "she",
+   "t0": 2.392,
+   "t1": 2.496
+  },
+  {
+   "w": "hides",
+   "t0": 2.577,
+   "t1": 2.844
+  },
+  {
+   "w": "it",
+   "t0": 2.879,
+   "t1": 2.949
+  },
+  {
+   "w": "under",
+   "t0": 3.007,
+   "t1": 3.193
+  },
+  {
+   "w": "her",
+   "t0": 3.251,
+   "t1": 3.332
+  },
+  {
+   "w": "bed.",
+   "t0": 3.39,
+   "t1": 4.04
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-16T22:45:19.265Z"
+}

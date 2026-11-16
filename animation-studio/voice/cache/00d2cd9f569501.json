@@ -1,0 +1,70 @@
+{
+ "hash": "00d2cd9f569501",
+ "text": "And the boy in it looks exactly like your brother.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.972,
+ "dur": 3.004082,
+ "words": [
+  {
+   "w": "And",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "the",
+   "t0": 0.209,
+   "t1": 0.279
+  },
+  {
+   "w": "boy",
+   "t0": 0.325,
+   "t1": 0.546
+  },
+  {
+   "w": "in",
+   "t0": 0.615,
+   "t1": 0.685
+  },
+  {
+   "w": "it",
+   "t0": 0.743,
+   "t1": 0.882
+  },
+  {
+   "w": "looks",
+   "t0": 1.103,
+   "t1": 1.335
+  },
+  {
+   "w": "exactly",
+   "t0": 1.393,
+   "t1": 1.858
+  },
+  {
+   "w": "like",
+   "t0": 1.916,
+   "t1": 2.078
+  },
+  {
+   "w": "your",
+   "t0": 2.113,
+   "t1": 2.229
+  },
+  {
+   "w": "brother.",
+   "t0": 2.276,
+   "t1": 2.972
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-16T22:45:21.819Z"
+}

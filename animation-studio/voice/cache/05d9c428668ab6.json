@@ -1,0 +1,95 @@
+{
+ "hash": "05d9c428668ab6",
+ "text": "And there's a scar across her palm. She's never told anyone how she got it.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.458,
+ "dur": 4.493061,
+ "words": [
+  {
+   "w": "And",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "there's",
+   "t0": 0.197,
+   "t1": 0.395
+  },
+  {
+   "w": "a",
+   "t0": 0.43,
+   "t1": 0.453
+  },
+  {
+   "w": "scar",
+   "t0": 0.511,
+   "t1": 0.882
+  },
+  {
+   "w": "across",
+   "t0": 0.94,
+   "t1": 1.231
+  },
+  {
+   "w": "her",
+   "t0": 1.265,
+   "t1": 1.358
+  },
+  {
+   "w": "palm.",
+   "t0": 1.428,
+   "t1": 1.95
+  },
+  {
+   "w": "She's",
+   "t0": 2.206,
+   "t1": 2.426
+  },
+  {
+   "w": "never",
+   "t0": 2.473,
+   "t1": 2.659
+  },
+  {
+   "w": "told",
+   "t0": 2.717,
+   "t1": 2.926
+  },
+  {
+   "w": "anyone",
+   "t0": 2.984,
+   "t1": 3.344
+  },
+  {
+   "w": "how",
+   "t0": 3.379,
+   "t1": 3.483
+  },
+  {
+   "w": "she",
+   "t0": 3.529,
+   "t1": 3.622
+  },
+  {
+   "w": "got",
+   "t0": 3.704,
+   "t1": 3.901
+  },
+  {
+   "w": "it.",
+   "t0": 3.959,
+   "t1": 4.458
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-16T22:45:18.053Z"
+}

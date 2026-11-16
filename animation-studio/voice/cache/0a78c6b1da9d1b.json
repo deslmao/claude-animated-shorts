@@ -1,0 +1,55 @@
+{
+ "hash": "0a78c6b1da9d1b",
+ "text": "Then the water starts pulling him in.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.09,
+ "dur": 2.115918,
+ "words": [
+  {
+   "w": "Then",
+   "t0": 0,
+   "t1": 0.221
+  },
+  {
+   "w": "the",
+   "t0": 0.267,
+   "t1": 0.337
+  },
+  {
+   "w": "water",
+   "t0": 0.383,
+   "t1": 0.685
+  },
+  {
+   "w": "starts",
+   "t0": 0.731,
+   "t1": 1.01
+  },
+  {
+   "w": "pulling",
+   "t0": 1.057,
+   "t1": 1.312
+  },
+  {
+   "w": "him",
+   "t0": 1.358,
+   "t1": 1.451
+  },
+  {
+   "w": "in.",
+   "t0": 1.509,
+   "t1": 2.09
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-16T22:45:28.228Z"
+}

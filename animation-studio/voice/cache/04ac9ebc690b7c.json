@@ -1,0 +1,100 @@
+{
+ "hash": "04ac9ebc690b7c",
+ "text": "That's Polish. He's six. He's never heard a word of it. And that isn't his voice.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 5.201,
+ "dur": 5.250612,
+ "words": [
+  {
+   "w": "That's",
+   "t0": 0,
+   "t1": 0.325
+  },
+  {
+   "w": "Polish.",
+   "t0": 0.383,
+   "t1": 0.917
+  },
+  {
+   "w": "He's",
+   "t0": 0.975,
+   "t1": 1.184
+  },
+  {
+   "w": "six.",
+   "t0": 1.219,
+   "t1": 1.718
+  },
+  {
+   "w": "He's",
+   "t0": 1.904,
+   "t1": 2.078
+  },
+  {
+   "w": "never",
+   "t0": 2.125,
+   "t1": 2.299
+  },
+  {
+   "w": "heard",
+   "t0": 2.345,
+   "t1": 2.496
+  },
+  {
+   "w": "a",
+   "t0": 2.531,
+   "t1": 2.554
+  },
+  {
+   "w": "word",
+   "t0": 2.601,
+   "t1": 2.798
+  },
+  {
+   "w": "of",
+   "t0": 2.833,
+   "t1": 2.891
+  },
+  {
+   "w": "it.",
+   "t0": 2.949,
+   "t1": 3.239
+  },
+  {
+   "w": "And",
+   "t0": 3.646,
+   "t1": 3.785
+  },
+  {
+   "w": "that",
+   "t0": 3.843,
+   "t1": 3.994
+  },
+  {
+   "w": "isn't",
+   "t0": 4.052,
+   "t1": 4.261
+  },
+  {
+   "w": "his",
+   "t0": 4.307,
+   "t1": 4.412
+  },
+  {
+   "w": "voice.",
+   "t0": 4.47,
+   "t1": 5.201
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-16T22:45:16.173Z"
+}

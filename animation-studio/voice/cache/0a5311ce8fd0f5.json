@@ -1,0 +1,70 @@
+{
+ "hash": "0a5311ce8fd0f5",
+ "text": "At breakfast, you play it to your mum. She's Polish.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.344,
+ "dur": 3.369796,
+ "words": [
+  {
+   "w": "At",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "breakfast,",
+   "t0": 0.221,
+   "t1": 0.801
+  },
+  {
+   "w": "you",
+   "t0": 0.929,
+   "t1": 1.033
+  },
+  {
+   "w": "play",
+   "t0": 1.103,
+   "t1": 1.265
+  },
+  {
+   "w": "it",
+   "t0": 1.312,
+   "t1": 1.382
+  },
+  {
+   "w": "to",
+   "t0": 1.405,
+   "t1": 1.451
+  },
+  {
+   "w": "your",
+   "t0": 1.509,
+   "t1": 1.625
+  },
+  {
+   "w": "mum.",
+   "t0": 1.672,
+   "t1": 2.067
+  },
+  {
+   "w": "She's",
+   "t0": 2.229,
+   "t1": 2.461
+  },
+  {
+   "w": "Polish.",
+   "t0": 2.508,
+   "t1": 3.344
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-16T22:45:16.861Z"
+}

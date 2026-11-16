@@ -1,0 +1,80 @@
+{
+ "hash": "06d402abd8858b",
+ "text": "The photo is soaking wet. The tin it's in is bone dry.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.715,
+ "dur": 3.761633,
+ "words": [
+  {
+   "w": "The",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "photo",
+   "t0": 0.197,
+   "t1": 0.546
+  },
+  {
+   "w": "is",
+   "t0": 0.615,
+   "t1": 0.697
+  },
+  {
+   "w": "soaking",
+   "t0": 0.743,
+   "t1": 1.08
+  },
+  {
+   "w": "wet.",
+   "t0": 1.149,
+   "t1": 1.533
+  },
+  {
+   "w": "The",
+   "t0": 1.753,
+   "t1": 1.869
+  },
+  {
+   "w": "tin",
+   "t0": 1.927,
+   "t1": 2.09
+  },
+  {
+   "w": "it's",
+   "t0": 2.148,
+   "t1": 2.276
+  },
+  {
+   "w": "in",
+   "t0": 2.334,
+   "t1": 2.438
+  },
+  {
+   "w": "is",
+   "t0": 2.496,
+   "t1": 2.577
+  },
+  {
+   "w": "bone",
+   "t0": 2.635,
+   "t1": 2.914
+  },
+  {
+   "w": "dry.",
+   "t0": 2.949,
+   "t1": 3.715
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-16T22:45:20.373Z"
+}

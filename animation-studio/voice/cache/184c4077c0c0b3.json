@@ -1,0 +1,70 @@
+{
+ "hash": "184c4077c0c0b3",
+ "text": "Back inside, Mum comes downstairs. She doesn't remember a thing.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.365,
+ "dur": 4.414694,
+ "words": [
+  {
+   "w": "Back",
+   "t0": 0,
+   "t1": 0.255
+  },
+  {
+   "w": "inside,",
+   "t0": 0.325,
+   "t1": 0.917
+  },
+  {
+   "w": "Mum",
+   "t0": 1.045,
+   "t1": 1.277
+  },
+  {
+   "w": "comes",
+   "t0": 1.347,
+   "t1": 1.567
+  },
+  {
+   "w": "downstairs.",
+   "t0": 1.614,
+   "t1": 2.461
+  },
+  {
+   "w": "She",
+   "t0": 2.798,
+   "t1": 2.914
+  },
+  {
+   "w": "doesn't",
+   "t0": 2.961,
+   "t1": 3.193
+  },
+  {
+   "w": "remember",
+   "t0": 3.228,
+   "t1": 3.541
+  },
+  {
+   "w": "a",
+   "t0": 3.587,
+   "t1": 3.622
+  },
+  {
+   "w": "thing.",
+   "t0": 3.669,
+   "t1": 4.365
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-16T22:45:29.446Z"
+}
