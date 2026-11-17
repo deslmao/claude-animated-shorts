@@ -1,0 +1,50 @@
+{
+ "hash": "0c179193f80b48",
+ "text": "Something warm breathes on your hand.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.368,
+ "dur": 2.403265,
+ "words": [
+  {
+   "w": "Something",
+   "t0": 0,
+   "t1": 0.395
+  },
+  {
+   "w": "warm",
+   "t0": 0.488,
+   "t1": 0.824
+  },
+  {
+   "w": "breathes",
+   "t0": 0.894,
+   "t1": 1.312
+  },
+  {
+   "w": "on",
+   "t0": 1.358,
+   "t1": 1.428
+  },
+  {
+   "w": "your",
+   "t0": 1.486,
+   "t1": 1.614
+  },
+  {
+   "w": "hand.",
+   "t0": 1.672,
+   "t1": 2.368
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T02:02:32.944Z"
+}

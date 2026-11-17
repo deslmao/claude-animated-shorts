@@ -1,0 +1,95 @@
+{
+ "hash": "185323512ddda5",
+ "text": "Then the end of the bed sinks, like something just lay down on your feet.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.133,
+ "dur": 4.179592,
+ "words": [
+  {
+   "w": "Then",
+   "t0": 0,
+   "t1": 0.267
+  },
+  {
+   "w": "the",
+   "t0": 0.325,
+   "t1": 0.406
+  },
+  {
+   "w": "end",
+   "t0": 0.476,
+   "t1": 0.615
+  },
+  {
+   "w": "of",
+   "t0": 0.662,
+   "t1": 0.72
+  },
+  {
+   "w": "the",
+   "t0": 0.766,
+   "t1": 0.836
+  },
+  {
+   "w": "bed",
+   "t0": 0.894,
+   "t1": 1.115
+  },
+  {
+   "w": "sinks,",
+   "t0": 1.196,
+   "t1": 1.788
+  },
+  {
+   "w": "like",
+   "t0": 1.916,
+   "t1": 2.113
+  },
+  {
+   "w": "something",
+   "t0": 2.148,
+   "t1": 2.461
+  },
+  {
+   "w": "just",
+   "t0": 2.519,
+   "t1": 2.682
+  },
+  {
+   "w": "lay",
+   "t0": 2.728,
+   "t1": 2.868
+  },
+  {
+   "w": "down",
+   "t0": 2.926,
+   "t1": 3.135
+  },
+  {
+   "w": "on",
+   "t0": 3.193,
+   "t1": 3.262
+  },
+  {
+   "w": "your",
+   "t0": 3.309,
+   "t1": 3.425
+  },
+  {
+   "w": "feet.",
+   "t0": 3.483,
+   "t1": 4.133
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T02:02:33.584Z"
+}

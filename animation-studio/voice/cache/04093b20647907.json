@@ -1,0 +1,105 @@
+{
+ "hash": "04093b20647907",
+ "text": "Then you hear it. Tick, tick, tick, on the floorboards. Something small is walking round your bed.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 5.944,
+ "dur": 5.982041,
+ "words": [
+  {
+   "w": "Then",
+   "t0": 0,
+   "t1": 0.209
+  },
+  {
+   "w": "you",
+   "t0": 0.255,
+   "t1": 0.325
+  },
+  {
+   "w": "hear",
+   "t0": 0.395,
+   "t1": 0.557
+  },
+  {
+   "w": "it.",
+   "t0": 0.627,
+   "t1": 0.894
+  },
+  {
+   "w": "Tick,",
+   "t0": 1.08,
+   "t1": 1.44
+  },
+  {
+   "w": "tick,",
+   "t0": 1.474,
+   "t1": 1.823
+  },
+  {
+   "w": "tick,",
+   "t0": 1.846,
+   "t1": 2.171
+  },
+  {
+   "w": "on",
+   "t0": 2.194,
+   "t1": 2.299
+  },
+  {
+   "w": "the",
+   "t0": 2.334,
+   "t1": 2.403
+  },
+  {
+   "w": "floorboards.",
+   "t0": 2.438,
+   "t1": 3.123
+  },
+  {
+   "w": "Something",
+   "t0": 3.587,
+   "t1": 3.947
+  },
+  {
+   "w": "small",
+   "t0": 4.005,
+   "t1": 4.354
+  },
+  {
+   "w": "is",
+   "t0": 4.412,
+   "t1": 4.493
+  },
+  {
+   "w": "walking",
+   "t0": 4.551,
+   "t1": 4.853
+  },
+  {
+   "w": "round",
+   "t0": 4.899,
+   "t1": 5.062
+  },
+  {
+   "w": "your",
+   "t0": 5.108,
+   "t1": 5.224
+  },
+  {
+   "w": "bed.",
+   "t0": 5.271,
+   "t1": 5.944
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T02:02:32.405Z"
+}

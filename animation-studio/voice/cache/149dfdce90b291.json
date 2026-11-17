@@ -1,0 +1,80 @@
+{
+ "hash": "149dfdce90b291",
+ "text": "So the next night, you stay awake, and you watch the counter.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.111,
+ "dur": 3.160816,
+ "words": [
+  {
+   "w": "So",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "the",
+   "t0": 0.232,
+   "t1": 0.302
+  },
+  {
+   "w": "next",
+   "t0": 0.337,
+   "t1": 0.546
+  },
+  {
+   "w": "night,",
+   "t0": 0.604,
+   "t1": 0.882
+  },
+  {
+   "w": "you",
+   "t0": 0.94,
+   "t1": 1.045
+  },
+  {
+   "w": "stay",
+   "t0": 1.103,
+   "t1": 1.289
+  },
+  {
+   "w": "awake,",
+   "t0": 1.335,
+   "t1": 1.695
+  },
+  {
+   "w": "and",
+   "t0": 1.718,
+   "t1": 1.8
+  },
+  {
+   "w": "you",
+   "t0": 1.846,
+   "t1": 1.916
+  },
+  {
+   "w": "watch",
+   "t0": 1.974,
+   "t1": 2.183
+  },
+  {
+   "w": "the",
+   "t0": 2.229,
+   "t1": 2.299
+  },
+  {
+   "w": "counter.",
+   "t0": 2.345,
+   "t1": 3.111
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T02:02:31.065Z"
+}

@@ -1,0 +1,115 @@
+{
+ "hash": "0d6055868c536c",
+ "text": "You open the map. The steps never left your room. They go round and round your bed. All night.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 6.502,
+ "dur": 6.530612,
+ "words": [
+  {
+   "w": "You",
+   "t0": 0,
+   "t1": 0.186
+  },
+  {
+   "w": "open",
+   "t0": 0.279,
+   "t1": 0.511
+  },
+  {
+   "w": "the",
+   "t0": 0.557,
+   "t1": 0.627
+  },
+  {
+   "w": "map.",
+   "t0": 0.662,
+   "t1": 1.091
+  },
+  {
+   "w": "The",
+   "t0": 1.231,
+   "t1": 1.347
+  },
+  {
+   "w": "steps",
+   "t0": 1.405,
+   "t1": 1.753
+  },
+  {
+   "w": "never",
+   "t0": 1.846,
+   "t1": 2.067
+  },
+  {
+   "w": "left",
+   "t0": 2.113,
+   "t1": 2.287
+  },
+  {
+   "w": "your",
+   "t0": 2.334,
+   "t1": 2.45
+  },
+  {
+   "w": "room.",
+   "t0": 2.508,
+   "t1": 3.007
+  },
+  {
+   "w": "They",
+   "t0": 3.541,
+   "t1": 3.704
+  },
+  {
+   "w": "go",
+   "t0": 3.75,
+   "t1": 3.843
+  },
+  {
+   "w": "round",
+   "t0": 3.913,
+   "t1": 4.156
+  },
+  {
+   "w": "and",
+   "t0": 4.203,
+   "t1": 4.284
+  },
+  {
+   "w": "round",
+   "t0": 4.331,
+   "t1": 4.528
+  },
+  {
+   "w": "your",
+   "t0": 4.586,
+   "t1": 4.702
+  },
+  {
+   "w": "bed.",
+   "t0": 4.748,
+   "t1": 5.236
+  },
+  {
+   "w": "All",
+   "t0": 5.526,
+   "t1": 5.735
+  },
+  {
+   "w": "night.",
+   "t0": 5.793,
+   "t1": 6.502
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T02:02:28.381Z"
+}

@@ -1,0 +1,105 @@
+{
+ "id": "steps-4012",
+ "composition": "Short-steps-4012",
+ "stages": {
+  "validate": {
+   "state": "done",
+   "at": "2026-11-17T02:02:40.642Z",
+   "inputs": "0d96d4848c464en",
+   "detail": "valid; 7 warning(s):\n  total length 91.9 s (Shorts target 55-65 s)\n  shot 2 (stepsRoom): you fills 64 % of the frame in the foreground @2.2s (is it hiding the action?)\n  shot 5 (stepsRoomNight): you fills 50 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 5 (stepsRoomNight): you's hand (read) is out of frame @1.6s (side): widen the shot or change the gesture\n  shot 11 (stepsRoomNight): you fills 59 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 16 (stepsRoomNight): you fills 89 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 22 (stepsRoomLamp): you fills 73 % of the frame in the foreground @0.0s (is it hiding the action?)"
+  },
+  "assets": {
+   "state": "done",
+   "at": "2026-11-17T02:02:40.645Z",
+   "inputs": "0d96d4848c464e",
+   "detail": "31 library assets reused, none missing",
+   "data": {
+    "reused": 31,
+    "missing": [],
+    "byKind": {
+     "character": [
+      "stepsTeen"
+     ],
+     "mood": [
+      "mystery"
+     ],
+     "set": [
+      "stepsRoom",
+      "stepsRoomNight",
+      "stepsRoomLamp"
+     ],
+     "camera": [
+      "at"
+     ],
+     "light": [
+      "interior",
+      "night"
+     ],
+     "ambience": [
+      "amb_room"
+     ],
+     "prop": [
+      "stInsert",
+      "pawTrail"
+     ],
+     "sfx": [
+      "phone_buzz",
+      "phone_tap",
+      "sting_low",
+      "heartbeat",
+      "clock_tick",
+      "claw_ticks",
+      "tag_jingle",
+      "dog_breath",
+      "creak",
+      "dog_sigh",
+      "swish_soft"
+     ],
+     "act": [
+      "confused",
+      "suspicious",
+      "nervous",
+      "scared",
+      "shock",
+      "sad",
+      "relief",
+      "happy"
+     ],
+     "item": [
+      "phone"
+     ]
+    }
+   }
+  },
+  "approval": {
+   "state": "done",
+   "at": "2026-11-17T02:02:40.647Z",
+   "inputs": "03701a4d139a2b",
+   "detail": "all narration already generated (no cost)"
+  },
+  "narration": {
+   "state": "done",
+   "at": "2026-11-17T02:02:40.647Z",
+   "inputs": "03701a4d139a2b",
+   "detail": "all lines already generated (cached)"
+  },
+  "sound": {
+   "state": "done",
+   "at": "2026-11-17T02:03:09.528Z",
+   "inputs": "1c5772657845bd",
+   "detail": "soundtrack built: -14.1 LUFS"
+  },
+  "checks": {
+   "state": "done",
+   "at": "2026-11-17T02:03:29.871Z",
+   "inputs": "1c5772657845bd",
+   "detail": "preflight PASS; library intact"
+  }
+ },
+ "approval": {
+  "scriptHash": "03701a4d139a2b",
+  "chars": 1470,
+  "at": "2026-11-17T02:02:22.555Z",
+  "by": "the owner, in the conversation"
+ }
+}

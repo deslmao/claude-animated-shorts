@@ -64,6 +64,11 @@ MOODS.update({
     "warmTheme": dict(root=53, scale=MAJ, bpm=88, prog=[0, 4, 5, 0], bass="none", chords="strings", lead="theme_piano", perc="none", density=0.4, swing=0.0),
 })
 
+# ---- 4,012 Steps (addition): the reveal and the ending, a slow piano lullaby under warm strings (I-vi-IV-V)
+MOODS.update({
+    "tender": dict(root=51, scale=MAJ, bpm=70, prog=[0, 5, 3, 4], bass="none", chords="piano_strings", lead="piano", perc="none", density=0.4, swing=0.0),
+})
+
 def _chord(m, deg, octave=0):
     """triad (root, third, fifth) midi numbers on a scale degree"""
     sc, root = m["scale"], m["root"] + 12 * octave
@@ -282,6 +287,8 @@ def compose(sections, total, button_t, seed, gain_db=0.0, drop_t=None):
                         x = pan(I.vibes(I.m2f(midi), v, r, max(1.0, dur + 0.6)), 0.2)
                     elif m["lead"] == "musicbox":
                         x = pan(I.musicbox(I.m2f(midi + 12), v * 0.8, r, 1.4), 0.2)
+                    elif m["lead"] == "piano":
+                        x = pan(I.piano(I.m2f(midi + 12), v * 0.75, r, 1.8), 0.15)
                     else:  # fife
                         x = pan(I.fife(I.m2f(midi + 12), dur, v * 0.7, r), 0.2)
                     place(sec, x, bt0 + sw(b) * beat)

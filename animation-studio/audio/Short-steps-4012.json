@@ -1,0 +1,17 @@
+{
+ "composition": "Short-steps-4012",
+ "fingerprint": "1c5772657845bd",
+ "engine": "sound-2",
+ "frames": 2757,
+ "seconds": 91.9,
+ "lines": 24,
+ "lufs": -14.1,
+ "truePeak": -1.7,
+ "stems": {
+  "voice_lufs": -19.99,
+  "music_vs_voice_lu": -13.0,
+  "ambience_vs_voice_lu": -20.0,
+  "sfx_cues": 31
+ },
+ "built": "2026-11-17T02:03:09Z"
+}

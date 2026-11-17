@@ -764,6 +764,57 @@ def car_rev(r):
     eng = sum(np.sin(k * phase(f0)) / k for k in range(1, 7)) * (1 + 0.2 * np.sin(TAU * 7 * t))
     return fades(lp(eng, 1400) * np.clip(t / 0.08, 0, 1) * np.exp(-np.maximum(t - 0.8, 0) / 0.6) * 0.5, 0.01, 0.3)
 
+
+# ------------------------------------------------------------------ 4,012 Steps
+def claw_ticks(r):
+    """small dog claws on wooden floorboards (1.6 s): an unhurried four-paw walk, tick-tick... tick-tick, fading"""
+    out = np.zeros(ns(1.6)); t0 = 0.02
+    while t0 < 1.45:
+        for k in range(2):  # each paw lands as a quick pair of claw clicks
+            t = tt(0.06)
+            click = bp(r.standard_normal(len(t)), 2200, 7500, 2) * np.exp(-t / 0.0025) * r.uniform(0.6, 1.0)
+            knock = modal(0.06, [(r.uniform(850, 1050), 0.25, 0.008)], r)
+            x = click + knock[: len(click)]
+            i = ns(t0 + k * r.uniform(0.025, 0.04)); out[i:i + len(x)] += x[: len(out) - i] * (1 - 0.35 * t0 / 1.6)
+        t0 += r.uniform(0.17, 0.23)
+    return fades(out * 0.7, 0.001, 0.08)
+
+
+def dog_breath(r):
+    """a dog's warm breath on a hand (0.9 s): two quick sniffs, then a soft huff out"""
+    def sniff(d):
+        t = tt(d); return bp(r.standard_normal(len(t)), 900, 4500, 1) * np.sin(np.pi * t / d) ** 2
+    t = tt(0.4)
+    huff = bp(colored(len(t), r, 0.5), 250, 2200, 1) * _env(t, 0.03, 0.14)
+    return fades(_sum((sniff(0.09) * 0.5, 0.0), (sniff(0.08) * 0.45, 0.16), (huff * 0.8, 0.36)), 0.002, 0.1)
+
+
+def dog_sigh(r):
+    """a dog settling down at the foot of a bed (1.6 s): the mattress gives, then a long, contented sigh out"""
+    t = tt(1.25); f = 190 - 60 * (t / 1.25)
+    ph = phase(f); groan = (np.sin(ph) + 0.4 * np.sin(2 * ph)) * _env(t, 0.15, 0.35) * 0.12
+    air = bp(colored(len(t), r, 0.6), 200, 1800, 1) * np.clip(t / 0.15, 0, 1) * np.exp(-np.maximum(t - 0.15, 0) / 0.45)
+    give = lp(G.creak(0.35, r), 1200) * 0.35
+    return fades(_sum((give, 0.0), (air * 0.7 + groan, 0.3)), 0.005, 0.25)
+
+
+def tag_jingle(r):
+    """a dog collar's metal name tag jingling against its ring (0.7 s): three or four light, bright clinks"""
+    out = np.zeros(ns(0.7)); t0 = 0.0
+    for _ in range(int(r.integers(3, 5))):
+        f = r.uniform(2600, 3200)
+        x = modal(0.35, [(f, 1.0, 0.09), (f * 1.52, 0.6, 0.06), (f * 2.31, 0.35, 0.04)], r) * r.uniform(0.5, 1.0)
+        i = ns(t0); out[i:i + len(x)] += x[: len(out) - i]
+        t0 += r.uniform(0.07, 0.16)
+    return fades(out * 0.45, 0.001, 0.1)
+
+
+def heartbeat(r):
+    """one heartbeat, felt more than heard (0.9 s): a low lub-dub"""
+    def thump(a):
+        t = tt(0.16); return np.sin(phase(48 + 30 * np.exp(-t / 0.02))) * _env(t, 0.004, 0.05) * a
+    return fades(lp(_sum((thump(1.0), 0.0), (thump(0.7), 0.27)), 400), 0.001, 0.2)
+
 SFX = {
     "pop": pop, "ding": ding, "blip_up": blip_up, "boing": boing, "poof": poof, "twinkle": twinkle, "impact": impact,
     "thud": thud, "party_pop": party_pop, "drip": drip, "steam": steam, "snore_soft": snore_soft, "ring_ding": ring_ding,
@@ -782,6 +833,7 @@ SFX = {
     "fire_bell": fire_bell, "kids_chatter": kids_chatter, "chair_scrape": chair_scrape, "camera_shutter": camera_shutter, "fire_roar": fire_roar, "cough": cough,
     "whale_groan": whale_groan, "whale_breath": whale_breath, "whale_blow": whale_blow, "baby_cry": baby_cry, "crowd_cheer": crowd_cheer, "water_pour": water_pour, "founders_bell": founders_bell,
     "msg_chime": msg_chime, "car_skid": car_skid, "car_rev": car_rev,
+    "claw_ticks": claw_ticks, "dog_breath": dog_breath, "dog_sigh": dog_sigh, "tag_jingle": tag_jingle, "heartbeat": heartbeat,
 }
 
 

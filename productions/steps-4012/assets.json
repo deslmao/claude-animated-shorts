@@ -1,0 +1,57 @@
+{
+ "reused": 31,
+ "missing": [],
+ "byKind": {
+  "character": [
+   "stepsTeen"
+  ],
+  "mood": [
+   "mystery"
+  ],
+  "set": [
+   "stepsRoom",
+   "stepsRoomNight",
+   "stepsRoomLamp"
+  ],
+  "camera": [
+   "at"
+  ],
+  "light": [
+   "interior",
+   "night"
+  ],
+  "ambience": [
+   "amb_room"
+  ],
+  "prop": [
+   "stInsert",
+   "pawTrail"
+  ],
+  "sfx": [
+   "phone_buzz",
+   "phone_tap",
+   "sting_low",
+   "heartbeat",
+   "clock_tick",
+   "claw_ticks",
+   "tag_jingle",
+   "dog_breath",
+   "creak",
+   "dog_sigh",
+   "swish_soft"
+  ],
+  "act": [
+   "confused",
+   "suspicious",
+   "nervous",
+   "scared",
+   "shock",
+   "sad",
+   "relief",
+   "happy"
+  ],
+  "item": [
+   "phone"
+  ]
+ }
+}

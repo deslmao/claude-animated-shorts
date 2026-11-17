@@ -1,0 +1,90 @@
+{
+ "hash": "0d02176d9f64cb",
+ "text": "At one fourteen, it moves. One. Two. Three. And you haven't moved at all.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 5.991,
+ "dur": 6.034286,
+ "words": [
+  {
+   "w": "At",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "one",
+   "t0": 0.232,
+   "t1": 0.406
+  },
+  {
+   "w": "fourteen,",
+   "t0": 0.464,
+   "t1": 0.998
+  },
+  {
+   "w": "it",
+   "t0": 1.033,
+   "t1": 1.149
+  },
+  {
+   "w": "moves.",
+   "t0": 1.219,
+   "t1": 1.788
+  },
+  {
+   "w": "One.",
+   "t0": 2.009,
+   "t1": 2.426
+  },
+  {
+   "w": "Two.",
+   "t0": 2.682,
+   "t1": 3.193
+  },
+  {
+   "w": "Three.",
+   "t0": 3.379,
+   "t1": 3.924
+  },
+  {
+   "w": "And",
+   "t0": 4.261,
+   "t1": 4.4
+  },
+  {
+   "w": "you",
+   "t0": 4.447,
+   "t1": 4.516
+  },
+  {
+   "w": "haven't",
+   "t0": 4.574,
+   "t1": 4.818
+  },
+  {
+   "w": "moved",
+   "t0": 4.876,
+   "t1": 5.19
+  },
+  {
+   "w": "at",
+   "t0": 5.224,
+   "t1": 5.294
+  },
+  {
+   "w": "all.",
+   "t0": 5.352,
+   "t1": 5.991
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T02:02:31.814Z"
+}

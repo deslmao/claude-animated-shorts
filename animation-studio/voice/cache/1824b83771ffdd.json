@@ -1,0 +1,105 @@
+{
+ "hash": "1824b83771ffdd",
+ "text": "You open the app. It isn't counting your phone. It's counting Biscuit's collar. You never disconnected it.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 6.362,
+ "dur": 6.4,
+ "words": [
+  {
+   "w": "You",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "open",
+   "t0": 0.255,
+   "t1": 0.476
+  },
+  {
+   "w": "the",
+   "t0": 0.522,
+   "t1": 0.592
+  },
+  {
+   "w": "app.",
+   "t0": 0.662,
+   "t1": 0.987
+  },
+  {
+   "w": "It",
+   "t0": 1.068,
+   "t1": 1.196
+  },
+  {
+   "w": "isn't",
+   "t0": 1.242,
+   "t1": 1.451
+  },
+  {
+   "w": "counting",
+   "t0": 1.509,
+   "t1": 1.858
+  },
+  {
+   "w": "your",
+   "t0": 1.904,
+   "t1": 2.032
+  },
+  {
+   "w": "phone.",
+   "t0": 2.078,
+   "t1": 2.577
+  },
+  {
+   "w": "It's",
+   "t0": 2.914,
+   "t1": 3.1
+  },
+  {
+   "w": "counting",
+   "t0": 3.135,
+   "t1": 3.46
+  },
+  {
+   "w": "Biscuit's",
+   "t0": 3.529,
+   "t1": 3.936
+  },
+  {
+   "w": "collar.",
+   "t0": 3.982,
+   "t1": 4.47
+  },
+  {
+   "w": "You",
+   "t0": 4.807,
+   "t1": 4.934
+  },
+  {
+   "w": "never",
+   "t0": 4.992,
+   "t1": 5.178
+  },
+  {
+   "w": "disconnected",
+   "t0": 5.224,
+   "t1": 5.817
+  },
+  {
+   "w": "it.",
+   "t0": 5.863,
+   "t1": 6.362
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T02:02:35.012Z"
+}

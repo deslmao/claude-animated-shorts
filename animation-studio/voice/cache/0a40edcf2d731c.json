@@ -1,0 +1,75 @@
+{
+ "hash": "0a40edcf2d731c",
+ "text": "You scroll back. Every night since June: four thousand and twelve.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.598,
+ "dur": 4.623673,
+ "words": [
+  {
+   "w": "You",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "scroll",
+   "t0": 0.244,
+   "t1": 0.534
+  },
+  {
+   "w": "back.",
+   "t0": 0.604,
+   "t1": 1.08
+  },
+  {
+   "w": "Every",
+   "t0": 1.544,
+   "t1": 1.823
+  },
+  {
+   "w": "night",
+   "t0": 1.881,
+   "t1": 2.067
+  },
+  {
+   "w": "since",
+   "t0": 2.113,
+   "t1": 2.345
+  },
+  {
+   "w": "June:",
+   "t0": 2.403,
+   "t1": 2.833
+  },
+  {
+   "w": "four",
+   "t0": 2.972,
+   "t1": 3.193
+  },
+  {
+   "w": "thousand",
+   "t0": 3.239,
+   "t1": 3.599
+  },
+  {
+   "w": "and",
+   "t0": 3.657,
+   "t1": 3.738
+  },
+  {
+   "w": "twelve.",
+   "t0": 3.773,
+   "t1": 4.598
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T02:02:30.444Z"
+}

@@ -1,0 +1,145 @@
+{
+ "hash": "07af09b7bcb2c7",
+ "text": "He never stopped. That's his ghost, walking round your bed. Still guarding you while you sleep. One step for every night he kept you safe.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 8.824,
+ "dur": 8.85551,
+ "words": [
+  {
+   "w": "He",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "never",
+   "t0": 0.209,
+   "t1": 0.395
+  },
+  {
+   "w": "stopped.",
+   "t0": 0.453,
+   "t1": 0.987
+  },
+  {
+   "w": "That's",
+   "t0": 1.324,
+   "t1": 1.602
+  },
+  {
+   "w": "his",
+   "t0": 1.637,
+   "t1": 1.741
+  },
+  {
+   "w": "ghost,",
+   "t0": 1.8,
+   "t1": 2.345
+  },
+  {
+   "w": "walking",
+   "t0": 2.438,
+   "t1": 2.763
+  },
+  {
+   "w": "round",
+   "t0": 2.821,
+   "t1": 3.019
+  },
+  {
+   "w": "your",
+   "t0": 3.077,
+   "t1": 3.193
+  },
+  {
+   "w": "bed.",
+   "t0": 3.239,
+   "t1": 3.704
+  },
+  {
+   "w": "Still",
+   "t0": 3.994,
+   "t1": 4.249
+  },
+  {
+   "w": "guarding",
+   "t0": 4.331,
+   "t1": 4.656
+  },
+  {
+   "w": "you",
+   "t0": 4.714,
+   "t1": 4.783
+  },
+  {
+   "w": "while",
+   "t0": 4.83,
+   "t1": 5.027
+  },
+  {
+   "w": "you",
+   "t0": 5.074,
+   "t1": 5.166
+  },
+  {
+   "w": "sleep.",
+   "t0": 5.224,
+   "t1": 5.724
+  },
+  {
+   "w": "One",
+   "t0": 6.13,
+   "t1": 6.397
+  },
+  {
+   "w": "step",
+   "t0": 6.455,
+   "t1": 6.699
+  },
+  {
+   "w": "for",
+   "t0": 6.757,
+   "t1": 6.861
+  },
+  {
+   "w": "every",
+   "t0": 6.92,
+   "t1": 7.163
+  },
+  {
+   "w": "night",
+   "t0": 7.233,
+   "t1": 7.465
+  },
+  {
+   "w": "he",
+   "t0": 7.523,
+   "t1": 7.581
+  },
+  {
+   "w": "kept",
+   "t0": 7.651,
+   "t1": 7.872
+  },
+  {
+   "w": "you",
+   "t0": 7.918,
+   "t1": 7.999
+  },
+  {
+   "w": "safe.",
+   "t0": 8.069,
+   "t1": 8.824
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T02:02:37.844Z"
+}

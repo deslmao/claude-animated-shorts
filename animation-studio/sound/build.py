@@ -34,7 +34,8 @@ SFX_REL = {"step_hard": -17, "step_stone": -17, "step_floor": -17, "step_grass":
            "snore_soft": -14, "ring_ding": -10, "sting_low": -9, "clock_tick": -18,
            "giggle": -13, "feather_swish": -19, "servo": -18, "stumble": -14,
            "crowd_aye": -10, "crowd_murmur": -18, "quill_scratch": -17, "coins_pour": -15,
-           "engine": -16, "honk": -11, "backfire": -8, "bark": -11, "crack_egg": -13}  # race day 1904 (Video 04)  # tickle-revision effects: subtle, under the voice
+           "engine": -16, "honk": -11, "backfire": -8, "bark": -11, "crack_egg": -13,
+           "claw_ticks": -15, "dog_breath": -15, "dog_sigh": -14, "tag_jingle": -16, "heartbeat": -11}  # race day 1904 (Video 04)  # tickle-revision effects: subtle, under the voice
 SFX_DEFAULT = -10
 
 

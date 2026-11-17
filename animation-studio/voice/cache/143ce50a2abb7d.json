@@ -1,0 +1,80 @@
+{
+ "hash": "143ce50a2abb7d",
+ "text": "And in the morning, your phone says four thousand and twelve steps.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.669,
+ "dur": 3.709388,
+ "words": [
+  {
+   "w": "And",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "in",
+   "t0": 0.221,
+   "t1": 0.279
+  },
+  {
+   "w": "the",
+   "t0": 0.325,
+   "t1": 0.395
+  },
+  {
+   "w": "morning,",
+   "t0": 0.441,
+   "t1": 0.813
+  },
+  {
+   "w": "your",
+   "t0": 0.859,
+   "t1": 1.01
+  },
+  {
+   "w": "phone",
+   "t0": 1.068,
+   "t1": 1.335
+  },
+  {
+   "w": "says",
+   "t0": 1.37,
+   "t1": 1.614
+  },
+  {
+   "w": "four",
+   "t0": 1.683,
+   "t1": 1.892
+  },
+  {
+   "w": "thousand",
+   "t0": 1.95,
+   "t1": 2.31
+  },
+  {
+   "w": "and",
+   "t0": 2.357,
+   "t1": 2.426
+  },
+  {
+   "w": "twelve",
+   "t0": 2.473,
+   "t1": 2.786
+  },
+  {
+   "w": "steps.",
+   "t0": 2.821,
+   "t1": 3.669
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T02:02:38.923Z"
+}

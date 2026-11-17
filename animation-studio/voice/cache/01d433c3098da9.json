@@ -1,0 +1,125 @@
+{
+ "hash": "01d433c3098da9",
+ "text": "It has to be a glitch. So that night, you leave your phone charging across the room, where it can't move.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 5.387,
+ "dur": 5.433469,
+ "words": [
+  {
+   "w": "It",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "has",
+   "t0": 0.197,
+   "t1": 0.325
+  },
+  {
+   "w": "to",
+   "t0": 0.372,
+   "t1": 0.418
+  },
+  {
+   "w": "be",
+   "t0": 0.476,
+   "t1": 0.557
+  },
+  {
+   "w": "a",
+   "t0": 0.592,
+   "t1": 0.615
+  },
+  {
+   "w": "glitch.",
+   "t0": 0.662,
+   "t1": 1.068
+  },
+  {
+   "w": "So",
+   "t0": 1.254,
+   "t1": 1.382
+  },
+  {
+   "w": "that",
+   "t0": 1.44,
+   "t1": 1.591
+  },
+  {
+   "w": "night,",
+   "t0": 1.66,
+   "t1": 1.939
+  },
+  {
+   "w": "you",
+   "t0": 1.985,
+   "t1": 2.078
+  },
+  {
+   "w": "leave",
+   "t0": 2.148,
+   "t1": 2.322
+  },
+  {
+   "w": "your",
+   "t0": 2.345,
+   "t1": 2.461
+  },
+  {
+   "w": "phone",
+   "t0": 2.508,
+   "t1": 2.775
+  },
+  {
+   "w": "charging",
+   "t0": 2.81,
+   "t1": 3.17
+  },
+  {
+   "w": "across",
+   "t0": 3.228,
+   "t1": 3.495
+  },
+  {
+   "w": "the",
+   "t0": 3.529,
+   "t1": 3.599
+  },
+  {
+   "w": "room,",
+   "t0": 3.657,
+   "t1": 4.005
+  },
+  {
+   "w": "where",
+   "t0": 4.052,
+   "t1": 4.249
+  },
+  {
+   "w": "it",
+   "t0": 4.284,
+   "t1": 4.342
+  },
+  {
+   "w": "can't",
+   "t0": 4.377,
+   "t1": 4.609
+  },
+  {
+   "w": "move.",
+   "t0": 4.667,
+   "t1": 5.387
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T02:02:29.133Z"
+}

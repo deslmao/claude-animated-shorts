@@ -1,0 +1,85 @@
+{
+ "hash": "133b3463d4aefd",
+ "text": "In the morning, it says four thousand and twelve. Again. Exactly the same.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.876,
+ "dur": 4.91102,
+ "words": [
+  {
+   "w": "In",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "the",
+   "t0": 0.186,
+   "t1": 0.255
+  },
+  {
+   "w": "morning,",
+   "t0": 0.29,
+   "t1": 0.65
+  },
+  {
+   "w": "it",
+   "t0": 0.673,
+   "t1": 0.789
+  },
+  {
+   "w": "says",
+   "t0": 0.836,
+   "t1": 1.01
+  },
+  {
+   "w": "four",
+   "t0": 1.068,
+   "t1": 1.242
+  },
+  {
+   "w": "thousand",
+   "t0": 1.289,
+   "t1": 1.637
+  },
+  {
+   "w": "and",
+   "t0": 1.683,
+   "t1": 1.765
+  },
+  {
+   "w": "twelve.",
+   "t0": 1.8,
+   "t1": 2.345
+  },
+  {
+   "w": "Again.",
+   "t0": 2.879,
+   "t1": 3.355
+  },
+  {
+   "w": "Exactly",
+   "t0": 3.518,
+   "t1": 3.982
+  },
+  {
+   "w": "the",
+   "t0": 4.04,
+   "t1": 4.122
+  },
+  {
+   "w": "same.",
+   "t0": 4.168,
+   "t1": 4.876
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T02:02:29.789Z"
+}
