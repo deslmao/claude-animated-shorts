@@ -55,6 +55,13 @@ Techniques taken from the Shorts the owner analysed (17 Nov 2026). **Record the 
    - Ages: 35–44 is 29%, 13–17 is 23%, 25–34 is 22%.
    - Countries: US 38%, Philippines 12%, India 7%, Australia 7%, UK 5%.
 7. **Titles:** the concrete impossible-detail pattern ("She Counted 31 Pupils. The Register Said 30.").
+8. **One story, one question, answered in the same Short** (owner feedback, 17 Nov 2026: *What Ollie Says*, Part 1
+   drew "What is it about though?").
+   - Part 1 stacked several mysteries (a language, a dead son, a flood, sleepwalking, a magic garden) and answered none
+     of them, so viewers couldn't say what it was about.
+   - The test before production: can the whole premise be said in one sentence a stranger understands? (*4,012 Steps*:
+     "Your dead dog's collar still counts his steps round your bed every night.")
+   - A series part still needs its own complete answer; the cliffhanger is a new question, not the old one left open.
 
 **Script measurements (from the pipeline's line timings) against YouTube retention:**
 | Video | Stayed | Avg viewed | Words/min | Silent | Longest gap |
