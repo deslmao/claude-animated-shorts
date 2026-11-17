@@ -1,0 +1,85 @@
+{
+ "hash": "057b2e0705d2f7",
+ "text": "Now your school bus has two seats nobody is allowed to sit in.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.576,
+ "dur": 3.604898,
+ "words": [
+  {
+   "w": "Now",
+   "t0": 0,
+   "t1": 0.209
+  },
+  {
+   "w": "your",
+   "t0": 0.267,
+   "t1": 0.406
+  },
+  {
+   "w": "school",
+   "t0": 0.453,
+   "t1": 0.685
+  },
+  {
+   "w": "bus",
+   "t0": 0.731,
+   "t1": 0.917
+  },
+  {
+   "w": "has",
+   "t0": 0.964,
+   "t1": 1.103
+  },
+  {
+   "w": "two",
+   "t0": 1.161,
+   "t1": 1.347
+  },
+  {
+   "w": "seats",
+   "t0": 1.428,
+   "t1": 1.811
+  },
+  {
+   "w": "nobody",
+   "t0": 1.997,
+   "t1": 2.31
+  },
+  {
+   "w": "is",
+   "t0": 2.345,
+   "t1": 2.415
+  },
+  {
+   "w": "allowed",
+   "t0": 2.45,
+   "t1": 2.694
+  },
+  {
+   "w": "to",
+   "t0": 2.717,
+   "t1": 2.775
+  },
+  {
+   "w": "sit",
+   "t0": 2.833,
+   "t1": 3.019
+  },
+  {
+   "w": "in.",
+   "t0": 3.077,
+   "t1": 3.576
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T22:20:59.736Z"
+}

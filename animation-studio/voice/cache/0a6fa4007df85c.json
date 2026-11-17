@@ -1,0 +1,110 @@
+{
+ "hash": "0a6fa4007df85c",
+ "text": "In the school library, the 1996 yearbook has one page with a black border. Emily Shaw. Aged eleven.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 6.873,
+ "dur": 6.922449,
+ "words": [
+  {
+   "w": "In",
+   "t0": 0,
+   "t1": 0.139
+  },
+  {
+   "w": "the",
+   "t0": 0.174,
+   "t1": 0.244
+  },
+  {
+   "w": "school",
+   "t0": 0.279,
+   "t1": 0.534
+  },
+  {
+   "w": "library,",
+   "t0": 0.592,
+   "t1": 1.01
+  },
+  {
+   "w": "the",
+   "t0": 1.033,
+   "t1": 1.103
+  },
+  {
+   "w": "1996",
+   "t0": 1.161,
+   "t1": 2.009
+  },
+  {
+   "w": "yearbook",
+   "t0": 2.078,
+   "t1": 2.426
+  },
+  {
+   "w": "has",
+   "t0": 2.485,
+   "t1": 2.612
+  },
+  {
+   "w": "one",
+   "t0": 2.694,
+   "t1": 2.879
+  },
+  {
+   "w": "page",
+   "t0": 2.926,
+   "t1": 3.251
+  },
+  {
+   "w": "with",
+   "t0": 3.274,
+   "t1": 3.39
+  },
+  {
+   "w": "a",
+   "t0": 3.425,
+   "t1": 3.448
+  },
+  {
+   "w": "black",
+   "t0": 3.495,
+   "t1": 3.715
+  },
+  {
+   "w": "border.",
+   "t0": 3.773,
+   "t1": 4.296
+  },
+  {
+   "w": "Emily",
+   "t0": 4.76,
+   "t1": 5.074
+  },
+  {
+   "w": "Shaw.",
+   "t0": 5.143,
+   "t1": 5.631
+  },
+  {
+   "w": "Aged",
+   "t0": 5.817,
+   "t1": 6.142
+  },
+  {
+   "w": "eleven.",
+   "t0": 6.188,
+   "t1": 6.873
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T22:20:51.174Z"
+}

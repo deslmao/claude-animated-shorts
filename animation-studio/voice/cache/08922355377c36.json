@@ -1,0 +1,85 @@
+{
+ "hash": "08922355377c36",
+ "text": "So you look it up. The Elm Road stop was closed in 1996.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.226,
+ "dur": 4.257959,
+ "words": [
+  {
+   "w": "So",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "you",
+   "t0": 0.221,
+   "t1": 0.302
+  },
+  {
+   "w": "look",
+   "t0": 0.36,
+   "t1": 0.499
+  },
+  {
+   "w": "it",
+   "t0": 0.546,
+   "t1": 0.615
+  },
+  {
+   "w": "up.",
+   "t0": 0.685,
+   "t1": 0.952
+  },
+  {
+   "w": "The",
+   "t0": 1.138,
+   "t1": 1.265
+  },
+  {
+   "w": "Elm",
+   "t0": 1.335,
+   "t1": 1.533
+  },
+  {
+   "w": "Road",
+   "t0": 1.602,
+   "t1": 1.811
+  },
+  {
+   "w": "stop",
+   "t0": 1.869,
+   "t1": 2.148
+  },
+  {
+   "w": "was",
+   "t0": 2.206,
+   "t1": 2.31
+  },
+  {
+   "w": "closed",
+   "t0": 2.368,
+   "t1": 2.67
+  },
+  {
+   "w": "in",
+   "t0": 2.705,
+   "t1": 2.763
+  },
+  {
+   "w": "1996.",
+   "t0": 2.821,
+   "t1": 4.226
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T22:20:50.309Z"
+}

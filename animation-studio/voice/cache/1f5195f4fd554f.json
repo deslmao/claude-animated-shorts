@@ -1,0 +1,80 @@
+{
+ "hash": "1f5195f4fd554f",
+ "text": "But the new kid, Noah, doesn't know. He drops straight into it.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.715,
+ "dur": 3.761633,
+ "words": [
+  {
+   "w": "But",
+   "t0": 0,
+   "t1": 0.186
+  },
+  {
+   "w": "the",
+   "t0": 0.209,
+   "t1": 0.279
+  },
+  {
+   "w": "new",
+   "t0": 0.348,
+   "t1": 0.488
+  },
+  {
+   "w": "kid,",
+   "t0": 0.546,
+   "t1": 0.813
+  },
+  {
+   "w": "Noah,",
+   "t0": 0.848,
+   "t1": 1.242
+  },
+  {
+   "w": "doesn't",
+   "t0": 1.277,
+   "t1": 1.567
+  },
+  {
+   "w": "know.",
+   "t0": 1.614,
+   "t1": 2.02
+  },
+  {
+   "w": "He",
+   "t0": 2.206,
+   "t1": 2.299
+  },
+  {
+   "w": "drops",
+   "t0": 2.345,
+   "t1": 2.589
+  },
+  {
+   "w": "straight",
+   "t0": 2.624,
+   "t1": 2.914
+  },
+  {
+   "w": "into",
+   "t0": 2.949,
+   "t1": 3.135
+  },
+  {
+   "w": "it.",
+   "t0": 3.228,
+   "t1": 3.715
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T22:20:47.448Z"
+}

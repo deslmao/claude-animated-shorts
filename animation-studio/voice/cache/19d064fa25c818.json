@@ -1,0 +1,95 @@
+{
+ "hash": "19d064fa25c818",
+ "text": "Seat thirteen. By the window. Even when the bus is packed, kids would rather stand.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 5.341,
+ "dur": 5.381224,
+ "words": [
+  {
+   "w": "Seat",
+   "t0": 0,
+   "t1": 0.29
+  },
+  {
+   "w": "thirteen.",
+   "t0": 0.337,
+   "t1": 1.022
+  },
+  {
+   "w": "By",
+   "t0": 1.115,
+   "t1": 1.265
+  },
+  {
+   "w": "the",
+   "t0": 1.324,
+   "t1": 1.393
+  },
+  {
+   "w": "window.",
+   "t0": 1.44,
+   "t1": 1.962
+  },
+  {
+   "w": "Even",
+   "t0": 2.218,
+   "t1": 2.461
+  },
+  {
+   "w": "when",
+   "t0": 2.496,
+   "t1": 2.624
+  },
+  {
+   "w": "the",
+   "t0": 2.659,
+   "t1": 2.728
+  },
+  {
+   "w": "bus",
+   "t0": 2.763,
+   "t1": 2.949
+  },
+  {
+   "w": "is",
+   "t0": 3.007,
+   "t1": 3.088
+  },
+  {
+   "w": "packed,",
+   "t0": 3.146,
+   "t1": 3.564
+  },
+  {
+   "w": "kids",
+   "t0": 3.727,
+   "t1": 3.982
+  },
+  {
+   "w": "would",
+   "t0": 4.017,
+   "t1": 4.168
+  },
+  {
+   "w": "rather",
+   "t0": 4.203,
+   "t1": 4.458
+  },
+  {
+   "w": "stand.",
+   "t0": 4.505,
+   "t1": 5.341
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T22:20:45.947Z"
+}

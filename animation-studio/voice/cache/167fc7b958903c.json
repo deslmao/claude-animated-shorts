@@ -1,0 +1,70 @@
+{
+ "hash": "167fc7b958903c",
+ "text": "Emily tried to walk to school. She never got there.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.972,
+ "dur": 3.004082,
+ "words": [
+  {
+   "w": "Emily",
+   "t0": 0,
+   "t1": 0.337
+  },
+  {
+   "w": "tried",
+   "t0": 0.395,
+   "t1": 0.639
+  },
+  {
+   "w": "to",
+   "t0": 0.673,
+   "t1": 0.72
+  },
+  {
+   "w": "walk",
+   "t0": 0.778,
+   "t1": 0.964
+  },
+  {
+   "w": "to",
+   "t0": 1.01,
+   "t1": 1.08
+  },
+  {
+   "w": "school.",
+   "t0": 1.138,
+   "t1": 1.625
+  },
+  {
+   "w": "She",
+   "t0": 1.811,
+   "t1": 1.939
+  },
+  {
+   "w": "never",
+   "t0": 1.997,
+   "t1": 2.171
+  },
+  {
+   "w": "got",
+   "t0": 2.218,
+   "t1": 2.38
+  },
+  {
+   "w": "there.",
+   "t0": 2.415,
+   "t1": 2.972
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T22:20:52.569Z"
+}

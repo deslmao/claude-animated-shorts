@@ -1,0 +1,119 @@
+{
+ "id": "empty-seat",
+ "composition": "Short-empty-seat",
+ "stages": {
+  "validate": {
+   "state": "done",
+   "at": "2026-11-17T22:21:02.034Z",
+   "inputs": "1ac4c935d363ccn",
+   "detail": "valid; 26 warning(s):\n  total length 104.9 s (Shorts target 55-65 s)\n  shot 2 (schoolBus): noah fills 39 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 2 (schoolBus): p16 fills 45 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 4 (schoolBus): p15 fills 32 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 4 (schoolBus): p9 fills 100 % of the frame in the foreground @1.4s (is it hiding the action?)\n  shot 6 (schoolBus): noah fills 55 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 6 (schoolBus): p22 fills 27 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 7 (schoolBus): p15 fills 32 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 7 (schoolBus): p9 fills 100 % of the frame in the foreground @1.4s (is it hiding the action?)\n  shot 8 (schoolBus): hale fills 76 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 9 (schoolBusElm): you fills 53 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 15 (schoolBus): hale fills 74 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 18 (schoolBus): sub fills 72 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 21 (schoolBus): you fills 35 % of the frame in the foreground @1.6s (is it hiding the action?)\n  shot 26 (schoolBus): p9 fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 26 (schoolBus): p14 fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 26 (schoolBus): you fills 39 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 26 (schoolBus): p12 fills 100 % of the frame in the foreground @3.6s (is it hiding the action?)\n  shot 26 (schoolBus): p13 fills 100 % of the frame in the foreground @3.6s (is it hiding the action?)\n  shot 26 (schoolBus): p18 fills 100 % of the frame in the foreground @3.6s (is it hiding the action?)\n  shot 26 (schoolBus): s0 fills 27 % of the frame in the foreground @3.6s (is it hiding the action?)\n  shot 27 (schoolBus): p11 fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 27 (schoolBus): p16 fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 27 (schoolBus): p13 fills 100 % of the frame in the foreground @3.0s (is it hiding the action?)\n  shot 27 (schoolBus): p14 fills 100 % of the frame in the foreground @3.0s (is it hiding the action?)\n  shot 27 (schoolBus): you fills 42 % of the frame in the foreground @3.0s (is it hiding the action?)"
+  },
+  "assets": {
+   "state": "done",
+   "at": "2026-11-17T22:21:02.037Z",
+   "inputs": "1ac4c935d363cc",
+   "detail": "45 library assets reused, none missing",
+   "data": {
+    "reused": 45,
+    "missing": [],
+    "byKind": {
+     "character": [
+      "hale",
+      "subDriver",
+      "noah",
+      "seatKid"
+     ],
+     "extras": [
+      "extras:pupil"
+     ],
+     "mood": [
+      "emily"
+     ],
+     "set": [
+      "schoolBus",
+      "schoolBusElm"
+     ],
+     "camera": [
+      "at"
+     ],
+     "light": [
+      "interior"
+     ],
+     "ambience": [
+      "amb_bus_kids",
+      "amb_bus",
+      "amb_room",
+      "amb_snow"
+     ],
+     "prop": [
+      "fogPane",
+      "esInsert",
+      "busDoors"
+     ],
+     "sfx": [
+      "kids_chatter",
+      "bus_pullaway",
+      "thunk",
+      "indicator",
+      "air_brake",
+      "bus_doors",
+      "phone_tap",
+      "sting_low",
+      "swish_soft",
+      "musicbox_note",
+      "monitor_beep",
+      "whoosh_short",
+      "glass_slap",
+      "step_floor",
+      "heartbeat",
+      "dog_breath",
+      "monitor_flat"
+     ],
+     "act": [
+      "neutral",
+      "happy",
+      "thinking",
+      "embarrassed",
+      "sleepy",
+      "shock",
+      "nervous",
+      "sad",
+      "suspicious",
+      "scared",
+      "relief"
+     ]
+    }
+   }
+  },
+  "approval": {
+   "state": "done",
+   "at": "2026-11-17T22:21:02.040Z",
+   "inputs": "0b616832d6c6c3",
+   "detail": "all narration already generated (no cost)"
+  },
+  "narration": {
+   "state": "done",
+   "at": "2026-11-17T22:21:02.040Z",
+   "inputs": "0b616832d6c6c3",
+   "detail": "all lines already generated (cached)"
+  },
+  "sound": {
+   "state": "done",
+   "at": "2026-11-17T22:22:05.495Z",
+   "inputs": "11a56dac0f4991",
+   "detail": "soundtrack built: -14.1 LUFS"
+  },
+  "checks": {
+   "state": "done",
+   "at": "2026-11-17T22:22:25.852Z",
+   "inputs": "11a56dac0f4991",
+   "detail": "preflight PASS; library intact"
+  }
+ },
+ "approval": {
+  "scriptHash": "0b616832d6c6c3",
+  "chars": 1639,
+  "at": "2026-11-17T22:20:40.098Z",
+  "by": "the owner, in the conversation"
+ }
+}

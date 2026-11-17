@@ -1,0 +1,75 @@
+{
+ "hash": "088c048cf21c68",
+ "text": "You run to the front and scream at her to stop.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.647,
+ "dur": 2.690612,
+ "words": [
+  {
+   "w": "You",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "run",
+   "t0": 0.255,
+   "t1": 0.418
+  },
+  {
+   "w": "to",
+   "t0": 0.464,
+   "t1": 0.534
+  },
+  {
+   "w": "the",
+   "t0": 0.592,
+   "t1": 0.662
+  },
+  {
+   "w": "front",
+   "t0": 0.708,
+   "t1": 0.964
+  },
+  {
+   "w": "and",
+   "t0": 1.01,
+   "t1": 1.103
+  },
+  {
+   "w": "scream",
+   "t0": 1.161,
+   "t1": 1.451
+  },
+  {
+   "w": "at",
+   "t0": 1.498,
+   "t1": 1.567
+  },
+  {
+   "w": "her",
+   "t0": 1.614,
+   "t1": 1.695
+  },
+  {
+   "w": "to",
+   "t0": 1.741,
+   "t1": 1.8
+  },
+  {
+   "w": "stop.",
+   "t0": 1.858,
+   "t1": 2.647
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T22:20:56.246Z"
+}

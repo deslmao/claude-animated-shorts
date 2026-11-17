@@ -1,0 +1,155 @@
+{
+ "hash": "1bf2990b660a35",
+ "text": "But you've noticed something else. Every morning, Mr Hale stops on Elm Road, where nobody ever waits. He opens the doors, counts to three, and drives on.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 10.077,
+ "dur": 10.109388,
+ "words": [
+  {
+   "w": "But",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "you've",
+   "t0": 0.197,
+   "t1": 0.372
+  },
+  {
+   "w": "noticed",
+   "t0": 0.406,
+   "t1": 0.755
+  },
+  {
+   "w": "something",
+   "t0": 0.801,
+   "t1": 1.103
+  },
+  {
+   "w": "else.",
+   "t0": 1.161,
+   "t1": 1.695
+  },
+  {
+   "w": "Every",
+   "t0": 2.159,
+   "t1": 2.45
+  },
+  {
+   "w": "morning,",
+   "t0": 2.508,
+   "t1": 2.891
+  },
+  {
+   "w": "Mr",
+   "t0": 2.937,
+   "t1": 3.228
+  },
+  {
+   "w": "Hale",
+   "t0": 3.274,
+   "t1": 3.518
+  },
+  {
+   "w": "stops",
+   "t0": 3.553,
+   "t1": 3.878
+  },
+  {
+   "w": "on",
+   "t0": 3.924,
+   "t1": 4.005
+  },
+  {
+   "w": "Elm",
+   "t0": 4.087,
+   "t1": 4.307
+  },
+  {
+   "w": "Road,",
+   "t0": 4.389,
+   "t1": 4.841
+  },
+  {
+   "w": "where",
+   "t0": 4.969,
+   "t1": 5.166
+  },
+  {
+   "w": "nobody",
+   "t0": 5.213,
+   "t1": 5.515
+  },
+  {
+   "w": "ever",
+   "t0": 5.573,
+   "t1": 5.759
+  },
+  {
+   "w": "waits.",
+   "t0": 5.817,
+   "t1": 6.374
+  },
+  {
+   "w": "He",
+   "t0": 6.838,
+   "t1": 6.943
+  },
+  {
+   "w": "opens",
+   "t0": 7.012,
+   "t1": 7.326
+  },
+  {
+   "w": "the",
+   "t0": 7.384,
+   "t1": 7.454
+  },
+  {
+   "w": "doors,",
+   "t0": 7.5,
+   "t1": 7.941
+  },
+  {
+   "w": "counts",
+   "t0": 8.022,
+   "t1": 8.324
+  },
+  {
+   "w": "to",
+   "t0": 8.371,
+   "t1": 8.44
+  },
+  {
+   "w": "three,",
+   "t0": 8.51,
+   "t1": 8.835
+  },
+  {
+   "w": "and",
+   "t0": 8.858,
+   "t1": 8.975
+  },
+  {
+   "w": "drives",
+   "t0": 9.021,
+   "t1": 9.358
+  },
+  {
+   "w": "on.",
+   "t0": 9.416,
+   "t1": 10.077
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T22:20:49.652Z"
+}

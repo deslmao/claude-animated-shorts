@@ -1,4 +1,6 @@
-# The Empty Seat: script (draft for the owner's approval)
+# The Empty Seat: script (owner-approved, 17 Nov 2026)
+
+**Approved with the clarity fix:** Mr Hale is plainly ill (in hospital) and dies of it, nobody kills him, and line 21 says what seat 14 means. Line 7 was cut to keep the length.
 
 **Series:** Thinkora Ghost Stories, episode 1. The format is the one that worked in *One Too Many*: an animated ghost
 story in a school-life setting, one impossible detail, a solved mystery, a twist, and a loop ending.
@@ -16,21 +18,20 @@ story in a school-life setting, one impossible detail, a solved mystery, a twist
 | 4 | N | But the new kid, Noah, doesn't know. He drops straight into it. |
 | 5 | N | The whole bus goes silent. The driver, Mr Hale, pulls over. |
 | 6 | Mr Hale (quiet, not angry) | Not that one, son. That's Emily's. |
-| 7 | N | Nobody on this bus knows an Emily. |
 | 8 | N | But you've noticed something else. Every morning, Mr Hale stops on Elm Road, where nobody ever waits. He opens the doors, counts to three, and drives on. |
 | 9 | N | So you look it up. The Elm Road stop was closed in 1996. |
 | 10 | N | In the school library, the 1996 yearbook has one page with a black border. Emily Shaw. Aged eleven. |
 | 11 | N | That winter, the bus was running late. In the snow, the young driver didn't see her at the stop, and drove straight past. |
 | 12 | N | Emily tried to walk to school. She never got there. |
 | 13 | N | The driver was Mr Hale. For thirty years, he's stopped for her every single morning. And kept her seat. |
-| 14 | N | Then one morning, Mr Hale is off sick. The new driver has never heard of Elm Road. |
+| 14 | N | Then one morning, Mr Hale is in hospital. He's very ill. The new driver has never heard of Elm Road. |
 | 15 | N | She drives straight past it. |
 | 16 | N | Then something slaps the back window. A small handprint. From outside. And on the road behind the bus, there's snow. In June. |
 | 17 | N | You run to the front and scream at her to stop. |
 | 18 | N | She stops. The doors open on the empty stop. You count to three. |
 | 19 | N | And the window by seat thirteen fogs up again. |
-| 20 | N | That night, Mr Hale dies in his sleep. |
-| 21 | N | The next morning, the window by seat fourteen is fogged up too. |
+| 20 | N | That night, in hospital, Mr Hale dies in his sleep. |
+| 21 | N | The next morning, the window by seat fourteen is fogged up too. He's riding with her now, so she's never left behind again. |
 | 22 | N | Now your school bus has two seats nobody is allowed to sit in. |
 
 **The loop:** the last line echoes the first ("…one seat nobody is allowed to sit in" becomes "…two seats"), the way

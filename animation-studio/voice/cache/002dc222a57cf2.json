@@ -1,0 +1,85 @@
+{
+ "hash": "002dc222a57cf2",
+ "text": "She stops. The doors open on the empty stop. You count to three.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.226,
+ "dur": 4.257959,
+ "words": [
+  {
+   "w": "She",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "stops.",
+   "t0": 0.232,
+   "t1": 0.755
+  },
+  {
+   "w": "The",
+   "t0": 0.94,
+   "t1": 1.057
+  },
+  {
+   "w": "doors",
+   "t0": 1.103,
+   "t1": 1.37
+  },
+  {
+   "w": "open",
+   "t0": 1.428,
+   "t1": 1.707
+  },
+  {
+   "w": "on",
+   "t0": 1.753,
+   "t1": 1.823
+  },
+  {
+   "w": "the",
+   "t0": 1.858,
+   "t1": 1.927
+  },
+  {
+   "w": "empty",
+   "t0": 1.974,
+   "t1": 2.218
+  },
+  {
+   "w": "stop.",
+   "t0": 2.276,
+   "t1": 2.74
+  },
+  {
+   "w": "You",
+   "t0": 2.995,
+   "t1": 3.111
+  },
+  {
+   "w": "count",
+   "t0": 3.17,
+   "t1": 3.367
+  },
+  {
+   "w": "to",
+   "t0": 3.402,
+   "t1": 3.46
+  },
+  {
+   "w": "three.",
+   "t0": 3.518,
+   "t1": 4.226
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T22:20:56.947Z"
+}

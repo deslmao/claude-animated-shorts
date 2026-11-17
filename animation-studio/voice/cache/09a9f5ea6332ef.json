@@ -1,0 +1,135 @@
+{
+ "hash": "09a9f5ea6332ef",
+ "text": "That winter, the bus was running late. In the snow, the young driver didn't see her at the stop, and drove straight past.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 5.991,
+ "dur": 6.034286,
+ "words": [
+  {
+   "w": "That",
+   "t0": 0,
+   "t1": 0.244
+  },
+  {
+   "w": "winter,",
+   "t0": 0.302,
+   "t1": 0.592
+  },
+  {
+   "w": "the",
+   "t0": 0.615,
+   "t1": 0.685
+  },
+  {
+   "w": "bus",
+   "t0": 0.731,
+   "t1": 0.929
+  },
+  {
+   "w": "was",
+   "t0": 0.975,
+   "t1": 1.08
+  },
+  {
+   "w": "running",
+   "t0": 1.138,
+   "t1": 1.393
+  },
+  {
+   "w": "late.",
+   "t0": 1.451,
+   "t1": 1.846
+  },
+  {
+   "w": "In",
+   "t0": 2.009,
+   "t1": 2.148
+  },
+  {
+   "w": "the",
+   "t0": 2.194,
+   "t1": 2.264
+  },
+  {
+   "w": "snow,",
+   "t0": 2.299,
+   "t1": 2.589
+  },
+  {
+   "w": "the",
+   "t0": 2.612,
+   "t1": 2.682
+  },
+  {
+   "w": "young",
+   "t0": 2.74,
+   "t1": 2.891
+  },
+  {
+   "w": "driver",
+   "t0": 2.937,
+   "t1": 3.228
+  },
+  {
+   "w": "didn't",
+   "t0": 3.274,
+   "t1": 3.495
+  },
+  {
+   "w": "see",
+   "t0": 3.541,
+   "t1": 3.727
+  },
+  {
+   "w": "her",
+   "t0": 3.762,
+   "t1": 3.831
+  },
+  {
+   "w": "at",
+   "t0": 3.878,
+   "t1": 3.936
+  },
+  {
+   "w": "the",
+   "t0": 3.971,
+   "t1": 4.04
+  },
+  {
+   "w": "stop,",
+   "t0": 4.087,
+   "t1": 4.4
+  },
+  {
+   "w": "and",
+   "t0": 4.423,
+   "t1": 4.505
+  },
+  {
+   "w": "drove",
+   "t0": 4.551,
+   "t1": 4.795
+  },
+  {
+   "w": "straight",
+   "t0": 4.841,
+   "t1": 5.12
+  },
+  {
+   "w": "past.",
+   "t0": 5.166,
+   "t1": 5.991
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T22:20:51.981Z"
+}

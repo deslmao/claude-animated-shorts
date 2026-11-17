@@ -64,6 +64,19 @@ MOODS.update({
     "warmTheme": dict(root=53, scale=MAJ, bpm=88, prog=[0, 4, 5, 0], bass="none", chords="strings", lead="theme_piano", perc="none", density=0.4, swing=0.0),
 })
 
+# ---- The Empty Seat (addition): Emily's theme, a fixed 4-bar lullaby (bar, beat, beats, scale degree), stated like
+# the Pancake Theme by moods with `melody: "emily"` (the lead names theme_* pick the instrument)
+EMILY = [(0, 0, 1.5, 4), (0, 1.5, .5, 5), (0, 2, 1, 4), (0, 3, 1, 2),
+         (1, 0, 2, 3), (1, 2, 1, 2), (1, 3, 1, 1),
+         (2, 0, 1.5, 4), (2, 1.5, .5, 5), (2, 2, 1, 7), (2, 3, 1, 6),
+         (3, 0, 1, 4), (3, 1, 1, 2), (3, 2, 2, 0)]
+MELODIES = {"pancake": THEME, "emily": EMILY}
+MOODS.update({
+    "emily": dict(root=50, scale=MIN, bpm=66, prog=[0, 5, 3, 4], bass="none", chords="pad", lead="theme_musicbox", melody="emily", perc="none", density=0.3, swing=0.0),
+    "emilyDread": dict(root=50, scale=MIN, bpm=60, prog=[0, 5, 0, 4], bass="heartbeat", chords="strings_low", lead="theme_frag", melody="emily", perc="none", density=0.0, swing=0.0),
+    "emilyTender": dict(root=50, scale=MAJ, bpm=66, prog=[0, 4, 5, 0], bass="none", chords="strings", lead="theme_piano", melody="emily", perc="none", density=0.4, swing=0.0),
+})
+
 # ---- 4,012 Steps (addition): the reveal and the ending, a slow piano lullaby under warm strings (I-vi-IV-V)
 MOODS.update({
     "tender": dict(root=51, scale=MAJ, bpm=70, prog=[0, 5, 3, 4], bass="none", chords="piano_strings", lead="piano", perc="none", density=0.4, swing=0.0),
@@ -246,7 +259,7 @@ def compose(sections, total, button_t, seed, gain_db=0.0, drop_t=None):
                 tb, sc = k % 4, m["scale"]
                 if m["lead"] == "theme_frag" and (tb not in (0, 2) or (k // 4) % 2 == 1):
                     continue
-                notes_t = [(bb, b, ln, m["root"] + 12 + sc[d % 7] + 12 * (d // 7)) for (bb, b, ln, d) in THEME if bb == tb]
+                notes_t = [(bb, b, ln, m["root"] + 12 + sc[d % 7] + 12 * (d // 7)) for (bb, b, ln, d) in MELODIES.get(m.get("melody", "pancake"), THEME) if bb == tb]
                 if m["lead"] == "theme_frag":
                     notes_t = notes_t[:4]
                 v = 0.42 * soft

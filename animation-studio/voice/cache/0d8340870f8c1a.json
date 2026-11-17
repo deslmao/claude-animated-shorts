@@ -1,0 +1,120 @@
+{
+ "hash": "0d8340870f8c1a",
+ "text": "Then one morning, Mr Hale is in hospital. He's very ill. The new driver has never heard of Elm Road.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 6.316,
+ "dur": 6.347755,
+ "words": [
+  {
+   "w": "Then",
+   "t0": 0,
+   "t1": 0.221
+  },
+  {
+   "w": "one",
+   "t0": 0.29,
+   "t1": 0.43
+  },
+  {
+   "w": "morning,",
+   "t0": 0.464,
+   "t1": 0.813
+  },
+  {
+   "w": "Mr",
+   "t0": 0.859,
+   "t1": 1.126
+  },
+  {
+   "w": "Hale",
+   "t0": 1.173,
+   "t1": 1.428
+  },
+  {
+   "w": "is",
+   "t0": 1.463,
+   "t1": 1.544
+  },
+  {
+   "w": "in",
+   "t0": 1.591,
+   "t1": 1.649
+  },
+  {
+   "w": "hospital.",
+   "t0": 1.707,
+   "t1": 2.299
+  },
+  {
+   "w": "He's",
+   "t0": 2.705,
+   "t1": 2.902
+  },
+  {
+   "w": "very",
+   "t0": 2.937,
+   "t1": 3.17
+  },
+  {
+   "w": "ill.",
+   "t0": 3.239,
+   "t1": 3.692
+  },
+  {
+   "w": "The",
+   "t0": 3.878,
+   "t1": 3.994
+  },
+  {
+   "w": "new",
+   "t0": 4.052,
+   "t1": 4.18
+  },
+  {
+   "w": "driver",
+   "t0": 4.226,
+   "t1": 4.54
+  },
+  {
+   "w": "has",
+   "t0": 4.586,
+   "t1": 4.679
+  },
+  {
+   "w": "never",
+   "t0": 4.725,
+   "t1": 4.911
+  },
+  {
+   "w": "heard",
+   "t0": 4.981,
+   "t1": 5.213
+  },
+  {
+   "w": "of",
+   "t0": 5.259,
+   "t1": 5.306
+  },
+  {
+   "w": "Elm",
+   "t0": 5.375,
+   "t1": 5.538
+  },
+  {
+   "w": "Road.",
+   "t0": 5.619,
+   "t1": 6.316
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T22:20:54.146Z"
+}

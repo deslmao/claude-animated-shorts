@@ -1,0 +1,70 @@
+{
+ "hash": "054df1d3baf497",
+ "text": "That night, in hospital, Mr Hale dies in his sleep.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.483,
+ "dur": 3.526531,
+ "words": [
+  {
+   "w": "That",
+   "t0": 0,
+   "t1": 0.267
+  },
+  {
+   "w": "night,",
+   "t0": 0.337,
+   "t1": 0.604
+  },
+  {
+   "w": "in",
+   "t0": 0.639,
+   "t1": 0.743
+  },
+  {
+   "w": "hospital,",
+   "t0": 0.813,
+   "t1": 1.347
+  },
+  {
+   "w": "Mr",
+   "t0": 1.509,
+   "t1": 1.8
+  },
+  {
+   "w": "Hale",
+   "t0": 1.846,
+   "t1": 2.078
+  },
+  {
+   "w": "dies",
+   "t0": 2.125,
+   "t1": 2.438
+  },
+  {
+   "w": "in",
+   "t0": 2.496,
+   "t1": 2.554
+  },
+  {
+   "w": "his",
+   "t0": 2.601,
+   "t1": 2.705
+  },
+  {
+   "w": "sleep.",
+   "t0": 2.74,
+   "t1": 3.483
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T22:20:58.169Z"
+}

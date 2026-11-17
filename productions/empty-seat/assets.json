@@ -1,0 +1,71 @@
+{
+ "reused": 45,
+ "missing": [],
+ "byKind": {
+  "character": [
+   "hale",
+   "subDriver",
+   "noah",
+   "seatKid"
+  ],
+  "extras": [
+   "extras:pupil"
+  ],
+  "mood": [
+   "emily"
+  ],
+  "set": [
+   "schoolBus",
+   "schoolBusElm"
+  ],
+  "camera": [
+   "at"
+  ],
+  "light": [
+   "interior"
+  ],
+  "ambience": [
+   "amb_bus_kids",
+   "amb_bus",
+   "amb_room",
+   "amb_snow"
+  ],
+  "prop": [
+   "fogPane",
+   "esInsert",
+   "busDoors"
+  ],
+  "sfx": [
+   "kids_chatter",
+   "bus_pullaway",
+   "thunk",
+   "indicator",
+   "air_brake",
+   "bus_doors",
+   "phone_tap",
+   "sting_low",
+   "swish_soft",
+   "musicbox_note",
+   "monitor_beep",
+   "whoosh_short",
+   "glass_slap",
+   "step_floor",
+   "heartbeat",
+   "dog_breath",
+   "monitor_flat"
+  ],
+  "act": [
+   "neutral",
+   "happy",
+   "thinking",
+   "embarrassed",
+   "sleepy",
+   "shock",
+   "nervous",
+   "sad",
+   "suspicious",
+   "scared",
+   "relief"
+  ]
+ }
+}

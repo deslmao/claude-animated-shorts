@@ -29,6 +29,9 @@ export const MOODS = {
   rise4: "the build's peak: + the Pancake Theme on brass, 120 bpm major (uplifting, not epic)",
   warmTheme: "tender ending: the Pancake Theme on piano with warm strings, 88 bpm major",
   tender: "the reveal and the ending (4,012 Steps): a slow piano lullaby under warm strings, 70 bpm major",
+  emily: "Emily's theme (The Empty Seat): a fixed music-box lullaby in minor over a soft dark pad, 66 bpm: eerie, a child's ghost",
+  emilyDread: "Emily's theme in fragments on a music box over low strings and a slow piano heartbeat, 60 bpm minor: dread",
+  emilyTender: "Emily's theme resolved: the lullaby on piano in major over warm strings, 66 bpm: the ending",
 } as const;
 export type Mood = keyof typeof MOODS;
 
@@ -44,6 +47,9 @@ export const AMBIENCES = {
   amb_lab: "laboratory: room tone, mains hum, bubbling",
   amb_sea: "open sea: slow waves, wind, distant gulls (ships, beaches, pirates)",
   amb_storm: "a storm at night: steady rain, gusting wind, distant thunder rolls",
+  amb_bus: "inside a school bus on the move, quiet: a diesel rumble, road noise, loose panels rattling",
+  amb_bus_kids: "inside a school bus full of kids: the bus bed with overlapping children's chatter",
+  amb_snow: "a snowstorm: a cold, howling wind and the hiss of blown snow",
 } as const;
 export type Ambience = keyof typeof AMBIENCES;
 
@@ -63,6 +69,7 @@ export const SFX = {
   engine: "an early motor car putter-putter (1.8 s)", honk: "a rubber bulb horn: two honks", backfire: "a car backfire bang + clank + steam hiss (a breakdown)", bark: "a farm dog: two woofs", crack_egg: "an egg cracked on a rim",
   knock_heavy: "ONE slow, heavy knock on an old wooden door (cue once per knock)", phone_buzz: "a phone vibrating: two short buzzes", phone_tap: "soft phone-screen typing taps (1.4 s)", latch_click: "a door latch releasing: metallic click + bolt thunk", glass_crack: "picture-frame glass cracking under a foot: sharp crack + faint tinkle (no shatter)", lie_slam: "a LIE sign slamming in: neon buzz + heavy stamp + deep boom", crickets: "awkward-silence crickets (1.6 s)", thunk: "attention lands (Float Away): a heavy, soft low thud", float_whoosh: "attention leaves (Float Away): a soft rising air sound", trombone_slide: "comedy: a descending wah-wah trombone", tuba_sink: "comedy: a low tuba glide down", pop_gliss: "comedy: a quick rising slide-whistle pop", metal_groan: "a steel bench bending: a scraping metallic groan", splat: "a pancake hitting the ceiling: a wet slap", ringtone: "a cheerful phone ringtone (1.6 s)", musicbox_note: "one music-box note (the Pancake Theme's first note), ringing 3 s", riser: "a build-up riser (1.6 s)", storm_wind: "a storm gust through a door: wind + rain spray (2.5 s)", ground_crack: "hitting the road: deep boom + asphalt crack + gravel", fire_bell: "a school fire-alarm bell ringing (3 s): hammer on a steel gong, bright and relentless", kids_chatter: "a crowd of 11-year-olds talking at once outside (3 s)", chair_scrape: "a classroom chair shoved back across tiles (0.45 s)", camera_shutter: "a phone camera shutter: soft double click (0.3 s)", fire_roar: "a building fire close by (3 s): low roar, crackles and pops", cough: "a child coughing in smoke: three dry coughs (1 s)", whale_groan: "a sleeping whale stirring: a deep slow moan felt through stone (3.5 s)", whale_breath: "a whale's breath through its blowhole: a big hollow exhale (2.2 s)", whale_blow: "a waking whale's great breath: a deep boom and a roaring blast of air and spray (3.5 s)", baby_cry: "a baby starting to cry: two rising wails (1.5 s)", crowd_cheer: "a whole crowd cheering: hurrahs, laughter, clapping (3 s)", water_pour: "sea water pouring over a quay and running in the street (3 s)", founders_bell: "a great bronze ship's bell: one heavy, deep, ringing stroke (4 s)", msg_chime: "a text message arriving: a soft two-note chime over a short phone vibration (0.9 s)", car_skid: "a car braking hard into an impact: screeching tyres, then a heavy thump (1.4 s)", car_rev: "a car pulling away fast: an engine revving up and fading down the road (2.2 s)",
   claw_ticks: "small dog claws on wooden floorboards: an unhurried four-paw walk (1.6 s)", dog_breath: "a dog's warm breath on a hand: two sniffs and a soft huff (0.9 s)", dog_sigh: "a dog settling at the foot of a bed: the mattress gives, then a long contented sigh (1.6 s)", tag_jingle: "a dog collar's metal name tag jingling against its ring (0.7 s)", heartbeat: "one low heartbeat, lub-dub (0.9 s)",
+  bus_doors: "school-bus folding doors: a pneumatic hiss, the leaves folding with a clunk, a rubber thump (0.9 s)", air_brake: "a bus's air brakes as it stops: a sharp pssht and a low thunk (0.9 s)", bus_pullaway: "a diesel bus pulling away through first gear (2.4 s)", glass_slap: "a small hand slapping a window from outside: a flat slap, a brief glass ring (0.5 s)", indicator: "a vehicle's indicator ticking, four ticks (1.6 s)", monitor_beep: "a hospital heart monitor's beep: one clean electronic tone (0.3 s)", monitor_flat: "a heart monitor flatlining: one long tone, slowly fading (3 s)",
 } as const;
 export type SfxName = keyof typeof SFX;
 

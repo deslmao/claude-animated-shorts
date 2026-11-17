@@ -1,0 +1,120 @@
+{
+ "hash": "171135324251ce",
+ "text": "Every morning, your school bus has one seat nobody is allowed to sit in. Today, someone is sitting in it.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 6.037,
+ "dur": 6.086531,
+ "words": [
+  {
+   "w": "Every",
+   "t0": 0,
+   "t1": 0.302
+  },
+  {
+   "w": "morning,",
+   "t0": 0.36,
+   "t1": 0.731
+  },
+  {
+   "w": "your",
+   "t0": 0.789,
+   "t1": 0.94
+  },
+  {
+   "w": "school",
+   "t0": 0.987,
+   "t1": 1.231
+  },
+  {
+   "w": "bus",
+   "t0": 1.265,
+   "t1": 1.474
+  },
+  {
+   "w": "has",
+   "t0": 1.521,
+   "t1": 1.649
+  },
+  {
+   "w": "one",
+   "t0": 1.73,
+   "t1": 1.927
+  },
+  {
+   "w": "seat",
+   "t0": 1.985,
+   "t1": 2.241
+  },
+  {
+   "w": "nobody",
+   "t0": 2.368,
+   "t1": 2.705
+  },
+  {
+   "w": "is",
+   "t0": 2.752,
+   "t1": 2.821
+  },
+  {
+   "w": "allowed",
+   "t0": 2.868,
+   "t1": 3.111
+  },
+  {
+   "w": "to",
+   "t0": 3.135,
+   "t1": 3.193
+  },
+  {
+   "w": "sit",
+   "t0": 3.251,
+   "t1": 3.425
+  },
+  {
+   "w": "in.",
+   "t0": 3.483,
+   "t1": 3.738
+  },
+  {
+   "w": "Today,",
+   "t0": 4.203,
+   "t1": 4.644
+  },
+  {
+   "w": "someone",
+   "t0": 4.702,
+   "t1": 5.016
+  },
+  {
+   "w": "is",
+   "t0": 5.05,
+   "t1": 5.12
+  },
+  {
+   "w": "sitting",
+   "t0": 5.155,
+   "t1": 5.422
+  },
+  {
+   "w": "in",
+   "t0": 5.468,
+   "t1": 5.526
+  },
+  {
+   "w": "it.",
+   "t0": 5.584,
+   "t1": 6.037
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T22:20:45.197Z"
+}

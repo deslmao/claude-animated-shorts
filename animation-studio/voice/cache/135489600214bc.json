@@ -1,0 +1,75 @@
+{
+ "hash": "135489600214bc",
+ "text": "The whole bus goes silent. The driver, Mr Hale, pulls over.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.808,
+ "dur": 3.84,
+ "words": [
+  {
+   "w": "The",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "whole",
+   "t0": 0.209,
+   "t1": 0.395
+  },
+  {
+   "w": "bus",
+   "t0": 0.43,
+   "t1": 0.662
+  },
+  {
+   "w": "goes",
+   "t0": 0.72,
+   "t1": 0.906
+  },
+  {
+   "w": "silent.",
+   "t0": 0.952,
+   "t1": 1.486
+  },
+  {
+   "w": "The",
+   "t0": 1.672,
+   "t1": 1.788
+  },
+  {
+   "w": "driver,",
+   "t0": 1.834,
+   "t1": 2.183
+  },
+  {
+   "w": "Mr",
+   "t0": 2.206,
+   "t1": 2.461
+  },
+  {
+   "w": "Hale,",
+   "t0": 2.519,
+   "t1": 2.821
+  },
+  {
+   "w": "pulls",
+   "t0": 2.844,
+   "t1": 3.111
+  },
+  {
+   "w": "over.",
+   "t0": 3.17,
+   "t1": 3.808
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T22:20:48.097Z"
+}

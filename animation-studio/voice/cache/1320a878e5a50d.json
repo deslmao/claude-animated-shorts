@@ -1,0 +1,115 @@
+{
+ "hash": "1320a878e5a50d",
+ "text": "The driver was Mr Hale. For thirty years, he's stopped for her every single morning. And kept her seat.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 6.269,
+ "dur": 6.29551,
+ "words": [
+  {
+   "w": "The",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "driver",
+   "t0": 0.197,
+   "t1": 0.522
+  },
+  {
+   "w": "was",
+   "t0": 0.58,
+   "t1": 0.685
+  },
+  {
+   "w": "Mr",
+   "t0": 0.743,
+   "t1": 1.01
+  },
+  {
+   "w": "Hale.",
+   "t0": 1.068,
+   "t1": 1.556
+  },
+  {
+   "w": "For",
+   "t0": 1.776,
+   "t1": 1.916
+  },
+  {
+   "w": "thirty",
+   "t0": 1.962,
+   "t1": 2.264
+  },
+  {
+   "w": "years,",
+   "t0": 2.322,
+   "t1": 2.752
+  },
+  {
+   "w": "he's",
+   "t0": 2.833,
+   "t1": 2.984
+  },
+  {
+   "w": "stopped",
+   "t0": 3.007,
+   "t1": 3.309
+  },
+  {
+   "w": "for",
+   "t0": 3.344,
+   "t1": 3.437
+  },
+  {
+   "w": "her",
+   "t0": 3.483,
+   "t1": 3.599
+  },
+  {
+   "w": "every",
+   "t0": 3.692,
+   "t1": 3.959
+  },
+  {
+   "w": "single",
+   "t0": 4.017,
+   "t1": 4.319
+  },
+  {
+   "w": "morning.",
+   "t0": 4.365,
+   "t1": 4.865
+  },
+  {
+   "w": "And",
+   "t0": 5.027,
+   "t1": 5.155
+  },
+  {
+   "w": "kept",
+   "t0": 5.213,
+   "t1": 5.433
+  },
+  {
+   "w": "her",
+   "t0": 5.48,
+   "t1": 5.573
+  },
+  {
+   "w": "seat.",
+   "t0": 5.631,
+   "t1": 6.269
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T22:20:53.373Z"
+}

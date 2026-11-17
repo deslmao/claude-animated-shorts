@@ -1,0 +1,135 @@
+{
+ "hash": "1c3e40a4b8ecb0",
+ "text": "The next morning, the window by seat fourteen is fogged up too. He's riding with her now, so she's never left behind again.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 7.384,
+ "dur": 7.418776,
+ "words": [
+  {
+   "w": "The",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "next",
+   "t0": 0.209,
+   "t1": 0.418
+  },
+  {
+   "w": "morning,",
+   "t0": 0.476,
+   "t1": 0.859
+  },
+  {
+   "w": "the",
+   "t0": 0.906,
+   "t1": 1.01
+  },
+  {
+   "w": "window",
+   "t0": 1.057,
+   "t1": 1.324
+  },
+  {
+   "w": "by",
+   "t0": 1.393,
+   "t1": 1.521
+  },
+  {
+   "w": "seat",
+   "t0": 1.602,
+   "t1": 1.823
+  },
+  {
+   "w": "fourteen",
+   "t0": 1.892,
+   "t1": 2.357
+  },
+  {
+   "w": "is",
+   "t0": 2.415,
+   "t1": 2.496
+  },
+  {
+   "w": "fogged",
+   "t0": 2.543,
+   "t1": 2.798
+  },
+  {
+   "w": "up",
+   "t0": 2.844,
+   "t1": 2.961
+  },
+  {
+   "w": "too.",
+   "t0": 3.019,
+   "t1": 3.506
+  },
+  {
+   "w": "He's",
+   "t0": 3.971,
+   "t1": 4.191
+  },
+  {
+   "w": "riding",
+   "t0": 4.249,
+   "t1": 4.563
+  },
+  {
+   "w": "with",
+   "t0": 4.598,
+   "t1": 4.725
+  },
+  {
+   "w": "her",
+   "t0": 4.76,
+   "t1": 4.841
+  },
+  {
+   "w": "now,",
+   "t0": 4.899,
+   "t1": 5.283
+  },
+  {
+   "w": "so",
+   "t0": 5.41,
+   "t1": 5.526
+  },
+  {
+   "w": "she's",
+   "t0": 5.584,
+   "t1": 5.747
+  },
+  {
+   "w": "never",
+   "t0": 5.793,
+   "t1": 5.968
+  },
+  {
+   "w": "left",
+   "t0": 6.014,
+   "t1": 6.188
+  },
+  {
+   "w": "behind",
+   "t0": 6.246,
+   "t1": 6.56
+  },
+  {
+   "w": "again.",
+   "t0": 6.618,
+   "t1": 7.384
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T22:20:59.089Z"
+}

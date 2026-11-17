@@ -1,0 +1,65 @@
+{
+ "hash": "0535f4379e7e8a",
+ "text": "And the window by seat thirteen fogs up again.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.833,
+ "dur": 2.873469,
+ "words": [
+  {
+   "w": "And",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "the",
+   "t0": 0.209,
+   "t1": 0.279
+  },
+  {
+   "w": "window",
+   "t0": 0.313,
+   "t1": 0.592
+  },
+  {
+   "w": "by",
+   "t0": 0.662,
+   "t1": 0.778
+  },
+  {
+   "w": "seat",
+   "t0": 0.848,
+   "t1": 1.068
+  },
+  {
+   "w": "thirteen",
+   "t0": 1.126,
+   "t1": 1.602
+  },
+  {
+   "w": "fogs",
+   "t0": 1.73,
+   "t1": 2.02
+  },
+  {
+   "w": "up",
+   "t0": 2.055,
+   "t1": 2.159
+  },
+  {
+   "w": "again.",
+   "t0": 2.206,
+   "t1": 2.833
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T22:20:57.545Z"
+}

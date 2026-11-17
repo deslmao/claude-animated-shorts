@@ -815,6 +815,60 @@ def heartbeat(r):
         t = tt(0.16); return np.sin(phase(48 + 30 * np.exp(-t / 0.02))) * _env(t, 0.004, 0.05) * a
     return fades(lp(_sum((thump(1.0), 0.0), (thump(0.7), 0.27)), 400), 0.001, 0.2)
 
+
+# ------------------------------------------------------------------ The Empty Seat (a school bus)
+def bus_doors(r):
+    """school-bus folding doors (0.9 s): a pneumatic hiss, the leaves folding with a clunk, a rubber thump at the end"""
+    t = tt(0.45); hiss = hp(r.standard_normal(len(t)), 2500) * _env(t, 0.01, 0.16) * 0.5
+    clunk = modal(0.3, [(r.uniform(160, 190), 1.0, 0.06), (r.uniform(420, 480), 0.5, 0.03), (r.uniform(1100, 1300), 0.25, 0.015)], r)
+    ti = tt(0.25); rattle = bp(r.standard_normal(len(ti)), 1500, 5000, 1) * (np.sin(TAU * 38 * ti) > 0.6) * _env(ti, 0.005, 0.08) * 0.3
+    thump = modal(0.25, [(r.uniform(90, 110), 1.0, 0.05)], r) * 0.8
+    return fades(_sum((hiss, 0.0), (clunk * 0.8, 0.22), (rattle, 0.26), (thump, 0.6)), 0.002, 0.08)
+
+
+def air_brake(r):
+    """a bus's air brakes releasing as it stops (0.9 s): a sharp 'pssht' and a low chassis thunk"""
+    t = tt(0.85); hiss = (hp(r.standard_normal(len(t)), 1800) * 0.7 + bp(r.standard_normal(len(t)), 600, 2400, 1) * 0.3) * _env(t, 0.004, 0.22)
+    thunk = np.sin(phase(55 + 40 * np.exp(-t / 0.03))) * _env(t, 0.003, 0.09) * 0.6
+    return fades(hiss * 0.6 + thunk, 0.001, 0.15)
+
+
+def bus_pullaway(r):
+    """a diesel bus pulling away (2.4 s): the engine note rising through first gear, with a rattle"""
+    t = tt(2.4); f0 = 34 + 30 * np.clip(t / 1.6, 0, 1) ** 0.8
+    eng = sum(np.sin(k * phase(f0)) / k ** 0.9 for k in range(1, 9)) * (1 + 0.25 * np.sin(TAU * 9 * t))
+    grit = bp(colored(len(t), r, 0.6), 200, 1600, 1) * 0.3
+    env = np.clip(t / 0.2, 0, 1) * np.clip((2.4 - t) / 0.6, 0, 1)
+    return fades(lp(eng * 0.5 + grit, 1500) * env * 0.6, 0.02, 0.3)
+
+
+def glass_slap(r):
+    """a small hand slapping a window from outside (0.5 s): a sharp flat slap, the glass ringing briefly, a dull thud"""
+    t = tt(0.05); slap = bp(r.standard_normal(len(t)), 700, 6000, 1) * np.exp(-t / 0.006)
+    ring = modal(0.4, [(r.uniform(1700, 1900), 0.6, 0.05), (r.uniform(2900, 3200), 0.4, 0.035), (r.uniform(4300, 4700), 0.25, 0.025)], r)
+    thud = modal(0.2, [(r.uniform(110, 140), 1.0, 0.04)], r)
+    return fades(_sum((slap, 0.0), (ring * 0.45, 0.0), (thud * 0.7, 0.0)), 0.0005, 0.1) * 0.9
+
+
+def indicator(r):
+    """a vehicle's indicator ticking (1.6 s): tick... tock... four times"""
+    out = np.zeros(ns(1.6))
+    for k in range(4):
+        t = tt(0.04); f = 2600 if k % 2 == 0 else 2100
+        x = (bp(r.standard_normal(len(t)), f * 0.7, f * 1.4, 2) * np.exp(-t / 0.004) + modal(0.04, [(f * 0.4, 0.3, 0.006)], r)[: len(t)]) * 0.6
+        i = ns(0.4 * k); out[i:i + len(x)] += x
+    return out
+
+
+def monitor_beep(r):
+    """a hospital heart monitor's beep (0.3 s): one clean electronic tone"""
+    t = tt(0.3); return fades(np.sin(TAU * 988 * t) * np.clip(t / 0.005, 0, 1) * np.clip((0.16 - t) / 0.01, 0, 1) * 0.5, 0.001, 0.05)
+
+
+def monitor_flat(r):
+    """a heart monitor flatlining (3 s): one long tone, slowly fading"""
+    t = tt(3.0); return fades(np.sin(TAU * 988 * t) * np.clip(t / 0.01, 0, 1) * np.exp(-np.maximum(t - 1.2, 0) / 0.9) * 0.45, 0.001, 0.4)
+
 SFX = {
     "pop": pop, "ding": ding, "blip_up": blip_up, "boing": boing, "poof": poof, "twinkle": twinkle, "impact": impact,
     "thud": thud, "party_pop": party_pop, "drip": drip, "steam": steam, "snore_soft": snore_soft, "ring_ding": ring_ding,
@@ -834,6 +888,7 @@ SFX = {
     "whale_groan": whale_groan, "whale_breath": whale_breath, "whale_blow": whale_blow, "baby_cry": baby_cry, "crowd_cheer": crowd_cheer, "water_pour": water_pour, "founders_bell": founders_bell,
     "msg_chime": msg_chime, "car_skid": car_skid, "car_rev": car_rev,
     "claw_ticks": claw_ticks, "dog_breath": dog_breath, "dog_sigh": dog_sigh, "tag_jingle": tag_jingle, "heartbeat": heartbeat,
+    "bus_doors": bus_doors, "air_brake": air_brake, "bus_pullaway": bus_pullaway, "glass_slap": glass_slap, "indicator": indicator, "monitor_beep": monitor_beep, "monitor_flat": monitor_flat,
 }
 
 
@@ -939,9 +994,33 @@ def amb_storm(dur, r):
     return _bed(dur, r, [(_wide(rain, r), 0.8), (G.breeze(dur, r, 1.6, 0.35, 700), 0.9), (thunder, 0.35)])
 
 
+
+def amb_bus(dur, r):
+    """inside a school bus on the move, quiet (The Empty Seat): a diesel rumble, road noise, loose panels rattling"""
+    n = ns(dur); t = tt(dur)
+    rumble = lp(colored(n, r, 1.0), 180) * 1.2 + (np.sin(TAU * 42 * t) + 0.5 * np.sin(TAU * 84 * t)) * (0.55 + 0.45 * smooth_noise(n, r, 0.4)) * 0.18
+    road = bp(colored(n, r, 0.6), 200, 1500, 1) * 0.35
+    rattle = bp(r.standard_normal(n), 2000, 6000, 1) * (smooth_noise(n, r, 7.0) > 0.75) * 0.08
+    return _bed(dur, r, [(_wide(rumble + road, r), 1.0), (_wide(rattle, r), 1.0)])
+
+
+def amb_bus_kids(dur, r):
+    """inside a school bus full of kids (The Empty Seat): the bus bed with overlapping children's chatter"""
+    base = amb_bus(dur, r); n = base.shape[1]; kids = np.zeros(n); t0 = 0.0
+    while t0 < dur:
+        k = kids_chatter(r); i = ns(t0); kids[i:i + len(k)] += k[: n - i]; t0 += 2.4
+    return base + _wide(lp(kids, 4500) * 0.55, r)
+
+
+def amb_snow(dur, r):
+    """a snowstorm (The Empty Seat, 1996): a cold, howling wind and the hiss of blown snow"""
+    n = ns(dur)
+    hiss = hp(colored(n, r, 0.3), 3000) * 0.25 * (0.6 + 0.4 * smooth_noise(n, r, 0.5))
+    return _bed(dur, r, [(G.breeze(dur, r, 2.2, 0.5, 900), 1.2), (_wide(hiss, r), 0.8)])
+
 AMBIENCE = {
     "amb_city_day": amb_city_day, "amb_city_night": amb_city_night, "amb_square": amb_square,
     "amb_square_night": amb_square_night, "amb_nature_day": amb_nature_day, "amb_nature_night": amb_nature_night,
     "amb_room": amb_room, "amb_office": amb_office, "amb_lab": amb_lab, "amb_sea": amb_sea,
-    "amb_storm": amb_storm,
+    "amb_storm": amb_storm, "amb_bus": amb_bus, "amb_bus_kids": amb_bus_kids, "amb_snow": amb_snow,
 }
