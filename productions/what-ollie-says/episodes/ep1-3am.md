@@ -1,6 +1,6 @@
 # Part 1: 3:00 (the narrated cut)
 
-**Status:** in production (preview v2).
+**Status:** final cut (preview v2 plus the five-fix correction pass, 17 Nov 2026); cloud final rendering.
 - **Replaces:** the dialogue-only screenplay. The owner rejected preview v1 because the story wasn't clear and nothing was explained.
 - **Format:** the narrated "Imagine…" pattern from the owner's research (`productions/what-ollie-says/` notes; the successful Shorts the owner analysed):
   - a second-person narrator explains every clue the moment it appears;
@@ -11,7 +11,8 @@
   - Dates: night 1 is 03:00 Wed 11 Nov; the river is 03:00 Thu 12 Nov.
 - **Narrator:** George (`georgeHushed`).
 - **Cast:** Mini (the toddler role), Leo (Ollie), Kasia (Kate), Alice (Ava).
-- **Runtime:** about 110 s.
+- **Runtime:** about 113 s (40 shots, 3,392 frames).
+- **Correction pass (owner-approved):** scene shots break the run of insert cards (rows 8–11); the rescue has narration; Kate's kitchen face is plain and tired; the ending loops back to the 3 a.m. hook shot; the choice states what each option costs; Polish subtitles are bigger.
 
 | # | Picture | Sound |
 |---|---|---|
@@ -22,10 +23,13 @@
 | 5 | Kate's face drains | NARRATOR: She goes white. · KATE: Where did he hear that? |
 | 6 | The scar across her palm | NARRATOR: And there's a scar across her palm. She's never told anyone how she got it. |
 | 7 | Kate on the edge of her bed, crying | NARRATOR: That night, you catch her crying over an old photo. |
-| 8 | The tea towel pressed to the photo | NARRATOR: She's drying it with a tea towel. Then she hides it under her bed. |
-| 9 | Under the bed: the tin, Ollie's dinosaur sticker | NARRATOR: So when she's gone, you look. |
+| 8 | The tea towel pressed to the photo | NARRATOR: She's drying it with a tea towel. |
+| 8a | Kate's bed, close | NARRATOR: Then she hides it under her bed. |
+| 9 | Ava in Kate's room, suspicious | NARRATOR: So when she's gone, you look. |
+| 9a | Under the bed: the tin, Ollie's dinosaur sticker | (lid) |
 | 10 | The open tin: dry tissue, the wet photo, a drop | NARRATOR: The photo is soaking wet. The tin it's in is bone dry. |
-| 11 | The back: *Kubuś · 2008* | NARRATOR: On the back: Kubuś. Two thousand and eight. Three years before you were born. |
+| 11 | The back: *Kubuś · 2008* | NARRATOR: On the back: Kubuś. Two thousand and eight. |
+| 11a | Ava, shocked, close | NARRATOR: Three years before you were born. |
 | 12 | Beside Ollie's school photo, then laid over it: the same face, a tear | NARRATOR: And the boy in it looks exactly like your brother. |
 | 13 | Ava on Ollie's floor at 2:58; Ollie asleep | NARRATOR: So you sleep on your brother's floor. At two fifty-eight, he mumbles in his sleep. · OLLIE: Not tonight, Mama. I'm tired. |
 | 14 | Ava's face | NARRATOR: He has never called anyone Mama. |
@@ -42,14 +46,16 @@
 | 25 | She walks past Ava; Ollie alone in the water | NARRATOR: And walks back to bed. · AVA: MUM! |
 | 26 | The water pulls his pyjama legs | NARRATOR: Then the water starts pulling him in. |
 | 27 | Ollie, dragged to his knees, awake | OLLIE: AVA! |
-| 28–29 | Ava sprints in (the phone's view), heaves | (splash) |
+| 28 | The phone lands in the grass, low; Ava runs | NARRATOR: You drop the phone and run. |
+| 29 | Ava heaves him out | (splash) |
 | 30 | On the grass | NARRATOR: You drag him out. Just. |
-| 31 | Kate in the kitchen doorway, awake, blinking | NARRATOR: Back inside, Mum comes downstairs. She doesn't remember a thing. |
+| 31 | Kate in the kitchen doorway, awake, blinking, a plain tired face | NARRATOR: Back inside, Mum comes downstairs. She doesn't remember a thing. |
 | 32 | Ava | AVA: Mum. Who's Kuba? |
 | 33 | Kate | KATE: He was my son. |
 | 34 | Ollie, in a towel | OLLIE: You call me Kuba. Every night. |
 | 35 | Her wet feet | NARRATOR: She looks down. Her feet are soaking wet. |
-| 36 | **The choice card:** 1 SHOW MUM THE VIDEO · 2 KEEP OLLIE AWAY FROM HER · COMMENT 1 OR 2 · PART 2 · THE WATER GAME | NARRATOR: And at three a.m. tonight, it happens again. Do you show her the video? Or keep your brother away from her? |
+| 36 | Back to the hook shot through Ava's phone (REC), Ollie's bed | NARRATOR: And tonight, at three, it happens again. |
+| 37 | **The choice card:** 1 SHOW MUM THE VIDEO · 2 KEEP OLLIE AWAY FROM HER · COMMENT 1 OR 2 · PART 2 · THE WATER GAME | NARRATOR: Show her the video, and she'll know what she does. Keep him away, and she'll come looking for him. So what do you do? |
 
 **Part 2 opens on the result:**
 - "Most of you said…"
