@@ -1,7 +1,9 @@
 # What Ollie Says at 3 A.M., Part 1: publishing package (Thinkora)
 
-**Video:** `productions/what-ollie-says/final/Short-ollie-1.mp4` (kept by the QA workflow after the cloud final).
-- 1080 × 1920, 30 fps, 3,392 frames (1:53).
+**Video:** `Short-ollie-1.mp4` from the GitHub Actions artifact **`Short-ollie-1-run30`**
+([render run 30](https://github.com/deslmao/claude-animated-shorts/actions/runs/43986128144), under Artifacts; kept
+until 17 Dec 2026). QA: `../final/QA-REPORT.md` (publishable).
+- 1080 × 1920, 30 fps, 3,392 frames (1:53), 30.9 MB.
 - Upload this file only, never anything from `preview/`.
 
 **Nothing has been uploaded or published.** This folder is the copy and the cover, ready to paste.
