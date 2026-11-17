@@ -1,7 +1,9 @@
 # 4,012 Steps: publishing package (Thinkora)
 
-**Video:** `Short-steps-4012.mp4`, from the cloud final render (render run 31). It's 1080 × 1920, 30 fps, 2,757
-frames (1:32). The QA report (`../final/QA-REPORT.md`) says where the MP4 is once the check has run.
+**Video:** `Short-steps-4012.mp4` from the GitHub Actions artifact **`Short-steps-4012-run31`**
+([render run 31](https://github.com/deslmao/claude-animated-shorts/actions/runs/44008878460), under Artifacts; kept
+until 17 Dec 2026). QA: `../final/QA-REPORT.md` (publishable).
+- 1080 × 1920, 30 fps, 2,757 frames (1:32), 22.3 MB.
 
 **Nothing has been uploaded or published.** This folder holds the copy and the cover, ready to paste.
 
