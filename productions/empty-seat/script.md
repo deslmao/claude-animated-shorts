@@ -5,7 +5,7 @@ story in a school-life setting, one impossible detail, a solved mystery, a twist
 - **Person:** second person ("you": a regular rider on the bus, never named).
 - **Narrator:** `georgeHushed`.
 - **One line of dialogue:** Mr Hale, the driver, voiced by `brian`.
-- **Length:** about 280 words, about 1 min 45 s (*One Too Many*: 322 words, 2:08).
+- **Length:** about 304 words, about 2:00 (*One Too Many*: 322 words, 2:08).
 
 ## Narration
 | # | Voice | Line |
@@ -57,7 +57,7 @@ story in a school-life setting, one impossible detail, a solved mystery, a twist
 | **Frame 1: characters in motion, dark, with sound** (new rule) | ✅ Inside the bus, a grey winter morning: kids pile in, the camera pushes down the aisle to the one empty seat with the fogged window; engine and chatter from frame 1 |
 | The question isn't answered until late | ✅ Line 13, about 60% |
 | Escalation every 5–10 s | ✅ The rule, the fogged window, Noah sits, the silence, "That's Emily's", the empty stop, 1996, the yearbook, the skipped stop, the handprint, the snow in June |
-| About 150 words a minute, 20% silent or less | ✅ About 280 words in about 105 s |
+| About 150 words a minute, 20% silent or less | ✅ 304 words in about 2:00 (the long end; One Too Many ran 2:08) |
 | One readable image per line | ✅ Visual plan below |
 | Ending loops to the start | ✅ "One seat" becomes "two seats" |
 | Premise in one sentence a stranger understands | ✅ "Nobody may sit in one seat on the school bus, because it belongs to a girl the bus left behind." |
@@ -104,8 +104,8 @@ story in a school-life setting, one impossible detail, a solved mystery, a twist
   - George and Brian.
 - **Estimated cost:**
   - **Assets:** about one session (the bus is the main build).
-  - **Voices:** about 1,700 ElevenLabs characters.
-  - **540p preview:** about 3,150 frames × 1 s ≈ 55 min.
+  - **Voices:** about 1,650 ElevenLabs characters.
+  - **540p preview:** about 3,600 frames × 1 s ≈ 60 min.
   - **Cloud final:** about 16 min, plus the quality check.
 
 **Title idea:** "Nobody Sits in Seat 13 on Our School Bus. Today, Someone Did."
