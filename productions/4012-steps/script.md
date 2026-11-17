@@ -4,7 +4,7 @@
 - **Person:** second person ("you": a teenager, never named).
 - **Narrator:** `georgeHushed`, the channel's calm horror narrator from *One Too Many*.
 - **No dialogue.** Sound effects carry the scary middle: claws ticking on the floorboards, the breath, the bed creaking.
-- **Length:** about 252 words, about 100 s at about 150 words a minute, plus short action beats.
+- **Length:** about 271 words, about 1 min 48 s at about 150 words a minute, plus short action beats.
 
 ## Narration
 | # | Line |
@@ -22,8 +22,8 @@
 | 11 | And the counter stops. Four thousand and twelve. |
 | 12 | You open the app. It isn't counting your phone. It's counting Biscuit's collar. You never disconnected it. |
 | 13 | Biscuit was your dog. He died in June. His collar has been in your drawer ever since. It hasn't moved. But it's still counting. |
-| 14 | For nearly eleven years, he slept on the end of your bed. Four thousand and twelve nights. And every night, he walked round you first. |
-| 15 | He still does. One step for every night he kept you safe. |
+| 14 | For nearly eleven years, he slept on the end of your bed. Four thousand and twelve nights. And every night, he walked round you first, to make sure you were safe. |
+| 15 | He never stopped. That's his ghost, walking round your bed. Still guarding you while you sleep. One step for every night he kept you safe. |
 | 16 | So tonight, you leave the drawer open. |
 | 17 | And in the morning, your phone says four thousand and twelve steps. |
 
@@ -44,7 +44,9 @@ line itself, with no end card and no call to action.
   Viewers aren't left to decode any of it alone.
 - **The impossible detail is stated outright:** the collar is in a drawer, it hasn't moved, and it's still counting
   (line 13).
-- **The ghost is never shown, only heard and felt:** the ticks, the breath, the bed sinking. The horror stays in the
+- **The ghost is named outright** (line 15: "That's his ghost… still guarding you"), so no viewer is left wondering what
+  was in the room or whether it meant harm. Every scary sound becomes him protecting you.
+- **The ghost's body is never shown, only heard and felt:** the ticks, the breath, the bed sinking. The horror stays in the
   sound, and the reveal stays a surprise.
 - **The answer is handed straight on.** After the reveal (line 12) there's no pause. Lines 13–15 explain it at once,
   then the loop. That avoids *One Too Many*'s 6% drop after its answer.
@@ -56,7 +58,7 @@ line itself, with no end card and no call to action.
 | First sentence: complete, concrete, impossible | ✅ Line 1 |
 | Its question isn't answered until late | ✅ The answer comes at line 12, about 62% through (*One Too Many*: about 60%) |
 | Escalation every 5–10 s | ✅ The map, then the same number, then every night since June, then the counter moving, the ticks, the breath, the bed sinking |
-| About 150 words a minute | ✅ 252 words in about 100 s |
+| About 150 words a minute | ✅ 271 words in about 108 s |
 | 20% silent or less; no gap over 2 s unless it's action with sound | ✅ Planned. The only gaps are the counter ticking (line 7), the claw ticks (line 8) and the bed sinking (line 10), each 1 s or less and each with sound |
 | Ending loops to the start | ✅ Line 17 leads into line 1 |
 | One readable image per line | ✅ Visual plan below |
@@ -76,7 +78,8 @@ line itself, with no end card and no call to action.
 12. **The app's device list:** BISCUIT'S COLLAR · CONNECTED.
 13. **The drawer opens:** a red collar with a bone tag, BISCUIT. A framed photo of the dog on the bedside table.
 14. **The photo, closer:** the dog curled on the end of this bed.
-15. **You,** a tear, half a smile.
+15. **Faint glowing paw prints** appear one by one on the floorboards, in a circle round your bed. Then you, a tear,
+    half a smile. The ghost is shown only as its paw prints.
 16. **Your hand** leaves the drawer open; the lamp goes off.
 17. **Morning:** the phone, 4,012, exactly the opening frame.
 
@@ -93,7 +96,7 @@ line itself, with no end card and no call to action.
   - probably one new sound: small claws on floorboards.
 - **Estimated cost:**
   - narration: about 1,400 ElevenLabs characters;
-  - 540p preview: about 3,000 frames × 1.5 s ≈ 75 min;
+  - 540p preview: about 3,250 frames × 1.5 s ≈ 80 min;
   - cloud final: about 16 min, plus QA.
 
 **Title idea:** "My Phone Says I Walked 4,012 Steps Last Night. I Never Left Bed."
