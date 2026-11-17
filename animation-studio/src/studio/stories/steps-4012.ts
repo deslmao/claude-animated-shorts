@@ -33,8 +33,8 @@ const shots: ShotSpec[] = [
   { cont: true, ...DAY, ...glide(BED_MED, BED_CLOSE, 0.05, 2.0), actors: [you("confused", { hold: "phone", gesture: "read" })], note: "1 you never got out of bed" },
   // ======== 2: the map: round and round the bed
   insert("map", "2 the route: round the bed", { say: N("You open the map. The steps never left your room. They go round and round your bed. All night."), until: { word: "room." }, sfx: [{ t: 0.05, name: "phone_tap", gain: -6 }] }),
-  { cont: true, ...DAY, ...glide(at([0.75, 0.32, 0.85], [-0.6, 0.25, -0.2], 50), at([0.75, 0.32, -0.95], [-0.7, 0.25, -0.6], 50), 0.05, 3.2),
-    actors: [], note: "2 low round the foot of the bed: the empty floor" },
+  { cont: true, ...DAY, ...glide(at([0.2, 1.9, 1.75], [-0.75, 0.2, -0.4], 56), at([1.05, 1.85, 0.6], [-0.75, 0.2, -0.45], 56), 0.05, 3.2),
+    actors: [], note: "2 from above, round the foot of the bed: the empty floor all round it" },
   // ======== 3: the glitch test: the phone across the room
   { say: N("It has to be a glitch. So that night, you leave your phone charging across the room, where it can't move."), until: { word: "charging" }, ...NIGHT,
     ...glide(at([0.55, 1.35, 0.9], [1.15, 1.0, -0.9], 46), at([0.6, 1.3, 0.6], [1.1, 0.95, -0.95], 42), 0.1, 2.5),
