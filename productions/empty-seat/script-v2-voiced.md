@@ -12,7 +12,7 @@
 
 **The story is unchanged** (the approved v1, `script.md`). It's the same events in the same order, now acted.
 
-**Length:** about 245 spoken words in about 1:55, around 130 words a minute. That leaves room for the acted silences,
+**Length:** about 145 spoken words in about 1:45, around 85 words a minute (the reference ran at 84). That leaves room for the acted silences,
 each filled with sound and action, never a held picture.
 
 ## Cast
@@ -156,5 +156,5 @@ really sick.*
   - a title card overlay;
   - drone and build moods;
   - a snow-storm state for the bus (white windows, cold light, frost) and frost edges on the fog.
-- **Voices:** about 1,300 ElevenLabs characters (seven voices). The v1 narration is kept but no longer used.
+- **Voices:** about 800 ElevenLabs characters (seven voices). The v1 narration is kept but no longer used.
 - **Reused:** the bus, the fog, the doors, the inserts, Emily's theme and all the bus sounds from v1.
