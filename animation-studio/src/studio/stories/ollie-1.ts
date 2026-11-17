@@ -35,6 +35,7 @@ const PHONE = (look: V, variant: "rec" | "post") => ({ id: "olPhoneCam", at: loo
 const KATE_NIGHT: Partial<ActorSpec> = { act: "neutral", face: "blank", blink: false, keepFace: true };
 const ROOM_FLOOR = 2.8;
 const KATE_BED: V = [-1.25, ROOM_FLOOR + 0.6, -1.9];       // the edge of her bed (ferryBack: Kate and Mark's room)
+const AVA_KATEROOM: V = [0.15, ROOM_FLOOR, -1.3];          // Ava in Mum's room
 const BENCH_AVA: V = [-0.35, 0.46, -0.4], BENCH_OLLIE: V = [0.45, 0.46, -0.4];   // the kitchen bench, facing the camera
 const OLLIE_FLOOR_AVA: V = [0.5, 0.02, 0.4];               // Ava on Ollie's floor, her back to his bed
 // scene 9's marks: the water starts at z 10.8 (0.16 m deep)
@@ -66,10 +67,16 @@ export const OLLIE_1: Storyboard = {
     // ---- the photo
     { say: N("That night, you catch her crying over an old photo."), set: "ferryBack", light: NIGHT, hold: 0.1, ...lock(at([0.3, 4.25, -0.6], [-1.3, 4.0, -1.9], 50)),
       actors: [{ who: "kate", at: KATE_BED, mode: "sit", act: "sad", face: "sad", facing: "camera", gesture: "coverMouth" }], note: "Kate on the edge of her bed, crying" },
-    insert("towelPhoto", 3.0, "drying it with a tea towel", { say: N("She's drying it with a tea towel. Then she hides it under her bed.") }),
-    insert("tinLid", 1.6, "under the bed: the tin", { say: N("So when she's gone, you look."), sfx: [{ t: 0.2, name: "swish_soft", gain: -8 }] }),
+    insert("towelPhoto", 2.0, "drying it with a tea towel", { say: N("She's drying it with a tea towel.") }),
+    { say: N("Then she hides it under her bed."), set: "ferryBack", light: NIGHT, hold: 0.1, ...lock(at([-0.2, 4.2, -1.2], [-1.25, 4.1, -1.95], 46)), sfx: [{ t: 0.4, name: "swish_soft", gain: -8 }],
+      actors: [{ who: "kate", at: KATE_BED, mode: "sit", act: "sad", face: "sad", facing: "camera" }], note: "scene: Kate close, hiding it" },
+    { say: N("So when she's gone, you look."), set: "ferryBack", light: NIGHT, hold: 0.1, ...lock(at([-0.75, 4.0, -0.95], [0.15, 3.95, -1.3], 40)),
+      actors: [{ who: "ava", at: AVA_KATEROOM, act: "neutral", face: "suspicious", facing: "toward:kate" }], note: "scene: Ava in Mum's room" },
+    insert("tinLid", 1.1, "under the bed: the tin", { sfx: [{ t: 0.1, name: "swish_soft", gain: -8 }] }),
     insert("tinOpen", 2.8, "the WET photo in the dry tin; the drop", { say: N("The photo is soaking wet. The tin it's in is bone dry."), sfx: [{ t: 1.6, name: "drip", gain: -4 }] }, [{ t: 0.9 }]),
-    insert("photoBack", 3.0, "the back: Kubuś · 2008", { say: N("On the back: Kubuś. Two thousand and eight. Three years before you were born.") }),
+    insert("photoBack", 2.4, "the back: Kubuś · 2008", { say: N("On the back: Kubuś. Two thousand and eight.") }),
+    { say: N("Three years before you were born."), set: "ferryBack", light: NIGHT, hold: 0.1, ...lock(at([-0.95, 4.0, -0.9], [0.15, 3.95, -1.3], 40)),
+      actors: [{ who: "ava", at: AVA_KATEROOM, act: "shock", face: "shock", keepFace: true, facing: "camera" }], note: "scene: Ava's face" },
     insert("match", 3.2, "beside Ollie's school photo; laid over it: the same face", { say: N("And the boy in it looks exactly like your brother."), sfx: [{ t: 1.0, name: "sting_low", gain: -8 }] }, [{ t: 0.3 }]),
     // ---- 2:58: Mama
     { say: [N("So you sleep on your brother's floor. At two fifty-eight, he mumbles in his sleep."), ollie("Not tonight, Mama. I'm tired.")], set: "ollieRoom", light: NIGHT, hold: 0.2, ...lock(at([-0.9, 0.95, 0.7], [0.95, 0.55, -0.25], 44)),
@@ -118,7 +125,7 @@ export const OLLIE_1: Storyboard = {
     { say: ollie("AVA!"), set: "ferryBack", light: NIGHT, dur: 1.1, hold: 0.1, ...lock(at([2.2, 0.9, 10.3], [2.1, 0.5, 12.8], 40)), ...STORM,
       actors: [{ who: "ollie", at: DEEP_OLLIE, act: "scared", face: "scared", facing: "camera" }],
       props: GARDEN([2.1, 0.5, 12.8]), kicks: [{ word: "AVA" }], sfx: [{ t: 0, name: "splash", gain: -6 }], note: "dragged to his knees, awake" },
-    { set: "ferryBack", light: NIGHT, dur: 1.4, ...lock(at([2.7, 0.14, 9.0], [2.15, 0.7, 12.6], 50)), ...STORM,
+    { say: N("You drop the phone and run."), set: "ferryBack", light: NIGHT, dur: 1.4, hold: 0.1, ...lock(at([2.7, 0.14, 9.0], [2.15, 0.7, 12.6], 50)), ...STORM,
       actors: [{ who: "ava", at: [2.9, 0, 9.4], act: "determined", mode: "run", walk: { to: [2.2, 0, 12.1], t0: 0.05, t1: 1.1, mode: "run", view: "back" } },
         { who: "ollie", at: DEEP_OLLIE, act: "scared", face: "scared", facing: "camera" }],
       props: GARDEN([2.15, 0.5, 12.6]), sfx: [{ t: 0, name: "thud", gain: -8 }, { t: 1.0, name: "splash" }], note: "the phone drops; Ava sprints in" },
@@ -131,7 +138,7 @@ export const OLLIE_1: Storyboard = {
       props: GARDEN([2.6, 0, 11.0], true), sfx: [{ t: 0, name: "thud" }, { t: 0.15, name: "whoosh_low", gain: -4 }], note: "on the grass; the water lets go" },
     // ---- the kitchen: the reveal
     { say: N("Back inside, Mum comes downstairs. She doesn't remember a thing."), set: "ferryKitchenNight", light: COOL, hold: 0.1, ...lock(at([0.3, 1.5, 0.7], [1.7, 1.45, 1.55], 36)),
-      actors: [{ who: "kate", at: "stairs", act: "neutral", face: "confused", keepFace: true, facing: "camera" }], note: "Kate awake, blinking, confused" },
+      actors: [{ who: "kate", at: "stairs", act: "neutral", face: "neutral", keepFace: true, facing: "camera" }], note: "Kate awake, blinking, tired" },
     { say: ava("Mum. Who's Kuba?"), set: "ferryKitchenNight", light: COOL, hold: 0.5, ...lock(at([-0.35, 1.05, 1.4], [-0.35, 1.0, -0.4], 30)),
       actors: [{ who: "ava", at: BENCH_AVA, mode: "sit", act: "sad", face: "sad", keepFace: true, facing: "camera", gesture: "crossArms" }], note: "Ava" },
     { say: kate("He was my son."), set: "ferryKitchenNight", light: COOL, hold: 0.5, ...lock(at([0.5, 1.62, 0.7], [1.7, 1.6, 1.55], 40)),
@@ -139,6 +146,9 @@ export const OLLIE_1: Storyboard = {
     { say: ollieT("You call me Kuba. Every night."), set: "ferryKitchenNight", light: COOL, hold: 0.4, ...lock(at([0.3, 0.95, 1.3], [0.45, 1.0, -0.4], 30)),
       actors: [{ who: "ollieT", at: BENCH_OLLIE, mode: "sit", act: "neutral", face: "neutral", facing: "camera" }], note: "Ollie, in a towel, matter-of-fact" },
     insert("kateFeet", 2.4, "her wet feet", { say: N("She looks down. Her feet are soaking wet."), sfx: [{ t: 0.2, name: "sting_low" }] }, undefined, "ferryKitchenNight", COOL),
-    insert("choice", 6.0, "the choice", { say: N("And at three a.m. tonight, it happens again. Do you show her the video? Or keep your brother away from her?"), transition: "dip", sfx: [{ t: 0, name: "whoosh_low", gain: -8 }] }),
+    { say: N("And tonight, at three, it happens again."), set: "ollieRoom", light: NIGHT, hold: 0.1, ...lock(at([-0.6, 1.3, 1.45], [1.0, 0.85, -0.38], 50)),
+      actors: [{ who: "ollie", at: "bed", mode: "sit", act: "neutral", face: "trance", keepFace: true, facing: -1, idle: 0.3 }],
+      props: [PHONE([1.0, 0.85, -0.38], "rec")], transition: "dip", note: "the loop: the opening frame again" },
+    insert("choice", 6.0, "the choice", { say: N("Show her the video, and she'll know what she does. Keep him away, and she'll come looking for him. So what do you do?"), sfx: [{ t: 0, name: "whoosh_low", gain: -8 }] }),
   ],
 };

@@ -1,0 +1,55 @@
+{
+ "hash": "01fec4c372ce88",
+ "text": "And tonight, at three, it happens again.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.415,
+ "dur": 2.45551,
+ "words": [
+  {
+   "w": "And",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "tonight,",
+   "t0": 0.221,
+   "t1": 0.639
+  },
+  {
+   "w": "at",
+   "t0": 0.662,
+   "t1": 0.789
+  },
+  {
+   "w": "three,",
+   "t0": 0.836,
+   "t1": 1.161
+  },
+  {
+   "w": "it",
+   "t0": 1.196,
+   "t1": 1.289
+  },
+  {
+   "w": "happens",
+   "t0": 1.335,
+   "t1": 1.637
+  },
+  {
+   "w": "again.",
+   "t0": 1.683,
+   "t1": 2.415
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T00:11:15.013Z"
+}

@@ -1,0 +1,60 @@
+{
+ "hash": "073c2dff12686a",
+ "text": "On the back: Kubuś. Two thousand and eight.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.879,
+ "dur": 2.925714,
+ "words": [
+  {
+   "w": "On",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "the",
+   "t0": 0.186,
+   "t1": 0.255
+  },
+  {
+   "w": "back:",
+   "t0": 0.313,
+   "t1": 0.697
+  },
+  {
+   "w": "Kubuś.",
+   "t0": 0.824,
+   "t1": 1.416
+  },
+  {
+   "w": "Two",
+   "t0": 1.544,
+   "t1": 1.73
+  },
+  {
+   "w": "thousand",
+   "t0": 1.788,
+   "t1": 2.113
+  },
+  {
+   "w": "and",
+   "t0": 2.159,
+   "t1": 2.229
+  },
+  {
+   "w": "eight.",
+   "t0": 2.299,
+   "t1": 2.879
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T00:11:13.526Z"
+}

@@ -1,8 +1,8 @@
 # What Ollie Says at 3 A.M. · Part 1: 3:00: narration approval
 
-**Cost:** 26 new lines, **1338 characters** (about 1338 credits on eleven_multilingual_v2).
-**Estimated length:** 105.2 s (307 words; the real length is known after generation).
-**Voice:** George - Warm, Captivating Storyteller, Mini - Lively Cute Little Girl, Kasia - Warm, Natural & Engaging, Daniel - Steady Broadcaster, Leo - Cute Energetic Young Kid, Alice - Clear, Engaging Educator.
+**Cost:** 7 new lines, **325 characters** (about 325 credits on eleven_multilingual_v2).
+**Estimated length:** 112.5 s (311 words; the real length is known after generation).
+**Voice:** George - Warm, Captivating Storyteller, Mini - Lively Cute Little Girl, Kasia - Warm, Natural & Engaging, Leo - Cute Energetic Young Kid, Alice - Clear, Engaging Educator.
 
 ## Script
 
@@ -14,36 +14,38 @@
 5. **kate:** Where did he hear that?
 6. And there's a scar across her palm. She's never told anyone how she got it.
 7. That night, you catch her crying over an old photo.
-8. She's drying it with a tea towel. Then she hides it under her bed.
-9. So when she's gone, you look.
-10. The photo is soaking wet. The tin it's in is bone dry.
-11. On the back: Kubuś. Two thousand and eight. Three years before you were born.
-12. And the boy in it looks exactly like your brother.
-13. You ask your dad if Mum ever had another baby.
-13. **mark:** What? No.
-14. So you sleep on your brother's floor. At two fifty-eight, he mumbles in his sleep.
-14. **ollie:** Not tonight, Mama. I'm tired.
-15. He has never called anyone Mama.
-17. Three a.m. Your mum walks in. Eyes wide open. She doesn't blink.
-18. **kate:** Kubuś, trzymaj mnie za rękę.
-18. Kuba. The boy in the photo.
-19. She walks him downstairs, and out into the rain.
-20. The garden is flooded. Only yours. Next door's lawn is completely dry.
-21. **kate:** Nie puszczę cię. Obiecuję.
-22. **kate:** Weź go!
-23. **ollie:** Obiecałaś, że nie puścisz.
-24. **kate:** Przepraszam.
-25. She lets go of his hand.
-26. And walks back to bed.
-26. **ava:** MUM!
-27. Then the water starts pulling him in.
-28. **ollie:** AVA!
-31. You drag him out. Just.
-32. Back inside, Mum comes downstairs. She doesn't remember a thing.
-33. **ava:** Mum. Who's Kuba?
-34. **kate:** He was my son.
-35. **ollieT:** You call me Kuba. Every night.
-36. She looks down. Her feet are soaking wet.
-37. And at three a.m. tonight, it happens again. Do you show her the video? Or keep your brother away from her?
+8. She's drying it with a tea towel.
+9. Then she hides it under her bed.
+10. So when she's gone, you look.
+12. The photo is soaking wet. The tin it's in is bone dry.
+13. On the back: Kubuś. Two thousand and eight.
+14. Three years before you were born.
+15. And the boy in it looks exactly like your brother.
+16. So you sleep on your brother's floor. At two fifty-eight, he mumbles in his sleep.
+16. **ollie:** Not tonight, Mama. I'm tired.
+17. He has never called anyone Mama.
+19. Three a.m. Your mum walks in. Eyes wide open. She doesn't blink.
+20. **kate:** Kubuś, trzymaj mnie za rękę.
+20. Kuba. The boy in the photo.
+21. She walks him downstairs, and out into the rain.
+22. The garden is flooded. Only yours. Next door's lawn is completely dry.
+23. **kate:** Nie puszczę cię. Obiecuję.
+24. **kate:** Weź go!
+25. **ollie:** Obiecałaś, że nie puścisz.
+26. **kate:** Przepraszam.
+27. She lets go of his hand.
+28. And walks back to bed.
+28. **ava:** MUM!
+29. Then the water starts pulling him in.
+30. **ollie:** AVA!
+31. You drop the phone and run.
+33. You drag him out. Just.
+34. Back inside, Mum comes downstairs. She doesn't remember a thing.
+35. **ava:** Mum. Who's Kuba?
+36. **kate:** He was my son.
+37. **ollieT:** You call me Kuba. Every night.
+38. She looks down. Her feet are soaking wet.
+39. And tonight, at three, it happens again.
+40. Show her the video, and she'll know what she does. Keep him away, and she'll come looking for him. So what do you do?
 
-Approve in the conversation; then: `npm run short -- ollie-1 --approve-narration 1338`
+Approve in the conversation; then: `npm run short -- ollie-1 --approve-narration 325`

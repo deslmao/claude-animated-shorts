@@ -1,0 +1,55 @@
+{
+ "hash": "1bf1b8e6748fd7",
+ "text": "She's drying it with a tea towel.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 1.811,
+ "dur": 1.854694,
+ "words": [
+  {
+   "w": "She's",
+   "t0": 0,
+   "t1": 0.255
+  },
+  {
+   "w": "drying",
+   "t0": 0.29,
+   "t1": 0.569
+  },
+  {
+   "w": "it",
+   "t0": 0.615,
+   "t1": 0.673
+  },
+  {
+   "w": "with",
+   "t0": 0.708,
+   "t1": 0.824
+  },
+  {
+   "w": "a",
+   "t0": 0.859,
+   "t1": 0.882
+  },
+  {
+   "w": "tea",
+   "t0": 0.929,
+   "t1": 1.08
+  },
+  {
+   "w": "towel.",
+   "t0": 1.115,
+   "t1": 1.811
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-17T00:11:12.369Z"
+}

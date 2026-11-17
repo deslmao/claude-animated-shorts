@@ -20,7 +20,7 @@ export const Captions: React.FC<{ groups: CaptionGroup[] }> = ({ groups }) => {
   useEffect(() => { loadFont().then(() => continueRender(handle)).catch((e) => cancelRender(e)); }, [handle]);
   const g = groups.find((x) => f >= x.f0 && f < x.f1);
   if (!g) return null;
-  const chars = g.text.length, size = g.sub ? 58 : Math.min(96, MAX_W / Math.max(1, chars * 0.6));
+  const chars = g.text.length, size = g.sub ? 76 : Math.min(96, MAX_W / Math.max(1, chars * 0.6));
   const pop = 1 + 0.09 * Math.max(0, 1 - (f - g.f0) / 3);
   return (
     <AbsoluteFill style={{ pointerEvents: "none" }}>

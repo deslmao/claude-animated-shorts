@@ -1,8 +1,8 @@
 {
-  "composition": "Short-whale-city",
+  "composition": "Short-ollie-1",
   "chunks": 20,
   "preview": false,
   "audio": "",
   "publish": false,
-  "note": "The Whale City: owner-approved final render of 8aafe60, 1080x1920 30fps, 3164 frames (105.47 s), with its committed soundtrack and narration. No GitHub Release: the MP4 is kept via the QA workflow."
+  "note": "What Ollie Says at 3 A.M., Part 1 (the narrated cut, after the five-fix correction pass): final render, 1080x1920 30fps, 3392 frames, with its committed soundtrack and narration. No GitHub Release: the MP4 is kept via the QA workflow."
 }

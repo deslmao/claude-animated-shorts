@@ -1,5 +1,5 @@
 {
- "reused": 39,
+ "reused": 40,
  "missing": [],
  "byKind": {
   "character": [
@@ -53,6 +53,7 @@
    "suspicious",
    "happy",
    "sad",
+   "shock",
    "scared",
    "determined"
   ],
