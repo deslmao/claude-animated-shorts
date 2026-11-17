@@ -62,6 +62,14 @@ Techniques taken from the Shorts the owner analysed (17 Nov 2026). **Record the 
    - The test before production: can the whole premise be said in one sentence a stranger understands? (*4,012 Steps*:
      "Your dead dog's collar still counts his steps round your bed every night.")
    - A series part still needs its own complete answer; the cliffhanger is a new question, not the old one left open.
+9. **The first frame decides the swipe, before any word lands** (*4,012 Steps*, first hour: 27.7% stayed, 72.3%
+   swiped, against *One Too Many*'s 85.5%).
+   - *4,012 Steps* opened on a flat white phone screen: no face, no motion, no darkness. In a horror feed it reads as a
+     screenshot or an ad, and viewers swipe before "Imagine…" finishes.
+   - The rule from now on: frame 1 is a character with a strong expression, in the story's world, moving within the
+     first 0.5 s, high contrast, with sound on frame 1. UI cards and text screens come second, never first.
+   - Check it before rendering: view frame 1 at about 180 px wide (feed size) next to *One Too Many*'s frame 1.
+   - Post at most one Short a day. Two uploads 30 minutes apart compete for the same test audience.
 
 **Script measurements (from the pipeline's line timings) against YouTube retention:**
 | Video | Stayed | Avg viewed | Words/min | Silent | Longest gap |
