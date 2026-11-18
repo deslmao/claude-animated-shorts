@@ -1,7 +1,9 @@
 # The Empty Seat: publishing package (Thinkora Ghost Stories, episode 1)
 
-**Video:** `Short-empty-seat.mp4`, from the cloud final render (render run 32). It's 1080 × 1920, 30 fps, 4,636 frames
-(2:35). The QA report (`../final/QA-REPORT.md`) says where to download it once the check has run.
+**Video:** `Short-empty-seat.mp4` from the GitHub Actions artifact **`Short-empty-seat-run32`**
+([render run 32](https://github.com/deslmao/claude-animated-shorts/actions/runs/44289957204), under Artifacts; kept
+until 18 Dec 2026). QA: `../final/QA-REPORT.md` (publishable).
+- 1080 × 1920, 30 fps, 4,636 frames (2:35), 37.3 MB.
 
 **Nothing has been uploaded or published.** This folder holds the copy and the cover, ready to paste.
 
