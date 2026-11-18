@@ -24,7 +24,8 @@ Voice -19.4 LUFS; music -12.0 LU and ambience -19.97 LU relative to the voice.
 |  48.48 s | 1454 | sfx bus_doors: storyboard cue, shot 11 |
 |  53.49 s | 1605 | sfx bus_doors: storyboard cue, shot 11 |
 |  54.17 s | 1625 | ambience: amb_room |
-|  60.58 s | 1817 | sfx phone_tap: storyboard cue, shot 12 |
+|  54.27 s | 1628 | sfx phone_tap: storyboard cue, shot 12 |
+|  59.16 s | 1775 | sfx blip_up: storyboard cue, shot 12 |
 |  61.40 s | 1842 | music: emilyDread (60 bpm) |
 |  61.40 s | 1842 | ambience: amb_snow |
 |  64.71 s | 1941 | sfx bus_pullaway: storyboard cue, shot 13 |

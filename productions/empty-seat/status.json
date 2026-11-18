@@ -4,17 +4,17 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-18T08:43:54.101Z",
-   "inputs": "182d2645ff4dfen",
+   "at": "2026-11-18T10:21:52.597Z",
+   "inputs": "0f06da83d5b0a3n",
    "detail": "valid; 19 warning(s):\n  total length 154.3 s (Shorts target 55-65 s)\n  shot 1 (schoolBusSnow): light \"night\" on an indoor set\n  shot 11 (schoolBusElm): prop \"busDoors\" overlaps something already in the set at [1.2, -4.4]\n  shot 20 (schoolBusSnow): light \"night\" on an indoor set\n  shot 21 (schoolBusSnow): light \"night\" on an indoor set\n  shot 22 (schoolBusSnow): light \"night\" on an indoor set\n  shot 23 (schoolBusSnow): light \"night\" on an indoor set\n  shot 23 (schoolBusSnow): prop \"busDoors\" overlaps something already in the set at [1.2, -4.4]\n  shot 1 (schoolBusSnow): p24 fills 36 % of the frame in the foreground @2.0s (is it hiding the action?)\n  shot 3 (schoolBus): p24 fills 27 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 6 (schoolBus): hale fills 75 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 7 (schoolBus): noah fills 25 % of the frame in the foreground @3.4s (is it hiding the action?)\n  shot 8 (schoolBus): noah fills 29 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 9 (schoolBus): hale fills 76 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 15 (schoolBus): hale fills 74 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 16 (schoolBus): sub fills 72 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 20 (schoolBusSnow): p24 fills 35 % of the frame in the foreground @3.0s (is it hiding the action?)\n  shot 22 (schoolBusSnow): sub fills 94 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 27 (schoolBus): kid fills 28 % of the frame in the foreground @0.0s (is it hiding the action?)"
   },
   "assets": {
    "state": "done",
-   "at": "2026-11-18T08:43:54.104Z",
-   "inputs": "182d2645ff4dfe",
-   "detail": "47 library assets reused, none missing",
+   "at": "2026-11-18T10:21:52.599Z",
+   "inputs": "0f06da83d5b0a3",
+   "detail": "48 library assets reused, none missing",
    "data": {
-    "reused": 47,
+    "reused": 48,
     "missing": [],
     "byKind": {
      "character": [
@@ -63,6 +63,7 @@
       "bus_doors",
       "air_brake",
       "phone_tap",
+      "blip_up",
       "musicbox_note",
       "radio_squelch",
       "whoosh_short",
@@ -89,26 +90,26 @@
   },
   "approval": {
    "state": "done",
-   "at": "2026-11-18T08:43:54.106Z",
+   "at": "2026-11-18T10:21:52.601Z",
    "inputs": "1ff3e1f7d6b08b",
    "detail": "all narration already generated (no cost)"
   },
   "narration": {
    "state": "done",
-   "at": "2026-11-18T08:43:54.107Z",
+   "at": "2026-11-18T10:21:52.602Z",
    "inputs": "1ff3e1f7d6b08b",
    "detail": "all lines already generated (cached)"
   },
   "sound": {
    "state": "done",
-   "at": "2026-11-18T08:45:02.276Z",
-   "inputs": "0326d70692bb0d",
+   "at": "2026-11-18T10:23:02.477Z",
+   "inputs": "0486fb99b9ea65",
    "detail": "soundtrack built: -14.1 LUFS"
   },
   "checks": {
    "state": "done",
-   "at": "2026-11-18T08:45:06.394Z",
-   "inputs": "0326d70692bb0d",
+   "at": "2026-11-18T10:23:07.123Z",
+   "inputs": "0486fb99b9ea65",
    "detail": "preflight PASS; library intact"
   }
  },

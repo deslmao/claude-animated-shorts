@@ -23,6 +23,7 @@ const BUS = { set: "schoolBus", light: "interior" as const };
 const ELM = { set: "schoolBusElm", light: "interior" as const };
 const SNOW = { set: "schoolBusSnow", light: "night" as const };
 const CARD: V = [0, 1.4, 9.0], CARD_CAM = at([0, 1.4, 10.0], CARD, 51);
+const PUSH = { cams: [{ t: 0, ...CARD_CAM, blockOk: true }, { t: 0.1, ...at([0, 1.4, 9.8], CARD, 51), glide: 7, blockOk: true }] };   // a slow push-in on a held card
 const insert = (variant: string, note: string, extra: Partial<ShotSpec> = {}, steps: When[] = []): ShotSpec =>
   ({ ...BUS, camera: CARD_CAM, cams: [{ t: 0, ...CARD_CAM, blockOk: true }], actors: [], props: [{ id: "esInsert", at: CARD, variant, steps }], note, ...extra });
 const fovK = (fov: number) => Math.tan((fov * Math.PI) / 360) / Math.tan((50 * Math.PI) / 360);
@@ -82,27 +83,27 @@ const shots: ShotSpec[] = [
     ...lock(TO13), actors: [NOAH("happy"), ...around13(riders([13, 12], { act: "shock", facing: "toward:noah" }))], props: [FOG13], sfx: [{ word: "quiet.", name: "air_brake" }], note: "Noah in seat 13; every head turns to him" },
   { say: L("hale", "Not that one, son. That's Emily's.", { gap: 0.4 }), ...BUS, ambience: "amb_bus", ...lock(AT_HALE), actors: [{ who: "hale", at: DRIVER, mode: "sit", act: "sad", face: "sad", keepFace: true, facing: "camera", idle: 0.2 }], note: "Mr Hale turns round in his seat" },
   // ======== the June fog, explained
-  insert("window", "seat 13's window: fogged on the inside, bright June sun outside", { say: N("And here's what nobody can explain. It's June. It's hot. But the window by seat thirteen is always fogged up, from the inside. As if someone is breathing on it."), mood: "mystery", ambience: "amb_bus" }),
+  insert("window", "seat 13's window: fogged on the inside, bright June sun outside", { say: N("And here's what nobody can explain. It's June. It's hot. But the window by seat thirteen is always fogged up, from the inside. As if someone is breathing on it."), mood: "mystery", ambience: "amb_bus", ...PUSH }),
   // ======== Elm Road, explained; the quick count
   { say: [N("Every day, Mr Hale stops at Elm Road, even though that stop was taken away a long time ago. Nobody is ever there. He opens the doors and counts to three."), L("hale", "One, two, three.", { gap: 0.2 })], ...ELM, mood: "drone", ambience: "amb_bus", ...lock(AT_DOORS),
     actors: [{ who: "hale", at: DRIVER, mode: "sit", act: "sad", facing: 1, idle: 0.2 }], props: [{ id: "busDoors", at: [1.2, 0, -4.4], steps: [{ word: "Nobody" }, { word: "three.", n: 2 }] }],
     sfx: [{ t: 0.1, name: "air_brake", gain: -4 }, { word: "Nobody", name: "bus_doors" }, { word: "three.", n: 2, name: "bus_doors", gain: -2 }], note: "the doors fold open on the empty Elm Rd stop; he counts quickly; they shut" },
   // ======== at home: you look it up
   insert("searchHome", "at home on your bed: your phone: elm road bus stop -> STOP CLOSED 1996", { say: N("When you get home, you can't stop thinking about it. Why does your driver always stop at Elm Road? So you look it up."), ambience: "amb_room",
-    sfx: [{ word: "look", name: "phone_tap", gain: -4 }] }, [{ word: "look" }]),
+    sfx: [{ t: 0.1, name: "phone_tap", gain: -4 }, { word: "Elm", name: "blip_up", gain: -10 }] }, [{ word: "Elm" }]),
   insert("snow1996", "1996: the bus passes the Elm Rd stop in a snowstorm; a small girl waves behind the snowbank", { say: N("In 1996, in a snowstorm, the bus drove straight past the Elm Road stop. The driver didn't see the little girl waiting behind the snow."), mood: "emilyDread", ambience: "amb_snow",
     sfx: [{ word: "past", name: "bus_pullaway", gain: -2 }] }, [{ word: "past" }]),
   insert("yearbook", "the 1996 yearbook memorial page: EMILY SHAW, aged 11", { say: N("Her name was Emily Shaw. She was eleven. She tried to walk to school, and she never made it."), ambience: "amb_snow", sfx: [{ t: 0.1, name: "musicbox_note", gain: -8 }] }),
   { say: [N("The driver that morning was a young Mr Hale. Every day since, he stops for her and waits three seconds, just long enough for her to climb on. And he keeps her seat."), L("hale", "Morning, Emily.", { gap: 0.3 })], ...BUS, mood: "hush", ambience: "amb_bus",
-    ...lock(FRONT_HALE), actors: [{ who: "hale", at: DRIVER, mode: "sit", act: "sad", facing: "camera", idle: 0.2, beats: [{ t: 2.0, look: "up" }] }], note: "Mr Hale at the wheel; he looks up at seat 13 in his mirror and says good morning to her" },
+    ...glide(FRONT_HALE, at([0.22, 1.35, -4.72], [-0.75, 1.2, -4.2], 42), 0.1, 11), actors: [{ who: "hale", at: DRIVER, mode: "sit", act: "sad", facing: "camera", idle: 0.2, beats: [{ t: 2.0, look: "up" }] }], note: "Mr Hale at the wheel; he looks up at seat 13 in his mirror and says good morning to her" },
   // ======== he gets sick; the new driver (narrated, THEN the radio)
   { say: [N("Then one morning, Mr Hale got sick. A new driver covered his route."), O("radio", "Bus nine, Ron Hale's in hospital. You're covering his route.", { gap: 0.4 }), L("sub", "Copy that.")], ...BUS, mood: "drone", ambience: "amb_bus", transition: "dip",
-    ...lock(FRONT_HALE), actors: [{ who: "sub", at: DRIVER, mode: "sit", act: "neutral", facing: "camera", idle: 0.3 }], sfx: [{ word: "Bus", name: "radio_squelch" }, { word: "route.", n: 2, name: "radio_squelch", gain: -3 }], note: "a new driver, a young woman, at the wheel; the bus radio" },
+    ...glide(FRONT_HALE, at([0.22, 1.35, -4.72], [-0.75, 1.2, -4.2], 42), 0.1, 9), actors: [{ who: "sub", at: DRIVER, mode: "sit", act: "neutral", facing: "camera", idle: 0.3 }], sfx: [{ word: "Bus", name: "radio_squelch" }, { word: "route.", n: 2, name: "radio_squelch", gain: -3 }], note: "a new driver, a young woman, at the wheel; the bus radio" },
   { say: [N("She doesn't know about Elm Road. So you tell her."), O("you", "Miss, you have to stop at Elm Road!"), L("sub", "There's no stop at Elm Road, hon.", { gap: 0.2 })], ...BUS, ambience: "amb_bus", ...lock(FRONT_ZOOM),
     actors: [{ who: "sub", at: DRIVER, mode: "sit", act: "neutral", facing: "camera", idle: 0.3 }], note: "from your seat, you call up the bus to the new driver; she answers over her shoulder" },
   insert("passStop", "the Elm Rd stop flashing past the window", { say: N("She drives right past it."), mood: "build", ambience: "amb_bus", sfx: [{ t: 0.1, name: "whoosh_short" }] }),
   // ======== the handprint, explained
-  insert("backWindow", "the slap: a small handprint on the outside of the emergency door window", { say: N("Then something slaps the back of the bus. A small handprint, on the outside of the emergency door. While the bus is moving."), ambience: "amb_bus",
+  insert("backWindow", "the slap: a small handprint on the outside of the emergency door window", { say: N("Then something slaps the back of the bus. A small handprint, on the outside of the emergency door. While the bus is moving."), ambience: "amb_bus", ...PUSH,
     sfx: [{ word: "slaps", name: "glass_slap" }, { word: "slaps", name: "sting_low", gain: -4 }] }, [{ word: "slaps" }]),
   // ======== the snow in June, explained
   { say: N("The windows turn white. Outside, it's snowing. In June. Just like the morning Emily was left behind. She's been left behind again."), ...SNOW, ambience: "amb_snow",

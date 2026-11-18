@@ -1,0 +1,38 @@
+{
+  "composition": "Short-empty-seat",
+  "out": "/home/user/claude-animated-shorts/productions/empty-seat/preview/empty-seat-v3-preview.mp4",
+  "preview": true,
+  "frames": "0-4627",
+  "machine": {
+    "platform": "linux",
+    "osName": "linux 6.18.44-fc-v595",
+    "chip": "Intel(R) Xeon(R) Processor @ 2.30GHz",
+    "cores": 4,
+    "ramGB": 15.7,
+    "gl": "swangle",
+    "browser": "/opt/pw-browsers/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell",
+    "node": "v22.23.4",
+    "where": "cloud-cpu"
+  },
+  "concurrency": 4,
+  "video": {
+    "width": 540,
+    "height": 960,
+    "fps": "30/1",
+    "frames": 4628,
+    "codec": "h264",
+    "audio": true
+  },
+  "bundleSeconds": 6.5,
+  "renderSeconds": 5679.4,
+  "secondsPerFrame": 1.227,
+  "framesPerSecond": 0.81,
+  "memory": {
+    "peakRenderProcessesGB": 5.84,
+    "macMinFreePercent": null,
+    "linuxMinAvailableGB": 9.99,
+    "macSwapUsedGBAfter": null
+  },
+  "sizeMB": 16.6,
+  "finishedAt": "2026-11-18T10:20:51.470Z"
+}
