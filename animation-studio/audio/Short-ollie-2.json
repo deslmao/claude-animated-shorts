@@ -1,17 +1,17 @@
 {
  "composition": "Short-ollie-2",
- "fingerprint": "14613e90c558b5",
+ "fingerprint": "1b95180c06a08f",
  "engine": "sound-2",
- "frames": 5343,
- "seconds": 178.1,
+ "frames": 5376,
+ "seconds": 179.2,
  "lines": 53,
- "lufs": -14.2,
+ "lufs": -14.1,
  "truePeak": -1.6,
  "stems": {
-  "voice_lufs": -19.1,
-  "music_vs_voice_lu": -10.99,
+  "voice_lufs": -19.09,
+  "music_vs_voice_lu": -11.0,
   "ambience_vs_voice_lu": -19.93,
   "sfx_cues": 41
  },
- "built": "2026-11-18T23:05:11Z"
+ "built": "2026-11-18T23:14:35Z"
 }

@@ -4,14 +4,14 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-18T23:04:39.277Z",
-   "inputs": "02995acb68f49an",
-   "detail": "valid; 55 warning(s):\n  total length 178.1 s (Shorts target 55-65 s)\n  shot 1 (ferryBack): kate: walk 0-4.5 s outside the shot\n  shot 4 (ollieRoom): light \"night\" on an indoor set\n  shot 5 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 7 (ferryBackDawn): ava: walk 0.2-3 s outside the shot\n  shot 13 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 15 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 19 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 20 (avaRoom): light \"night\" on an indoor set\n  shot 21 (avaRoom): light \"night\" on an indoor set\n  shot 22 (avaRoom): light \"night\" on an indoor set\n  shot 23 (avaRoom): light \"night\" on an indoor set\n  shot 24 (avaRoom): light \"night\" on an indoor set\n  shot 25 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 26 (avaRoom): light \"night\" on an indoor set\n  shot 27 (avaRoom): light \"night\" on an indoor set\n  shot 28 (avaRoom): light \"night\" on an indoor set\n  shot 29 (avaRoom): light \"night\" on an indoor set\n  shot 30 (avaRoom): light \"night\" on an indoor set\n  shot 31 (ferryBack): kate: walk 0-7 s outside the shot\n  shot 33 (avaRoom): light \"night\" on an indoor set\n  shot 34 (avaRoom): light \"night\" on an indoor set\n  shot 43 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 47 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 49 (ferryBack): kate: walk 0-4 s outside the shot\n  shot 52 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 1 (ferryBack): kate fills 29 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 2 (ferryBack): ava fills 31 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 2 (ferryBack): kate fills 29 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 3 (ferryBack): kate fills 62 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 12 (ferryKitchen): kate fills 68 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 14 (ferryKitchen): kate fills 96 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 17 (ferryKitchen): kate fills 85 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 20 (avaRoom): ava fills 26 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 23 (avaRoom): ava fills 25 % of the frame in the foreground @6.2s (is it hiding the action?)\n  shot 27 (avaRoom): ava fills 51 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 29 (avaRoom): ava fills 56 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 30 (avaRoom): ava fills 37 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 32 (ferryBack): kate fills 28 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 33 (avaRoom): ava fills 31 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 34 (avaRoom): ava fills 33 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 37 (ferryBack): ollie fills 46 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 38 (ferryBack): kate fills 48 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 39 (ferryBack): ollie fills 49 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 39 (ferryBack): kate fills 29 % of the frame in the foreground @2.0s (is it hiding the action?)\n  shot 40 (ferryBack): kate fills 66 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 40 (ferryBack): ollie fills 34 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 42 (ferryBack): kate fills 50 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 42 (ferryBack): ollie fills 31 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 44 (ferryBack): kate fills 44 % of the frame in the foreground @1.4s (is it hiding the action?)\n  shot 45 (ferryBack): ollie fills 44 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 46 (ferryBack): kate fills 57 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 48 (ferryBack): ava fills 44 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 48 (ferryBack): ollie fills 35 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 50 (ferryBack): ollie fills 76 % of the frame in the foreground @0.0s (is it hiding the action?)"
+   "at": "2026-11-18T23:14:03.668Z",
+   "inputs": "157e45b9a6f280n",
+   "detail": "valid; 55 warning(s):\n  total length 179.2 s (Shorts target 55-65 s)\n  shot 1 (ferryBack): kate: walk 0-4.5 s outside the shot\n  shot 4 (ollieRoom): light \"night\" on an indoor set\n  shot 5 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 7 (ferryBackDawn): ava: walk 0.2-3 s outside the shot\n  shot 13 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 15 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 19 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 20 (avaRoom): light \"night\" on an indoor set\n  shot 21 (avaRoom): light \"night\" on an indoor set\n  shot 22 (avaRoom): light \"night\" on an indoor set\n  shot 23 (avaRoom): light \"night\" on an indoor set\n  shot 24 (avaRoom): light \"night\" on an indoor set\n  shot 25 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 26 (avaRoom): light \"night\" on an indoor set\n  shot 27 (avaRoom): light \"night\" on an indoor set\n  shot 28 (avaRoom): light \"night\" on an indoor set\n  shot 29 (avaRoom): light \"night\" on an indoor set\n  shot 30 (avaRoom): light \"night\" on an indoor set\n  shot 31 (ferryBack): kate: walk 0-7 s outside the shot\n  shot 33 (avaRoom): light \"night\" on an indoor set\n  shot 34 (avaRoom): light \"night\" on an indoor set\n  shot 43 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 47 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 49 (ferryBack): kate: walk 0-4 s outside the shot\n  shot 52 (ferryKitchenNight): light \"night\" on an indoor set\n  shot 1 (ferryBack): kate fills 29 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 2 (ferryBack): ava fills 31 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 2 (ferryBack): kate fills 29 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 3 (ferryBack): kate fills 62 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 12 (ferryKitchen): kate fills 68 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 14 (ferryKitchen): kate fills 96 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 17 (ferryKitchen): kate fills 85 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 20 (avaRoom): ava fills 26 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 23 (avaRoom): ava fills 25 % of the frame in the foreground @6.2s (is it hiding the action?)\n  shot 27 (avaRoom): ava fills 51 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 29 (avaRoom): ava fills 56 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 30 (avaRoom): ava fills 37 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 32 (ferryBack): kate fills 28 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 33 (avaRoom): ava fills 31 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 34 (avaRoom): ava fills 33 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 37 (ferryBack): ollie fills 46 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 38 (ferryBack): kate fills 48 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 39 (ferryBack): ollie fills 49 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 39 (ferryBack): kate fills 29 % of the frame in the foreground @2.0s (is it hiding the action?)\n  shot 40 (ferryBack): kate fills 66 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 40 (ferryBack): ollie fills 34 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 42 (ferryBack): kate fills 50 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 42 (ferryBack): ollie fills 31 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 44 (ferryBack): kate fills 44 % of the frame in the foreground @1.4s (is it hiding the action?)\n  shot 45 (ferryBack): ollie fills 44 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 46 (ferryBack): kate fills 57 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 48 (ferryBack): ava fills 44 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 48 (ferryBack): ollie fills 35 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 50 (ferryBack): ollie fills 76 % of the frame in the foreground @0.0s (is it hiding the action?)"
   },
   "assets": {
    "state": "done",
-   "at": "2026-11-18T23:04:39.282Z",
-   "inputs": "02995acb68f49a",
+   "at": "2026-11-18T23:14:03.672Z",
+   "inputs": "157e45b9a6f280",
    "detail": "55 library assets reused, none missing",
    "data": {
     "reused": 55,
@@ -95,21 +95,27 @@
   },
   "approval": {
    "state": "done",
-   "at": "2026-11-18T23:04:39.286Z",
+   "at": "2026-11-18T23:14:03.676Z",
    "inputs": "067a0200d1707c",
    "detail": "all narration already generated (no cost)"
   },
   "narration": {
    "state": "done",
-   "at": "2026-11-18T23:04:39.287Z",
+   "at": "2026-11-18T23:14:03.677Z",
    "inputs": "067a0200d1707c",
    "detail": "all lines already generated (cached)"
   },
   "sound": {
    "state": "done",
-   "at": "2026-11-18T23:05:11.225Z",
-   "inputs": "14613e90c558b5",
-   "detail": "soundtrack built: -14.2 LUFS"
+   "at": "2026-11-18T23:14:35.762Z",
+   "inputs": "1b95180c06a08f",
+   "detail": "soundtrack built: -14.1 LUFS"
+  },
+  "checks": {
+   "state": "done",
+   "at": "2026-11-18T23:14:51.959Z",
+   "inputs": "1b95180c06a08f",
+   "detail": "preflight PASS; library intact"
   }
  },
  "approval": {

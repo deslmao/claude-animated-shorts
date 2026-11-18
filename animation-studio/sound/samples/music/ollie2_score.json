@@ -77,7 +77,7 @@
      "loud",
      "hopeful"
     ],
-    "duration_ms": 29800,
+    "duration_ms": 29900,
     "lines": []
    },
    {
@@ -122,7 +122,7 @@
      "calm",
      "soft"
     ],
-    "duration_ms": 19300,
+    "duration_ms": 19500,
     "lines": []
    },
    {
@@ -137,7 +137,7 @@
      "drums",
      "vocals with words"
     ],
-    "duration_ms": 25300,
+    "duration_ms": 26600,
     "lines": []
    },
    {
@@ -158,13 +158,13 @@
     "positive_local_styles": [
      "sad quiet piano playing the lullaby theme",
      "melancholy strings",
-     "a final ominous low swell rising at the very end"
+     "a final ominous low swell rising, then a sudden stop"
     ],
     "negative_local_styles": [
      "drums",
      "happy"
     ],
-    "duration_ms": 17000,
+    "duration_ms": 16500,
     "lines": []
    }
   ]
