@@ -102,7 +102,7 @@ Instagram allows at most 5 hashtags, so this set is exactly 5.
 ## Pinned comment (the same on all three platforms)
 ```
 Would you sit in seat 13? 🚌 Reply YES or NO.
-(Rewatch 0:24: the fogged window makes sense the second time.)
+(Rewatch 0:32: the fogged window makes sense the second time.)
 ```
 
 ---
