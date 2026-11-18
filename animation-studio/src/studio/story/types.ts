@@ -163,6 +163,8 @@ export type ShotSpec = {
   ambience?: Ambience | false;
   /** extra sound cues */
   sfx?: SfxSpec[];
+  /** a time / place card typed out at the top of the shot (The Empty Seat v3), e.g. { text: "THREE WEEKS EARLIER", sub: "MONDAY 7:52 AM · BUS 9" } */
+  title?: { text: string; sub?: string };
   /** story props in this shot (see props/registry.ts): at a mark or [x, y, z]; yaw in degrees; scale; variant name;
    *  offset [dx, dz] metres from the mark */
   props?: PropSpec[];
@@ -173,6 +175,10 @@ export type ShotSpec = {
   crowd?: CrowdSpec;
   note?: string;              // what the shot is for (script line), ignored by the engine
 };
+/** The storytelling gate (productions/research/storytelling-system.md): the one-sentence premise, and every fact a
+ *  viewer who knows nothing must understand, each with the exact words (a phrase from a spoken line) that say it. The
+ *  validator fails a fact that is never said aloud: showing it is not enough. */
+export type StoryClarity = { premise: string; facts: { fact: string; said: string }[] };
 export type Storyboard = {
   id: string; title?: string; cast: Record<string, CastRef>; shots: ShotSpec[];
   /** voice preset for every line (default: the channel narrator, voice/voices.ts NARRATOR) */
@@ -181,6 +187,8 @@ export type Storyboard = {
   voices?: Record<string, string>;
   /** word-by-word captions (default true) */
   captions?: boolean;
+  /** the storytelling gate: the premise and every fact the viewer must be TOLD (required for new productions) */
+  clarity?: StoryClarity;
   /** caption colour per speaker or per voice preset (The Empty Seat v2: voiced scenes; voice-over lines are spoken by
    *  "narrator" in a character's preset), e.g. { hale: "#f2c94c", esPriya: "#ff9ec7" }; default white */
   captionColors?: Record<string, string>;

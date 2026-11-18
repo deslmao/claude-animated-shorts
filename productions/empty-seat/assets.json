@@ -1,5 +1,5 @@
 {
- "reused": 54,
+ "reused": 47,
  "missing": [],
  "byKind": {
   "character": [
@@ -34,11 +34,10 @@
   ],
   "prop": [
    "blizzard",
-   "povHands",
    "esInsert",
-   "titleCard",
    "fogPane",
-   "busDoors"
+   "busDoors",
+   "povHands"
   ],
   "sfx": [
    "breath_fast",
@@ -46,23 +45,19 @@
    "sting_low",
    "kids_chatter",
    "bus_pullaway",
-   "phone_tap",
-   "thunk",
-   "air_brake",
-   "indicator",
    "bus_doors",
-   "blip_up",
-   "swish_soft",
+   "air_brake",
+   "phone_tap",
    "musicbox_note",
    "radio_squelch",
-   "heartbeat",
    "whoosh_short",
-   "gasp",
    "storm_wind",
+   "gasp",
    "step_floor",
+   "thunk",
    "dog_breath",
-   "phone_buzz",
-   "msg_chime"
+   "monitor_beep",
+   "monitor_flat"
   ],
   "act": [
    "scared",
@@ -72,9 +67,7 @@
    "embarrassed",
    "sleepy",
    "shock",
-   "nervous",
-   "sad",
-   "confused"
+   "sad"
   ]
  }
 }

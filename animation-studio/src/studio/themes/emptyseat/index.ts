@@ -189,9 +189,11 @@ const girl = (g: CanvasRenderingContext2D, x: number, y: number, s: number, wave
   g.fillStyle = "#f2efe6"; g.beginPath(); g.arc(x, y - 128 * s, 18 * s, 0, 7); g.fill(); g.stroke();                               // bobble hat
   if (wave) { g.beginPath(); g.moveTo(x + 30 * s, y - 55 * s); g.lineTo(x + 70 * s, y - 120 * s); g.lineWidth = 16 * s; g.strokeStyle = "#c8323a"; g.stroke(); }
 };
-const phoneInHands = (g: CanvasRenderingContext2D, screen: (x: number, y: number, w: number, h: number) => void) => {
-  const bg = g.createLinearGradient(0, 0, 0, IH); bg.addColorStop(0, "#3a4250"); bg.addColorStop(1, "#1d222c"); g.fillStyle = bg; g.fillRect(0, 0, IW, IH);
-  g.fillStyle = "rgba(47,93,74,0.6)"; g.fillRect(0, 980, IW, 460);                                                   // the seat in front, out of focus
+const phoneInHands = (g: CanvasRenderingContext2D, screen: (x: number, y: number, w: number, h: number) => void, home = false) => {
+  const bg = g.createLinearGradient(0, 0, 0, IH); bg.addColorStop(0, home ? "#6b5a7a" : "#3a4250"); bg.addColorStop(1, home ? "#2a2234" : "#1d222c"); g.fillStyle = bg; g.fillRect(0, 0, IW, IH);
+  if (home) { const m = g.createRadialGradient(120, 160, 20, 120, 160, 520); m.addColorStop(0, "rgba(255,214,150,0.55)"); m.addColorStop(1, "rgba(255,214,150,0)"); g.fillStyle = m; g.fillRect(0, 0, IW, IH);   // the bedside lamp
+    g.fillStyle = "rgba(224,181,82,0.75)"; g.fillRect(0, 980, IW, 460); }                                                // your duvet, out of focus
+  else { g.fillStyle = "rgba(47,93,74,0.6)"; g.fillRect(0, 980, IW, 460); }                                          // the seat in front, out of focus
   const x = 150, y = 150, w = 510, h = 1000;
   g.fillStyle = "#111318"; g.strokeStyle = PLUM; g.lineWidth = 10; g.beginPath(); g.roundRect(x - 22, y - 22, w + 44, h + 44, 56); g.fill(); g.stroke();
   g.save(); g.beginPath(); g.roundRect(x, y, w, h, 40); g.clip(); screen(x, y, w, h); g.restore();
@@ -202,9 +204,8 @@ const phoneInHands = (g: CanvasRenderingContext2D, screen: (x: number, y: number
   }
 };
 const KEYS = ["qwertyuiop", "asdfghjkl", "zxcvbnm"];
-const INSERTS: Record<string, { n: number; draw: (g: CanvasRenderingContext2D, st: number) => void }> = {
-  // 3 (v2): your phone: you type "elm road bus stop"; step 1: the result, STOP CLOSED 1996
-  search: { n: 2, draw: (g, st) => phoneInHands(g, (x, y, w, h) => {
+/** your phone in your hands: you type "elm road bus stop"; step 1: the result, STOP CLOSED 1996 (on the bus or at home) */
+const searchOn = (g: CanvasRenderingContext2D, st: number, home: boolean) => phoneInHands(g, (x, y, w, h) => {
     g.fillStyle = "#f5f3ee"; g.fillRect(x, y, w, h);
     g.fillStyle = "#ffffff"; g.strokeStyle = "#c9ccd2"; g.lineWidth = 3; g.beginPath(); g.roundRect(x + 30, y + 90, w - 60, 80, 40); g.fill(); g.stroke();
     g.fillStyle = "#1f2430"; g.font = F(34, "normal"); g.textAlign = "left"; g.fillText(st ? "elm road bus stop" : "elm road bus st▌", x + 70, y + 143);
@@ -216,7 +217,11 @@ const INSERTS: Record<string, { n: number; draw: (g: CanvasRenderingContext2D, s
       g.fillStyle = "#6b7280"; g.font = F(28, "normal"); g.fillText("Permanently removed from", x + 40, y + 480); g.fillText("the route.", x + 40, y + 520);
       g.fillStyle = "#e6e8ec"; g.fillRect(x + 40, y + 580, w - 80, 4);
     }
-  }) },
+}, home);
+
+const INSERTS: Record<string, { n: number; draw: (g: CanvasRenderingContext2D, st: number) => void }> = {
+  // 3 (v2): your phone: you type "elm road bus stop"; step 1: the result, STOP CLOSED 1996
+  search: { n: 2, draw: (g, st) => searchOn(g, st, false) },
   // the end card (v2): WOULD YOU SIT IN SEAT 13? (silent)
   vote: { n: 1, draw: (g) => {
     const bg = g.createLinearGradient(0, 0, 0, IH); bg.addColorStop(0, "#151a26"); bg.addColorStop(1, "#06080d"); g.fillStyle = bg; g.fillRect(0, 0, IW, IH);
@@ -226,6 +231,8 @@ const INSERTS: Record<string, { n: number; draw: (g: CanvasRenderingContext2D, s
     for (const [y, c, t] of [[810, "#2e9e5b", "YES"], [930, "#c0392b", "NO"]] as const) { g.fillStyle = c; g.beginPath(); g.roundRect(IW / 2 - 200, y, 400, 90, 45); g.fill(); g.fillStyle = "#ffffff"; g.font = F(48); g.fillText(t, IW / 2, y + 63); }
     g.fillStyle = "#f2c94c"; g.font = F(36); g.fillText("comment below ↓", IW / 2, 1100);
   } },
+  // v3: the same search at home on your bed (when you get home, you look it up)
+  searchHome: { n: 2, draw: (g, st) => searchOn(g, st, true) },
   // 6 (v2): a text from Sam: step 0 he's typing; step 1 the message
   text: { n: 2, draw: (g, st) => phoneInHands(g, (x, y, w, h) => {
     g.fillStyle = "#0f1218"; g.fillRect(x, y, w, h); g.fillStyle = "#1a1f29"; g.fillRect(x, y, w, 150);

@@ -41,6 +41,13 @@ export const validate = (sb0: Storyboard, narr?: Narration): Report => {
   errors.push(...tm.problems);
   if (tm.missing.length) warnings.push(`${tm.missing.length} of ${tm.lines.length} lines have no narration audio yet, so their timing is estimated (run: npm run voice -- ${sb.id})`);
   for (const l of tm.lines) if (l.who !== "narrator" && !(l.who in sb.cast)) errors.push(`shot ${l.shot + 1}: speaker "${l.who}" is not in the cast`);
+  // the storytelling gate: every story fact must be SAID in a spoken line (seeing it is not enough)
+  if (sb.clarity) {
+    const flat = (x: string) => x.toLowerCase().replace(/[^a-z0-9 ]+/g, " ").replace(/\s+/g, " ").trim();
+    const said = tm.lines.map((l) => flat(l.text));
+    if (flat(sb.clarity.premise).split(" ").length < 6) errors.push("clarity: the premise must be one full sentence a stranger understands");
+    for (const f of sb.clarity.facts) if (!said.some((t) => t.includes(flat(f.said)))) errors.push(`clarity: the viewer is never told "${f.fact}" (no spoken line contains "${f.said}")`);
+  }
   const words = tm.lines.reduce((n, l) => n + l.words.length, 0), spoken = tm.lines.reduce((n, l) => n + (l.end - l.start), 0);
   if (words && spoken > 0 && (words / spoken < 2.6 || words / spoken > 4.6)) warnings.push(`narration pace ${(words / spoken).toFixed(2)} words/s (reference 3.5-4.1)`);
   const mood = typeof sb.music === "string" ? sb.music : sb.music ? sb.music.mood : null;

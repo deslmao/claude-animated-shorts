@@ -64,6 +64,7 @@ export const VOICES: Record<string, VoicePreset> = {
   // The Empty Seat v2 (the voiced format): the bus 9 cast
   esYou: { name: "Alice - Clear, Engaging Educator", voiceId: "Xb7hH8MSUJpSbSDYk0k2", model: MODEL, settings: { ...CHANNEL, stability: 0.45, style: 0.2, speed: 1.0 }, note: "you, 11, on bus 9 (The Empty Seat): your lines" },
   esThought: { name: "Alice - Clear, Engaging Educator", voiceId: "Xb7hH8MSUJpSbSDYk0k2", model: MODEL, settings: { ...CHANNEL, stability: 0.6, style: 0.1, speed: 0.95 }, note: "you, 11 (The Empty Seat): your thoughts, close and quiet" },
+  esYouBoy: { name: "Toby - Raspy, Youthful and Articulate", voiceId: "pYDLV125o4CgqP8i49Lg", model: MODEL, settings: { ...CHANNEL, stability: 0.45, style: 0.25, speed: 1.0 }, note: "you, 12, on bus 9 (The Empty Seat v3): a voice no other character shares" },
   esNoah: { name: "Leo - Cute Energetic Young Kid", voiceId: "1tDEBGOo8EqEPApM49eJ", model: MODEL, settings: { ...CHANNEL, stability: 0.5, style: 0.1, speed: 0.95 }, note: "Noah, the new kid (The Empty Seat)" },
   esPriya: { name: "Jessica - Playful, Bright, Warm", voiceId: "cgSgspJ2msm6clMCkdW9", model: MODEL, settings: { ...CHANNEL, stability: 0.5, style: 0.1, speed: 0.9 }, note: "Priya, 11, whispering (The Empty Seat)" },
   esSam: { name: "Toby - Raspy, Youthful and Articulate", voiceId: "pYDLV125o4CgqP8i49Lg", model: MODEL, settings: { ...CHANNEL, stability: 0.5, style: 0.2, speed: 0.95 }, note: "Sam, 12, who knows the story (The Empty Seat)" },

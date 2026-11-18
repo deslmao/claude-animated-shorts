@@ -10,6 +10,7 @@ import { compile } from "./compile";
 import { captionGroups } from "./caption-timing";
 import { placeCaptions } from "./caption-place";
 import { Captions } from "./Captions";
+import { TitleCards, type TitleCard } from "./TitleCards";
 import type { Storyboard } from "./types";
 import type { Narration } from "../voice/narration";
 
@@ -17,10 +18,12 @@ const load = () => Promise.resolve(true);
 export const makeShort = (sb: Storyboard, narr?: Narration) => {
   const film = compile(sb, narr);
   const groups = sb.captions === false ? [] : placeCaptions(film, captionGroups(film.timing.lines, film.total));
+  const titles: TitleCard[] = sb.shots.flatMap((s, k) => (s.title && film.shots[k] ? [{ f0: film.shots[k].a, f1: film.shots[k].b, ...s.title }] : []));
   const makeWorld = () => new SetWorld(film.shots, film.director, { clearShots: true, stable: (sb.engine ?? 1) >= 2 });
   const Comp: React.FC = () => (
     <AbsoluteFill>
       <StudioFilm timeline={film.timeline} makeWorld={makeWorld} load={load} />
+      {titles.length ? <TitleCards cards={titles} /> : null}
       {groups.length ? <Captions groups={groups} colors={sb.captionColors} /> : null}
     </AbsoluteFill>
   );

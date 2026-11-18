@@ -13,6 +13,16 @@ These rates were measured on this container (CPU WebGL):
 - **Cloud final render** (20 chunks, `render-request.json`, `publish: false`): about 16 min wall time, then the QA
   workflow (`qa-request.json`, with seams and keep) about 3 min.
 
+## Storytelling gate (mandatory, every new production)
+Follow `productions/research/storytelling-system.md`.
+- **A narrator carries the story;** characters speak only after the narrator has set up who they are and what's
+  happening.
+- **Explain every strange thing in words** the moment it appears.
+- **No line may rely on knowledge the viewer wasn't given.**
+
+Every new storyboard needs a `clarity` block: the premise, plus each fact the viewer must be told, with the words that
+tell it. `npm run short` fails without it. The owner approves `productions/<id>/viewer-script.md`, not a screenplay.
+
 ## Preview workflow
 1. **Validate and check first** (`--until checks`): it's free, and it catches framing, clearance and timing problems
    before any render.

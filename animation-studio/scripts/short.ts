@@ -58,6 +58,29 @@ type Status = { id: string; composition: string; stages: Partial<Record<Stage, S
 const die = (m: string): never => { console.error(`short: ${m}`); return proc.process.exit(1); };
 if (!id) die("usage: npm run short -- <story-id> [--approve-narration N] [--reviewed] [--redo stage] [--until stage] [--chunks n] [--status]");
 const sb = STORIES.find((s) => s.id === id) ?? die(`no story "${id}" (stories: ${STORIES.map((s) => s.id).join(", ")}); register it in src/studio/stories/index.ts`);
+// productions made before the storytelling gate (17-18 Nov 2026): approved or published, left exactly as they were
+const LEGACY_STORIES = new Set(["buried-treasure", "camera-kit", "capabilities", "doorway-effect", "every-lie", "extra-door", "extra-door-2", "float-away", "ink-orbit", "locked-out", "locked-out-climax", "locked-out-keys", "marathon-1904", "night-shift", "ollie-1", "ollie-bedside-test", "ollie-roof-test", "one-too-many", "one-too-many-thumbs", "other-jamie", "pirate-democracy", "steps-4012", "tickle", "whale-city", "whale-city-thumb", "yawn-demo"]);
+/** productions/<id>/viewer-script.md: what a viewer who knows nothing actually gets, shot by shot: the picture (the
+ *  shot's note) and every spoken line with its speaker. Stage directions never reach the viewer, so the owner approves
+ *  THIS, not a screenplay. Then the clarity checklist: each fact, the words that tell it, and the shot they're in. */
+const writeViewerScript = () => {
+  const who = (l: { who?: string; voice?: string }) => (l.who && l.who !== "narrator" ? l.who.toUpperCase() : l.voice && l.voice !== sb.voice ? `${l.voice} (voice-over)` : "NARRATOR");
+  const out = [`# ${sb.title ?? sb.id}: viewer script`, "", "What the viewer sees and hears, in order. Nothing else reaches them.", ""];
+  const flat = (x: string) => x.toLowerCase().replace(/[^a-z0-9 ]+/g, " ").replace(/\s+/g, " ").trim();
+  const told: Record<string, number> = {};
+  sb.shots.forEach((s, k) => {
+    out.push(`**${k + 1}.** _${s.note ?? s.set}_`);
+    const ls = s.say === undefined ? [] : Array.isArray(s.say) ? s.say : [s.say];
+    for (const l of ls) { const L = typeof l === "string" ? { text: l } : l; out.push(`> **${who(L)}:** ${L.text}`);
+      for (const f of sb.clarity?.facts ?? []) if (told[f.fact] === undefined && flat(L.text).includes(flat(f.said))) told[f.fact] = k + 1; }
+    out.push("");
+  });
+  if (sb.clarity) {
+    out.push("## Clarity checklist", "", `**Premise:** ${sb.clarity.premise}`, "", "| The viewer must understand | Told by the words | Shot |", "|---|---|---|");
+    for (const f of sb.clarity.facts) out.push(`| ${f.fact} | "${f.said}" | ${told[f.fact] ?? "**NEVER SAID**"} |`);
+  }
+  const dir = path.join(path.resolve(".."), "productions", sb.id); fs.mkdirSync(dir, { recursive: true }); fs.writeFileSync(path.join(dir, "viewer-script.md"), out.join("\n") + "\n");
+};
 const COMP = `Short-${sb.id}`, ROOT = path.resolve(".."), DIR = path.join(ROOT, "productions", sb.id), STATUS = path.join(DIR, "status.json");
 fs.mkdirSync(DIR, { recursive: true });
 const status: Status = fs.existsSync(STATUS) ? JSON.parse(fs.readFileSync(STATUS, "utf8")) : { id: sb.id, composition: COMP, stages: {} };
@@ -84,7 +107,12 @@ const film = () => compile(sb, narr());
 const stages: Record<Stage, { inputs: () => string; run: () => Promise<StageState> | StageState }> = {
   validate: {
     inputs: () => fnv(JSON.stringify(sb)) + (narr() ? "n" : ""),
-    run: () => { const r = validate(sb, narr()); return r.errors.length ? st("failed", `${r.errors.length} storyboard error(s):\n  ${r.errors.join("\n  ")}`) : st("done", `valid; ${r.warnings.length} warning(s)${r.warnings.length ? `:\n  ${r.warnings.join("\n  ")}` : ""}`); },
+    run: () => {
+      // the storytelling gate (productions/research/storytelling-system.md): new productions must declare what the
+      // viewer is told; the viewer script (exactly what is seen and heard) is written for the owner's read-through
+      writeViewerScript();
+      if (!sb.clarity && !LEGACY_STORIES.has(sb.id)) return st("failed", "storytelling gate: add a `clarity` block (the premise + every fact the viewer must be told, with the words that tell it). See productions/research/storytelling-system.md");
+      const r = validate(sb, narr()); return r.errors.length ? st("failed", `${r.errors.length} storyboard error(s):\n  ${r.errors.join("\n  ")}`) : st("done", `valid; ${r.warnings.length} warning(s)${r.warnings.length ? `:\n  ${r.warnings.join("\n  ")}` : ""}`); },
   },
   assets: {
     inputs: () => fnv(JSON.stringify(sb)),
