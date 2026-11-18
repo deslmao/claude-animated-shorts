@@ -1,0 +1,145 @@
+{
+ "hash": "0d9d175df648f9",
+ "text": "In 1996, in a snowstorm, the bus drove straight past the Elm Road stop. The driver didn't see the little girl waiting behind the snow.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 8.731,
+ "dur": 8.777143,
+ "words": [
+  {
+   "w": "In",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "1996,",
+   "t0": 0.197,
+   "t1": 1.149
+  },
+  {
+   "w": "in",
+   "t0": 1.173,
+   "t1": 1.277
+  },
+  {
+   "w": "a",
+   "t0": 1.312,
+   "t1": 1.347
+  },
+  {
+   "w": "snowstorm,",
+   "t0": 1.393,
+   "t1": 2.078
+  },
+  {
+   "w": "the",
+   "t0": 2.206,
+   "t1": 2.299
+  },
+  {
+   "w": "bus",
+   "t0": 2.345,
+   "t1": 2.589
+  },
+  {
+   "w": "drove",
+   "t0": 2.647,
+   "t1": 2.914
+  },
+  {
+   "w": "straight",
+   "t0": 2.961,
+   "t1": 3.251
+  },
+  {
+   "w": "past",
+   "t0": 3.309,
+   "t1": 3.611
+  },
+  {
+   "w": "the",
+   "t0": 3.657,
+   "t1": 3.727
+  },
+  {
+   "w": "Elm",
+   "t0": 3.808,
+   "t1": 4.005
+  },
+  {
+   "w": "Road",
+   "t0": 4.075,
+   "t1": 4.272
+  },
+  {
+   "w": "stop.",
+   "t0": 4.331,
+   "t1": 4.83
+  },
+  {
+   "w": "The",
+   "t0": 5.468,
+   "t1": 5.584
+  },
+  {
+   "w": "driver",
+   "t0": 5.631,
+   "t1": 5.944
+  },
+  {
+   "w": "didn't",
+   "t0": 5.991,
+   "t1": 6.223
+  },
+  {
+   "w": "see",
+   "t0": 6.269,
+   "t1": 6.455
+  },
+  {
+   "w": "the",
+   "t0": 6.502,
+   "t1": 6.571
+  },
+  {
+   "w": "little",
+   "t0": 6.606,
+   "t1": 6.827
+  },
+  {
+   "w": "girl",
+   "t0": 6.85,
+   "t1": 7.082
+  },
+  {
+   "w": "waiting",
+   "t0": 7.152,
+   "t1": 7.477
+  },
+  {
+   "w": "behind",
+   "t0": 7.523,
+   "t1": 7.779
+  },
+  {
+   "w": "the",
+   "t0": 7.837,
+   "t1": 7.906
+  },
+  {
+   "w": "snow.",
+   "t0": 7.953,
+   "t1": 8.731
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T07:08:36.467Z"
+}

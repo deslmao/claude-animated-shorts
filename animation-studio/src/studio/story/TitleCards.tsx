@@ -11,7 +11,7 @@ export const TitleCards: React.FC<{ cards: TitleCard[] }> = ({ cards }) => {
   const f = useCurrentFrame();
   const c = cards.find((x) => f >= x.f0 && f < x.f1);
   if (!c) return null;
-  const n = Math.floor((f - c.f0) * 0.9), a = c.text.slice(0, n), b = (c.sub ?? "").slice(0, Math.max(0, n - c.text.length));
+  const n = Math.floor((f - c.f0) * 1.5), a = c.text.slice(0, n), b = (c.sub ?? "").slice(0, Math.max(0, n - c.text.length));
   const fade = Math.min(1, (c.f1 - f) / 6);
   const caret = (f % 16) < 9 ? "▌" : " ";
   return (

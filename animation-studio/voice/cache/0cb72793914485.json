@@ -1,0 +1,80 @@
+{
+ "hash": "0cb72793914485",
+ "text": "She stops. The doors open. And you give Emily her three seconds.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.133,
+ "dur": 4.179592,
+ "words": [
+  {
+   "w": "She",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "stops.",
+   "t0": 0.232,
+   "t1": 0.766
+  },
+  {
+   "w": "The",
+   "t0": 0.952,
+   "t1": 1.068
+  },
+  {
+   "w": "doors",
+   "t0": 1.103,
+   "t1": 1.347
+  },
+  {
+   "w": "open.",
+   "t0": 1.405,
+   "t1": 1.788
+  },
+  {
+   "w": "And",
+   "t0": 2.009,
+   "t1": 2.148
+  },
+  {
+   "w": "you",
+   "t0": 2.206,
+   "t1": 2.299
+  },
+  {
+   "w": "give",
+   "t0": 2.357,
+   "t1": 2.508
+  },
+  {
+   "w": "Emily",
+   "t0": 2.554,
+   "t1": 2.821
+  },
+  {
+   "w": "her",
+   "t0": 2.891,
+   "t1": 2.984
+  },
+  {
+   "w": "three",
+   "t0": 3.03,
+   "t1": 3.228
+  },
+  {
+   "w": "seconds.",
+   "t0": 3.274,
+   "t1": 4.133
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T07:08:44.585Z"
+}

@@ -1,0 +1,60 @@
+{
+ "hash": "09ab9495b0fc7d",
+ "text": "Then one day, a new kid gets on.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.322,
+ "dur": 2.35102,
+ "words": [
+  {
+   "w": "Then",
+   "t0": 0,
+   "t1": 0.232
+  },
+  {
+   "w": "one",
+   "t0": 0.313,
+   "t1": 0.476
+  },
+  {
+   "w": "day,",
+   "t0": 0.522,
+   "t1": 0.917
+  },
+  {
+   "w": "a",
+   "t0": 0.952,
+   "t1": 1.022
+  },
+  {
+   "w": "new",
+   "t0": 1.103,
+   "t1": 1.231
+  },
+  {
+   "w": "kid",
+   "t0": 1.277,
+   "t1": 1.463
+  },
+  {
+   "w": "gets",
+   "t0": 1.509,
+   "t1": 1.718
+  },
+  {
+   "w": "on.",
+   "t0": 1.776,
+   "t1": 2.322
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T07:08:31.181Z"
+}

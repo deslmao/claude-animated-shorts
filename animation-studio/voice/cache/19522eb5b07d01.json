@@ -1,0 +1,105 @@
+{
+ "hash": "19522eb5b07d01",
+ "text": "Mr Hale, the driver, says it belongs to a girl called Emily. Nobody has ever met her.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 5.294,
+ "dur": 5.32898,
+ "words": [
+  {
+   "w": "Mr",
+   "t0": 0,
+   "t1": 0.325
+  },
+  {
+   "w": "Hale,",
+   "t0": 0.383,
+   "t1": 0.766
+  },
+  {
+   "w": "the",
+   "t0": 0.824,
+   "t1": 0.917
+  },
+  {
+   "w": "driver,",
+   "t0": 0.964,
+   "t1": 1.405
+  },
+  {
+   "w": "says",
+   "t0": 1.567,
+   "t1": 1.776
+  },
+  {
+   "w": "it",
+   "t0": 1.823,
+   "t1": 1.892
+  },
+  {
+   "w": "belongs",
+   "t0": 1.939,
+   "t1": 2.276
+  },
+  {
+   "w": "to",
+   "t0": 2.31,
+   "t1": 2.368
+  },
+  {
+   "w": "a",
+   "t0": 2.45,
+   "t1": 2.473
+  },
+  {
+   "w": "girl",
+   "t0": 2.531,
+   "t1": 2.763
+  },
+  {
+   "w": "called",
+   "t0": 2.833,
+   "t1": 3.053
+  },
+  {
+   "w": "Emily.",
+   "t0": 3.123,
+   "t1": 3.599
+  },
+  {
+   "w": "Nobody",
+   "t0": 3.855,
+   "t1": 4.191
+  },
+  {
+   "w": "has",
+   "t0": 4.226,
+   "t1": 4.319
+  },
+  {
+   "w": "ever",
+   "t0": 4.365,
+   "t1": 4.516
+  },
+  {
+   "w": "met",
+   "t0": 4.563,
+   "t1": 4.737
+  },
+  {
+   "w": "her.",
+   "t0": 4.795,
+   "t1": 5.294
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T07:08:30.627Z"
+}

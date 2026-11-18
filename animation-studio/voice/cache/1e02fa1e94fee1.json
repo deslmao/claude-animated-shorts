@@ -1,0 +1,85 @@
+{
+ "hash": "1e02fa1e94fee1",
+ "text": "Then one morning, Mr Hale got sick. A new driver covered his route.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.505,
+ "dur": 4.545306,
+ "words": [
+  {
+   "w": "Then",
+   "t0": 0,
+   "t1": 0.232
+  },
+  {
+   "w": "one",
+   "t0": 0.302,
+   "t1": 0.453
+  },
+  {
+   "w": "morning,",
+   "t0": 0.488,
+   "t1": 0.882
+  },
+  {
+   "w": "Mr",
+   "t0": 0.975,
+   "t1": 1.265
+  },
+  {
+   "w": "Hale",
+   "t0": 1.312,
+   "t1": 1.579
+  },
+  {
+   "w": "got",
+   "t0": 1.614,
+   "t1": 1.765
+  },
+  {
+   "w": "sick.",
+   "t0": 1.823,
+   "t1": 2.264
+  },
+  {
+   "w": "A",
+   "t0": 2.601,
+   "t1": 2.682
+  },
+  {
+   "w": "new",
+   "t0": 2.763,
+   "t1": 2.902
+  },
+  {
+   "w": "driver",
+   "t0": 2.949,
+   "t1": 3.297
+  },
+  {
+   "w": "covered",
+   "t0": 3.355,
+   "t1": 3.622
+  },
+  {
+   "w": "his",
+   "t0": 3.657,
+   "t1": 3.762
+  },
+  {
+   "w": "route.",
+   "t0": 3.831,
+   "t1": 4.505
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T07:08:38.920Z"
+}

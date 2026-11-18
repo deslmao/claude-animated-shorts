@@ -1,0 +1,100 @@
+{
+ "hash": "09e684cd80cced",
+ "text": "The snow stops. And the window by seat thirteen fogs up again. Emily made it on.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 5.387,
+ "dur": 5.433469,
+ "words": [
+  {
+   "w": "The",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "snow",
+   "t0": 0.209,
+   "t1": 0.453
+  },
+  {
+   "w": "stops.",
+   "t0": 0.522,
+   "t1": 1.057
+  },
+  {
+   "w": "And",
+   "t0": 1.277,
+   "t1": 1.416
+  },
+  {
+   "w": "the",
+   "t0": 1.463,
+   "t1": 1.533
+  },
+  {
+   "w": "window",
+   "t0": 1.567,
+   "t1": 1.846
+  },
+  {
+   "w": "by",
+   "t0": 1.916,
+   "t1": 2.043
+  },
+  {
+   "w": "seat",
+   "t0": 2.125,
+   "t1": 2.357
+  },
+  {
+   "w": "thirteen",
+   "t0": 2.415,
+   "t1": 2.891
+  },
+  {
+   "w": "fogs",
+   "t0": 2.984,
+   "t1": 3.262
+  },
+  {
+   "w": "up",
+   "t0": 3.309,
+   "t1": 3.413
+  },
+  {
+   "w": "again.",
+   "t0": 3.46,
+   "t1": 3.889
+  },
+  {
+   "w": "Emily",
+   "t0": 4.052,
+   "t1": 4.342
+  },
+  {
+   "w": "made",
+   "t0": 4.4,
+   "t1": 4.598
+  },
+  {
+   "w": "it",
+   "t0": 4.632,
+   "t1": 4.702
+  },
+  {
+   "w": "on.",
+   "t0": 4.76,
+   "t1": 5.387
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T07:08:45.826Z"
+}

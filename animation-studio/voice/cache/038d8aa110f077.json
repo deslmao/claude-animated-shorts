@@ -1,0 +1,115 @@
+{
+ "hash": "038d8aa110f077",
+ "text": "Her name was Emily Shaw. She was eleven. She tried to walk to school, and she never made it.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 5.433,
+ "dur": 5.459592,
+ "words": [
+  {
+   "w": "Her",
+   "t0": 0,
+   "t1": 0.186
+  },
+  {
+   "w": "name",
+   "t0": 0.244,
+   "t1": 0.43
+  },
+  {
+   "w": "was",
+   "t0": 0.464,
+   "t1": 0.569
+  },
+  {
+   "w": "Emily",
+   "t0": 0.639,
+   "t1": 0.929
+  },
+  {
+   "w": "Shaw.",
+   "t0": 1.01,
+   "t1": 1.544
+  },
+  {
+   "w": "She",
+   "t0": 1.73,
+   "t1": 1.858
+  },
+  {
+   "w": "was",
+   "t0": 1.916,
+   "t1": 2.02
+  },
+  {
+   "w": "eleven.",
+   "t0": 2.09,
+   "t1": 2.566
+  },
+  {
+   "w": "She",
+   "t0": 2.786,
+   "t1": 2.926
+  },
+  {
+   "w": "tried",
+   "t0": 2.984,
+   "t1": 3.228
+  },
+  {
+   "w": "to",
+   "t0": 3.262,
+   "t1": 3.309
+  },
+  {
+   "w": "walk",
+   "t0": 3.367,
+   "t1": 3.553
+  },
+  {
+   "w": "to",
+   "t0": 3.611,
+   "t1": 3.68
+  },
+  {
+   "w": "school,",
+   "t0": 3.738,
+   "t1": 4.098
+  },
+  {
+   "w": "and",
+   "t0": 4.122,
+   "t1": 4.226
+  },
+  {
+   "w": "she",
+   "t0": 4.261,
+   "t1": 4.354
+  },
+  {
+   "w": "never",
+   "t0": 4.412,
+   "t1": 4.598
+  },
+  {
+   "w": "made",
+   "t0": 4.644,
+   "t1": 4.876
+  },
+  {
+   "w": "it.",
+   "t0": 4.923,
+   "t1": 5.433
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T07:08:37.235Z"
+}

@@ -1,0 +1,95 @@
+{
+ "hash": "016e760d858bcc",
+ "text": "That night, Mr Hale died in hospital. He'd been very sick for a long time.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.505,
+ "dur": 4.545306,
+ "words": [
+  {
+   "w": "That",
+   "t0": 0,
+   "t1": 0.255
+  },
+  {
+   "w": "night,",
+   "t0": 0.325,
+   "t1": 0.58
+  },
+  {
+   "w": "Mr",
+   "t0": 0.615,
+   "t1": 0.906
+  },
+  {
+   "w": "Hale",
+   "t0": 0.964,
+   "t1": 1.207
+  },
+  {
+   "w": "died",
+   "t0": 1.242,
+   "t1": 1.474
+  },
+  {
+   "w": "in",
+   "t0": 1.521,
+   "t1": 1.579
+  },
+  {
+   "w": "hospital.",
+   "t0": 1.649,
+   "t1": 2.229
+  },
+  {
+   "w": "He'd",
+   "t0": 2.45,
+   "t1": 2.635
+  },
+  {
+   "w": "been",
+   "t0": 2.67,
+   "t1": 2.798
+  },
+  {
+   "w": "very",
+   "t0": 2.844,
+   "t1": 3.053
+  },
+  {
+   "w": "sick",
+   "t0": 3.111,
+   "t1": 3.32
+  },
+  {
+   "w": "for",
+   "t0": 3.367,
+   "t1": 3.46
+  },
+  {
+   "w": "a",
+   "t0": 3.495,
+   "t1": 3.518
+  },
+  {
+   "w": "long",
+   "t0": 3.564,
+   "t1": 3.738
+  },
+  {
+   "w": "time.",
+   "t0": 3.796,
+   "t1": 4.505
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T07:08:46.522Z"
+}

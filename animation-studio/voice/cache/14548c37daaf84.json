@@ -1,0 +1,30 @@
+{
+ "hash": "14548c37daaf84",
+ "text": "In June.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 0.975,
+ "dur": 1.018776,
+ "words": [
+  {
+   "w": "In",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "June.",
+   "t0": 0.232,
+   "t1": 0.975
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T07:08:28.885Z"
+}

@@ -1,0 +1,75 @@
+{
+ "hash": "0dc66bde170b68",
+ "text": "This handprint just hit the back of a moving school bus.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.158,
+ "dur": 3.186939,
+ "words": [
+  {
+   "w": "This",
+   "t0": 0,
+   "t1": 0.232
+  },
+  {
+   "w": "handprint",
+   "t0": 0.29,
+   "t1": 0.801
+  },
+  {
+   "w": "just",
+   "t0": 0.882,
+   "t1": 1.068
+  },
+  {
+   "w": "hit",
+   "t0": 1.103,
+   "t1": 1.242
+  },
+  {
+   "w": "the",
+   "t0": 1.277,
+   "t1": 1.347
+  },
+  {
+   "w": "back",
+   "t0": 1.393,
+   "t1": 1.591
+  },
+  {
+   "w": "of",
+   "t0": 1.649,
+   "t1": 1.695
+  },
+  {
+   "w": "a",
+   "t0": 1.741,
+   "t1": 1.765
+  },
+  {
+   "w": "moving",
+   "t0": 1.834,
+   "t1": 2.113
+  },
+  {
+   "w": "school",
+   "t0": 2.171,
+   "t1": 2.45
+  },
+  {
+   "w": "bus.",
+   "t0": 2.508,
+   "t1": 3.158
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T07:08:28.401Z"
+}

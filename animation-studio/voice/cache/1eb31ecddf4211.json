@@ -1,0 +1,135 @@
+{
+ "hash": "1eb31ecddf4211",
+ "text": "Every morning, your school bus has one seat nobody sits in. Seat thirteen. Even when the bus is packed, kids would rather stand.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 8.452,
+ "dur": 8.489796,
+ "words": [
+  {
+   "w": "Every",
+   "t0": 0,
+   "t1": 0.29
+  },
+  {
+   "w": "morning,",
+   "t0": 0.348,
+   "t1": 0.766
+  },
+  {
+   "w": "your",
+   "t0": 0.848,
+   "t1": 0.998
+  },
+  {
+   "w": "school",
+   "t0": 1.045,
+   "t1": 1.289
+  },
+  {
+   "w": "bus",
+   "t0": 1.324,
+   "t1": 1.544
+  },
+  {
+   "w": "has",
+   "t0": 1.591,
+   "t1": 1.73
+  },
+  {
+   "w": "one",
+   "t0": 1.823,
+   "t1": 2.043
+  },
+  {
+   "w": "seat",
+   "t0": 2.09,
+   "t1": 2.345
+  },
+  {
+   "w": "nobody",
+   "t0": 2.473,
+   "t1": 2.821
+  },
+  {
+   "w": "sits",
+   "t0": 2.879,
+   "t1": 3.135
+  },
+  {
+   "w": "in.",
+   "t0": 3.193,
+   "t1": 3.587
+  },
+  {
+   "w": "Seat",
+   "t0": 4.052,
+   "t1": 4.319
+  },
+  {
+   "w": "thirteen.",
+   "t0": 4.377,
+   "t1": 5.085
+  },
+  {
+   "w": "Even",
+   "t0": 5.341,
+   "t1": 5.584
+  },
+  {
+   "w": "when",
+   "t0": 5.619,
+   "t1": 5.735
+  },
+  {
+   "w": "the",
+   "t0": 5.77,
+   "t1": 5.84
+  },
+  {
+   "w": "bus",
+   "t0": 5.875,
+   "t1": 6.06
+  },
+  {
+   "w": "is",
+   "t0": 6.118,
+   "t1": 6.2
+  },
+  {
+   "w": "packed,",
+   "t0": 6.269,
+   "t1": 6.664
+  },
+  {
+   "w": "kids",
+   "t0": 6.827,
+   "t1": 7.105
+  },
+  {
+   "w": "would",
+   "t0": 7.129,
+   "t1": 7.268
+  },
+  {
+   "w": "rather",
+   "t0": 7.314,
+   "t1": 7.57
+  },
+  {
+   "w": "stand.",
+   "t0": 7.616,
+   "t1": 8.452
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T07:08:29.860Z"
+}

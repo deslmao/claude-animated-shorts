@@ -1,0 +1,130 @@
+{
+ "hash": "1bc083dc9ed1f5",
+ "text": "The windows turn white. Outside, it's snowing. In June. Just like the morning Emily was left behind. She's been left behind again.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 8.406,
+ "dur": 8.437551,
+ "words": [
+  {
+   "w": "The",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "windows",
+   "t0": 0.221,
+   "t1": 0.58
+  },
+  {
+   "w": "turn",
+   "t0": 0.627,
+   "t1": 0.859
+  },
+  {
+   "w": "white.",
+   "t0": 0.929,
+   "t1": 1.358
+  },
+  {
+   "w": "Outside,",
+   "t0": 1.579,
+   "t1": 2.183
+  },
+  {
+   "w": "it's",
+   "t0": 2.206,
+   "t1": 2.345
+  },
+  {
+   "w": "snowing.",
+   "t0": 2.368,
+   "t1": 2.926
+  },
+  {
+   "w": "In",
+   "t0": 3.065,
+   "t1": 3.216
+  },
+  {
+   "w": "June.",
+   "t0": 3.286,
+   "t1": 3.75
+  },
+  {
+   "w": "Just",
+   "t0": 4.005,
+   "t1": 4.238
+  },
+  {
+   "w": "like",
+   "t0": 4.284,
+   "t1": 4.447
+  },
+  {
+   "w": "the",
+   "t0": 4.481,
+   "t1": 4.551
+  },
+  {
+   "w": "morning",
+   "t0": 4.598,
+   "t1": 4.865
+  },
+  {
+   "w": "Emily",
+   "t0": 4.946,
+   "t1": 5.213
+  },
+  {
+   "w": "was",
+   "t0": 5.259,
+   "t1": 5.364
+  },
+  {
+   "w": "left",
+   "t0": 5.422,
+   "t1": 5.596
+  },
+  {
+   "w": "behind.",
+   "t0": 5.654,
+   "t1": 6.293
+  },
+  {
+   "w": "She's",
+   "t0": 6.583,
+   "t1": 6.803
+  },
+  {
+   "w": "been",
+   "t0": 6.838,
+   "t1": 7.012
+  },
+  {
+   "w": "left",
+   "t0": 7.07,
+   "t1": 7.245
+  },
+  {
+   "w": "behind",
+   "t0": 7.303,
+   "t1": 7.593
+  },
+  {
+   "w": "again.",
+   "t0": 7.651,
+   "t1": 8.406
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T07:08:42.584Z"
+}

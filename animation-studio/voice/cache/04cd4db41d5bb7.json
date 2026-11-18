@@ -1,0 +1,60 @@
+{
+ "hash": "04cd4db41d5bb7",
+ "text": "Miss, you have to stop at Elm Road!",
+ "voice": "esYouBoy",
+ "lead": 0,
+ "end": 2.276,
+ "dur": 2.324898,
+ "words": [
+  {
+   "w": "Miss,",
+   "t0": 0,
+   "t1": 0.731
+  },
+  {
+   "w": "you",
+   "t0": 0.766,
+   "t1": 0.848
+  },
+  {
+   "w": "have",
+   "t0": 0.906,
+   "t1": 1.01
+  },
+  {
+   "w": "to",
+   "t0": 1.033,
+   "t1": 1.08
+  },
+  {
+   "w": "stop",
+   "t0": 1.115,
+   "t1": 1.3
+  },
+  {
+   "w": "at",
+   "t0": 1.347,
+   "t1": 1.393
+  },
+  {
+   "w": "Elm",
+   "t0": 1.44,
+   "t1": 1.591
+  },
+  {
+   "w": "Road!",
+   "t0": 1.66,
+   "t1": 2.276
+  }
+ ],
+ "voiceId": "pYDLV125o4CgqP8i49Lg",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 1
+ },
+ "created": "2026-11-18T07:08:40.349Z"
+}

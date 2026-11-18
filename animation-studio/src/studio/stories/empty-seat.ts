@@ -39,6 +39,7 @@ const riders = (skip: number[], extra: Partial<ActorSpec> = {}, rows = 11): Acto
   return out;
 };
 const behind = (a: ActorSpec[]) => a.filter((x) => (x.at as V)[2] > ROW_Z(7) + 0.5);       // the rows behind you (they face a camera looking back)
+const around13 = (a: ActorSpec[]) => a.filter((x) => (x.at as V)[2] > ROW_Z(7) - 0.3);       // row 7 and behind: the benches round seat 13
 const NOAH = (act: ActorSpec["act"], extra: Partial<ActorSpec> = {}): ActorSpec => ({ who: "noah", at: SEAT(13, true), mode: "sit", act, facing: "camera", idle: 0.3, ...extra });
 const DRIVER: V = [-0.75, 0.45, -4.25];
 const FOG13 = { id: "fogPane", at: SEAT(13), variant: "13" };
@@ -46,8 +47,9 @@ const FOG13 = { id: "fogPane", at: SEAT(13), variant: "13" };
 // ---------------------------------------------------------------- cameras: your eyes, from your seat (seat 12's bench, row 6 right, by the aisle)
 const SEAT_EYES: V = [0.5, 1.15, ROW_Z(6) + 0.1];
 const BACK = at(SEAT_EYES, [-0.3, 0.95, 4.6], 52);                       // turned round, looking down the bus
-const TO13 = at(SEAT_EYES, [-0.85, 0.9, ROW_Z(7) + 0.25], 48);            // over your shoulder at seat 13's bench
-const FRONT = at(SEAT_EYES, [-0.3, 1.0, -5.0], 46);                      // up the bus to the driver
+const TO13 = at([0.45, 1.5, ROW_Z(6) - 0.15], [-0.95, 1.0, ROW_Z(7) + 0.15], 56);   // looking down over your shoulder: seat 13's empty bench among full ones
+const NOAH_CAM = at(SEAT_EYES, [-0.05, 0.95, ROW_Z(3)], 52);                   // up the aisle: Noah walks toward you
+const FRONT_ZOOM = at(SEAT_EYES, [-0.6, 1.1, -4.3], 30);                // up the bus to the driver, close
 const AT_HALE = at([-0.05, 1.4, -2.95], [-0.75, 1.2, -4.25], 44);
 const FRONT_HALE = at([0.4, 1.38, -4.95], [-0.75, 1.15, -4.2], 50);
 const AT_DOORS = at([-0.55, 1.3, -2.5], [1.1, 1.0, -4.4], 50);
@@ -66,21 +68,19 @@ const shots: ShotSpec[] = [
     actors: behind(riders([13, 12])), props: [], sfx: [{ t: 0.0, name: "kids_chatter", gain: 2 }, { t: 0.1, name: "bus_pullaway", gain: -6 }], note: "the time card types out over the bright June bus, seen from your seat" },
   // ======== the rule: seat 13
   { say: N("Every morning, your school bus has one seat nobody sits in. Seat thirteen. Even when the bus is packed, kids would rather stand."), until: { word: "thirteen." }, ...BUS,
-    ...glide(TO13, at([0.45, 1.15, ROW_Z(6) + 0.1], [-0.85, 0.95, ROW_Z(7) + 0.25], 42), 0.1, 3.0), actors: behind(riders([13, 12])), props: [FOG13], note: "seat 13's empty bench by its fogged window, the 13 plate" },
-  { cont: true, ...BUS, ...lock(at(SEAT_EYES, [-0.55, 0.95, ROW_Z(7) + 0.6], 54)),
-    actors: [...behind(riders([13, 12])), { who: "s0", at: [0.0, 0, ROW_Z(7) + 0.2], act: "neutral", facing: "camera", idle: 0.2 }, { who: "s1", at: [-0.1, 0, ROW_Z(8) + 0.1], act: "sleepy", facing: "camera", idle: 0.2 }],
+    ...glide(TO13, at([0.42, 1.48, ROW_Z(6) - 0.1], [-0.95, 1.0, ROW_Z(7) + 0.15], 50), 0.1, 3.0), actors: around13(riders([13, 12])), props: [FOG13], note: "seat 13's empty bench by its fogged window, every bench round it full" },
+  { cont: true, ...BUS, ...lock(at([0.45, 1.5, ROW_Z(6) - 0.2], [-0.35, 0.95, ROW_Z(7) + 0.45], 56)),
+    actors: [...around13(riders([13, 12])), { who: "s0", at: [0.05, 0, ROW_Z(8) + 0.1], act: "neutral", facing: "camera", idle: 0.2 }, { who: "s1", at: [0.0, 0, ROW_Z(9) + 0.1], act: "sleepy", facing: "camera", idle: 0.2 }],
     props: [], note: "kids standing in the aisle beside the empty bench" },
   { say: N("Mr Hale, the driver, says it belongs to a girl called Emily. Nobody has ever met her."), ...BUS, ...lock(FRONT_HALE),
     actors: [{ who: "hale", at: DRIVER, mode: "sit", act: "neutral", facing: "camera", idle: 0.2, beats: [{ t: 1.8, look: "up" }] }], note: "Mr Hale at the wheel, a glance up at his mirror" },
   // ======== Noah walks up and sits in it
-  { say: [N("Then one day, a new kid gets on."), L("noah", "Is anyone sitting here?")], ...BUS, ...lock(FRONT),
-    actors: [{ who: "noah", at: [0.0, 0, -3.3], act: "happy", walk: { to: [0.0, 0, ROW_Z(6) - 0.3], t0: 0.2, t1: 3.0, view: "front" } }, { who: "hale", at: DRIVER, mode: "sit", act: "neutral", facing: -1, idle: 0.2 }],
+  { say: [N("Then one day, a new kid gets on."), L("noah", "Is anyone sitting here?")], ...BUS, ...glide(at(SEAT_EYES, [0.0, 1.0, -3.3], 56), NOAH_CAM, 0.2, 2.8),
+    actors: [{ who: "noah", at: [0.0, 0, -3.3], act: "happy", gesture: "offer", walk: { to: [0.0, 0, ROW_Z(3)], t0: 0.2, t1: 2.6, view: "front" } }, { who: "hale", at: DRIVER, mode: "sit", act: "neutral", facing: -1, idle: 0.2 }],
     sfx: [{ t: 0.0, name: "bus_doors", gain: -4 }], note: "Noah, the new kid in a red hoodie, walks up the aisle toward you, asking" },
   { say: N("He sits down in seat thirteen. The whole bus goes quiet. Mr Hale pulls over."), ...BUS, mood: "rest", ambience: "amb_bus",
-    ...lock(TO13), actors: [NOAH("happy"), ...behind(riders([13, 12], { act: "shock", facing: "toward:noah" }))], props: [FOG13], sfx: [{ word: "quiet.", name: "air_brake" }], note: "Noah in seat 13; every head turns to him" },
+    ...lock(TO13), actors: [NOAH("happy"), ...around13(riders([13, 12], { act: "shock", facing: "toward:noah" }))], props: [FOG13], sfx: [{ word: "quiet.", name: "air_brake" }], note: "Noah in seat 13; every head turns to him" },
   { say: L("hale", "Not that one, son. That's Emily's.", { gap: 0.4 }), ...BUS, ambience: "amb_bus", ...lock(AT_HALE), actors: [{ who: "hale", at: DRIVER, mode: "sit", act: "sad", face: "sad", keepFace: true, facing: "camera", idle: 0.2 }], note: "Mr Hale turns round in his seat" },
-  { ...BUS, dur: 1.4, ambience: "amb_bus", ...glide(SEAT13, at([0.25, 1.24, ROW_Z(7) - 1.0], [-0.85, 1.05, ROW_Z(7) + 0.1], 42), 0.05, 1.4),
-    actors: [{ who: "noah", at: [0.0, 0, ROW_Z(7) + 0.1], act: "embarrassed", walk: { to: [0.05, 0, ROW_Z(9)], t0: 0.1, t1: 1.3, view: "back" } }], props: [FOG13], note: "Noah gets up and moves away; the seat is empty again" },
   // ======== the June fog, explained
   insert("window", "seat 13's window: fogged on the inside, bright June sun outside", { say: N("And here's what nobody can explain. It's June. It's hot. But the window by seat thirteen is always fogged up, from the inside. As if someone is breathing on it."), mood: "mystery", ambience: "amb_bus" }),
   // ======== Elm Road, explained; the quick count
@@ -98,7 +98,7 @@ const shots: ShotSpec[] = [
   // ======== he gets sick; the new driver (narrated, THEN the radio)
   { say: [N("Then one morning, Mr Hale got sick. A new driver covered his route."), O("radio", "Bus nine, Ron Hale's in hospital. You're covering his route.", { gap: 0.4 }), L("sub", "Copy that.")], ...BUS, mood: "drone", ambience: "amb_bus", transition: "dip",
     ...lock(FRONT_HALE), actors: [{ who: "sub", at: DRIVER, mode: "sit", act: "neutral", facing: "camera", idle: 0.3 }], sfx: [{ word: "Bus", name: "radio_squelch" }, { word: "route.", n: 2, name: "radio_squelch", gain: -3 }], note: "a new driver, a young woman, at the wheel; the bus radio" },
-  { say: [N("She doesn't know about Elm Road. So you tell her."), O("you", "Miss, you have to stop at Elm Road!"), L("sub", "There's no stop at Elm Road, hon.", { gap: 0.2 })], ...BUS, ambience: "amb_bus", ...lock(FRONT),
+  { say: [N("She doesn't know about Elm Road. So you tell her."), O("you", "Miss, you have to stop at Elm Road!"), L("sub", "There's no stop at Elm Road, hon.", { gap: 0.2 })], ...BUS, ambience: "amb_bus", ...lock(FRONT_ZOOM),
     actors: [{ who: "sub", at: DRIVER, mode: "sit", act: "neutral", facing: "camera", idle: 0.3 }], note: "from your seat, you call up the bus to the new driver; she answers over her shoulder" },
   insert("passStop", "the Elm Rd stop flashing past the window", { say: N("She drives right past it."), mood: "build", ambience: "amb_bus", sfx: [{ t: 0.1, name: "whoosh_short" }] }),
   // ======== the handprint, explained
@@ -130,8 +130,8 @@ const shots: ShotSpec[] = [
     ...glide(at([0.05, 1.3, ROW_Z(7) - 0.75], [-1.2, 1.25, ROW_Z(7)], 46), at([-0.05, 1.3, ROW_Z(7) - 0.75], [1.2, 1.25, ROW_Z(7)], 46), 1.2, 1.8),
     actors: [], props: [FOG13, { id: "fogPane", at: SEAT(14), variant: "14" }], note: "seat 13's window fogged; the camera turns across the aisle: seat 14's window fogged too" },
   { say: [N("A boy goes to sit there. The girl next to you stops him."), O("priya", "Don't. That's Mr Hale's.", { gap: 0.3 })], ...BUS, ambience: "amb_bus_kids",
-    ...lock(at([-0.35, 1.25, ROW_Z(7) - 1.5], [0.7, 0.95, ROW_Z(7) + 0.1], 50)),
-    actors: [{ who: "kid", at: [0.22, 0, ROW_Z(7) - 0.25], act: "neutral", face: "confused", facing: "camera", idle: 0.2 }, ...riders([13, 14, 12], {}, 9).filter((a) => (a.at as V)[0] > 0 && (a.at as V)[2] > ROW_Z(7) + 0.5)],
+    ...lock(at([0.3, 1.5, ROW_Z(5)], [0.35, 0.95, ROW_Z(7) + 0.3], 54)),
+    actors: [{ who: "kid", at: [0.0, 0, ROW_Z(7) + 0.15], act: "neutral", face: "confused", facing: "camera", idle: 0.2 }, ...riders([13, 14, 12], {}, 9).filter((a) => (a.at as V)[0] > 0 && (a.at as V)[2] > ROW_Z(7) + 0.5)],
     props: [{ id: "fogPane", at: SEAT(14), variant: "14" }], note: "a boy about to sit in seat 14 stops" },
   insert("vote", "end card: WOULD YOU SIT IN SEAT 13? YES / NO", { dur: 2.4, hold: 0.4, sfx: [{ t: 0.0, name: "musicbox_note", gain: -6 }] }),
 ];

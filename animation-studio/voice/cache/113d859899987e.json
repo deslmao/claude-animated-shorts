@@ -1,0 +1,95 @@
+{
+ "hash": "113d859899987e",
+ "text": "He sits down in seat thirteen. The whole bus goes quiet. Mr Hale pulls over.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 5.526,
+ "dur": 5.564082,
+ "words": [
+  {
+   "w": "He",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "sits",
+   "t0": 0.221,
+   "t1": 0.453
+  },
+  {
+   "w": "down",
+   "t0": 0.499,
+   "t1": 0.731
+  },
+  {
+   "w": "in",
+   "t0": 0.789,
+   "t1": 0.871
+  },
+  {
+   "w": "seat",
+   "t0": 0.952,
+   "t1": 1.184
+  },
+  {
+   "w": "thirteen.",
+   "t0": 1.242,
+   "t1": 1.95
+  },
+  {
+   "w": "The",
+   "t0": 2.136,
+   "t1": 2.241
+  },
+  {
+   "w": "whole",
+   "t0": 2.287,
+   "t1": 2.461
+  },
+  {
+   "w": "bus",
+   "t0": 2.496,
+   "t1": 2.752
+  },
+  {
+   "w": "goes",
+   "t0": 2.81,
+   "t1": 3.007
+  },
+  {
+   "w": "quiet.",
+   "t0": 3.065,
+   "t1": 3.657
+  },
+  {
+   "w": "Mr",
+   "t0": 3.947,
+   "t1": 4.238
+  },
+  {
+   "w": "Hale",
+   "t0": 4.284,
+   "t1": 4.505
+  },
+  {
+   "w": "pulls",
+   "t0": 4.54,
+   "t1": 4.807
+  },
+  {
+   "w": "over.",
+   "t0": 4.865,
+   "t1": 5.526
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T07:08:31.917Z"
+}

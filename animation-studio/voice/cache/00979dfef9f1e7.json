@@ -1,0 +1,135 @@
+{
+ "hash": "00979dfef9f1e7",
+ "text": "Then something slaps the back of the bus. A small handprint, on the outside of the emergency door. While the bus is moving.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 7.152,
+ "dur": 7.183673,
+ "words": [
+  {
+   "w": "Then",
+   "t0": 0,
+   "t1": 0.232
+  },
+  {
+   "w": "something",
+   "t0": 0.29,
+   "t1": 0.592
+  },
+  {
+   "w": "slaps",
+   "t0": 0.65,
+   "t1": 0.94
+  },
+  {
+   "w": "the",
+   "t0": 0.987,
+   "t1": 1.057
+  },
+  {
+   "w": "back",
+   "t0": 1.091,
+   "t1": 1.242
+  },
+  {
+   "w": "of",
+   "t0": 1.277,
+   "t1": 1.324
+  },
+  {
+   "w": "the",
+   "t0": 1.358,
+   "t1": 1.428
+  },
+  {
+   "w": "bus.",
+   "t0": 1.463,
+   "t1": 1.962
+  },
+  {
+   "w": "A",
+   "t0": 2.496,
+   "t1": 2.566
+  },
+  {
+   "w": "small",
+   "t0": 2.635,
+   "t1": 2.891
+  },
+  {
+   "w": "handprint,",
+   "t0": 2.949,
+   "t1": 3.483
+  },
+  {
+   "w": "on",
+   "t0": 3.518,
+   "t1": 3.634
+  },
+  {
+   "w": "the",
+   "t0": 3.669,
+   "t1": 3.738
+  },
+  {
+   "w": "outside",
+   "t0": 3.785,
+   "t1": 4.133
+  },
+  {
+   "w": "of",
+   "t0": 4.156,
+   "t1": 4.203
+  },
+  {
+   "w": "the",
+   "t0": 4.238,
+   "t1": 4.307
+  },
+  {
+   "w": "emergency",
+   "t0": 4.354,
+   "t1": 4.865
+  },
+  {
+   "w": "door.",
+   "t0": 4.911,
+   "t1": 5.387
+  },
+  {
+   "w": "While",
+   "t0": 5.677,
+   "t1": 5.909
+  },
+  {
+   "w": "the",
+   "t0": 5.944,
+   "t1": 6.014
+  },
+  {
+   "w": "bus",
+   "t0": 6.049,
+   "t1": 6.223
+  },
+  {
+   "w": "is",
+   "t0": 6.281,
+   "t1": 6.362
+  },
+  {
+   "w": "moving.",
+   "t0": 6.432,
+   "t1": 7.152
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T07:08:41.612Z"
+}

@@ -1,0 +1,75 @@
+{
+ "hash": "1339f80a4531f6",
+ "text": "So you run to the front and tap the driver's shoulder.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.833,
+ "dur": 2.873469,
+ "words": [
+  {
+   "w": "So",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "you",
+   "t0": 0.221,
+   "t1": 0.302
+  },
+  {
+   "w": "run",
+   "t0": 0.372,
+   "t1": 0.534
+  },
+  {
+   "w": "to",
+   "t0": 0.592,
+   "t1": 0.65
+  },
+  {
+   "w": "the",
+   "t0": 0.708,
+   "t1": 0.778
+  },
+  {
+   "w": "front",
+   "t0": 0.836,
+   "t1": 1.103
+  },
+  {
+   "w": "and",
+   "t0": 1.161,
+   "t1": 1.254
+  },
+  {
+   "w": "tap",
+   "t0": 1.312,
+   "t1": 1.509
+  },
+  {
+   "w": "the",
+   "t0": 1.579,
+   "t1": 1.649
+  },
+  {
+   "w": "driver's",
+   "t0": 1.683,
+   "t1": 2.055
+  },
+  {
+   "w": "shoulder.",
+   "t0": 2.078,
+   "t1": 2.833
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T07:08:43.234Z"
+}
