@@ -1,0 +1,105 @@
+{
+ "hash": "1537e9be519fb7",
+ "text": "It's the water game. If I don't say my words, Mama goes in the water by herself.",
+ "voice": "olOllie",
+ "lead": 0,
+ "end": 6.316,
+ "dur": 6.347755,
+ "words": [
+  {
+   "w": "It's",
+   "t0": 0,
+   "t1": 0.255
+  },
+  {
+   "w": "the",
+   "t0": 0.325,
+   "t1": 0.418
+  },
+  {
+   "w": "water",
+   "t0": 0.488,
+   "t1": 0.801
+  },
+  {
+   "w": "game.",
+   "t0": 0.871,
+   "t1": 1.347
+  },
+  {
+   "w": "If",
+   "t0": 1.916,
+   "t1": 2.101
+  },
+  {
+   "w": "I",
+   "t0": 2.183,
+   "t1": 2.206
+  },
+  {
+   "w": "don't",
+   "t0": 2.299,
+   "t1": 2.473
+  },
+  {
+   "w": "say",
+   "t0": 2.519,
+   "t1": 2.682
+  },
+  {
+   "w": "my",
+   "t0": 2.763,
+   "t1": 2.879
+  },
+  {
+   "w": "words,",
+   "t0": 2.961,
+   "t1": 3.553
+  },
+  {
+   "w": "Mama",
+   "t0": 3.866,
+   "t1": 4.18
+  },
+  {
+   "w": "goes",
+   "t0": 4.249,
+   "t1": 4.458
+  },
+  {
+   "w": "in",
+   "t0": 4.505,
+   "t1": 4.586
+  },
+  {
+   "w": "the",
+   "t0": 4.632,
+   "t1": 4.702
+  },
+  {
+   "w": "water",
+   "t0": 4.748,
+   "t1": 5.097
+  },
+  {
+   "w": "by",
+   "t0": 5.166,
+   "t1": 5.317
+  },
+  {
+   "w": "herself.",
+   "t0": 5.399,
+   "t1": 6.316
+  }
+ ],
+ "voiceId": "1tDEBGOo8EqEPApM49eJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.9
+ },
+ "created": "2026-11-18T22:36:32.276Z"
+}

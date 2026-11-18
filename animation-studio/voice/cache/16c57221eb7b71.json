@@ -1,0 +1,80 @@
+{
+ "hash": "16c57221eb7b71",
+ "text": "She doesn't try the door. Her footsteps go back down the stairs.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.762,
+ "dur": 3.787755,
+ "words": [
+  {
+   "w": "She",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "doesn't",
+   "t0": 0.209,
+   "t1": 0.453
+  },
+  {
+   "w": "try",
+   "t0": 0.476,
+   "t1": 0.639
+  },
+  {
+   "w": "the",
+   "t0": 0.708,
+   "t1": 0.778
+  },
+  {
+   "w": "door.",
+   "t0": 0.824,
+   "t1": 1.277
+  },
+  {
+   "w": "Her",
+   "t0": 1.498,
+   "t1": 1.637
+  },
+  {
+   "w": "footsteps",
+   "t0": 1.683,
+   "t1": 2.159
+  },
+  {
+   "w": "go",
+   "t0": 2.206,
+   "t1": 2.31
+  },
+  {
+   "w": "back",
+   "t0": 2.38,
+   "t1": 2.531
+  },
+  {
+   "w": "down",
+   "t0": 2.577,
+   "t1": 2.752
+  },
+  {
+   "w": "the",
+   "t0": 2.786,
+   "t1": 2.856
+  },
+  {
+   "w": "stairs.",
+   "t0": 2.891,
+   "t1": 3.762
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T22:36:20.758Z"
+}

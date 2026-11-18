@@ -1,0 +1,60 @@
+{
+ "hash": "0f849ed1bb41f7",
+ "text": "Mum stops, walks back, and takes Ollie's hand.",
+ "voice": "georgeHushedBrisk",
+ "lead": 0,
+ "end": 3.065,
+ "dur": 3.108571,
+ "words": [
+  {
+   "w": "Mum",
+   "t0": 0,
+   "t1": 0.279
+  },
+  {
+   "w": "stops,",
+   "t0": 0.348,
+   "t1": 0.836
+  },
+  {
+   "w": "walks",
+   "t0": 0.929,
+   "t1": 1.231
+  },
+  {
+   "w": "back,",
+   "t0": 1.289,
+   "t1": 1.579
+  },
+  {
+   "w": "and",
+   "t0": 1.602,
+   "t1": 1.683
+  },
+  {
+   "w": "takes",
+   "t0": 1.741,
+   "t1": 1.974
+  },
+  {
+   "w": "Ollie's",
+   "t0": 2.032,
+   "t1": 2.334
+  },
+  {
+   "w": "hand.",
+   "t0": 2.38,
+   "t1": 3.065
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-18T22:42:55.225Z"
+}

@@ -1,0 +1,85 @@
+{
+ "hash": "0650326641d11b",
+ "text": "But your phone is still lying in the grass, where you dropped it.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.344,
+ "dur": 3.369796,
+ "words": [
+  {
+   "w": "But",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "your",
+   "t0": 0.209,
+   "t1": 0.348
+  },
+  {
+   "w": "phone",
+   "t0": 0.406,
+   "t1": 0.685
+  },
+  {
+   "w": "is",
+   "t0": 0.72,
+   "t1": 0.789
+  },
+  {
+   "w": "still",
+   "t0": 0.824,
+   "t1": 1.033
+  },
+  {
+   "w": "lying",
+   "t0": 1.091,
+   "t1": 1.358
+  },
+  {
+   "w": "in",
+   "t0": 1.405,
+   "t1": 1.463
+  },
+  {
+   "w": "the",
+   "t0": 1.498,
+   "t1": 1.567
+  },
+  {
+   "w": "grass,",
+   "t0": 1.614,
+   "t1": 2.055
+  },
+  {
+   "w": "where",
+   "t0": 2.09,
+   "t1": 2.287
+  },
+  {
+   "w": "you",
+   "t0": 2.322,
+   "t1": 2.403
+  },
+  {
+   "w": "dropped",
+   "t0": 2.461,
+   "t1": 2.752
+  },
+  {
+   "w": "it.",
+   "t0": 2.81,
+   "t1": 3.344
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T22:36:04.513Z"
+}

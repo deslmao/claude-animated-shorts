@@ -1,0 +1,173 @@
+{
+ "composition_plan": {
+  "positive_global_styles": [
+   "dark cinematic horror film score",
+   "orchestral and atmospheric",
+   "instrumental",
+   "haunting music box lullaby motif in a minor key",
+   "deep sub bass drones",
+   "slow and suspenseful"
+  ],
+  "negative_global_styles": [
+   "vocals",
+   "singing",
+   "lyrics",
+   "pop",
+   "upbeat",
+   "EDM",
+   "drum kit",
+   "rock guitar",
+   "happy"
+  ],
+  "sections": [
+   {
+    "section_name": "cold open",
+    "positive_local_styles": [
+     "deep dark sub drone",
+     "distant low cello",
+     "an ominous heavy impact near the start",
+     "tense held dissonant strings"
+    ],
+    "negative_local_styles": [
+     "melody",
+     "soft"
+    ],
+    "duration_ms": 9400,
+    "lines": []
+   },
+   {
+    "section_name": "recap",
+    "positive_local_styles": [
+     "eerie music box lullaby, slow and sparse",
+     "soft low strings underneath",
+     "mysterious and sad"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "loud"
+    ],
+    "duration_ms": 18200,
+    "lines": []
+   },
+   {
+    "section_name": "morning",
+    "positive_local_styles": [
+     "cold sparse piano notes",
+     "airy pad",
+     "quiet morning unease"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "loud",
+     "warm"
+    ],
+    "duration_ms": 13800,
+    "lines": []
+   },
+   {
+    "section_name": "confession",
+    "positive_local_styles": [
+     "tragic slow strings",
+     "a lonely cello melody of grief",
+     "the music box lullaby returns faintly",
+     "dark, emotional and soft"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "loud",
+     "hopeful"
+    ],
+    "duration_ms": 29800,
+    "lines": []
+   },
+   {
+    "section_name": "the plan",
+    "positive_local_styles": [
+     "quiet tension",
+     "a slow ticking pulse",
+     "low drone and sparse piano",
+     "unsettling, getting darker"
+    ],
+    "negative_local_styles": [
+     "melody",
+     "loud"
+    ],
+    "duration_ms": 11100,
+    "lines": []
+   },
+   {
+    "section_name": "three a.m.",
+    "positive_local_styles": [
+     "near silence, extremely sparse and quiet",
+     "a low sub pulse like a slow heartbeat",
+     "faint high dissonant violin harmonics",
+     "creeping dread"
+    ],
+    "negative_local_styles": [
+     "melody",
+     "loud",
+     "drums"
+    ],
+    "duration_ms": 25900,
+    "lines": []
+   },
+   {
+    "section_name": "the river",
+    "positive_local_styles": [
+     "urgent pulsing low strings",
+     "deep cinematic percussion building in intensity",
+     "horror chase, rising tension"
+    ],
+    "negative_local_styles": [
+     "calm",
+     "soft"
+    ],
+    "duration_ms": 19300,
+    "lines": []
+   },
+   {
+    "section_name": "the edge",
+    "positive_local_styles": [
+     "the music drops to a haunting, slow, hymn-like choir pad without words",
+     "low drone",
+     "eerie music box fragments",
+     "tension slowly swelling to a huge climax"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "vocals with words"
+    ],
+    "duration_ms": 25300,
+    "lines": []
+   },
+   {
+    "section_name": "letting go",
+    "positive_local_styles": [
+     "a sudden loud dissonant orchestral climax",
+     "rushing strings",
+     "then falling away"
+    ],
+    "negative_local_styles": [
+     "calm"
+    ],
+    "duration_ms": 8300,
+    "lines": []
+   },
+   {
+    "section_name": "ending",
+    "positive_local_styles": [
+     "sad quiet piano playing the lullaby theme",
+     "melancholy strings",
+     "a final ominous low swell rising at the very end"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "happy"
+    ],
+    "duration_ms": 17000,
+    "lines": []
+   }
+  ]
+ },
+ "model_id": "music_v1"
+}

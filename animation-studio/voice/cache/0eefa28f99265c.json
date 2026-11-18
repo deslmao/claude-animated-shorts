@@ -1,0 +1,110 @@
+{
+ "hash": "0eefa28f99265c",
+ "text": "At three this morning, she sleepwalked him into the flooded garden. Only your garden. And you filmed it.",
+ "voice": "georgeHushedBrisk",
+ "lead": 0,
+ "end": 6.316,
+ "dur": 6.347755,
+ "words": [
+  {
+   "w": "At",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "three",
+   "t0": 0.209,
+   "t1": 0.464
+  },
+  {
+   "w": "this",
+   "t0": 0.499,
+   "t1": 0.639
+  },
+  {
+   "w": "morning,",
+   "t0": 0.72,
+   "t1": 1.091
+  },
+  {
+   "w": "she",
+   "t0": 1.126,
+   "t1": 1.265
+  },
+  {
+   "w": "sleepwalked",
+   "t0": 1.335,
+   "t1": 1.892
+  },
+  {
+   "w": "him",
+   "t0": 1.927,
+   "t1": 2.02
+  },
+  {
+   "w": "into",
+   "t0": 2.067,
+   "t1": 2.206
+  },
+  {
+   "w": "the",
+   "t0": 2.264,
+   "t1": 2.334
+  },
+  {
+   "w": "flooded",
+   "t0": 2.38,
+   "t1": 2.717
+  },
+  {
+   "w": "garden.",
+   "t0": 2.775,
+   "t1": 3.344
+  },
+  {
+   "w": "Only",
+   "t0": 3.831,
+   "t1": 4.098
+  },
+  {
+   "w": "your",
+   "t0": 4.168,
+   "t1": 4.342
+  },
+  {
+   "w": "garden.",
+   "t0": 4.412,
+   "t1": 4.934
+  },
+  {
+   "w": "And",
+   "t0": 5.166,
+   "t1": 5.317
+  },
+  {
+   "w": "you",
+   "t0": 5.375,
+   "t1": 5.468
+  },
+  {
+   "w": "filmed",
+   "t0": 5.55,
+   "t1": 5.851
+  },
+  {
+   "w": "it.",
+   "t0": 5.898,
+   "t1": 6.316
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-18T22:42:54.585Z"
+}

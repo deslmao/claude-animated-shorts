@@ -1,0 +1,45 @@
+{
+ "hash": "004e1a5c1039cd",
+ "text": "Please. Don't tell your dad.",
+ "voice": "olKate",
+ "lead": 0,
+ "end": 1.718,
+ "dur": 1.750204,
+ "words": [
+  {
+   "w": "Please.",
+   "t0": 0,
+   "t1": 0.464
+  },
+  {
+   "w": "Don't",
+   "t0": 0.499,
+   "t1": 0.731
+  },
+  {
+   "w": "tell",
+   "t0": 0.755,
+   "t1": 0.894
+  },
+  {
+   "w": "your",
+   "t0": 0.94,
+   "t1": 1.045
+  },
+  {
+   "w": "dad.",
+   "t0": 1.08,
+   "t1": 1.718
+  }
+ ],
+ "voiceId": "2IG19NvuEAFSWMSkq7wB",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.1,
+  "use_speaker_boost": true,
+  "speed": 0.9
+ },
+ "created": "2026-11-18T22:36:13.165Z"
+}

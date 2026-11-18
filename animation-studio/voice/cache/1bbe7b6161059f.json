@@ -1,0 +1,145 @@
+{
+ "hash": "1bbe7b6161059f",
+ "text": "And at three this morning, Mum sleepwalked Ollie out into the garden. It was flooded with black water. Only your garden. And you filmed it.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 8.266,
+ "dur": 8.306939,
+ "words": [
+  {
+   "w": "And",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "at",
+   "t0": 0.221,
+   "t1": 0.29
+  },
+  {
+   "w": "three",
+   "t0": 0.337,
+   "t1": 0.569
+  },
+  {
+   "w": "this",
+   "t0": 0.604,
+   "t1": 0.743
+  },
+  {
+   "w": "morning,",
+   "t0": 0.813,
+   "t1": 1.207
+  },
+  {
+   "w": "Mum",
+   "t0": 1.335,
+   "t1": 1.556
+  },
+  {
+   "w": "sleepwalked",
+   "t0": 1.625,
+   "t1": 2.159
+  },
+  {
+   "w": "Ollie",
+   "t0": 2.218,
+   "t1": 2.45
+  },
+  {
+   "w": "out",
+   "t0": 2.508,
+   "t1": 2.694
+  },
+  {
+   "w": "into",
+   "t0": 2.74,
+   "t1": 2.879
+  },
+  {
+   "w": "the",
+   "t0": 2.937,
+   "t1": 3.007
+  },
+  {
+   "w": "garden.",
+   "t0": 3.053,
+   "t1": 3.576
+  },
+  {
+   "w": "It",
+   "t0": 3.796,
+   "t1": 3.913
+  },
+  {
+   "w": "was",
+   "t0": 3.947,
+   "t1": 4.052
+  },
+  {
+   "w": "flooded",
+   "t0": 4.11,
+   "t1": 4.435
+  },
+  {
+   "w": "with",
+   "t0": 4.47,
+   "t1": 4.598
+  },
+  {
+   "w": "black",
+   "t0": 4.644,
+   "t1": 4.865
+  },
+  {
+   "w": "water.",
+   "t0": 4.923,
+   "t1": 5.468
+  },
+  {
+   "w": "Only",
+   "t0": 5.933,
+   "t1": 6.188
+  },
+  {
+   "w": "your",
+   "t0": 6.258,
+   "t1": 6.444
+  },
+  {
+   "w": "garden.",
+   "t0": 6.502,
+   "t1": 6.989
+  },
+  {
+   "w": "And",
+   "t0": 7.129,
+   "t1": 7.268
+  },
+  {
+   "w": "you",
+   "t0": 7.326,
+   "t1": 7.396
+  },
+  {
+   "w": "filmed",
+   "t0": 7.465,
+   "t1": 7.755
+  },
+  {
+   "w": "it.",
+   "t0": 7.802,
+   "t1": 8.266
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T22:36:03.285Z"
+}

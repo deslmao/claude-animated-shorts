@@ -1,0 +1,50 @@
+{
+ "hash": "03c80578d6f825",
+ "text": "You ask the man next door.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 1.858,
+ "dur": 1.906939,
+ "words": [
+  {
+   "w": "You",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "ask",
+   "t0": 0.255,
+   "t1": 0.453
+  },
+  {
+   "w": "the",
+   "t0": 0.511,
+   "t1": 0.58
+  },
+  {
+   "w": "man",
+   "t0": 0.627,
+   "t1": 0.801
+  },
+  {
+   "w": "next",
+   "t0": 0.871,
+   "t1": 1.091
+  },
+  {
+   "w": "door.",
+   "t0": 1.126,
+   "t1": 1.858
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T22:36:05.838Z"
+}

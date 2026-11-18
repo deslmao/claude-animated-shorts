@@ -1,0 +1,85 @@
+{
+ "hash": "19d9eec543b2ef",
+ "text": "Keeping them apart didn't stop it. It sent her into the river alone.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.598,
+ "dur": 4.623673,
+ "words": [
+  {
+   "w": "Keeping",
+   "t0": 0,
+   "t1": 0.348
+  },
+  {
+   "w": "them",
+   "t0": 0.395,
+   "t1": 0.511
+  },
+  {
+   "w": "apart",
+   "t0": 0.557,
+   "t1": 0.975
+  },
+  {
+   "w": "didn't",
+   "t0": 1.033,
+   "t1": 1.289
+  },
+  {
+   "w": "stop",
+   "t0": 1.335,
+   "t1": 1.591
+  },
+  {
+   "w": "it.",
+   "t0": 1.672,
+   "t1": 1.962
+  },
+  {
+   "w": "It",
+   "t0": 2.601,
+   "t1": 2.752
+  },
+  {
+   "w": "sent",
+   "t0": 2.798,
+   "t1": 3.007
+  },
+  {
+   "w": "her",
+   "t0": 3.053,
+   "t1": 3.135
+  },
+  {
+   "w": "into",
+   "t0": 3.193,
+   "t1": 3.367
+  },
+  {
+   "w": "the",
+   "t0": 3.425,
+   "t1": 3.495
+  },
+  {
+   "w": "river",
+   "t0": 3.553,
+   "t1": 3.785
+  },
+  {
+   "w": "alone.",
+   "t0": 3.843,
+   "t1": 4.598
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T22:36:33.007Z"
+}

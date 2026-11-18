@@ -109,6 +109,9 @@ def main(plan_path):
         music[:, :x.shape[1]] = x
         f = ns(0.6)
         music[:, max(0, x.shape[1] - f):x.shape[1]] *= np.linspace(1, 0, min(f, x.shape[1]))
+        if mu.get("curve"):  # a volume curve over the score (dB at times, linear between): its silences and swells
+            ts, dbs = zip(*mu["curve"])
+            music *= dbg(np.interp(np.arange(N) / SR, ts, dbs))[None, :]
         music *= duck_curve(P["words"], N, mu.get("duck_db", DUCK_DB))[None, :]
         music *= dbg(Lv + MUSIC_REL + mu.get("gain_db", 0.0) - lu(music))
         cues.append((0.0, f"music: score {mu['file']}"))

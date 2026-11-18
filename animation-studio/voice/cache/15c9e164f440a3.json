@@ -1,0 +1,60 @@
+{
+ "hash": "15c9e164f440a3",
+ "text": "There's just one problem. Your door doesn't lock.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.879,
+ "dur": 2.925714,
+ "words": [
+  {
+   "w": "There's",
+   "t0": 0,
+   "t1": 0.29
+  },
+  {
+   "w": "just",
+   "t0": 0.337,
+   "t1": 0.522
+  },
+  {
+   "w": "one",
+   "t0": 0.592,
+   "t1": 0.766
+  },
+  {
+   "w": "problem.",
+   "t0": 0.813,
+   "t1": 1.277
+  },
+  {
+   "w": "Your",
+   "t0": 1.44,
+   "t1": 1.602
+  },
+  {
+   "w": "door",
+   "t0": 1.649,
+   "t1": 1.846
+  },
+  {
+   "w": "doesn't",
+   "t0": 1.892,
+   "t1": 2.159
+  },
+  {
+   "w": "lock.",
+   "t0": 2.206,
+   "t1": 2.879
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T22:36:15.855Z"
+}

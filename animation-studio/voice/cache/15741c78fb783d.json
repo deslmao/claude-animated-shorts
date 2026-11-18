@@ -1,0 +1,55 @@
+{
+ "hash": "15741c78fb783d",
+ "text": "Tonight, Mum locks herself in her bedroom.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.322,
+ "dur": 2.35102,
+ "words": [
+  {
+   "w": "Tonight,",
+   "t0": 0,
+   "t1": 0.453
+  },
+  {
+   "w": "Mum",
+   "t0": 0.488,
+   "t1": 0.673
+  },
+  {
+   "w": "locks",
+   "t0": 0.731,
+   "t1": 0.929
+  },
+  {
+   "w": "herself",
+   "t0": 0.964,
+   "t1": 1.277
+  },
+  {
+   "w": "in",
+   "t0": 1.335,
+   "t1": 1.405
+  },
+  {
+   "w": "her",
+   "t0": 1.463,
+   "t1": 1.533
+  },
+  {
+   "w": "bedroom.",
+   "t0": 1.591,
+   "t1": 2.322
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T22:36:14.592Z"
+}

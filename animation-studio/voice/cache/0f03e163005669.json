@@ -1,0 +1,50 @@
+{
+ "hash": "0f03e163005669",
+ "text": "Then you hear the back door.",
+ "voice": "georgeHushedBrisk",
+ "lead": 0,
+ "end": 1.533,
+ "dur": 1.567347,
+ "words": [
+  {
+   "w": "Then",
+   "t0": 0,
+   "t1": 0.209
+  },
+  {
+   "w": "you",
+   "t0": 0.255,
+   "t1": 0.325
+  },
+  {
+   "w": "hear",
+   "t0": 0.383,
+   "t1": 0.511
+  },
+  {
+   "w": "the",
+   "t0": 0.546,
+   "t1": 0.615
+  },
+  {
+   "w": "back",
+   "t0": 0.65,
+   "t1": 0.824
+  },
+  {
+   "w": "door.",
+   "t0": 0.882,
+   "t1": 1.533
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-18T22:40:17.733Z"
+}

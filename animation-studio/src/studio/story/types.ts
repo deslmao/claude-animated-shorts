@@ -195,8 +195,9 @@ export type Storyboard = {
   /** testing only: false switches gesture easing off (the validator then reports the arm snaps) */
   ease?: boolean;
   /** background music: a mood, { mood, gain } (dB), a recorded score { file, gain, duck } (sound/samples/music/<file>.mp3,
-   *  written to this film's timings, from 0 s; duck = the dip under words in dB, default -3), or false for none. Default: chosen from the story's acting */
-  music?: Mood | { mood: Mood; gain?: number } | { file: string; gain?: number; duck?: number } | false;
+   *  written to this film's timings, from 0 s; duck = the dip under words in dB, default -3; curve = [seconds, dB]
+   *  points, linear between: the score's silences and swells), or false for none. Default: chosen from the story's acting */
+  music?: Mood | { mood: Mood; gain?: number } | { file: string; gain?: number; duck?: number; curve?: [number, number][] } | false;
   /** the music drops out after this spoken word (a beat of silence before the punchline): the bed fades out in 0.1 s
    *  and stays out until the button chord lands on the last word (Video 04). Default: no drop-out */
   musicDrop?: WordRef;

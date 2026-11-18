@@ -1,0 +1,30 @@
+{
+ "hash": "12185ceee3b144",
+ "text": "Stay here!",
+ "voice": "olAva",
+ "lead": 0,
+ "end": 0.929,
+ "dur": 0.966531,
+ "words": [
+  {
+   "w": "Stay",
+   "t0": 0,
+   "t1": 0.36
+  },
+  {
+   "w": "here!",
+   "t0": 0.441,
+   "t1": 0.929
+  }
+ ],
+ "voiceId": "Xb7hH8MSUJpSbSDYk0k2",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.15,
+  "use_speaker_boost": true,
+  "speed": 1
+ },
+ "created": "2026-11-18T22:36:23.981Z"
+}

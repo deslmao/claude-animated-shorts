@@ -1,0 +1,125 @@
+{
+ "hash": "11d87500945e72",
+ "text": "And at three this morning, she sleepwalked Ollie into the garden. It was flooded. Only your garden. And you filmed it.",
+ "voice": "georgeHushedBrisk",
+ "lead": 0,
+ "end": 6.873,
+ "dur": 6.922449,
+ "words": [
+  {
+   "w": "And",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "at",
+   "t0": 0.221,
+   "t1": 0.29
+  },
+  {
+   "w": "three",
+   "t0": 0.348,
+   "t1": 0.615
+  },
+  {
+   "w": "this",
+   "t0": 0.65,
+   "t1": 0.789
+  },
+  {
+   "w": "morning,",
+   "t0": 0.871,
+   "t1": 1.254
+  },
+  {
+   "w": "she",
+   "t0": 1.335,
+   "t1": 1.463
+  },
+  {
+   "w": "sleepwalked",
+   "t0": 1.533,
+   "t1": 2.055
+  },
+  {
+   "w": "Ollie",
+   "t0": 2.113,
+   "t1": 2.357
+  },
+  {
+   "w": "into",
+   "t0": 2.392,
+   "t1": 2.543
+  },
+  {
+   "w": "the",
+   "t0": 2.601,
+   "t1": 2.67
+  },
+  {
+   "w": "garden.",
+   "t0": 2.728,
+   "t1": 3.228
+  },
+  {
+   "w": "It",
+   "t0": 3.46,
+   "t1": 3.587
+  },
+  {
+   "w": "was",
+   "t0": 3.622,
+   "t1": 3.715
+  },
+  {
+   "w": "flooded.",
+   "t0": 3.773,
+   "t1": 4.284
+  },
+  {
+   "w": "Only",
+   "t0": 4.598,
+   "t1": 4.841
+  },
+  {
+   "w": "your",
+   "t0": 4.911,
+   "t1": 5.097
+  },
+  {
+   "w": "garden.",
+   "t0": 5.166,
+   "t1": 5.631
+  },
+  {
+   "w": "And",
+   "t0": 5.712,
+   "t1": 5.851
+  },
+  {
+   "w": "you",
+   "t0": 5.898,
+   "t1": 5.979
+  },
+  {
+   "w": "filmed",
+   "t0": 6.049,
+   "t1": 6.339
+  },
+  {
+   "w": "it.",
+   "t0": 6.397,
+   "t1": 6.873
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-18T22:40:05.329Z"
+}

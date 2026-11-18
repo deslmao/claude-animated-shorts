@@ -1,0 +1,85 @@
+{
+ "hash": "10076ada8551bb",
+ "text": "Three in the morning. Your mum is walking into the river, fast asleep.",
+ "voice": "georgeHushedBrisk",
+ "lead": 0,
+ "end": 3.808,
+ "dur": 3.84,
+ "words": [
+  {
+   "w": "Three",
+   "t0": 0,
+   "t1": 0.29
+  },
+  {
+   "w": "in",
+   "t0": 0.325,
+   "t1": 0.383
+  },
+  {
+   "w": "the",
+   "t0": 0.418,
+   "t1": 0.488
+  },
+  {
+   "w": "morning.",
+   "t0": 0.522,
+   "t1": 0.94
+  },
+  {
+   "w": "Your",
+   "t0": 1.057,
+   "t1": 1.219
+  },
+  {
+   "w": "mum",
+   "t0": 1.254,
+   "t1": 1.405
+  },
+  {
+   "w": "is",
+   "t0": 1.463,
+   "t1": 1.533
+  },
+  {
+   "w": "walking",
+   "t0": 1.591,
+   "t1": 1.869
+  },
+  {
+   "w": "into",
+   "t0": 1.904,
+   "t1": 2.032
+  },
+  {
+   "w": "the",
+   "t0": 2.09,
+   "t1": 2.159
+  },
+  {
+   "w": "river,",
+   "t0": 2.206,
+   "t1": 2.554
+  },
+  {
+   "w": "fast",
+   "t0": 2.67,
+   "t1": 2.984
+  },
+  {
+   "w": "asleep.",
+   "t0": 3.042,
+   "t1": 3.808
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-18T22:40:02.302Z"
+}

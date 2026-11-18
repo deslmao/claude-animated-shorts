@@ -1,0 +1,60 @@
+{
+ "hash": "15ca7459c12501",
+ "text": "She watches herself lead Ollie into the water.",
+ "voice": "georgeHushedBrisk",
+ "lead": 0,
+ "end": 2.694,
+ "dur": 2.742857,
+ "words": [
+  {
+   "w": "She",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "watches",
+   "t0": 0.244,
+   "t1": 0.557
+  },
+  {
+   "w": "herself",
+   "t0": 0.604,
+   "t1": 0.94
+  },
+  {
+   "w": "lead",
+   "t0": 1.033,
+   "t1": 1.277
+  },
+  {
+   "w": "Ollie",
+   "t0": 1.347,
+   "t1": 1.579
+  },
+  {
+   "w": "into",
+   "t0": 1.614,
+   "t1": 1.776
+  },
+  {
+   "w": "the",
+   "t0": 1.834,
+   "t1": 1.904
+  },
+  {
+   "w": "water.",
+   "t0": 1.95,
+   "t1": 2.694
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-18T22:40:08.293Z"
+}

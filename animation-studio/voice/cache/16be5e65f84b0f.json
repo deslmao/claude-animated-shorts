@@ -1,0 +1,155 @@
+{
+ "hash": "16be5e65f84b0f",
+ "text": "Last time: your little brother Ollie started talking in his sleep. In Polish. In a baby's voice. He's six, and he's never learned a word of it.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 8.638,
+ "dur": 8.672653,
+ "words": [
+  {
+   "w": "Last",
+   "t0": 0,
+   "t1": 0.337
+  },
+  {
+   "w": "time:",
+   "t0": 0.372,
+   "t1": 0.789
+  },
+  {
+   "w": "your",
+   "t0": 1.01,
+   "t1": 1.149
+  },
+  {
+   "w": "little",
+   "t0": 1.184,
+   "t1": 1.382
+  },
+  {
+   "w": "brother",
+   "t0": 1.416,
+   "t1": 1.672
+  },
+  {
+   "w": "Ollie",
+   "t0": 1.741,
+   "t1": 2.009
+  },
+  {
+   "w": "started",
+   "t0": 2.043,
+   "t1": 2.392
+  },
+  {
+   "w": "talking",
+   "t0": 2.426,
+   "t1": 2.763
+  },
+  {
+   "w": "in",
+   "t0": 2.81,
+   "t1": 2.868
+  },
+  {
+   "w": "his",
+   "t0": 2.902,
+   "t1": 3.007
+  },
+  {
+   "w": "sleep.",
+   "t0": 3.053,
+   "t1": 3.564
+  },
+  {
+   "w": "In",
+   "t0": 3.901,
+   "t1": 4.052
+  },
+  {
+   "w": "Polish.",
+   "t0": 4.122,
+   "t1": 4.772
+  },
+  {
+   "w": "In",
+   "t0": 4.899,
+   "t1": 5.027
+  },
+  {
+   "w": "a",
+   "t0": 5.062,
+   "t1": 5.085
+  },
+  {
+   "w": "baby's",
+   "t0": 5.143,
+   "t1": 5.515
+  },
+  {
+   "w": "voice.",
+   "t0": 5.561,
+   "t1": 6.026
+  },
+  {
+   "w": "He's",
+   "t0": 6.281,
+   "t1": 6.49
+  },
+  {
+   "w": "six,",
+   "t0": 6.536,
+   "t1": 6.885
+  },
+  {
+   "w": "and",
+   "t0": 6.908,
+   "t1": 6.989
+  },
+  {
+   "w": "he's",
+   "t0": 7.036,
+   "t1": 7.152
+  },
+  {
+   "w": "never",
+   "t0": 7.21,
+   "t1": 7.396
+  },
+  {
+   "w": "learned",
+   "t0": 7.442,
+   "t1": 7.663
+  },
+  {
+   "w": "a",
+   "t0": 7.697,
+   "t1": 7.721
+  },
+  {
+   "w": "word",
+   "t0": 7.767,
+   "t1": 7.988
+  },
+  {
+   "w": "of",
+   "t0": 8.022,
+   "t1": 8.081
+  },
+  {
+   "w": "it.",
+   "t0": 8.139,
+   "t1": 8.638
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T22:36:01.379Z"
+}

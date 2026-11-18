@@ -1,0 +1,160 @@
+{
+ "hash": "12d18c08231e76",
+ "text": "Keeping them apart sent her into the river alone. Only Ollie's words can bring her back. And every night, the water comes a little closer to the house.",
+ "voice": "georgeHushedBrisk",
+ "lead": 0,
+ "end": 8.406,
+ "dur": 8.437551,
+ "words": [
+  {
+   "w": "Keeping",
+   "t0": 0,
+   "t1": 0.372
+  },
+  {
+   "w": "them",
+   "t0": 0.418,
+   "t1": 0.534
+  },
+  {
+   "w": "apart",
+   "t0": 0.58,
+   "t1": 0.975
+  },
+  {
+   "w": "sent",
+   "t0": 1.045,
+   "t1": 1.254
+  },
+  {
+   "w": "her",
+   "t0": 1.312,
+   "t1": 1.393
+  },
+  {
+   "w": "into",
+   "t0": 1.451,
+   "t1": 1.591
+  },
+  {
+   "w": "the",
+   "t0": 1.66,
+   "t1": 1.73
+  },
+  {
+   "w": "river",
+   "t0": 1.788,
+   "t1": 2.009
+  },
+  {
+   "w": "alone.",
+   "t0": 2.067,
+   "t1": 2.577
+  },
+  {
+   "w": "Only",
+   "t0": 3.007,
+   "t1": 3.262
+  },
+  {
+   "w": "Ollie's",
+   "t0": 3.344,
+   "t1": 3.657
+  },
+  {
+   "w": "words",
+   "t0": 3.715,
+   "t1": 4.063
+  },
+  {
+   "w": "can",
+   "t0": 4.11,
+   "t1": 4.226
+  },
+  {
+   "w": "bring",
+   "t0": 4.272,
+   "t1": 4.447
+  },
+  {
+   "w": "her",
+   "t0": 4.505,
+   "t1": 4.586
+  },
+  {
+   "w": "back.",
+   "t0": 4.644,
+   "t1": 5.062
+  },
+  {
+   "w": "And",
+   "t0": 5.224,
+   "t1": 5.364
+  },
+  {
+   "w": "every",
+   "t0": 5.422,
+   "t1": 5.631
+  },
+  {
+   "w": "night,",
+   "t0": 5.689,
+   "t1": 5.956
+  },
+  {
+   "w": "the",
+   "t0": 5.991,
+   "t1": 6.095
+  },
+  {
+   "w": "water",
+   "t0": 6.153,
+   "t1": 6.432
+  },
+  {
+   "w": "comes",
+   "t0": 6.478,
+   "t1": 6.734
+  },
+  {
+   "w": "a",
+   "t0": 6.78,
+   "t1": 6.803
+  },
+  {
+   "w": "little",
+   "t0": 6.838,
+   "t1": 7.059
+  },
+  {
+   "w": "closer",
+   "t0": 7.094,
+   "t1": 7.407
+  },
+  {
+   "w": "to",
+   "t0": 7.454,
+   "t1": 7.512
+  },
+  {
+   "w": "the",
+   "t0": 7.57,
+   "t1": 7.639
+  },
+  {
+   "w": "house.",
+   "t0": 7.709,
+   "t1": 8.406
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-18T22:42:28.621Z"
+}

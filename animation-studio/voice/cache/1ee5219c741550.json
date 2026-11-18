@@ -1,0 +1,90 @@
+{
+ "hash": "1ee5219c741550",
+ "text": "Then, across the landing, Mum's lock clicks open. She's unlocking it in her sleep.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.923,
+ "dur": 4.963265,
+ "words": [
+  {
+   "w": "Then,",
+   "t0": 0,
+   "t1": 0.372
+  },
+  {
+   "w": "across",
+   "t0": 0.406,
+   "t1": 0.72
+  },
+  {
+   "w": "the",
+   "t0": 0.766,
+   "t1": 0.836
+  },
+  {
+   "w": "landing,",
+   "t0": 0.894,
+   "t1": 1.335
+  },
+  {
+   "w": "Mum's",
+   "t0": 1.498,
+   "t1": 1.788
+  },
+  {
+   "w": "lock",
+   "t0": 1.846,
+   "t1": 2.043
+  },
+  {
+   "w": "clicks",
+   "t0": 2.125,
+   "t1": 2.415
+  },
+  {
+   "w": "open.",
+   "t0": 2.473,
+   "t1": 2.914
+  },
+  {
+   "w": "She's",
+   "t0": 3.135,
+   "t1": 3.344
+  },
+  {
+   "w": "unlocking",
+   "t0": 3.402,
+   "t1": 3.82
+  },
+  {
+   "w": "it",
+   "t0": 3.866,
+   "t1": 3.936
+  },
+  {
+   "w": "in",
+   "t0": 3.982,
+   "t1": 4.052
+  },
+  {
+   "w": "her",
+   "t0": 4.11,
+   "t1": 4.191
+  },
+  {
+   "w": "sleep.",
+   "t0": 4.249,
+   "t1": 4.923
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T22:36:17.949Z"
+}

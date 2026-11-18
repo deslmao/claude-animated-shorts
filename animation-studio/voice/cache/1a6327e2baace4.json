@@ -1,0 +1,75 @@
+{
+ "hash": "1a6327e2baace4",
+ "text": "She can't hear you. So you leave Ollie asleep, and run.",
+ "voice": "georgeHushedBrisk",
+ "lead": 0,
+ "end": 3.251,
+ "dur": 3.291429,
+ "words": [
+  {
+   "w": "She",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "can't",
+   "t0": 0.232,
+   "t1": 0.464
+  },
+  {
+   "w": "hear",
+   "t0": 0.522,
+   "t1": 0.697
+  },
+  {
+   "w": "you.",
+   "t0": 0.766,
+   "t1": 1.033
+  },
+  {
+   "w": "So",
+   "t0": 1.196,
+   "t1": 1.324
+  },
+  {
+   "w": "you",
+   "t0": 1.382,
+   "t1": 1.451
+  },
+  {
+   "w": "leave",
+   "t0": 1.521,
+   "t1": 1.707
+  },
+  {
+   "w": "Ollie",
+   "t0": 1.741,
+   "t1": 1.95
+  },
+  {
+   "w": "asleep,",
+   "t0": 1.974,
+   "t1": 2.403
+  },
+  {
+   "w": "and",
+   "t0": 2.426,
+   "t1": 2.566
+  },
+  {
+   "w": "run.",
+   "t0": 2.635,
+   "t1": 3.251
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-18T22:40:19.049Z"
+}

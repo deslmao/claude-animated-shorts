@@ -1,0 +1,80 @@
+{
+ "hash": "0abc676c97e3de",
+ "text": "Now it's morning. The water's gone, as if it was never there.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.994,
+ "dur": 4.022857,
+ "words": [
+  {
+   "w": "Now",
+   "t0": 0,
+   "t1": 0.232
+  },
+  {
+   "w": "it's",
+   "t0": 0.29,
+   "t1": 0.43
+  },
+  {
+   "w": "morning.",
+   "t0": 0.488,
+   "t1": 0.987
+  },
+  {
+   "w": "The",
+   "t0": 1.149,
+   "t1": 1.277
+  },
+  {
+   "w": "water's",
+   "t0": 1.324,
+   "t1": 1.695
+  },
+  {
+   "w": "gone,",
+   "t0": 1.741,
+   "t1": 2.218
+  },
+  {
+   "w": "as",
+   "t0": 2.38,
+   "t1": 2.543
+  },
+  {
+   "w": "if",
+   "t0": 2.601,
+   "t1": 2.67
+  },
+  {
+   "w": "it",
+   "t0": 2.717,
+   "t1": 2.786
+  },
+  {
+   "w": "was",
+   "t0": 2.821,
+   "t1": 2.926
+  },
+  {
+   "w": "never",
+   "t0": 2.995,
+   "t1": 3.193
+  },
+  {
+   "w": "there.",
+   "t0": 3.239,
+   "t1": 3.994
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T22:36:03.924Z"
+}

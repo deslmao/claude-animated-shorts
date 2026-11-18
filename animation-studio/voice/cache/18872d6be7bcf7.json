@@ -1,0 +1,75 @@
+{
+ "hash": "18872d6be7bcf7",
+ "text": "Most of you said: show her the video. So you do.",
+ "voice": "georgeHushedBrisk",
+ "lead": 0,
+ "end": 3.065,
+ "dur": 3.108571,
+ "words": [
+  {
+   "w": "Most",
+   "t0": 0,
+   "t1": 0.29
+  },
+  {
+   "w": "of",
+   "t0": 0.337,
+   "t1": 0.383
+  },
+  {
+   "w": "you",
+   "t0": 0.441,
+   "t1": 0.522
+  },
+  {
+   "w": "said:",
+   "t0": 0.592,
+   "t1": 0.882
+  },
+  {
+   "w": "show",
+   "t0": 1.022,
+   "t1": 1.219
+  },
+  {
+   "w": "her",
+   "t0": 1.277,
+   "t1": 1.347
+  },
+  {
+   "w": "the",
+   "t0": 1.393,
+   "t1": 1.463
+  },
+  {
+   "w": "video.",
+   "t0": 1.498,
+   "t1": 2.043
+  },
+  {
+   "w": "So",
+   "t0": 2.159,
+   "t1": 2.299
+  },
+  {
+   "w": "you",
+   "t0": 2.357,
+   "t1": 2.438
+  },
+  {
+   "w": "do.",
+   "t0": 2.496,
+   "t1": 3.065
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-18T22:40:07.677Z"
+}

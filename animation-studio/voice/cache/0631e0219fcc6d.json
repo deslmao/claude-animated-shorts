@@ -1,0 +1,70 @@
+{
+ "hash": "0631e0219fcc6d",
+ "text": "Then, behind you, a small voice. Ollie followed you outside.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.762,
+ "dur": 3.787755,
+ "words": [
+  {
+   "w": "Then,",
+   "t0": 0,
+   "t1": 0.337
+  },
+  {
+   "w": "behind",
+   "t0": 0.372,
+   "t1": 0.685
+  },
+  {
+   "w": "you,",
+   "t0": 0.743,
+   "t1": 0.894
+  },
+  {
+   "w": "a",
+   "t0": 0.917,
+   "t1": 0.952
+  },
+  {
+   "w": "small",
+   "t0": 1.01,
+   "t1": 1.289
+  },
+  {
+   "w": "voice.",
+   "t0": 1.358,
+   "t1": 1.858
+  },
+  {
+   "w": "Ollie",
+   "t0": 2.078,
+   "t1": 2.334
+  },
+  {
+   "w": "followed",
+   "t0": 2.38,
+   "t1": 2.67
+  },
+  {
+   "w": "you",
+   "t0": 2.705,
+   "t1": 2.786
+  },
+  {
+   "w": "outside.",
+   "t0": 2.844,
+   "t1": 3.762
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T22:36:25.525Z"
+}

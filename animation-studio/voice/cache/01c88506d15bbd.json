@@ -1,0 +1,45 @@
+{
+ "hash": "01c88506d15bbd",
+ "text": "Her footsteps go back downstairs.",
+ "voice": "georgeHushedBrisk",
+ "lead": 0,
+ "end": 2.136,
+ "dur": 2.168163,
+ "words": [
+  {
+   "w": "Her",
+   "t0": 0,
+   "t1": 0.186
+  },
+  {
+   "w": "footsteps",
+   "t0": 0.232,
+   "t1": 0.731
+  },
+  {
+   "w": "go",
+   "t0": 0.778,
+   "t1": 0.882
+  },
+  {
+   "w": "back",
+   "t0": 0.94,
+   "t1": 1.091
+  },
+  {
+   "w": "downstairs.",
+   "t0": 1.138,
+   "t1": 2.136
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-18T22:40:17.242Z"
+}

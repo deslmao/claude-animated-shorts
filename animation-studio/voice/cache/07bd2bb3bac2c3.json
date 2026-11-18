@@ -1,0 +1,130 @@
+{
+ "hash": "07bd2bb3bac2c3",
+ "text": "You grab her arm. But she's stronger than you, and she keeps walking. If you don't let go, you'll both go under.",
+ "voice": "georgeHushedBrisk",
+ "lead": 0,
+ "end": 6.177,
+ "dur": 6.217143,
+ "words": [
+  {
+   "w": "You",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "grab",
+   "t0": 0.232,
+   "t1": 0.453
+  },
+  {
+   "w": "her",
+   "t0": 0.522,
+   "t1": 0.627
+  },
+  {
+   "w": "arm.",
+   "t0": 0.697,
+   "t1": 1.091
+  },
+  {
+   "w": "But",
+   "t0": 1.207,
+   "t1": 1.347
+  },
+  {
+   "w": "she's",
+   "t0": 1.382,
+   "t1": 1.556
+  },
+  {
+   "w": "stronger",
+   "t0": 1.579,
+   "t1": 1.904
+  },
+  {
+   "w": "than",
+   "t0": 1.939,
+   "t1": 2.055
+  },
+  {
+   "w": "you,",
+   "t0": 2.125,
+   "t1": 2.334
+  },
+  {
+   "w": "and",
+   "t0": 2.368,
+   "t1": 2.473
+  },
+  {
+   "w": "she",
+   "t0": 2.519,
+   "t1": 2.612
+  },
+  {
+   "w": "keeps",
+   "t0": 2.67,
+   "t1": 2.914
+  },
+  {
+   "w": "walking.",
+   "t0": 2.972,
+   "t1": 3.483
+  },
+  {
+   "w": "If",
+   "t0": 3.796,
+   "t1": 3.913
+  },
+  {
+   "w": "you",
+   "t0": 3.959,
+   "t1": 4.029
+  },
+  {
+   "w": "don't",
+   "t0": 4.087,
+   "t1": 4.249
+  },
+  {
+   "w": "let",
+   "t0": 4.284,
+   "t1": 4.423
+  },
+  {
+   "w": "go,",
+   "t0": 4.481,
+   "t1": 4.818
+  },
+  {
+   "w": "you'll",
+   "t0": 4.888,
+   "t1": 5.085
+  },
+  {
+   "w": "both",
+   "t0": 5.12,
+   "t1": 5.317
+  },
+  {
+   "w": "go",
+   "t0": 5.364,
+   "t1": 5.457
+  },
+  {
+   "w": "under.",
+   "t0": 5.538,
+   "t1": 6.177
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-18T22:40:19.819Z"
+}

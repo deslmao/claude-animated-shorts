@@ -1,0 +1,100 @@
+{
+ "hash": "147d18d3c2776f",
+ "text": "On the video, the water stops dead at your fence. Next door's lawn is bone dry.",
+ "voice": "georgeHushedBrisk",
+ "lead": 0,
+ "end": 5.387,
+ "dur": 5.433469,
+ "words": [
+  {
+   "w": "On",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "the",
+   "t0": 0.197,
+   "t1": 0.267
+  },
+  {
+   "w": "video,",
+   "t0": 0.313,
+   "t1": 0.778
+  },
+  {
+   "w": "the",
+   "t0": 0.813,
+   "t1": 0.906
+  },
+  {
+   "w": "water",
+   "t0": 0.964,
+   "t1": 1.277
+  },
+  {
+   "w": "stops",
+   "t0": 1.324,
+   "t1": 1.614
+  },
+  {
+   "w": "dead",
+   "t0": 1.672,
+   "t1": 1.916
+  },
+  {
+   "w": "at",
+   "t0": 1.95,
+   "t1": 2.02
+  },
+  {
+   "w": "your",
+   "t0": 2.067,
+   "t1": 2.183
+  },
+  {
+   "w": "fence.",
+   "t0": 2.252,
+   "t1": 2.74
+  },
+  {
+   "w": "Next",
+   "t0": 3.17,
+   "t1": 3.448
+  },
+  {
+   "w": "door's",
+   "t0": 3.495,
+   "t1": 3.808
+  },
+  {
+   "w": "lawn",
+   "t0": 3.878,
+   "t1": 4.156
+  },
+  {
+   "w": "is",
+   "t0": 4.203,
+   "t1": 4.284
+  },
+  {
+   "w": "bone",
+   "t0": 4.342,
+   "t1": 4.598
+  },
+  {
+   "w": "dry.",
+   "t0": 4.632,
+   "t1": 5.387
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-18T22:40:07.087Z"
+}

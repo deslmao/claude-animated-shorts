@@ -1,0 +1,65 @@
+{
+ "hash": "0ac12501cd7ba3",
+ "text": "Then she says something her grandmother used to say.",
+ "voice": "georgeHushedBrisk",
+ "lead": 0,
+ "end": 2.647,
+ "dur": 2.690612,
+ "words": [
+  {
+   "w": "Then",
+   "t0": 0,
+   "t1": 0.221
+  },
+  {
+   "w": "she",
+   "t0": 0.267,
+   "t1": 0.372
+  },
+  {
+   "w": "says",
+   "t0": 0.43,
+   "t1": 0.604
+  },
+  {
+   "w": "something",
+   "t0": 0.65,
+   "t1": 0.964
+  },
+  {
+   "w": "her",
+   "t0": 1.022,
+   "t1": 1.103
+  },
+  {
+   "w": "grandmother",
+   "t0": 1.161,
+   "t1": 1.567
+  },
+  {
+   "w": "used",
+   "t0": 1.637,
+   "t1": 1.811
+  },
+  {
+   "w": "to",
+   "t0": 1.834,
+   "t1": 1.892
+  },
+  {
+   "w": "say.",
+   "t0": 1.962,
+   "t1": 2.647
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-18T22:40:09.405Z"
+}

@@ -1,0 +1,70 @@
+{
+ "hash": "119c9bae4be570",
+ "text": "And Mum turns and walks back to bed, still asleep.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.019,
+ "dur": 3.056327,
+ "words": [
+  {
+   "w": "And",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "Mum",
+   "t0": 0.244,
+   "t1": 0.441
+  },
+  {
+   "w": "turns",
+   "t0": 0.511,
+   "t1": 0.859
+  },
+  {
+   "w": "and",
+   "t0": 0.894,
+   "t1": 0.964
+  },
+  {
+   "w": "walks",
+   "t0": 1.01,
+   "t1": 1.242
+  },
+  {
+   "w": "back",
+   "t0": 1.289,
+   "t1": 1.44
+  },
+  {
+   "w": "to",
+   "t0": 1.486,
+   "t1": 1.556
+  },
+  {
+   "w": "bed,",
+   "t0": 1.614,
+   "t1": 1.892
+  },
+  {
+   "w": "still",
+   "t0": 1.927,
+   "t1": 2.159
+  },
+  {
+   "w": "asleep.",
+   "t0": 2.206,
+   "t1": 3.019
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T22:36:30.263Z"
+}

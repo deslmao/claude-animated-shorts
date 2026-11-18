@@ -1,0 +1,140 @@
+{
+ "hash": "143ea88e145154",
+ "text": "Then you found an old photo your mum hides: a little boy called Kuba, from two thousand and eight. He looks exactly like Ollie.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 7.802,
+ "dur": 7.836735,
+ "words": [
+  {
+   "w": "Then",
+   "t0": 0,
+   "t1": 0.209
+  },
+  {
+   "w": "you",
+   "t0": 0.255,
+   "t1": 0.325
+  },
+  {
+   "w": "found",
+   "t0": 0.406,
+   "t1": 0.604
+  },
+  {
+   "w": "an",
+   "t0": 0.65,
+   "t1": 0.708
+  },
+  {
+   "w": "old",
+   "t0": 0.755,
+   "t1": 0.894
+  },
+  {
+   "w": "photo",
+   "t0": 0.94,
+   "t1": 1.265
+  },
+  {
+   "w": "your",
+   "t0": 1.347,
+   "t1": 1.463
+  },
+  {
+   "w": "mum",
+   "t0": 1.498,
+   "t1": 1.66
+  },
+  {
+   "w": "hides:",
+   "t0": 1.741,
+   "t1": 2.31
+  },
+  {
+   "w": "a",
+   "t0": 2.717,
+   "t1": 2.775
+  },
+  {
+   "w": "little",
+   "t0": 2.833,
+   "t1": 3.053
+  },
+  {
+   "w": "boy",
+   "t0": 3.088,
+   "t1": 3.367
+  },
+  {
+   "w": "called",
+   "t0": 3.437,
+   "t1": 3.669
+  },
+  {
+   "w": "Kuba,",
+   "t0": 3.727,
+   "t1": 4.238
+  },
+  {
+   "w": "from",
+   "t0": 4.307,
+   "t1": 4.47
+  },
+  {
+   "w": "two",
+   "t0": 4.516,
+   "t1": 4.667
+  },
+  {
+   "w": "thousand",
+   "t0": 4.725,
+   "t1": 5.085
+  },
+  {
+   "w": "and",
+   "t0": 5.132,
+   "t1": 5.213
+  },
+  {
+   "w": "eight.",
+   "t0": 5.271,
+   "t1": 5.654
+  },
+  {
+   "w": "He",
+   "t0": 6.118,
+   "t1": 6.223
+  },
+  {
+   "w": "looks",
+   "t0": 6.269,
+   "t1": 6.467
+  },
+  {
+   "w": "exactly",
+   "t0": 6.513,
+   "t1": 6.931
+  },
+  {
+   "w": "like",
+   "t0": 6.978,
+   "t1": 7.14
+  },
+  {
+   "w": "Ollie.",
+   "t0": 7.187,
+   "t1": 7.802
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T22:36:02.322Z"
+}

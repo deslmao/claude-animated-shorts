@@ -1,0 +1,100 @@
+{
+ "hash": "1413ac9871d224",
+ "text": "Last time: your little brother Ollie started speaking Polish in his sleep. In a baby's voice.",
+ "voice": "georgeHushedBrisk",
+ "lead": 0,
+ "end": 5.666,
+ "dur": 5.694694,
+ "words": [
+  {
+   "w": "Last",
+   "t0": 0,
+   "t1": 0.313
+  },
+  {
+   "w": "time:",
+   "t0": 0.348,
+   "t1": 0.708
+  },
+  {
+   "w": "your",
+   "t0": 0.848,
+   "t1": 0.987
+  },
+  {
+   "w": "little",
+   "t0": 1.022,
+   "t1": 1.231
+  },
+  {
+   "w": "brother",
+   "t0": 1.265,
+   "t1": 1.521
+  },
+  {
+   "w": "Ollie",
+   "t0": 1.591,
+   "t1": 1.858
+  },
+  {
+   "w": "started",
+   "t0": 1.892,
+   "t1": 2.241
+  },
+  {
+   "w": "speaking",
+   "t0": 2.287,
+   "t1": 2.647
+  },
+  {
+   "w": "Polish",
+   "t0": 2.705,
+   "t1": 3.077
+  },
+  {
+   "w": "in",
+   "t0": 3.135,
+   "t1": 3.216
+  },
+  {
+   "w": "his",
+   "t0": 3.262,
+   "t1": 3.367
+  },
+  {
+   "w": "sleep.",
+   "t0": 3.413,
+   "t1": 3.878
+  },
+  {
+   "w": "In",
+   "t0": 4.307,
+   "t1": 4.435
+  },
+  {
+   "w": "a",
+   "t0": 4.481,
+   "t1": 4.505
+  },
+  {
+   "w": "baby's",
+   "t0": 4.563,
+   "t1": 4.911
+  },
+  {
+   "w": "voice.",
+   "t0": 4.957,
+   "t1": 5.666
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-18T22:40:03.736Z"
+}

@@ -1,0 +1,65 @@
+{
+ "hash": "0b856dac3d561a",
+ "text": "But you're already in the water. You catch him.",
+ "voice": "georgeHushedBrisk",
+ "lead": 0,
+ "end": 2.601,
+ "dur": 2.638367,
+ "words": [
+  {
+   "w": "But",
+   "t0": 0,
+   "t1": 0.186
+  },
+  {
+   "w": "you're",
+   "t0": 0.221,
+   "t1": 0.418
+  },
+  {
+   "w": "already",
+   "t0": 0.453,
+   "t1": 0.755
+  },
+  {
+   "w": "in",
+   "t0": 0.813,
+   "t1": 0.894
+  },
+  {
+   "w": "the",
+   "t0": 0.952,
+   "t1": 1.022
+  },
+  {
+   "w": "water.",
+   "t0": 1.068,
+   "t1": 1.544
+  },
+  {
+   "w": "You",
+   "t0": 1.66,
+   "t1": 1.776
+  },
+  {
+   "w": "catch",
+   "t0": 1.834,
+   "t1": 2.078
+  },
+  {
+   "w": "him.",
+   "t0": 2.125,
+   "t1": 2.601
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-18T22:40:24.049Z"
+}

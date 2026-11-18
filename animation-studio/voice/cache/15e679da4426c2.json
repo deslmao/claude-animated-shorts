@@ -1,0 +1,70 @@
+{
+ "hash": "15e679da4426c2",
+ "text": "Your dad works nights. He doesn't even know Kuba existed.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.576,
+ "dur": 3.604898,
+ "words": [
+  {
+   "w": "Your",
+   "t0": 0,
+   "t1": 0.221
+  },
+  {
+   "w": "dad",
+   "t0": 0.267,
+   "t1": 0.488
+  },
+  {
+   "w": "works",
+   "t0": 0.534,
+   "t1": 0.789
+  },
+  {
+   "w": "nights.",
+   "t0": 0.859,
+   "t1": 1.254
+  },
+  {
+   "w": "He",
+   "t0": 1.44,
+   "t1": 1.533
+  },
+  {
+   "w": "doesn't",
+   "t0": 1.579,
+   "t1": 1.823
+  },
+  {
+   "w": "even",
+   "t0": 1.869,
+   "t1": 2.043
+  },
+  {
+   "w": "know",
+   "t0": 2.09,
+   "t1": 2.252
+  },
+  {
+   "w": "Kuba",
+   "t0": 2.322,
+   "t1": 2.601
+  },
+  {
+   "w": "existed.",
+   "t0": 2.647,
+   "t1": 3.576
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T22:36:12.666Z"
+}

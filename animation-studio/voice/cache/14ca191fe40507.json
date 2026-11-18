@@ -1,0 +1,65 @@
+{
+ "hash": "14ca191fe40507",
+ "text": "Kuba's words. The only voice that can reach her.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.019,
+ "dur": 3.056327,
+ "words": [
+  {
+   "w": "Kuba's",
+   "t0": 0,
+   "t1": 0.464
+  },
+  {
+   "w": "words.",
+   "t0": 0.511,
+   "t1": 1.01
+  },
+  {
+   "w": "The",
+   "t0": 1.196,
+   "t1": 1.312
+  },
+  {
+   "w": "only",
+   "t0": 1.382,
+   "t1": 1.602
+  },
+  {
+   "w": "voice",
+   "t0": 1.66,
+   "t1": 1.916
+  },
+  {
+   "w": "that",
+   "t0": 1.939,
+   "t1": 2.055
+  },
+  {
+   "w": "can",
+   "t0": 2.09,
+   "t1": 2.206
+  },
+  {
+   "w": "reach",
+   "t0": 2.264,
+   "t1": 2.485
+  },
+  {
+   "w": "her.",
+   "t0": 2.531,
+   "t1": 3.019
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T22:36:26.121Z"
+}

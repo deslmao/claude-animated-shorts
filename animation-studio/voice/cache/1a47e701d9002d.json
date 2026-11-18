@@ -1,0 +1,35 @@
+{
+ "hash": "1a47e701d9002d",
+ "text": "Her hand opens.",
+ "voice": "georgeHushedBrisk",
+ "lead": 0,
+ "end": 1.254,
+ "dur": 1.28,
+ "words": [
+  {
+   "w": "Her",
+   "t0": 0,
+   "t1": 0.186
+  },
+  {
+   "w": "hand",
+   "t0": 0.244,
+   "t1": 0.453
+  },
+  {
+   "w": "opens.",
+   "t0": 0.522,
+   "t1": 1.254
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-18T22:40:23.149Z"
+}

@@ -1,0 +1,70 @@
+{
+ "hash": "0860055e497e2f",
+ "text": "Every night in her sleep, she's back in that flood.",
+ "voice": "georgeHushedBrisk",
+ "lead": 0,
+ "end": 3.019,
+ "dur": 3.056327,
+ "words": [
+  {
+   "w": "Every",
+   "t0": 0,
+   "t1": 0.337
+  },
+  {
+   "w": "night",
+   "t0": 0.395,
+   "t1": 0.615
+  },
+  {
+   "w": "in",
+   "t0": 0.662,
+   "t1": 0.731
+  },
+  {
+   "w": "her",
+   "t0": 0.801,
+   "t1": 0.894
+  },
+  {
+   "w": "sleep,",
+   "t0": 0.964,
+   "t1": 1.37
+  },
+  {
+   "w": "she's",
+   "t0": 1.44,
+   "t1": 1.66
+  },
+  {
+   "w": "back",
+   "t0": 1.707,
+   "t1": 1.904
+  },
+  {
+   "w": "in",
+   "t0": 1.962,
+   "t1": 2.02
+  },
+  {
+   "w": "that",
+   "t0": 2.067,
+   "t1": 2.206
+  },
+  {
+   "w": "flood.",
+   "t0": 2.276,
+   "t1": 3.019
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-18T22:40:09.864Z"
+}

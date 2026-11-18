@@ -1,0 +1,100 @@
+{
+ "hash": "0810bf0c6c4d64",
+ "text": "Three a.m. Ollie sits up, still asleep. And the baby voice comes out of him again.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 5.341,
+ "dur": 5.381224,
+ "words": [
+  {
+   "w": "Three",
+   "t0": 0,
+   "t1": 0.313
+  },
+  {
+   "w": "a.m.",
+   "t0": 0.36,
+   "t1": 0.882
+  },
+  {
+   "w": "Ollie",
+   "t0": 1.103,
+   "t1": 1.393
+  },
+  {
+   "w": "sits",
+   "t0": 1.428,
+   "t1": 1.672
+  },
+  {
+   "w": "up,",
+   "t0": 1.741,
+   "t1": 1.939
+  },
+  {
+   "w": "still",
+   "t0": 1.962,
+   "t1": 2.194
+  },
+  {
+   "w": "asleep.",
+   "t0": 2.252,
+   "t1": 2.775
+  },
+  {
+   "w": "And",
+   "t0": 3.065,
+   "t1": 3.193
+  },
+  {
+   "w": "the",
+   "t0": 3.228,
+   "t1": 3.297
+  },
+  {
+   "w": "baby",
+   "t0": 3.344,
+   "t1": 3.599
+  },
+  {
+   "w": "voice",
+   "t0": 3.657,
+   "t1": 3.913
+  },
+  {
+   "w": "comes",
+   "t0": 3.947,
+   "t1": 4.145
+  },
+  {
+   "w": "out",
+   "t0": 4.191,
+   "t1": 4.331
+  },
+  {
+   "w": "of",
+   "t0": 4.377,
+   "t1": 4.423
+  },
+  {
+   "w": "him",
+   "t0": 4.458,
+   "t1": 4.551
+  },
+  {
+   "w": "again.",
+   "t0": 4.598,
+   "t1": 5.341
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T22:36:16.593Z"
+}

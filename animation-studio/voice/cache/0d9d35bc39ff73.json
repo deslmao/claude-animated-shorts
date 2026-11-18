@@ -1,0 +1,70 @@
+{
+ "hash": "0d9d35bc39ff73",
+ "text": "Ollie is wide awake now. And he isn't even surprised.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.344,
+ "dur": 3.369796,
+ "words": [
+  {
+   "w": "Ollie",
+   "t0": 0,
+   "t1": 0.29
+  },
+  {
+   "w": "is",
+   "t0": 0.325,
+   "t1": 0.418
+  },
+  {
+   "w": "wide",
+   "t0": 0.476,
+   "t1": 0.731
+  },
+  {
+   "w": "awake",
+   "t0": 0.766,
+   "t1": 1.057
+  },
+  {
+   "w": "now.",
+   "t0": 1.103,
+   "t1": 1.44
+  },
+  {
+   "w": "And",
+   "t0": 1.567,
+   "t1": 1.707
+  },
+  {
+   "w": "he",
+   "t0": 1.765,
+   "t1": 1.811
+  },
+  {
+   "w": "isn't",
+   "t0": 1.869,
+   "t1": 2.078
+  },
+  {
+   "w": "even",
+   "t0": 2.125,
+   "t1": 2.299
+  },
+  {
+   "w": "surprised.",
+   "t0": 2.345,
+   "t1": 3.344
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T22:36:30.873Z"
+}

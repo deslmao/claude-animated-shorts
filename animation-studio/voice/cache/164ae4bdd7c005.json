@@ -1,0 +1,65 @@
+{
+ "hash": "164ae4bdd7c005",
+ "text": "And the night of the flood plays out again.",
+ "voice": "georgeHushedBrisk",
+ "lead": 0,
+ "end": 2.276,
+ "dur": 2.324898,
+ "words": [
+  {
+   "w": "And",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "the",
+   "t0": 0.209,
+   "t1": 0.279
+  },
+  {
+   "w": "night",
+   "t0": 0.325,
+   "t1": 0.522
+  },
+  {
+   "w": "of",
+   "t0": 0.569,
+   "t1": 0.615
+  },
+  {
+   "w": "the",
+   "t0": 0.65,
+   "t1": 0.72
+  },
+  {
+   "w": "flood",
+   "t0": 0.766,
+   "t1": 1.022
+  },
+  {
+   "w": "plays",
+   "t0": 1.091,
+   "t1": 1.358
+  },
+  {
+   "w": "out",
+   "t0": 1.405,
+   "t1": 1.567
+  },
+  {
+   "w": "again.",
+   "t0": 1.614,
+   "t1": 2.276
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-18T22:42:55.801Z"
+}

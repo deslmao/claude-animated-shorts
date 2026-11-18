@@ -1,0 +1,90 @@
+{
+ "hash": "0a7047f471f09e",
+ "text": "Every night, in her sleep, she's back in that flood, letting go of Kuba.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.69,
+ "dur": 4.728163,
+ "words": [
+  {
+   "w": "Every",
+   "t0": 0,
+   "t1": 0.337
+  },
+  {
+   "w": "night,",
+   "t0": 0.395,
+   "t1": 0.731
+  },
+  {
+   "w": "in",
+   "t0": 0.778,
+   "t1": 0.917
+  },
+  {
+   "w": "her",
+   "t0": 0.975,
+   "t1": 1.057
+  },
+  {
+   "w": "sleep,",
+   "t0": 1.115,
+   "t1": 1.509
+  },
+  {
+   "w": "she's",
+   "t0": 1.591,
+   "t1": 1.811
+  },
+  {
+   "w": "back",
+   "t0": 1.858,
+   "t1": 2.043
+  },
+  {
+   "w": "in",
+   "t0": 2.101,
+   "t1": 2.159
+  },
+  {
+   "w": "that",
+   "t0": 2.206,
+   "t1": 2.345
+  },
+  {
+   "w": "flood,",
+   "t0": 2.403,
+   "t1": 2.856
+  },
+  {
+   "w": "letting",
+   "t0": 3.146,
+   "t1": 3.46
+  },
+  {
+   "w": "go",
+   "t0": 3.506,
+   "t1": 3.68
+  },
+  {
+   "w": "of",
+   "t0": 3.762,
+   "t1": 3.831
+  },
+  {
+   "w": "Kuba.",
+   "t0": 3.901,
+   "t1": 4.69
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T22:36:11.299Z"
+}

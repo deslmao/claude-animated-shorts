@@ -1,0 +1,75 @@
+{
+ "hash": "167fe907206083",
+ "text": "Then Mum's lock clicks open. She's unlocking it in her sleep.",
+ "voice": "georgeHushedBrisk",
+ "lead": 0,
+ "end": 3.669,
+ "dur": 3.709388,
+ "words": [
+  {
+   "w": "Then",
+   "t0": 0,
+   "t1": 0.244
+  },
+  {
+   "w": "Mum's",
+   "t0": 0.313,
+   "t1": 0.615
+  },
+  {
+   "w": "lock",
+   "t0": 0.673,
+   "t1": 0.871
+  },
+  {
+   "w": "clicks",
+   "t0": 0.94,
+   "t1": 1.231
+  },
+  {
+   "w": "open.",
+   "t0": 1.289,
+   "t1": 1.718
+  },
+  {
+   "w": "She's",
+   "t0": 1.881,
+   "t1": 2.09
+  },
+  {
+   "w": "unlocking",
+   "t0": 2.148,
+   "t1": 2.543
+  },
+  {
+   "w": "it",
+   "t0": 2.589,
+   "t1": 2.659
+  },
+  {
+   "w": "in",
+   "t0": 2.705,
+   "t1": 2.763
+  },
+  {
+   "w": "her",
+   "t0": 2.821,
+   "t1": 2.902
+  },
+  {
+   "w": "sleep.",
+   "t0": 2.961,
+   "t1": 3.669
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-18T22:40:15.131Z"
+}

@@ -1,0 +1,45 @@
+{
+ "hash": "09907573b2ce31",
+ "text": "But your door doesn't lock.",
+ "voice": "georgeHushedBrisk",
+ "lead": 0,
+ "end": 1.625,
+ "dur": 1.671837,
+ "words": [
+  {
+   "w": "But",
+   "t0": 0,
+   "t1": 0.186
+  },
+  {
+   "w": "your",
+   "t0": 0.221,
+   "t1": 0.337
+  },
+  {
+   "w": "door",
+   "t0": 0.383,
+   "t1": 0.58
+  },
+  {
+   "w": "doesn't",
+   "t0": 0.639,
+   "t1": 0.894
+  },
+  {
+   "w": "lock.",
+   "t0": 0.952,
+   "t1": 1.625
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-18T22:40:13.182Z"
+}

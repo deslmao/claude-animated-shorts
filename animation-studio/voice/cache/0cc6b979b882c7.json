@@ -1,0 +1,100 @@
+{
+ "hash": "0cc6b979b882c7",
+ "text": "To save him, she held him out to a rescue boat. Then the boat went under.",
+ "voice": "georgeHushedBrisk",
+ "lead": 0,
+ "end": 4.226,
+ "dur": 4.257959,
+ "words": [
+  {
+   "w": "To",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "save",
+   "t0": 0.221,
+   "t1": 0.476
+  },
+  {
+   "w": "him,",
+   "t0": 0.511,
+   "t1": 0.639
+  },
+  {
+   "w": "she",
+   "t0": 0.662,
+   "t1": 0.766
+  },
+  {
+   "w": "held",
+   "t0": 0.836,
+   "t1": 1.033
+  },
+  {
+   "w": "him",
+   "t0": 1.08,
+   "t1": 1.161
+  },
+  {
+   "w": "out",
+   "t0": 1.207,
+   "t1": 1.347
+  },
+  {
+   "w": "to",
+   "t0": 1.382,
+   "t1": 1.451
+  },
+  {
+   "w": "a",
+   "t0": 1.521,
+   "t1": 1.556
+  },
+  {
+   "w": "rescue",
+   "t0": 1.625,
+   "t1": 1.974
+  },
+  {
+   "w": "boat.",
+   "t0": 1.997,
+   "t1": 2.38
+  },
+  {
+   "w": "Then",
+   "t0": 2.81,
+   "t1": 3.007
+  },
+  {
+   "w": "the",
+   "t0": 3.053,
+   "t1": 3.123
+  },
+  {
+   "w": "boat",
+   "t0": 3.158,
+   "t1": 3.344
+  },
+  {
+   "w": "went",
+   "t0": 3.39,
+   "t1": 3.576
+  },
+  {
+   "w": "under.",
+   "t0": 3.646,
+   "t1": 4.226
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-18T22:40:08.939Z"
+}

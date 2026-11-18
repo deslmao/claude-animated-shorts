@@ -1,0 +1,95 @@
+{
+ "hash": "0d5bfd27461ec1",
+ "text": "Ollie sleeps in your room, with you. If she sleepwalks, she can't get to him.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.923,
+ "dur": 4.963265,
+ "words": [
+  {
+   "w": "Ollie",
+   "t0": 0,
+   "t1": 0.313
+  },
+  {
+   "w": "sleeps",
+   "t0": 0.348,
+   "t1": 0.662
+  },
+  {
+   "w": "in",
+   "t0": 0.708,
+   "t1": 0.766
+  },
+  {
+   "w": "your",
+   "t0": 0.824,
+   "t1": 0.964
+  },
+  {
+   "w": "room,",
+   "t0": 1.022,
+   "t1": 1.463
+  },
+  {
+   "w": "with",
+   "t0": 1.591,
+   "t1": 1.8
+  },
+  {
+   "w": "you.",
+   "t0": 1.858,
+   "t1": 2.276
+  },
+  {
+   "w": "If",
+   "t0": 2.496,
+   "t1": 2.635
+  },
+  {
+   "w": "she",
+   "t0": 2.682,
+   "t1": 2.798
+  },
+  {
+   "w": "sleepwalks,",
+   "t0": 2.868,
+   "t1": 3.553
+  },
+  {
+   "w": "she",
+   "t0": 3.622,
+   "t1": 3.738
+  },
+  {
+   "w": "can't",
+   "t0": 3.796,
+   "t1": 4.005
+  },
+  {
+   "w": "get",
+   "t0": 4.052,
+   "t1": 4.214
+  },
+  {
+   "w": "to",
+   "t0": 4.249,
+   "t1": 4.307
+  },
+  {
+   "w": "him.",
+   "t0": 4.377,
+   "t1": 4.923
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T22:36:15.305Z"
+}

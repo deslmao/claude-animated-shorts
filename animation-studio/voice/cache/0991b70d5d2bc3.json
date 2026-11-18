@@ -1,0 +1,55 @@
+{
+ "hash": "0991b70d5d2bc3",
+ "text": "Co puścisz nad wodą, to woda zabierze.",
+ "voice": "olKate",
+ "lead": 0,
+ "end": 2.879,
+ "dur": 2.925714,
+ "words": [
+  {
+   "w": "Co",
+   "t0": 0,
+   "t1": 0.186
+  },
+  {
+   "w": "puścisz",
+   "t0": 0.232,
+   "t1": 0.685
+  },
+  {
+   "w": "nad",
+   "t0": 0.731,
+   "t1": 0.882
+  },
+  {
+   "w": "wodą,",
+   "t0": 0.964,
+   "t1": 1.405
+  },
+  {
+   "w": "to",
+   "t0": 1.451,
+   "t1": 1.567
+  },
+  {
+   "w": "woda",
+   "t0": 1.637,
+   "t1": 1.881
+  },
+  {
+   "w": "zabierze.",
+   "t0": 1.95,
+   "t1": 2.879
+  }
+ ],
+ "voiceId": "2IG19NvuEAFSWMSkq7wB",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.1,
+  "use_speaker_boost": true,
+  "speed": 0.9
+ },
+ "created": "2026-11-18T22:36:10.586Z"
+}

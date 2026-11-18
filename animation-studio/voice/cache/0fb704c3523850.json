@@ -1,0 +1,90 @@
+{
+ "hash": "0fb704c3523850",
+ "text": "She can't hear you. Only one voice can reach her. And it isn't yours.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.365,
+ "dur": 4.414694,
+ "words": [
+  {
+   "w": "She",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "can't",
+   "t0": 0.244,
+   "t1": 0.488
+  },
+  {
+   "w": "hear",
+   "t0": 0.546,
+   "t1": 0.72
+  },
+  {
+   "w": "you.",
+   "t0": 0.778,
+   "t1": 1.045
+  },
+  {
+   "w": "Only",
+   "t0": 1.231,
+   "t1": 1.474
+  },
+  {
+   "w": "one",
+   "t0": 1.556,
+   "t1": 1.741
+  },
+  {
+   "w": "voice",
+   "t0": 1.788,
+   "t1": 2.067
+  },
+  {
+   "w": "can",
+   "t0": 2.101,
+   "t1": 2.218
+  },
+  {
+   "w": "reach",
+   "t0": 2.287,
+   "t1": 2.496
+  },
+  {
+   "w": "her.",
+   "t0": 2.543,
+   "t1": 2.798
+  },
+  {
+   "w": "And",
+   "t0": 2.984,
+   "t1": 3.135
+  },
+  {
+   "w": "it",
+   "t0": 3.193,
+   "t1": 3.262
+  },
+  {
+   "w": "isn't",
+   "t0": 3.309,
+   "t1": 3.529
+  },
+  {
+   "w": "yours.",
+   "t0": 3.576,
+   "t1": 4.365
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T22:36:00.415Z"
+}

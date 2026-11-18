@@ -1,0 +1,75 @@
+{
+ "hash": "00fc018e2b9ad8",
+ "text": "So you also try option two: keep Ollie away from her.",
+ "voice": "georgeHushedBrisk",
+ "lead": 0,
+ "end": 3.344,
+ "dur": 3.369796,
+ "words": [
+  {
+   "w": "So",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "you",
+   "t0": 0.209,
+   "t1": 0.279
+  },
+  {
+   "w": "also",
+   "t0": 0.348,
+   "t1": 0.592
+  },
+  {
+   "w": "try",
+   "t0": 0.662,
+   "t1": 0.871
+  },
+  {
+   "w": "option",
+   "t0": 0.94,
+   "t1": 1.231
+  },
+  {
+   "w": "two:",
+   "t0": 1.289,
+   "t1": 1.672
+  },
+  {
+   "w": "keep",
+   "t0": 1.869,
+   "t1": 2.067
+  },
+  {
+   "w": "Ollie",
+   "t0": 2.125,
+   "t1": 2.357
+  },
+  {
+   "w": "away",
+   "t0": 2.38,
+   "t1": 2.577
+  },
+  {
+   "w": "from",
+   "t0": 2.612,
+   "t1": 2.752
+  },
+  {
+   "w": "her.",
+   "t0": 2.821,
+   "t1": 3.344
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-18T22:40:11.443Z"
+}

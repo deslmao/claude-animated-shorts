@@ -1,0 +1,105 @@
+{
+ "hash": "0e26f66ed3a585",
+ "text": "And the night of the flood plays out again, right here, at the edge of the water.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.458,
+ "dur": 4.493061,
+ "words": [
+  {
+   "w": "And",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "the",
+   "t0": 0.197,
+   "t1": 0.267
+  },
+  {
+   "w": "night",
+   "t0": 0.325,
+   "t1": 0.522
+  },
+  {
+   "w": "of",
+   "t0": 0.569,
+   "t1": 0.615
+  },
+  {
+   "w": "the",
+   "t0": 0.662,
+   "t1": 0.731
+  },
+  {
+   "w": "flood",
+   "t0": 0.789,
+   "t1": 1.045
+  },
+  {
+   "w": "plays",
+   "t0": 1.115,
+   "t1": 1.382
+  },
+  {
+   "w": "out",
+   "t0": 1.428,
+   "t1": 1.579
+  },
+  {
+   "w": "again,",
+   "t0": 1.625,
+   "t1": 2.009
+  },
+  {
+   "w": "right",
+   "t0": 2.136,
+   "t1": 2.368
+  },
+  {
+   "w": "here,",
+   "t0": 2.426,
+   "t1": 2.786
+  },
+  {
+   "w": "at",
+   "t0": 2.833,
+   "t1": 2.995
+  },
+  {
+   "w": "the",
+   "t0": 3.03,
+   "t1": 3.1
+  },
+  {
+   "w": "edge",
+   "t0": 3.181,
+   "t1": 3.379
+  },
+  {
+   "w": "of",
+   "t0": 3.413,
+   "t1": 3.471
+  },
+  {
+   "w": "the",
+   "t0": 3.518,
+   "t1": 3.587
+  },
+  {
+   "w": "water.",
+   "t0": 3.634,
+   "t1": 4.458
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T22:36:27.405Z"
+}

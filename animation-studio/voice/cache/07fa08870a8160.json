@@ -1,0 +1,95 @@
+{
+ "hash": "07fa08870a8160",
+ "text": "Mum stops. She turns round, walks back out of the river, and takes Ollie's hand.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.923,
+ "dur": 4.963265,
+ "words": [
+  {
+   "w": "Mum",
+   "t0": 0,
+   "t1": 0.267
+  },
+  {
+   "w": "stops.",
+   "t0": 0.337,
+   "t1": 0.871
+  },
+  {
+   "w": "She",
+   "t0": 1.057,
+   "t1": 1.196
+  },
+  {
+   "w": "turns",
+   "t0": 1.254,
+   "t1": 1.521
+  },
+  {
+   "w": "round,",
+   "t0": 1.579,
+   "t1": 1.962
+  },
+  {
+   "w": "walks",
+   "t0": 2.043,
+   "t1": 2.322
+  },
+  {
+   "w": "back",
+   "t0": 2.368,
+   "t1": 2.543
+  },
+  {
+   "w": "out",
+   "t0": 2.601,
+   "t1": 2.74
+  },
+  {
+   "w": "of",
+   "t0": 2.786,
+   "t1": 2.833
+  },
+  {
+   "w": "the",
+   "t0": 2.879,
+   "t1": 2.949
+  },
+  {
+   "w": "river,",
+   "t0": 2.995,
+   "t1": 3.297
+  },
+  {
+   "w": "and",
+   "t0": 3.32,
+   "t1": 3.448
+  },
+  {
+   "w": "takes",
+   "t0": 3.506,
+   "t1": 3.75
+  },
+  {
+   "w": "Ollie's",
+   "t0": 3.808,
+   "t1": 4.11
+  },
+  {
+   "w": "hand.",
+   "t0": 4.156,
+   "t1": 4.923
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T22:36:26.719Z"
+}

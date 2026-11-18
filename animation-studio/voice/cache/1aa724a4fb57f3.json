@@ -1,0 +1,65 @@
+{
+ "hash": "1aa724a4fb57f3",
+ "text": "Her hand opens, and the river pulls Ollie in.",
+ "voice": "georgeHushedBrisk",
+ "lead": 0,
+ "end": 2.926,
+ "dur": 2.951837,
+ "words": [
+  {
+   "w": "Her",
+   "t0": 0,
+   "t1": 0.197
+  },
+  {
+   "w": "hand",
+   "t0": 0.255,
+   "t1": 0.476
+  },
+  {
+   "w": "opens,",
+   "t0": 0.557,
+   "t1": 1.045
+  },
+  {
+   "w": "and",
+   "t0": 1.115,
+   "t1": 1.254
+  },
+  {
+   "w": "the",
+   "t0": 1.3,
+   "t1": 1.37
+  },
+  {
+   "w": "river",
+   "t0": 1.416,
+   "t1": 1.637
+  },
+  {
+   "w": "pulls",
+   "t0": 1.695,
+   "t1": 2.02
+  },
+  {
+   "w": "Ollie",
+   "t0": 2.09,
+   "t1": 2.345
+  },
+  {
+   "w": "in.",
+   "t0": 2.415,
+   "t1": 2.926
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-18T22:42:27.697Z"
+}

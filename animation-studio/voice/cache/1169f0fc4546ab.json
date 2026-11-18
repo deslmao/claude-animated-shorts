@@ -1,0 +1,25 @@
+{
+ "hash": "1169f0fc4546ab",
+ "text": "Kubuś!",
+ "voice": "olKateShout",
+ "lead": 0,
+ "end": 0.836,
+ "dur": 0.862041,
+ "words": [
+  {
+   "w": "Kubuś!",
+   "t0": 0,
+   "t1": 0.836
+  }
+ ],
+ "voiceId": "2IG19NvuEAFSWMSkq7wB",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.3,
+  "similarity_boost": 0.75,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1
+ },
+ "created": "2026-11-18T22:36:22.395Z"
+}

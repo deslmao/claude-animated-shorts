@@ -1,0 +1,130 @@
+{
+ "hash": "1c276100882d6f",
+ "text": "Ollie's words are the only thing that brings her back. And every night, the water comes a little closer to the house.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 6.362,
+ "dur": 6.4,
+ "words": [
+  {
+   "w": "Ollie's",
+   "t0": 0,
+   "t1": 0.36
+  },
+  {
+   "w": "words",
+   "t0": 0.418,
+   "t1": 0.789
+  },
+  {
+   "w": "are",
+   "t0": 0.813,
+   "t1": 0.894
+  },
+  {
+   "w": "the",
+   "t0": 0.929,
+   "t1": 0.998
+  },
+  {
+   "w": "only",
+   "t0": 1.057,
+   "t1": 1.3
+  },
+  {
+   "w": "thing",
+   "t0": 1.358,
+   "t1": 1.533
+  },
+  {
+   "w": "that",
+   "t0": 1.579,
+   "t1": 1.695
+  },
+  {
+   "w": "brings",
+   "t0": 1.73,
+   "t1": 1.974
+  },
+  {
+   "w": "her",
+   "t0": 2.02,
+   "t1": 2.125
+  },
+  {
+   "w": "back.",
+   "t0": 2.183,
+   "t1": 2.67
+  },
+  {
+   "w": "And",
+   "t0": 3.135,
+   "t1": 3.274
+  },
+  {
+   "w": "every",
+   "t0": 3.344,
+   "t1": 3.529
+  },
+  {
+   "w": "night,",
+   "t0": 3.587,
+   "t1": 3.866
+  },
+  {
+   "w": "the",
+   "t0": 3.913,
+   "t1": 4.017
+  },
+  {
+   "w": "water",
+   "t0": 4.075,
+   "t1": 4.389
+  },
+  {
+   "w": "comes",
+   "t0": 4.447,
+   "t1": 4.69
+  },
+  {
+   "w": "a",
+   "t0": 4.737,
+   "t1": 4.76
+  },
+  {
+   "w": "little",
+   "t0": 4.795,
+   "t1": 5.016
+  },
+  {
+   "w": "closer",
+   "t0": 5.05,
+   "t1": 5.364
+  },
+  {
+   "w": "to",
+   "t0": 5.41,
+   "t1": 5.468
+  },
+  {
+   "w": "the",
+   "t0": 5.526,
+   "t1": 5.596
+  },
+  {
+   "w": "house.",
+   "t0": 5.654,
+   "t1": 6.362
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T22:36:33.842Z"
+}
