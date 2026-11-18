@@ -1,0 +1,35 @@
+{
+ "hash": "0fdc0b5aa6b1c2",
+ "text": "One. Two. Three.",
+ "voice": "esHale",
+ "lead": 0,
+ "end": 1.858,
+ "dur": 1.906939,
+ "words": [
+  {
+   "w": "One.",
+   "t0": 0,
+   "t1": 0.313
+  },
+  {
+   "w": "Two.",
+   "t0": 0.627,
+   "t1": 0.824
+  },
+  {
+   "w": "Three.",
+   "t0": 1.184,
+   "t1": 1.858
+  }
+ ],
+ "voiceId": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0.1,
+  "use_speaker_boost": true,
+  "speed": 0.9
+ },
+ "created": "2026-11-18T03:35:33.207Z"
+}

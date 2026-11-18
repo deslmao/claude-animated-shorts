@@ -21,7 +21,7 @@ export const makeShort = (sb: Storyboard, narr?: Narration) => {
   const Comp: React.FC = () => (
     <AbsoluteFill>
       <StudioFilm timeline={film.timeline} makeWorld={makeWorld} load={load} />
-      {groups.length ? <Captions groups={groups} /> : null}
+      {groups.length ? <Captions groups={groups} colors={sb.captionColors} /> : null}
     </AbsoluteFill>
   );
   Comp.displayName = `Short-${sb.id}`;

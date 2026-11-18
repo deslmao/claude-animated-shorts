@@ -36,7 +36,7 @@ SFX_REL = {"step_hard": -17, "step_stone": -17, "step_floor": -17, "step_grass":
            "crowd_aye": -10, "crowd_murmur": -18, "quill_scratch": -17, "coins_pour": -15,
            "engine": -16, "honk": -11, "backfire": -8, "bark": -11, "crack_egg": -13,
            "claw_ticks": -15, "dog_breath": -15, "dog_sigh": -14, "tag_jingle": -16, "heartbeat": -11,
-           "bus_doors": -11, "air_brake": -12, "bus_pullaway": -14, "glass_slap": -6, "indicator": -17, "monitor_beep": -16, "monitor_flat": -15}  # race day 1904 (Video 04)  # tickle-revision effects: subtle, under the voice
+           "bus_doors": -11, "air_brake": -12, "bus_pullaway": -14, "glass_slap": -6, "indicator": -17, "monitor_beep": -16, "monitor_flat": -15, "radio_squelch": -14, "breath_fast": -13}  # race day 1904 (Video 04)  # tickle-revision effects: subtle, under the voice
 SFX_DEFAULT = -10
 
 
@@ -52,13 +52,16 @@ def decode(path):
 
 # voice effects (a preset's fx). uncanny: ~3 semitones down at the same length (asetrate lowers the pitch and slows
 # it; atempo restores the length), a hollow double echo, and the natural voice faint underneath
-FX = {"uncanny": "asetrate={sr}*0.84,aresample={sr},atempo=1.1905,aecho=0.8:0.6:45|110:0.35|0.22,lowpass=f=6500"}
+FX = {"uncanny": "asetrate={sr}*0.84,aresample={sr},atempo=1.1905,aecho=0.8:0.6:45|110:0.35|0.22,lowpass=f=6500",
+      # radio (The Empty Seat v2: the bus dispatch radio): a narrow band, squashed and lightly clipped, no dry voice
+      "radio": "highpass=f=420,lowpass=f=3200,acompressor=threshold=-24dB:ratio=8:attack=2:release=60,volume=2.2,alimiter=limit=0.7"}
+FX_DRY = {"uncanny": 0.22}
 
 
 def decode_fx(path, fx):
     p = subprocess.run(["ffmpeg", "-v", "error", "-i", path, "-ac", "1", "-ar", str(SR), "-af", FX[fx].format(sr=SR), "-f", "f32le", "-"], capture_output=True, check=True)
     low, dry = np.frombuffer(p.stdout, np.float32).astype(np.float64), decode(path)
-    n = max(len(low), len(dry)); out = np.zeros(n); out[:len(low)] += low; out[:len(dry)] += dry * 0.22
+    n = max(len(low), len(dry)); out = np.zeros(n); out[:len(low)] += low; out[:len(dry)] += dry * FX_DRY.get(fx, 0.0)
     return out
 
 

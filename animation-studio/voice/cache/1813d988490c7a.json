@@ -1,0 +1,40 @@
+{
+ "hash": "1813d988490c7a",
+ "text": "Closed because of her.",
+ "voice": "esSam",
+ "lead": 0,
+ "end": 1.393,
+ "dur": 1.436735,
+ "words": [
+  {
+   "w": "Closed",
+   "t0": 0,
+   "t1": 0.464
+  },
+  {
+   "w": "because",
+   "t0": 0.511,
+   "t1": 0.766
+  },
+  {
+   "w": "of",
+   "t0": 0.789,
+   "t1": 0.848
+  },
+  {
+   "w": "her.",
+   "t0": 0.917,
+   "t1": 1.393
+  }
+ ],
+ "voiceId": "pYDLV125o4CgqP8i49Lg",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T03:35:34.492Z"
+}

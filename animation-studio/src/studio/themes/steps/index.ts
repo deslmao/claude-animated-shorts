@@ -103,7 +103,7 @@ const INSERTS: Record<string, { n: number; draw: (g: CanvasRenderingContext2D, s
     g.fillStyle = "#ffffff"; g.beginPath(); g.roundRect(290, 342, 110, 50, 10); g.fill(); g.stroke();
     const r = rnd(41); g.strokeStyle = "rgba(232,69,60,0.8)"; g.lineWidth = 7; g.lineJoin = "round";
     g.beginPath(); for (let i = 0; i <= 900; i++) { const a = (i / 900) * Math.PI * 2 * 11, j = 1 + 0.08 * Math.sin(i * 0.31) + (r() - 0.5) * 0.04;
-      const x = 345 + Math.cos(a) * 140 * j, y = 445 + Math.sin(a) * 170 * j; i ? g.lineTo(x, y) : g.moveTo(x, y); } g.stroke();
+      const x = 345 + Math.cos(a) * 140 * j, y = 445 + Math.sin(a) * 170 * j; if (i) g.lineTo(x, y); else g.moveTo(x, y); } g.stroke();
     g.fillStyle = "#e8453c"; g.beginPath(); g.arc(485, 445, 16, 0, 7); g.fill();
   } },
   // 5: every night since June

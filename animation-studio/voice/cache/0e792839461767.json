@@ -1,0 +1,40 @@
+{
+ "hash": "0e792839461767",
+ "text": "STOP! Go back! Please!",
+ "voice": "esYou",
+ "lead": 0,
+ "end": 1.811,
+ "dur": 1.854694,
+ "words": [
+  {
+   "w": "STOP!",
+   "t0": 0,
+   "t1": 0.511
+  },
+  {
+   "w": "Go",
+   "t0": 0.557,
+   "t1": 0.72
+  },
+  {
+   "w": "back!",
+   "t0": 0.801,
+   "t1": 1.057
+  },
+  {
+   "w": "Please!",
+   "t0": 1.103,
+   "t1": 1.811
+  }
+ ],
+ "voiceId": "Xb7hH8MSUJpSbSDYk0k2",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1
+ },
+ "created": "2026-11-18T03:35:41.526Z"
+}

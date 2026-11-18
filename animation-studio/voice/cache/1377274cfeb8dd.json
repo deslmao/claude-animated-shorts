@@ -1,0 +1,65 @@
+{
+ "hash": "1377274cfeb8dd",
+ "text": "(Nobody sits in thirteen. Not even when it's packed.)",
+ "voice": "esThought",
+ "lead": 0,
+ "end": 3.344,
+ "dur": 3.369796,
+ "words": [
+  {
+   "w": "(Nobody",
+   "t0": 0,
+   "t1": 0.499
+  },
+  {
+   "w": "sits",
+   "t0": 0.557,
+   "t1": 0.778
+  },
+  {
+   "w": "in",
+   "t0": 0.824,
+   "t1": 0.906
+  },
+  {
+   "w": "thirteen.",
+   "t0": 0.975,
+   "t1": 1.602
+  },
+  {
+   "w": "Not",
+   "t0": 1.73,
+   "t1": 1.904
+  },
+  {
+   "w": "even",
+   "t0": 1.962,
+   "t1": 2.183
+  },
+  {
+   "w": "when",
+   "t0": 2.218,
+   "t1": 2.334
+  },
+  {
+   "w": "it's",
+   "t0": 2.368,
+   "t1": 2.496
+  },
+  {
+   "w": "packed.)",
+   "t0": 2.554,
+   "t1": 3.344
+  }
+ ],
+ "voiceId": "Xb7hH8MSUJpSbSDYk0k2",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0.1,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T03:35:31.088Z"
+}

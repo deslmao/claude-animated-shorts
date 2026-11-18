@@ -6,8 +6,8 @@
 export type VoiceSettings = { stability: number; similarity_boost: number; style: number; use_speaker_boost: boolean; speed: number };
 /** fx (optional, applied in the soundtrack mix, never to the generated clip): "uncanny" = the same voice pitched
  *  down about 3 semitones at the same length (timings and lip-sync unchanged), a hollow echo, the natural voice faint
- *  underneath (a thing speaking in someone else's voice) */
-export type VoicePreset = { name: string; voiceId: string; model: string; settings: VoiceSettings; note: string; fx?: "uncanny" };
+ *  underneath (a thing speaking in someone else's voice); "radio" = a two-way radio: a narrow band, squashed (The Empty Seat v2) */
+export type VoicePreset = { name: string; voiceId: string; model: string; settings: VoiceSettings; note: string; fx?: "uncanny" | "radio" };
 
 /** the channel's settings: the audition settings (stability 0.5, similarity 0.75), no style exaggeration, and a slight
  *  speed-up toward the reference pace (3.5-4.1 words/s; George reads ~3.1 words/s at speed 1.0) */
@@ -61,6 +61,15 @@ export const VOICES: Record<string, VoicePreset> = {
   olKateShout: { name: "Kasia - Warm, Natural & Engaging", voiceId: "2IG19NvuEAFSWMSkq7wB", model: MODEL, settings: { ...CHANNEL, stability: 0.3, style: 0.4, speed: 1.0 }, note: "Kate asleep, L4: the shout (Weź go!)" },
   olAva: { name: "Alice - Clear, Engaging Educator", voiceId: "Xb7hH8MSUJpSbSDYk0k2", model: MODEL, settings: { ...CHANNEL, stability: 0.45, style: 0.15, speed: 1.0 }, note: "Ava, 15 (What Ollie Says at 3 A.M.)" },
   olMark: { name: "Daniel - Steady Broadcaster", voiceId: "onwK4e9ZLuTAKqWW03F9", model: MODEL, settings: { ...CHANNEL, stability: 0.5, style: 0.1, speed: 0.95 }, note: "Mark, 42 (What Ollie Says at 3 A.M.): warm, tired" },
+  // The Empty Seat v2 (the voiced format): the bus 9 cast
+  esYou: { name: "Alice - Clear, Engaging Educator", voiceId: "Xb7hH8MSUJpSbSDYk0k2", model: MODEL, settings: { ...CHANNEL, stability: 0.45, style: 0.2, speed: 1.0 }, note: "you, 11, on bus 9 (The Empty Seat): your lines" },
+  esThought: { name: "Alice - Clear, Engaging Educator", voiceId: "Xb7hH8MSUJpSbSDYk0k2", model: MODEL, settings: { ...CHANNEL, stability: 0.6, style: 0.1, speed: 0.95 }, note: "you, 11 (The Empty Seat): your thoughts, close and quiet" },
+  esNoah: { name: "Leo - Cute Energetic Young Kid", voiceId: "1tDEBGOo8EqEPApM49eJ", model: MODEL, settings: { ...CHANNEL, stability: 0.5, style: 0.1, speed: 0.95 }, note: "Noah, the new kid (The Empty Seat)" },
+  esPriya: { name: "Jessica - Playful, Bright, Warm", voiceId: "cgSgspJ2msm6clMCkdW9", model: MODEL, settings: { ...CHANNEL, stability: 0.5, style: 0.1, speed: 0.9 }, note: "Priya, 11, whispering (The Empty Seat)" },
+  esSam: { name: "Toby - Raspy, Youthful and Articulate", voiceId: "pYDLV125o4CgqP8i49Lg", model: MODEL, settings: { ...CHANNEL, stability: 0.5, style: 0.2, speed: 0.95 }, note: "Sam, 12, who knows the story (The Empty Seat)" },
+  esHale: { name: "Brian - Deep, Resonant and Comforting", voiceId: "nPczCjzI2devNBz1zQrb", model: MODEL, settings: { ...CHANNEL, stability: 0.55, style: 0.1, speed: 0.9 }, note: "Mr Hale, the bus driver: quiet and kind (The Empty Seat)" },
+  esSub: { name: "Matilda - Knowledgable, Professional", voiceId: "XrExE9yKIg1WjnnlVkGX", model: MODEL, settings: { ...CHANNEL, stability: 0.5, style: 0.15, speed: 1.0 }, note: "the stand-in driver: breezy (The Empty Seat)" },
+  esRadio: { name: "Daniel - Steady Broadcaster", voiceId: "onwK4e9ZLuTAKqWW03F9", model: MODEL, settings: { ...CHANNEL, stability: 0.6, style: 0, speed: 1.0 }, note: "the bus dispatch radio (The Empty Seat), through the radio filter", fx: "radio" },
   liamScared: { name: "Liam - Energetic, Social Media Creator", voiceId: "TX3LPaxmHKxFdv7VOQHJ", model: MODEL, settings: { ...CHANNEL, stability: 0.3, style: 0.35, speed: 0.9 }, note: "Milo, frightened and desperate (Part 2 rewrite review take)" },
 };
 

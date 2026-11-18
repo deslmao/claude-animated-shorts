@@ -1,0 +1,50 @@
+{
+ "hash": "085f4e43f3a316",
+ "text": "Not that one, son. That's Emily's.",
+ "voice": "esHale",
+ "lead": 0,
+ "end": 2.322,
+ "dur": 2.35102,
+ "words": [
+  {
+   "w": "Not",
+   "t0": 0,
+   "t1": 0.255
+  },
+  {
+   "w": "that",
+   "t0": 0.29,
+   "t1": 0.418
+  },
+  {
+   "w": "one,",
+   "t0": 0.499,
+   "t1": 0.673
+  },
+  {
+   "w": "son.",
+   "t0": 0.697,
+   "t1": 1.091
+  },
+  {
+   "w": "That's",
+   "t0": 1.173,
+   "t1": 1.451
+  },
+  {
+   "w": "Emily's.",
+   "t0": 1.498,
+   "t1": 2.322
+  }
+ ],
+ "voiceId": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0.1,
+  "use_speaker_boost": true,
+  "speed": 0.9
+ },
+ "created": "2026-11-18T03:35:31.517Z"
+}

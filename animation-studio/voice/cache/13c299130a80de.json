@@ -1,0 +1,25 @@
+{
+ "hash": "13c299130a80de",
+ "text": "And?",
+ "voice": "esYou",
+ "lead": 0,
+ "end": 0.743,
+ "dur": 0.783673,
+ "words": [
+  {
+   "w": "And?",
+   "t0": 0,
+   "t1": 0.743
+  }
+ ],
+ "voiceId": "Xb7hH8MSUJpSbSDYk0k2",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1
+ },
+ "created": "2026-11-18T03:35:36.654Z"
+}

@@ -1,0 +1,45 @@
+{
+ "hash": "12eb981d00a2b3",
+ "text": "Snowstorm. The bus was late.",
+ "voice": "esSam",
+ "lead": 0,
+ "end": 3.111,
+ "dur": 3.160816,
+ "words": [
+  {
+   "w": "Snowstorm.",
+   "t0": 0,
+   "t1": 1.556
+  },
+  {
+   "w": "The",
+   "t0": 2.02,
+   "t1": 2.125
+  },
+  {
+   "w": "bus",
+   "t0": 2.159,
+   "t1": 2.322
+  },
+  {
+   "w": "was",
+   "t0": 2.368,
+   "t1": 2.473
+  },
+  {
+   "w": "late.",
+   "t0": 2.531,
+   "t1": 3.111
+  }
+ ],
+ "voiceId": "pYDLV125o4CgqP8i49Lg",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T03:35:34.970Z"
+}

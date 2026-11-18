@@ -71,6 +71,11 @@ EMILY = [(0, 0, 1.5, 4), (0, 1.5, .5, 5), (0, 2, 1, 4), (0, 3, 1, 2),
          (2, 0, 1.5, 4), (2, 1.5, .5, 5), (2, 2, 1, 7), (2, 3, 1, 6),
          (3, 0, 1, 4), (3, 1, 1, 2), (3, 2, 2, 0)]
 MELODIES = {"pancake": THEME, "emily": EMILY}
+# The Empty Seat v2 (additions): a drone (sub + held low strings) and a build that swells from quiet to full
+MOODS.update({
+    "drone": dict(root=50, scale=MIN, bpm=60, prog=[0], bass="none", chords="drone", lead="none", perc="none", density=0.0, swing=0.0),
+    "build": dict(root=50, scale=MIN, bpm=120, prog=[0, 0, 5, 6], bass="pulse16", chords="strings", lead="none", perc="timpani", density=0.0, swing=0.0, swell=True),
+})
 MOODS.update({
     "emily": dict(root=50, scale=MIN, bpm=66, prog=[0, 5, 3, 4], bass="none", chords="pad", lead="theme_musicbox", melody="emily", perc="none", density=0.3, swing=0.0),
     "emilyDread": dict(root=50, scale=MIN, bpm=60, prog=[0, 5, 0, 4], bass="heartbeat", chords="strings_low", lead="theme_frag", melody="emily", perc="none", density=0.0, swing=0.0),
@@ -192,6 +197,9 @@ def compose(sections, total, button_t, seed, gain_db=0.0, drop_t=None):
                 place(sec, I.pad([I.m2f(c) for c in ch], bar * 0.98, 0.42 * soft, r, att=0.4, rel=0.8), bt0)
             elif m["chords"] == "sub":
                 place(sec, I.subdrone(I.m2f(ch[0] - 12), bar * 0.98), bt0)
+            elif m["chords"] == "drone":
+                place(sec, I.subdrone(I.m2f(ch[0] - 12), bar * 0.98), bt0)
+                place(sec, I.strings([I.m2f(c - 12) for c in ch], bar * 0.98, 0.16 * soft, r), bt0)
             elif m["chords"] == "brass":
                 for b in (1, 3):
                     for c in ch:
@@ -306,6 +314,8 @@ def compose(sections, total, button_t, seed, gain_db=0.0, drop_t=None):
                         x = pan(I.fife(I.m2f(midi + 12), dur, v * 0.7, r), 0.2)
                     place(sec, x, bt0 + sw(b) * beat)
         sec = sec[:, : ns(t1 - t0) + ns(0.8)]
+        if m.get("swell"):   # a build: the section rises from about a third of its level to full
+            n_ = min(sec.shape[1], ns(t1 - t0)); sec[:, :n_] *= np.linspace(0.3, 1.0, n_); sec[:, n_:] *= 1.0
         # crossfade into the next section (0.6 s), fade in a new section over 0.3 s
         fi, fo = ns(0.3) if si else 0, ns(0.6)
         if fi:

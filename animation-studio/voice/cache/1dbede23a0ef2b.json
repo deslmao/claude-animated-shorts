@@ -1,0 +1,80 @@
+{
+ "hash": "1dbede23a0ef2b",
+ "text": "The driver didn't see her at the stop, and drove right past.",
+ "voice": "esSam",
+ "lead": 0,
+ "end": 3.529,
+ "dur": 3.578776,
+ "words": [
+  {
+   "w": "The",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "driver",
+   "t0": 0.186,
+   "t1": 0.453
+  },
+  {
+   "w": "didn't",
+   "t0": 0.488,
+   "t1": 0.673
+  },
+  {
+   "w": "see",
+   "t0": 0.708,
+   "t1": 0.848
+  },
+  {
+   "w": "her",
+   "t0": 0.882,
+   "t1": 0.952
+  },
+  {
+   "w": "at",
+   "t0": 0.987,
+   "t1": 1.033
+  },
+  {
+   "w": "the",
+   "t0": 1.057,
+   "t1": 1.126
+  },
+  {
+   "w": "stop,",
+   "t0": 1.161,
+   "t1": 1.625
+  },
+  {
+   "w": "and",
+   "t0": 1.916,
+   "t1": 2.055
+  },
+  {
+   "w": "drove",
+   "t0": 2.113,
+   "t1": 2.415
+  },
+  {
+   "w": "right",
+   "t0": 2.461,
+   "t1": 2.635
+  },
+  {
+   "w": "past.",
+   "t0": 2.67,
+   "t1": 3.529
+  }
+ ],
+ "voiceId": "pYDLV125o4CgqP8i49Lg",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T03:35:35.626Z"
+}

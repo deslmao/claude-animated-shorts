@@ -1,0 +1,80 @@
+{
+ "hash": "0da93b75f8fcb2",
+ "text": "(He's riding with her now. So she never gets left behind again.)",
+ "voice": "esThought",
+ "lead": 0,
+ "end": 4.133,
+ "dur": 4.179592,
+ "words": [
+  {
+   "w": "(He's",
+   "t0": 0,
+   "t1": 0.325
+  },
+  {
+   "w": "riding",
+   "t0": 0.395,
+   "t1": 0.755
+  },
+  {
+   "w": "with",
+   "t0": 0.789,
+   "t1": 0.906
+  },
+  {
+   "w": "her",
+   "t0": 0.952,
+   "t1": 1.045
+  },
+  {
+   "w": "now.",
+   "t0": 1.115,
+   "t1": 1.556
+  },
+  {
+   "w": "So",
+   "t0": 1.741,
+   "t1": 1.869
+  },
+  {
+   "w": "she",
+   "t0": 1.916,
+   "t1": 2.009
+  },
+  {
+   "w": "never",
+   "t0": 2.067,
+   "t1": 2.264
+  },
+  {
+   "w": "gets",
+   "t0": 2.31,
+   "t1": 2.531
+  },
+  {
+   "w": "left",
+   "t0": 2.589,
+   "t1": 2.786
+  },
+  {
+   "w": "behind",
+   "t0": 2.833,
+   "t1": 3.17
+  },
+  {
+   "w": "again.)",
+   "t0": 3.239,
+   "t1": 4.133
+  }
+ ],
+ "voiceId": "Xb7hH8MSUJpSbSDYk0k2",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0.1,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T03:35:42.780Z"
+}

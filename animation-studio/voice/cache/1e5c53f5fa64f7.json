@@ -1,0 +1,55 @@
+{
+ "hash": "1e5c53f5fa64f7",
+ "text": "Don't look at the window. Just count.",
+ "voice": "esPriya",
+ "lead": 0,
+ "end": 2.461,
+ "dur": 2.507755,
+ "words": [
+  {
+   "w": "Don't",
+   "t0": 0,
+   "t1": 0.244
+  },
+  {
+   "w": "look",
+   "t0": 0.267,
+   "t1": 0.395
+  },
+  {
+   "w": "at",
+   "t0": 0.43,
+   "t1": 0.476
+  },
+  {
+   "w": "the",
+   "t0": 0.511,
+   "t1": 0.58
+  },
+  {
+   "w": "window.",
+   "t0": 0.615,
+   "t1": 1.173
+  },
+  {
+   "w": "Just",
+   "t0": 1.405,
+   "t1": 1.672
+  },
+  {
+   "w": "count.",
+   "t0": 1.741,
+   "t1": 2.461
+  }
+ ],
+ "voiceId": "cgSgspJ2msm6clMCkdW9",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.1,
+  "use_speaker_boost": true,
+  "speed": 0.9
+ },
+ "created": "2026-11-18T03:35:29.167Z"
+}

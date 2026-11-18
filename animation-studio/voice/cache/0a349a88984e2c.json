@@ -1,0 +1,45 @@
+{
+ "hash": "0a349a88984e2c",
+ "text": "(The driver... was Mr Hale.)",
+ "voice": "esThought",
+ "lead": 0,
+ "end": 2.322,
+ "dur": 2.35102,
+ "words": [
+  {
+   "w": "(The",
+   "t0": 0,
+   "t1": 0.221
+  },
+  {
+   "w": "driver...",
+   "t0": 0.267,
+   "t1": 0.789
+  },
+  {
+   "w": "was",
+   "t0": 0.836,
+   "t1": 0.998
+  },
+  {
+   "w": "Mr",
+   "t0": 1.068,
+   "t1": 1.347
+  },
+  {
+   "w": "Hale.)",
+   "t0": 1.405,
+   "t1": 2.322
+  }
+ ],
+ "voiceId": "Xb7hH8MSUJpSbSDYk0k2",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0.1,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T03:35:37.602Z"
+}

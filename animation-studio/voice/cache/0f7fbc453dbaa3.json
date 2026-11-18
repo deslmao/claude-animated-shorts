@@ -1,0 +1,70 @@
+{
+ "hash": "0f7fbc453dbaa3",
+ "text": "Bus nine, Ron Hale's in hospital. You're covering his route.",
+ "voice": "esRadio",
+ "lead": 0,
+ "end": 4.319,
+ "dur": 4.362449,
+ "words": [
+  {
+   "w": "Bus",
+   "t0": 0,
+   "t1": 0.255
+  },
+  {
+   "w": "nine,",
+   "t0": 0.337,
+   "t1": 0.72
+  },
+  {
+   "w": "Ron",
+   "t0": 0.894,
+   "t1": 1.138
+  },
+  {
+   "w": "Hale's",
+   "t0": 1.207,
+   "t1": 1.591
+  },
+  {
+   "w": "in",
+   "t0": 1.637,
+   "t1": 1.707
+  },
+  {
+   "w": "hospital.",
+   "t0": 1.776,
+   "t1": 2.368
+  },
+  {
+   "w": "You're",
+   "t0": 2.694,
+   "t1": 2.914
+  },
+  {
+   "w": "covering",
+   "t0": 2.949,
+   "t1": 3.332
+  },
+  {
+   "w": "his",
+   "t0": 3.39,
+   "t1": 3.518
+  },
+  {
+   "w": "route.",
+   "t0": 3.599,
+   "t1": 4.319
+  }
+ ],
+ "voiceId": "onwK4e9ZLuTAKqWW03F9",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1
+ },
+ "created": "2026-11-18T03:35:38.777Z"
+}

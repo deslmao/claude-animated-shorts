@@ -14,7 +14,7 @@ const CENTER_Y = 1235;   // px of 1920: lower-middle, above the Shorts title / c
 const MAX_W = 840;       // px of 1080: clear of the like / comment column on the right
 const INK = "#1b1222";   // the plum outline ink of the characters
 
-export const Captions: React.FC<{ groups: CaptionGroup[] }> = ({ groups }) => {
+export const Captions: React.FC<{ groups: CaptionGroup[]; colors?: Record<string, string> }> = ({ groups, colors }) => {
   const f = useCurrentFrame();
   const [handle] = useState(() => delayRender("caption font"));
   useEffect(() => { loadFont().then(() => continueRender(handle)).catch((e) => cancelRender(e)); }, [handle]);
@@ -26,7 +26,7 @@ export const Captions: React.FC<{ groups: CaptionGroup[] }> = ({ groups }) => {
     <AbsoluteFill style={{ pointerEvents: "none" }}>
       <div style={{ position: "absolute", left: 0, right: 0, top: g.y !== undefined ? Math.round(g.y * 1920) : CENTER_Y, display: "flex", justifyContent: "center", transform: "translateY(-50%)" }}>
         <div style={{
-          fontFamily: `${FAMILY}, "Arial Black", sans-serif`, fontWeight: 900, fontSize: size, lineHeight: 1, color: "#ffffff",
+          fontFamily: `${FAMILY}, "Arial Black", sans-serif`, fontWeight: 900, fontSize: size, lineHeight: 1, color: colors?.[g.who] ?? (g.voice ? colors?.[g.voice] : undefined) ?? "#ffffff",
           WebkitTextStroke: `${(size * 0.16).toFixed(1)}px ${INK}`, paintOrder: "stroke fill", letterSpacing: "0.01em",
           textShadow: `0 ${(size * 0.07).toFixed(1)}px 0 ${INK}`, whiteSpace: g.sub ? "normal" : "nowrap", maxWidth: MAX_W, textAlign: "center", ...(g.sub ? { lineHeight: 1.15 } : {}),
           transform: `scale(${pop.toFixed(3)})`,

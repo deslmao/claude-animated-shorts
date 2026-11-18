@@ -1,5 +1,5 @@
 {
- "reused": 45,
+ "reused": 54,
  "missing": [],
  "byKind": {
   "character": [
@@ -15,6 +15,7 @@
    "emily"
   ],
   "set": [
+   "schoolBusSnow",
    "schoolBus",
    "schoolBusElm"
   ],
@@ -22,39 +23,49 @@
    "at"
   ],
   "light": [
+   "night",
    "interior"
   ],
   "ambience": [
+   "amb_snow",
    "amb_bus_kids",
    "amb_bus",
-   "amb_room",
-   "amb_snow"
+   "amb_room"
   ],
   "prop": [
-   "fogPane",
+   "blizzard",
+   "povHands",
    "esInsert",
+   "titleCard",
+   "fogPane",
    "busDoors"
   ],
   "sfx": [
+   "breath_fast",
+   "glass_slap",
+   "sting_low",
    "kids_chatter",
    "bus_pullaway",
-   "thunk",
-   "indicator",
-   "air_brake",
-   "bus_doors",
    "phone_tap",
-   "sting_low",
+   "thunk",
+   "air_brake",
+   "indicator",
+   "bus_doors",
+   "blip_up",
    "swish_soft",
    "musicbox_note",
-   "monitor_beep",
-   "whoosh_short",
-   "glass_slap",
-   "step_floor",
+   "radio_squelch",
    "heartbeat",
+   "whoosh_short",
+   "gasp",
+   "storm_wind",
+   "step_floor",
    "dog_breath",
-   "monitor_flat"
+   "phone_buzz",
+   "msg_chime"
   ],
   "act": [
+   "scared",
    "neutral",
    "happy",
    "thinking",
@@ -63,9 +74,7 @@
    "shock",
    "nervous",
    "sad",
-   "suspicious",
-   "scared",
-   "relief"
+   "confused"
   ]
  }
 }

@@ -1,0 +1,40 @@
+{
+ "hash": "1d1528d7fcf359",
+ "text": "She never got there.",
+ "voice": "esSam",
+ "lead": 0,
+ "end": 1.254,
+ "dur": 1.28,
+ "words": [
+  {
+   "w": "She",
+   "t0": 0,
+   "t1": 0.186
+  },
+  {
+   "w": "never",
+   "t0": 0.255,
+   "t1": 0.43
+  },
+  {
+   "w": "got",
+   "t0": 0.476,
+   "t1": 0.639
+  },
+  {
+   "w": "there.",
+   "t0": 0.673,
+   "t1": 1.254
+  }
+ ],
+ "voiceId": "pYDLV125o4CgqP8i49Lg",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-18T03:35:37.043Z"
+}

@@ -869,6 +869,23 @@ def monitor_flat(r):
     """a heart monitor flatlining (3 s): one long tone, slowly fading"""
     t = tt(3.0); return fades(np.sin(TAU * 988 * t) * np.clip(t / 0.01, 0, 1) * np.exp(-np.maximum(t - 1.2, 0) / 0.9) * 0.45, 0.001, 0.4)
 
+
+def radio_squelch(r):
+    """a two-way radio keying up (0.6 s): a burst of static, then a short squelch tone"""
+    t = tt(0.35); stat = bp(r.standard_normal(len(t)), 600, 5000, 1) * _env(t, 0.004, 0.12) * (0.6 + 0.4 * (np.sin(TAU * 60 * t) > 0))
+    ti = tt(0.18); tone = np.sin(TAU * 1250 * ti) * np.clip(ti / 0.004, 0, 1) * np.clip((0.18 - ti) / 0.02, 0, 1) * 0.35
+    return fades(_sum((stat * 0.6, 0.0), (tone, 0.36)), 0.001, 0.04)
+
+
+def breath_fast(r):
+    """a scared child breathing fast (1.6 s): quick, shaky breaths in and out"""
+    out = np.zeros(ns(1.6)); t0 = 0.0; k = 0
+    while t0 < 1.45:
+        d = r.uniform(0.14, 0.2); t = tt(d); inhale = k % 2 == 0
+        x = bp(r.standard_normal(len(t)), 700 if inhale else 400, 3800 if inhale else 2600, 1) * np.sin(np.pi * t / d) ** 2 * (0.5 if inhale else 0.7)
+        i = ns(t0); out[i:i + len(x)] += x[: len(out) - i]; t0 += d + r.uniform(0.02, 0.06); k += 1
+    return fades(out * 0.6, 0.005, 0.1)
+
 SFX = {
     "pop": pop, "ding": ding, "blip_up": blip_up, "boing": boing, "poof": poof, "twinkle": twinkle, "impact": impact,
     "thud": thud, "party_pop": party_pop, "drip": drip, "steam": steam, "snore_soft": snore_soft, "ring_ding": ring_ding,
@@ -888,7 +905,7 @@ SFX = {
     "whale_groan": whale_groan, "whale_breath": whale_breath, "whale_blow": whale_blow, "baby_cry": baby_cry, "crowd_cheer": crowd_cheer, "water_pour": water_pour, "founders_bell": founders_bell,
     "msg_chime": msg_chime, "car_skid": car_skid, "car_rev": car_rev,
     "claw_ticks": claw_ticks, "dog_breath": dog_breath, "dog_sigh": dog_sigh, "tag_jingle": tag_jingle, "heartbeat": heartbeat,
-    "bus_doors": bus_doors, "air_brake": air_brake, "bus_pullaway": bus_pullaway, "glass_slap": glass_slap, "indicator": indicator, "monitor_beep": monitor_beep, "monitor_flat": monitor_flat,
+    "bus_doors": bus_doors, "air_brake": air_brake, "bus_pullaway": bus_pullaway, "glass_slap": glass_slap, "indicator": indicator, "monitor_beep": monitor_beep, "monitor_flat": monitor_flat, "radio_squelch": radio_squelch, "breath_fast": breath_fast,
 }
 
 
