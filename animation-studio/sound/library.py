@@ -1041,3 +1041,9 @@ AMBIENCE = {
     "amb_room": amb_room, "amb_office": amb_office, "amb_lab": amb_lab, "amb_sea": amb_sea,
     "amb_storm": amb_storm, "amb_bus": amb_bus, "amb_bus_kids": amb_bus_kids, "amb_snow": amb_snow,
 }
+
+# ------------------------------------------------------------------ recorded-style samples (opt-in by name)
+# el_* effects and elb_* beds generated with the ElevenLabs Sound Effects API (sound/samples.py, sound/samples/)
+from samples import SAMPLE_SFX, SAMPLE_BEDS  # noqa: E402
+SFX.update(SAMPLE_SFX)
+AMBIENCE.update(SAMPLE_BEDS)

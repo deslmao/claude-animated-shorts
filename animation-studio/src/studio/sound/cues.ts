@@ -18,7 +18,7 @@ import { Mood, MOODS, SfxName, ambienceFor, stepFor, FX_SOUND } from "./catalog"
 
 type Film = ReturnType<typeof compile>;
 export type Cue = { t: number; name: SfxName; gain_db?: number; pan?: number; why: string };
-export type SoundPlan = { sections: [Mood, number, number][] | null; button_t: number; drop_t?: number; musicGain: number; ambience: (string | null)[]; cues: Cue[]; mood: Mood | null; moodWhy: string };
+export type SoundPlan = { file?: { file: string; duck?: number }; sections: [Mood, number, number][] | null; button_t: number; drop_t?: number; musicGain: number; ambience: (string | null)[]; cues: Cue[]; mood: Mood | null; moodWhy: string };
 
 const COMEDY = ["laugh", "happy", "excited", "dazed", "embarrassed", "facepalm", "thumbsUp", "hello"];
 const TENSION = ["scared", "shock", "nervous", "angry", "suspicious"];
@@ -66,6 +66,7 @@ export const soundPlan = (film: Film, sb0: Storyboard): SoundPlan => {
   let mood: Mood | null = null, why = "", gain = 0;
   if (sb0.music === false) why = "music off (storyboard)";
   else if (typeof sb0.music === "string") { mood = sb0.music; why = "named by the storyboard"; }
+  else if (sb0.music && "file" in sb0.music) { gain = sb0.music.gain ?? 0; why = `recorded score ${sb0.music.file}`; }
   else if (sb0.music) { mood = sb0.music.mood; gain = sb0.music.gain ?? 0; why = "named by the storyboard"; }
   else { const a = autoMood(sb0); mood = a.mood; why = `chosen automatically (${a.why})`; }
   let sections: [Mood, number, number][] | null = null;
@@ -146,7 +147,8 @@ export const soundPlan = (film: Film, sb0: Storyboard): SoundPlan => {
   const dedup = cues.filter((c, k) => !cues.slice(0, k).some((d) => d.name === c.name && Math.abs(d.t - c.t) < 0.12));
   // a music drop-out before the punchline: from the end of the named word (n-th occurrence in the whole narration)
   const dw = sb.musicDrop ? words.filter((w) => norm(w.w) === norm(sb.musicDrop!.word))[(sb.musicDrop.n ?? 1) - 1] : undefined;
-  return { sections, button_t: last ? last.t0 : film.total / FPS - 1, ...(dw ? { drop_t: dw.t1 } : {}), musicGain: gain, ambience, cues: dedup, mood, moodWhy: why };
+  const file = sb0.music && typeof sb0.music === "object" && "file" in sb0.music ? { file: sb0.music.file, ...(sb0.music.duck !== undefined ? { duck: sb0.music.duck } : {}) } : undefined;
+  return { ...(file ? { file } : {}), sections, button_t: last ? last.t0 : film.total / FPS - 1, ...(dw ? { drop_t: dw.t1 } : {}), musicGain: gain, ambience, cues: dedup, mood, moodWhy: why };
 };
 
 export const MOOD_NAMES = Object.keys(MOODS) as Mood[];

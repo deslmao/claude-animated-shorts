@@ -37,7 +37,7 @@ if (cmd === "search" || cmd === "similar") {
   const sb = found!;
   const used = new Map<string, Set<string>>(), add = (k: string, id?: string | null) => { if (!id) return; if (!used.has(k)) used.set(k, new Set()); used.get(k)!.add(id); };
   for (const ref of Object.values(sb.cast)) if (typeof ref === "string") add("character", ref); else add("extras", `extras:${ref.era ?? "modern"}`);
-  const mood = sb.music === false ? null : typeof sb.music === "string" ? sb.music : sb.music?.mood ?? autoMood(sb).mood;
+  const mood = sb.music === false ? null : typeof sb.music === "string" ? sb.music : sb.music && "file" in sb.music ? null : sb.music?.mood ?? autoMood(sb).mood;
   add("mood", mood);
   for (const s of sb.shots) {
     add("set", s.set); add("light", s.light); add("camera", s.camera.move); add("mood", s.mood);

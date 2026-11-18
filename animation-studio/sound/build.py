@@ -19,6 +19,7 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from dsp import SR, ns, rng, st, pan, place, integrated, momentary_max, true_peak, dbg, write_wav, fades  # noqa: E402
 from library import SFX, AMBIENCE  # noqa: E402
+from samples import SAMPLE_LEVEL, STEREO, SCORE_DIR, decode as decode_sample  # noqa: E402
 import music as M  # noqa: E402
 
 VOICE_REL = 0.0
@@ -100,7 +101,19 @@ def main(plan_path):
     log(f"voice: {len(P['voice'])} clips, {Lv:.1f} LUFS")
     # ---------------- music
     music = np.zeros((2, N))
-    if P.get("music"):
+    if P.get("music") and P["music"].get("file"):
+        # a recorded score (opt-in: storyboard music { file }): sound/samples/music/<file>.mp3 from 0 s, written to the
+        # film's timings, so its own silences and hits land where they were planned; ducked and levelled like a mood bed
+        mu = P["music"]
+        x = decode_sample(os.path.join(SCORE_DIR, f"{mu['file']}.mp3"), 2)[:, :N]
+        music[:, :x.shape[1]] = x
+        f = ns(0.6)
+        music[:, max(0, x.shape[1] - f):x.shape[1]] *= np.linspace(1, 0, min(f, x.shape[1]))
+        music *= duck_curve(P["words"], N, mu.get("duck_db", DUCK_DB))[None, :]
+        music *= dbg(Lv + MUSIC_REL + mu.get("gain_db", 0.0) - lu(music))
+        cues.append((0.0, f"music: score {mu['file']}"))
+        log(f"music: score {mu['file']} ({x.shape[1] / SR:.1f} s) -> {lu(music) - Lv:+.1f} LU vs voice")
+    elif P.get("music"):
         mu = P["music"]
         music, mcues = M.compose([tuple(s) for s in mu["sections"]], total, mu["button_t"], seed, **({"drop_t": mu["drop_t"]} if "drop_t" in mu else {}))
         music = music[:, :N]
@@ -135,12 +148,13 @@ def main(plan_path):
         if c["name"] not in SFX:
             raise SystemExit(f"unknown sound effect {c['name']}")
         x = np.asarray(SFX[c["name"]](rng(seed * 1009 + i)), float)
-        x = x if x.ndim == 1 else x.mean(0)
+        wide = c["name"] in STEREO and x.ndim == 2   # a stereo sample (riser, boom) stays wide and unpanned
+        x = x if x.ndim == 1 or wide else x.mean(0)
         x = fades(x, 0.001, 0.01)
         mm = momentary_max(x)
         if np.isfinite(mm):
-            x = x * dbg(Lv + SFX_REL.get(c["name"], SFX_DEFAULT) + c.get("gain_db", 0.0) - mm)
-        place(sfx, pan(x, float(np.clip(c.get("pan", 0.0), -0.8, 0.8))), max(0.0, c["t"]))
+            x = x * dbg(Lv + SFX_REL.get(c["name"], SAMPLE_LEVEL.get(c["name"], SFX_DEFAULT)) + c.get("gain_db", 0.0) - mm)
+        place(sfx, x if wide else pan(x, float(np.clip(c.get("pan", 0.0), -0.8, 0.8))), max(0.0, c["t"]))
         cues.append((c["t"], f"sfx {c['name']}: {c.get('why', '')}"))
     # ---------------- mix + master
     g0 = dbg(TARGET - lu(voice + music + amb + sfx))

@@ -40,7 +40,7 @@ const job = {
     return l.segs ? l.segs.map((g) => ({ file: `voice/cache/${l.hash}.mp3`, at: g.at, from: g.from, ...(g.to !== undefined ? { to: g.to } : {}), ...fx })) : [{ file: `voice/cache/${l.hash}.mp3`, at: l.fileAt, ...fx }]; }),
   words: tm.lines.flatMap((l) => l.words.map((w) => [w.t0, w.t1])),
   shots: film.shots.map((s, i) => ({ t0: s.a / 30, t1: s.b / 30, ambience: plan.ambience[i] })),
-  music: plan.sections ? { sections: plan.sections, button_t: plan.button_t, gain_db: plan.musicGain, ...(plan.drop_t !== undefined ? { drop_t: plan.drop_t } : {}) } : null,
+  music: plan.file ? { file: plan.file.file, gain_db: plan.musicGain, ...(plan.file.duck !== undefined ? { duck_db: plan.file.duck } : {}) } : plan.sections ? { sections: plan.sections, button_t: plan.button_t, gain_db: plan.musicGain, ...(plan.drop_t !== undefined ? { drop_t: plan.drop_t } : {}) } : null,
   cues: plan.cues,
   out: `audio/${comp}.mp3`, info: `audio/${comp}.json`, cuesheet: `audio/${comp}.cues.md`,
 };
@@ -48,7 +48,7 @@ fs.mkdirSync("out/sound", { recursive: true });
 const planFile = `out/sound/${sb.id}.plan.json`;
 fs.writeFileSync(planFile, JSON.stringify(job, null, 1));
 console.log(`\n${comp}: ${film.total} frames, ${tm.lines.length} narration lines`);
-console.log(`music     ${plan.sections ? plan.sections.map(([m, a, b]) => `${m} ${a.toFixed(1)}-${b.toFixed(1)} s`).join(" | ") : "none"}  (${plan.moodWhy})`);
+console.log(`music     ${plan.file ? `score ${plan.file.file}` : plan.sections ? plan.sections.map(([m, a, b]) => `${m} ${a.toFixed(1)}-${b.toFixed(1)} s`).join(" | ") : "none"}  (${plan.moodWhy})`);
 console.log(`ambience  ${[...new Set(plan.ambience.filter(Boolean))].join(", ") || "none"}`);
 console.log(`effects   ${plan.cues.length} cues: ${Object.entries(plan.cues.reduce((m, c) => ({ ...m, [c.name]: (m[c.name] ?? 0) + 1 }), {} as Record<string, number>)).map(([k, v]) => `${k} x${v}`).join(", ")}`);
 const py = spawnSync("python3", ["sound/build.py", planFile], { stdio: "inherit" });

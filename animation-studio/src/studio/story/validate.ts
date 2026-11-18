@@ -50,7 +50,7 @@ export const validate = (sb0: Storyboard, narr?: Narration): Report => {
   }
   const words = tm.lines.reduce((n, l) => n + l.words.length, 0), spoken = tm.lines.reduce((n, l) => n + (l.end - l.start), 0);
   if (words && spoken > 0 && (words / spoken < 2.6 || words / spoken > 4.6)) warnings.push(`narration pace ${(words / spoken).toFixed(2)} words/s (reference 3.5-4.1)`);
-  const mood = typeof sb.music === "string" ? sb.music : sb.music ? sb.music.mood : null;
+  const mood = typeof sb.music === "string" ? sb.music : sb.music && "mood" in sb.music ? sb.music.mood : null;
   if (mood && !(mood in MOODS)) errors.push(`unknown music mood "${mood}" (moods: ${Object.keys(MOODS).join(", ")})`);
   const total = sb.shots.reduce((s, x) => s + (x.dur ?? 0), 0);
   if (!sb.shots.length) errors.push("no shots");

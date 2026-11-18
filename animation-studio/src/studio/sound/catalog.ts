@@ -52,6 +52,13 @@ export const AMBIENCES = {
   amb_bus: "inside a school bus on the move, quiet: a diesel rumble, road noise, loose panels rattling",
   amb_bus_kids: "inside a school bus full of kids: the bus bed with overlapping children's chatter",
   amb_snow: "a snowstorm: a cold, howling wind and the hiss of blown snow",
+  // recorded-style beds (ElevenLabs Sound Effects, seamless loops, sound/samples/)
+  elb_river_rain: "recorded loop: Dark river at night with steady heavy rain falling on the water, strong current flowing, distant wind, immersive, no thunder",
+  elb_in_river: "recorded loop: Standing waist deep in a fast river at night, water rushing and swirling close around you, heavy rain hitting the water surface all around",
+  elb_rain_window: "recorded loop: Heavy rain on a bedroom window at night heard from inside, muffled, gentle wind, quiet house, cozy but tense",
+  elb_house_night: "recorded loop: A silent house at three in the morning, faint low fridge hum downstairs, very quiet room tone, the house settling, subtle",
+  elb_dawn_garden: "recorded loop: An English back garden at dawn just after rain, water dripping from leaves and gutters, a few distant birds, a river flowing gently in the distance, s",
+  elb_kitchen_day: "recorded loop: A quiet family kitchen on a grey morning, faint fridge hum, a clock ticking softly, light rain outside the window, subdued",
 } as const;
 export type Ambience = keyof typeof AMBIENCES;
 
@@ -72,6 +79,39 @@ export const SFX = {
   knock_heavy: "ONE slow, heavy knock on an old wooden door (cue once per knock)", phone_buzz: "a phone vibrating: two short buzzes", phone_tap: "soft phone-screen typing taps (1.4 s)", latch_click: "a door latch releasing: metallic click + bolt thunk", glass_crack: "picture-frame glass cracking under a foot: sharp crack + faint tinkle (no shatter)", lie_slam: "a LIE sign slamming in: neon buzz + heavy stamp + deep boom", crickets: "awkward-silence crickets (1.6 s)", thunk: "attention lands (Float Away): a heavy, soft low thud", float_whoosh: "attention leaves (Float Away): a soft rising air sound", trombone_slide: "comedy: a descending wah-wah trombone", tuba_sink: "comedy: a low tuba glide down", pop_gliss: "comedy: a quick rising slide-whistle pop", metal_groan: "a steel bench bending: a scraping metallic groan", splat: "a pancake hitting the ceiling: a wet slap", ringtone: "a cheerful phone ringtone (1.6 s)", musicbox_note: "one music-box note (the Pancake Theme's first note), ringing 3 s", riser: "a build-up riser (1.6 s)", storm_wind: "a storm gust through a door: wind + rain spray (2.5 s)", ground_crack: "hitting the road: deep boom + asphalt crack + gravel", fire_bell: "a school fire-alarm bell ringing (3 s): hammer on a steel gong, bright and relentless", kids_chatter: "a crowd of 11-year-olds talking at once outside (3 s)", chair_scrape: "a classroom chair shoved back across tiles (0.45 s)", camera_shutter: "a phone camera shutter: soft double click (0.3 s)", fire_roar: "a building fire close by (3 s): low roar, crackles and pops", cough: "a child coughing in smoke: three dry coughs (1 s)", whale_groan: "a sleeping whale stirring: a deep slow moan felt through stone (3.5 s)", whale_breath: "a whale's breath through its blowhole: a big hollow exhale (2.2 s)", whale_blow: "a waking whale's great breath: a deep boom and a roaring blast of air and spray (3.5 s)", baby_cry: "a baby starting to cry: two rising wails (1.5 s)", crowd_cheer: "a whole crowd cheering: hurrahs, laughter, clapping (3 s)", water_pour: "sea water pouring over a quay and running in the street (3 s)", founders_bell: "a great bronze ship's bell: one heavy, deep, ringing stroke (4 s)", msg_chime: "a text message arriving: a soft two-note chime over a short phone vibration (0.9 s)", car_skid: "a car braking hard into an impact: screeching tyres, then a heavy thump (1.4 s)", car_rev: "a car pulling away fast: an engine revving up and fading down the road (2.2 s)",
   claw_ticks: "small dog claws on wooden floorboards: an unhurried four-paw walk (1.6 s)", dog_breath: "a dog's warm breath on a hand: two sniffs and a soft huff (0.9 s)", dog_sigh: "a dog settling at the foot of a bed: the mattress gives, then a long contented sigh (1.6 s)", tag_jingle: "a dog collar's metal name tag jingling against its ring (0.7 s)", heartbeat: "one low heartbeat, lub-dub (0.9 s)",
   bus_doors: "school-bus folding doors: a pneumatic hiss, the leaves folding with a clunk, a rubber thump (0.9 s)", air_brake: "a bus's air brakes as it stops: a sharp pssht and a low thunk (0.9 s)", bus_pullaway: "a diesel bus pulling away through first gear (2.4 s)", glass_slap: "a small hand slapping a window from outside: a flat slap, a brief glass ring (0.5 s)", indicator: "a vehicle's indicator ticking, four ticks (1.6 s)", monitor_beep: "a hospital heart monitor's beep: one clean electronic tone (0.3 s)", monitor_flat: "a heart monitor flatlining: one long tone, slowly fading (3 s)", radio_squelch: "a two-way radio keying up: a burst of static and a short squelch tone (0.6 s)", breath_fast: "a scared child breathing fast, in and out (1.6 s)",
+  // recorded-style samples (ElevenLabs Sound Effects, sound/samples/): What Ollie Says Part 2 onward
+  el_lock_click: "recorded: A single old interior bedroom door lock bolt turning slowly and clicking open, quiet house at night, close and crisp, slight hallway reverb (2 s)",
+  el_handle_strain: "recorded: Someone on the other side of a door gently pressing down a metal door handle, the handle creaks and strains against a hand holding it shut, close, qui (2.5 s)",
+  el_feet_landing: "recorded: Slow soft bare footsteps on a carpeted upstairs landing at night, approaching and stopping right outside a door, floorboard creak under carpet (4 s)",
+  el_stairs_down: "recorded: Slow bare footsteps going down creaky old wooden stairs at night, heard from upstairs through a door, quiet house (5 s)",
+  el_backdoor: "recorded: A back door downstairs unlocking and swinging open, banging against the wall, wind and rain rushing in, heard from upstairs (2.5 s)",
+  el_wade_slow: "recorded: A person wading slowly through waist deep river water at night, water swirling around legs, steady steps, rain on the water surface (6 s)",
+  el_run_into_water: "recorded: Running barefoot across wet grass and splashing hard into a river, big splashes, urgent, night (4 s)",
+  el_pulled_under: "recorded: A child being suddenly pulled into a fast river, a sharp heavy splash and rushing water, then a hand grabbing him and lifting out, water pouring off (3 s)",
+  el_gasp_out: "recorded: A young child gasping and coughing after being pulled out of cold water, close (2 s)",
+  el_sit_up: "recorded: Bed sheets and duvet rustling as a small child suddenly sits bolt upright in bed, quiet bedroom at night (1.5 s)",
+  el_clock_tick: "recorded: A bedside alarm clock ticking loudly in a silent bedroom at night, three ticks, close (3 s)",
+  el_clock_flip: "recorded: A digital bedside clock changing number with a single soft electronic click, silent room (1 s)",
+  el_phone_video: "recorded: Video playing through a small phone speaker: rain and rushing flood water, tinny and compressed, quiet kitchen (5 s)",
+  el_phone_grass: "recorded: Picking up a wet phone from wet grass, a damp rustle and a small tap on the screen (1.5 s)",
+  el_mug_down: "recorded: A ceramic mug of tea placed down on a wooden fence post, a soft knock, morning outdoors (1 s)",
+  el_heartbeat: "recorded: Slow heavy human heartbeat, muffled and deep, horror tension, felt in the chest, steady (6 s)",
+  el_heartbeat_fast: "recorded: Fast pounding human heartbeat, muffled and deep, panic, horror film (5 s)",
+  el_breath_hold: "recorded: A scared teenage girl trying to breathe silently in the dark, shaky held breath, trembling exhale, very close (4 s)",
+  el_whisper_air: "recorded: Eerie faint breathy air through a gap under a door at night, a cold draught, ghostly but subtle (3 s)",
+  el_riser_short: "recorded: Horror movie tension riser, dissonant strings and reversed cymbal rising for three seconds into a cut, cinematic (3 s)",
+  el_riser_long: "recorded: Slow horror tension riser building for eight seconds, low strings, dark synth swell and heartbeat pulse rising, cinematic (8 s)",
+  el_hit_boom: "recorded: Deep cinematic horror impact boom with long dark reverb tail, trailer hit (3 s)",
+  el_hit_sub: "recorded: Cinematic sub bass drop, deep low frequency boom falling away, horror trailer (3 s)",
+  el_sting_strings: "recorded: Sudden horror string stinger, screeching dissonant violins, jump scare, short (2.5 s)",
+  el_whoosh_dark: "recorded: Dark cinematic whoosh transition, low and airy, horror (1.5 s)",
+  el_typewriter: "recorded: Old typewriter typing a short phrase, crisp key strikes, quiet room, no bell (2 s)",
+  el_thunder: "recorded: Distant thunder rolling slowly across the sky at night, deep rumble, rain (6 s)",
+  el_child_steps_wet: "recorded: Small bare child footsteps walking slowly on wet grass and mud at night, squelching (3 s)",
+  el_door_creak: "recorded: A wooden bedroom door creaking slowly open in a silent house at night (2.5 s)",
+  el_water_rush: "recorded: A sudden strong river current surging and rushing, water pulling hard, menacing, night (4 s)",
+  el_underwater: "recorded: Muffled underwater sound, bubbles and a dull current, as if heard with your head under the water (3 s)",
+  el_drip_quiet: "recorded: Single water drips falling from a gutter onto a wet patio in a quiet dawn garden (3 s)",
 } as const;
 export type SfxName = keyof typeof SFX;
 

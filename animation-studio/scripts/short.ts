@@ -119,7 +119,7 @@ const stages: Record<Stage, { inputs: () => string; run: () => Promise<StageStat
     run: () => {
       const used: [string, string][] = [];
       for (const ref of Object.values(sb.cast)) used.push(typeof ref === "string" ? ["character", ref] : ["extras", `extras:${ref.era ?? "modern"}`]);
-      const mood = sb.music === false ? null : typeof sb.music === "string" ? sb.music : sb.music?.mood ?? autoMood(sb).mood;
+      const mood = sb.music === false ? null : typeof sb.music === "string" ? sb.music : sb.music && "file" in sb.music ? null : sb.music?.mood ?? autoMood(sb).mood;
       if (mood) used.push(["mood", mood]);
       for (const s of sb.shots) {
         used.push(["set", s.set], ["camera", s.camera.move]); if (s.light) used.push(["light", s.light]);
