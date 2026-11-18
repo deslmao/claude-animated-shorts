@@ -10,7 +10,7 @@ follows the locked outline exactly (`../series-outline.md`, Part 2).
 
 ## What the viewer sees and hears
 **COLD OPEN.** *(Night, rain. Kate wading into the black river, her back to us.)*
-> **NARRATOR:** Your mum is walking into the river. And she can't hear you.
+> **NARRATOR:** Your mum is walking into the river, fast asleep. And she can't hear you.
 > **AVA:** MUM!
 
 *(Card: 24 HOURS EARLIER · THURSDAY 6:40 AM)*
@@ -18,6 +18,7 @@ follows the locked outline exactly (`../series-outline.md`, Part 2).
 **THE RECAP.**
 > **NARRATOR:** Last time: every night at three a.m., your mum sleepwalks and relives the night her little boy, Kuba,
 > drowned in a flood. And your brother Ollie says Kuba's words, in a voice that isn't his.
+> **NARRATOR:** Last night, black water flooded your garden. Only yours. And you filmed it.
 > **NARRATOR:** Most of you said: show her the video. So you do.
 
 **DAWN.** *(The garden: wet grass, no water. Ava's phone in the grass.)*
@@ -74,7 +75,8 @@ follows the locked outline exactly (`../series-outline.md`, Part 2).
 ## Clarity checklist (every fact the viewer is told, and the words that tell it)
 | The viewer must understand | Told by |
 |---|---|
-| what the cold open shows | "Your mum is walking into the river" |
+| what the cold open shows | "Your mum is walking into the river, fast asleep" |
+| last night's flood (for new viewers) | "black water flooded your garden. Only yours" |
 | the story so far (for new viewers) | "relives the night her little boy, Kuba, drowned in a flood" |
 | why Ollie matters | "your brother Ollie says Kuba's words" |
 | the vote result | "Most of you said: show her the video" |
