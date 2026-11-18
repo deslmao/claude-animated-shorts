@@ -85,7 +85,7 @@ const shots: ShotSpec[] = [
   // ======== the June fog, explained
   insert("window", "seat 13's window: fogged on the inside, bright June sun outside", { say: N("And here's what nobody can explain. It's June. It's hot. But the window by seat thirteen is always fogged up, from the inside. As if someone is breathing on it."), mood: "mystery", ambience: "amb_bus", ...PUSH }),
   // ======== Elm Road, explained; the quick count
-  { say: [N("Every day, Mr Hale stops at Elm Road, even though that stop was taken away a long time ago. Nobody is ever there. He opens the doors and counts to three."), L("hale", "One, two, three.", { gap: 0.2 })], ...ELM, mood: "drone", ambience: "amb_bus", ...lock(AT_DOORS),
+  { say: [N("Every day, Mr Hale stops at Elm Road, even though that stop was taken away a long time ago. Nobody is ever there. He opens the doors and counts to three."), L("hale", "One. Two. Three.", { gap: 0.2 })], ...ELM, mood: "drone", ambience: "amb_bus", ...lock(AT_DOORS),
     actors: [{ who: "hale", at: DRIVER, mode: "sit", act: "sad", facing: 1, idle: 0.2 }], props: [{ id: "busDoors", at: [1.2, 0, -4.4], steps: [{ word: "Nobody" }, { word: "three.", n: 2 }] }],
     sfx: [{ t: 0.1, name: "air_brake", gain: -4 }, { word: "Nobody", name: "bus_doors" }, { word: "three.", n: 2, name: "bus_doors", gain: -2 }], note: "the doors fold open on the empty Elm Rd stop; he counts quickly; they shut" },
   // ======== at home: you look it up

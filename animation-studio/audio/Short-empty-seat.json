@@ -1,17 +1,17 @@
 {
  "composition": "Short-empty-seat",
- "fingerprint": "0486fb99b9ea65",
+ "fingerprint": "03e3a504dc64fc",
  "engine": "sound-2",
- "frames": 4628,
- "seconds": 154.26666666666668,
+ "frames": 4636,
+ "seconds": 154.53333333333333,
  "lines": 34,
  "lufs": -14.1,
  "truePeak": -1.5,
  "stems": {
-  "voice_lufs": -19.44,
+  "voice_lufs": -19.45,
   "music_vs_voice_lu": -12.0,
   "ambience_vs_voice_lu": -19.97,
   "sfx_cues": 39
  },
- "built": "2026-11-18T10:23:02Z"
+ "built": "2026-11-18T10:55:22Z"
 }

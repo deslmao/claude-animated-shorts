@@ -33,7 +33,7 @@ What the viewer sees and hears, in order. Nothing else reaches them.
 
 **11.** _the doors fold open on the empty Elm Rd stop; he counts quickly; they shut_
 > **NARRATOR:** Every day, Mr Hale stops at Elm Road, even though that stop was taken away a long time ago. Nobody is ever there. He opens the doors and counts to three.
-> **HALE:** One, two, three.
+> **HALE:** One. Two. Three.
 
 **12.** _at home on your bed: your phone: elm road bus stop -> STOP CLOSED 1996_
 > **NARRATOR:** When you get home, you can't stop thinking about it. Why does your driver always stop at Elm Road? So you look it up.
