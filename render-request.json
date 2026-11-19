@@ -1,8 +1,8 @@
 {
-  "composition": "Short-empty-seat",
+  "composition": "Short-ollie-2",
   "chunks": 20,
   "preview": false,
   "audio": "",
   "publish": false,
-  "note": "The Empty Seat (Thinkora Ghost Stories ep. 1, the narrated v3; owner-approved preview v3b + the clean count take): final render, 1080x1920 30fps, 4636 frames, with its committed soundtrack and narration. No GitHub Release: the MP4 is kept via the QA workflow."
+  "note": "What Ollie Says at 3 A.M., Part 2: The Water Game (owner-approved viewer script v2; 540p preview + one correction pass): final render, 1080x1920 30fps, 5382 frames (2:59.4), with its committed soundtrack (ElevenLabs effects + score). No GitHub Release: the MP4 is kept via the QA workflow."
 }
