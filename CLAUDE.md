@@ -10,6 +10,8 @@ These rates were measured on this container (CPU WebGL):
 - **540p preview** (`--preview`): about 1.5 s per frame, plus about 40 s to bundle. A 50 s film takes about 40 min;
   a 3 s section about 2 min.
 - **Engine still** (`scripts/stills.mjs`): about 4 s at half scale, 12 s at full scale, plus the bundle.
+- **Cloud 540p preview** (20 chunks, `render-request.json` with `"preview": true`, `publish: false`): about 15 min wall
+  time for a 3-minute film (verified 19 Nov 2026, run 34). This is how previews are made.
 - **Cloud final render** (20 chunks, `render-request.json`, `publish: false`): about 16 min wall time, then the QA
   workflow (`qa-request.json`, with seams and keep) about 3 min.
 
@@ -27,10 +29,17 @@ tell it. `npm run short` fails without it. The owner approves `productions/<id>/
 1. **Validate and check first** (`--until checks`): it's free, and it catches framing, clearance and timing problems
    before any render.
 2. **Look at half-scale stills** of the key frames (one batch, `stills.mjs ... 0.5`) to find composition problems.
-3. **Make one combined 540p preview** of the film or the parts in question, not per-clip full-resolution renders:
+3. **Render the 540p preview through GitHub Actions**, not in this container: commit `render-request.json` with
+   `"preview": true`, `"chunks": 20`, `"publish": false` (the existing parallel renderer; nothing else changes). The
+   preview is uploaded as the run's artifact `Short-<id>_preview-run<N>`.
+   - This session can't download artifacts. The owner downloads the preview and uploads it here, and you inspect it
+     for genuine visual and technical problems. Don't skip the inspection.
+   - Render a preview in this container only if GitHub Actions genuinely can't (for example, the workflow itself is
+     broken).
+4. **For a problem, fix and re-render only that shot or a short section around it**, at 540p. A short section
+   (about 3 s, about 2 min) can be rendered locally:
    `node scripts/render.mjs Short-<id> --preview --frames a-b --audio audio/Short-<id>.mp3 --out <file>`.
-4. **For a problem, fix and re-render only that shot or a short section around it**, at 540p. Never re-render
-   unaffected shots.
+   Never re-render unaffected shots.
 5. **Use full-resolution stills only for detail checks** (readable text, a crack, a thin line), and only for those
    frames.
 6. **Make one focused correction pass,** unless a defect is serious.
