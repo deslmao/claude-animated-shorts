@@ -1,0 +1,70 @@
+{
+ "hash": "177f2c890ee248",
+ "text": "Nova commands you… to let her go. At this instant!",
+ "voice": "nvNovaCmd",
+ "lead": 0,
+ "end": 3.576,
+ "dur": 3.604898,
+ "words": [
+  {
+   "w": "Nova",
+   "t0": 0,
+   "t1": 0.348
+  },
+  {
+   "w": "commands",
+   "t0": 0.395,
+   "t1": 0.755
+  },
+  {
+   "w": "you…",
+   "t0": 0.836,
+   "t1": 1.068
+  },
+  {
+   "w": "to",
+   "t0": 1.103,
+   "t1": 1.242
+  },
+  {
+   "w": "let",
+   "t0": 1.324,
+   "t1": 1.509
+  },
+  {
+   "w": "her",
+   "t0": 1.567,
+   "t1": 1.649
+  },
+  {
+   "w": "go.",
+   "t0": 1.707,
+   "t1": 2.078
+  },
+  {
+   "w": "At",
+   "t0": 2.159,
+   "t1": 2.334
+  },
+  {
+   "w": "this",
+   "t0": 2.38,
+   "t1": 2.554
+  },
+  {
+   "w": "instant!",
+   "t0": 2.647,
+   "t1": 3.576
+  }
+ ],
+ "voiceId": "S9EGwlCtMF7VXtENq79v",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.32,
+  "similarity_boost": 0.75,
+  "style": 0.55,
+  "use_speaker_boost": true,
+  "speed": 0.92
+ },
+ "created": "2026-11-19T23:01:43.011Z"
+}

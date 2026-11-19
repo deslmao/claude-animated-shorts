@@ -1,0 +1,75 @@
+{
+ "hash": "0a5e44bf230a2a",
+ "text": "The Blues have everything. Big warm houses. Food they throw away.",
+ "voice": "nvNova",
+ "lead": 0,
+ "end": 4.598,
+ "dur": 4.623673,
+ "words": [
+  {
+   "w": "The",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "Blues",
+   "t0": 0.197,
+   "t1": 0.441
+  },
+  {
+   "w": "have",
+   "t0": 0.476,
+   "t1": 0.615
+  },
+  {
+   "w": "everything.",
+   "t0": 0.662,
+   "t1": 1.277
+  },
+  {
+   "w": "Big",
+   "t0": 1.73,
+   "t1": 1.939
+  },
+  {
+   "w": "warm",
+   "t0": 2.009,
+   "t1": 2.229
+  },
+  {
+   "w": "houses.",
+   "t0": 2.287,
+   "t1": 2.926
+  },
+  {
+   "w": "Food",
+   "t0": 3.32,
+   "t1": 3.576
+  },
+  {
+   "w": "they",
+   "t0": 3.611,
+   "t1": 3.715
+  },
+  {
+   "w": "throw",
+   "t0": 3.762,
+   "t1": 3.936
+  },
+  {
+   "w": "away.",
+   "t0": 3.982,
+   "t1": 4.598
+  }
+ ],
+ "voiceId": "S9EGwlCtMF7VXtENq79v",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.97
+ },
+ "created": "2026-11-19T23:01:45.176Z"
+}

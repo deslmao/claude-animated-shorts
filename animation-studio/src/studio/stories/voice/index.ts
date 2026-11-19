@@ -11,6 +11,7 @@ import { N_float_away } from "./float-away";
 import { N_locked_out } from "./locked-out";
 import { N_marathon_1904 } from "./marathon-1904";
 import { N_night_shift } from "./night-shift";
+import { N_nova_commands } from "./nova-commands";
 import { N_ollie_1 } from "./ollie-1";
 import { N_ollie_2 } from "./ollie-2";
 import { N_one_too_many } from "./one-too-many";
@@ -21,4 +22,4 @@ import { N_tickle } from "./tickle";
 import { N_whale_city } from "./whale-city";
 import { N_yawn_demo } from "./yawn-demo";
 
-export const NARRATION: Record<string, Narration> = { "buried-treasure": N_buried_treasure, "doorway-effect": N_doorway_effect, "empty-seat": N_empty_seat, "every-lie": N_every_lie, "extra-door": N_extra_door, "extra-door-2": N_extra_door_2, "float-away": N_float_away, "locked-out": N_locked_out, "marathon-1904": N_marathon_1904, "night-shift": N_night_shift, "ollie-1": N_ollie_1, "ollie-2": N_ollie_2, "one-too-many": N_one_too_many, "other-jamie": N_other_jamie, "pirate-democracy": N_pirate_democracy, "steps-4012": N_steps_4012, "tickle": N_tickle, "whale-city": N_whale_city, "yawn-demo": N_yawn_demo };
+export const NARRATION: Record<string, Narration> = { "buried-treasure": N_buried_treasure, "doorway-effect": N_doorway_effect, "empty-seat": N_empty_seat, "every-lie": N_every_lie, "extra-door": N_extra_door, "extra-door-2": N_extra_door_2, "float-away": N_float_away, "locked-out": N_locked_out, "marathon-1904": N_marathon_1904, "night-shift": N_night_shift, "nova-commands": N_nova_commands, "ollie-1": N_ollie_1, "ollie-2": N_ollie_2, "one-too-many": N_one_too_many, "other-jamie": N_other_jamie, "pirate-democracy": N_pirate_democracy, "steps-4012": N_steps_4012, "tickle": N_tickle, "whale-city": N_whale_city, "yawn-demo": N_yawn_demo };

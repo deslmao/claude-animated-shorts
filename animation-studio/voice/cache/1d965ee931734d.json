@@ -1,0 +1,105 @@
+{
+ "hash": "1d965ee931734d",
+ "text": "Then I found out where Dad went. Not gone. Working. In the Governor's camp, behind the wall.",
+ "voice": "nvNova",
+ "lead": 0,
+ "end": 6.873,
+ "dur": 6.922449,
+ "words": [
+  {
+   "w": "Then",
+   "t0": 0,
+   "t1": 0.337
+  },
+  {
+   "w": "I",
+   "t0": 0.557,
+   "t1": 0.627
+  },
+  {
+   "w": "found",
+   "t0": 0.743,
+   "t1": 0.929
+  },
+  {
+   "w": "out",
+   "t0": 0.975,
+   "t1": 1.045
+  },
+  {
+   "w": "where",
+   "t0": 1.068,
+   "t1": 1.196
+  },
+  {
+   "w": "Dad",
+   "t0": 1.231,
+   "t1": 1.393
+  },
+  {
+   "w": "went.",
+   "t0": 1.451,
+   "t1": 1.985
+  },
+  {
+   "w": "Not",
+   "t0": 2.322,
+   "t1": 2.508
+  },
+  {
+   "w": "gone.",
+   "t0": 2.566,
+   "t1": 2.995
+  },
+  {
+   "w": "Working.",
+   "t0": 3.286,
+   "t1": 3.994
+  },
+  {
+   "w": "In",
+   "t0": 4.714,
+   "t1": 4.841
+  },
+  {
+   "w": "the",
+   "t0": 4.876,
+   "t1": 4.946
+  },
+  {
+   "w": "Governor's",
+   "t0": 4.981,
+   "t1": 5.306
+  },
+  {
+   "w": "camp,",
+   "t0": 5.341,
+   "t1": 5.77
+  },
+  {
+   "w": "behind",
+   "t0": 5.805,
+   "t1": 6.084
+  },
+  {
+   "w": "the",
+   "t0": 6.13,
+   "t1": 6.2
+  },
+  {
+   "w": "wall.",
+   "t0": 6.235,
+   "t1": 6.873
+  }
+ ],
+ "voiceId": "S9EGwlCtMF7VXtENq79v",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.97
+ },
+ "created": "2026-11-19T23:01:58.536Z"
+}

@@ -63,6 +63,11 @@ export const VOICES: Record<string, VoicePreset> = {
   olAva: { name: "Alice - Clear, Engaging Educator", voiceId: "Xb7hH8MSUJpSbSDYk0k2", model: MODEL, settings: { ...CHANNEL, stability: 0.45, style: 0.15, speed: 1.0 }, note: "Ava, 15 (What Ollie Says at 3 A.M.)" },
   olMark: { name: "Daniel - Steady Broadcaster", voiceId: "onwK4e9ZLuTAKqWW03F9", model: MODEL, settings: { ...CHANNEL, stability: 0.5, style: 0.1, speed: 0.95 }, note: "Mark, 42 (What Ollie Says at 3 A.M.): warm, tired" },
   olNeighbour: { name: "Bill - Wise, Mature, Balanced", voiceId: "pqHfZKP75CvOlQylNhV4", model: MODEL, settings: { ...CHANNEL, stability: 0.5, style: 0.1, speed: 0.95 }, note: "the man next door, about 70 (What Ollie Says at 3 A.M., Part 2): one line, puzzled" },
+  // What If… Nova commands you (productions/what-if-command): Nova narrates in the first person; her commands harder
+  nvNova: { name: "Nova A - Emma Taylor", voiceId: "S9EGwlCtMF7VXtENq79v", model: MODEL, settings: { ...CHANNEL, stability: 0.5, style: 0.25, speed: 0.97 }, note: "Nova, 15, narrating her own story: gentle, sad, British (library voice 'Emma Taylor', added to the account)" },
+  nvNovaCmd: { name: "Nova A - Emma Taylor", voiceId: "S9EGwlCtMF7VXtENq79v", model: MODEL, settings: { ...CHANNEL, stability: 0.32, style: 0.55, speed: 0.92 }, note: "Nova's commands: fierce, shaking, weighted" },
+  nvPip: { name: "Mini - Lively Cute Little Girl", voiceId: "nUX4UWK0Tf1qh5zvFZWR", model: MODEL, settings: { ...CHANNEL, stability: 0.55, style: 0.1, speed: 0.92 }, note: "Pip, 8, Nova's little sister" },
+  nvMum: { name: "Lily - Velvety Actress", voiceId: "pFZP5JQG7iQjIQuC4Bku", model: MODEL, settings: { ...CHANNEL, stability: 0.55, style: 0.15, speed: 0.95 }, note: "Nova's mum, tired and kind (one line, to a stranger)" },
   // The Empty Seat v2 (the voiced format): the bus 9 cast
   esYou: { name: "Alice - Clear, Engaging Educator", voiceId: "Xb7hH8MSUJpSbSDYk0k2", model: MODEL, settings: { ...CHANNEL, stability: 0.45, style: 0.2, speed: 1.0 }, note: "you, 11, on bus 9 (The Empty Seat): your lines" },
   esThought: { name: "Alice - Clear, Engaging Educator", voiceId: "Xb7hH8MSUJpSbSDYk0k2", model: MODEL, settings: { ...CHANNEL, stability: 0.6, style: 0.1, speed: 0.95 }, note: "you, 11 (The Empty Seat): your thoughts, close and quiet" },

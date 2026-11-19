@@ -1,0 +1,130 @@
+{
+ "id": "nova-commands",
+ "composition": "Short-nova-commands",
+ "stages": {
+  "validate": {
+   "state": "done",
+   "at": "2026-11-19T23:04:06.217Z",
+   "inputs": "1711d0578b9269n",
+   "detail": "valid; 20 warning(s):\n  total length 128.1 s (Shorts target 55-65 s)\n  shot 2 (novaStreet): guard: walk 1.2-4.6 s outside the shot\n  shot 7 (novaStreetDay): prop \"breadShutter\" overlaps something already in the set at [-5.9, -4.0]\n  shot 11 (novaStreetDay): prop \"breadShutter\" overlaps something already in the set at [-5.9, -4.0]\n  shot 12 (novaStreetDay): prop \"breadShutter\" overlaps something already in the set at [-5.9, -4.0]\n  shot 16 (novaStreetDay): kai: walk 0.8-5.6 s outside the shot\n  shot 24 (novaStreetFree): dad: walk 0-2.6 s outside the shot\n  shot 26 (novaStreetFree): nova: walk 0.3-7.5 s outside the shot\n  shot 2 (novaStreet): guard fills 32 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 9 (novaHome): pip's hand (talk) is out of frame @0.2s (side): widen the shot or change the gesture\n  shot 10 (novaHomeDay): nova fills 26 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 11 (novaStreetDay): nova's hand (fists) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 17 (novaHomeDay): mum fills 25 % of the frame in the foreground @1.2s (is it hiding the action?)\n  shot 17 (novaHomeDay): mum's hand (shrug) is out of frame @1.4s (side): widen the shot or change the gesture\n  shot 18 (novaHomeDay): nova fills 74 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 20 (novaTower): nova's hand (fists) is out of frame @1.4s (side): widen the shot or change the gesture\n  shot 20 (novaTower): nova fills 26 % of the frame in the foreground @1.8s (is it hiding the action?)\n  shot 21 (novaHome): pip fills 70 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 22 (novaTower): nova fills 58 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 22 (novaTower): nova's hand (present) is out of frame @0.2s (side): widen the shot or change the gesture"
+  },
+  "assets": {
+   "state": "done",
+   "at": "2026-11-19T23:04:06.220Z",
+   "inputs": "1711d0578b9269",
+   "detail": "60 library assets reused, none missing",
+   "data": {
+    "reused": 60,
+    "missing": [],
+    "byKind": {
+     "character": [
+      "nova",
+      "pip",
+      "pipYellow",
+      "novaMum",
+      "novaDad",
+      "kai",
+      "blueGuard",
+      "blueOfficer",
+      "blueMan",
+      "blueWoman",
+      "blueKid",
+      "grey1",
+      "grey2",
+      "grey3"
+     ],
+     "set": [
+      "novaStreet",
+      "blueHall",
+      "novaHome",
+      "novaStreetDay",
+      "novaHomeDay",
+      "novaTower",
+      "novaStreetFree"
+     ],
+     "camera": [
+      "at"
+     ],
+     "light": [
+      "night",
+      "interior",
+      "day",
+      "interiorCool",
+      "golden"
+     ],
+     "ambience": [
+      "elb_river_rain",
+      "amb_room",
+      "elb_rain_window",
+      "amb_city_night",
+      "elb_kitchen_day",
+      "elb_house_night",
+      "amb_city_day"
+     ],
+     "prop": [
+      "rain",
+      "novaInsert",
+      "breadShutter"
+     ],
+     "sfx": [
+      "el_thunder",
+      "el_hit_sub",
+      "el_sting_strings",
+      "clink",
+      "metal_groan",
+      "el_hit_boom",
+      "el_sit_up",
+      "el_backdoor",
+      "fire_roar",
+      "musicbox_note",
+      "el_feet_landing",
+      "el_riser_long",
+      "crowd_cheer",
+      "el_riser_short"
+     ],
+     "act": [
+      "angry",
+      "scared",
+      "neutral",
+      "sad",
+      "happy",
+      "laugh",
+      "shock",
+      "determined",
+      "relief"
+     ]
+    }
+   }
+  },
+  "approval": {
+   "state": "done",
+   "at": "2026-11-19T23:04:06.222Z",
+   "inputs": "0f5a662b6e245a",
+   "detail": "all narration already generated (no cost)"
+  },
+  "narration": {
+   "state": "done",
+   "at": "2026-11-19T23:04:06.223Z",
+   "inputs": "0f5a662b6e245a",
+   "detail": "all lines already generated (cached)"
+  },
+  "sound": {
+   "state": "done",
+   "at": "2026-11-19T23:04:28.118Z",
+   "inputs": "143c3c566f09a6",
+   "detail": "soundtrack built: -14 LUFS"
+  },
+  "checks": {
+   "state": "done",
+   "at": "2026-11-19T23:04:33.190Z",
+   "inputs": "143c3c566f09a6",
+   "detail": "preflight PASS; library intact"
+  }
+ },
+ "approval": {
+  "scriptHash": "0f5a662b6e245a",
+  "chars": 1840,
+  "at": "2026-11-19T23:01:35.400Z",
+  "by": "the owner, in the conversation"
+ }
+}

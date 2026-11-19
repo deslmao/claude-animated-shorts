@@ -1,0 +1,90 @@
+{
+ "hash": "0352b7cb63f5f3",
+ "text": "If every speaker in town heard me, I could end it. All of it.",
+ "voice": "nvNova",
+ "lead": 0,
+ "end": 3.715,
+ "dur": 3.761633,
+ "words": [
+  {
+   "w": "If",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "every",
+   "t0": 0.232,
+   "t1": 0.476
+  },
+  {
+   "w": "speaker",
+   "t0": 0.522,
+   "t1": 0.836
+  },
+  {
+   "w": "in",
+   "t0": 0.871,
+   "t1": 0.929
+  },
+  {
+   "w": "town",
+   "t0": 0.987,
+   "t1": 1.231
+  },
+  {
+   "w": "heard",
+   "t0": 1.289,
+   "t1": 1.498
+  },
+  {
+   "w": "me,",
+   "t0": 1.544,
+   "t1": 1.741
+  },
+  {
+   "w": "I",
+   "t0": 1.776,
+   "t1": 1.823
+  },
+  {
+   "w": "could",
+   "t0": 1.881,
+   "t1": 2.02
+  },
+  {
+   "w": "end",
+   "t0": 2.078,
+   "t1": 2.241
+  },
+  {
+   "w": "it.",
+   "t0": 2.322,
+   "t1": 2.566
+  },
+  {
+   "w": "All",
+   "t0": 2.786,
+   "t1": 2.995
+  },
+  {
+   "w": "of",
+   "t0": 3.042,
+   "t1": 3.1
+  },
+  {
+   "w": "it.",
+   "t0": 3.17,
+   "t1": 3.715
+  }
+ ],
+ "voiceId": "S9EGwlCtMF7VXtENq79v",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.97
+ },
+ "created": "2026-11-19T23:01:59.167Z"
+}

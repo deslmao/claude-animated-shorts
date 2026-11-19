@@ -1,0 +1,55 @@
+{
+ "hash": "1c8dd5512c9072",
+ "text": "Nova commands you… every one of you.",
+ "voice": "nvNovaCmd",
+ "lead": 0,
+ "end": 2.276,
+ "dur": 2.324898,
+ "words": [
+  {
+   "w": "Nova",
+   "t0": 0,
+   "t1": 0.372
+  },
+  {
+   "w": "commands",
+   "t0": 0.418,
+   "t1": 0.766
+  },
+  {
+   "w": "you…",
+   "t0": 0.813,
+   "t1": 1.068
+  },
+  {
+   "w": "every",
+   "t0": 1.161,
+   "t1": 1.405
+  },
+  {
+   "w": "one",
+   "t0": 1.463,
+   "t1": 1.579
+  },
+  {
+   "w": "of",
+   "t0": 1.602,
+   "t1": 1.66
+  },
+  {
+   "w": "you.",
+   "t0": 1.718,
+   "t1": 2.276
+  }
+ ],
+ "voiceId": "S9EGwlCtMF7VXtENq79v",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.32,
+  "similarity_boost": 0.75,
+  "style": 0.55,
+  "use_speaker_boost": true,
+  "speed": 0.92
+ },
+ "created": "2026-11-19T23:02:00.378Z"
+}

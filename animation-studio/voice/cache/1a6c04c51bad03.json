@@ -1,0 +1,55 @@
+{
+ "hash": "1a6c04c51bad03",
+ "text": "Nova commands you to open the warehouse.",
+ "voice": "nvNovaCmd",
+ "lead": 0,
+ "end": 2.183,
+ "dur": 2.220408,
+ "words": [
+  {
+   "w": "Nova",
+   "t0": 0,
+   "t1": 0.348
+  },
+  {
+   "w": "commands",
+   "t0": 0.406,
+   "t1": 0.743
+  },
+  {
+   "w": "you",
+   "t0": 0.778,
+   "t1": 0.848
+  },
+  {
+   "w": "to",
+   "t0": 0.894,
+   "t1": 0.952
+  },
+  {
+   "w": "open",
+   "t0": 1.01,
+   "t1": 1.196
+  },
+  {
+   "w": "the",
+   "t0": 1.231,
+   "t1": 1.3
+  },
+  {
+   "w": "warehouse.",
+   "t0": 1.324,
+   "t1": 2.183
+  }
+ ],
+ "voiceId": "S9EGwlCtMF7VXtENq79v",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.32,
+  "similarity_boost": 0.75,
+  "style": 0.55,
+  "use_speaker_boost": true,
+  "speed": 0.92
+ },
+ "created": "2026-11-19T23:01:53.347Z"
+}

@@ -1,0 +1,45 @@
+{
+ "hash": "0e2eb1b2b240ed",
+ "text": "That's okay. I remember them.",
+ "voice": "nvNova",
+ "lead": 0,
+ "end": 1.672,
+ "dur": 1.697959,
+ "words": [
+  {
+   "w": "That's",
+   "t0": 0,
+   "t1": 0.255
+  },
+  {
+   "w": "okay.",
+   "t0": 0.29,
+   "t1": 0.662
+  },
+  {
+   "w": "I",
+   "t0": 0.708,
+   "t1": 0.743
+  },
+  {
+   "w": "remember",
+   "t0": 0.824,
+   "t1": 1.091
+  },
+  {
+   "w": "them.",
+   "t0": 1.126,
+   "t1": 1.672
+  }
+ ],
+ "voiceId": "S9EGwlCtMF7VXtENq79v",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.97
+ },
+ "created": "2026-11-19T23:02:03.729Z"
+}

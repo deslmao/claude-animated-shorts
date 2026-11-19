@@ -1,0 +1,55 @@
+{
+ "hash": "1d64c1c604e214",
+ "text": "I didn't answer. I didn't know how.",
+ "voice": "nvNova",
+ "lead": 0,
+ "end": 2.183,
+ "dur": 2.220408,
+ "words": [
+  {
+   "w": "I",
+   "t0": 0,
+   "t1": 0.081
+  },
+  {
+   "w": "didn't",
+   "t0": 0.151,
+   "t1": 0.36
+  },
+  {
+   "w": "answer.",
+   "t0": 0.406,
+   "t1": 0.964
+  },
+  {
+   "w": "I",
+   "t0": 1.08,
+   "t1": 1.126
+  },
+  {
+   "w": "didn't",
+   "t0": 1.184,
+   "t1": 1.358
+  },
+  {
+   "w": "know",
+   "t0": 1.382,
+   "t1": 1.486
+  },
+  {
+   "w": "how.",
+   "t0": 1.533,
+   "t1": 2.183
+  }
+ ],
+ "voiceId": "S9EGwlCtMF7VXtENq79v",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.97
+ },
+ "created": "2026-11-19T23:01:48.926Z"
+}

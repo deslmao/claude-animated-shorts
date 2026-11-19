@@ -1,0 +1,100 @@
+{
+ "hash": "09e3a41179bb4f",
+ "text": "The list of Greys they were taking next. Forty names. Forty families who got to stay.",
+ "voice": "nvNova",
+ "lead": 0,
+ "end": 5.294,
+ "dur": 5.32898,
+ "words": [
+  {
+   "w": "The",
+   "t0": 0,
+   "t1": 0.139
+  },
+  {
+   "w": "list",
+   "t0": 0.197,
+   "t1": 0.372
+  },
+  {
+   "w": "of",
+   "t0": 0.418,
+   "t1": 0.464
+  },
+  {
+   "w": "Greys",
+   "t0": 0.522,
+   "t1": 0.789
+  },
+  {
+   "w": "they",
+   "t0": 0.813,
+   "t1": 0.906
+  },
+  {
+   "w": "were",
+   "t0": 0.94,
+   "t1": 1.045
+  },
+  {
+   "w": "taking",
+   "t0": 1.068,
+   "t1": 1.335
+  },
+  {
+   "w": "next.",
+   "t0": 1.393,
+   "t1": 1.904
+  },
+  {
+   "w": "Forty",
+   "t0": 2.241,
+   "t1": 2.566
+  },
+  {
+   "w": "names.",
+   "t0": 2.624,
+   "t1": 3.111
+  },
+  {
+   "w": "Forty",
+   "t0": 3.506,
+   "t1": 3.82
+  },
+  {
+   "w": "families",
+   "t0": 3.878,
+   "t1": 4.249
+  },
+  {
+   "w": "who",
+   "t0": 4.272,
+   "t1": 4.365
+  },
+  {
+   "w": "got",
+   "t0": 4.4,
+   "t1": 4.528
+  },
+  {
+   "w": "to",
+   "t0": 4.563,
+   "t1": 4.609
+  },
+  {
+   "w": "stay.",
+   "t0": 4.656,
+   "t1": 5.294
+  }
+ ],
+ "voiceId": "S9EGwlCtMF7VXtENq79v",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.97
+ },
+ "created": "2026-11-19T23:01:55.629Z"
+}

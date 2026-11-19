@@ -1,0 +1,100 @@
+{
+ "hash": "0ef45aef1367d9",
+ "text": "My mum cleans their tables twelve hours a day. She's not allowed to eat the crumbs.",
+ "voice": "nvNova",
+ "lead": 0,
+ "end": 4.365,
+ "dur": 4.414694,
+ "words": [
+  {
+   "w": "My",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "mum",
+   "t0": 0.232,
+   "t1": 0.372
+  },
+  {
+   "w": "cleans",
+   "t0": 0.441,
+   "t1": 0.697
+  },
+  {
+   "w": "their",
+   "t0": 0.731,
+   "t1": 0.871
+  },
+  {
+   "w": "tables",
+   "t0": 0.906,
+   "t1": 1.265
+  },
+  {
+   "w": "twelve",
+   "t0": 1.312,
+   "t1": 1.579
+  },
+  {
+   "w": "hours",
+   "t0": 1.614,
+   "t1": 1.811
+  },
+  {
+   "w": "a",
+   "t0": 1.846,
+   "t1": 1.881
+  },
+  {
+   "w": "day.",
+   "t0": 1.927,
+   "t1": 2.345
+  },
+  {
+   "w": "She's",
+   "t0": 2.635,
+   "t1": 2.856
+  },
+  {
+   "w": "not",
+   "t0": 2.891,
+   "t1": 2.995
+  },
+  {
+   "w": "allowed",
+   "t0": 3.03,
+   "t1": 3.262
+  },
+  {
+   "w": "to",
+   "t0": 3.286,
+   "t1": 3.332
+  },
+  {
+   "w": "eat",
+   "t0": 3.379,
+   "t1": 3.483
+  },
+  {
+   "w": "the",
+   "t0": 3.518,
+   "t1": 3.587
+  },
+  {
+   "w": "crumbs.",
+   "t0": 3.611,
+   "t1": 4.365
+  }
+ ],
+ "voiceId": "S9EGwlCtMF7VXtENq79v",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.97
+ },
+ "created": "2026-11-19T23:01:46.522Z"
+}

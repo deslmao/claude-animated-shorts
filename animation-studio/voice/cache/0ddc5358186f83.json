@@ -1,0 +1,115 @@
+{
+ "hash": "0ddc5358186f83",
+ "text": "Greys don't vote. Greys don't complain. Greys who complain… disappear. Like my dad. They took him two winters ago.",
+ "voice": "nvNova",
+ "lead": 0,
+ "end": 8.266,
+ "dur": 8.306939,
+ "words": [
+  {
+   "w": "Greys",
+   "t0": 0,
+   "t1": 0.302
+  },
+  {
+   "w": "don't",
+   "t0": 0.337,
+   "t1": 0.499
+  },
+  {
+   "w": "vote.",
+   "t0": 0.546,
+   "t1": 0.975
+  },
+  {
+   "w": "Greys",
+   "t0": 1.126,
+   "t1": 1.37
+  },
+  {
+   "w": "don't",
+   "t0": 1.405,
+   "t1": 1.544
+  },
+  {
+   "w": "complain.",
+   "t0": 1.579,
+   "t1": 2.206
+  },
+  {
+   "w": "Greys",
+   "t0": 2.543,
+   "t1": 2.81
+  },
+  {
+   "w": "who",
+   "t0": 2.833,
+   "t1": 2.914
+  },
+  {
+   "w": "complain…",
+   "t0": 2.972,
+   "t1": 3.634
+  },
+  {
+   "w": "disappear.",
+   "t0": 4.029,
+   "t1": 4.818
+  },
+  {
+   "w": "Like",
+   "t0": 5.538,
+   "t1": 5.735
+  },
+  {
+   "w": "my",
+   "t0": 5.77,
+   "t1": 5.863
+  },
+  {
+   "w": "dad.",
+   "t0": 5.933,
+   "t1": 6.339
+  },
+  {
+   "w": "They",
+   "t0": 6.676,
+   "t1": 6.838
+  },
+  {
+   "w": "took",
+   "t0": 6.873,
+   "t1": 7.012
+  },
+  {
+   "w": "him",
+   "t0": 7.036,
+   "t1": 7.117
+  },
+  {
+   "w": "two",
+   "t0": 7.163,
+   "t1": 7.291
+  },
+  {
+   "w": "winters",
+   "t0": 7.349,
+   "t1": 7.616
+  },
+  {
+   "w": "ago.",
+   "t0": 7.651,
+   "t1": 8.266
+  }
+ ],
+ "voiceId": "S9EGwlCtMF7VXtENq79v",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.97
+ },
+ "created": "2026-11-19T23:01:47.852Z"
+}

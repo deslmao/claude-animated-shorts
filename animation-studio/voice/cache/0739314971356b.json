@@ -1,0 +1,60 @@
+{
+ "hash": "0739314971356b",
+ "text": "Sorry, love… are you one of Pip's friends?",
+ "voice": "nvMum",
+ "lead": 0,
+ "end": 2.647,
+ "dur": 2.690612,
+ "words": [
+  {
+   "w": "Sorry,",
+   "t0": 0,
+   "t1": 0.325
+  },
+  {
+   "w": "love…",
+   "t0": 0.348,
+   "t1": 0.72
+  },
+  {
+   "w": "are",
+   "t0": 1.057,
+   "t1": 1.196
+  },
+  {
+   "w": "you",
+   "t0": 1.231,
+   "t1": 1.3
+  },
+  {
+   "w": "one",
+   "t0": 1.358,
+   "t1": 1.463
+  },
+  {
+   "w": "of",
+   "t0": 1.486,
+   "t1": 1.533
+  },
+  {
+   "w": "Pip's",
+   "t0": 1.579,
+   "t1": 1.811
+  },
+  {
+   "w": "friends?",
+   "t0": 1.846,
+   "t1": 2.647
+  }
+ ],
+ "voiceId": "pFZP5JQG7iQjIQuC4Bku",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0.15,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-19T23:01:56.893Z"
+}

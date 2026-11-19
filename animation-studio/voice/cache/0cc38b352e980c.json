@@ -1,0 +1,75 @@
+{
+ "hash": "0cc38b352e980c",
+ "text": "Every morning, the bread runs out before it gets to us.",
+ "voice": "nvNova",
+ "lead": 0,
+ "end": 2.972,
+ "dur": 3.004082,
+ "words": [
+  {
+   "w": "Every",
+   "t0": 0,
+   "t1": 0.267
+  },
+  {
+   "w": "morning,",
+   "t0": 0.325,
+   "t1": 0.708
+  },
+  {
+   "w": "the",
+   "t0": 0.755,
+   "t1": 0.848
+  },
+  {
+   "w": "bread",
+   "t0": 0.906,
+   "t1": 1.091
+  },
+  {
+   "w": "runs",
+   "t0": 1.149,
+   "t1": 1.37
+  },
+  {
+   "w": "out",
+   "t0": 1.428,
+   "t1": 1.591
+  },
+  {
+   "w": "before",
+   "t0": 1.637,
+   "t1": 1.846
+  },
+  {
+   "w": "it",
+   "t0": 1.881,
+   "t1": 1.927
+  },
+  {
+   "w": "gets",
+   "t0": 1.962,
+   "t1": 2.148
+  },
+  {
+   "w": "to",
+   "t0": 2.183,
+   "t1": 2.252
+  },
+  {
+   "w": "us.",
+   "t0": 2.334,
+   "t1": 2.972
+  }
+ ],
+ "voiceId": "S9EGwlCtMF7VXtENq79v",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.97
+ },
+ "created": "2026-11-19T23:01:47.105Z"
+}

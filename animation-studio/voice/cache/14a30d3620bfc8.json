@@ -1,0 +1,45 @@
+{
+ "hash": "14a30d3620bfc8",
+ "text": "Sorry… do I know you?",
+ "voice": "nvPip",
+ "lead": 0,
+ "end": 1.625,
+ "dur": 1.671837,
+ "words": [
+  {
+   "w": "Sorry…",
+   "t0": 0,
+   "t1": 0.534
+  },
+  {
+   "w": "do",
+   "t0": 0.592,
+   "t1": 0.743
+  },
+  {
+   "w": "I",
+   "t0": 0.871,
+   "t1": 0.894
+  },
+  {
+   "w": "know",
+   "t0": 0.952,
+   "t1": 1.103
+  },
+  {
+   "w": "you?",
+   "t0": 1.149,
+   "t1": 1.625
+  }
+ ],
+ "voiceId": "nUX4UWK0Tf1qh5zvFZWR",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0.1,
+  "use_speaker_boost": true,
+  "speed": 0.92
+ },
+ "created": "2026-11-19T23:02:02.032Z"
+}

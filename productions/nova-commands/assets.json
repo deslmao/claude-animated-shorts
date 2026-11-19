@@ -1,0 +1,82 @@
+{
+ "reused": 60,
+ "missing": [],
+ "byKind": {
+  "character": [
+   "nova",
+   "pip",
+   "pipYellow",
+   "novaMum",
+   "novaDad",
+   "kai",
+   "blueGuard",
+   "blueOfficer",
+   "blueMan",
+   "blueWoman",
+   "blueKid",
+   "grey1",
+   "grey2",
+   "grey3"
+  ],
+  "set": [
+   "novaStreet",
+   "blueHall",
+   "novaHome",
+   "novaStreetDay",
+   "novaHomeDay",
+   "novaTower",
+   "novaStreetFree"
+  ],
+  "camera": [
+   "at"
+  ],
+  "light": [
+   "night",
+   "interior",
+   "day",
+   "interiorCool",
+   "golden"
+  ],
+  "ambience": [
+   "elb_river_rain",
+   "amb_room",
+   "elb_rain_window",
+   "amb_city_night",
+   "elb_kitchen_day",
+   "elb_house_night",
+   "amb_city_day"
+  ],
+  "prop": [
+   "rain",
+   "novaInsert",
+   "breadShutter"
+  ],
+  "sfx": [
+   "el_thunder",
+   "el_hit_sub",
+   "el_sting_strings",
+   "clink",
+   "metal_groan",
+   "el_hit_boom",
+   "el_sit_up",
+   "el_backdoor",
+   "fire_roar",
+   "musicbox_note",
+   "el_feet_landing",
+   "el_riser_long",
+   "crowd_cheer",
+   "el_riser_short"
+  ],
+  "act": [
+   "angry",
+   "scared",
+   "neutral",
+   "sad",
+   "happy",
+   "laugh",
+   "shock",
+   "determined",
+   "relief"
+  ]
+ }
+}

@@ -1,0 +1,110 @@
+{
+ "hash": "01fdfe4857d2fc",
+ "text": "Then one morning, I woke up… and my voice felt different. Heavy. Like thunder hiding in my throat.",
+ "voice": "nvNova",
+ "lead": 0,
+ "end": 7.059,
+ "dur": 7.105306,
+ "words": [
+  {
+   "w": "Then",
+   "t0": 0,
+   "t1": 0.244
+  },
+  {
+   "w": "one",
+   "t0": 0.325,
+   "t1": 0.499
+  },
+  {
+   "w": "morning,",
+   "t0": 0.546,
+   "t1": 1.103
+  },
+  {
+   "w": "I",
+   "t0": 1.358,
+   "t1": 1.416
+  },
+  {
+   "w": "woke",
+   "t0": 1.498,
+   "t1": 1.718
+  },
+  {
+   "w": "up…",
+   "t0": 1.765,
+   "t1": 2.171
+  },
+  {
+   "w": "and",
+   "t0": 2.566,
+   "t1": 2.694
+  },
+  {
+   "w": "my",
+   "t0": 2.74,
+   "t1": 2.81
+  },
+  {
+   "w": "voice",
+   "t0": 2.879,
+   "t1": 3.1
+  },
+  {
+   "w": "felt",
+   "t0": 3.135,
+   "t1": 3.297
+  },
+  {
+   "w": "different.",
+   "t0": 3.332,
+   "t1": 3.855
+  },
+  {
+   "w": "Heavy.",
+   "t0": 4.377,
+   "t1": 4.934
+  },
+  {
+   "w": "Like",
+   "t0": 5.016,
+   "t1": 5.224
+  },
+  {
+   "w": "thunder",
+   "t0": 5.283,
+   "t1": 5.677
+  },
+  {
+   "w": "hiding",
+   "t0": 5.759,
+   "t1": 6.06
+  },
+  {
+   "w": "in",
+   "t0": 6.095,
+   "t1": 6.142
+  },
+  {
+   "w": "my",
+   "t0": 6.177,
+   "t1": 6.246
+  },
+  {
+   "w": "throat.",
+   "t0": 6.304,
+   "t1": 7.059
+  }
+ ],
+ "voiceId": "S9EGwlCtMF7VXtENq79v",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.97
+ },
+ "created": "2026-11-19T23:01:49.973Z"
+}

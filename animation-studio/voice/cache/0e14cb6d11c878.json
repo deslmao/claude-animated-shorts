@@ -1,0 +1,105 @@
+{
+ "hash": "0e14cb6d11c878",
+ "text": "That was the first time I used it. I didn't know yet what it would cost me.",
+ "voice": "nvNova",
+ "lead": 0,
+ "end": 3.947,
+ "dur": 3.996735,
+ "words": [
+  {
+   "w": "That",
+   "t0": 0,
+   "t1": 0.197
+  },
+  {
+   "w": "was",
+   "t0": 0.221,
+   "t1": 0.313
+  },
+  {
+   "w": "the",
+   "t0": 0.36,
+   "t1": 0.43
+  },
+  {
+   "w": "first",
+   "t0": 0.476,
+   "t1": 0.708
+  },
+  {
+   "w": "time",
+   "t0": 0.731,
+   "t1": 0.894
+  },
+  {
+   "w": "I",
+   "t0": 0.929,
+   "t1": 0.952
+  },
+  {
+   "w": "used",
+   "t0": 1.045,
+   "t1": 1.277
+  },
+  {
+   "w": "it.",
+   "t0": 1.335,
+   "t1": 1.637
+  },
+  {
+   "w": "I",
+   "t0": 2.032,
+   "t1": 2.078
+  },
+  {
+   "w": "didn't",
+   "t0": 2.148,
+   "t1": 2.334
+  },
+  {
+   "w": "know",
+   "t0": 2.368,
+   "t1": 2.473
+  },
+  {
+   "w": "yet",
+   "t0": 2.543,
+   "t1": 2.682
+  },
+  {
+   "w": "what",
+   "t0": 2.717,
+   "t1": 2.821
+  },
+  {
+   "w": "it",
+   "t0": 2.856,
+   "t1": 2.902
+  },
+  {
+   "w": "would",
+   "t0": 2.926,
+   "t1": 3.042
+  },
+  {
+   "w": "cost",
+   "t0": 3.088,
+   "t1": 3.32
+  },
+  {
+   "w": "me.",
+   "t0": 3.379,
+   "t1": 3.947
+  }
+ ],
+ "voiceId": "S9EGwlCtMF7VXtENq79v",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.97
+ },
+ "created": "2026-11-19T23:01:43.706Z"
+}

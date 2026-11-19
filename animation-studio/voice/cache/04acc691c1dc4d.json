@@ -1,0 +1,105 @@
+{
+ "hash": "04acc691c1dc4d",
+ "text": "My best friend Kai saw me do it. The next morning, he walked past me at school.",
+ "voice": "nvNova",
+ "lead": 0,
+ "end": 4.923,
+ "dur": 4.963265,
+ "words": [
+  {
+   "w": "My",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "best",
+   "t0": 0.221,
+   "t1": 0.395
+  },
+  {
+   "w": "friend",
+   "t0": 0.43,
+   "t1": 0.604
+  },
+  {
+   "w": "Kai",
+   "t0": 0.662,
+   "t1": 0.94
+  },
+  {
+   "w": "saw",
+   "t0": 1.022,
+   "t1": 1.184
+  },
+  {
+   "w": "me",
+   "t0": 1.231,
+   "t1": 1.312
+  },
+  {
+   "w": "do",
+   "t0": 1.358,
+   "t1": 1.451
+  },
+  {
+   "w": "it.",
+   "t0": 1.533,
+   "t1": 1.823
+  },
+  {
+   "w": "The",
+   "t0": 2.45,
+   "t1": 2.577
+  },
+  {
+   "w": "next",
+   "t0": 2.624,
+   "t1": 2.821
+  },
+  {
+   "w": "morning,",
+   "t0": 2.879,
+   "t1": 3.274
+  },
+  {
+   "w": "he",
+   "t0": 3.32,
+   "t1": 3.402
+  },
+  {
+   "w": "walked",
+   "t0": 3.46,
+   "t1": 3.704
+  },
+  {
+   "w": "past",
+   "t0": 3.75,
+   "t1": 3.982
+  },
+  {
+   "w": "me",
+   "t0": 4.029,
+   "t1": 4.098
+  },
+  {
+   "w": "at",
+   "t0": 4.133,
+   "t1": 4.203
+  },
+  {
+   "w": "school.",
+   "t0": 4.249,
+   "t1": 4.923
+  }
+ ],
+ "voiceId": "S9EGwlCtMF7VXtENq79v",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.97
+ },
+ "created": "2026-11-19T23:01:56.359Z"
+}

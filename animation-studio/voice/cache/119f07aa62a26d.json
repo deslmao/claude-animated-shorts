@@ -1,0 +1,45 @@
+{
+ "hash": "119f07aa62a26d",
+ "text": "Promise you'll never forget me.",
+ "voice": "nvPip",
+ "lead": 0,
+ "end": 1.858,
+ "dur": 1.906939,
+ "words": [
+  {
+   "w": "Promise",
+   "t0": 0,
+   "t1": 0.453
+  },
+  {
+   "w": "you'll",
+   "t0": 0.488,
+   "t1": 0.685
+  },
+  {
+   "w": "never",
+   "t0": 0.72,
+   "t1": 0.906
+  },
+  {
+   "w": "forget",
+   "t0": 0.987,
+   "t1": 1.289
+  },
+  {
+   "w": "me.",
+   "t0": 1.37,
+   "t1": 1.858
+  }
+ ],
+ "voiceId": "nUX4UWK0Tf1qh5zvFZWR",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0.1,
+  "use_speaker_boost": true,
+  "speed": 0.92
+ },
+ "created": "2026-11-19T23:01:52.291Z"
+}

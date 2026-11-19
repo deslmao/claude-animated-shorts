@@ -1,0 +1,95 @@
+{
+ "hash": "13818696942c80",
+ "text": "In my town, there are two kinds of people. The Blues… and us. The Greys.",
+ "voice": "nvNova",
+ "lead": 0,
+ "end": 5.294,
+ "dur": 5.32898,
+ "words": [
+  {
+   "w": "In",
+   "t0": 0,
+   "t1": 0.139
+  },
+  {
+   "w": "my",
+   "t0": 0.197,
+   "t1": 0.337
+  },
+  {
+   "w": "town,",
+   "t0": 0.418,
+   "t1": 0.604
+  },
+  {
+   "w": "there",
+   "t0": 0.627,
+   "t1": 0.755
+  },
+  {
+   "w": "are",
+   "t0": 0.789,
+   "t1": 0.882
+  },
+  {
+   "w": "two",
+   "t0": 0.906,
+   "t1": 1.057
+  },
+  {
+   "w": "kinds",
+   "t0": 1.126,
+   "t1": 1.347
+  },
+  {
+   "w": "of",
+   "t0": 1.37,
+   "t1": 1.428
+  },
+  {
+   "w": "people.",
+   "t0": 1.474,
+   "t1": 1.985
+  },
+  {
+   "w": "The",
+   "t0": 2.276,
+   "t1": 2.392
+  },
+  {
+   "w": "Blues…",
+   "t0": 2.45,
+   "t1": 3.042
+  },
+  {
+   "w": "and",
+   "t0": 3.262,
+   "t1": 3.425
+  },
+  {
+   "w": "us.",
+   "t0": 3.518,
+   "t1": 4.04
+  },
+  {
+   "w": "The",
+   "t0": 4.331,
+   "t1": 4.447
+  },
+  {
+   "w": "Greys.",
+   "t0": 4.505,
+   "t1": 5.294
+  }
+ ],
+ "voiceId": "S9EGwlCtMF7VXtENq79v",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.97
+ },
+ "created": "2026-11-19T23:01:44.476Z"
+}

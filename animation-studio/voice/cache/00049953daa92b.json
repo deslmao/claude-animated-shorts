@@ -1,0 +1,60 @@
+{
+ "hash": "00049953daa92b",
+ "text": "Nova commands you to give them the bread.",
+ "voice": "nvNovaCmd",
+ "lead": 0,
+ "end": 2.09,
+ "dur": 2.115918,
+ "words": [
+  {
+   "w": "Nova",
+   "t0": 0,
+   "t1": 0.325
+  },
+  {
+   "w": "commands",
+   "t0": 0.372,
+   "t1": 0.697
+  },
+  {
+   "w": "you",
+   "t0": 0.72,
+   "t1": 0.789
+  },
+  {
+   "w": "to",
+   "t0": 0.836,
+   "t1": 0.882
+  },
+  {
+   "w": "give",
+   "t0": 0.929,
+   "t1": 1.08
+  },
+  {
+   "w": "them",
+   "t0": 1.103,
+   "t1": 1.219
+  },
+  {
+   "w": "the",
+   "t0": 1.265,
+   "t1": 1.335
+  },
+  {
+   "w": "bread.",
+   "t0": 1.37,
+   "t1": 2.09
+  }
+ ],
+ "voiceId": "S9EGwlCtMF7VXtENq79v",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.32,
+  "similarity_boost": 0.75,
+  "style": 0.55,
+  "use_speaker_boost": true,
+  "speed": 0.92
+ },
+ "created": "2026-11-19T23:01:50.508Z"
+}

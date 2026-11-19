@@ -1,0 +1,70 @@
+{
+ "hash": "08aad505ee6fd2",
+ "text": "And then they forget me. Like I was never there.",
+ "voice": "nvNova",
+ "lead": 0,
+ "end": 2.647,
+ "dur": 2.690612,
+ "words": [
+  {
+   "w": "And",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "then",
+   "t0": 0.209,
+   "t1": 0.337
+  },
+  {
+   "w": "they",
+   "t0": 0.372,
+   "t1": 0.476
+  },
+  {
+   "w": "forget",
+   "t0": 0.546,
+   "t1": 0.824
+  },
+  {
+   "w": "me.",
+   "t0": 0.882,
+   "t1": 1.219
+  },
+  {
+   "w": "Like",
+   "t0": 1.335,
+   "t1": 1.521
+  },
+  {
+   "w": "I",
+   "t0": 1.579,
+   "t1": 1.614
+  },
+  {
+   "w": "was",
+   "t0": 1.683,
+   "t1": 1.788
+  },
+  {
+   "w": "never",
+   "t0": 1.834,
+   "t1": 1.997
+  },
+  {
+   "w": "there.",
+   "t0": 2.032,
+   "t1": 2.647
+  }
+ ],
+ "voiceId": "S9EGwlCtMF7VXtENq79v",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.97
+ },
+ "created": "2026-11-19T23:01:51.771Z"
+}

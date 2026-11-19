@@ -1,0 +1,95 @@
+{
+ "hash": "15fca37967b045",
+ "text": "When I say my name, and a command, anyone who hears it has to obey.",
+ "voice": "nvNova",
+ "lead": 0,
+ "end": 4.505,
+ "dur": 4.545306,
+ "words": [
+  {
+   "w": "When",
+   "t0": 0,
+   "t1": 0.197
+  },
+  {
+   "w": "I",
+   "t0": 0.244,
+   "t1": 0.267
+  },
+  {
+   "w": "say",
+   "t0": 0.325,
+   "t1": 0.476
+  },
+  {
+   "w": "my",
+   "t0": 0.534,
+   "t1": 0.615
+  },
+  {
+   "w": "name,",
+   "t0": 0.697,
+   "t1": 1.068
+  },
+  {
+   "w": "and",
+   "t0": 1.242,
+   "t1": 1.393
+  },
+  {
+   "w": "a",
+   "t0": 1.428,
+   "t1": 1.451
+  },
+  {
+   "w": "command,",
+   "t0": 1.498,
+   "t1": 2.078
+  },
+  {
+   "w": "anyone",
+   "t0": 2.473,
+   "t1": 2.833
+  },
+  {
+   "w": "who",
+   "t0": 2.856,
+   "t1": 2.949
+  },
+  {
+   "w": "hears",
+   "t0": 3.019,
+   "t1": 3.251
+  },
+  {
+   "w": "it",
+   "t0": 3.309,
+   "t1": 3.413
+  },
+  {
+   "w": "has",
+   "t0": 3.483,
+   "t1": 3.634
+  },
+  {
+   "w": "to",
+   "t0": 3.68,
+   "t1": 3.738
+  },
+  {
+   "w": "obey.",
+   "t0": 3.808,
+   "t1": 4.505
+  }
+ ],
+ "voiceId": "S9EGwlCtMF7VXtENq79v",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.97
+ },
+ "created": "2026-11-19T23:01:51.201Z"
+}

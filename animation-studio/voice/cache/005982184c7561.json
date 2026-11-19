@@ -1,0 +1,95 @@
+{
+ "hash": "005982184c7561",
+ "text": "We have a grey band on our wrist, and a number instead of a name.",
+ "voice": "nvNova",
+ "lead": 0,
+ "end": 3.576,
+ "dur": 3.604898,
+ "words": [
+  {
+   "w": "We",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "have",
+   "t0": 0.197,
+   "t1": 0.348
+  },
+  {
+   "w": "a",
+   "t0": 0.372,
+   "t1": 0.395
+  },
+  {
+   "w": "grey",
+   "t0": 0.453,
+   "t1": 0.662
+  },
+  {
+   "w": "band",
+   "t0": 0.72,
+   "t1": 0.917
+  },
+  {
+   "w": "on",
+   "t0": 0.975,
+   "t1": 1.033
+  },
+  {
+   "w": "our",
+   "t0": 1.08,
+   "t1": 1.161
+  },
+  {
+   "w": "wrist,",
+   "t0": 1.196,
+   "t1": 1.637
+  },
+  {
+   "w": "and",
+   "t0": 1.974,
+   "t1": 2.113
+  },
+  {
+   "w": "a",
+   "t0": 2.159,
+   "t1": 2.183
+  },
+  {
+   "w": "number",
+   "t0": 2.252,
+   "t1": 2.485
+  },
+  {
+   "w": "instead",
+   "t0": 2.519,
+   "t1": 2.775
+  },
+  {
+   "w": "of",
+   "t0": 2.798,
+   "t1": 2.844
+  },
+  {
+   "w": "a",
+   "t0": 2.891,
+   "t1": 2.914
+  },
+  {
+   "w": "name.",
+   "t0": 2.972,
+   "t1": 3.576
+  }
+ ],
+ "voiceId": "S9EGwlCtMF7VXtENq79v",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.97
+ },
+ "created": "2026-11-19T23:01:45.819Z"
+}

@@ -1,0 +1,80 @@
+{
+ "hash": "0692d0312149bd",
+ "text": "I promised. I never thought it would be the other way round.",
+ "voice": "nvNova",
+ "lead": 0,
+ "end": 3.204,
+ "dur": 3.239184,
+ "words": [
+  {
+   "w": "I",
+   "t0": 0,
+   "t1": 0.093
+  },
+  {
+   "w": "promised.",
+   "t0": 0.186,
+   "t1": 0.848
+  },
+  {
+   "w": "I",
+   "t0": 1.103,
+   "t1": 1.149
+  },
+  {
+   "w": "never",
+   "t0": 1.242,
+   "t1": 1.416
+  },
+  {
+   "w": "thought",
+   "t0": 1.451,
+   "t1": 1.649
+  },
+  {
+   "w": "it",
+   "t0": 1.683,
+   "t1": 1.73
+  },
+  {
+   "w": "would",
+   "t0": 1.753,
+   "t1": 1.869
+  },
+  {
+   "w": "be",
+   "t0": 1.892,
+   "t1": 1.962
+  },
+  {
+   "w": "the",
+   "t0": 1.985,
+   "t1": 2.055
+  },
+  {
+   "w": "other",
+   "t0": 2.101,
+   "t1": 2.276
+  },
+  {
+   "w": "way",
+   "t0": 2.322,
+   "t1": 2.426
+  },
+  {
+   "w": "round.",
+   "t0": 2.496,
+   "t1": 3.204
+  }
+ ],
+ "voiceId": "S9EGwlCtMF7VXtENq79v",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.97
+ },
+ "created": "2026-11-19T23:01:52.781Z"
+}

@@ -1,0 +1,80 @@
+{
+ "hash": "0ba1e7ad59eb2a",
+ "text": "Open the gates. Share everything. And never call anyone a Grey again.",
+ "voice": "nvNovaCmd",
+ "lead": 0,
+ "end": 4.644,
+ "dur": 4.675918,
+ "words": [
+  {
+   "w": "Open",
+   "t0": 0,
+   "t1": 0.302
+  },
+  {
+   "w": "the",
+   "t0": 0.348,
+   "t1": 0.418
+  },
+  {
+   "w": "gates.",
+   "t0": 0.453,
+   "t1": 0.987
+  },
+  {
+   "w": "Share",
+   "t0": 1.126,
+   "t1": 1.416
+  },
+  {
+   "w": "everything.",
+   "t0": 1.498,
+   "t1": 2.241
+  },
+  {
+   "w": "And",
+   "t0": 2.473,
+   "t1": 2.624
+  },
+  {
+   "w": "never",
+   "t0": 2.717,
+   "t1": 2.914
+  },
+  {
+   "w": "call",
+   "t0": 2.961,
+   "t1": 3.123
+  },
+  {
+   "w": "anyone",
+   "t0": 3.216,
+   "t1": 3.564
+  },
+  {
+   "w": "a",
+   "t0": 3.587,
+   "t1": 3.611
+  },
+  {
+   "w": "Grey",
+   "t0": 3.669,
+   "t1": 3.878
+  },
+  {
+   "w": "again.",
+   "t0": 3.924,
+   "t1": 4.644
+  }
+ ],
+ "voiceId": "S9EGwlCtMF7VXtENq79v",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.32,
+  "similarity_boost": 0.75,
+  "style": 0.55,
+  "use_speaker_boost": true,
+  "speed": 0.92
+ },
+ "created": "2026-11-19T23:02:01.096Z"
+}

@@ -1,0 +1,85 @@
+{
+ "hash": "02eb8c42a28af5",
+ "text": "I saved my whole town. And not one of them knows my name.",
+ "voice": "nvNova",
+ "lead": 0,
+ "end": 3.344,
+ "dur": 3.369796,
+ "words": [
+  {
+   "w": "I",
+   "t0": 0,
+   "t1": 0.116
+  },
+  {
+   "w": "saved",
+   "t0": 0.232,
+   "t1": 0.499
+  },
+  {
+   "w": "my",
+   "t0": 0.546,
+   "t1": 0.627
+  },
+  {
+   "w": "whole",
+   "t0": 0.673,
+   "t1": 0.871
+  },
+  {
+   "w": "town.",
+   "t0": 0.906,
+   "t1": 1.37
+  },
+  {
+   "w": "And",
+   "t0": 1.707,
+   "t1": 1.823
+  },
+  {
+   "w": "not",
+   "t0": 1.869,
+   "t1": 1.962
+  },
+  {
+   "w": "one",
+   "t0": 2.009,
+   "t1": 2.125
+  },
+  {
+   "w": "of",
+   "t0": 2.159,
+   "t1": 2.206
+  },
+  {
+   "w": "them",
+   "t0": 2.229,
+   "t1": 2.334
+  },
+  {
+   "w": "knows",
+   "t0": 2.38,
+   "t1": 2.554
+  },
+  {
+   "w": "my",
+   "t0": 2.601,
+   "t1": 2.682
+  },
+  {
+   "w": "name.",
+   "t0": 2.752,
+   "t1": 3.344
+  }
+ ],
+ "voiceId": "S9EGwlCtMF7VXtENq79v",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.97
+ },
+ "created": "2026-11-19T23:02:03.185Z"
+}

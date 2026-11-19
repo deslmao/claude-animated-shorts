@@ -1,0 +1,50 @@
+{
+ "hash": "16834004b8237c",
+ "text": "A hundred families ate that night.",
+ "voice": "nvNova",
+ "lead": 0,
+ "end": 1.997,
+ "dur": 2.037551,
+ "words": [
+  {
+   "w": "A",
+   "t0": 0,
+   "t1": 0.104
+  },
+  {
+   "w": "hundred",
+   "t0": 0.186,
+   "t1": 0.464
+  },
+  {
+   "w": "families",
+   "t0": 0.522,
+   "t1": 0.882
+  },
+  {
+   "w": "ate",
+   "t0": 0.952,
+   "t1": 1.161
+  },
+  {
+   "w": "that",
+   "t0": 1.196,
+   "t1": 1.335
+  },
+  {
+   "w": "night.",
+   "t0": 1.393,
+   "t1": 1.997
+  }
+ ],
+ "voiceId": "S9EGwlCtMF7VXtENq79v",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.97
+ },
+ "created": "2026-11-19T23:01:54.332Z"
+}

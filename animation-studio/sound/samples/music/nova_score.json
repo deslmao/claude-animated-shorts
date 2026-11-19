@@ -1,0 +1,141 @@
+{
+ "composition_plan": {
+  "positive_global_styles": [
+   "emotional cinematic film score",
+   "orchestral",
+   "instrumental",
+   "a simple, sad, memorable piano motif",
+   "strings",
+   "dystopian atmosphere"
+  ],
+  "negative_global_styles": [
+   "vocals",
+   "singing",
+   "lyrics",
+   "pop",
+   "EDM",
+   "drum kit",
+   "rock guitar",
+   "comedy"
+  ],
+  "sections": [
+   {
+    "section_name": "cold open",
+    "positive_local_styles": [
+     "a sudden deep cinematic impact at the very start",
+     "a held dissonant string chord",
+     "tense, dark, rain"
+    ],
+    "negative_local_styles": [
+     "melody",
+     "happy"
+    ],
+    "duration_ms": 7600,
+    "lines": []
+   },
+   {
+    "section_name": "my town",
+    "positive_local_styles": [
+     "sad and slow",
+     "a lonely solo cello with soft piano playing the main motif",
+     "quiet poverty, cold grey streets",
+     "sparse and gentle"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "loud",
+     "hopeful"
+    ],
+    "duration_ms": 33300,
+    "lines": []
+   },
+   {
+    "section_name": "the morning",
+    "positive_local_styles": [
+     "mysterious awakening",
+     "shimmering high strings and a soft pulse",
+     "hope starting to rise",
+     "the main motif on celesta"
+    ],
+    "negative_local_styles": [
+     "loud drums",
+     "sad"
+    ],
+    "duration_ms": 21600,
+    "lines": []
+   },
+   {
+    "section_name": "fighting back",
+    "positive_local_styles": [
+     "determined and building",
+     "pulsing low strings and soft cinematic percussion",
+     "momentum, small victories"
+    ],
+    "negative_local_styles": [
+     "calm",
+     "comedy"
+    ],
+    "duration_ms": 16500,
+    "lines": []
+   },
+   {
+    "section_name": "the cost",
+    "positive_local_styles": [
+     "heartbreaking",
+     "the percussion stops",
+     "solo piano playing the main motif slowly",
+     "soft sustained strings, grief"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "loud"
+    ],
+    "duration_ms": 15100,
+    "lines": []
+   },
+   {
+    "section_name": "the tower",
+    "positive_local_styles": [
+     "rising tension",
+     "building strings and deep drums",
+     "a long crescendo toward a huge climax"
+    ],
+    "negative_local_styles": [
+     "calm",
+     "soft ending"
+    ],
+    "duration_ms": 14800,
+    "lines": []
+   },
+   {
+    "section_name": "freedom",
+    "positive_local_styles": [
+     "a triumphant, emotional orchestral swell",
+     "full strings and brass",
+     "bright and liberating"
+    ],
+    "negative_local_styles": [
+     "sad",
+     "dark"
+    ],
+    "duration_ms": 6700,
+    "lines": []
+   },
+   {
+    "section_name": "ending",
+    "positive_local_styles": [
+     "bittersweet",
+     "solo piano playing the main motif, slow and tender",
+     "soft strings fading to silence at the end"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "loud"
+    ],
+    "duration_ms": 12500,
+    "lines": []
+   }
+  ]
+ },
+ "model_id": "music_v1"
+}
