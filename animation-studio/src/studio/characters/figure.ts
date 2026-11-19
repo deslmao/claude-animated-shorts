@@ -62,9 +62,9 @@ export type Expr =
   | "neutral" | "stern" | "grin" | "laugh" | "whistle" | "nervous" | "shock" | "relief" | "relief_open" | "dazed" | "pained"
   | "smile" | "smile_closed" | "lick"
   | "thinking" | "confused" | "angry" | "sad" | "suspicious" | "excited" | "scared" | "sleepy" | "blank" | "proud" | "disgusted"
-  | "determined" | "wink" | "talk" | "talk_wide" | "embarrassed" | "trance";
+  | "determined" | "wink" | "talk" | "talk_wide" | "embarrassed" | "trance" | "talk_sad" | "talk_sad_wide";
 type Eye3 = EyeK | "wide" | "pin" | "angry" | "sad" | "up" | "closed";
-type Mouth3 = MouthK | "frownDeep" | "grit" | "side" | "yawn" | "zig" | "talkA" | "talkB" | "smug" | "openSmile" | "tongue" | "flat";
+type Mouth3 = MouthK | "frownDeep" | "grit" | "side" | "yawn" | "zig" | "talkA" | "talkB" | "smug" | "openSmile" | "tongue" | "flat" | "talkSadA" | "talkSadB";
 /** eyes [back, front]; brows per eye [inner, outer] offsets in u (+ = down); look = gaze [x, y]; sweat drop */
 type FaceDef = { eye: [Eye3, Eye3]; brow: [[number, number], [number, number]]; mouth: Mouth3; look?: [number, number]; sweat?: boolean };
 const B = (i: number, o: number): [[number, number], [number, number]] => [[i, o], [i, o]];
@@ -103,6 +103,9 @@ export const FACES: Record<Expr, FaceDef> = {
   embarrassed: { eye: ["happy", "happy"], brow: B(-3, 3), mouth: "wave", sweat: true },
   /** a child speaking in his sleep (What Ollie Says at 3 A.M.): eyes shut, level brows, a flat mouth */
   trance: { eye: ["closed", "closed"], brow: B(0, 0), mouth: "flat" },
+  /** grief / fear while speaking (opt-in, ActorSpec.sadTalk): the open mouth turned down, never a smile */
+  talk_sad: { eye: ["dot", "dot"], brow: B(3, -2), mouth: "talkSadA" },
+  talk_sad_wide: { eye: ["dot", "dot"], brow: B(3, -2), mouth: "talkSadB" },
 };
 export const EXPRESSIONS = Object.keys(FACES) as Expr[];
 /** a face, or "<face>|<talking face>" (an actor with `keepFace` speaking): the face's eyes and brows with the talking
@@ -142,6 +145,9 @@ const mouth3 = (p: Pen, kind: Mouth3, mx: number, my: number, u: number, k = 1) 
     case "zig": { const s: P2[] = []; for (let i = 0; i <= 6; i++) s.push([mx - 9 * u * k + i * 3 * u * k, my + (i % 2 ? -2.2 : 2.2) * u]); p.stroke(s, 3.2 * u); break; }
     case "talkA": p.ell(mx, my - u, 7 * u * k, 6 * u, MOUTH, 0, 0, 180); p.ell(mx + u, my + 2.6 * u, 3 * u * k, 1.8 * u, TONGUE, 0); p.ell(mx, my - u, 7 * u * k, 6 * u, null, 3 * u, 0, 180); break;
     case "talkB": dmouth(p, mx, my - 2 * u, 10 * u * k, 10 * u, u, true); break;
+    // the talking mouths turned down (an arch open at the bottom edge, and a small dropped "o"): grief, fear
+    case "talkSadA": p.ell(mx, my + 3 * u, 7 * u * k, 5.5 * u, MOUTH, 3 * u, 180, 360); break;
+    case "talkSadB": p.ell(mx, my + 1.5 * u, 5 * u * k, 6.5 * u, MOUTH, 3 * u); break;
     case "smug": p.arc(mx + 2 * u, my - 4 * u, 8 * u * k, 4.5 * u, 15, 130, mw); p.stroke([[mx - 5.5 * u * k, my - 1.5 * u], [mx - 7.5 * u * k, my - 3 * u]], 3 * u); break;
     case "openSmile": dmouth(p, mx, my - 2 * u, 15 * u * k, 13 * u, u, true); break;
     case "tongue": {

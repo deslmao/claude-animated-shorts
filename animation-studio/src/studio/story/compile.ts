@@ -489,7 +489,10 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
         // hands keep doing what the storyboard asked for
         if (talking.gesture && base.gesture && KEEP_WHILE_TALKING.includes(base.gesture)) delete talking.gesture;
         // keepFace: the authored face stays while the mouth talks (between words its own mouth)
-        if (a.keepFace && talking.expr) { if (talking.expr === "smile") delete talking.expr; else talking.expr = `${(base.expr as Expr) ?? "neutral"}|${talking.expr}` as Expr; }
+        if (a.keepFace && talking.expr) {
+          if (talking.expr === "smile") delete talking.expr;
+          else talking.expr = `${(base.expr as Expr) ?? "neutral"}|${a.sadTalk ? (talking.expr === "talk_wide" ? "talk_sad_wide" : "talk_sad") : talking.expr}` as Expr;
+        }
         const nodTilt = (a.nod ?? []).reduce((acc: number, x) => acc + nodAt(tqa, t0 + (x as number), 2), 0);
         const shook = (a.shake ?? []).map((x) => shakeAt(tqa, t0 + (x as number))).find((x) => Object.keys(x).length) ?? {};
         return { base, held, life, talking, nodTilt, shook };
