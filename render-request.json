@@ -1,8 +1,8 @@
 {
-  "composition": "Short-ollie-2",
+  "composition": "Short-nova-commands",
   "chunks": 20,
   "preview": true,
   "audio": "",
   "publish": false,
-  "note": "Verification of the new preview workflow: a 540x960 preview of What Ollie Says Part 2 through the parallel cloud renderer (the same frames as the local preview ollie-2-preview-v2.mp4). No GitHub Release."
+  "note": "What If… You Could Command Anyone? (Nova): 540x960 preview for inspection, through the parallel cloud renderer. No GitHub Release."
 }

@@ -4,14 +4,14 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-19T23:04:06.217Z",
-   "inputs": "1711d0578b9269n",
-   "detail": "valid; 20 warning(s):\n  total length 128.1 s (Shorts target 55-65 s)\n  shot 2 (novaStreet): guard: walk 1.2-4.6 s outside the shot\n  shot 7 (novaStreetDay): prop \"breadShutter\" overlaps something already in the set at [-5.9, -4.0]\n  shot 11 (novaStreetDay): prop \"breadShutter\" overlaps something already in the set at [-5.9, -4.0]\n  shot 12 (novaStreetDay): prop \"breadShutter\" overlaps something already in the set at [-5.9, -4.0]\n  shot 16 (novaStreetDay): kai: walk 0.8-5.6 s outside the shot\n  shot 24 (novaStreetFree): dad: walk 0-2.6 s outside the shot\n  shot 26 (novaStreetFree): nova: walk 0.3-7.5 s outside the shot\n  shot 2 (novaStreet): guard fills 32 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 9 (novaHome): pip's hand (talk) is out of frame @0.2s (side): widen the shot or change the gesture\n  shot 10 (novaHomeDay): nova fills 26 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 11 (novaStreetDay): nova's hand (fists) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 17 (novaHomeDay): mum fills 25 % of the frame in the foreground @1.2s (is it hiding the action?)\n  shot 17 (novaHomeDay): mum's hand (shrug) is out of frame @1.4s (side): widen the shot or change the gesture\n  shot 18 (novaHomeDay): nova fills 74 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 20 (novaTower): nova's hand (fists) is out of frame @1.4s (side): widen the shot or change the gesture\n  shot 20 (novaTower): nova fills 26 % of the frame in the foreground @1.8s (is it hiding the action?)\n  shot 21 (novaHome): pip fills 70 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 22 (novaTower): nova fills 58 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 22 (novaTower): nova's hand (present) is out of frame @0.2s (side): widen the shot or change the gesture"
+   "at": "2026-11-19T23:15:27.834Z",
+   "inputs": "1bd0c1d09fe19dn",
+   "detail": "valid; 19 warning(s):\n  total length 128.1 s (Shorts target 55-65 s)\n  shot 2 (novaStreet): guard: walk 1.2-4.6 s outside the shot\n  shot 7 (novaStreetDay): prop \"breadShutter\" overlaps something already in the set at [-5.9, -4.0]\n  shot 11 (novaStreetDay): prop \"breadShutter\" overlaps something already in the set at [-5.9, -4.0]\n  shot 12 (novaStreetDay): prop \"breadShutter\" overlaps something already in the set at [-5.9, -4.0]\n  shot 16 (novaStreetDay): kai: walk 0.8-5.6 s outside the shot\n  shot 24 (novaStreetFree): dad: walk 0-2.6 s outside the shot\n  shot 26 (novaStreetFree): nova: walk 0.3-7.5 s outside the shot\n  shot 2 (novaStreet): guard fills 32 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 10 (novaHomeDay): nova fills 26 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 11 (novaStreetDay): nova's hand (fists) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 17 (novaHomeDay): mum fills 25 % of the frame in the foreground @1.2s (is it hiding the action?)\n  shot 17 (novaHomeDay): mum's hand (shrug) is out of frame @1.4s (side): widen the shot or change the gesture\n  shot 18 (novaHomeDay): nova fills 66 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 20 (novaTower): nova's hand (fists) is out of frame @1.4s (side): widen the shot or change the gesture\n  shot 20 (novaTower): nova fills 26 % of the frame in the foreground @1.8s (is it hiding the action?)\n  shot 21 (novaHome): pip fills 37 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 22 (novaTower): nova fills 46 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 22 (novaTower): nova's hand (present) is out of frame @0.2s (side): widen the shot or change the gesture"
   },
   "assets": {
    "state": "done",
-   "at": "2026-11-19T23:04:06.220Z",
-   "inputs": "1711d0578b9269",
+   "at": "2026-11-19T23:15:27.837Z",
+   "inputs": "1bd0c1d09fe19d",
    "detail": "60 library assets reused, none missing",
    "data": {
     "reused": 60,
@@ -98,26 +98,26 @@
   },
   "approval": {
    "state": "done",
-   "at": "2026-11-19T23:04:06.222Z",
+   "at": "2026-11-19T23:15:27.838Z",
    "inputs": "0f5a662b6e245a",
    "detail": "all narration already generated (no cost)"
   },
   "narration": {
    "state": "done",
-   "at": "2026-11-19T23:04:06.223Z",
+   "at": "2026-11-19T23:15:27.839Z",
    "inputs": "0f5a662b6e245a",
    "detail": "all lines already generated (cached)"
   },
   "sound": {
    "state": "done",
-   "at": "2026-11-19T23:04:28.118Z",
-   "inputs": "143c3c566f09a6",
+   "at": "2026-11-19T23:15:50.371Z",
+   "inputs": "1daad47fd7c2eb",
    "detail": "soundtrack built: -14 LUFS"
   },
   "checks": {
    "state": "done",
-   "at": "2026-11-19T23:04:33.190Z",
-   "inputs": "143c3c566f09a6",
+   "at": "2026-11-19T23:15:55.434Z",
+   "inputs": "1daad47fd7c2eb",
    "detail": "preflight PASS; library intact"
   }
  },

@@ -287,7 +287,7 @@ const INSERTS: Record<string, Ins> = {
   // the end card (silent): the vote
   endCard: { n: 1, draw: (g) => {
     g.fillStyle = "#05070a"; g.fillRect(0, 0, IW, IH); g.textAlign = "center";
-    g.fillStyle = "#8b93a5"; g.font = F(34); g.fillText("WHAT IF… YOU COULD COMMAND ANYONE?", IW / 2, 300);
+    g.fillStyle = "#8b93a5"; g.font = F(30); g.fillText("WHAT IF… YOU COULD", IW / 2, 260); g.fillText("COMMAND ANYONE?", IW / 2, 304);
     g.fillStyle = "#e9edf5"; g.font = F(72); g.fillText("WOULD YOU", IW / 2, 470); g.fillText("DO IT?", IW / 2, 560);
     const opt = (x: number, n: string, a: string, c: string) => { g.fillStyle = c; g.beginPath(); g.roundRect(x, 640, 300, 170, 30); g.fill(); g.fillStyle = "#ffffff"; g.font = F(80); g.fillText(n, x + 80, 755); g.font = F(46); g.fillText(a, x + 200, 745); };
     opt(90, "1", "YES", "#1f4fb8"); opt(IW - 390, "2", "NO", "#9c2a2a");
