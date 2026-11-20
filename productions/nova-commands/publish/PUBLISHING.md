@@ -1,7 +1,8 @@
 # What If… You Could Command Anyone? (Nova): publishing package (Thinkora "What If…" series, episode 1)
 
-**Video:** `Short-nova-commands.mp4` from the GitHub Actions artifact of the final render run. The link is in
-`../final/QA-REPORT.md`.
+**Video:** `Short-nova-commands.mp4` from the GitHub Actions artifact **`Short-nova-commands-run36`**
+([direct download](https://github.com/deslmao/claude-animated-shorts/actions/runs/44642921500/artifacts/14588467092);
+kept until 20 Dec 2026). QA: `../final/QA-REPORT.md` (publishable).
 - 1080 × 1920, 30 fps, 3,844 frames (2:08).
 - Upload that file only, never the preview.
 
