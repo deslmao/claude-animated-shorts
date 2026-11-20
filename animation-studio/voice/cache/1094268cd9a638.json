@@ -1,0 +1,35 @@
+{
+ "hash": "1094268cd9a638",
+ "text": "It's a promise.",
+ "voice": "tsTheo",
+ "lead": 0,
+ "end": 1.161,
+ "dur": 1.201633,
+ "words": [
+  {
+   "w": "It's",
+   "t0": 0,
+   "t1": 0.221
+  },
+  {
+   "w": "a",
+   "t0": 0.255,
+   "t1": 0.279
+  },
+  {
+   "w": "promise.",
+   "t0": 0.337,
+   "t1": 1.161
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T01:51:18.659Z"
+}

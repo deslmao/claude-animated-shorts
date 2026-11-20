@@ -1,0 +1,55 @@
+{
+ "hash": "060fa371df3294",
+ "text": "Eat something. I'll be back by sunrise.",
+ "voice": "tsMum",
+ "lead": 0,
+ "end": 2.368,
+ "dur": 2.403265,
+ "words": [
+  {
+   "w": "Eat",
+   "t0": 0,
+   "t1": 0.232
+  },
+  {
+   "w": "something.",
+   "t0": 0.29,
+   "t1": 0.743
+  },
+  {
+   "w": "I'll",
+   "t0": 0.906,
+   "t1": 1.068
+  },
+  {
+   "w": "be",
+   "t0": 1.103,
+   "t1": 1.161
+  },
+  {
+   "w": "back",
+   "t0": 1.184,
+   "t1": 1.335
+  },
+  {
+   "w": "by",
+   "t0": 1.382,
+   "t1": 1.463
+  },
+  {
+   "w": "sunrise.",
+   "t0": 1.533,
+   "t1": 2.368
+  }
+ ],
+ "voiceId": "hpp4J3VqNfWAUOO0d1Us",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0.15,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-20T01:51:07.617Z"
+}

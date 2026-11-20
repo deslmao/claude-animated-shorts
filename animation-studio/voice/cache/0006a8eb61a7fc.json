@@ -1,0 +1,105 @@
+{
+ "hash": "0006a8eb61a7fc",
+ "text": "Every job, something went wrong. Every time, I stopped it. And every time, the number got smaller.",
+ "voice": "tsTheo",
+ "lead": 0,
+ "end": 5.898,
+ "dur": 5.929796,
+ "words": [
+  {
+   "w": "Every",
+   "t0": 0,
+   "t1": 0.337
+  },
+  {
+   "w": "job,",
+   "t0": 0.395,
+   "t1": 0.755
+  },
+  {
+   "w": "something",
+   "t0": 0.789,
+   "t1": 1.173
+  },
+  {
+   "w": "went",
+   "t0": 1.231,
+   "t1": 1.393
+  },
+  {
+   "w": "wrong.",
+   "t0": 1.428,
+   "t1": 1.846
+  },
+  {
+   "w": "Every",
+   "t0": 2.055,
+   "t1": 2.345
+  },
+  {
+   "w": "time,",
+   "t0": 2.392,
+   "t1": 2.775
+  },
+  {
+   "w": "I",
+   "t0": 2.81,
+   "t1": 2.844
+  },
+  {
+   "w": "stopped",
+   "t0": 2.914,
+   "t1": 3.239
+  },
+  {
+   "w": "it.",
+   "t0": 3.297,
+   "t1": 3.483
+  },
+  {
+   "w": "And",
+   "t0": 3.692,
+   "t1": 3.855
+  },
+  {
+   "w": "every",
+   "t0": 3.936,
+   "t1": 4.191
+  },
+  {
+   "w": "time,",
+   "t0": 4.249,
+   "t1": 4.632
+  },
+  {
+   "w": "the",
+   "t0": 4.656,
+   "t1": 4.725
+  },
+  {
+   "w": "number",
+   "t0": 4.772,
+   "t1": 4.981
+  },
+  {
+   "w": "got",
+   "t0": 5.027,
+   "t1": 5.155
+  },
+  {
+   "w": "smaller.",
+   "t0": 5.201,
+   "t1": 5.898
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T01:51:19.927Z"
+}

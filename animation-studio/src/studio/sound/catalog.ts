@@ -59,6 +59,10 @@ export const AMBIENCES = {
   elb_house_night: "recorded loop: A silent house at three in the morning, faint low fridge hum downstairs, very quiet room tone, the house settling, subtle",
   elb_dawn_garden: "recorded loop: An English back garden at dawn just after rain, water dripping from leaves and gutters, a few distant birds, a river flowing gently in the distance, s",
   elb_kitchen_day: "recorded loop: A quiet family kitchen on a grey morning, faint fridge hum, a clock ticking softly, light rain outside the window, subdued",
+  elb_neon_city: "recorded loop: A dense futuristic cyberpunk city at night in heavy rain: rain on metal and puddles, a low electric hum of neon signs, distant hover traffic, crowd mu",
+  elb_roof_night: "recorded loop: A high rooftop at night above a huge futuristic city: wind, distant city hum far below, soft rain, a faint drone flying past",
+  elb_flat_rain: "recorded loop: A tiny apartment in a futuristic city at night: rain on the window, a fridge hum, muffled neon buzz and traffic outside",
+  elb_vault: "recorded loop: A high-tech corporate vault interior: a cold low electrical hum, servers whirring softly, very quiet and sterile",
 } as const;
 export type Ambience = keyof typeof AMBIENCES;
 
@@ -112,6 +116,20 @@ export const SFX = {
   el_water_rush: "recorded: A sudden strong river current surging and rushing, water pulling hard, menacing, night (4 s)",
   el_underwater: "recorded: Muffled underwater sound, bubbles and a dull current, as if heard with your head under the water (3 s)",
   el_drip_quiet: "recorded: Single water drips falling from a gutter onto a wet patio in a quiet dawn garden (3 s)",
+  el_time_stop: "recorded: Sci-fi time freeze effect: a deep sub-bass whoomp that sucks all sound away, a reversed shimmer, then dead silence with a faint high ring (2.5 s)",
+  el_time_resume: "recorded: Sci-fi time resuming: a sharp rush of air and sound slamming back in, a deep whoosh, rain and city noise returning all at once (2.0 s)",
+  el_gunshot: "recorded: A single pistol gunshot in a rainy city street at night, sharp crack with an echo off tall buildings (2.0 s)",
+  el_bullet_wall: "recorded: A bullet hitting a concrete wall, a sharp crack and chips of concrete falling (1.2 s)",
+  el_implant: "recorded: A cybernetic implant being installed: an electric whine powering up, a sharp click and crackling sparks, then a soft digital beep (3.0 s)",
+  el_counter_tick: "recorded: A single soft digital counter tick, a low electronic blip, futuristic interface (1.0 s)",
+  el_alarm: "recorded: A high-tech security alarm blaring in a vault, pulsing electronic siren, urgent (4.0 s)",
+  el_door_blast: "recorded: Heavy metal security doors blasting open, a pneumatic hiss and a slam, armoured boots rushing in (2.5 s)",
+  el_gun_cock: "recorded: A futuristic pistol being cocked and aimed, a sharp mechanical click and a rising electronic charge whine (1.0 s)",
+  el_van_door: "recorded: A van sliding door slammed shut in the rain, a heavy metallic thud (1.5 s)",
+  el_hacking: "recorded: Fast futuristic hacking sounds: rapid soft keyboard taps and digital interface beeps and chirps (3.0 s)",
+  el_heart_slow: "recorded: A single human heartbeat slowing down in silence, deep and muffled, each beat further apart (6.0 s)",
+  el_neon_buzz: "recorded: A flickering neon sign buzzing and crackling in the rain, close (3.0 s)",
+  el_siren_far: "recorded: Distant police and ambulance sirens echoing through a rainy futuristic city at night (5.0 s)",
 } as const;
 export type SfxName = keyof typeof SFX;
 

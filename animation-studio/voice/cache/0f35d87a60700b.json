@@ -1,0 +1,35 @@
+{
+ "hash": "0f35d87a60700b",
+ "text": "Lucky, I guess.",
+ "voice": "tsTheo",
+ "lead": 0,
+ "end": 1.207,
+ "dur": 1.253878,
+ "words": [
+  {
+   "w": "Lucky,",
+   "t0": 0,
+   "t1": 0.395
+  },
+  {
+   "w": "I",
+   "t0": 0.418,
+   "t1": 0.453
+  },
+  {
+   "w": "guess.",
+   "t0": 0.511,
+   "t1": 1.207
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T01:51:14.209Z"
+}

@@ -1,0 +1,85 @@
+{
+ "hash": "07fae767c22dab",
+ "text": "In her locker, I found something she was hiding. A stolen military implant.",
+ "voice": "tsTheo",
+ "lead": 0,
+ "end": 4.69,
+ "dur": 4.728163,
+ "words": [
+  {
+   "w": "In",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "her",
+   "t0": 0.197,
+   "t1": 0.279
+  },
+  {
+   "w": "locker,",
+   "t0": 0.325,
+   "t1": 0.697
+  },
+  {
+   "w": "I",
+   "t0": 0.731,
+   "t1": 0.766
+  },
+  {
+   "w": "found",
+   "t0": 0.882,
+   "t1": 1.08
+  },
+  {
+   "w": "something",
+   "t0": 1.138,
+   "t1": 1.451
+  },
+  {
+   "w": "she",
+   "t0": 1.509,
+   "t1": 1.614
+  },
+  {
+   "w": "was",
+   "t0": 1.66,
+   "t1": 1.776
+  },
+  {
+   "w": "hiding.",
+   "t0": 1.834,
+   "t1": 2.276
+  },
+  {
+   "w": "A",
+   "t0": 2.612,
+   "t1": 2.682
+  },
+  {
+   "w": "stolen",
+   "t0": 2.798,
+   "t1": 3.297
+  },
+  {
+   "w": "military",
+   "t0": 3.355,
+   "t1": 3.773
+  },
+  {
+   "w": "implant.",
+   "t0": 3.82,
+   "t1": 4.69
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T01:51:10.284Z"
+}

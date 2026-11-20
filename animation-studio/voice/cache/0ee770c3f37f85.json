@@ -1,0 +1,70 @@
+{
+ "hash": "0ee770c3f37f85",
+ "text": "The first time I used it, I saved a stranger.",
+ "voice": "tsTheo",
+ "lead": 0,
+ "end": 2.322,
+ "dur": 2.35102,
+ "words": [
+  {
+   "w": "The",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "first",
+   "t0": 0.209,
+   "t1": 0.383
+  },
+  {
+   "w": "time",
+   "t0": 0.406,
+   "t1": 0.58
+  },
+  {
+   "w": "I",
+   "t0": 0.615,
+   "t1": 0.65
+  },
+  {
+   "w": "used",
+   "t0": 0.743,
+   "t1": 0.94
+  },
+  {
+   "w": "it,",
+   "t0": 0.987,
+   "t1": 1.08
+  },
+  {
+   "w": "I",
+   "t0": 1.126,
+   "t1": 1.161
+  },
+  {
+   "w": "saved",
+   "t0": 1.231,
+   "t1": 1.451
+  },
+  {
+   "w": "a",
+   "t0": 1.486,
+   "t1": 1.509
+  },
+  {
+   "w": "stranger.",
+   "t0": 1.556,
+   "t1": 2.322
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T01:51:13.135Z"
+}

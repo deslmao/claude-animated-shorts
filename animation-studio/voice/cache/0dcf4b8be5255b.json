@@ -1,0 +1,55 @@
+{
+ "hash": "0dcf4b8be5255b",
+ "text": "Kid, whatever you're doing, keep doing it!",
+ "voice": "tsDex",
+ "lead": 0,
+ "end": 2.09,
+ "dur": 2.115918,
+ "words": [
+  {
+   "w": "Kid,",
+   "t0": 0,
+   "t1": 0.337
+  },
+  {
+   "w": "whatever",
+   "t0": 0.36,
+   "t1": 0.685
+  },
+  {
+   "w": "you're",
+   "t0": 0.72,
+   "t1": 0.859
+  },
+  {
+   "w": "doing,",
+   "t0": 0.882,
+   "t1": 1.196
+  },
+  {
+   "w": "keep",
+   "t0": 1.324,
+   "t1": 1.544
+  },
+  {
+   "w": "doing",
+   "t0": 1.614,
+   "t1": 1.834
+  },
+  {
+   "w": "it!",
+   "t0": 1.881,
+   "t1": 2.09
+  }
+ ],
+ "voiceId": "IKne3meq5aSn9XLyUdCD",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.75,
+  "style": 0.35,
+  "use_speaker_boost": true,
+  "speed": 1
+ },
+ "created": "2026-11-20T01:51:19.160Z"
+}

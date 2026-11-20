@@ -1,0 +1,35 @@
+{
+ "hash": "062b19cbcfcf37",
+ "text": "Drop it! Now!",
+ "voice": "tsGuard",
+ "lead": 0,
+ "end": 1.95,
+ "dur": 1.985306,
+ "words": [
+  {
+   "w": "Drop",
+   "t0": 0,
+   "t1": 0.348
+  },
+  {
+   "w": "it!",
+   "t0": 0.418,
+   "t1": 0.685
+  },
+  {
+   "w": "Now!",
+   "t0": 1.173,
+   "t1": 1.95
+  }
+ ],
+ "voiceId": "pNInz6obpgDQGcFmaJgB",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.35,
+  "similarity_boost": 0.75,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.05
+ },
+ "created": "2026-11-20T01:51:24.075Z"
+}

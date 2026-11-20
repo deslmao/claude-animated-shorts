@@ -68,6 +68,12 @@ export const VOICES: Record<string, VoicePreset> = {
   nvNovaCmd: { name: "Nova A - Emma Taylor", voiceId: "S9EGwlCtMF7VXtENq79v", model: MODEL, settings: { ...CHANNEL, stability: 0.32, style: 0.55, speed: 0.92 }, note: "Nova's commands: fierce, shaking, weighted" },
   nvPip: { name: "Mini - Lively Cute Little Girl", voiceId: "nUX4UWK0Tf1qh5zvFZWR", model: MODEL, settings: { ...CHANNEL, stability: 0.55, style: 0.1, speed: 0.92 }, note: "Pip, 8, Nova's little sister" },
   nvMum: { name: "Lily - Velvety Actress", voiceId: "pFZP5JQG7iQjIQuC4Bku", model: MODEL, settings: { ...CHANNEL, stability: 0.55, style: 0.15, speed: 0.95 }, note: "Nova's mum, tired and kind (one line, to a stranger)" },
+  // What If… You Could Stop Time? (productions/what-if-time): Theo narrates in the first person
+  tsTheo: { name: "Archie - English teen youth", voiceId: "kmSVBPu7loj4ayNinwWM", model: MODEL, settings: { ...CHANNEL, stability: 0.5, style: 0.25, speed: 0.98 }, note: "Theo, 17, narrating his own story: young, British, warm" },
+  tsSol: { name: "Jessica - Playful, Bright, Warm", voiceId: "cgSgspJ2msm6clMCkdW9", model: MODEL, settings: { ...CHANNEL, stability: 0.45, style: 0.3, speed: 0.98 }, note: "Sol, 17, a hacker: bright, teasing, then breaking" },
+  tsMum: { name: "Bella - Professional, Bright, Warm", voiceId: "hpp4J3VqNfWAUOO0d1Us", model: MODEL, settings: { ...CHANNEL, stability: 0.55, style: 0.15, speed: 0.95 }, note: "Theo's mum, a night-shift medic: warm, tired" },
+  tsDex: { name: "Charlie - Deep, Confident, Energetic", voiceId: "IKne3meq5aSn9XLyUdCD", model: MODEL, settings: { ...CHANNEL, stability: 0.4, style: 0.35, speed: 1.0 }, note: "Dex, the crew's big driver: loud, big-hearted" },
+  tsGuard: { name: "Adam - Dominant, Firm", voiceId: "pNInz6obpgDQGcFmaJgB", model: MODEL, settings: { ...CHANNEL, stability: 0.35, style: 0.4, speed: 1.05 }, note: "a Tower guard: a shout" },
   // The Empty Seat v2 (the voiced format): the bus 9 cast
   esYou: { name: "Alice - Clear, Engaging Educator", voiceId: "Xb7hH8MSUJpSbSDYk0k2", model: MODEL, settings: { ...CHANNEL, stability: 0.45, style: 0.2, speed: 1.0 }, note: "you, 11, on bus 9 (The Empty Seat): your lines" },
   esThought: { name: "Alice - Clear, Engaging Educator", voiceId: "Xb7hH8MSUJpSbSDYk0k2", model: MODEL, settings: { ...CHANNEL, stability: 0.6, style: 0.1, speed: 0.95 }, note: "you, 11 (The Empty Seat): your thoughts, close and quiet" },

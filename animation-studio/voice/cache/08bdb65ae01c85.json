@@ -1,0 +1,75 @@
+{
+ "hash": "08bdb65ae01c85",
+ "text": "Every second I hold it, the number drops by one day.",
+ "voice": "tsTheo",
+ "lead": 0,
+ "end": 2.833,
+ "dur": 2.873469,
+ "words": [
+  {
+   "w": "Every",
+   "t0": 0,
+   "t1": 0.29
+  },
+  {
+   "w": "second",
+   "t0": 0.337,
+   "t1": 0.627
+  },
+  {
+   "w": "I",
+   "t0": 0.673,
+   "t1": 0.697
+  },
+  {
+   "w": "hold",
+   "t0": 0.755,
+   "t1": 0.952
+  },
+  {
+   "w": "it,",
+   "t0": 0.998,
+   "t1": 1.091
+  },
+  {
+   "w": "the",
+   "t0": 1.115,
+   "t1": 1.196
+  },
+  {
+   "w": "number",
+   "t0": 1.242,
+   "t1": 1.474
+  },
+  {
+   "w": "drops",
+   "t0": 1.509,
+   "t1": 1.788
+  },
+  {
+   "w": "by",
+   "t0": 1.846,
+   "t1": 1.962
+  },
+  {
+   "w": "one",
+   "t0": 2.043,
+   "t1": 2.206
+  },
+  {
+   "w": "day.",
+   "t0": 2.241,
+   "t1": 2.833
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T01:51:12.563Z"
+}

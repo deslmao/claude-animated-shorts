@@ -1,0 +1,73 @@
+{
+ "reused": 51,
+ "missing": [],
+ "byKind": {
+  "character": [
+   "theo",
+   "sol",
+   "tsMum",
+   "dex",
+   "towerGuard",
+   "lowA",
+   "lowB",
+   "lowC"
+  ],
+  "set": [
+   "lowline",
+   "theoFlat",
+   "lowRoof",
+   "towerVault"
+  ],
+  "camera": [
+   "at"
+  ],
+  "light": [
+   "night",
+   "interiorCool"
+  ],
+  "prop": [
+   "bullet",
+   "rain",
+   "timeTint",
+   "tsInsert",
+   "van"
+  ],
+  "sfx": [
+   "el_time_stop",
+   "el_heart_slow",
+   "el_time_resume",
+   "el_siren_far",
+   "el_neon_buzz",
+   "el_hit_sub",
+   "el_van_door",
+   "el_implant",
+   "el_counter_tick",
+   "el_bullet_wall",
+   "el_hacking",
+   "musicbox_note",
+   "el_heartbeat",
+   "el_alarm",
+   "el_door_blast",
+   "el_gun_cock",
+   "el_heartbeat_fast",
+   "el_riser_long",
+   "el_hit_boom"
+  ],
+  "act": [
+   "scared",
+   "determined",
+   "neutral",
+   "sad",
+   "happy",
+   "shock",
+   "laugh",
+   "angry"
+  ],
+  "ambience": [
+   "elb_neon_city",
+   "elb_flat_rain",
+   "elb_roof_night",
+   "elb_vault"
+  ]
+ }
+}

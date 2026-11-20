@@ -1,0 +1,90 @@
+{
+ "hash": "04eda51312964f",
+ "text": "The hospital wanted a coverage card before they'd touch her. She didn't have one.",
+ "voice": "tsTheo",
+ "lead": 0,
+ "end": 4.087,
+ "dur": 4.127347,
+ "words": [
+  {
+   "w": "The",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "hospital",
+   "t0": 0.209,
+   "t1": 0.58
+  },
+  {
+   "w": "wanted",
+   "t0": 0.639,
+   "t1": 0.929
+  },
+  {
+   "w": "a",
+   "t0": 0.975,
+   "t1": 0.998
+  },
+  {
+   "w": "coverage",
+   "t0": 1.057,
+   "t1": 1.405
+  },
+  {
+   "w": "card",
+   "t0": 1.451,
+   "t1": 1.695
+  },
+  {
+   "w": "before",
+   "t0": 1.73,
+   "t1": 1.974
+  },
+  {
+   "w": "they'd",
+   "t0": 1.997,
+   "t1": 2.171
+  },
+  {
+   "w": "touch",
+   "t0": 2.194,
+   "t1": 2.438
+  },
+  {
+   "w": "her.",
+   "t0": 2.473,
+   "t1": 2.694
+  },
+  {
+   "w": "She",
+   "t0": 2.937,
+   "t1": 3.065
+  },
+  {
+   "w": "didn't",
+   "t0": 3.111,
+   "t1": 3.297
+  },
+  {
+   "w": "have",
+   "t0": 3.332,
+   "t1": 3.495
+  },
+  {
+   "w": "one.",
+   "t0": 3.553,
+   "t1": 4.087
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T01:51:09.604Z"
+}

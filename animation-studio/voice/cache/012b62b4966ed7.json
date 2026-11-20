@@ -1,0 +1,110 @@
+{
+ "hash": "012b62b4966ed7",
+ "text": "There were too many of them. To save her, I'd need to stop time for a whole minute.",
+ "voice": "tsTheo",
+ "lead": 0,
+ "end": 4.319,
+ "dur": 4.362449,
+ "words": [
+  {
+   "w": "There",
+   "t0": 0,
+   "t1": 0.209
+  },
+  {
+   "w": "were",
+   "t0": 0.232,
+   "t1": 0.348
+  },
+  {
+   "w": "too",
+   "t0": 0.383,
+   "t1": 0.522
+  },
+  {
+   "w": "many",
+   "t0": 0.592,
+   "t1": 0.801
+  },
+  {
+   "w": "of",
+   "t0": 0.848,
+   "t1": 0.894
+  },
+  {
+   "w": "them.",
+   "t0": 0.952,
+   "t1": 1.196
+  },
+  {
+   "w": "To",
+   "t0": 1.44,
+   "t1": 1.567
+  },
+  {
+   "w": "save",
+   "t0": 1.649,
+   "t1": 1.939
+  },
+  {
+   "w": "her,",
+   "t0": 1.985,
+   "t1": 2.171
+  },
+  {
+   "w": "I'd",
+   "t0": 2.218,
+   "t1": 2.357
+  },
+  {
+   "w": "need",
+   "t0": 2.392,
+   "t1": 2.554
+  },
+  {
+   "w": "to",
+   "t0": 2.589,
+   "t1": 2.635
+  },
+  {
+   "w": "stop",
+   "t0": 2.67,
+   "t1": 2.891
+  },
+  {
+   "w": "time",
+   "t0": 2.961,
+   "t1": 3.193
+  },
+  {
+   "w": "for",
+   "t0": 3.228,
+   "t1": 3.332
+  },
+  {
+   "w": "a",
+   "t0": 3.379,
+   "t1": 3.413
+  },
+  {
+   "w": "whole",
+   "t0": 3.448,
+   "t1": 3.646
+  },
+  {
+   "w": "minute.",
+   "t0": 3.68,
+   "t1": 4.319
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T01:51:25.084Z"
+}

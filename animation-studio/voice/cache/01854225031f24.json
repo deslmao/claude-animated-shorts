@@ -1,0 +1,50 @@
+{
+ "hash": "01854225031f24",
+ "text": "Squeeze my fist, and time stops.",
+ "voice": "tsTheo",
+ "lead": 0,
+ "end": 2.09,
+ "dur": 2.115918,
+ "words": [
+  {
+   "w": "Squeeze",
+   "t0": 0,
+   "t1": 0.406
+  },
+  {
+   "w": "my",
+   "t0": 0.453,
+   "t1": 0.534
+  },
+  {
+   "w": "fist,",
+   "t0": 0.604,
+   "t1": 0.882
+  },
+  {
+   "w": "and",
+   "t0": 0.906,
+   "t1": 0.998
+  },
+  {
+   "w": "time",
+   "t0": 1.045,
+   "t1": 1.254
+  },
+  {
+   "w": "stops.",
+   "t0": 1.289,
+   "t1": 2.09
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T01:51:11.987Z"
+}

@@ -1,0 +1,80 @@
+{
+ "hash": "13263d25fd0090",
+ "text": "A number lit up on my wrist. Twenty-one thousand days. Sixty years.",
+ "voice": "tsTheo",
+ "lead": 0,
+ "end": 4.69,
+ "dur": 4.728163,
+ "words": [
+  {
+   "w": "A",
+   "t0": 0,
+   "t1": 0.104
+  },
+  {
+   "w": "number",
+   "t0": 0.197,
+   "t1": 0.453
+  },
+  {
+   "w": "lit",
+   "t0": 0.499,
+   "t1": 0.65
+  },
+  {
+   "w": "up",
+   "t0": 0.697,
+   "t1": 0.766
+  },
+  {
+   "w": "on",
+   "t0": 0.824,
+   "t1": 0.871
+  },
+  {
+   "w": "my",
+   "t0": 0.906,
+   "t1": 0.987
+  },
+  {
+   "w": "wrist.",
+   "t0": 1.033,
+   "t1": 1.451
+  },
+  {
+   "w": "Twenty-one",
+   "t0": 1.695,
+   "t1": 2.345
+  },
+  {
+   "w": "thousand",
+   "t0": 2.38,
+   "t1": 2.74
+  },
+  {
+   "w": "days.",
+   "t0": 2.798,
+   "t1": 3.239
+  },
+  {
+   "w": "Sixty",
+   "t0": 3.413,
+   "t1": 3.878
+  },
+  {
+   "w": "years.",
+   "t0": 3.947,
+   "t1": 4.69
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T01:51:11.475Z"
+}

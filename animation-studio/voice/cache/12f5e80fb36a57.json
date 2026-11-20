@@ -1,0 +1,85 @@
+{
+ "hash": "12f5e80fb36a57",
+ "text": "Then stop. Promise me you'll stop. I don't want the sea without you.",
+ "voice": "tsSol",
+ "lead": 0,
+ "end": 4.319,
+ "dur": 4.362449,
+ "words": [
+  {
+   "w": "Then",
+   "t0": 0,
+   "t1": 0.197
+  },
+  {
+   "w": "stop.",
+   "t0": 0.267,
+   "t1": 0.801
+  },
+  {
+   "w": "Promise",
+   "t0": 1.138,
+   "t1": 1.474
+  },
+  {
+   "w": "me",
+   "t0": 1.509,
+   "t1": 1.567
+  },
+  {
+   "w": "you'll",
+   "t0": 1.591,
+   "t1": 1.765
+  },
+  {
+   "w": "stop.",
+   "t0": 1.8,
+   "t1": 2.299
+  },
+  {
+   "w": "I",
+   "t0": 2.694,
+   "t1": 2.74
+  },
+  {
+   "w": "don't",
+   "t0": 2.798,
+   "t1": 2.937
+  },
+  {
+   "w": "want",
+   "t0": 2.961,
+   "t1": 3.077
+  },
+  {
+   "w": "the",
+   "t0": 3.1,
+   "t1": 3.17
+  },
+  {
+   "w": "sea",
+   "t0": 3.228,
+   "t1": 3.39
+  },
+  {
+   "w": "without",
+   "t0": 3.437,
+   "t1": 3.704
+  },
+  {
+   "w": "you.",
+   "t0": 3.75,
+   "t1": 4.319
+  }
+ ],
+ "voiceId": "cgSgspJ2msm6clMCkdW9",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T01:51:21.504Z"
+}

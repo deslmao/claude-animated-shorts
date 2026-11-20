@@ -1,0 +1,80 @@
+{
+ "hash": "18d9a1ae52602b",
+ "text": "In Vantage City, the rich live in the Towers, above the smog.",
+ "voice": "tsTheo",
+ "lead": 0,
+ "end": 3.437,
+ "dur": 3.474286,
+ "words": [
+  {
+   "w": "In",
+   "t0": 0,
+   "t1": 0.139
+  },
+  {
+   "w": "Vantage",
+   "t0": 0.209,
+   "t1": 0.604
+  },
+  {
+   "w": "City,",
+   "t0": 0.639,
+   "t1": 0.975
+  },
+  {
+   "w": "the",
+   "t0": 0.998,
+   "t1": 1.068
+  },
+  {
+   "w": "rich",
+   "t0": 1.138,
+   "t1": 1.324
+  },
+  {
+   "w": "live",
+   "t0": 1.37,
+   "t1": 1.521
+  },
+  {
+   "w": "in",
+   "t0": 1.544,
+   "t1": 1.602
+  },
+  {
+   "w": "the",
+   "t0": 1.649,
+   "t1": 1.718
+  },
+  {
+   "w": "Towers,",
+   "t0": 1.753,
+   "t1": 2.229
+  },
+  {
+   "w": "above",
+   "t0": 2.264,
+   "t1": 2.589
+  },
+  {
+   "w": "the",
+   "t0": 2.624,
+   "t1": 2.694
+  },
+  {
+   "w": "smog.",
+   "t0": 2.74,
+   "t1": 3.437
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T01:51:06.326Z"
+}

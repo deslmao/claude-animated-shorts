@@ -1,0 +1,30 @@
+{
+ "hash": "1a6b411fe3793a",
+ "text": "Theo… don't.",
+ "voice": "tsSol",
+ "lead": 0,
+ "end": 1.254,
+ "dur": 1.28,
+ "words": [
+  {
+   "w": "Theo…",
+   "t0": 0,
+   "t1": 0.569
+  },
+  {
+   "w": "don't.",
+   "t0": 0.848,
+   "t1": 1.254
+  }
+ ],
+ "voiceId": "cgSgspJ2msm6clMCkdW9",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T01:51:24.562Z"
+}

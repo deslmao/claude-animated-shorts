@@ -1,0 +1,40 @@
+{
+ "hash": "14df39769eee50",
+ "text": "I put it in.",
+ "voice": "tsTheo",
+ "lead": 0,
+ "end": 1.068,
+ "dur": 1.097143,
+ "words": [
+  {
+   "w": "I",
+   "t0": 0,
+   "t1": 0.104
+  },
+  {
+   "w": "put",
+   "t0": 0.221,
+   "t1": 0.383
+  },
+  {
+   "w": "it",
+   "t0": 0.43,
+   "t1": 0.499
+  },
+  {
+   "w": "in.",
+   "t0": 0.557,
+   "t1": 1.068
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T01:51:10.762Z"
+}

@@ -1,0 +1,80 @@
+{
+ "hash": "1f4af74a04852e",
+ "text": "…How did you do that? You were over there. Then you weren't.",
+ "voice": "tsSol",
+ "lead": 0,
+ "end": 3.669,
+ "dur": 3.709388,
+ "words": [
+  {
+   "w": "…How",
+   "t0": 0,
+   "t1": 0.406
+  },
+  {
+   "w": "did",
+   "t0": 0.453,
+   "t1": 0.557
+  },
+  {
+   "w": "you",
+   "t0": 0.604,
+   "t1": 0.673
+  },
+  {
+   "w": "do",
+   "t0": 0.72,
+   "t1": 0.801
+  },
+  {
+   "w": "that?",
+   "t0": 0.859,
+   "t1": 1.231
+  },
+  {
+   "w": "You",
+   "t0": 1.753,
+   "t1": 1.892
+  },
+  {
+   "w": "were",
+   "t0": 1.927,
+   "t1": 2.055
+  },
+  {
+   "w": "over",
+   "t0": 2.101,
+   "t1": 2.299
+  },
+  {
+   "w": "there.",
+   "t0": 2.345,
+   "t1": 2.682
+  },
+  {
+   "w": "Then",
+   "t0": 2.74,
+   "t1": 2.902
+  },
+  {
+   "w": "you",
+   "t0": 2.949,
+   "t1": 3.019
+  },
+  {
+   "w": "weren't.",
+   "t0": 3.065,
+   "t1": 3.669
+  }
+ ],
+ "voiceId": "cgSgspJ2msm6clMCkdW9",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T01:51:13.712Z"
+}

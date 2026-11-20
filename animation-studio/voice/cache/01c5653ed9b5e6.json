@@ -1,0 +1,55 @@
+{
+ "hash": "01c5653ed9b5e6",
+ "text": "It's how many days I have left.",
+ "voice": "tsTheo",
+ "lead": 0,
+ "end": 1.95,
+ "dur": 1.985306,
+ "words": [
+  {
+   "w": "It's",
+   "t0": 0,
+   "t1": 0.209
+  },
+  {
+   "w": "how",
+   "t0": 0.244,
+   "t1": 0.36
+  },
+  {
+   "w": "many",
+   "t0": 0.418,
+   "t1": 0.592
+  },
+  {
+   "w": "days",
+   "t0": 0.65,
+   "t1": 0.929
+  },
+  {
+   "w": "I",
+   "t0": 0.987,
+   "t1": 1.022
+  },
+  {
+   "w": "have",
+   "t0": 1.091,
+   "t1": 1.231
+  },
+  {
+   "w": "left.",
+   "t0": 1.277,
+   "t1": 1.95
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T01:51:20.878Z"
+}

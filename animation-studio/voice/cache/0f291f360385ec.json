@@ -1,0 +1,80 @@
+{
+ "hash": "0f291f360385ec",
+ "text": "That's the sea. A real one. Past the wall, past the smog.",
+ "voice": "tsSol",
+ "lead": 0,
+ "end": 3.669,
+ "dur": 3.709388,
+ "words": [
+  {
+   "w": "That's",
+   "t0": 0,
+   "t1": 0.267
+  },
+  {
+   "w": "the",
+   "t0": 0.313,
+   "t1": 0.383
+  },
+  {
+   "w": "sea.",
+   "t0": 0.43,
+   "t1": 0.743
+  },
+  {
+   "w": "A",
+   "t0": 0.778,
+   "t1": 0.848
+  },
+  {
+   "w": "real",
+   "t0": 0.94,
+   "t1": 1.115
+  },
+  {
+   "w": "one.",
+   "t0": 1.184,
+   "t1": 1.521
+  },
+  {
+   "w": "Past",
+   "t0": 1.974,
+   "t1": 2.229
+  },
+  {
+   "w": "the",
+   "t0": 2.264,
+   "t1": 2.334
+  },
+  {
+   "w": "wall,",
+   "t0": 2.368,
+   "t1": 2.624
+  },
+  {
+   "w": "past",
+   "t0": 2.659,
+   "t1": 2.868
+  },
+  {
+   "w": "the",
+   "t0": 2.902,
+   "t1": 2.972
+  },
+  {
+   "w": "smog.",
+   "t0": 2.995,
+   "t1": 3.669
+  }
+ ],
+ "voiceId": "cgSgspJ2msm6clMCkdW9",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T01:51:16.018Z"
+}

@@ -55,6 +55,12 @@ export type Look = {
   /** an injured arm in a sling (side = design side, as `hand`): that arm stays bent across the belly in a cloth sling
    *  whatever the gesture; the other arm acts as usual (front view) */
   sling?: -1 | 1;
+  /** opt-in beauty details (Stop Time): lashes = outer upper-lid flicks on open eyes (true = ink, or a colour); blush =
+   *  a soft cheek tint (the colour, mixed into the skin); visor = a glowing tech band worn up in the hair, across the
+   *  top of the head (its colour) */
+  lashes?: boolean | string;
+  blush?: string;
+  visor?: string;
 };
 
 // ---------------- faces ----------------
@@ -159,7 +165,14 @@ const mouth3 = (p: Pen, kind: Mouth3, mx: number, my: number, u: number, k = 1) 
   }
 };
 
-type FaceOpts = { browCol: string; browK: number; quirk: number; shockK: number; glasses?: Look["glasses"]; moustache?: Look["moustache"]; beard?: Look["beard"]; eyepatch?: Look["eyepatch"] };
+type FaceOpts = { browCol: string; browK: number; quirk: number; shockK: number; glasses?: Look["glasses"]; moustache?: Look["moustache"]; beard?: Look["beard"]; eyepatch?: Look["eyepatch"]; lashes?: Look["lashes"]; blush?: Look["blush"] };
+const LASHLESS = new Set<string>(["closed", "up", "dash", "squeeze", "happy"]);
+/** two lash flicks off the outer top of an open eye (side = which way is outward) */
+const lashes3 = (p: Pen, x: number, ey: number, u: number, side: number, round: boolean, col: string) => {
+  const t = round ? 11 : 8.5;
+  p.stroke([[x + side * 6 * u, ey - (t - 1) * u], [x + side * 12 * u, ey - (t + 4) * u]], 2.6 * u, col);
+  p.stroke([[x + side * 9.5 * u, ey - (t - 3.5) * u], [x + side * 15.5 * u, ey - (t + 0.5) * u]], 2.4 * u, col);
+};
 const isRound = (k: Eye3) => k === "shock" || k === "shockHalf" || k === "wide" || k === "pin";
 /** front / 3-4 face; facing -1 | 0 | 1 slides the features toward the facing side */
 const faceFront3 = (p: Pen, cx: number, cy: number, W: number, expr: Expr, facing: number, look: [number, number], lid: number,
@@ -173,7 +186,9 @@ const faceFront3 = (p: Pen, cx: number, cy: number, W: number, expr: Expr, facin
     const front = facing ? side === facing : side > 0, base = F.eye[front ? 1 : 0];
     const kind: Eye3 = base === "wide" || base === "pin" || base === "angry" || base === "sad" || base === "up" || base === "closed"
       ? (lid >= 1 && base !== "closed" ? "dash" : base) : eyeKind(base as EyeK, lid);
+    if (fo.blush) p.ell(x + side * 5 * u, ey + 14 * u, 9 * u, 4.5 * u, mix(skin, fo.blush, 0.55), 0);
     eye3(p, kind, x, ey, u, side, gaze, skin, fo.shockK);
+    if (fo.lashes && !LASHLESS.has(kind)) lashes3(p, x, ey, u, side, isRound(kind), fo.lashes === true ? INK : fo.lashes);
     eyes.push(x);
     const [dI, dO] = F.brow[front ? 1 : 0], by = ey - 20 * u - (front ? fo.quirk : 0) * u - (isRound(kind) ? 3 * u : 0);
     const bw = 5 * u * fo.browK;
@@ -793,9 +808,10 @@ export const figureFront = (p: Pen, L: Look, pose: Pose) => {
     hairFront(p, L, hp, H, 300, hc, light, thick, ow, facing, false);
     faceFront3(p, 300, hc, W, expr, facing, look, lid, skin, {
       browCol: L.brow?.color ?? INK, browK: L.brow?.k ?? 1, quirk: L.brow?.quirk ?? 0, shockK: L.eyes?.shock ?? 1,
-      glasses: L.glasses, moustache: L.moustache, beard: L.beard, eyepatch: L.eyepatch,
+      glasses: L.glasses, moustache: L.moustache, beard: L.beard, eyepatch: L.eyepatch, lashes: L.lashes, blush: L.blush,
     });
   }
+  if (L.visor) visor3(p, H, 300, hc, L.visor, facing, false, back);
   hat3(p, L, H, 300, hc, light, facing, false);
   // arms over the face are drawn in the body's frame
   p.rot = A ? [rad(A), 300, hipY] : null;
@@ -965,14 +981,25 @@ export const figureSide = (p: Pen, L: Look, pose: SidePose) => {
   p.inkRing(hp, ow, thick);
   hairFront(p, L, hp, H, hx, hc, light, thick, ow, 1, true);
   faceSide3(p, L, hx, hc, W, expr, lid, skin);
+  if (L.visor) visor3(p, H, hx, hc, L.visor, 1, true, false);
   hat3(p, L, H, hx, hc, light, 1, true);
   p.rot = null;
+};
+/** the visor worn up: a glowing band arched over the crown, ink-edged, with a bright core line */
+const visor3 = (p: Pen, H: Blob, hx: number, hy: number, col: string, facing: number, side: boolean, back: boolean) => {
+  const a = H.a, cy = hy - a * 0.62, rx = a * 0.86, ry = a * 0.34, cx = hx + (side ? -a * 0.05 : facing * a * 0.04);
+  const a0 = side ? 195 : 190, a1 = side ? 345 : 350;
+  p.arc(cx, cy, rx, ry, a0, a1, a * 0.16, INK);
+  p.arc(cx, cy, rx, ry, a0 + 2, a1 - 2, a * 0.1, col);
+  if (!back) p.arc(cx, cy, rx, ry, a0 + 8, a1 - 8, a * 0.03, mix(col, "#ffffff", 0.7));
 };
 const faceSide3 = (p: Pen, L: Look, hx: number, hy: number, W: number, expr: Expr, lid: number, skin: string) => {
   const u = W / 100, F = faceOf(expr), ex = hx + 27 * u, ey = hy, base = F.eye[1];
   const kind: Eye3 = base === "wide" || base === "pin" || base === "angry" || base === "sad" || base === "up" || base === "closed"
     ? (lid >= 1 && base !== "closed" ? "dash" : base) : eyeKind(base as EyeK, lid);
+  if (L.blush) p.ell(ex + 2 * u, ey + 14 * u, 7 * u, 4 * u, mix(skin, L.blush, 0.55), 0);
   eye3(p, kind, ex, ey, u, 1, [0.6, F.look?.[1] ?? 0], skin, L.eyes?.shock ?? 1);
+  if (L.lashes && !LASHLESS.has(kind)) lashes3(p, ex, ey, u, 1, isRound(kind), L.lashes === true ? INK : L.lashes);
   const [dI, dO] = F.brow[1], by = ey - 20 * u - (isRound(kind) ? 3 * u : 0), bw = 5 * u * (L.brow?.k ?? 1), bc = L.brow?.color ?? INK;
   if (kind === "shock" || kind === "shockHalf") p.arc(ex, by - 4 * u, 9 * u, 3 * u, 200, 340, 4 * u, bc);
   else taper(p, [ex + 8 * u, by + dI * u], [ex - 7 * u, by - u + dO * u], bw, bw / 2, bc);

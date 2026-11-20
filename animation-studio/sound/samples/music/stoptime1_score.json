@@ -1,0 +1,146 @@
+{
+ "composition_plan": {
+  "positive_global_styles": [
+   "emotional cinematic synthwave score",
+   "analog synth pads and arpeggios",
+   "strings",
+   "a simple bittersweet melody",
+   "instrumental",
+   "neon night atmosphere"
+  ],
+  "negative_global_styles": [
+   "vocals",
+   "singing",
+   "lyrics",
+   "rap",
+   "comedy",
+   "upbeat pop",
+   "country"
+  ],
+  "sections": [
+   {
+    "section_name": "frozen time",
+    "positive_local_styles": [
+     "a single held high synth tone, almost silent",
+     "a slow deep pulse like a heartbeat",
+     "suspended, eerie"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "melody"
+    ],
+    "duration_ms": 9000,
+    "lines": []
+   },
+   {
+    "section_name": "the city and the loss",
+    "positive_local_styles": [
+     "melancholic synthwave",
+     "soft arpeggio in the rain",
+     "a sad piano melody over warm pads",
+     "grief"
+    ],
+    "negative_local_styles": [
+     "loud drums",
+     "happy"
+    ],
+    "duration_ms": 22200,
+    "lines": []
+   },
+   {
+    "section_name": "the implant",
+    "positive_local_styles": [
+     "a tense electronic build",
+     "a ticking synth pulse",
+     "rising, mysterious"
+    ],
+    "negative_local_styles": [
+     "calm"
+    ],
+    "duration_ms": 11500,
+    "lines": []
+   },
+   {
+    "section_name": "meeting her",
+    "positive_local_styles": [
+     "light and hopeful synthwave",
+     "a playful arpeggio",
+     "warm bass"
+    ],
+    "negative_local_styles": [
+     "sad",
+     "dark"
+    ],
+    "duration_ms": 13400,
+    "lines": []
+   },
+   {
+    "section_name": "the rooftop",
+    "positive_local_styles": [
+     "a tender romantic theme",
+     "soft piano and warm strings over synth pads",
+     "the main melody, intimate and beautiful"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "dark"
+    ],
+    "duration_ms": 16200,
+    "lines": []
+   },
+   {
+    "section_name": "the crew",
+    "positive_local_styles": [
+     "driving synthwave with a steady beat",
+     "energetic, heists in the rain"
+    ],
+    "negative_local_styles": [
+     "sad"
+    ],
+    "duration_ms": 8800,
+    "lines": []
+   },
+   {
+    "section_name": "the promise",
+    "positive_local_styles": [
+     "heartbreaking",
+     "the beat drops away",
+     "the main melody slow on piano and strings, tears"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "energetic"
+    ],
+    "duration_ms": 11800,
+    "lines": []
+   },
+   {
+    "section_name": "the last job",
+    "positive_local_styles": [
+     "dark tense synth",
+     "a pounding low pulse building",
+     "alarm-like tension",
+     "a long crescendo to a peak"
+    ],
+    "negative_local_styles": [
+     "calm",
+     "happy"
+    ],
+    "duration_ms": 16100,
+    "lines": []
+   },
+   {
+    "section_name": "the cliffhanger",
+    "positive_local_styles": [
+     "everything cuts to a single low heartbeat-like synth hit and silence"
+    ],
+    "negative_local_styles": [
+     "melody"
+    ],
+    "duration_ms": 3000,
+    "lines": []
+   }
+  ]
+ },
+ "model_id": "music_v1"
+}

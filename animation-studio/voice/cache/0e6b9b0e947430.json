@@ -1,0 +1,35 @@
+{
+ "hash": "0e6b9b0e947430",
+ "text": "To the sea.",
+ "voice": "tsSol",
+ "lead": 0,
+ "end": 0.882,
+ "dur": 0.914286,
+ "words": [
+  {
+   "w": "To",
+   "t0": 0,
+   "t1": 0.139
+  },
+  {
+   "w": "the",
+   "t0": 0.197,
+   "t1": 0.267
+  },
+  {
+   "w": "sea.",
+   "t0": 0.302,
+   "t1": 0.882
+  }
+ ],
+ "voiceId": "cgSgspJ2msm6clMCkdW9",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T01:51:23.628Z"
+}

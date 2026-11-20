@@ -1,0 +1,121 @@
+{
+ "id": "stop-time-1",
+ "composition": "Short-stop-time-1",
+ "stages": {
+  "validate": {
+   "state": "done",
+   "at": "2026-11-20T02:18:43.089Z",
+   "inputs": "0b3e5671965e6dn",
+   "detail": "valid; 14 warning(s):\n  total length 112.0 s (Shorts target 55-65 s)\n  shot 2 (lowline): theo: walk 0-2.8 s outside the shot\n  shot 4 (lowline): lowA: walk 0-5 s outside the shot\n  shot 4 (lowline): lowB: walk 0.4-5 s outside the shot\n  shot 1 (lowline): sol fills 36 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 5 (theoFlat): mum fills 25 % of the frame in the foreground @4.2s (is it hiding the action?)\n  shot 10 (lowline): theo fills 28 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 14 (lowline): sol fills 37 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 20 (lowline): sol fills 32 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 20 (lowline): theo fills 39 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 20 (lowline): theo's hand (present) is out of frame @2.4s (side): widen the shot or change the gesture\n  shot 21 (lowline): sol fills 62 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 23 (lowline): sol's hand (talk) is out of frame @4.0s (side): widen the shot or change the gesture\n  shot 25 (towerVault): sol fills 65 % of the frame in the foreground @0.0s (is it hiding the action?)"
+  },
+  "assets": {
+   "state": "done",
+   "at": "2026-11-20T02:18:43.092Z",
+   "inputs": "0b3e5671965e6d",
+   "detail": "51 library assets reused, none missing",
+   "data": {
+    "reused": 51,
+    "missing": [],
+    "byKind": {
+     "character": [
+      "theo",
+      "sol",
+      "tsMum",
+      "dex",
+      "towerGuard",
+      "lowA",
+      "lowB",
+      "lowC"
+     ],
+     "set": [
+      "lowline",
+      "theoFlat",
+      "lowRoof",
+      "towerVault"
+     ],
+     "camera": [
+      "at"
+     ],
+     "light": [
+      "night",
+      "interiorCool"
+     ],
+     "prop": [
+      "bullet",
+      "rain",
+      "timeTint",
+      "tsInsert",
+      "van"
+     ],
+     "sfx": [
+      "el_time_stop",
+      "el_heart_slow",
+      "el_time_resume",
+      "el_siren_far",
+      "el_neon_buzz",
+      "el_hit_sub",
+      "el_van_door",
+      "el_implant",
+      "el_counter_tick",
+      "el_bullet_wall",
+      "el_hacking",
+      "musicbox_note",
+      "el_heartbeat",
+      "el_alarm",
+      "el_door_blast",
+      "el_gun_cock",
+      "el_heartbeat_fast",
+      "el_riser_long",
+      "el_hit_boom"
+     ],
+     "act": [
+      "scared",
+      "determined",
+      "neutral",
+      "sad",
+      "happy",
+      "shock",
+      "laugh",
+      "angry"
+     ],
+     "ambience": [
+      "elb_neon_city",
+      "elb_flat_rain",
+      "elb_roof_night",
+      "elb_vault"
+     ]
+    }
+   }
+  },
+  "approval": {
+   "state": "done",
+   "at": "2026-11-20T02:18:43.093Z",
+   "inputs": "0b107de0312d54",
+   "detail": "all narration already generated (no cost)"
+  },
+  "narration": {
+   "state": "done",
+   "at": "2026-11-20T02:18:43.094Z",
+   "inputs": "0b107de0312d54",
+   "detail": "all lines already generated (cached)"
+  },
+  "sound": {
+   "state": "done",
+   "at": "2026-11-20T02:19:07.703Z",
+   "inputs": "0722ff8ee604f4",
+   "detail": "soundtrack built: -14.1 LUFS"
+  },
+  "checks": {
+   "state": "done",
+   "at": "2026-11-20T02:19:12.323Z",
+   "inputs": "0722ff8ee604f4",
+   "detail": "preflight PASS; library intact"
+  }
+ },
+ "approval": {
+  "scriptHash": "0b107de0312d54",
+  "chars": 1689,
+  "at": "2026-11-20T01:50:59.174Z",
+  "by": "the owner, in the conversation"
+ }
+}

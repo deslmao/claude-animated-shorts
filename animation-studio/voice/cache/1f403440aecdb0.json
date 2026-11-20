@@ -1,0 +1,80 @@
+{
+ "hash": "1f403440aecdb0",
+ "text": "One last job. The Tower vault. Two tickets out of this city.",
+ "voice": "tsDex",
+ "lead": 0,
+ "end": 3.762,
+ "dur": 3.787755,
+ "words": [
+  {
+   "w": "One",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "last",
+   "t0": 0.209,
+   "t1": 0.395
+  },
+  {
+   "w": "job.",
+   "t0": 0.453,
+   "t1": 0.801
+  },
+  {
+   "w": "The",
+   "t0": 1.045,
+   "t1": 1.184
+  },
+  {
+   "w": "Tower",
+   "t0": 1.242,
+   "t1": 1.486
+  },
+  {
+   "w": "vault.",
+   "t0": 1.533,
+   "t1": 1.892
+  },
+  {
+   "w": "Two",
+   "t0": 2.276,
+   "t1": 2.473
+  },
+  {
+   "w": "tickets",
+   "t0": 2.531,
+   "t1": 2.821
+  },
+  {
+   "w": "out",
+   "t0": 2.856,
+   "t1": 2.949
+  },
+  {
+   "w": "of",
+   "t0": 2.984,
+   "t1": 3.03
+  },
+  {
+   "w": "this",
+   "t0": 3.053,
+   "t1": 3.158
+  },
+  {
+   "w": "city.",
+   "t0": 3.204,
+   "t1": 3.762
+  }
+ ],
+ "voiceId": "IKne3meq5aSn9XLyUdCD",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.75,
+  "style": 0.35,
+  "use_speaker_boost": true,
+  "speed": 1
+ },
+ "created": "2026-11-20T01:51:23.031Z"
+}

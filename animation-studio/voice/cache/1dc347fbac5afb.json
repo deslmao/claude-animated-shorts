@@ -1,0 +1,125 @@
+{
+ "hash": "1dc347fbac5afb",
+ "text": "Her name was Sol. She could hack anything with a screen. She ran with a crew that stole from the Towers.",
+ "voice": "tsTheo",
+ "lead": 0,
+ "end": 5.851,
+ "dur": 5.877551,
+ "words": [
+  {
+   "w": "Her",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "name",
+   "t0": 0.232,
+   "t1": 0.43
+  },
+  {
+   "w": "was",
+   "t0": 0.464,
+   "t1": 0.58
+  },
+  {
+   "w": "Sol.",
+   "t0": 0.65,
+   "t1": 1.103
+  },
+  {
+   "w": "She",
+   "t0": 1.382,
+   "t1": 1.509
+  },
+  {
+   "w": "could",
+   "t0": 1.556,
+   "t1": 1.695
+  },
+  {
+   "w": "hack",
+   "t0": 1.741,
+   "t1": 1.927
+  },
+  {
+   "w": "anything",
+   "t0": 2.009,
+   "t1": 2.368
+  },
+  {
+   "w": "with",
+   "t0": 2.403,
+   "t1": 2.496
+  },
+  {
+   "w": "a",
+   "t0": 2.531,
+   "t1": 2.554
+  },
+  {
+   "w": "screen.",
+   "t0": 2.589,
+   "t1": 3.088
+  },
+  {
+   "w": "She",
+   "t0": 3.425,
+   "t1": 3.576
+  },
+  {
+   "w": "ran",
+   "t0": 3.646,
+   "t1": 3.808
+  },
+  {
+   "w": "with",
+   "t0": 3.843,
+   "t1": 3.959
+  },
+  {
+   "w": "a",
+   "t0": 4.005,
+   "t1": 4.029
+  },
+  {
+   "w": "crew",
+   "t0": 4.075,
+   "t1": 4.296
+  },
+  {
+   "w": "that",
+   "t0": 4.342,
+   "t1": 4.458
+  },
+  {
+   "w": "stole",
+   "t0": 4.493,
+   "t1": 4.725
+  },
+  {
+   "w": "from",
+   "t0": 4.76,
+   "t1": 4.899
+  },
+  {
+   "w": "the",
+   "t0": 4.946,
+   "t1": 5.016
+  },
+  {
+   "w": "Towers.",
+   "t0": 5.05,
+   "t1": 5.851
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T01:51:14.951Z"
+}

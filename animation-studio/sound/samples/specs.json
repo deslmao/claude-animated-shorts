@@ -1,45 +1,291 @@
 {
  "_about": "Recorded-style sounds generated once with the ElevenLabs Sound Effects API (python3 sound/samples_fetch.py) and committed. kind: sfx (one-shot, mono unless stereo: true) or bed (an ambience loop, stereo). level: the default LU relative to the voice (like SFX_REL in build.py).",
  "sfx": {
-  "el_lock_click":     {"s": 2,  "level": -10, "p": "A single old interior bedroom door lock bolt turning slowly and clicking open, quiet house at night, close and crisp, slight hallway reverb"},
-  "el_handle_strain":  {"s": 2.5,"level": -11, "p": "Someone on the other side of a door gently pressing down a metal door handle, the handle creaks and strains against a hand holding it shut, close, quiet room"},
-  "el_feet_landing":   {"s": 4,  "level": -15, "p": "Slow soft bare footsteps on a carpeted upstairs landing at night, approaching and stopping right outside a door, floorboard creak under carpet"},
-  "el_stairs_down":    {"s": 5,  "level": -14, "p": "Slow bare footsteps going down creaky old wooden stairs at night, heard from upstairs through a door, quiet house"},
-  "el_backdoor":       {"s": 2.5,"level": -9,  "p": "A back door downstairs unlocking and swinging open, banging against the wall, wind and rain rushing in, heard from upstairs"},
-  "el_wade_slow":      {"s": 6,  "level": -13, "p": "A person wading slowly through waist deep river water at night, water swirling around legs, steady steps, rain on the water surface"},
-  "el_run_into_water": {"s": 4,  "level": -9,  "p": "Running barefoot across wet grass and splashing hard into a river, big splashes, urgent, night"},
-  "el_pulled_under":   {"s": 3,  "level": -7,  "p": "A child being suddenly pulled into a fast river, a sharp heavy splash and rushing water, then a hand grabbing him and lifting out, water pouring off"},
-  "el_gasp_out":       {"s": 2,  "level": -12, "p": "A young child gasping and coughing after being pulled out of cold water, close"},
-  "el_sit_up":         {"s": 1.5,"level": -15, "p": "Bed sheets and duvet rustling as a small child suddenly sits bolt upright in bed, quiet bedroom at night"},
-  "el_clock_tick":     {"s": 3,  "level": -16, "p": "A bedside alarm clock ticking loudly in a silent bedroom at night, three ticks, close"},
-  "el_clock_flip":     {"s": 1,  "level": -13, "p": "A digital bedside clock changing number with a single soft electronic click, silent room"},
-  "el_phone_video":    {"s": 5,  "level": -14, "p": "Video playing through a small phone speaker: rain and rushing flood water, tinny and compressed, quiet kitchen"},
-  "el_phone_grass":    {"s": 1.5,"level": -15, "p": "Picking up a wet phone from wet grass, a damp rustle and a small tap on the screen"},
-  "el_mug_down":       {"s": 1,  "level": -15, "p": "A ceramic mug of tea placed down on a wooden fence post, a soft knock, morning outdoors"},
-  "el_heartbeat":      {"s": 6,  "level": -10, "p": "Slow heavy human heartbeat, muffled and deep, horror tension, felt in the chest, steady"},
-  "el_heartbeat_fast": {"s": 5,  "level": -10, "p": "Fast pounding human heartbeat, muffled and deep, panic, horror film"},
-  "el_breath_hold":    {"s": 4,  "level": -14, "p": "A scared teenage girl trying to breathe silently in the dark, shaky held breath, trembling exhale, very close"},
-  "el_whisper_air":    {"s": 3,  "level": -18, "p": "Eerie faint breathy air through a gap under a door at night, a cold draught, ghostly but subtle"},
-  "el_riser_short":    {"s": 3,  "level": -9,  "stereo": true, "p": "Horror movie tension riser, dissonant strings and reversed cymbal rising for three seconds into a cut, cinematic"},
-  "el_riser_long":     {"s": 8,  "level": -10, "stereo": true, "p": "Slow horror tension riser building for eight seconds, low strings, dark synth swell and heartbeat pulse rising, cinematic"},
-  "el_hit_boom":       {"s": 3,  "level": -5,  "stereo": true, "p": "Deep cinematic horror impact boom with long dark reverb tail, trailer hit"},
-  "el_hit_sub":        {"s": 3,  "level": -7,  "stereo": true, "p": "Cinematic sub bass drop, deep low frequency boom falling away, horror trailer"},
-  "el_sting_strings":  {"s": 2.5,"level": -7,  "stereo": true, "p": "Sudden horror string stinger, screeching dissonant violins, jump scare, short"},
-  "el_whoosh_dark":    {"s": 1.5,"level": -11, "stereo": true, "p": "Dark cinematic whoosh transition, low and airy, horror"},
-  "el_typewriter":     {"s": 2,  "level": -15, "p": "Old typewriter typing a short phrase, crisp key strikes, quiet room, no bell"},
-  "el_thunder":        {"s": 6,  "level": -12, "stereo": true, "p": "Distant thunder rolling slowly across the sky at night, deep rumble, rain"},
-  "el_child_steps_wet":{"s": 3,  "level": -15, "p": "Small bare child footsteps walking slowly on wet grass and mud at night, squelching"},
-  "el_door_creak":     {"s": 2.5,"level": -12, "p": "A wooden bedroom door creaking slowly open in a silent house at night"},
-  "el_water_rush":     {"s": 4,  "level": -10, "stereo": true, "p": "A sudden strong river current surging and rushing, water pulling hard, menacing, night"},
-  "el_underwater":     {"s": 3,  "level": -13, "p": "Muffled underwater sound, bubbles and a dull current, as if heard with your head under the water"},
-  "el_drip_quiet":     {"s": 3,  "level": -17, "p": "Single water drips falling from a gutter onto a wet patio in a quiet dawn garden"}
+  "el_lock_click": {
+   "s": 2,
+   "level": -10,
+   "p": "A single old interior bedroom door lock bolt turning slowly and clicking open, quiet house at night, close and crisp, slight hallway reverb"
+  },
+  "el_handle_strain": {
+   "s": 2.5,
+   "level": -11,
+   "p": "Someone on the other side of a door gently pressing down a metal door handle, the handle creaks and strains against a hand holding it shut, close, quiet room"
+  },
+  "el_feet_landing": {
+   "s": 4,
+   "level": -15,
+   "p": "Slow soft bare footsteps on a carpeted upstairs landing at night, approaching and stopping right outside a door, floorboard creak under carpet"
+  },
+  "el_stairs_down": {
+   "s": 5,
+   "level": -14,
+   "p": "Slow bare footsteps going down creaky old wooden stairs at night, heard from upstairs through a door, quiet house"
+  },
+  "el_backdoor": {
+   "s": 2.5,
+   "level": -9,
+   "p": "A back door downstairs unlocking and swinging open, banging against the wall, wind and rain rushing in, heard from upstairs"
+  },
+  "el_wade_slow": {
+   "s": 6,
+   "level": -13,
+   "p": "A person wading slowly through waist deep river water at night, water swirling around legs, steady steps, rain on the water surface"
+  },
+  "el_run_into_water": {
+   "s": 4,
+   "level": -9,
+   "p": "Running barefoot across wet grass and splashing hard into a river, big splashes, urgent, night"
+  },
+  "el_pulled_under": {
+   "s": 3,
+   "level": -7,
+   "p": "A child being suddenly pulled into a fast river, a sharp heavy splash and rushing water, then a hand grabbing him and lifting out, water pouring off"
+  },
+  "el_gasp_out": {
+   "s": 2,
+   "level": -12,
+   "p": "A young child gasping and coughing after being pulled out of cold water, close"
+  },
+  "el_sit_up": {
+   "s": 1.5,
+   "level": -15,
+   "p": "Bed sheets and duvet rustling as a small child suddenly sits bolt upright in bed, quiet bedroom at night"
+  },
+  "el_clock_tick": {
+   "s": 3,
+   "level": -16,
+   "p": "A bedside alarm clock ticking loudly in a silent bedroom at night, three ticks, close"
+  },
+  "el_clock_flip": {
+   "s": 1,
+   "level": -13,
+   "p": "A digital bedside clock changing number with a single soft electronic click, silent room"
+  },
+  "el_phone_video": {
+   "s": 5,
+   "level": -14,
+   "p": "Video playing through a small phone speaker: rain and rushing flood water, tinny and compressed, quiet kitchen"
+  },
+  "el_phone_grass": {
+   "s": 1.5,
+   "level": -15,
+   "p": "Picking up a wet phone from wet grass, a damp rustle and a small tap on the screen"
+  },
+  "el_mug_down": {
+   "s": 1,
+   "level": -15,
+   "p": "A ceramic mug of tea placed down on a wooden fence post, a soft knock, morning outdoors"
+  },
+  "el_heartbeat": {
+   "s": 6,
+   "level": -10,
+   "p": "Slow heavy human heartbeat, muffled and deep, horror tension, felt in the chest, steady"
+  },
+  "el_heartbeat_fast": {
+   "s": 5,
+   "level": -10,
+   "p": "Fast pounding human heartbeat, muffled and deep, panic, horror film"
+  },
+  "el_breath_hold": {
+   "s": 4,
+   "level": -14,
+   "p": "A scared teenage girl trying to breathe silently in the dark, shaky held breath, trembling exhale, very close"
+  },
+  "el_whisper_air": {
+   "s": 3,
+   "level": -18,
+   "p": "Eerie faint breathy air through a gap under a door at night, a cold draught, ghostly but subtle"
+  },
+  "el_riser_short": {
+   "s": 3,
+   "level": -9,
+   "stereo": true,
+   "p": "Horror movie tension riser, dissonant strings and reversed cymbal rising for three seconds into a cut, cinematic"
+  },
+  "el_riser_long": {
+   "s": 8,
+   "level": -10,
+   "stereo": true,
+   "p": "Slow horror tension riser building for eight seconds, low strings, dark synth swell and heartbeat pulse rising, cinematic"
+  },
+  "el_hit_boom": {
+   "s": 3,
+   "level": -5,
+   "stereo": true,
+   "p": "Deep cinematic horror impact boom with long dark reverb tail, trailer hit"
+  },
+  "el_hit_sub": {
+   "s": 3,
+   "level": -7,
+   "stereo": true,
+   "p": "Cinematic sub bass drop, deep low frequency boom falling away, horror trailer"
+  },
+  "el_sting_strings": {
+   "s": 2.5,
+   "level": -7,
+   "stereo": true,
+   "p": "Sudden horror string stinger, screeching dissonant violins, jump scare, short"
+  },
+  "el_whoosh_dark": {
+   "s": 1.5,
+   "level": -11,
+   "stereo": true,
+   "p": "Dark cinematic whoosh transition, low and airy, horror"
+  },
+  "el_typewriter": {
+   "s": 2,
+   "level": -15,
+   "p": "Old typewriter typing a short phrase, crisp key strikes, quiet room, no bell"
+  },
+  "el_thunder": {
+   "s": 6,
+   "level": -12,
+   "stereo": true,
+   "p": "Distant thunder rolling slowly across the sky at night, deep rumble, rain"
+  },
+  "el_child_steps_wet": {
+   "s": 3,
+   "level": -15,
+   "p": "Small bare child footsteps walking slowly on wet grass and mud at night, squelching"
+  },
+  "el_door_creak": {
+   "s": 2.5,
+   "level": -12,
+   "p": "A wooden bedroom door creaking slowly open in a silent house at night"
+  },
+  "el_water_rush": {
+   "s": 4,
+   "level": -10,
+   "stereo": true,
+   "p": "A sudden strong river current surging and rushing, water pulling hard, menacing, night"
+  },
+  "el_underwater": {
+   "s": 3,
+   "level": -13,
+   "p": "Muffled underwater sound, bubbles and a dull current, as if heard with your head under the water"
+  },
+  "el_drip_quiet": {
+   "s": 3,
+   "level": -17,
+   "p": "Single water drips falling from a gutter onto a wet patio in a quiet dawn garden"
+  },
+  "el_time_stop": {
+   "s": 2.5,
+   "level": -6,
+   "stereo": true,
+   "p": "Sci-fi time freeze effect: a deep sub-bass whoomp that sucks all sound away, a reversed shimmer, then dead silence with a faint high ring"
+  },
+  "el_time_resume": {
+   "s": 2.0,
+   "level": -7,
+   "stereo": true,
+   "p": "Sci-fi time resuming: a sharp rush of air and sound slamming back in, a deep whoosh, rain and city noise returning all at once"
+  },
+  "el_gunshot": {
+   "s": 2.0,
+   "level": -5,
+   "stereo": true,
+   "p": "A single pistol gunshot in a rainy city street at night, sharp crack with an echo off tall buildings"
+  },
+  "el_bullet_wall": {
+   "s": 1.2,
+   "level": -9,
+   "p": "A bullet hitting a concrete wall, a sharp crack and chips of concrete falling"
+  },
+  "el_implant": {
+   "s": 3.0,
+   "level": -10,
+   "p": "A cybernetic implant being installed: an electric whine powering up, a sharp click and crackling sparks, then a soft digital beep"
+  },
+  "el_counter_tick": {
+   "s": 1.0,
+   "level": -14,
+   "p": "A single soft digital counter tick, a low electronic blip, futuristic interface"
+  },
+  "el_alarm": {
+   "s": 4.0,
+   "level": -9,
+   "stereo": true,
+   "p": "A high-tech security alarm blaring in a vault, pulsing electronic siren, urgent"
+  },
+  "el_door_blast": {
+   "s": 2.5,
+   "level": -6,
+   "stereo": true,
+   "p": "Heavy metal security doors blasting open, a pneumatic hiss and a slam, armoured boots rushing in"
+  },
+  "el_gun_cock": {
+   "s": 1.0,
+   "level": -10,
+   "p": "A futuristic pistol being cocked and aimed, a sharp mechanical click and a rising electronic charge whine"
+  },
+  "el_van_door": {
+   "s": 1.5,
+   "level": -11,
+   "p": "A van sliding door slammed shut in the rain, a heavy metallic thud"
+  },
+  "el_hacking": {
+   "s": 3.0,
+   "level": -14,
+   "p": "Fast futuristic hacking sounds: rapid soft keyboard taps and digital interface beeps and chirps"
+  },
+  "el_heart_slow": {
+   "s": 6.0,
+   "level": -8,
+   "p": "A single human heartbeat slowing down in silence, deep and muffled, each beat further apart"
+  },
+  "el_neon_buzz": {
+   "s": 3.0,
+   "level": -16,
+   "p": "A flickering neon sign buzzing and crackling in the rain, close"
+  },
+  "el_siren_far": {
+   "s": 5.0,
+   "level": -13,
+   "stereo": true,
+   "p": "Distant police and ambulance sirens echoing through a rainy futuristic city at night"
+  }
  },
  "bed": {
-  "elb_river_rain":    {"s": 22, "p": "Dark river at night with steady heavy rain falling on the water, strong current flowing, distant wind, immersive, no thunder"},
-  "elb_in_river":      {"s": 22, "p": "Standing waist deep in a fast river at night, water rushing and swirling close around you, heavy rain hitting the water surface all around"},
-  "elb_rain_window":   {"s": 22, "p": "Heavy rain on a bedroom window at night heard from inside, muffled, gentle wind, quiet house, cozy but tense"},
-  "elb_house_night":   {"s": 22, "p": "A silent house at three in the morning, faint low fridge hum downstairs, very quiet room tone, the house settling, subtle"},
-  "elb_dawn_garden":   {"s": 22, "p": "An English back garden at dawn just after rain, water dripping from leaves and gutters, a few distant birds, a river flowing gently in the distance, still and grey"},
-  "elb_kitchen_day":   {"s": 22, "p": "A quiet family kitchen on a grey morning, faint fridge hum, a clock ticking softly, light rain outside the window, subdued"}
+  "elb_river_rain": {
+   "s": 22,
+   "p": "Dark river at night with steady heavy rain falling on the water, strong current flowing, distant wind, immersive, no thunder"
+  },
+  "elb_in_river": {
+   "s": 22,
+   "p": "Standing waist deep in a fast river at night, water rushing and swirling close around you, heavy rain hitting the water surface all around"
+  },
+  "elb_rain_window": {
+   "s": 22,
+   "p": "Heavy rain on a bedroom window at night heard from inside, muffled, gentle wind, quiet house, cozy but tense"
+  },
+  "elb_house_night": {
+   "s": 22,
+   "p": "A silent house at three in the morning, faint low fridge hum downstairs, very quiet room tone, the house settling, subtle"
+  },
+  "elb_dawn_garden": {
+   "s": 22,
+   "p": "An English back garden at dawn just after rain, water dripping from leaves and gutters, a few distant birds, a river flowing gently in the distance, still and grey"
+  },
+  "elb_kitchen_day": {
+   "s": 22,
+   "p": "A quiet family kitchen on a grey morning, faint fridge hum, a clock ticking softly, light rain outside the window, subdued"
+  },
+  "elb_neon_city": {
+   "s": 22,
+   "p": "A dense futuristic cyberpunk city at night in heavy rain: rain on metal and puddles, a low electric hum of neon signs, distant hover traffic, crowd murmur, occasional far sirens"
+  },
+  "elb_roof_night": {
+   "s": 22,
+   "p": "A high rooftop at night above a huge futuristic city: wind, distant city hum far below, soft rain, a faint drone flying past"
+  },
+  "elb_flat_rain": {
+   "s": 22,
+   "p": "A tiny apartment in a futuristic city at night: rain on the window, a fridge hum, muffled neon buzz and traffic outside"
+  },
+  "elb_vault": {
+   "s": 22,
+   "p": "A high-tech corporate vault interior: a cold low electrical hum, servers whirring softly, very quiet and sterile"
+  }
  }
 }

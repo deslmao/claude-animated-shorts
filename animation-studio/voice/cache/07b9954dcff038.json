@@ -1,0 +1,45 @@
+{
+ "hash": "07b9954dcff038",
+ "text": "Then I'm coming with you.",
+ "voice": "tsTheo",
+ "lead": 0,
+ "end": 1.393,
+ "dur": 1.436735,
+ "words": [
+  {
+   "w": "Then",
+   "t0": 0,
+   "t1": 0.197
+  },
+  {
+   "w": "I'm",
+   "t0": 0.244,
+   "t1": 0.383
+  },
+  {
+   "w": "coming",
+   "t0": 0.441,
+   "t1": 0.662
+  },
+  {
+   "w": "with",
+   "t0": 0.708,
+   "t1": 0.848
+  },
+  {
+   "w": "you.",
+   "t0": 0.894,
+   "t1": 1.393
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T01:51:17.737Z"
+}

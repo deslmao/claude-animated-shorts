@@ -1,0 +1,110 @@
+{
+ "hash": "11b41e83d11090",
+ "text": "The rest of us live under it, in the Lowline. Nobody down here has ever seen the sky.",
+ "voice": "tsTheo",
+ "lead": 0,
+ "end": 4.644,
+ "dur": 4.675918,
+ "words": [
+  {
+   "w": "The",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "rest",
+   "t0": 0.221,
+   "t1": 0.406
+  },
+  {
+   "w": "of",
+   "t0": 0.441,
+   "t1": 0.499
+  },
+  {
+   "w": "us",
+   "t0": 0.546,
+   "t1": 0.627
+  },
+  {
+   "w": "live",
+   "t0": 0.685,
+   "t1": 0.848
+  },
+  {
+   "w": "under",
+   "t0": 0.882,
+   "t1": 1.08
+  },
+  {
+   "w": "it,",
+   "t0": 1.126,
+   "t1": 1.277
+  },
+  {
+   "w": "in",
+   "t0": 1.312,
+   "t1": 1.393
+  },
+  {
+   "w": "the",
+   "t0": 1.44,
+   "t1": 1.509
+  },
+  {
+   "w": "Lowline.",
+   "t0": 1.556,
+   "t1": 2.159
+  },
+  {
+   "w": "Nobody",
+   "t0": 2.496,
+   "t1": 2.81
+  },
+  {
+   "w": "down",
+   "t0": 2.856,
+   "t1": 3.042
+  },
+  {
+   "w": "here",
+   "t0": 3.088,
+   "t1": 3.204
+  },
+  {
+   "w": "has",
+   "t0": 3.228,
+   "t1": 3.309
+  },
+  {
+   "w": "ever",
+   "t0": 3.367,
+   "t1": 3.518
+  },
+  {
+   "w": "seen",
+   "t0": 3.564,
+   "t1": 3.75
+  },
+  {
+   "w": "the",
+   "t0": 3.796,
+   "t1": 3.866
+  },
+  {
+   "w": "sky.",
+   "t0": 3.901,
+   "t1": 4.644
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T01:51:07.058Z"
+}

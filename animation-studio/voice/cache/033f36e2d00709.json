@@ -1,0 +1,40 @@
+{
+ "hash": "033f36e2d00709",
+ "text": "You always say that.",
+ "voice": "tsTheo",
+ "lead": 0,
+ "end": 1.3,
+ "dur": 1.332245,
+ "words": [
+  {
+   "w": "You",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "always",
+   "t0": 0.244,
+   "t1": 0.488
+  },
+  {
+   "w": "say",
+   "t0": 0.522,
+   "t1": 0.708
+  },
+  {
+   "w": "that.",
+   "t0": 0.755,
+   "t1": 1.3
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T01:51:08.080Z"
+}

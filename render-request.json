@@ -1,8 +1,8 @@
 {
-  "composition": "Short-nova-commands",
+  "composition": "Short-stop-time-1",
   "chunks": 20,
-  "preview": false,
+  "preview": true,
   "audio": "",
   "publish": false,
-  "note": "What If… You Could Command Anyone? (Nova): final render after the cloud preview (run 35) and one correction pass. 1080x1920 30fps, 3844 frames (2:08), with its committed soundtrack. No GitHub Release."
+  "note": "What If… You Could Stop Time? Part 1 (Sixty Years): cloud 540p preview for inspection. 3359 frames (1:52) with its committed soundtrack. No GitHub Release."
 }
