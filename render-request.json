@@ -1,8 +1,8 @@
 {
   "composition": "Short-nova-commands",
   "chunks": 20,
-  "preview": true,
+  "preview": false,
   "audio": "",
   "publish": false,
-  "note": "What If… You Could Command Anyone? (Nova): 540x960 preview for inspection, through the parallel cloud renderer. No GitHub Release."
+  "note": "What If… You Could Command Anyone? (Nova): final render after the cloud preview (run 35) and one correction pass. 1080x1920 30fps, 3844 frames (2:08), with its committed soundtrack. No GitHub Release."
 }

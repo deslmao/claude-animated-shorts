@@ -31,7 +31,7 @@ const FREE = { set: "novaStreetFree", light: GOLDEN as Light, ambience: "amb_cit
 const HOME_N = { set: "novaHome", light: NIGHT as Light, ambience: "elb_rain_window" as const };
 const HOME_D = { set: "novaHomeDay", light: COOL as Light, ambience: "elb_kitchen_day" as const };
 const HALL = { set: "blueHall", light: IN as Light, ambience: "amb_room" as const };
-const TOWER = { set: "novaTower", light: NIGHT as Light, ambience: "elb_house_night" as const };
+const TOWER = { set: "novaTower", light: COOL as Light, ambience: "elb_house_night" as const };
 const BLANK = { act: "neutral" as const, face: "blank" as const, keepFace: true, blink: false };
 // the bread queue (left pavement, in front of the shop at x -5.95, z -4)
 const OFFICER: V = [-5.0, 0, -4.4], Q1: V = [-4.2, 0, -3.1], Q2: V = [-4.0, 0, -1.8], Q3: V = [-3.9, 0, -0.5], Q4: V = [-3.8, 0, 0.8];
@@ -75,10 +75,10 @@ export const NOVA_COMMANDS: Storyboard = {
   },
   shots: [
     // ---- COLD OPEN: the first command
-    { say: CMD("Nova commands you… to let her go. At this instant!"), ...STREET_N, hold: 0.3, ...glide(at([0.5, 1.35, 6.4], [0.5, 1.15, 0.8], 54), at([0.5, 1.32, 5.7], [0.5, 1.15, 0.8], 54), 3.5),
+    { say: CMD("Nova commands you… to let her go. At this instant!"), ...STREET_N, hold: 0.3, ...glide(at([0.35, 1.35, 5.6], [0.35, 1.2, 0.8], 58), at([0.35, 1.33, 5.1], [0.35, 1.2, 0.8], 58), 3.5),
       actors: [{ who: "nova", at: [-0.7, 0, 1.0], act: "angry", face: "angry", keepFace: true, facing: "toward:guard", gesture: "stop" },
         { who: "guard", at: [1.4, 0, 0.4], act: "angry", facing: "toward:nova", gesture: "grab", reach: "pip" },
-        { who: "pip", at: [1.85, 0, 0.1], act: "scared", face: "scared", facing: "toward:nova" }],
+        { who: "pip", at: [1.7, 0, 0.1], act: "scared", face: "scared", keepFace: true, facing: "toward:nova", gesture: "crossArms" }],
       props: [RAIN([0.5, 1, 0.8])], kicks: [{ word: "Nova" }], sfx: [{ t: 0, name: "el_thunder", gain: -6 }, { t: 0.05, name: "el_hit_sub", gain: -4 }], note: "night, rain: the guard has Pip by the arm; Nova steps in" },
     { say: N("That was the first time I used it. I didn't know yet what it would cost me."), ...STREET_N, hold: 0.4, ...lock(at([2.4, 1.75, 2.6], [1.5, 1.65, 0.3], 38)),
       actors: [{ who: "guard", at: [1.4, 0, 0.4], ...BLANK, walk: { to: [3.6, 0, -4], t0: 1.2, t1: 4.6 } }],
@@ -105,7 +105,7 @@ export const NOVA_COMMANDS: Storyboard = {
     { say: N("Then one morning, I woke up… and my voice felt different. Heavy. Like thunder hiding in my throat."), ...HOME_D, hold: 0.2, ...glide(at([-0.5, 1.0, 1.5], [-0.9, 0.78, -0.9], 44), at([-0.6, 0.98, 1.1], [-0.9, 0.8, -0.9], 44), 6.5),
       actors: [{ who: "nova", at: "novaBed", mode: "sit", act: "shock", face: "shock", keepFace: true, facing: "camera", gesture: "coverMouth" }],
       sfx: [{ t: 0, name: "el_sit_up" }, { t: 3.8, name: "el_hit_sub", gain: -6 }, { t: 3.8, name: "el_thunder", gain: -12 }], note: "Nova sits up with a gasp, a hand at her throat" },
-    { say: CMD("Nova commands you to give them the bread."), ...STREET_D, hold: 0.2, ...lock(at([-1.6, 1.45, 0.8], [-4.8, 1.35, -4.1], 42)),
+    { say: CMD("Nova commands you to give them the bread."), ...STREET_D, hold: 0.2, ...lock(at([-1.0, 1.45, 1.8], [-4.0, 1.3, -3.4], 46)),
       actors: [{ who: "nova", at: [-3.0, 0, -2.6], act: "determined", face: "angry", keepFace: true, facing: "toward:officer" as const }, { who: "officer", at: OFFICER, act: "neutral", face: "stern", facing: "toward:nova" }],
       props: [{ id: "breadShutter", at: [-5.9, 0, -4], variant: "up", steps: [{ t: 99 }] }], kicks: [{ word: "Nova" }], sfx: [{ t: 0, name: "el_hit_sub", gain: -6 }], note: "Nova faces the officer at the shut shop" },
     { say: [N("When I say my name, and a command, anyone who hears it has to obey."), N("And then they forget me. Like I was never there.")], ...STREET_D, hold: 0.3, ...lock(at([1.6, 1.5, 4.4], [-4.0, 1.2, -2.3], 48)),
@@ -119,8 +119,8 @@ export const NOVA_COMMANDS: Storyboard = {
       actors: [{ who: "nova", at: [2.0, 0, -11.3], act: "determined", face: "angry", keepFace: true, facing: "toward:guard" }, { who: "guard", at: [4.4, 0, -14], ...BLANK, facing: "toward:nova" }],
       props: [RAIN([3, 1.5, -12])], kicks: [{ word: "Nova" }], sfx: [{ t: 0, name: "el_hit_sub", gain: -6 }, { t: 2.2, name: "el_backdoor", gain: -6 }], note: "the warehouse guard, STORE 4" },
     insert("list", 6.0, "the list of Greys to be taken; it burns", { say: [CMD_O("Nova commands you to burn the list."), { ...N("The list of Greys they were taking next. Forty names. Forty families who got to stay."), gap: 0.3 }], ambience: "elb_rain_window", sfx: [{ t: 1.6, name: "fire_roar", gain: -10 }] }, [{ word: "burn" }]),
-    { say: N("My best friend Kai saw me do it. The next morning, he walked past me at school."), ...STREET_D, hold: 0.3, ...lock(at([3.4, 1.5, 3.0], [0, 1.2, -0.6], 48)),
-      actors: [{ who: "nova", at: [0.5, 0, 0], act: "sad", face: "sad", keepFace: true, facing: "toward:kai", gesture: "wave" }, { who: "kai", at: [-1.2, 0, -7], act: "neutral", face: "neutral", walk: { to: [-0.7, 0, 7], t0: 0.8, t1: 5.6 } }],
+    { say: N("My best friend Kai saw me do it. The next morning, he walked past me at school."), ...STREET_D, hold: 0.3, ...lock(at([0.5, 1.4, 5.6], [0.5, 1.2, 0], 48)),
+      actors: [{ who: "nova", at: [0.5, 0, 0], act: "sad", face: "sad", keepFace: true, facing: "toward:kai", gesture: "wave" }, { who: "kai", at: [-2.6, 0, 1.6], act: "neutral", face: "neutral", walk: { to: [2.8, 0, 1.8], t0: 1.0, t1: 5.0 } }],
       note: "Kai walks straight past Nova; she waves; nothing" },
     { say: mum("Sorry, love… are you one of Pip's friends?"), ...HOME_D, hold: 0.4, ...lock(at([0.2, 1.45, 2.4], [0.8, 1.25, -0.6], 44)),
       actors: [{ who: "mum", at: "sink", act: "happy", face: "smile", facing: "toward:nova" }, { who: "nova", at: [0.1, 0, 0.3], act: "sad", face: "sad", keepFace: true, facing: "toward:mum" }],
@@ -132,7 +132,7 @@ export const NOVA_COMMANDS: Storyboard = {
     { say: N("If every speaker in town heard me, I could end it. All of it."), ...TOWER, hold: 0.2, ...lock(at([0.9, 1.4, 3.1], [0.1, 1.3, 0], 46)),
       actors: [{ who: "nova", at: [1.5, 0, 0.9], act: "determined", face: "determined", keepFace: true, walk: { to: [0.3, 0, 0.1], t0: 0.2, t1: 2.4, view: "front" } }],
       sfx: [{ t: 0.2, name: "el_feet_landing", gain: -6 }, { t: 2.6, name: "el_riser_long", gain: -6 }], note: "the broadcast tower: Nova walks to the microphone" },
-    { say: N("But everyone who hears me forgets me. Everyone. Even Pip."), ...HOME_N, hold: 0.5, ...lock(at([0.2, 1.35, 2.9], [1.15, 0.55, 0.6], 48)),
+    { say: N("But everyone who hears me forgets me. Everyone. Even Pip."), ...HOME_N, hold: 0.5, ...lock(at([-0.3, 1.2, 4.6], [1.1, 0.75, 0.8], 44)),
       actors: [{ who: "pip", at: [1.15, 0, 1.3], act: "sad", back: true }], note: "Pip at home watching the screen, waiting for her sister" },
     { say: [CMD("Nova commands you… every one of you."), { ...CMD("Open the gates. Share everything. And never call anyone a Grey again."), gap: 0.5 }], ...TOWER, hold: 0.5, ...glide(at([0.75, 1.45, 2.2], [0.3, 1.33, 0.1], 36), at([0.7, 1.44, 1.85], [0.3, 1.35, 0.1], 36), 8.0),
       actors: [{ who: "nova", at: [0.3, 0, 0.1], act: "determined", face: "determined", keepFace: true, sadTalk: true, facing: "camera" }],
@@ -142,7 +142,7 @@ export const NOVA_COMMANDS: Storyboard = {
       sfx: [{ t: 0, name: "el_hit_boom", gain: -2 }, { t: 0.6, name: "crowd_cheer", gain: -8 }], note: "colour floods the town; the gate stands open; the Greys walk out into the light" },
     // ---- THE ENDING
     { say: N("Dad came home."), ...FREE, hold: 1.6, ...lock(at([0.7, 1.45, -17.5], [0, 1.4, -27], 44)),
-      actors: [{ who: "dad", at: [0, 0, -30.2], act: "relief", face: "relief", walk: { to: [0, 0, -25.6], t0: 0, t1: 2.6, view: "front" } }, { who: "pipY", at: [0.9, 0, -19.5], act: "happy", face: "grin", back: true, walk: { to: [0.4, 0, -24.8], t0: 0.6, t1: 2.2, mode: "run", view: "back" } },
+      actors: [{ who: "dad", at: [0, 0, -30.2], act: "relief", face: "relief", walk: { to: [0, 0, -25.6], t0: 0, t1: 2.6, view: "front" } }, { who: "pipY", at: [0.9, 0, -21.6], act: "happy", face: "grin", back: true, walk: { to: [0.4, 0, -24.8], t0: 0.5, t1: 1.9, mode: "run", view: "back" } },
         { who: "mum", at: [-1.6, 0, -21.5], act: "relief", face: "relief", facing: "toward:dad", gesture: "coverMouth" }],
       sfx: [{ t: 0.3, name: "el_riser_short", gain: -10 }], note: "Dad walks out of the gate; Pip runs to him; Mum crying" },
     { say: [pipY("Sorry… do I know you?"), { ...nova("No. But I know you."), gap: 0.6 }], ...FREE, hold: 0.6, ...lock(at([1.7, 1.35, 5.6], [0, 1.1, 1.8], 44)),
