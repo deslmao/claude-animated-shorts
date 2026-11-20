@@ -43,4 +43,10 @@ until 20 Dec 2026. It downloads as a .zip containing `Short-memory-money.mp4`: v
 The picture is the same storyboard as run 42, with its music switched off. The 20 chunk renders match run 42's sizes to
 within a few bytes, so the frames are the same.
 
-The built-in check was still running when this was written; its result is added below once it finishes.
+**Verdict: publishable.** The built-in check's results match run 42's exactly:
+- 3,931 frames (131.0 s), H.264, 1080 × 1920, 30 fps.
+- No corrupt frames, no black spans.
+- Audio: AAC 48 kHz stereo, -14.1 LUFS, true peak -1.7 dBFS, in sync.
+- The same intended flags, frame for frame: the flash, the golden memory scenes, still close-ups, the two holds and the
+  dip to the end card (checked under run 42).
+- The file is 31.1 MB.
