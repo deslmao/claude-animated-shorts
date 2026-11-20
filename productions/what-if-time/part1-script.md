@@ -1,7 +1,7 @@
 # What If… You Could Stop Time? · Part 1: Sixty Years (viewer script for the owner's approval)
 
-**Series:** "What If…" (Thinkora). An original cyberpunk love story in two parts. Part 1 runs about 1:45 and ends on a
-cliffhanger and a vote.
+**Series:** "What If…" (Thinkora). An original cyberpunk love story in two parts. Part 1 runs about 1:55 and ends in the
+middle of an emergency, with a vote.
 
 **Narrator:** Theo, 17, telling his own story. **Sol, 17**, is a hacker with a glowing visor. Each speaker has their own
 voice and caption colour.
@@ -77,11 +77,23 @@ The counter drops each time: 18,240… 9,600… 2,100.)*
 > **THEO:** I promise.
 > **THEO (narrating):** I meant it. I really did.
 
-## THE CLIFFHANGER · 1:42
-*(Sol's visor lights up with a message from Dex: ONE LAST JOB. TWO TICKETS OUT. TONIGHT. Close-up on Theo's wrist.)*
+## THE LAST JOB · 1:40
+*(The crew's van in the rain. Dex turns round, grinning.)*
+> **DEX:** One last job. The Tower vault. Two tickets out of this city.
+> **SOL:** To the sea.
+
+*(The vault: cold white light. Sol at the console, hacking. An alarm screams. The doors blast open, and Tower guards
+flood in, guns raised. One presses a gun to Sol's head.)*
+> **GUARD:** Drop it! Now!
+> **SOL** *(she knows what he's about to do)*: Theo… don't.
+> **THEO:** There were too many of them. To save her, I'd need to stop time for a whole minute.
+
+*(Close-up: the counter on his wrist. 41. His fist starts to close. A heartbeat. The guard's finger tightens on the
+trigger.)*
 > **THEO:** I had forty-one days left.
 
-*(Silent end card: PART 2 · FORTY-ONE DAYS · Would you keep your promise? 1 = KEEP IT · 2 = BREAK IT 👇)*
+*(Cut to black on the heartbeat. Silent end card: PART 2 · FORTY-ONE DAYS · Would you break your promise?
+1 = SAVE HER · 2 = KEEP IT 👇)*
 
 ---
 
@@ -102,4 +114,6 @@ The counter drops each time: 18,240… 9,600… 2,100.)*
 | who Dex is | "Dex, the crew's big driver" (shown) / "Kid, whatever you're doing" |
 | the cost growing | the counter falling, and "the number got smaller" |
 | the second promise | "Promise me you'll stop." / "I promise." |
-| the cliffhanger | "ONE LAST JOB. TWO TICKETS OUT." + "I had forty-one days left." |
+| the last job | "One last job. The Tower vault. Two tickets out of this city." |
+| the emergency | "Drop it! Now!" + a gun at Sol's head |
+| what saving her costs | "I'd need to stop time for a whole minute." + "I had forty-one days left." |
