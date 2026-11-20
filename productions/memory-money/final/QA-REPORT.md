@@ -34,3 +34,13 @@ until 20 Dec 2026. It downloads as a .zip containing `Short-memory-money.mp4` (3
 | duplicated frames | 910, 955, 1924, 1971, 2933, 3220, 3222, 3784, 3787 | None at a chunk seam (every ~197 frames). Held close-ups and still inserts (Kai at twelve, Lumi's promise, the Broker, the case of vials, the last "Always."). |
 | frozen spans | 6.0–6.5 s, 74.3–74.9 s | The hold on the empty vial after the hook, and the hold before the memory counter. |
 | soft frame | 3841 | The dip into the end card. |
+
+## Run 43: the no-music master
+**Artifact:** `Short-memory-money-run43` from [render run 43](https://github.com/deslmao/claude-animated-shorts/actions/runs/44729855178)
+([direct link](https://github.com/deslmao/claude-animated-shorts/actions/runs/44729855178/artifacts/14628533477)), kept
+until 20 Dec 2026. It downloads as a .zip containing `Short-memory-money.mp4`: voices and sound effects only.
+
+The picture is the same storyboard as run 42, with its music switched off. The 20 chunk renders match run 42's sizes to
+within a few bytes, so the frames are the same.
+
+The built-in check was still running when this was written; its result is added below once it finishes.
