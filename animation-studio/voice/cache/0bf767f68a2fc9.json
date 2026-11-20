@@ -1,0 +1,90 @@
+{
+ "hash": "0bf767f68a2fc9",
+ "text": "Her name was Lumi. She folded paper stars and hummed songs she made up.",
+ "voice": "mmKai",
+ "lead": 0,
+ "end": 4.69,
+ "dur": 4.728163,
+ "words": [
+  {
+   "w": "Her",
+   "t0": 0,
+   "t1": 0.186
+  },
+  {
+   "w": "name",
+   "t0": 0.232,
+   "t1": 0.406
+  },
+  {
+   "w": "was",
+   "t0": 0.441,
+   "t1": 0.557
+  },
+  {
+   "w": "Lumi.",
+   "t0": 0.639,
+   "t1": 1.161
+  },
+  {
+   "w": "She",
+   "t0": 1.498,
+   "t1": 1.637
+  },
+  {
+   "w": "folded",
+   "t0": 1.718,
+   "t1": 2.032
+  },
+  {
+   "w": "paper",
+   "t0": 2.09,
+   "t1": 2.403
+  },
+  {
+   "w": "stars",
+   "t0": 2.461,
+   "t1": 2.868
+  },
+  {
+   "w": "and",
+   "t0": 2.914,
+   "t1": 3.019
+  },
+  {
+   "w": "hummed",
+   "t0": 3.088,
+   "t1": 3.355
+  },
+  {
+   "w": "songs",
+   "t0": 3.402,
+   "t1": 3.715
+  },
+  {
+   "w": "she",
+   "t0": 3.75,
+   "t1": 3.843
+  },
+  {
+   "w": "made",
+   "t0": 3.901,
+   "t1": 4.098
+  },
+  {
+   "w": "up.",
+   "t0": 4.133,
+   "t1": 4.69
+  }
+ ],
+ "voiceId": "DGqQmo441r9TwJq0migX",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.96
+ },
+ "created": "2026-11-20T09:12:49.576Z"
+}

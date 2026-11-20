@@ -1,0 +1,125 @@
+{
+ "hash": "0db9e3b40a6c5d",
+ "text": "The rich buy memories, so they can feel things they never lived. The rest of us sell them, just to eat.",
+ "voice": "mmKai",
+ "lead": 0,
+ "end": 6.223,
+ "dur": 6.269388,
+ "words": [
+  {
+   "w": "The",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "rich",
+   "t0": 0.29,
+   "t1": 0.522
+  },
+  {
+   "w": "buy",
+   "t0": 0.592,
+   "t1": 0.778
+  },
+  {
+   "w": "memories,",
+   "t0": 0.859,
+   "t1": 1.451
+  },
+  {
+   "w": "so",
+   "t0": 1.498,
+   "t1": 1.625
+  },
+  {
+   "w": "they",
+   "t0": 1.683,
+   "t1": 1.788
+  },
+  {
+   "w": "can",
+   "t0": 1.823,
+   "t1": 1.939
+  },
+  {
+   "w": "feel",
+   "t0": 2.032,
+   "t1": 2.276
+  },
+  {
+   "w": "things",
+   "t0": 2.345,
+   "t1": 2.601
+  },
+  {
+   "w": "they",
+   "t0": 2.635,
+   "t1": 2.752
+  },
+  {
+   "w": "never",
+   "t0": 2.81,
+   "t1": 3.007
+  },
+  {
+   "w": "lived.",
+   "t0": 3.077,
+   "t1": 3.506
+  },
+  {
+   "w": "The",
+   "t0": 3.901,
+   "t1": 4.029
+  },
+  {
+   "w": "rest",
+   "t0": 4.098,
+   "t1": 4.296
+  },
+  {
+   "w": "of",
+   "t0": 4.342,
+   "t1": 4.4
+  },
+  {
+   "w": "us",
+   "t0": 4.458,
+   "t1": 4.54
+  },
+  {
+   "w": "sell",
+   "t0": 4.586,
+   "t1": 4.76
+  },
+  {
+   "w": "them,",
+   "t0": 4.818,
+   "t1": 5.085
+  },
+  {
+   "w": "just",
+   "t0": 5.248,
+   "t1": 5.445
+  },
+  {
+   "w": "to",
+   "t0": 5.48,
+   "t1": 5.538
+  },
+  {
+   "w": "eat.",
+   "t0": 5.608,
+   "t1": 6.223
+  }
+ ],
+ "voiceId": "DGqQmo441r9TwJq0migX",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.96
+ },
+ "created": "2026-11-20T09:12:47.638Z"
+}

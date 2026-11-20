@@ -1,0 +1,63 @@
+{
+ "reused": 39,
+ "missing": [],
+ "byKind": {
+  "character": [
+   "kai",
+   "lumi",
+   "lumiSick",
+   "lumiHood",
+   "broker",
+   "lowB",
+   "lowA",
+   "lowC",
+   "lowD"
+  ],
+  "set": [
+   "theoFlat",
+   "lowline",
+   "backClinic",
+   "lowRoof",
+   "memMarket"
+  ],
+  "camera": [
+   "at"
+  ],
+  "light": [
+   "night"
+  ],
+  "ambience": [
+   "elb_market",
+   "elb_neon_city",
+   "elb_flat_rain",
+   "elb_roof_night"
+  ],
+  "prop": [
+   "mmInsert",
+   "memAd",
+   "rain",
+   "memTint"
+  ],
+  "sfx": [
+   "el_vial_chime",
+   "el_memory_drain",
+   "el_heart_slow",
+   "el_neon_buzz",
+   "el_humming",
+   "el_cough",
+   "el_hit_sub",
+   "el_memory_flood"
+  ],
+  "act": [
+   "neutral",
+   "sad",
+   "happy",
+   "confused",
+   "dazed"
+  ],
+  "item": [
+   "paperStar",
+   "memVial"
+  ]
+ }
+}

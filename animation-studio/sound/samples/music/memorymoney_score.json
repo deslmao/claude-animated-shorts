@@ -1,0 +1,131 @@
+{
+ "model_id": "music_v1",
+ "composition_plan": {
+  "positive_global_styles": [
+   "emotional cinematic score",
+   "modern",
+   "instrumental",
+   "bittersweet",
+   "neon night atmosphere"
+  ],
+  "negative_global_styles": [
+   "vocals",
+   "singing",
+   "lyrics",
+   "rap",
+   "comedy",
+   "country"
+  ],
+  "sections": [
+   {
+    "section_name": "in my city",
+    "positive_local_styles": [
+     "a dark trendy trap and phonk beat",
+     "punchy 808 bass",
+     "crisp hi-hats",
+     "a moody synth hook",
+     "neon night city, confident and cold"
+    ],
+    "negative_local_styles": [
+     "vocals",
+     "singing"
+    ],
+    "duration_ms": 19500,
+    "lines": []
+   },
+   {
+    "section_name": "a golden memory",
+    "positive_local_styles": [
+     "the beat drops away",
+     "a warm music box melody",
+     "soft piano",
+     "tender, nostalgic, first love"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "808"
+    ],
+    "duration_ms": 11000,
+    "lines": []
+   },
+   {
+    "section_name": "selling her",
+    "positive_local_styles": [
+     "melancholy strings",
+     "the music box melody now in a minor key",
+     "a soft clock-like ticking",
+     "sad and heavy"
+    ],
+    "negative_local_styles": [
+     "drums"
+    ],
+    "duration_ms": 16500,
+    "lines": []
+   },
+   {
+    "section_name": "a stranger",
+    "positive_local_styles": [
+     "very sparse lonely piano",
+     "long silences between notes",
+     "heartbreak"
+    ],
+    "negative_local_styles": [
+     "drums"
+    ],
+    "duration_ms": 12900,
+    "lines": []
+   },
+   {
+    "section_name": "the last one",
+    "positive_local_styles": [
+     "a low dark drone",
+     "a slow heartbeat pulse",
+     "tension rising slowly"
+    ],
+    "negative_local_styles": [
+     "melody",
+     "drums"
+    ],
+    "duration_ms": 16600,
+    "lines": []
+   },
+   {
+    "section_name": "she was buying them back",
+    "positive_local_styles": [
+     "strings swelling",
+     "the music box melody returning",
+     "building to a big emotional rise"
+    ],
+    "negative_local_styles": [
+     "drums"
+    ],
+    "duration_ms": 12000,
+    "lines": []
+   },
+   {
+    "section_name": "remember me",
+    "positive_local_styles": [
+     "the full emotional theme",
+     "piano, strings and music box together",
+     "warm, tearful, hopeful"
+    ],
+    "negative_local_styles": [
+     "drums"
+    ],
+    "duration_ms": 8800,
+    "lines": []
+   },
+   {
+    "section_name": "ending",
+    "positive_local_styles": [
+     "a single soft music box note fading out"
+    ],
+    "negative_local_styles": [
+     "drums"
+    ],
+    "duration_ms": 3000,
+    "lines": []
+   }
+  ]
+ }
+}

@@ -1,0 +1,65 @@
+{
+ "hash": "01bbdc7fac42c9",
+ "text": "Our first kiss paid for a month of medicine.",
+ "voice": "mmKai",
+ "lead": 0,
+ "end": 2.74,
+ "dur": 2.76898,
+ "words": [
+  {
+   "w": "Our",
+   "t0": 0,
+   "t1": 0.232
+  },
+  {
+   "w": "first",
+   "t0": 0.302,
+   "t1": 0.557
+  },
+  {
+   "w": "kiss",
+   "t0": 0.615,
+   "t1": 0.894
+  },
+  {
+   "w": "paid",
+   "t0": 0.964,
+   "t1": 1.173
+  },
+  {
+   "w": "for",
+   "t0": 1.219,
+   "t1": 1.335
+  },
+  {
+   "w": "a",
+   "t0": 1.393,
+   "t1": 1.416
+  },
+  {
+   "w": "month",
+   "t0": 1.509,
+   "t1": 1.753
+  },
+  {
+   "w": "of",
+   "t0": 1.8,
+   "t1": 1.858
+  },
+  {
+   "w": "medicine.",
+   "t0": 1.927,
+   "t1": 2.74
+  }
+ ],
+ "voiceId": "DGqQmo441r9TwJq0migX",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.96
+ },
+ "created": "2026-11-20T09:12:53.611Z"
+}

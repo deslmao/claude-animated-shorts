@@ -63,6 +63,7 @@ export const AMBIENCES = {
   elb_roof_night: "recorded loop: A high rooftop at night above a huge futuristic city: wind, distant city hum far below, soft rain, a faint drone flying past",
   elb_flat_rain: "recorded loop: A tiny apartment in a futuristic city at night: rain on the window, a fridge hum, muffled neon buzz and traffic outside",
   elb_classroom: "recorded loop: A quiet high school classroom during a lesson: pens scratching, a chair creaking, a pupil coughing, a teacher talking far away, rain outside the window",
+  elb_market: "recorded loop: A busy indoor futuristic market at night: a murmuring crowd, soft electronic beeps, glass clinking, a low neon hum, rain outside",
   elb_vault: "recorded loop: A high-tech corporate vault interior: a cold low electrical hum, servers whirring softly, very quiet and sterile",
 } as const;
 export type Ambience = keyof typeof AMBIENCES;
@@ -132,6 +133,11 @@ export const SFX = {
   el_neon_buzz: "recorded: A flickering neon sign buzzing and crackling in the rain, close (3.0 s)",
   el_door_shut: "recorded: A front door of a small apartment closing gently, a soft latch click (1.5 s)",
   el_slide_down: "recorded: A back sliding slowly down a wooden door to sit on the floor: fabric on wood, a soft thump (2.0 s)",
+  el_memory_drain: "recorded: A memory pulled out of a mind: a glassy hum rising and sucked into a bottle, a soft chime (2.5 s)",
+  el_vial_chime: "recorded: A small glass vial set down on a steel counter: a delicate chime (1.5 s)",
+  el_humming: "recorded: A teenage girl softly humming a gentle made-up lullaby, no words (6 s)",
+  el_cough: "recorded: A sick teenage girl coughing weakly twice (2 s)",
+  el_memory_flood: "recorded: Memories flooding back: a warm swelling shimmer of chimes and light (3.5 s)",
   el_siren_far: "recorded: Distant police and ambulance sirens echoing through a rainy futuristic city at night (5.0 s)",
 } as const;
 export type SfxName = keyof typeof SFX;

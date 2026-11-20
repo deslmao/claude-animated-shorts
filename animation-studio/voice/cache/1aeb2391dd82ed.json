@@ -1,0 +1,60 @@
+{
+ "hash": "1aeb2391dd82ed",
+ "text": "In my city, you pay with your memories.",
+ "voice": "mmKai",
+ "lead": 0,
+ "end": 2.415,
+ "dur": 2.45551,
+ "words": [
+  {
+   "w": "In",
+   "t0": 0,
+   "t1": 0.139
+  },
+  {
+   "w": "my",
+   "t0": 0.197,
+   "t1": 0.302
+  },
+  {
+   "w": "city,",
+   "t0": 0.383,
+   "t1": 0.789
+  },
+  {
+   "w": "you",
+   "t0": 0.848,
+   "t1": 0.964
+  },
+  {
+   "w": "pay",
+   "t0": 1.057,
+   "t1": 1.242
+  },
+  {
+   "w": "with",
+   "t0": 1.277,
+   "t1": 1.405
+  },
+  {
+   "w": "your",
+   "t0": 1.44,
+   "t1": 1.544
+  },
+  {
+   "w": "memories.",
+   "t0": 1.591,
+   "t1": 2.415
+  }
+ ],
+ "voiceId": "DGqQmo441r9TwJq0migX",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.96
+ },
+ "created": "2026-11-20T09:12:46.232Z"
+}

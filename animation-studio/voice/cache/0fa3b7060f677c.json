@@ -1,0 +1,85 @@
+{
+ "hash": "0fa3b7060f677c",
+ "text": "A machine pulls the memory out of your head and into a vial.",
+ "voice": "mmKai",
+ "lead": 0,
+ "end": 3.437,
+ "dur": 3.474286,
+ "words": [
+  {
+   "w": "A",
+   "t0": 0,
+   "t1": 0.093
+  },
+  {
+   "w": "machine",
+   "t0": 0.163,
+   "t1": 0.615
+  },
+  {
+   "w": "pulls",
+   "t0": 0.662,
+   "t1": 0.917
+  },
+  {
+   "w": "the",
+   "t0": 0.964,
+   "t1": 1.033
+  },
+  {
+   "w": "memory",
+   "t0": 1.091,
+   "t1": 1.37
+  },
+  {
+   "w": "out",
+   "t0": 1.428,
+   "t1": 1.556
+  },
+  {
+   "w": "of",
+   "t0": 1.579,
+   "t1": 1.637
+  },
+  {
+   "w": "your",
+   "t0": 1.672,
+   "t1": 1.788
+  },
+  {
+   "w": "head",
+   "t0": 1.858,
+   "t1": 2.067
+  },
+  {
+   "w": "and",
+   "t0": 2.125,
+   "t1": 2.241
+  },
+  {
+   "w": "into",
+   "t0": 2.299,
+   "t1": 2.485
+  },
+  {
+   "w": "a",
+   "t0": 2.577,
+   "t1": 2.601
+  },
+  {
+   "w": "vial.",
+   "t0": 2.67,
+   "t1": 3.437
+  }
+ ],
+ "voiceId": "DGqQmo441r9TwJq0migX",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.96
+ },
+ "created": "2026-11-20T09:12:48.246Z"
+}

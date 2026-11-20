@@ -1,0 +1,110 @@
+{
+ "hash": "03eb1a128a9ea5",
+ "text": "It worked. She got better. But every time I visited, she felt a little more like a stranger.",
+ "voice": "mmKai",
+ "lead": 0,
+ "end": 5.944,
+ "dur": 5.982041,
+ "words": [
+  {
+   "w": "It",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "worked.",
+   "t0": 0.197,
+   "t1": 0.697
+  },
+  {
+   "w": "She",
+   "t0": 0.987,
+   "t1": 1.115
+  },
+  {
+   "w": "got",
+   "t0": 1.173,
+   "t1": 1.324
+  },
+  {
+   "w": "better.",
+   "t0": 1.37,
+   "t1": 1.776
+  },
+  {
+   "w": "But",
+   "t0": 2.31,
+   "t1": 2.461
+  },
+  {
+   "w": "every",
+   "t0": 2.519,
+   "t1": 2.694
+  },
+  {
+   "w": "time",
+   "t0": 2.74,
+   "t1": 2.937
+  },
+  {
+   "w": "I",
+   "t0": 2.972,
+   "t1": 3.007
+  },
+  {
+   "w": "visited,",
+   "t0": 3.088,
+   "t1": 3.599
+  },
+  {
+   "w": "she",
+   "t0": 3.762,
+   "t1": 3.901
+  },
+  {
+   "w": "felt",
+   "t0": 3.971,
+   "t1": 4.191
+  },
+  {
+   "w": "a",
+   "t0": 4.238,
+   "t1": 4.261
+  },
+  {
+   "w": "little",
+   "t0": 4.319,
+   "t1": 4.54
+  },
+  {
+   "w": "more",
+   "t0": 4.574,
+   "t1": 4.725
+  },
+  {
+   "w": "like",
+   "t0": 4.76,
+   "t1": 4.899
+  },
+  {
+   "w": "a",
+   "t0": 4.934,
+   "t1": 4.957
+  },
+  {
+   "w": "stranger.",
+   "t0": 5.027,
+   "t1": 5.944
+  }
+ ],
+ "voiceId": "DGqQmo441r9TwJq0migX",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.96
+ },
+ "created": "2026-11-20T09:12:54.891Z"
+}

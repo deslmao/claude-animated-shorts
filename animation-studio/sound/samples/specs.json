@@ -254,6 +254,33 @@
    "s": 2.0,
    "level": -10,
    "p": "A person's back sliding slowly down a wooden door and sitting on the floor: fabric rubbing on wood, a soft thump"
+  },
+  "el_memory_drain": {
+   "s": 2.5,
+   "level": -8,
+   "stereo": true,
+   "p": "A memory being pulled out of someone's mind: a soft glassy hum rising, shimmering crystal tones sucked away into a bottle, ending in a gentle glass chime"
+  },
+  "el_vial_chime": {
+   "s": 1.5,
+   "level": -10,
+   "p": "A small glass vial set down on a steel counter: a clear delicate glass chime with a soft ring"
+  },
+  "el_humming": {
+   "s": 6,
+   "level": -8,
+   "p": "A teenage girl softly humming a simple gentle made-up lullaby melody to herself, close and intimate, no words"
+  },
+  "el_cough": {
+   "s": 2,
+   "level": -10,
+   "p": "A sick teenage girl coughing weakly twice in a quiet bedroom"
+  },
+  "el_memory_flood": {
+   "s": 3.5,
+   "level": -6,
+   "stereo": true,
+   "p": "Memories flooding back: a warm swelling shimmer of chimes and soft light, rising and blooming, magical and emotional"
   }
  },
  "bed": {
@@ -300,6 +327,10 @@
   "elb_classroom": {
    "s": 22,
    "p": "A quiet high school classroom during a lesson: pens scratching, a chair creaking, a pupil coughing, a teacher talking far away, rain outside the window"
+  },
+  "elb_market": {
+   "s": 22,
+   "p": "A busy indoor futuristic market at night: a murmuring crowd, soft electronic beeps, glass clinking, a low neon hum, rain outside"
   }
  }
 }

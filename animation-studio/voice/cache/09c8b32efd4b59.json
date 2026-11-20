@@ -1,0 +1,105 @@
+{
+ "hash": "09c8b32efd4b59",
+ "text": "She'd been selling her own memories, to buy mine back. Her childhood. Her family. Her whole life.",
+ "voice": "mmKai",
+ "lead": 0,
+ "end": 7.152,
+ "dur": 7.183673,
+ "words": [
+  {
+   "w": "She'd",
+   "t0": 0,
+   "t1": 0.255
+  },
+  {
+   "w": "been",
+   "t0": 0.279,
+   "t1": 0.418
+  },
+  {
+   "w": "selling",
+   "t0": 0.453,
+   "t1": 0.743
+  },
+  {
+   "w": "her",
+   "t0": 0.813,
+   "t1": 0.906
+  },
+  {
+   "w": "own",
+   "t0": 0.987,
+   "t1": 1.207
+  },
+  {
+   "w": "memories,",
+   "t0": 1.277,
+   "t1": 1.95
+  },
+  {
+   "w": "to",
+   "t0": 2.032,
+   "t1": 2.136
+  },
+  {
+   "w": "buy",
+   "t0": 2.206,
+   "t1": 2.357
+  },
+  {
+   "w": "mine",
+   "t0": 2.438,
+   "t1": 2.682
+  },
+  {
+   "w": "back.",
+   "t0": 2.717,
+   "t1": 3.146
+  },
+  {
+   "w": "Her",
+   "t0": 3.483,
+   "t1": 3.634
+  },
+  {
+   "w": "childhood.",
+   "t0": 3.692,
+   "t1": 4.435
+  },
+  {
+   "w": "Her",
+   "t0": 4.656,
+   "t1": 4.818
+  },
+  {
+   "w": "family.",
+   "t0": 4.911,
+   "t1": 5.596
+  },
+  {
+   "w": "Her",
+   "t0": 5.817,
+   "t1": 5.979
+  },
+  {
+   "w": "whole",
+   "t0": 6.06,
+   "t1": 6.374
+  },
+  {
+   "w": "life.",
+   "t0": 6.432,
+   "t1": 7.152
+  }
+ ],
+ "voiceId": "DGqQmo441r9TwJq0migX",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.96
+ },
+ "created": "2026-11-20T09:12:59.742Z"
+}

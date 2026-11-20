@@ -1,0 +1,95 @@
+{
+ "hash": "0852f0c45213fd",
+ "text": "Then she got sick. The grey sickness. The medicine cost more than I'd ever earn.",
+ "voice": "mmKai",
+ "lead": 0,
+ "end": 5.341,
+ "dur": 5.381224,
+ "words": [
+  {
+   "w": "Then",
+   "t0": 0,
+   "t1": 0.279
+  },
+  {
+   "w": "she",
+   "t0": 0.36,
+   "t1": 0.453
+  },
+  {
+   "w": "got",
+   "t0": 0.522,
+   "t1": 0.673
+  },
+  {
+   "w": "sick.",
+   "t0": 0.743,
+   "t1": 1.219
+  },
+  {
+   "w": "The",
+   "t0": 1.474,
+   "t1": 1.591
+  },
+  {
+   "w": "grey",
+   "t0": 1.649,
+   "t1": 1.858
+  },
+  {
+   "w": "sickness.",
+   "t0": 1.927,
+   "t1": 2.566
+  },
+  {
+   "w": "The",
+   "t0": 2.856,
+   "t1": 2.972
+  },
+  {
+   "w": "medicine",
+   "t0": 3.03,
+   "t1": 3.402
+  },
+  {
+   "w": "cost",
+   "t0": 3.448,
+   "t1": 3.715
+  },
+  {
+   "w": "more",
+   "t0": 3.796,
+   "t1": 3.982
+  },
+  {
+   "w": "than",
+   "t0": 4.017,
+   "t1": 4.133
+  },
+  {
+   "w": "I'd",
+   "t0": 4.168,
+   "t1": 4.296
+  },
+  {
+   "w": "ever",
+   "t0": 4.377,
+   "t1": 4.644
+  },
+  {
+   "w": "earn.",
+   "t0": 4.714,
+   "t1": 5.341
+  }
+ ],
+ "voiceId": "DGqQmo441r9TwJq0migX",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.96
+ },
+ "created": "2026-11-20T09:12:52.431Z"
+}

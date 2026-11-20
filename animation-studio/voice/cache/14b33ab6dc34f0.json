@@ -1,0 +1,95 @@
+{
+ "hash": "14b33ab6dc34f0",
+ "text": "I've sold two hundred memories of the girl I love. This is the last one.",
+ "voice": "mmKai",
+ "lead": 0,
+ "end": 4.365,
+ "dur": 4.414694,
+ "words": [
+  {
+   "w": "I've",
+   "t0": 0,
+   "t1": 0.209
+  },
+  {
+   "w": "sold",
+   "t0": 0.232,
+   "t1": 0.453
+  },
+  {
+   "w": "two",
+   "t0": 0.499,
+   "t1": 0.72
+  },
+  {
+   "w": "hundred",
+   "t0": 0.836,
+   "t1": 1.138
+  },
+  {
+   "w": "memories",
+   "t0": 1.196,
+   "t1": 1.567
+  },
+  {
+   "w": "of",
+   "t0": 1.614,
+   "t1": 1.672
+  },
+  {
+   "w": "the",
+   "t0": 1.718,
+   "t1": 1.788
+  },
+  {
+   "w": "girl",
+   "t0": 1.834,
+   "t1": 2.032
+  },
+  {
+   "w": "I",
+   "t0": 2.101,
+   "t1": 2.125
+  },
+  {
+   "w": "love.",
+   "t0": 2.218,
+   "t1": 2.67
+  },
+  {
+   "w": "This",
+   "t0": 2.891,
+   "t1": 3.077
+  },
+  {
+   "w": "is",
+   "t0": 3.135,
+   "t1": 3.216
+  },
+  {
+   "w": "the",
+   "t0": 3.274,
+   "t1": 3.355
+  },
+  {
+   "w": "last",
+   "t0": 3.425,
+   "t1": 3.715
+  },
+  {
+   "w": "one.",
+   "t0": 3.796,
+   "t1": 4.365
+  }
+ ],
+ "voiceId": "DGqQmo441r9TwJq0migX",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.96
+ },
+ "created": "2026-11-20T09:12:46.906Z"
+}

@@ -1,0 +1,65 @@
+{
+ "hash": "16fe128116070e",
+ "text": "I don't remember much anymore. But I remember you.",
+ "voice": "mmLumi",
+ "lead": 0,
+ "end": 3.715,
+ "dur": 3.761633,
+ "words": [
+  {
+   "w": "I",
+   "t0": 0,
+   "t1": 0.116
+  },
+  {
+   "w": "don't",
+   "t0": 0.186,
+   "t1": 0.395
+  },
+  {
+   "w": "remember",
+   "t0": 0.441,
+   "t1": 0.882
+  },
+  {
+   "w": "much",
+   "t0": 0.975,
+   "t1": 1.219
+  },
+  {
+   "w": "anymore.",
+   "t0": 1.277,
+   "t1": 1.869
+  },
+  {
+   "w": "But",
+   "t0": 2.206,
+   "t1": 2.368
+  },
+  {
+   "w": "I",
+   "t0": 2.461,
+   "t1": 2.508
+  },
+  {
+   "w": "remember",
+   "t0": 2.635,
+   "t1": 3.123
+  },
+  {
+   "w": "you.",
+   "t0": 3.204,
+   "t1": 3.715
+  }
+ ],
+ "voiceId": "f9imtLc2jfOLXtqe3Ihb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-20T09:13:00.861Z"
+}

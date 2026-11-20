@@ -1,0 +1,60 @@
+{
+ "hash": "1eff069fb29380",
+ "text": "Last one, kid. After this, she's a stranger.",
+ "voice": "mmBroker",
+ "lead": 0,
+ "end": 2.786,
+ "dur": 2.821224,
+ "words": [
+  {
+   "w": "Last",
+   "t0": 0,
+   "t1": 0.302
+  },
+  {
+   "w": "one,",
+   "t0": 0.36,
+   "t1": 0.511
+  },
+  {
+   "w": "kid.",
+   "t0": 0.534,
+   "t1": 0.917
+  },
+  {
+   "w": "After",
+   "t0": 1.103,
+   "t1": 1.405
+  },
+  {
+   "w": "this,",
+   "t0": 1.451,
+   "t1": 1.637
+  },
+  {
+   "w": "she's",
+   "t0": 1.66,
+   "t1": 1.869
+  },
+  {
+   "w": "a",
+   "t0": 1.916,
+   "t1": 1.939
+  },
+  {
+   "w": "stranger.",
+   "t0": 1.985,
+   "t1": 2.786
+  }
+ ],
+ "voiceId": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 0.92
+ },
+ "created": "2026-11-20T09:12:56.650Z"
+}

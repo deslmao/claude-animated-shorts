@@ -1,0 +1,55 @@
+{
+ "hash": "1ffe070c91d733",
+ "text": "The night we met paid for two.",
+ "voice": "mmKai",
+ "lead": 0,
+ "end": 1.95,
+ "dur": 1.985306,
+ "words": [
+  {
+   "w": "The",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "night",
+   "t0": 0.221,
+   "t1": 0.383
+  },
+  {
+   "w": "we",
+   "t0": 0.418,
+   "t1": 0.511
+  },
+  {
+   "w": "met",
+   "t0": 0.58,
+   "t1": 0.789
+  },
+  {
+   "w": "paid",
+   "t0": 0.859,
+   "t1": 1.068
+  },
+  {
+   "w": "for",
+   "t0": 1.115,
+   "t1": 1.219
+  },
+  {
+   "w": "two.",
+   "t0": 1.277,
+   "t1": 1.95
+  }
+ ],
+ "voiceId": "DGqQmo441r9TwJq0migX",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.96
+ },
+ "created": "2026-11-20T09:12:54.136Z"
+}

@@ -74,6 +74,10 @@ export const VOICES: Record<string, VoicePreset> = {
   tsMum: { name: "Bella - Professional, Bright, Warm", voiceId: "hpp4J3VqNfWAUOO0d1Us", model: MODEL, settings: { ...CHANNEL, stability: 0.55, style: 0.15, speed: 0.95 }, note: "Theo's mum, a night-shift medic: warm, tired" },
   tsDex: { name: "Charlie - Deep, Confident, Energetic", voiceId: "IKne3meq5aSn9XLyUdCD", model: MODEL, settings: { ...CHANNEL, stability: 0.4, style: 0.35, speed: 1.0 }, note: "Dex, the crew's big driver: loud, big-hearted" },
   tsGuard: { name: "Adam - Dominant, Firm", voiceId: "pNInz6obpgDQGcFmaJgB", model: MODEL, settings: { ...CHANNEL, stability: 0.35, style: 0.4, speed: 1.05 }, note: "a Tower guard: a shout" },
+  // I've Sold 200 Memories of the Girl I Love (productions/memory-money): Kai narrates in the first person
+  mmKai: { name: "Lip - Sincere, Clear & Warm", voiceId: "DGqQmo441r9TwJq0migX", model: MODEL, settings: { ...CHANNEL, stability: 0.5, style: 0.25, speed: 0.96 }, note: "Kai, 17, narrating his own story: soft, sincere, a little broken (library voice 'Lip', added to the account)" },
+  mmLumi: { name: "Lola - Soft, Innocent & Calming", voiceId: "f9imtLc2jfOLXtqe3Ihb", model: MODEL, settings: { ...CHANNEL, stability: 0.5, style: 0.25, speed: 0.95 }, note: "Lumi, 17: soft, bright, playful, later lost (library voice 'Lola', added to the account)" },
+  mmBroker: { name: "Brian - Deep, Resonant and Comforting", voiceId: "nPczCjzI2devNBz1zQrb", model: MODEL, settings: { ...CHANNEL, stability: 0.55, style: 0.3, speed: 0.92 }, note: "the Broker: smooth, slow, cold" },
   // Stop Time Part 1 v2 (The Knock): the officer at the door, Theo's teacher, the back-alley doc
   tsOfficer: { name: "Daniel - Steady Broadcaster", voiceId: "onwK4e9ZLuTAKqWW03F9", model: MODEL, settings: { ...CHANNEL, stability: 0.6, style: 0.15, speed: 0.9 }, note: "a police officer bringing a boy the worst news at dawn: quiet, gentle, slow" },
   tsTeacher: { name: "Matilda - Knowledgable, Professional", voiceId: "XrExE9yKIg1WjnnlVkGX", model: MODEL, settings: { ...CHANNEL, stability: 0.4, style: 0.35, speed: 1.0 }, note: "Theo's teacher: sharp, worried, calling after him" },

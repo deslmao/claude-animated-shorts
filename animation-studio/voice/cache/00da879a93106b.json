@@ -1,0 +1,65 @@
+{
+ "hash": "00da879a93106b",
+ "text": "So I sold the one thing I had. Her.",
+ "voice": "mmKai",
+ "lead": 0,
+ "end": 2.833,
+ "dur": 2.873469,
+ "words": [
+  {
+   "w": "So",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "I",
+   "t0": 0.244,
+   "t1": 0.267
+  },
+  {
+   "w": "sold",
+   "t0": 0.36,
+   "t1": 0.604
+  },
+  {
+   "w": "the",
+   "t0": 0.639,
+   "t1": 0.708
+  },
+  {
+   "w": "one",
+   "t0": 0.789,
+   "t1": 0.975
+  },
+  {
+   "w": "thing",
+   "t0": 1.01,
+   "t1": 1.184
+  },
+  {
+   "w": "I",
+   "t0": 1.242,
+   "t1": 1.277
+  },
+  {
+   "w": "had.",
+   "t0": 1.393,
+   "t1": 1.823
+  },
+  {
+   "w": "Her.",
+   "t0": 2.159,
+   "t1": 2.833
+  }
+ ],
+ "voiceId": "DGqQmo441r9TwJq0migX",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.96
+ },
+ "created": "2026-11-20T09:12:53.018Z"
+}

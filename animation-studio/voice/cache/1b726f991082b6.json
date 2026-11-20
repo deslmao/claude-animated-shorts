@@ -1,0 +1,100 @@
+{
+ "hash": "1b726f991082b6",
+ "text": "It was Lumi. I didn't know her face anymore. I only know because she told me.",
+ "voice": "mmKai",
+ "lead": 0,
+ "end": 4.923,
+ "dur": 4.963265,
+ "words": [
+  {
+   "w": "It",
+   "t0": 0,
+   "t1": 0.139
+  },
+  {
+   "w": "was",
+   "t0": 0.174,
+   "t1": 0.279
+  },
+  {
+   "w": "Lumi.",
+   "t0": 0.348,
+   "t1": 0.871
+  },
+  {
+   "w": "I",
+   "t0": 1.207,
+   "t1": 1.265
+  },
+  {
+   "w": "didn't",
+   "t0": 1.324,
+   "t1": 1.509
+  },
+  {
+   "w": "know",
+   "t0": 1.533,
+   "t1": 1.637
+  },
+  {
+   "w": "her",
+   "t0": 1.695,
+   "t1": 1.776
+  },
+  {
+   "w": "face",
+   "t0": 1.834,
+   "t1": 2.067
+  },
+  {
+   "w": "anymore.",
+   "t0": 2.101,
+   "t1": 2.647
+  },
+  {
+   "w": "I",
+   "t0": 3.042,
+   "t1": 3.088
+  },
+  {
+   "w": "only",
+   "t0": 3.204,
+   "t1": 3.402
+  },
+  {
+   "w": "know",
+   "t0": 3.448,
+   "t1": 3.599
+  },
+  {
+   "w": "because",
+   "t0": 3.692,
+   "t1": 3.947
+  },
+  {
+   "w": "she",
+   "t0": 3.982,
+   "t1": 4.075
+  },
+  {
+   "w": "told",
+   "t0": 4.145,
+   "t1": 4.389
+  },
+  {
+   "w": "me.",
+   "t0": 4.435,
+   "t1": 4.923
+  }
+ ],
+ "voiceId": "DGqQmo441r9TwJq0migX",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.96
+ },
+ "created": "2026-11-20T09:12:58.891Z"
+}

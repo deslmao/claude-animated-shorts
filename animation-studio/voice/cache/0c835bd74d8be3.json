@@ -1,0 +1,70 @@
+{
+ "hash": "0c835bd74d8be3",
+ "text": "And every time we met, she'd say the same thing.",
+ "voice": "mmKai",
+ "lead": 0,
+ "end": 2.972,
+ "dur": 3.004082,
+ "words": [
+  {
+   "w": "And",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "every",
+   "t0": 0.232,
+   "t1": 0.464
+  },
+  {
+   "w": "time",
+   "t0": 0.522,
+   "t1": 0.708
+  },
+  {
+   "w": "we",
+   "t0": 0.743,
+   "t1": 0.836
+  },
+  {
+   "w": "met,",
+   "t0": 0.906,
+   "t1": 1.3
+  },
+  {
+   "w": "she'd",
+   "t0": 1.486,
+   "t1": 1.73
+  },
+  {
+   "w": "say",
+   "t0": 1.765,
+   "t1": 1.904
+  },
+  {
+   "w": "the",
+   "t0": 1.95,
+   "t1": 2.032
+  },
+  {
+   "w": "same",
+   "t0": 2.078,
+   "t1": 2.287
+  },
+  {
+   "w": "thing.",
+   "t0": 2.322,
+   "t1": 2.972
+  }
+ ],
+ "voiceId": "DGqQmo441r9TwJq0migX",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.96
+ },
+ "created": "2026-11-20T09:12:50.160Z"
+}
