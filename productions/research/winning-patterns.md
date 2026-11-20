@@ -136,3 +136,37 @@ Ending / call to action:
 Top comments (what people react to):
 The technique to reuse (not the story):
 ```
+
+## Update, 20 Nov 2026: the owner's second research pass, and what our recent videos taught us
+**New from the research (added to what's above):**
+- **Series packaging:**
+  - label parts "Night 1/7", "Day 1 of 30" or "Part 1";
+  - each part ends on a binary choice, and **"the most-liked answer decides what happens next"**;
+  - Part 2 opens with the result ("Most of you said stay…"), which catches up new viewers and rewards the voters.
+- **Our own pinned comment on every video:** a rewatch clue with a timestamp, plus the 1-or-2 question.
+- **Simple art is no handicap:** stickman and blocky-character channels get 2–9M views. The owner's verdict: "Thinkora has better animation and camera than most of these; their storytelling is better." Story and packaging are where we're behind.
+
+**Originality and monetization (YouTube):**
+- Formats can repeat; plots, rule sets and reveals can't. Interchangeable template stories are a monetization risk.
+- Never copy someone else's intellectual property. Learn the technique, invent the world.
+- Keep horror advertiser-friendly: dread, not gore, and nothing aimed at frightening young children.
+- AI disclosure on YouTube is only required for realistic-looking content. On TikTok and Instagram, always label AI.
+- The owner is under 18, so a parent or guardian handles AdSense, shop and payment accounts.
+
+**What our recent videos taught us, against these rules:**
+- **Stop Time Part 1** (231 views, 25.6% viewed):
+  - an invented sci-fi world;
+  - about 20 s of set-up before the real hook (the knock);
+  - "Part 1" in the title;
+  - a 9-second vote card at the end. Lesson 4 above already said: end on the question and cut within about 0.5 s.
+- **Nova** (928 views, 44.8%): a premise that needed explaining, and an invented world.
+- **The memories video:**
+  - frame 1 is a glowing vial card (a face inside it, but not a character moving), which bends rule 9;
+  - it runs 2:11;
+  - judge it on "stayed to watch" at 48 h before making more sci-fi.
+
+**The channel's format from now on:**
+- **The story:** an "Imagine…" POV mystery in an everyday place (home, school, a bus, a train). A short set of rules, two voices the viewer trusts that contradict each other, one planted clue, an escalation every 5–10 s.
+- **Frame 1:** a character with a strong expression, moving.
+- **The ending:** a binary choice, cut fast, with the pinned comment carrying the vote. The most-liked answer decides Night 2.
+- **Length:** 60–90 s.
