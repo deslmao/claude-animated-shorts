@@ -4,14 +4,14 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-20T11:41:52.679Z",
-   "inputs": "1ad3d1253a5b39n",
+   "at": "2026-11-20T11:42:52.483Z",
+   "inputs": "0fe3456b5db541n",
    "detail": "valid; 27 warning(s):\n  total length 131.0 s (Shorts target 55-65 s)\n  shot 3 (backClinic): broker fills 31 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 5 (backClinic): kaiKid fills 25 % of the frame in the foreground @4.4s (is it hiding the action?)\n  shot 7 (backClinic): lumiKid fills 48 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 7 (backClinic): kaiKid fills 25 % of the frame in the foreground @1.2s (is it hiding the action?)\n  shot 8 (backClinic): kaiKid fills 72 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 9 (backClinic): lumiKid fills 89 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 11 (lowRoof): lumi fills 44 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 12 (lowRoof): kai fills 78 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 16 (theoFlat): kai fills 41 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 17 (theoFlat): lumiSick fills 73 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 18 (theoFlat): kai fills 72 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 20 (lowRoof): kai fills 41 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 20 (lowRoof): lumi fills 30 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 21 (backClinic): kai fills 29 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 23 (theoFlat): kai fills 41 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 24 (theoFlat): lumi fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 25 (theoFlat): kai fills 71 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 26 (theoFlat): lumi fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 27 (memMarket): kai fills 28 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 28 (memMarket): broker fills 64 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 29 (memMarket): kai fills 99 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 31 (memMarket): kai fills 28 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 33 (memMarket): lumi fills 44 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 36 (lowline): lumi fills 31 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 36 (lowline): kai fills 40 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 37 (lowline): kai fills 98 % of the frame in the foreground @0.0s (is it hiding the action?)"
   },
   "assets": {
    "state": "done",
-   "at": "2026-11-20T11:41:52.684Z",
-   "inputs": "1ad3d1253a5b39",
+   "at": "2026-11-20T11:42:52.487Z",
+   "inputs": "0fe3456b5db541",
    "detail": "46 library assets reused, none missing",
    "data": {
     "reused": 46,
@@ -86,26 +86,26 @@
   },
   "approval": {
    "state": "done",
-   "at": "2026-11-20T11:41:52.686Z",
+   "at": "2026-11-20T11:42:52.490Z",
    "inputs": "010b3fee6301e7",
    "detail": "all narration already generated (no cost)"
   },
   "narration": {
    "state": "done",
-   "at": "2026-11-20T11:41:52.687Z",
+   "at": "2026-11-20T11:42:52.491Z",
    "inputs": "010b3fee6301e7",
    "detail": "all lines already generated (cached)"
   },
   "sound": {
    "state": "done",
-   "at": "2026-11-20T11:42:16.226Z",
-   "inputs": "01c24714c772f6",
-   "detail": "soundtrack built: -14.1 LUFS"
+   "at": "2026-11-20T11:42:52.495Z",
+   "inputs": "14ab149fd2ffcf",
+   "detail": "soundtrack up to date"
   },
   "checks": {
    "state": "done",
-   "at": "2026-11-20T11:42:22.778Z",
-   "inputs": "01c24714c772f6",
+   "at": "2026-11-20T11:42:58.719Z",
+   "inputs": "14ab149fd2ffcf",
    "detail": "preflight PASS; library intact"
   }
  },

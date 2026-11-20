@@ -38,13 +38,8 @@ export const MEMORY_MONEY: Storyboard = {
   cast: { kai: "kai", lumi: "lumi", lumiSick: "lumiSick", lumiHood: "lumiHood", broker: "broker", kaiKid: "kaiKid", lumiKid: "lumiKid", seller: "lowB", lowA: "lowA", lowC: "lowC", lowD: "lowD" },
   voice: "mmKai", voices: { kai: "mmKai", lumi: "mmLumi", lumiSick: "mmLumi", broker: "mmBroker", kaiKid: "mmKai", lumiKid: "mmLumi" },
   captionColors: { kai: "#ffc864", mmLumi: "#d4b8ff", lumi: "#d4b8ff", lumiSick: "#d4b8ff", broker: "#ff8f6a", kaiKid: "#ffc864", lumiKid: "#d4b8ff" },
-  // the scored version (sound/samples/music/memorymoney_score2.json: nine sections written to these timings): a lone
-  // piano and a heartbeat under the hook, then Lumi's music-box waltz theme (how they met, making memories), the theme in
-  // a minor key on cello for the promise, sorrowful strings for the selling, a drone for the last sale, and the theme
-  // returning in a full crescendo as she buys them back. The no-music master (voices + effects only, for a trending sound
-  // added in the apps) is audio/Short-memory-money_nomusic.mp3, built from this storyboard with music: false.
-  music: { file: "memorymoney_score2", gain: 0, duck: -5, curve: [
-    [0, -6], [19.3, -6], [19.8, -4], [54.3, -4], [54.8, -5], [90.4, -7], [107.0, -5], [112.0, -2], [121.0, -1], [128.1, -3], [131.1, -20]] },
+  // the no-music master (voices + effects only), for a trending sound added in the apps
+  music: false,
   engine: 3, autoSfx: false,
   clarity: {
     premise: "In a city where memories are money, a boy sells every memory of the girl he loves to pay for her medicine, and finds out she has been selling her own memories to buy his back.",
