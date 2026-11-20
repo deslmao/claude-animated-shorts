@@ -100,6 +100,14 @@ const adRig = (a: At): PropRig => {
 type Ins = { n: number; draw: (g: CanvasRenderingContext2D, st: number) => void };
 const vig = (g: CanvasRenderingContext2D, a = 0.55) => { const v = g.createRadialGradient(IW / 2, IH / 2, IW * 0.3, IW / 2, IH / 2, IH * 0.75); v.addColorStop(0, "rgba(0,0,0,0)"); v.addColorStop(1, `rgba(0,0,0,${a})`); g.fillStyle = v; g.fillRect(0, 0, IW, IH); };
 const blob = (g: CanvasRenderingContext2D, pts: [number, number][], fill: string, lw = 10) => { g.beginPath(); pts.forEach(([x, y], i) => (i ? g.lineTo(x, y) : g.moveTo(x, y))); g.closePath(); g.fillStyle = fill; g.fill(); if (lw) { g.lineWidth = lw; g.strokeStyle = INK; g.lineJoin = "round"; g.stroke(); } };
+/** a cartoon hand: a rounded palm, four fingers and a thumb (rot 0 = fingers up; mirror = left hand) */
+const hand = (g: CanvasRenderingContext2D, x: number, y: number, rot: number, k: number, skin: string, mirror = false) => {
+  g.save(); g.translate(x, y); g.rotate(rot); g.scale(mirror ? -k : k, k); g.lineWidth = 9 / k; g.strokeStyle = INK; g.fillStyle = skin;
+  for (let i = 0; i < 4; i++) { g.beginPath(); g.roundRect(-58 + i * 30, -150 + Math.abs(i - 1.5) * 14, 28, 110, 14); g.fill(); g.stroke(); }
+  g.beginPath(); g.roundRect(50, -70, 26, 80, 13); g.save(); g.translate(0, 0); g.restore(); g.fill(); g.stroke();
+  g.beginPath(); g.ellipse(0, -10, 72, 64, 0, 0, Math.PI * 2); g.fill(); g.stroke();
+  g.restore();
+};
 /** Lumi's face, as she appears inside a memory: silver hair, eyes smiling shut */
 const lumiFace = (g: CanvasRenderingContext2D, x: number, y: number, r: number, alpha: number) => {
   g.save(); g.globalAlpha = alpha;
@@ -133,6 +141,57 @@ const vialCard = (g: CanvasRenderingContext2D, face: number, glowK: number) => {
 const INSERTS: Record<string, Ins> = {
   // the cold open and the last sale: the vial with Lumi's face, bright, fading, gone
   vialFace: { n: 3, draw: (g, st) => vialCard(g, [1, 0.35, 0][st], [1, 0.75, 0.35][st]) },
+  // how they met: small hands push a steaming bowl of noodles into his; the unplugged cable hangs beside it
+  noodles: { n: 1, draw: (g) => {
+    g.fillStyle = "#0d0b12"; g.fillRect(0, 0, IW, IH);
+    g.strokeStyle = "#3a3f4a"; g.lineWidth = 16; g.beginPath(); g.moveTo(690, 0); g.bezierCurveTo(700, 300, 640, 420, 660, 560); g.stroke();   // the cable, pulled out
+    g.fillStyle = "#3a3f4a"; g.beginPath(); g.roundRect(625, 540, 70, 90, 14); g.fill(); g.lineWidth = 8; g.strokeStyle = INK; g.stroke();
+    // steam
+    g.strokeStyle = "rgba(240,236,250,0.75)"; g.lineWidth = 12; g.lineCap = "round";
+    for (const x of [300, 405, 510]) { g.beginPath(); g.moveTo(x, 640); g.bezierCurveTo(x - 40, 560, x + 40, 500, x, 420); g.stroke(); }
+    // the bowl: red, full of golden noodles, chopsticks
+    g.fillStyle = "#f2c46a"; g.beginPath(); g.ellipse(405, 700, 250, 70, 0, 0, Math.PI * 2); g.fill(); g.lineWidth = 9; g.strokeStyle = INK; g.stroke();
+    g.strokeStyle = "#d9a040"; g.lineWidth = 7; for (let k = 0; k < 6; k++) { g.beginPath(); g.moveTo(210 + k * 60, 690); g.bezierCurveTo(240 + k * 60, 720, 260 + k * 60, 670, 290 + k * 60, 705); g.stroke(); }
+    g.fillStyle = "#c0392b"; g.beginPath(); g.moveTo(155, 700); g.bezierCurveTo(170, 940, 640, 940, 655, 700); g.closePath(); g.fill(); g.lineWidth = 10; g.strokeStyle = INK; g.stroke();
+    g.fillStyle = "#e8e4dc"; g.fillRect(330, 790, 150, 40);
+    g.strokeStyle = "#8a5a3c"; g.lineWidth = 12; g.beginPath(); g.moveTo(520, 640); g.lineTo(690, 430); g.moveTo(555, 655); g.lineTo(730, 455); g.stroke();
+    // her small hands at the sides, holding it out; his open hands below, about to take it
+    hand(g, 150, 800, -1.25, 0.9, "#f4dccc", true); hand(g, 660, 800, 1.25, 0.9, "#f4dccc");            // her small hands gripping the bowl
+    hand(g, 300, 1120, -0.35, 1.05, "#c9946c", true); hand(g, 510, 1120, 0.35, 1.05, "#c9946c");          // his open hands, reaching up for it
+    g.fillStyle = "rgba(255,200,100,0.18)"; g.fillRect(0, 0, IW, IH);
+    vig(g, 0.55);
+  } },
+  // making memories: her hands fold a paper star (state 0), then a jar full of hundreds of them (state 1)
+  stars: { n: 2, draw: (g, st) => {
+    g.fillStyle = "#120e14"; g.fillRect(0, 0, IW, IH);
+    const star = (x: number, y: number, r: number, c: string, rot = 0) => {
+      g.save(); g.translate(x, y); g.rotate(rot); g.beginPath();
+      for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + (i * Math.PI) / 5, rr = i % 2 ? r * 0.45 : r; i ? g.lineTo(Math.cos(a) * rr, Math.sin(a) * rr) : g.moveTo(Math.cos(a) * rr, Math.sin(a) * rr); }
+      g.closePath(); g.fillStyle = c; g.fill(); g.lineWidth = Math.max(3, r * 0.12); g.strokeStyle = INK; g.stroke(); g.restore();
+    };
+    const COLS = ["#ffd86a", "#ff9ab8", "#9fe0ff", "#c8a8ff", "#ffb070"];
+    if (!st) {
+      // a paper strip being folded, her hands either side, a few finished stars on the table
+      g.fillStyle = "#4a3a2c"; g.fillRect(0, 980, IW, IH - 980);
+      for (const [x, y, c, r] of [[150, 1080, 0, 0.3], [260, 1160, 1, -0.4], [600, 1120, 2, 0.2], [690, 1210, 3, 0.6]] as const) star(x, y, 48, COLS[c], r);
+      hand(g, 255, 860, 0.75, 0.85, "#f4dccc", true); hand(g, 555, 860, -0.75, 0.85, "#f4dccc");          // her hands, folding
+      g.fillStyle = "#ffd86a"; g.beginPath(); g.moveTo(330, 760); g.lineTo(480, 760); g.lineTo(470, 790); g.lineTo(340, 790); g.closePath(); g.fill(); g.lineWidth = 6; g.strokeStyle = INK; g.stroke();   // the strip
+      star(405, 640, 110, "#ffd86a", 0.1);                                                                    // the star taking shape
+      g.strokeStyle = "rgba(255,240,200,0.8)"; g.lineWidth = 5; for (const [x, y] of [[300, 520], [520, 530], [405, 470]] as const) { g.beginPath(); g.moveTo(x - 18, y); g.lineTo(x + 18, y); g.moveTo(x, y - 18); g.lineTo(x, y + 18); g.stroke(); }
+    } else {
+      // a glass jar, full to the brim with paper stars
+      g.fillStyle = "#4a3a2c"; g.fillRect(0, 1100, IW, IH - 1100);
+      const r = rnd(11);
+      g.save(); g.beginPath(); g.roundRect(180, 380, 450, 720, 60); g.clip();
+      for (let i = 0; i < 160; i++) star(200 + r() * 410, 420 + r() * 670, 26 + r() * 12, COLS[Math.floor(r() * 5)], r() * 6);
+      g.restore();
+      g.lineWidth = 12; g.strokeStyle = "rgba(230,240,255,0.85)"; g.beginPath(); g.roundRect(180, 380, 450, 720, 60); g.stroke();
+      g.fillStyle = "#8a6a4a"; g.fillRect(215, 330, 380, 60); g.lineWidth = 8; g.strokeStyle = INK; g.strokeRect(215, 330, 380, 60);   // the lid
+      g.strokeStyle = "rgba(255,255,255,0.5)"; g.lineWidth = 14; g.beginPath(); g.moveTo(225, 460); g.lineTo(225, 900); g.stroke();
+    }
+    g.fillStyle = "rgba(255,200,100,0.16)"; g.fillRect(0, 0, IW, IH);
+    vig(g, 0.55);
+  } },
   // the machine: a cable at a temple, light pouring into a vial
   extract: { n: 1, draw: (g) => {
     g.fillStyle = "#08080f"; g.fillRect(0, 0, IW, IH);
@@ -257,7 +316,7 @@ export const MEMORY_THEME: Theme = {
       variants: { gold: () => undefined, drain: () => undefined, flood: () => undefined } },
     memAd: { name: "MEMORIA holo-ad", desc: "a 3 x 4 m glowing holo-ad (a rich couple smiling inside a golden memory; MEMORIA · FEEL A LIFE YOU NEVER LIVED), facing +z (turn with yaw); `at` = its centre", category: "theme", themes: ["cyberpunk", "memory"], tags: ["ad", "holo", "sign", "rich"], radius: 0.1, height: 4,
       build: () => undefined, rig: (a) => adRig(a), steps: [], stepCount: () => 1 },
-    mmInsert: { name: "Close insert (Memories)", desc: "an upright 9:16 insert card (0.54 x 0.96 m, facing +z), `at` = its centre: an `at` camera 1.0 m in front at fov 51 sees only the card. A state per step. Variants: vialFace (the vial with Lumi's face: bright, fading, gone), extract (the cable at the temple, a vial filling), pills (the grey wrist, GREYSTOP, 4,000 ¢), counter (MEMORIES OF LUMI 212 / 140 / 61 / 9), vialCase (a case of gold vials), endCard (WHAT MEMORY WOULD YOU NEVER SELL?)", category: "theme", themes: ["cyberpunk", "insert"], tags: ["insert", "card", "close-up"], radius: 0.3, height: 0.96,
+    mmInsert: { name: "Close insert (Memories)", desc: "an upright 9:16 insert card (0.54 x 0.96 m, facing +z), `at` = its centre: an `at` camera 1.0 m in front at fov 51 sees only the card. A state per step. Variants: vialFace (the vial with Lumi's face: bright, fading, gone), noodles (her small hands pushing a steaming bowl of noodles into his, the unplugged cable beside it), stars (her hands folding a paper star; then a jar full of hundreds of them), extract (the cable at the temple, a vial filling), pills (the grey wrist, GREYSTOP, 4,000 ¢), counter (MEMORIES OF LUMI 212 / 140 / 61 / 9), vialCase (a case of gold vials), endCard (WHAT MEMORY WOULD YOU NEVER SELL?)", category: "theme", themes: ["cyberpunk", "insert"], tags: ["insert", "card", "close-up"], radius: 0.3, height: 0.96,
       build: () => undefined, rig: (a, v) => insertRig(a, v ?? "vialFace"), steps: ["its next state"], stepCount: () => 2000,
       variants: Object.fromEntries(Object.keys(INSERTS).map((k) => [k, () => undefined])) },
   },

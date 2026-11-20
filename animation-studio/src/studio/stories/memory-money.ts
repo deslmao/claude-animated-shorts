@@ -37,7 +37,7 @@ export const MEMORY_MONEY: Storyboard = {
   id: "memory-money", title: "I've Sold 200 Memories of the Girl I Love. This Is the Last One.",
   cast: { kai: "kai", lumi: "lumi", lumiSick: "lumiSick", lumiHood: "lumiHood", broker: "broker", kaiKid: "kaiKid", lumiKid: "lumiKid", seller: "lowB", lowA: "lowA", lowC: "lowC", lowD: "lowD" },
   voice: "mmKai", voices: { kai: "mmKai", lumi: "mmLumi", lumiSick: "mmLumi", broker: "mmBroker", kaiKid: "mmKai", lumiKid: "mmLumi" },
-  captionColors: { kai: "#ffc864", lumi: "#d4b8ff", lumiSick: "#d4b8ff", broker: "#ff8f6a", kaiKid: "#ffc864", lumiKid: "#d4b8ff" },
+  captionColors: { kai: "#ffc864", mmLumi: "#d4b8ff", lumi: "#d4b8ff", lumiSick: "#d4b8ff", broker: "#ff8f6a", kaiKid: "#ffc864", lumiKid: "#d4b8ff" },
   // the scored version (sound/samples/music/memorymoney_score2.json: nine sections written to these timings): a lone
   // piano and a heartbeat under the hook, then Lumi's music-box waltz theme (how they met, making memories), the theme in
   // a minor key on cello for the promise, sorrowful strings for the selling, a drone for the last sale, and the theme
@@ -79,9 +79,9 @@ export const MEMORY_MONEY: Storyboard = {
     // ---- THE CITY
     { say: N("The rich buy memories, so they can feel things they never lived. The rest of us sell them, just to eat."), ...STREET, hold: 0.2, transition: "flash",
       title: { text: "I'VE SOLD 200 MEMORIES", sub: "OF THE GIRL I LOVE" },
-      ...glide(at([1.0, 1.6, 6.5], [-0.9, 4.0, -5.5], 50), at([0.9, 1.55, 5.6], [-0.9, 4.2, -5.5], 50), 6.0),
-      actors: [{ who: "lowA", at: [-1.8, 0, -3], act: "neutral", walk: { to: [1.6, 0, 0], t0: 0, t1: 6 } }, { who: "lowC", at: [1.8, 0, -5], act: "sad", face: "sad", walk: { to: [-1.4, 0, -1.5], t0: 0.5, t1: 6 } }],
-      props: [{ id: "memAd", at: [-0.9, 4.6, -5.5], scale: 1.1, steps: [{ t: -0.7 }] }, RAIN([0, 1.6, 0])], sfx: [{ t: 0.4, name: "el_neon_buzz", gain: -6 }], note: "the neon city in the rain; over the street the MEMORIA holo-ad, a rich couple inside a golden memory" },
+      ...glide(at([0.2, 1.6, 5.0], [5.6, 4.4, -3.2], 50), at([0.6, 1.55, 4.4], [5.6, 4.6, -3.2], 50), 6.0),
+      actors: [{ who: "lowA", at: [4.6, 0, -4.5], act: "neutral", walk: { to: [4.4, 0, 0.5], t0: 0, t1: 6 } }, { who: "lowC", at: [3.2, 0, 0.8], act: "sad", face: "sad", walk: { to: [3.6, 0, -4.0], t0: 0.3, t1: 6 } }],
+      props: [{ id: "memAd", at: [5.6, 4.9, -3.2], yaw: -90, steps: [{ t: -0.7 }] }, RAIN([2.5, 1.6, 1.0])], sfx: [{ t: 0.4, name: "el_neon_buzz", gain: -6 }], note: "the neon city in the rain; over the street the MEMORIA holo-ad, a rich couple inside a golden memory" },
     { say: N("A machine pulls the memory out of your head and into a vial."), ...ROOM, hold: 0.1, ...lock(at([0.6, 1.5, 2.0], [0, 1.1, -0.5], 46)),
       actors: [{ who: "seller", at: "chair", mode: "sit", act: "sad", face: "sleepy", keepFace: true, facing: "camera" }, { who: "broker", at: "doc", act: "neutral", face: "smile", facing: "toward:seller", gesture: "operate" }],
       note: "the extraction room: a stranger in the chair, the Broker at the machine" },
@@ -91,7 +91,10 @@ export const MEMORY_MONEY: Storyboard = {
       title: { text: "FIVE YEARS EARLIER" }, ...lock(at([0.5, 1.3, 1.7], [-0.25, 0.95, -0.5], 46)),
       actors: [{ who: "kaiKid", at: "chair", mode: "sit", act: "sad", face: "sad", keepFace: true, facing: "camera" }, { who: "broker", at: "doc", act: "neutral", face: "smile", facing: "toward:kaiKid", gesture: "operate" }],
       props: [GOLD_MEM([-0.2, 1.0, -0.5])], note: "a memory: Kai at twelve, soaked, in the extraction chair" },
-    { say: [lumiKid("Don't sell that one. Here."), { ...lumiKid("Now you owe me a memory. A good one."), gap: 0.3 }], ...ROOM, hold: 0.2, ...lock(at([0.8, 1.2, 1.4], [0.05, 1.0, -0.4], 46)),
+    { say: { text: "Don't sell that one. Here.", who: "narrator", voice: "mmLumi" }, set: "theoFlat", light: NIGHT, ambience: "elb_flat_rain", hold: 0.2, ...glide(CARD_CAM, CARD_IN, 2.0),
+      actors: [], props: [{ id: "mmInsert", at: CARD, variant: "noodles", steps: [{ t: 99 }] }], sfx: [{ t: 0.05, name: "el_vial_chime", gain: -12 }],
+      note: "close: small hands push a steaming bowl of noodles into his; the cable she pulled out hangs beside it" },
+    { say: lumiKid("Now you owe me a memory. A good one."), ...ROOM, hold: 0.2, ...lock(at([0.8, 1.2, 1.4], [0.05, 1.0, -0.4], 46)),
       actors: [{ who: "kaiKid", at: "chair", mode: "sit", act: "shock", face: "shock", keepFace: true, facing: "toward:lumiKid" }, { who: "lumiKid", at: [0.25, 0, -0.25], act: "happy", face: "grin", facing: "toward:kaiKid", gesture: "hold", hold: "noodleBowl" }],
       props: [GOLD_MEM([0, 1.0, -0.4])], sfx: [{ t: 0.1, name: "el_van_door", gain: -14 }], note: "a silver-haired girl pulls the cable away and pushes a bowl of noodles into his hands" },
     { say: kaiKid("I don't have any good ones."), ...ROOM, hold: 0.2, ...lock(at([0.3, 1.05, 0.95], [-0.35, 0.92, -0.55], 40)),
@@ -108,9 +111,8 @@ export const MEMORY_MONEY: Storyboard = {
     { say: [N("And I'd say…"), { ...kai("Always."), gap: 0.2 }], ...ROOF, hold: 0.5, ...lock(at([-0.75, 1.0, -3.6], [-0.45, 0.98, -5.5], 34)),
       actors: [{ who: "kai", at: "ledgeL", mode: "sit", act: "happy", face: "smile", facing: 1, gesture: "hang" }], props: [GOLD_MEM([-0.45, 1, -5.5])], note: "Kai, close, smiling" },
     // ---- MAKING MEMORIES (a golden montage)
-    { say: N("So we made them. Hundreds of them."), ...ROOF, hold: 0.2, ...glide(at([0.0, 1.1, -2.7], [0, 0.98, -5.5], 50), at([0.0, 1.08, -3.0], [0, 0.98, -5.5], 50), 3.0),
-      actors: [{ who: "kai", at: "ledgeL", mode: "sit", act: "happy", face: "grin", facing: "toward:lumi", gesture: "hold", hold: "paperStar" }, { who: "lumi", at: "ledgeR", mode: "sit", act: "happy", face: "laugh", facing: "toward:kai", gesture: "offer", hold: "paperStar" }],
-      props: [GOLD_MEM([0, 1, -5.5])], note: "she teaches him to fold paper stars" },
+    insert("stars", 2.4, "she teaches him to fold paper stars; then a jar full of hundreds of them", { say: N("So we made them. Hundreds of them."), ambience: "elb_roof_night", hold: 0.2,
+      sfx: [{ word: "Hundreds", name: "el_vial_chime", gain: -10 }] }, [{ word: "Hundreds" }], true),
     { dur: 2.0, ...STREET, ...lock(at([1.8, 1.4, 4.2], [-0.4, 1.2, 0.2], 46)),
       actors: [{ who: "lumi", at: [-2.4, 0, 0.6], act: "laugh", face: "laugh", keepFace: true, walk: { to: [1.4, 0, 0.9], t0: 0, t1: 2.0, mode: "run" } }, { who: "kai", at: [-3.2, 0, 0.3], act: "laugh", face: "laugh", keepFace: true, walk: { to: [0.7, 0, 0.6], t0: 0.1, t1: 2.0, mode: "run" } }],
       props: [RAIN([-0.4, 1.3, 0.4]), GOLD_MEM([-0.4, 1.2, 0.4])], sfx: [{ t: 0.2, name: "giggle", gain: -8 }], note: "running through the rain, laughing" },
