@@ -1,9 +1,10 @@
-# I Got a Text From My Own Number: "Don't Get On the Bus Today." (viewer script for the owner's approval)
+# I Got a Text From My Own Number: "Don't Get On the Bus Today." (viewer script v2, for the owner's approval)
 
-**Format:** a standalone Short, about 2:00, in the "31 pupils" formula:
+**Format:** a standalone Short, about 2:15, in the "31 pupils" formula:
 - an ordinary setting (a bus stop, school mornings);
 - one impossible detail, stated in the title;
-- an emotional payoff that pays off everything the viewer was told.
+- a real friendship story;
+- an emotional twist that pays off everything the viewer was told.
 
 **Narrator:** Maya, 15, telling her own story in the first person.
 
@@ -11,119 +12,137 @@
 | Character | Who they are | Voice and caption |
 |---|---|---|
 | Maya | the narrator | her own voice and caption colour |
-| Jess, 15 | Maya's best friend, in a borrowed green scarf | a clearly different voice: lower, warmer |
+| Jess, 15 | Maya's best friend since they were five: loud, kind, a bit embarrassing | a clearly different voice: lower, warmer |
 | the bus driver | an older man | one line |
 
-**Premise (one sentence):** a girl gets texts from her own number, sent a year in the future, warning her not to get
-on the school bus, and a year later she realises she's the one who has to send them.
+**Premise (one sentence):** a girl who has started pushing her best friend away gets texts from her own number warning
+her off the school bus, and finds out they were sent by that friend, from a world where the girl got on and never came
+home.
 
 ---
 
 ## COLD OPEN · 0:00
 *(Close on a phone screen: 7:41. A new message. The sender reads "Me". The text: "Don't get on the bus today.")*
 > **MAYA:** This text came from my own number.
-> **MAYA:** I didn't send it. Not yet.
+> **MAYA:** I didn't send it. And I didn't find out who did until that night.
 
 *(Card: I GOT A TEXT FROM MY OWN NUMBER)*
 
-## THE BUS STOP · 0:08
-*(A rainy bus stop, morning. Maya and Jess, Jess in a green scarf.)*
-> **MAYA:** Every morning, my best friend Jess and I catch the 7:45 bus to school. Same stop. Same seats, right at
+## JESS · 0:10
+*(Quick, warm flashes: two five-year-olds holding hands at a school gate; the same two girls older, laughing in the
+front seat of a bus.)*
+> **MAYA:** Jess has been my best friend since we were five. Every morning, we catch the 7:45 bus. Same seats, right at
 > the front.
 
+*(The rainy bus stop, today. Jess bounds up wearing Maya's green scarf, waving. Maya barely looks up from her phone.)*
+> **MAYA:** But this year, I had new friends. And Jess was… a lot. Loud. Too much.
+> **MAYA:** That morning, she turned up in the green scarf I'd lent her the night before. And I said the worst thing
+> I've ever said to her.
+> **MAYA** *(to Jess, not looking at her)*: Can you sit with someone else today?
+> **JESS** *(the smile going)*: …Oh. Yeah. Okay.
+
+## THE TEXTS · 0:36
 *(The phone buzzes in Maya's hand.)*
 > **MAYA:** Then my phone buzzed. A message from "Me". That's how my own number is saved in my phone.
-> **JESS:** You texted yourself? Classic Maya.
 
-*(Close on the phone: the Sent folder, empty. Then the message's details.)*
-> **MAYA:** But I hadn't. My sent messages were empty. And the date on the text said the fourteenth of March. Next
-> year.
+*(Close: the Sent folder, empty. Then the message details: 14 MARCH, next year.)*
+> **MAYA:** But my sent messages were empty. And the date on the text said the fourteenth of March. Next year.
 
-## THE SECOND TEXT · 0:28
-*(Buzz. Another message from "Me".)*
+*(Buzz. Buzz.)*
 > **MAYA:** Then another one. "Please. You got on last time."
-> **MAYA:** Last time? There was no last time.
+> **MAYA:** And another. "Jess is wearing your green scarf."
 
-*(Buzz. A third.)*
-> **MAYA:** And a third. "Jess is wearing your green scarf."
+*(Maya looks up at Jess, standing apart from her in the scarf.)*
+> **MAYA:** She was. I'd only lent it to her last night. Nobody else knew.
 
-*(Close on Jess's scarf.)*
-> **MAYA:** She was. She'd borrowed it that morning. Nobody else knew.
+## THE BUS · 0:55
+*(The bus pulls in. The doors hiss open. The driver, an older man, looks down.)*
+> **MAYA:** The bus pulled in. Jess got on without me, and walked to the back.
+> **DRIVER:** On or off, love?
 
-## THE CHOICE · 0:45
-*(The bus pulls in. The doors hiss open. The driver, an older man, looks down at them.)*
-> **MAYA:** The bus pulled in, like every day.
-> **DRIVER:** On or off, girls?
-> **JESS:** Come on, we'll be late!
+*(Maya runs on, grabs Jess's arm and pulls her back off. The doors close behind them.)*
+> **MAYA** *(to Jess)*: We're not getting on. Either of us.
+> **JESS:** I thought you didn't want to sit with me.
 
-*(Maya grabs Jess's arm.)*
-> **MAYA:** We're not getting on.
-> **JESS:** Maya, what are you doing?
+*(The bus pulls away without them.)*
 
-*(The doors close. The bus pulls away without them. Jess throws up her hands.)*
-
-## THE CRASH · 0:58
-*(They walk in the rain, Jess sulking. Two streets ahead: a horn, a huge crash, then sirens.)*
+## THE CRASH · 1:08
+*(They walk in silence in the rain. Two streets ahead: a horn, a huge crash, then sirens.)*
 > **MAYA:** Two streets later, a lorry ran a red light. Straight into the front of the bus.
 
 *(The bus, its front crushed. Pupils climbing out of the back doors, shaken but unhurt.)*
 > **MAYA:** Everyone got out. But the front seats, our seats, were crushed flat.
-> **JESS** *(quietly)*: That's where we sit.
+> **JESS** *(quietly)*: That's where you sit.
 
-## WHO SENT IT · 1:15
+## THAT NIGHT · 1:22
 *(Maya's bedroom at night, the phone's light on her face. She types "Who are you?" On screen: NOT DELIVERED.)*
-> **MAYA:** That night, I replied: "Who are you?"
-> **MAYA:** It wouldn't send. You can't text a phone that's a year in the future.
+> **MAYA:** That night, I replied: "Who are you?" It wouldn't send.
+> **MAYA:** Then a new message came. One I'll never forget.
 
-## ONE YEAR LATER · 1:25
-*(Title: ONE YEAR LATER · 14 MARCH. The same bus stop. Maya alone. At 7:41 the phone flickers, and a new message
-opens by itself: To: "Me", dated a year ago.)*
-> **MAYA:** A year later, on the fourteenth of March, I was back at that stop.
-> **MAYA:** At 7:41, my phone flickered, and a message to "Me" opened by itself. Dated a year ago.
-> **MAYA:** That's when I understood. Nobody else sent those texts. I did.
+*(The thread from "Me" fills, one message at a time. We hear Jess's voice reading them.)*
+> **JESS** *(voice)*: It's Jess.
+> **JESS** *(voice)*: Where I am, you got on the bus. I sat at the back, like you told me to. That's why I'm still
+> here.
+> **JESS** *(voice)*: Your mum gave me your phone. I've texted you every day for a year. Today it finally went
+> through.
+> **JESS** *(voice)*: I wear your scarf every day. I miss you.
 
-*(She types. Send: "Don't get on the bus today." Send: "Please. You got on last time.")*
-> **MAYA:** I typed every word, exactly as I'd read them.
-> **MAYA:** I don't remember the time I got on. I think that's the point.
+*(Maya, alone, the phone shaking in her hand.)*
+> **MAYA:** Somewhere, I never came home. And the last thing I ever said to Jess was "sit with someone else."
 
-*(She types the last one. Send: "Jess is wearing your green scarf.")*
+## THE NEXT MORNING · 1:58
+*(The bus stop. Jess arrives, unsure, still in the scarf. Maya hugs her hard.)*
+> **JESS:** What's that for?
+> **MAYA** *(to Jess)*: For being too much. Don't ever stop.
 
-## THE ENDING · 1:48
-*(Running footsteps. Jess arrives, out of breath and grinning, the green scarf round her neck.)*
-> **JESS:** Morning! Look, still wearing your scarf.
-> **MAYA:** She never gave it back. I never asked.
+*(Jess starts to take off the scarf. Maya stops her hand.)*
+> **MAYA** *(to Jess)*: Keep it.
+> **MAYA:** Somewhere, there's a Jess who wears it to remember me. This one gets to wear it with me.
 
-*(Silent end card: IF YOU COULD TEXT YOUR PAST SELF ONE THING, WHAT WOULD IT SAY? 👇)*
+*(Silent end card: SEND THIS TO THE FRIEND YOU'D SIT WITH 👇)*
 
 ---
 
 ## Clarity checklist
 | The viewer must understand | Told by |
 |---|---|
-| the first image, and why it's impossible | "This text came from my own number. I didn't send it. Not yet." |
-| who Jess is, and the routine | "my best friend Jess and I catch the 7:45 bus… Same seats, right at the front" |
+| the first image, and why it's impossible | "This text came from my own number. I didn't send it." |
+| who Jess is to her | "Jess has been my best friend since we were five." |
+| the routine and the seats (the plant) | "Same seats, right at the front." |
+| the conflict | "this year, I had new friends. And Jess was… a lot." |
+| the scarf (the plant) | "the green scarf I'd lent her the night before" |
+| the cruel line (the plant) | "Can you sit with someone else today?" |
 | what "Me" means | "That's how my own number is saved in my phone." |
-| that she didn't send it | "My sent messages were empty." |
-| that it came from the future | "the date on the text said the fourteenth of March. Next year." |
-| the hint of another outcome | "Please. You got on last time." / "There was no last time." |
-| why she believes it | "She'd borrowed it that morning. Nobody else knew." |
-| the danger she avoided | "a lorry ran a red light. Straight into the front of the bus." / "our seats, were crushed flat" |
-| that nobody was hurt | "Everyone got out." |
-| why she can't reply | "You can't text a phone that's a year in the future." |
-| the reveal | "Nobody else sent those texts. I did." |
-| "last time", explained | "I don't remember the time I got on. I think that's the point." |
-| the payoff | Jess, safe, in the green scarf: "She never gave it back. I never asked." |
+| that she didn't send it, and when it's from | "my sent messages were empty… the fourteenth of March. Next year." |
+| why she believes it | "I'd only lent it to her last night. Nobody else knew." |
+| where Jess goes on the bus (the plant) | "Jess got on without me, and walked to the back." |
+| the danger | "a lorry ran a red light. Straight into the front of the bus." |
+| what she escaped | "our seats, were crushed flat" / "That's where you sit." |
+| who sent the texts | "It's Jess." |
+| the other world | "Where I am, you got on the bus." |
+| why Jess survived there | "I sat at the back, like you told me to." |
+| how Jess has her number | "Your mum gave me your phone." |
+| why the scarf | "I wear your scarf every day." |
+| the weight of it | "the last thing I ever said to Jess was 'sit with someone else.'" |
+| the payoff | "For being too much. Don't ever stop." / "Keep it." |
+
+**Every twist pays off a plant:**
+- the front seats;
+- the scarf;
+- "sit with someone else";
+- Jess walking to the back;
+- "Me".
 
 ## Production notes
 - **Sets:**
   - a rainy bus stop on an ordinary street;
-  - the school bus (the existing bus set, with the front seats);
+  - the school bus (the existing bus set: front seats, back doors);
   - a road junction for the crash;
-  - Maya's bedroom.
-- **Phone inserts:** the message, the empty Sent folder, the date, NOT DELIVERED, the message opening by itself, the
-  three sends.
+  - Maya's bedroom;
+  - a short flashback (a school gate, two small girls).
+- **Phone inserts:** the message, the empty Sent folder, the date, NOT DELIVERED, Jess's messages arriving one by one.
 - **Sound (ElevenLabs):**
   - phone buzzes, rain, the bus doors' hiss, the horn and crash, sirens;
-  - a soft glitch when the phone flickers;
-  - a quiet, building score that drops out on "I did."
-- **Length:** about 2:00. The cold open's text is on screen from the first frame.
+  - Jess's voice for her texts, softer, with a faint phone hum;
+  - a warm score that drops out on "It's Jess." and comes back on the hug.
+- **Length:** about 2:15.
