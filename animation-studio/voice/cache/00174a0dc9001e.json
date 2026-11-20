@@ -1,0 +1,55 @@
+{
+ "hash": "00174a0dc9001e",
+ "text": "So we made them. Hundreds of them.",
+ "voice": "mmKai",
+ "lead": 0,
+ "end": 2.415,
+ "dur": 2.45551,
+ "words": [
+  {
+   "w": "So",
+   "t0": 0,
+   "t1": 0.186
+  },
+  {
+   "w": "we",
+   "t0": 0.232,
+   "t1": 0.313
+  },
+  {
+   "w": "made",
+   "t0": 0.372,
+   "t1": 0.569
+  },
+  {
+   "w": "them.",
+   "t0": 0.604,
+   "t1": 0.882
+  },
+  {
+   "w": "Hundreds",
+   "t0": 1.277,
+   "t1": 1.695
+  },
+  {
+   "w": "of",
+   "t0": 1.741,
+   "t1": 1.811
+  },
+  {
+   "w": "them.",
+   "t0": 1.881,
+   "t1": 2.415
+  }
+ ],
+ "voiceId": "DGqQmo441r9TwJq0migX",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.96
+ },
+ "created": "2026-11-20T10:57:54.086Z"
+}

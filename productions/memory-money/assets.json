@@ -1,5 +1,5 @@
 {
- "reused": 39,
+ "reused": 46,
  "missing": [],
  "byKind": {
   "character": [
@@ -8,6 +8,8 @@
    "lumiSick",
    "lumiHood",
    "broker",
+   "kaiKid",
+   "lumiKid",
    "lowB",
    "lowA",
    "lowC",
@@ -43,7 +45,9 @@
    "el_memory_drain",
    "el_heart_slow",
    "el_neon_buzz",
+   "el_van_door",
    "el_humming",
+   "giggle",
    "el_cough",
    "el_hit_sub",
    "el_memory_flood"
@@ -51,11 +55,14 @@
   "act": [
    "neutral",
    "sad",
+   "shock",
    "happy",
+   "laugh",
    "confused",
    "dazed"
   ],
   "item": [
+   "noodleBowl",
    "paperStar",
    "memVial"
   ]

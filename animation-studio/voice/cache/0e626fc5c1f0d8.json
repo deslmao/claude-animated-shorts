@@ -1,0 +1,80 @@
+{
+ "hash": "0e626fc5c1f0d8",
+ "text": "Kai. Promise me you'll never sell us. Not even to save me.",
+ "voice": "mmLumi",
+ "lead": 0,
+ "end": 4.319,
+ "dur": 4.362449,
+ "words": [
+  {
+   "w": "Kai.",
+   "t0": 0,
+   "t1": 0.546
+  },
+  {
+   "w": "Promise",
+   "t0": 0.731,
+   "t1": 1.126
+  },
+  {
+   "w": "me",
+   "t0": 1.161,
+   "t1": 1.242
+  },
+  {
+   "w": "you'll",
+   "t0": 1.277,
+   "t1": 1.451
+  },
+  {
+   "w": "never",
+   "t0": 1.509,
+   "t1": 1.765
+  },
+  {
+   "w": "sell",
+   "t0": 1.846,
+   "t1": 2.136
+  },
+  {
+   "w": "us.",
+   "t0": 2.206,
+   "t1": 2.461
+  },
+  {
+   "w": "Not",
+   "t0": 2.682,
+   "t1": 2.844
+  },
+  {
+   "w": "even",
+   "t0": 2.902,
+   "t1": 3.111
+  },
+  {
+   "w": "to",
+   "t0": 3.158,
+   "t1": 3.239
+  },
+  {
+   "w": "save",
+   "t0": 3.367,
+   "t1": 3.738
+  },
+  {
+   "w": "me.",
+   "t0": 3.796,
+   "t1": 4.319
+  }
+ ],
+ "voiceId": "f9imtLc2jfOLXtqe3Ihb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-20T10:57:55.556Z"
+}

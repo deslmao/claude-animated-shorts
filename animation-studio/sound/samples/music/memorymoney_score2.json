@@ -1,0 +1,144 @@
+{
+ "model_id": "music_v1",
+ "composition_plan": {
+  "positive_global_styles": [
+   "deeply emotional cinematic score",
+   "a simple, unforgettable music box melody as the main theme",
+   "solo piano",
+   "string orchestra",
+   "slow tempo",
+   "melancholy, tender, heartbreaking",
+   "instrumental"
+  ],
+  "negative_global_styles": [
+   "vocals",
+   "singing",
+   "lyrics",
+   "rap",
+   "trap",
+   "drums",
+   "upbeat",
+   "comedy",
+   "electronic dance"
+  ],
+  "sections": [
+   {
+    "section_name": "the last memory",
+    "positive_local_styles": [
+     "a lone, slow piano motif",
+     "a soft low pulse like a heartbeat",
+     "dark, quiet, holding its breath"
+    ],
+    "negative_local_styles": [
+     "drums"
+    ],
+    "duration_ms": 19500,
+    "lines": []
+   },
+   {
+    "section_name": "how we met",
+    "positive_local_styles": [
+     "the main theme introduced on a fragile music box",
+     "slow 3/4 waltz feel",
+     "innocent, warm, childlike"
+    ],
+    "negative_local_styles": [
+     "drums"
+    ],
+    "duration_ms": 14000,
+    "lines": []
+   },
+   {
+    "section_name": "making memories",
+    "positive_local_styles": [
+     "the theme on soft piano with warm strings underneath",
+     "slow waltz",
+     "happy and sad at once, nostalgic, first love"
+    ],
+    "negative_local_styles": [
+     "drums"
+    ],
+    "duration_ms": 21000,
+    "lines": []
+   },
+   {
+    "section_name": "the promise",
+    "positive_local_styles": [
+     "the theme in a minor key on solo cello",
+     "sparse piano",
+     "heartbreaking, a promise that will be broken"
+    ],
+    "negative_local_styles": [
+     "drums"
+    ],
+    "duration_ms": 17900,
+    "lines": []
+   },
+   {
+    "section_name": "selling her",
+    "positive_local_styles": [
+     "sorrowful strings",
+     "fragments of the music box theme fading",
+     "a soft clock-like ticking",
+     "loss"
+    ],
+    "negative_local_styles": [
+     "drums"
+    ],
+    "duration_ms": 18200,
+    "lines": []
+   },
+   {
+    "section_name": "the last one",
+    "positive_local_styles": [
+     "a low sustained drone",
+     "a slow heartbeat",
+     "near silence, tension"
+    ],
+    "negative_local_styles": [
+     "melody",
+     "drums"
+    ],
+    "duration_ms": 16600,
+    "lines": []
+   },
+   {
+    "section_name": "she was buying them back",
+    "positive_local_styles": [
+     "the music box theme returns",
+     "strings swelling gradually",
+     "rising into a huge emotional crescendo",
+     "tears"
+    ],
+    "negative_local_styles": [
+     "drums"
+    ],
+    "duration_ms": 13800,
+    "lines": []
+   },
+   {
+    "section_name": "remember me",
+    "positive_local_styles": [
+     "the full theme: piano, music box and strings together",
+     "warm, tearful, hopeful resolution"
+    ],
+    "negative_local_styles": [
+     "drums"
+    ],
+    "duration_ms": 7100,
+    "lines": []
+   },
+   {
+    "section_name": "ending",
+    "positive_local_styles": [
+     "one soft music box note, fading"
+    ],
+    "negative_local_styles": [
+     "drums"
+    ],
+    "duration_ms": 3000,
+    "lines": []
+   }
+  ]
+ }
+}

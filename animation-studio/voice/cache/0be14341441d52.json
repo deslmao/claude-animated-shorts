@@ -1,0 +1,30 @@
+{
+ "hash": "0be14341441d52",
+ "text": "I promise.",
+ "voice": "mmKai",
+ "lead": 0,
+ "end": 1.022,
+ "dur": 1.07102,
+ "words": [
+  {
+   "w": "I",
+   "t0": 0,
+   "t1": 0.093
+  },
+  {
+   "w": "promise.",
+   "t0": 0.209,
+   "t1": 1.022
+  }
+ ],
+ "voiceId": "DGqQmo441r9TwJq0migX",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.96
+ },
+ "created": "2026-11-20T10:57:56.026Z"
+}

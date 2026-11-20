@@ -7,8 +7,8 @@
 //   props memTint (a memory's golden light held in front of the lens; variant "drain": the gold drains to grey on its
 //     step, a memory being sold), memAd (a holo-ad for the rich: MEMORIA), mmInsert (9:16 close insert cards, a state
 //     per step)
-//   characters kai, lumi, lumiSick, lumiHood, broker
-//   items memVial (a small glowing vial in the hand), paperStar
+//   characters kai, lumi, lumiSick, lumiHood, broker, kaiKid, lumiKid
+//   items memVial (a small glowing vial in the hand), paperStar, noodleBowl
 import * as THREE from "three";
 import type { Theme } from "..";
 import type { Look } from "../../characters/figure";
@@ -208,6 +208,13 @@ const starItem = (p: Pen, x: number, y: number, u: number, s: number) => {
   p.poly(pts, "#ffd86a", 2.2 * u);
 };
 
+/** a steaming bowl of noodles, held out in both hands */
+const bowlItem = (p: Pen, x: number, y: number, u: number, s: number) => {
+  for (const k of [-1, 1]) p.stroke([[x + (3 + k * 6) * u * s, y - 22 * u], [x + (5 + k * 6) * u * s, y - 32 * u], [x + (3 + k * 6) * u * s, y - 40 * u]], 1.6 * u, "#e8e4f0");   // steam
+  p.ell(x + 3 * u * s, y - 12 * u, 15 * u, 4 * u, "#f2c46a", 2 * u);
+  p.poly([[x - 12 * u + 3 * u * s, y - 12 * u], [x + 18 * u + 3 * u * s, y - 12 * u], [x + 12 * u + 3 * u * s, y + 4 * u], [x - 6 * u + 3 * u * s, y + 4 * u]], "#c0392b", 2.4 * u);
+};
+
 // ---------------------------------------------------------------- characters
 const KAI: Look = { name: "Kai", build: "lanky", skin: "#c9946c", seed: 921, hair: { style: "side", color: "#241e1c" }, top: { style: "hoodie", color: "#3a3f5a", accent: GOLD }, legs: "#1e2029", shoes: "#d8dbe2" };
 const LUMI_BASE = { name: "Lumi", build: "petite" as const, seed: 922, hair: { style: "long" as const, color: SILVER }, brow: { color: "#8a8fa0", k: 0.8 }, lashes: true, blush: "#ff9ab0",
@@ -217,6 +224,9 @@ const LUMI_SICK: Look = { ...LUMI_BASE, name: "Lumi (sick)", skin: "#e2d8d6", bl
 const LUMI_HOOD: Look = { ...LUMI_BASE, name: "Lumi (hooded)", skin: "#f4dccc", hat: { style: "beanie", color: "#2a2c36" }, layer: { style: "longcoat", color: "#2a2c36", accent: "#3a3d48" } };
 const BROKER: Look = { name: "The Broker", build: "stout", skin: "#e6c3a5", seed: 923, hair: { style: "receding", color: "#c8c8cc" }, glasses: { style: "round", color: GOLD }, moustache: { style: "thin", color: "#c8c8cc" },
   top: { style: "shirt", color: "#1e1e24" }, layer: { style: "longcoat", color: "#4a1f3a", accent: GOLD }, neck: { style: "bowtie", color: GOLD }, legs: "#1a1a20", shoes: "#111111" };
+// five years earlier: the two of them at twelve
+const KAI_KID: Look = { ...KAI, name: "Kai (12)", build: "kid", seed: 924, top: { style: "hoodie", color: "#5a4a3a", accent: "#8a7a5a" } };
+const LUMI_KID: Look = { ...LUMI_BASE, name: "Lumi (12)", build: "kid", seed: 925, skin: "#f4dccc", top: { style: "sweater", color: "#e8c46a" } };
 const meta = (name: string, desc: string, personality: string, tags: string[]) => ({ name, desc, personality, themes: ["cyberpunk", "romance", "memory"], tags });
 
 export const MEMORY_THEME: Theme = {
@@ -226,16 +236,19 @@ export const MEMORY_THEME: Theme = {
   mood: "drone",
   ambience: { memMarket: "elb_vault" },
   steps: { memMarket: "step_hard" },
-  characters: { kai: KAI, lumi: LUMI, lumiSick: LUMI_SICK, lumiHood: LUMI_HOOD, broker: BROKER },
+  characters: { kai: KAI, lumi: LUMI, lumiSick: LUMI_SICK, lumiHood: LUMI_HOOD, broker: BROKER, kaiKid: KAI_KID, lumiKid: LUMI_KID },
   characterMeta: {
     kai: meta("Kai", "17; lanky; dark side-swept hair; a navy hoodie with gold trim", "a poor boy who sells his memories of the girl he loves to pay for her medicine", ["teen", "boy", "narrator", "hero"]),
     lumi: meta("Lumi", "17; long silver hair; lashes and blush; a lilac sweater", "folds paper stars, hums songs she makes up, always asks 'Remember me?'", ["teen", "girl", "love"]),
     lumiSick: meta("Lumi (sick)", "Lumi, pale with the grey sickness", "Lumi while she is ill", ["teen", "girl", "sick"]),
     lumiHood: meta("Lumi (hooded)", "Lumi in a dark beanie and long dark coat, hiding her silver hair", "Lumi buying memories in secret", ["teen", "girl", "disguise"]),
+    kaiKid: meta("Kai (12)", "Kai at twelve: small, soaked, a worn brown hoodie", "Kai the day he met Lumi", ["child", "boy"]),
+    lumiKid: meta("Lumi (12)", "Lumi at twelve: long silver hair, a yellow sweater", "Lumi the day she met Kai", ["child", "girl"]),
     broker: meta("The Broker", "stout; slicked grey hair; round gold glasses; thin moustache; a plum long coat, a gold bow tie", "runs the memory exchange: smooth and cold", ["adult", "male", "dealer", "villain"]),
   },
   items: {
     memVial: { name: "Memory vial", desc: "a small glowing gold vial: a memory, drawn out of someone's head", themes: ["cyberpunk", "memory"], tags: ["vial", "memory", "glow"], draw: vialItem },
+    noodleBowl: { name: "Bowl of noodles", desc: "a steaming red bowl of noodles", themes: ["food", "street"], tags: ["food", "bowl", "noodles", "gift"], draw: bowlItem },
     paperStar: { name: "Paper star", desc: "a small folded yellow paper star", themes: ["romance", "craft"], tags: ["star", "paper", "gift"], draw: starItem },
   },
   props: {

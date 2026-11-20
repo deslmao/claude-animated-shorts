@@ -4,17 +4,17 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-20T09:31:18.698Z",
-   "inputs": "03ddb05a03d686n",
-   "detail": "valid; 20 warning(s):\n  total length 100.3 s (Shorts target 55-65 s)\n  shot 3 (backClinic): broker fills 31 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 6 (lowRoof): lumi fills 44 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 7 (lowRoof): kai fills 78 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 8 (theoFlat): kai fills 41 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 10 (lowRoof): kai fills 41 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 10 (lowRoof): lumi fills 31 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 11 (backClinic): kai fills 29 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 13 (theoFlat): kai fills 41 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 14 (theoFlat): lumi fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 15 (theoFlat): kai fills 71 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 16 (theoFlat): lumi fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 17 (memMarket): kai fills 28 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 18 (memMarket): broker fills 64 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 19 (memMarket): kai fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 21 (memMarket): kai fills 28 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 23 (memMarket): lumi fills 45 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 26 (lowline): lumi fills 31 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 26 (lowline): kai fills 40 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 27 (lowline): kai fills 98 % of the frame in the foreground @0.0s (is it hiding the action?)"
+   "at": "2026-11-20T11:03:14.928Z",
+   "inputs": "11363b3188a37bn",
+   "detail": "valid; 27 warning(s):\n  total length 131.1 s (Shorts target 55-65 s)\n  shot 3 (backClinic): broker fills 31 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 5 (backClinic): kaiKid fills 25 % of the frame in the foreground @4.4s (is it hiding the action?)\n  shot 6 (backClinic): lumiKid fills 48 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 6 (backClinic): kaiKid fills 25 % of the frame in the foreground @2.2s (is it hiding the action?)\n  shot 7 (backClinic): kaiKid fills 72 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 8 (backClinic): lumiKid fills 89 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 10 (lowRoof): lumi fills 44 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 11 (lowRoof): kai fills 78 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 15 (theoFlat): kai fills 41 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 16 (theoFlat): lumiSick fills 73 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 17 (theoFlat): kai fills 72 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 19 (lowRoof): kai fills 41 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 19 (lowRoof): lumi fills 30 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 20 (backClinic): kai fills 29 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 22 (theoFlat): kai fills 41 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 23 (theoFlat): lumi fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 24 (theoFlat): kai fills 71 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 25 (theoFlat): lumi fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 26 (memMarket): kai fills 28 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 27 (memMarket): broker fills 64 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 28 (memMarket): kai fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 30 (memMarket): kai fills 28 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 32 (memMarket): lumi fills 44 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 35 (lowline): lumi fills 31 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 35 (lowline): kai fills 40 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 36 (lowline): kai fills 98 % of the frame in the foreground @0.0s (is it hiding the action?)"
   },
   "assets": {
    "state": "done",
-   "at": "2026-11-20T09:31:18.701Z",
-   "inputs": "03ddb05a03d686",
-   "detail": "39 library assets reused, none missing",
+   "at": "2026-11-20T11:03:14.931Z",
+   "inputs": "11363b3188a37b",
+   "detail": "46 library assets reused, none missing",
    "data": {
-    "reused": 39,
+    "reused": 46,
     "missing": [],
     "byKind": {
      "character": [
@@ -23,6 +23,8 @@
       "lumiSick",
       "lumiHood",
       "broker",
+      "kaiKid",
+      "lumiKid",
       "lowB",
       "lowA",
       "lowC",
@@ -58,7 +60,9 @@
       "el_memory_drain",
       "el_heart_slow",
       "el_neon_buzz",
+      "el_van_door",
       "el_humming",
+      "giggle",
       "el_cough",
       "el_hit_sub",
       "el_memory_flood"
@@ -66,11 +70,14 @@
      "act": [
       "neutral",
       "sad",
+      "shock",
       "happy",
+      "laugh",
       "confused",
       "dazed"
      ],
      "item": [
+      "noodleBowl",
       "paperStar",
       "memVial"
      ]
@@ -79,33 +86,33 @@
   },
   "approval": {
    "state": "done",
-   "at": "2026-11-20T09:31:18.703Z",
-   "inputs": "093093321660c5",
+   "at": "2026-11-20T11:03:14.934Z",
+   "inputs": "07ef28e1465798",
    "detail": "all narration already generated (no cost)"
   },
   "narration": {
    "state": "done",
-   "at": "2026-11-20T09:31:18.703Z",
-   "inputs": "093093321660c5",
+   "at": "2026-11-20T11:03:14.935Z",
+   "inputs": "07ef28e1465798",
    "detail": "all lines already generated (cached)"
   },
   "sound": {
    "state": "done",
-   "at": "2026-11-20T09:31:36.548Z",
-   "inputs": "1ec1719a700888",
+   "at": "2026-11-20T11:03:39.394Z",
+   "inputs": "151b1ba792da12",
    "detail": "soundtrack built: -14.1 LUFS"
   },
   "checks": {
    "state": "done",
-   "at": "2026-11-20T09:31:41.705Z",
-   "inputs": "1ec1719a700888",
+   "at": "2026-11-20T11:03:45.556Z",
+   "inputs": "151b1ba792da12",
    "detail": "preflight PASS; library intact"
   }
  },
  "approval": {
-  "scriptHash": "093093321660c5",
-  "chars": 1272,
-  "at": "2026-11-20T09:12:39.747Z",
+  "scriptHash": "07ef28e1465798",
+  "chars": 394,
+  "at": "2026-11-20T10:57:43.817Z",
   "by": "the owner, in the conversation"
  }
 }

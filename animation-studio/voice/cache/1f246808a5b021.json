@@ -1,0 +1,30 @@
+{
+ "hash": "1f246808a5b021",
+ "text": "I lied.",
+ "voice": "mmKai",
+ "lead": 0,
+ "end": 0.882,
+ "dur": 0.914286,
+ "words": [
+  {
+   "w": "I",
+   "t0": 0,
+   "t1": 0.104
+  },
+  {
+   "w": "lied.",
+   "t0": 0.221,
+   "t1": 0.882
+  }
+ ],
+ "voiceId": "DGqQmo441r9TwJq0migX",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.96
+ },
+ "created": "2026-11-20T10:57:56.403Z"
+}

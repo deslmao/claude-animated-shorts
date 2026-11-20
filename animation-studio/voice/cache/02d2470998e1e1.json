@@ -1,0 +1,50 @@
+{
+ "hash": "02d2470998e1e1",
+ "text": "I don't have any good ones.",
+ "voice": "mmKai",
+ "lead": 0,
+ "end": 1.533,
+ "dur": 1.567347,
+ "words": [
+  {
+   "w": "I",
+   "t0": 0,
+   "t1": 0.093
+  },
+  {
+   "w": "don't",
+   "t0": 0.163,
+   "t1": 0.325
+  },
+  {
+   "w": "have",
+   "t0": 0.36,
+   "t1": 0.511
+  },
+  {
+   "w": "any",
+   "t0": 0.534,
+   "t1": 0.662
+  },
+  {
+   "w": "good",
+   "t0": 0.708,
+   "t1": 0.871
+  },
+  {
+   "w": "ones.",
+   "t0": 0.929,
+   "t1": 1.533
+  }
+ ],
+ "voiceId": "DGqQmo441r9TwJq0migX",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.96
+ },
+ "created": "2026-11-20T10:57:53.023Z"
+}

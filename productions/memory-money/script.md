@@ -1,6 +1,6 @@
 # I've Sold 200 Memories of the Girl I Love. This Is the Last One. (viewer script for the owner's approval)
 
-**Format:** a standalone Short, about 2:05. An original cyberpunk love story: a power with a price, a cruel city, and a
+**Format:** a standalone Short, about 2:11 (v2 adds three scenes of the two of them together). An original cyberpunk love story: a power with a price, a cruel city, and a
 twist that pays off everything.
 
 **The hook:** the first image and the first two lines carry the whole story.
@@ -42,7 +42,15 @@ face flickers and starts to fade.)*
 > **KAI:** A machine pulls the memory out of your head and into a vial. And once it's sold, it's gone from you.
 > Forever.
 
-## LUMI · 0:24
+## HOW THEY MET · 0:20 *(added in v2, approved)*
+*(A memory, in gold: five years earlier, the same market. Kai, twelve and soaked, in the extraction chair. A
+silver-haired girl pulls the cable away and pushes a steaming bowl of noodles into his hands.)*
+> **KAI:** The first time I saw her, I was twelve. I was about to sell a memory of my mum. For a bowl of noodles.
+> **LUMI:** Don't sell that one. Here. Now you owe me a memory. A good one.
+> **KAI:** I don't have any good ones.
+> **LUMI:** Then we'll make some.
+
+## LUMI · 0:34
 *(A warm memory, in golden light. A rooftop at night. A silver-haired girl folds a paper star and puts it in Kai's
 hand.)*
 > **KAI:** Her name was Lumi. She folded paper stars and hummed songs she made up.
@@ -51,9 +59,18 @@ hand.)*
 > **KAI:** And I'd say…
 > **KAI** *(in the memory, smiling)*: Always.
 
-## THE GREY · 0:40
+## MAKING MEMORIES · 0:45 *(added in v2, approved)*
+*(A golden montage: she teaches him to fold paper stars; they run through the rain, laughing; the rooftop at dawn.)*
+> **KAI:** So we made them. Hundreds of them.
+> **LUMI:** One day, when we're old, we'll sit up here and remember every single one.
+
+## THE GREY · 0:55
 *(A tiny flat. Lumi in bed, pale, coughing; grey veins on her wrist. A bottle of pills with a price tag.)*
 > **KAI:** Then she got sick. The grey sickness. The medicine cost more than I'd ever earn.
+*(Added in v2, approved: Lumi, pale, grabs his sleeve.)*
+> **LUMI:** Kai. Promise me you'll never sell us. Not even to save me.
+> **KAI:** I promise.
+> **KAI** *(narrating)*: I lied.
 > **KAI:** So I sold the one thing I had. Her.
 
 *(The market chair. A memory plays in gold: their first kiss on the rooftop. Then it drains out of the frame, colour
