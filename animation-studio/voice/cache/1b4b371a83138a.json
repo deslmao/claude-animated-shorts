@@ -1,0 +1,70 @@
+{
+ "hash": "1b4b371a83138a",
+ "text": "The rest of us live under it, in the Lowline.",
+ "voice": "tsTheo",
+ "lead": 0,
+ "end": 2.508,
+ "dur": 2.533878,
+ "words": [
+  {
+   "w": "The",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "rest",
+   "t0": 0.209,
+   "t1": 0.406
+  },
+  {
+   "w": "of",
+   "t0": 0.453,
+   "t1": 0.511
+  },
+  {
+   "w": "us",
+   "t0": 0.569,
+   "t1": 0.65
+  },
+  {
+   "w": "live",
+   "t0": 0.697,
+   "t1": 0.859
+  },
+  {
+   "w": "under",
+   "t0": 0.894,
+   "t1": 1.091
+  },
+  {
+   "w": "it,",
+   "t0": 1.161,
+   "t1": 1.382
+  },
+  {
+   "w": "in",
+   "t0": 1.428,
+   "t1": 1.544
+  },
+  {
+   "w": "the",
+   "t0": 1.579,
+   "t1": 1.649
+  },
+  {
+   "w": "Lowline.",
+   "t0": 1.695,
+   "t1": 2.508
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T03:42:41.406Z"
+}

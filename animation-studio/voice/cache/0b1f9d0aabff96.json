@@ -1,0 +1,25 @@
+{
+ "hash": "0b1f9d0aabff96",
+ "text": "Stop!",
+ "voice": "tsGuard",
+ "lead": 0,
+ "end": 0.789,
+ "dur": 0.835918,
+ "words": [
+  {
+   "w": "Stop!",
+   "t0": 0,
+   "t1": 0.789
+  }
+ ],
+ "voiceId": "pNInz6obpgDQGcFmaJgB",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.35,
+  "similarity_boost": 0.75,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.05
+ },
+ "created": "2026-11-20T03:42:55.393Z"
+}

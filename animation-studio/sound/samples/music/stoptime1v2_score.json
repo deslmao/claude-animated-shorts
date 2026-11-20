@@ -1,0 +1,164 @@
+{
+ "model_id": "music_v1",
+ "composition_plan": {
+  "positive_global_styles": [
+   "emotional cinematic synthwave score",
+   "analog synth pads",
+   "piano",
+   "strings",
+   "a simple bittersweet melody",
+   "instrumental",
+   "neon night atmosphere"
+  ],
+  "negative_global_styles": [
+   "vocals",
+   "singing",
+   "lyrics",
+   "rap",
+   "comedy",
+   "upbeat pop",
+   "country"
+  ],
+  "sections": [
+   {
+    "section_name": "frozen time",
+    "positive_local_styles": [
+     "a single held high synth tone, almost silent",
+     "a slow deep pulse like a heartbeat",
+     "suspended, eerie"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "melody"
+    ],
+    "duration_ms": 6600,
+    "lines": []
+   },
+   {
+    "section_name": "neon city",
+    "positive_local_styles": [
+     "a slow synthwave pulse",
+     "wide analog pads",
+     "a distant city at night",
+     "the melody's first notes"
+    ],
+    "negative_local_styles": [
+     "vocals"
+    ],
+    "duration_ms": 5800,
+    "lines": []
+   },
+   {
+    "section_name": "home, warm",
+    "positive_local_styles": [
+     "a gentle warm piano melody",
+     "soft pads",
+     "tender, quiet, a mother and son",
+     "hopeful"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "synth lead"
+    ],
+    "duration_ms": 14900,
+    "lines": []
+   },
+   {
+    "section_name": "the knock",
+    "positive_local_styles": [
+     "the melody stops",
+     "a low sustained uneasy tone",
+     "sparse, holding its breath"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "melody"
+    ],
+    "duration_ms": 8900,
+    "lines": []
+   },
+   {
+    "section_name": "grief",
+    "positive_local_styles": [
+     "slow heartbreaking strings",
+     "a lonely piano playing the home melody in a minor key",
+     "deep loss"
+    ],
+    "negative_local_styles": [
+     "drums"
+    ],
+    "duration_ms": 18000,
+    "lines": []
+   },
+   {
+    "section_name": "walking away",
+    "positive_local_styles": [
+     "very sparse piano",
+     "a single cello",
+     "emptiness"
+    ],
+    "negative_local_styles": [
+     "drums"
+    ],
+    "duration_ms": 9400,
+    "lines": []
+   },
+   {
+    "section_name": "the note",
+    "positive_local_styles": [
+     "a fragile music-box melody",
+     "strings swelling softly",
+     "tender sorrow"
+    ],
+    "negative_local_styles": [
+     "drums"
+    ],
+    "duration_ms": 14400,
+    "lines": []
+   },
+   {
+    "section_name": "the clinic",
+    "positive_local_styles": [
+     "a dark synth drone",
+     "a low pulsing bass",
+     "menace, dirty neon",
+     "ticking"
+    ],
+    "negative_local_styles": [
+     "melody",
+     "piano"
+    ],
+    "duration_ms": 17400,
+    "lines": []
+   },
+   {
+    "section_name": "the chase",
+    "positive_local_styles": [
+     "tension rising fast",
+     "pulsing synth arpeggio",
+     "driving drums building",
+     "urgent"
+    ],
+    "negative_local_styles": [
+     "vocals"
+    ],
+    "duration_ms": 6700,
+    "lines": []
+   },
+   {
+    "section_name": "stopped",
+    "positive_local_styles": [
+     "everything cuts to a held high tone",
+     "a slow heartbeat",
+     "then a quiet bittersweet swell of pads and strings",
+     "a question left hanging"
+    ],
+    "negative_local_styles": [
+     "drums"
+    ],
+    "duration_ms": 9000,
+    "lines": []
+   }
+  ]
+ }
+}

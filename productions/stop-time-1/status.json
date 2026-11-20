@@ -4,48 +4,56 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-20T02:18:43.089Z",
-   "inputs": "0b3e5671965e6dn",
-   "detail": "valid; 14 warning(s):\n  total length 112.0 s (Shorts target 55-65 s)\n  shot 2 (lowline): theo: walk 0-2.8 s outside the shot\n  shot 4 (lowline): lowA: walk 0-5 s outside the shot\n  shot 4 (lowline): lowB: walk 0.4-5 s outside the shot\n  shot 1 (lowline): sol fills 36 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 5 (theoFlat): mum fills 25 % of the frame in the foreground @4.2s (is it hiding the action?)\n  shot 10 (lowline): theo fills 28 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 14 (lowline): sol fills 37 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 20 (lowline): sol fills 32 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 20 (lowline): theo fills 39 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 20 (lowline): theo's hand (present) is out of frame @2.4s (side): widen the shot or change the gesture\n  shot 21 (lowline): sol fills 62 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 23 (lowline): sol's hand (talk) is out of frame @4.0s (side): widen the shot or change the gesture\n  shot 25 (towerVault): sol fills 65 % of the frame in the foreground @0.0s (is it hiding the action?)"
+   "at": "2026-11-20T04:07:01.217Z",
+   "inputs": "12d2f03702ed13n",
+   "detail": "valid; 36 warning(s):\n  total length 111.1 s (Shorts target 55-65 s)\n  shot 2 (lowline): theo: walk 0-3 s outside the shot\n  shot 4 (lowline): lowA: walk 0-4 s outside the shot\n  shot 4 (lowline): lowB: walk 0.3-4 s outside the shot\n  shot 9 (theoFlat): light \"interiorCool\" on an outdoor set\n  shot 10 (flatDoor): light \"interiorCool\" on an outdoor set\n  shot 11 (flatDoor): light \"interiorCool\" on an outdoor set\n  shot 12 (flatDoor): light \"interiorCool\" on an outdoor set\n  shot 13 (flatDoor): light \"interiorCool\" on an outdoor set\n  shot 14 (flatDoor): light \"interiorCool\" on an outdoor set\n  shot 15 (flatDoor): light \"interiorCool\" on an outdoor set\n  shot 16 (theoFlat): light \"interiorCool\" on an outdoor set\n  shot 17 (classroom): theo: walk 0.5-3.2 s outside the shot\n  shot 29 (lowline): theo: walk 0-3.2 s outside the shot\n  shot 29 (lowline): sol: walk 0.8-3 s outside the shot\n  shot 29 (lowline): guard: walk 1.4-3.2 s outside the shot\n  shot 1 (lowline): sol fills 42 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 2 (lowline): theo fills 25 % of the frame in the foreground @2.4s (is it hiding the action?)\n  shot 5 (theoFlat): mum fills 31 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 6 (theoFlat): mum fills 58 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 7 (theoFlat): theo fills 80 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 8 (theoFlat): mum fills 31 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 11 (flatDoor): officer fills 60 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 12 (flatDoor): theo's raised hand (spread) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 12 (flatDoor): theo fills 84 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 13 (flatDoor): officer fills 60 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 14 (flatDoor): officer fills 27 % of the frame in the foreground @7.2s (is it hiding the action?)\n  shot 16 (theoFlat): theo fills 28 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 18 (classroom): teacher fills 42 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 24 (backClinic): doc fills 33 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 27 (backClinic): doc fills 75 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 27 (backClinic): doc's hand (present) is out of frame @1.4s (side): widen the shot or change the gesture\n  shot 28 (backClinic): theo fills 97 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 29 (lowline): guard's hand (pump) is out of frame @2.4s (side): widen the shot or change the gesture\n  shot 30 (lowline): guard fills 27 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 32 (lowline): theo fills 28 % of the frame in the foreground @0.0s (is it hiding the action?)"
   },
   "assets": {
    "state": "done",
-   "at": "2026-11-20T02:18:43.092Z",
-   "inputs": "0b3e5671965e6d",
-   "detail": "51 library assets reused, none missing",
+   "at": "2026-11-20T04:07:01.220Z",
+   "inputs": "12d2f03702ed13",
+   "detail": "63 library assets reused, none missing",
    "data": {
-    "reused": 51,
+    "reused": 63,
     "missing": [],
     "byKind": {
      "character": [
       "theo",
       "sol",
       "tsMum",
-      "dex",
+      "tsOfficer",
+      "tsTeacher",
+      "tsDoc",
       "towerGuard",
       "lowA",
       "lowB",
-      "lowC"
+      "lowC",
+      "lowD",
+      "lowE"
      ],
      "set": [
       "lowline",
-      "theoFlat",
       "lowRoof",
-      "towerVault"
+      "theoFlat",
+      "flatDoor",
+      "classroom",
+      "lockerRoom",
+      "backClinic"
      ],
      "camera": [
       "at"
      ],
      "light": [
       "night",
-      "interiorCool"
+      "interiorCool",
+      "interior"
      ],
      "prop": [
       "bullet",
       "rain",
       "timeTint",
       "tsInsert",
-      "van"
+      "tsChoice"
      ],
      "sfx": [
       "el_time_stop",
@@ -53,35 +61,41 @@
       "el_time_resume",
       "el_siren_far",
       "el_neon_buzz",
-      "el_hit_sub",
+      "el_door_shut",
+      "knock_heavy",
+      "latch_click",
+      "el_door_creak",
+      "el_heartbeat",
+      "el_slide_down",
+      "phone_buzz",
+      "chair_scrape",
       "el_van_door",
+      "musicbox_note",
       "el_implant",
       "el_counter_tick",
-      "el_bullet_wall",
-      "el_hacking",
-      "musicbox_note",
-      "el_heartbeat",
-      "el_alarm",
-      "el_door_blast",
       "el_gun_cock",
-      "el_heartbeat_fast",
-      "el_riser_long",
-      "el_hit_boom"
+      "el_gunshot",
+      "pop"
      ],
      "act": [
       "scared",
+      "angry",
       "determined",
       "neutral",
       "sad",
       "happy",
       "shock",
-      "laugh",
-      "angry"
+      "thinking"
+     ],
+     "item": [
+      "tsPistol",
+      "tsCap"
      ],
      "ambience": [
+      "elb_roof_night",
       "elb_neon_city",
       "elb_flat_rain",
-      "elb_roof_night",
+      "elb_classroom",
       "elb_vault"
      ]
     }
@@ -89,33 +103,33 @@
   },
   "approval": {
    "state": "done",
-   "at": "2026-11-20T02:18:43.093Z",
-   "inputs": "0b107de0312d54",
+   "at": "2026-11-20T04:07:01.222Z",
+   "inputs": "16f8400f28e220",
    "detail": "all narration already generated (no cost)"
   },
   "narration": {
    "state": "done",
-   "at": "2026-11-20T02:18:43.094Z",
-   "inputs": "0b107de0312d54",
+   "at": "2026-11-20T04:07:01.223Z",
+   "inputs": "16f8400f28e220",
    "detail": "all lines already generated (cached)"
   },
   "sound": {
    "state": "done",
-   "at": "2026-11-20T02:19:07.703Z",
-   "inputs": "0722ff8ee604f4",
+   "at": "2026-11-20T04:07:27.422Z",
+   "inputs": "0d97d9af9704c8",
    "detail": "soundtrack built: -14.1 LUFS"
   },
   "checks": {
    "state": "done",
-   "at": "2026-11-20T02:19:12.323Z",
-   "inputs": "0722ff8ee604f4",
+   "at": "2026-11-20T04:07:32.814Z",
+   "inputs": "0d97d9af9704c8",
    "detail": "preflight PASS; library intact"
   }
  },
  "approval": {
-  "scriptHash": "0b107de0312d54",
-  "chars": 1689,
-  "at": "2026-11-20T01:50:59.174Z",
+  "scriptHash": "16f8400f28e220",
+  "chars": 1243,
+  "at": "2026-11-20T03:42:39.355Z",
   "by": "the owner, in the conversation"
  }
 }

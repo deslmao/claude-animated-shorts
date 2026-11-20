@@ -1,0 +1,70 @@
+{
+ "hash": "1112391f2c77a8",
+ "text": "Eat something. And go to school tomorrow. I mean it.",
+ "voice": "tsMum",
+ "lead": 0,
+ "end": 3.344,
+ "dur": 3.369796,
+ "words": [
+  {
+   "w": "Eat",
+   "t0": 0,
+   "t1": 0.232
+  },
+  {
+   "w": "something.",
+   "t0": 0.302,
+   "t1": 0.801
+  },
+  {
+   "w": "And",
+   "t0": 1.022,
+   "t1": 1.161
+  },
+  {
+   "w": "go",
+   "t0": 1.219,
+   "t1": 1.3
+  },
+  {
+   "w": "to",
+   "t0": 1.347,
+   "t1": 1.393
+  },
+  {
+   "w": "school",
+   "t0": 1.451,
+   "t1": 1.707
+  },
+  {
+   "w": "tomorrow.",
+   "t0": 1.765,
+   "t1": 2.299
+  },
+  {
+   "w": "I",
+   "t0": 2.485,
+   "t1": 2.531
+  },
+  {
+   "w": "mean",
+   "t0": 2.659,
+   "t1": 2.844
+  },
+  {
+   "w": "it.",
+   "t0": 2.902,
+   "t1": 3.344
+  }
+ ],
+ "voiceId": "hpp4J3VqNfWAUOO0d1Us",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0.15,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-20T03:42:42.450Z"
+}

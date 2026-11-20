@@ -1,0 +1,45 @@
+{
+ "hash": "0f74ed77a0eb0f",
+ "text": "And they turned her away.",
+ "voice": "tsTheo",
+ "lead": 0,
+ "end": 1.3,
+ "dur": 1.332245,
+ "words": [
+  {
+   "w": "And",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "they",
+   "t0": 0.197,
+   "t1": 0.302
+  },
+  {
+   "w": "turned",
+   "t0": 0.337,
+   "t1": 0.569
+  },
+  {
+   "w": "her",
+   "t0": 0.604,
+   "t1": 0.685
+  },
+  {
+   "w": "away.",
+   "t0": 0.731,
+   "t1": 1.3
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T03:42:46.941Z"
+}

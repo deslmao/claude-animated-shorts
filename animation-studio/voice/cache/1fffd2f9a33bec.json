@@ -1,0 +1,95 @@
+{
+ "hash": "1fffd2f9a33bec",
+ "text": "It was just me and my mum. She was a medic on the night shift.",
+ "voice": "tsTheo",
+ "lead": 0,
+ "end": 2.879,
+ "dur": 2.925714,
+ "words": [
+  {
+   "w": "It",
+   "t0": 0,
+   "t1": 0.128
+  },
+  {
+   "w": "was",
+   "t0": 0.163,
+   "t1": 0.232
+  },
+  {
+   "w": "just",
+   "t0": 0.279,
+   "t1": 0.418
+  },
+  {
+   "w": "me",
+   "t0": 0.464,
+   "t1": 0.546
+  },
+  {
+   "w": "and",
+   "t0": 0.58,
+   "t1": 0.65
+  },
+  {
+   "w": "my",
+   "t0": 0.685,
+   "t1": 0.755
+  },
+  {
+   "w": "mum.",
+   "t0": 0.836,
+   "t1": 1.149
+  },
+  {
+   "w": "She",
+   "t0": 1.184,
+   "t1": 1.3
+  },
+  {
+   "w": "was",
+   "t0": 1.335,
+   "t1": 1.428
+  },
+  {
+   "w": "a",
+   "t0": 1.463,
+   "t1": 1.486
+  },
+  {
+   "w": "medic",
+   "t0": 1.533,
+   "t1": 1.788
+  },
+  {
+   "w": "on",
+   "t0": 1.846,
+   "t1": 1.904
+  },
+  {
+   "w": "the",
+   "t0": 1.939,
+   "t1": 2.009
+  },
+  {
+   "w": "night",
+   "t0": 2.043,
+   "t1": 2.229
+  },
+  {
+   "w": "shift.",
+   "t0": 2.264,
+   "t1": 2.879
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T03:42:41.834Z"
+}

@@ -1,0 +1,30 @@
+{
+ "hash": "1e160467605150",
+ "text": "I didn't.",
+ "voice": "tsTheo",
+ "lead": 0,
+ "end": 0.743,
+ "dur": 0.783673,
+ "words": [
+  {
+   "w": "I",
+   "t0": 0,
+   "t1": 0.104
+  },
+  {
+   "w": "didn't.",
+   "t0": 0.186,
+   "t1": 0.743
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T03:42:49.500Z"
+}

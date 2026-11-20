@@ -1,0 +1,85 @@
+{
+ "hash": "023f01c99db6db",
+ "text": "The hospital wouldn't treat her without a coverage card. She didn't make it.",
+ "voice": "tsOfficer",
+ "lead": 0,
+ "end": 5.108,
+ "dur": 5.146122,
+ "words": [
+  {
+   "w": "The",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "hospital",
+   "t0": 0.244,
+   "t1": 0.673
+  },
+  {
+   "w": "wouldn't",
+   "t0": 0.743,
+   "t1": 1.022
+  },
+  {
+   "w": "treat",
+   "t0": 1.057,
+   "t1": 1.312
+  },
+  {
+   "w": "her",
+   "t0": 1.382,
+   "t1": 1.556
+  },
+  {
+   "w": "without",
+   "t0": 1.788,
+   "t1": 2.148
+  },
+  {
+   "w": "a",
+   "t0": 2.183,
+   "t1": 2.218
+  },
+  {
+   "w": "coverage",
+   "t0": 2.299,
+   "t1": 2.705
+  },
+  {
+   "w": "card.",
+   "t0": 2.752,
+   "t1": 3.32
+  },
+  {
+   "w": "She",
+   "t0": 3.75,
+   "t1": 3.901
+  },
+  {
+   "w": "didn't",
+   "t0": 3.971,
+   "t1": 4.238
+  },
+  {
+   "w": "make",
+   "t0": 4.284,
+   "t1": 4.505
+  },
+  {
+   "w": "it.",
+   "t0": 4.551,
+   "t1": 5.108
+  }
+ ],
+ "voiceId": "onwK4e9ZLuTAKqWW03F9",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0.15,
+  "use_speaker_boost": true,
+  "speed": 0.9
+ },
+ "created": "2026-11-20T03:42:45.705Z"
+}

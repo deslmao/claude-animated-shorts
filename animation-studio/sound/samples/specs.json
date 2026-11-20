@@ -244,6 +244,16 @@
    "level": -13,
    "stereo": true,
    "p": "Distant police and ambulance sirens echoing through a rainy futuristic city at night"
+  },
+  "el_door_shut": {
+   "s": 1.5,
+   "level": -8,
+   "p": "A front door of a small apartment closing gently, a soft latch click, quiet hallway"
+  },
+  "el_slide_down": {
+   "s": 2.0,
+   "level": -10,
+   "p": "A person's back sliding slowly down a wooden door and sitting on the floor: fabric rubbing on wood, a soft thump"
   }
  },
  "bed": {
@@ -286,6 +296,10 @@
   "elb_vault": {
    "s": 22,
    "p": "A high-tech corporate vault interior: a cold low electrical hum, servers whirring softly, very quiet and sterile"
+  },
+  "elb_classroom": {
+   "s": 22,
+   "p": "A quiet high school classroom during a lesson: pens scratching, a chair creaking, a pupil coughing, a teacher talking far away, rain outside the window"
   }
  }
 }

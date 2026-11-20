@@ -87,8 +87,12 @@ hair and a glowing band in it runs from a Tower guard. The guard raises a gun.)*
 from her face. Only Theo is in colour.)*
 > **THEO:** I didn't think. I squeezed.
 
-*(Cut to black on the heartbeat. Silent end card: PART 2 · THE GIRL IN THE RAIN · Would you spend a day of your life
-on a stranger? 1 = YES · 2 = NO 👇)*
+*(The end card is the frozen frame itself (the owner's direction). Over the stopped street, glowing panels pop in one
+by one. Theo, in colour, looks up at A, then at B, then at the viewer:)*
+- **WHAT SHOULD HE DO?**
+- **A · SAVE HER:** One more life saved. It costs him days.
+- **B · LEAVE HER:** No trouble for him. But she dies.
+- **COMMENT A OR B**
 
 ---
 

@@ -1,0 +1,90 @@
+{
+ "hash": "14d8aea25f9e0f",
+ "text": "I didn't care what it did. A back-alley doc put it in for me.",
+ "voice": "tsTheo",
+ "lead": 0,
+ "end": 3.251,
+ "dur": 3.291429,
+ "words": [
+  {
+   "w": "I",
+   "t0": 0,
+   "t1": 0.093
+  },
+  {
+   "w": "didn't",
+   "t0": 0.151,
+   "t1": 0.337
+  },
+  {
+   "w": "care",
+   "t0": 0.372,
+   "t1": 0.534
+  },
+  {
+   "w": "what",
+   "t0": 0.557,
+   "t1": 0.673
+  },
+  {
+   "w": "it",
+   "t0": 0.72,
+   "t1": 0.778
+  },
+  {
+   "w": "did.",
+   "t0": 0.824,
+   "t1": 1.08
+  },
+  {
+   "w": "A",
+   "t0": 1.231,
+   "t1": 1.3
+  },
+  {
+   "w": "back-alley",
+   "t0": 1.37,
+   "t1": 1.858
+  },
+  {
+   "w": "doc",
+   "t0": 1.916,
+   "t1": 2.125
+  },
+  {
+   "w": "put",
+   "t0": 2.183,
+   "t1": 2.334
+  },
+  {
+   "w": "it",
+   "t0": 2.368,
+   "t1": 2.426
+  },
+  {
+   "w": "in",
+   "t0": 2.461,
+   "t1": 2.531
+  },
+  {
+   "w": "for",
+   "t0": 2.601,
+   "t1": 2.717
+  },
+  {
+   "w": "me.",
+   "t0": 2.775,
+   "t1": 3.251
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T03:42:52.258Z"
+}

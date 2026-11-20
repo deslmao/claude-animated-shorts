@@ -1,0 +1,50 @@
+{
+ "hash": "1cb1fa2d693847",
+ "text": "It felt like too many anyway.",
+ "voice": "tsTheo",
+ "lead": 0,
+ "end": 1.625,
+ "dur": 1.671837,
+ "words": [
+  {
+   "w": "It",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "felt",
+   "t0": 0.186,
+   "t1": 0.337
+  },
+  {
+   "w": "like",
+   "t0": 0.372,
+   "t1": 0.511
+  },
+  {
+   "w": "too",
+   "t0": 0.534,
+   "t1": 0.673
+  },
+  {
+   "w": "many",
+   "t0": 0.731,
+   "t1": 0.94
+  },
+  {
+   "w": "anyway.",
+   "t0": 0.987,
+   "t1": 1.625
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T03:42:54.450Z"
+}

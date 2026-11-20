@@ -1,0 +1,40 @@
+{
+ "hash": "0da8eb74607efb",
+ "text": "At sunrise, someone knocked.",
+ "voice": "tsTheo",
+ "lead": 0,
+ "end": 1.858,
+ "dur": 1.906939,
+ "words": [
+  {
+   "w": "At",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "sunrise,",
+   "t0": 0.244,
+   "t1": 0.882
+  },
+  {
+   "w": "someone",
+   "t0": 0.917,
+   "t1": 1.207
+  },
+  {
+   "w": "knocked.",
+   "t0": 1.231,
+   "t1": 1.858
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T03:42:43.392Z"
+}

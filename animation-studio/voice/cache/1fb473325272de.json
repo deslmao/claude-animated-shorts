@@ -1,0 +1,90 @@
+{
+ "hash": "1fb473325272de",
+ "text": "I'm sorry, son. There was a street fight. Your mum stopped to help someone.",
+ "voice": "tsOfficer",
+ "lead": 0,
+ "end": 5.294,
+ "dur": 5.32898,
+ "words": [
+  {
+   "w": "I'm",
+   "t0": 0,
+   "t1": 0.209
+  },
+  {
+   "w": "sorry,",
+   "t0": 0.29,
+   "t1": 0.639
+  },
+  {
+   "w": "son.",
+   "t0": 0.662,
+   "t1": 1.103
+  },
+  {
+   "w": "There",
+   "t0": 1.533,
+   "t1": 1.707
+  },
+  {
+   "w": "was",
+   "t0": 1.73,
+   "t1": 1.811
+  },
+  {
+   "w": "a",
+   "t0": 1.846,
+   "t1": 1.881
+  },
+  {
+   "w": "street",
+   "t0": 1.95,
+   "t1": 2.252
+  },
+  {
+   "w": "fight.",
+   "t0": 2.322,
+   "t1": 2.833
+  },
+  {
+   "w": "Your",
+   "t0": 3.262,
+   "t1": 3.448
+  },
+  {
+   "w": "mum",
+   "t0": 3.495,
+   "t1": 3.657
+  },
+  {
+   "w": "stopped",
+   "t0": 3.738,
+   "t1": 4.052
+  },
+  {
+   "w": "to",
+   "t0": 4.075,
+   "t1": 4.133
+  },
+  {
+   "w": "help",
+   "t0": 4.203,
+   "t1": 4.389
+  },
+  {
+   "w": "someone.",
+   "t0": 4.458,
+   "t1": 5.294
+  }
+ ],
+ "voiceId": "onwK4e9ZLuTAKqWW03F9",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0.15,
+  "use_speaker_boost": true,
+  "speed": 0.9
+ },
+ "created": "2026-11-20T03:42:44.989Z"
+}

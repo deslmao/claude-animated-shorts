@@ -1,36 +1,44 @@
 {
- "reused": 51,
+ "reused": 63,
  "missing": [],
  "byKind": {
   "character": [
    "theo",
    "sol",
    "tsMum",
-   "dex",
+   "tsOfficer",
+   "tsTeacher",
+   "tsDoc",
    "towerGuard",
    "lowA",
    "lowB",
-   "lowC"
+   "lowC",
+   "lowD",
+   "lowE"
   ],
   "set": [
    "lowline",
-   "theoFlat",
    "lowRoof",
-   "towerVault"
+   "theoFlat",
+   "flatDoor",
+   "classroom",
+   "lockerRoom",
+   "backClinic"
   ],
   "camera": [
    "at"
   ],
   "light": [
    "night",
-   "interiorCool"
+   "interiorCool",
+   "interior"
   ],
   "prop": [
    "bullet",
    "rain",
    "timeTint",
    "tsInsert",
-   "van"
+   "tsChoice"
   ],
   "sfx": [
    "el_time_stop",
@@ -38,35 +46,41 @@
    "el_time_resume",
    "el_siren_far",
    "el_neon_buzz",
-   "el_hit_sub",
+   "el_door_shut",
+   "knock_heavy",
+   "latch_click",
+   "el_door_creak",
+   "el_heartbeat",
+   "el_slide_down",
+   "phone_buzz",
+   "chair_scrape",
    "el_van_door",
+   "musicbox_note",
    "el_implant",
    "el_counter_tick",
-   "el_bullet_wall",
-   "el_hacking",
-   "musicbox_note",
-   "el_heartbeat",
-   "el_alarm",
-   "el_door_blast",
    "el_gun_cock",
-   "el_heartbeat_fast",
-   "el_riser_long",
-   "el_hit_boom"
+   "el_gunshot",
+   "pop"
   ],
   "act": [
    "scared",
+   "angry",
    "determined",
    "neutral",
    "sad",
    "happy",
    "shock",
-   "laugh",
-   "angry"
+   "thinking"
+  ],
+  "item": [
+   "tsPistol",
+   "tsCap"
   ],
   "ambience": [
+   "elb_roof_night",
    "elb_neon_city",
    "elb_flat_rain",
-   "elb_roof_night",
+   "elb_classroom",
    "elb_vault"
   ]
  }

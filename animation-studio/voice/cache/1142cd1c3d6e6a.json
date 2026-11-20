@@ -1,0 +1,35 @@
+{
+ "hash": "1142cd1c3d6e6a",
+ "text": "And a note.",
+ "voice": "tsTheo",
+ "lead": 0,
+ "end": 0.975,
+ "dur": 1.018776,
+ "words": [
+  {
+   "w": "And",
+   "t0": 0,
+   "t1": 0.197
+  },
+  {
+   "w": "a",
+   "t0": 0.255,
+   "t1": 0.279
+  },
+  {
+   "w": "note.",
+   "t0": 0.337,
+   "t1": 0.975
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T03:42:51.292Z"
+}

@@ -1,0 +1,110 @@
+{
+ "hash": "1dbf68bb25cdc7",
+ "text": "Nobody in the Lowline has a coverage card. She spent her life saving people the hospitals turned away.",
+ "voice": "tsTheo",
+ "lead": 0,
+ "end": 5.851,
+ "dur": 5.877551,
+ "words": [
+  {
+   "w": "Nobody",
+   "t0": 0,
+   "t1": 0.395
+  },
+  {
+   "w": "in",
+   "t0": 0.43,
+   "t1": 0.488
+  },
+  {
+   "w": "the",
+   "t0": 0.534,
+   "t1": 0.604
+  },
+  {
+   "w": "Lowline",
+   "t0": 0.65,
+   "t1": 1.045
+  },
+  {
+   "w": "has",
+   "t0": 1.068,
+   "t1": 1.161
+  },
+  {
+   "w": "a",
+   "t0": 1.196,
+   "t1": 1.219
+  },
+  {
+   "w": "coverage",
+   "t0": 1.265,
+   "t1": 1.567
+  },
+  {
+   "w": "card.",
+   "t0": 1.602,
+   "t1": 1.962
+  },
+  {
+   "w": "She",
+   "t0": 2.206,
+   "t1": 2.357
+  },
+  {
+   "w": "spent",
+   "t0": 2.403,
+   "t1": 2.659
+  },
+  {
+   "w": "her",
+   "t0": 2.705,
+   "t1": 2.786
+  },
+  {
+   "w": "life",
+   "t0": 2.844,
+   "t1": 3.077
+  },
+  {
+   "w": "saving",
+   "t0": 3.135,
+   "t1": 3.471
+  },
+  {
+   "w": "people",
+   "t0": 3.518,
+   "t1": 3.971
+  },
+  {
+   "w": "the",
+   "t0": 4.18,
+   "t1": 4.296
+  },
+  {
+   "w": "hospitals",
+   "t0": 4.354,
+   "t1": 4.865
+  },
+  {
+   "w": "turned",
+   "t0": 4.923,
+   "t1": 5.19
+  },
+  {
+   "w": "away.",
+   "t0": 5.224,
+   "t1": 5.851
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T03:42:46.459Z"
+}

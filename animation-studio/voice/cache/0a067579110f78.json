@@ -1,0 +1,45 @@
+{
+ "hash": "0a067579110f78",
+ "text": "You forgot your key again…",
+ "voice": "tsTheo",
+ "lead": 0,
+ "end": 1.533,
+ "dur": 1.567347,
+ "words": [
+  {
+   "w": "You",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "forgot",
+   "t0": 0.221,
+   "t1": 0.453
+  },
+  {
+   "w": "your",
+   "t0": 0.499,
+   "t1": 0.604
+  },
+  {
+   "w": "key",
+   "t0": 0.65,
+   "t1": 0.824
+  },
+  {
+   "w": "again…",
+   "t0": 0.882,
+   "t1": 1.533
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T03:42:43.852Z"
+}

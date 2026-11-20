@@ -1,0 +1,70 @@
+{
+ "hash": "0118f2405cbdc9",
+ "text": "That night, I saw a girl running from Tower security.",
+ "voice": "tsTheo",
+ "lead": 0,
+ "end": 2.926,
+ "dur": 2.951837,
+ "words": [
+  {
+   "w": "That",
+   "t0": 0,
+   "t1": 0.232
+  },
+  {
+   "w": "night,",
+   "t0": 0.29,
+   "t1": 0.58
+  },
+  {
+   "w": "I",
+   "t0": 0.615,
+   "t1": 0.65
+  },
+  {
+   "w": "saw",
+   "t0": 0.743,
+   "t1": 0.917
+  },
+  {
+   "w": "a",
+   "t0": 0.964,
+   "t1": 0.998
+  },
+  {
+   "w": "girl",
+   "t0": 1.045,
+   "t1": 1.231
+  },
+  {
+   "w": "running",
+   "t0": 1.289,
+   "t1": 1.521
+  },
+  {
+   "w": "from",
+   "t0": 1.556,
+   "t1": 1.683
+  },
+  {
+   "w": "Tower",
+   "t0": 1.753,
+   "t1": 1.974
+  },
+  {
+   "w": "security.",
+   "t0": 2.02,
+   "t1": 2.926
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T03:42:55.019Z"
+}

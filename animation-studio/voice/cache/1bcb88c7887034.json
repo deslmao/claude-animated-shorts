@@ -1,0 +1,65 @@
+{
+ "hash": "1bcb88c7887034",
+ "text": "And I'll be back by sunrise. I always am.",
+ "voice": "tsMum",
+ "lead": 0,
+ "end": 2.833,
+ "dur": 2.873469,
+ "words": [
+  {
+   "w": "And",
+   "t0": 0,
+   "t1": 0.139
+  },
+  {
+   "w": "I'll",
+   "t0": 0.186,
+   "t1": 0.313
+  },
+  {
+   "w": "be",
+   "t0": 0.348,
+   "t1": 0.418
+  },
+  {
+   "w": "back",
+   "t0": 0.453,
+   "t1": 0.627
+  },
+  {
+   "w": "by",
+   "t0": 0.673,
+   "t1": 0.778
+  },
+  {
+   "w": "sunrise.",
+   "t0": 0.848,
+   "t1": 1.533
+  },
+  {
+   "w": "I",
+   "t0": 1.788,
+   "t1": 1.846
+  },
+  {
+   "w": "always",
+   "t0": 1.939,
+   "t1": 2.194
+  },
+  {
+   "w": "am.",
+   "t0": 2.241,
+   "t1": 2.833
+  }
+ ],
+ "voiceId": "hpp4J3VqNfWAUOO0d1Us",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0.15,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-20T03:42:42.885Z"
+}

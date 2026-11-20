@@ -1,0 +1,65 @@
+{
+ "hash": "102f26f6811917",
+ "text": "In her locker, I found something she was hiding.",
+ "voice": "tsTheo",
+ "lead": 0,
+ "end": 2.368,
+ "dur": 2.403265,
+ "words": [
+  {
+   "w": "In",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "her",
+   "t0": 0.186,
+   "t1": 0.255
+  },
+  {
+   "w": "locker,",
+   "t0": 0.313,
+   "t1": 0.685
+  },
+  {
+   "w": "I",
+   "t0": 0.72,
+   "t1": 0.755
+  },
+  {
+   "w": "found",
+   "t0": 0.848,
+   "t1": 1.045
+  },
+  {
+   "w": "something",
+   "t0": 1.091,
+   "t1": 1.358
+  },
+  {
+   "w": "she",
+   "t0": 1.405,
+   "t1": 1.498
+  },
+  {
+   "w": "was",
+   "t0": 1.544,
+   "t1": 1.649
+  },
+  {
+   "w": "hiding.",
+   "t0": 1.707,
+   "t1": 2.368
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T03:42:49.922Z"
+}

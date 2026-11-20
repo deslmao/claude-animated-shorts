@@ -1,0 +1,85 @@
+{
+ "hash": "06bcaccd4ea9ac",
+ "text": "A stolen military implant. Someone she'd patched up had paid her with it.",
+ "voice": "tsTheo",
+ "lead": 0,
+ "end": 4.18,
+ "dur": 4.205714,
+ "words": [
+  {
+   "w": "A",
+   "t0": 0,
+   "t1": 0.081
+  },
+  {
+   "w": "stolen",
+   "t0": 0.163,
+   "t1": 0.58
+  },
+  {
+   "w": "military",
+   "t0": 0.627,
+   "t1": 1.01
+  },
+  {
+   "w": "implant.",
+   "t0": 1.057,
+   "t1": 1.591
+  },
+  {
+   "w": "Someone",
+   "t0": 1.985,
+   "t1": 2.357
+  },
+  {
+   "w": "she'd",
+   "t0": 2.38,
+   "t1": 2.543
+  },
+  {
+   "w": "patched",
+   "t0": 2.589,
+   "t1": 2.891
+  },
+  {
+   "w": "up",
+   "t0": 2.949,
+   "t1": 3.053
+  },
+  {
+   "w": "had",
+   "t0": 3.1,
+   "t1": 3.193
+  },
+  {
+   "w": "paid",
+   "t0": 3.228,
+   "t1": 3.448
+  },
+  {
+   "w": "her",
+   "t0": 3.471,
+   "t1": 3.541
+  },
+  {
+   "w": "with",
+   "t0": 3.576,
+   "t1": 3.715
+  },
+  {
+   "w": "it.",
+   "t0": 3.762,
+   "t1": 4.18
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0.25,
+  "use_speaker_boost": true,
+  "speed": 0.98
+ },
+ "created": "2026-11-20T03:42:50.840Z"
+}

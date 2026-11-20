@@ -62,6 +62,7 @@ export const AMBIENCES = {
   elb_neon_city: "recorded loop: A dense futuristic cyberpunk city at night in heavy rain: rain on metal and puddles, a low electric hum of neon signs, distant hover traffic, crowd mu",
   elb_roof_night: "recorded loop: A high rooftop at night above a huge futuristic city: wind, distant city hum far below, soft rain, a faint drone flying past",
   elb_flat_rain: "recorded loop: A tiny apartment in a futuristic city at night: rain on the window, a fridge hum, muffled neon buzz and traffic outside",
+  elb_classroom: "recorded loop: A quiet high school classroom during a lesson: pens scratching, a chair creaking, a pupil coughing, a teacher talking far away, rain outside the window",
   elb_vault: "recorded loop: A high-tech corporate vault interior: a cold low electrical hum, servers whirring softly, very quiet and sterile",
 } as const;
 export type Ambience = keyof typeof AMBIENCES;
@@ -129,6 +130,8 @@ export const SFX = {
   el_hacking: "recorded: Fast futuristic hacking sounds: rapid soft keyboard taps and digital interface beeps and chirps (3.0 s)",
   el_heart_slow: "recorded: A single human heartbeat slowing down in silence, deep and muffled, each beat further apart (6.0 s)",
   el_neon_buzz: "recorded: A flickering neon sign buzzing and crackling in the rain, close (3.0 s)",
+  el_door_shut: "recorded: A front door of a small apartment closing gently, a soft latch click (1.5 s)",
+  el_slide_down: "recorded: A back sliding slowly down a wooden door to sit on the floor: fabric on wood, a soft thump (2.0 s)",
   el_siren_far: "recorded: Distant police and ambulance sirens echoing through a rainy futuristic city at night (5.0 s)",
 } as const;
 export type SfxName = keyof typeof SFX;
