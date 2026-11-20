@@ -277,6 +277,10 @@ const choiceRig = (a: At, v = "q"): PropRig => {
   const root = rigRoot(a), small = v === "q" || v === "foot", w = small ? 1.3 : 0.9, h = w * (small ? 256 : 700) / CW;
   const mat = new THREE.MeshBasicMaterial({ map: choiceTex(v), transparent: true, toneMapped: false, depthWrite: false, depthTest: false });
   const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), mat); m.renderOrder = 12; m.layers.set(NOINK); root.add(m);
+  // a solid backing just behind the panel, on the inked layer: it hides the scenery behind the panel from the outline
+  // pass too, so no ink lines (the street's overhead cables) are drawn across the panel's text
+  const backing = new THREE.Mesh(new THREE.PlaneGeometry(w * 0.97, h * 0.92), new THREE.MeshBasicMaterial({ color: "#070a18", toneMapped: false }));
+  backing.position.z = -0.004; m.add(backing);
   return { root, update: ({ step = 0 }) => {
     const k = Math.max(0, Math.min(1, step / 0.35)), back = 1 + 0.18 * Math.sin(k * Math.PI);    // a quick pop with a slight overshoot
     m.visible = k > 0.001; m.scale.setScalar(Math.max(0.001, k * back)); mat.opacity = k;

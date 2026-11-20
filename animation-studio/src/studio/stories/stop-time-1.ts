@@ -45,6 +45,10 @@ const CLINIC = { set: "backClinic", light: NIGHT as Light, ambience: "elb_flat_r
 // face (its tip toward her, +x)
 // the door: Theo just inside it (left of centre, so the officer shows past him), the officer in the corridor
 const TH_DOOR: V = [0.25, 0, -0.8], OFF_HALL: V = [-0.1, 0, -2.3];
+// classroom pupils at their desks (desks x -1.6 / -0.2 / 1.2 / 2.6, chairs z 0.15 / 1.45 / 2.75), facing the board,
+// seen from the back of the room; Theo's chair (x 1.2, z 1.45) stays empty
+const pupil = (who: string, x: number, z: number) => ({ who, at: [x, 0.45, z] as V, mode: "sit" as const, act: "neutral" as const, back: true });
+const PUPILS = [pupil("lowA", -1.6, 0.15), pupil("lowB", -0.2, 0.15), pupil("lowC", 2.6, 0.15), pupil("lowD", -0.2, 1.45), pupil("lowE", -1.6, 2.75)];
 const SOL_AT: V = [0.85, 0, 0.4], BULLET: V = [0.6, 1.4, 0.42], GUARD_AT: V = [-0.75, 0, 0.35];
 const BULLET_P = { id: "bullet", at: BULLET, steps: FROZEN, scale: 2 };
 const SOL_FROZEN = { who: "sol", at: SOL_AT, act: "scared" as const, face: "shock" as const, keepFace: true, blink: false, facing: -1 as const, idle: 0 };
@@ -144,13 +148,14 @@ export const STOP_TIME_1: Storyboard = {
     { say: N("I stopped eating. I stopped answering anyone."), ...DAWN, hold: 0.5, ...lock(at([0.3, 1.3, 1.4], [-0.9, 0.9, -0.6], 44)),
       actors: [{ who: "theo", at: "bed", mode: "sit", act: "sad", face: "sad", keepFace: true, facing: 1, idle: 0.3 }],
       sfx: [{ word: "answering", name: "phone_buzz", gain: -6 }], note: "Theo on the bed in the daylight, not moving; the plate on the table untouched" },
-    { say: N("My teacher saw me walking out."), ...CLASS, hold: 1.3, ...lock(at([0.3, 1.6, -2.1], [1.1, 1.2, 0.6], 54)),
-      actors: [{ who: "theo", at: [-0.2, 0, 0.15], act: "sad", face: "sad", keepFace: true, walk: { to: [3.2, 0, 1.6], t0: 0.5, t1: 3.2 } }],
+    { say: N("My teacher saw me walking out."), ...CLASS, hold: 1.3, ...lock(at([1.0, 1.6, 4.6], [0.9, 1.15, -1.2], 60)),
+      actors: [...PUPILS, { who: "teacher", at: [-0.6, 0, -1.9], act: "neutral", face: "neutral", facing: "toward:theo", gesture: "hang" },
+        { who: "theo", at: [1.6, 0, 1.6], act: "sad", face: "sad", keepFace: true, walk: { to: [3.4, 0, 1.7], t0: 0.6, t1: 3.4 } }],
       sfx: [{ t: 0.1, name: "chair_scrape", gain: -4 }], note: "the classroom: Theo stands up from his desk and walks to the door" },
     { say: teacher("Theo! If you walk out now, don't come back."), ...CLASS, hold: 0.2, ...lock(at([0.6, 1.55, 0.0], [-0.6, 1.5, -1.9], 36)),
       actors: [{ who: "teacher", at: [-0.6, 0, -1.9], act: "angry", face: "stern", facing: 1, gesture: "stop" }], kicks: [{ word: "Theo" }], note: "his teacher at the board, calling after him" },
-    { say: N("I didn't."), ...CLASS, hold: 1.2, ...lock(at([-0.2, 1.15, -1.0], [-0.2, 0.7, 0.25], 42)),
-      actors: [], sfx: [{ t: 0, name: "el_door_shut", gain: -4 }], note: "his empty desk" },
+    { say: N("I didn't."), ...CLASS, hold: 1.2, ...lock(at([1.6, 1.25, 3.1], [1.0, 0.75, 1.2], 44)),
+      actors: [pupil("lowD", -0.2, 1.45), pupil("lowB", -0.2, 0.15), pupil("lowC", 2.6, 0.15)], sfx: [{ t: 0, name: "el_door_shut", gain: -4 }], note: "his empty desk" },
     // ---- THE LOCKER
     { say: N("In her locker, I found something she was hiding."), ...LOCKERS, hold: 0.3, ...glide(at([1.3, 1.5, 1.3], [-0.25, 1.2, -1.1], 46), at([1.15, 1.47, 0.95], [-0.25, 1.2, -1.1], 46), 3.5),
       actors: [{ who: "theo", at: [-0.55, 0, -0.6], act: "sad", back: true }], sfx: [{ t: 0.2, name: "el_van_door", gain: -12 }], note: "Mum's clinic locker room: Theo at her open locker" },
@@ -171,10 +176,10 @@ export const STOP_TIME_1: Storyboard = {
     { say: N("It felt like too many anyway."), ...CLINIC, hold: 0.6, ...lock(at([0.2, 1.2, 0.9], [-0.35, 1.05, -0.55], 36)),
       actors: [{ who: "theo", at: "chair", mode: "sit", act: "sad", face: "sad", keepFace: true, facing: "camera" }], note: "Theo, close: empty" },
     // ---- THE GIRL
-    { say: N("That night, I saw a girl running from Tower security."), ...STREET, hold: 0.2, ...lock(at([2.6, 1.6, 6.5], [-0.5, 1.3, -1.5], 46)),
-      actors: [{ who: "theo", at: [1.8, 0, 3.0], act: "sad", face: "sad", keepFace: true, walk: { to: [1.0, 0, 2.0], t0: 0, t1: 3.2 } },
-        { who: "sol", at: [-3.0, 0, -2.5], act: "scared", face: "scared", keepFace: true, walk: { to: [0.0, 0, -0.5], t0: 0.8, t1: 3.0, mode: "run" } },
-        { who: "guard", at: [-4.6, 0, -3.2], act: "angry", face: "angry", keepFace: true, walk: { to: [-2.4, 0, -1.8], t0: 1.4, t1: 3.2, mode: "run" } }],
+    { say: N("That night, I saw a girl running from Tower security."), ...STREET, hold: 0.2, ...lock(at([1.3, 1.5, 4.6], [-0.9, 1.3, -0.4], 46)),
+      actors: [{ who: "theo", at: [1.35, 0, 2.4], act: "sad", face: "sad", keepFace: true, walk: { to: [1.15, 0, 2.0], t0: 0, t1: 3.2 } },
+        { who: "sol", at: [-2.9, 0, -0.6], act: "scared", face: "scared", keepFace: true, walk: { to: [-0.5, 0, 0.3], t0: 0.6, t1: 2.8, mode: "run" } },
+        { who: "guard", at: [-4.2, 0, -1.2], act: "angry", face: "angry", keepFace: true, walk: { to: [-2.2, 0, -0.4], t0: 1.2, t1: 3.2, mode: "run" } }],
       props: [RAIN([0, 1.3, 0])], sfx: [{ t: 1.0, name: "el_siren_far", gain: -4 }], note: "the street at night: Theo wandering; a girl with pink hair runs past, a Tower guard after her" },
     { say: guard("Stop!"), ...STREET, hold: 0.9, ...lock(at([-1.9, 1.5, 2.2], [-0.2, 1.42, 0.35], 40)),
       actors: [{ ...GUARD_FROZEN, keepFace: false, blink: true, idle: 1 }, { who: "sol", at: SOL_AT, act: "scared", face: "shock", keepFace: true, facing: -1 }],

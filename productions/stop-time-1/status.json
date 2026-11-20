@@ -4,14 +4,14 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-20T04:07:01.217Z",
-   "inputs": "12d2f03702ed13n",
-   "detail": "valid; 36 warning(s):\n  total length 111.1 s (Shorts target 55-65 s)\n  shot 2 (lowline): theo: walk 0-3 s outside the shot\n  shot 4 (lowline): lowA: walk 0-4 s outside the shot\n  shot 4 (lowline): lowB: walk 0.3-4 s outside the shot\n  shot 9 (theoFlat): light \"interiorCool\" on an outdoor set\n  shot 10 (flatDoor): light \"interiorCool\" on an outdoor set\n  shot 11 (flatDoor): light \"interiorCool\" on an outdoor set\n  shot 12 (flatDoor): light \"interiorCool\" on an outdoor set\n  shot 13 (flatDoor): light \"interiorCool\" on an outdoor set\n  shot 14 (flatDoor): light \"interiorCool\" on an outdoor set\n  shot 15 (flatDoor): light \"interiorCool\" on an outdoor set\n  shot 16 (theoFlat): light \"interiorCool\" on an outdoor set\n  shot 17 (classroom): theo: walk 0.5-3.2 s outside the shot\n  shot 29 (lowline): theo: walk 0-3.2 s outside the shot\n  shot 29 (lowline): sol: walk 0.8-3 s outside the shot\n  shot 29 (lowline): guard: walk 1.4-3.2 s outside the shot\n  shot 1 (lowline): sol fills 42 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 2 (lowline): theo fills 25 % of the frame in the foreground @2.4s (is it hiding the action?)\n  shot 5 (theoFlat): mum fills 31 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 6 (theoFlat): mum fills 58 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 7 (theoFlat): theo fills 80 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 8 (theoFlat): mum fills 31 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 11 (flatDoor): officer fills 60 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 12 (flatDoor): theo's raised hand (spread) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 12 (flatDoor): theo fills 84 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 13 (flatDoor): officer fills 60 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 14 (flatDoor): officer fills 27 % of the frame in the foreground @7.2s (is it hiding the action?)\n  shot 16 (theoFlat): theo fills 28 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 18 (classroom): teacher fills 42 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 24 (backClinic): doc fills 33 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 27 (backClinic): doc fills 75 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 27 (backClinic): doc's hand (present) is out of frame @1.4s (side): widen the shot or change the gesture\n  shot 28 (backClinic): theo fills 97 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 29 (lowline): guard's hand (pump) is out of frame @2.4s (side): widen the shot or change the gesture\n  shot 30 (lowline): guard fills 27 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 32 (lowline): theo fills 28 % of the frame in the foreground @0.0s (is it hiding the action?)"
+   "at": "2026-11-20T04:39:34.958Z",
+   "inputs": "17e545f29d40e2n",
+   "detail": "valid; 36 warning(s):\n  total length 111.1 s (Shorts target 55-65 s)\n  shot 2 (lowline): theo: walk 0-3 s outside the shot\n  shot 4 (lowline): lowA: walk 0-4 s outside the shot\n  shot 4 (lowline): lowB: walk 0.3-4 s outside the shot\n  shot 9 (theoFlat): light \"interiorCool\" on an outdoor set\n  shot 10 (flatDoor): light \"interiorCool\" on an outdoor set\n  shot 11 (flatDoor): light \"interiorCool\" on an outdoor set\n  shot 12 (flatDoor): light \"interiorCool\" on an outdoor set\n  shot 13 (flatDoor): light \"interiorCool\" on an outdoor set\n  shot 14 (flatDoor): light \"interiorCool\" on an outdoor set\n  shot 15 (flatDoor): light \"interiorCool\" on an outdoor set\n  shot 16 (theoFlat): light \"interiorCool\" on an outdoor set\n  shot 17 (classroom): theo: walk 0.6-3.4 s outside the shot\n  shot 29 (lowline): theo: walk 0-3.2 s outside the shot\n  shot 29 (lowline): guard: walk 1.2-3.2 s outside the shot\n  shot 1 (lowline): sol fills 42 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 2 (lowline): theo fills 25 % of the frame in the foreground @2.4s (is it hiding the action?)\n  shot 5 (theoFlat): mum fills 31 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 6 (theoFlat): mum fills 58 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 7 (theoFlat): theo fills 80 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 8 (theoFlat): mum fills 31 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 11 (flatDoor): officer fills 60 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 12 (flatDoor): theo's raised hand (spread) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 12 (flatDoor): theo fills 84 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 13 (flatDoor): officer fills 60 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 14 (flatDoor): officer fills 27 % of the frame in the foreground @7.2s (is it hiding the action?)\n  shot 16 (theoFlat): theo fills 28 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 18 (classroom): teacher fills 42 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 24 (backClinic): doc fills 33 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 27 (backClinic): doc fills 75 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 27 (backClinic): doc's hand (present) is out of frame @1.4s (side): widen the shot or change the gesture\n  shot 28 (backClinic): theo fills 97 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 29 (lowline): sol's hand (pump) is out of frame @1.2s (side): widen the shot or change the gesture\n  shot 29 (lowline): guard's hand (pump) is out of frame @2.8s (side): widen the shot or change the gesture\n  shot 30 (lowline): guard fills 27 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 32 (lowline): theo fills 28 % of the frame in the foreground @0.0s (is it hiding the action?)"
   },
   "assets": {
    "state": "done",
-   "at": "2026-11-20T04:07:01.220Z",
-   "inputs": "12d2f03702ed13",
+   "at": "2026-11-20T04:39:34.961Z",
+   "inputs": "17e545f29d40e2",
    "detail": "63 library assets reused, none missing",
    "data": {
     "reused": 63,
@@ -103,26 +103,26 @@
   },
   "approval": {
    "state": "done",
-   "at": "2026-11-20T04:07:01.222Z",
+   "at": "2026-11-20T04:39:34.963Z",
    "inputs": "16f8400f28e220",
    "detail": "all narration already generated (no cost)"
   },
   "narration": {
    "state": "done",
-   "at": "2026-11-20T04:07:01.223Z",
+   "at": "2026-11-20T04:39:34.963Z",
    "inputs": "16f8400f28e220",
    "detail": "all lines already generated (cached)"
   },
   "sound": {
    "state": "done",
-   "at": "2026-11-20T04:07:27.422Z",
-   "inputs": "0d97d9af9704c8",
+   "at": "2026-11-20T04:40:02.464Z",
+   "inputs": "0c9bc4f9657eef",
    "detail": "soundtrack built: -14.1 LUFS"
   },
   "checks": {
    "state": "done",
-   "at": "2026-11-20T04:07:32.814Z",
-   "inputs": "0d97d9af9704c8",
+   "at": "2026-11-20T04:40:08.241Z",
+   "inputs": "0c9bc4f9657eef",
    "detail": "preflight PASS; library intact"
   }
  },
