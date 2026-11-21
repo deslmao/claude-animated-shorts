@@ -170,3 +170,9 @@ The technique to reuse (not the story):
 - **Frame 1:** a character with a strong expression, moving.
 - **The ending:** a binary choice, cut fast, with the pinned comment carrying the vote. The most-liked answer decides Night 2.
 - **Length:** 60–90 s.
+
+## Update, 21 Nov 2026: the owner's format system (every video from now on)
+- **Frame 0.00:** motion plus a two-line banner.
+- **Visual change every 1.7–2.1 s on average;** cut pace about 1.78 s.
+- **5–6 distinct rooms or lighting setups.**
+- **40–70 s long:** 44 of the 50 top videos studied fall in that range.

@@ -25,6 +25,14 @@ Follow `productions/research/storytelling-system.md`.
 Every new storyboard needs a `clarity` block: the premise, plus each fact the viewer must be told, with the words that
 tell it. `npm run short` fails without it. The owner approves `productions/<id>/viewer-script.md`, not a screenplay.
 
+## Format system (the owner's standing rule, 21 Nov 2026: every video from now on)
+- **Frame 0.00:** motion plus a two-line banner (the hook as on-screen text) from the very first frame.
+- **Pace:** a visual change (a cut, an insert, a new angle or a big camera move) every 1.7–2.1 s on average; cut
+  pace about 1.78 s.
+- **Variety:** 5–6 distinct rooms or lighting setups per video.
+- **Length:** 40–70 s (44 of the 50 top videos studied fall in that range).
+- Check these numbers on the timeline before rendering, and report them with each preview.
+
 ## Preview workflow
 1. **Validate and check first** (`--until checks`): it's free, and it catches framing, clearance and timing problems
    before any render.
