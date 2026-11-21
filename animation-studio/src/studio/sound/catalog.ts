@@ -145,6 +145,7 @@ export const SFX = {
   el_knock_front: "recorded: Three hard knocks on a front door, heard from inside down a hallway (3 s)",
   el_door_pound: "recorded: Fists pounding frantically on a front door, heard from inside, the door rattling (4 s)",
   el_mum_humming: "recorded: A woman softly humming a cheerful tune to herself while cooking, no words (6 s)",
+  el_breath_heavy: "recorded: A frightened child breathing heavily and shakily, trying to stay quiet, close (6 s)",
   el_siren_far: "recorded: Distant police and ambulance sirens echoing through a rainy futuristic city at night (5.0 s)",
 } as const;
 export type SfxName = keyof typeof SFX;

@@ -1,0 +1,50 @@
+{
+ "hash": "0a7b2fa9240119",
+ "text": "You're given three rules to follow.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.043,
+ "dur": 2.089796,
+ "words": [
+  {
+   "w": "You're",
+   "t0": 0,
+   "t1": 0.267
+  },
+  {
+   "w": "given",
+   "t0": 0.29,
+   "t1": 0.511
+  },
+  {
+   "w": "three",
+   "t0": 0.569,
+   "t1": 0.813
+  },
+  {
+   "w": "rules",
+   "t0": 0.871,
+   "t1": 1.161
+  },
+  {
+   "w": "to",
+   "t0": 1.207,
+   "t1": 1.277
+  },
+  {
+   "w": "follow.",
+   "t0": 1.335,
+   "t1": 2.043
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-21T07:52:32.684Z"
+}

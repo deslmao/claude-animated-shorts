@@ -1,0 +1,40 @@
+{
+ "hash": "122d43a3b92428",
+ "text": "That's… Mum's voice too.",
+ "voice": "bfThought",
+ "lead": 0,
+ "end": 2.415,
+ "dur": 2.45551,
+ "words": [
+  {
+   "w": "That's…",
+   "t0": 0,
+   "t1": 0.372
+  },
+  {
+   "w": "Mum's",
+   "t0": 0.813,
+   "t1": 1.184
+  },
+  {
+   "w": "voice",
+   "t0": 1.254,
+   "t1": 1.602
+  },
+  {
+   "w": "too.",
+   "t0": 1.637,
+   "t1": 2.415
+  }
+ ],
+ "voiceId": "1tDEBGOo8EqEPApM49eJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.75,
+  "style": 0.35,
+  "use_speaker_boost": true,
+  "speed": 0.88
+ },
+ "created": "2026-11-21T07:52:33.141Z"
+}

@@ -316,6 +316,11 @@
    "s": 6,
    "level": -10,
    "p": "A woman in her thirties softly humming a cheerful simple tune to herself while cooking breakfast, close, no words"
+  },
+  "el_breath_heavy": {
+   "s": 6,
+   "level": -8,
+   "p": "A frightened child breathing heavily and shakily through the mouth, trying to stay quiet, close to the microphone, trembling breaths, no words"
   }
  },
  "bed": {

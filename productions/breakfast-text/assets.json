@@ -1,5 +1,5 @@
 {
- "reused": 33,
+ "reused": 36,
  "missing": [],
  "byKind": {
   "character": [
@@ -13,7 +13,8 @@
    "at"
   ],
   "light": [
-   "interior"
+   "interior",
+   "interiorCool"
   ],
   "ambience": [
    "elb_kitchen_day"
@@ -22,6 +23,7 @@
    "bfPan",
    "bfPhone",
    "bfInsert",
+   "bfDread",
    "bfFrontDoor",
    "bfPlate",
    "bfChoice"
@@ -32,8 +34,10 @@
    "el_pancake_flip",
    "el_phone_buzz_table",
    "msg_chime",
-   "el_clock_tick",
    "el_heart_slow",
+   "el_clock_tick",
+   "el_breath_heavy",
+   "el_riser_short",
    "el_plate_down",
    "chair_scrape",
    "el_sting_strings",
@@ -46,12 +50,9 @@
   ],
   "act": [
    "happy",
-   "neutral",
    "confused",
-   "scared"
-  ],
-  "item": [
-   "fryPan"
+   "scared",
+   "neutral"
   ]
  }
 }

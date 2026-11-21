@@ -1,0 +1,158 @@
+{
+ "model_id": "music_v1",
+ "composition_plan": {
+  "positive_global_styles": [
+   "dark cinematic horror suspense score for a short animated mystery",
+   "instrumental",
+   "detuned music box",
+   "low string drones",
+   "dissonant violins",
+   "sub bass pulses",
+   "creeping, tense, scary"
+  ],
+  "negative_global_styles": [
+   "vocals",
+   "singing",
+   "lyrics",
+   "rap",
+   "electronic dance",
+   "rock",
+   "comedy",
+   "upbeat",
+   "country"
+  ],
+  "sections": [
+   {
+    "section_name": "sunny breakfast",
+    "positive_local_styles": [
+     "a light, cosy morning tune",
+     "pizzicato strings and glockenspiel",
+     "gentle and homely"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "dark"
+    ],
+    "duration_ms": 3800,
+    "lines": []
+   },
+   {
+    "section_name": "the text",
+    "positive_local_styles": [
+     "the tune collapses onto a lone detuned music box",
+     "a deep low drone underneath",
+     "sudden unease, quiet and cold"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "bright",
+     "happy"
+    ],
+    "duration_ms": 7600,
+    "lines": []
+   },
+   {
+    "section_name": "who is that",
+    "positive_local_styles": [
+     "the music box melody in a minor key, slowing",
+     "a ticking clock",
+     "a dissonant string swell rising and hanging, then cut short"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "happy"
+    ],
+    "duration_ms": 9000,
+    "lines": []
+   },
+   {
+    "section_name": "the rules",
+    "positive_local_styles": [
+     "a held-breath sub bass pulse like a slow heartbeat",
+     "low trembling strings",
+     "soft ticking",
+     "secretive and tense"
+    ],
+    "negative_local_styles": [
+     "melody",
+     "loud",
+     "happy"
+    ],
+    "duration_ms": 10900,
+    "lines": []
+   },
+   {
+    "section_name": "her smile",
+    "positive_local_styles": [
+     "a thin high violin harmonic, piercing",
+     "a heavy slow heartbeat thump",
+     "creeping dread, very sparse"
+    ],
+    "negative_local_styles": [
+     "melody",
+     "drums",
+     "happy"
+    ],
+    "duration_ms": 8900,
+    "lines": []
+   },
+   {
+    "section_name": "the knock",
+    "positive_local_styles": [
+     "near silence, then deep low strings",
+     "tremolo violins rising slowly",
+     "fear building"
+    ],
+    "negative_local_styles": [
+     "melody",
+     "drums",
+     "happy"
+    ],
+    "duration_ms": 7400,
+    "lines": []
+   },
+   {
+    "section_name": "the phone lights up",
+    "positive_local_styles": [
+     "a creeping rising dissonant string cluster",
+     "the music box theme returning, warped and distorted",
+     "growing terror"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "happy"
+    ],
+    "duration_ms": 7300,
+    "lines": []
+   },
+   {
+    "section_name": "two mums",
+    "positive_local_styles": [
+     "urgent pulsing low strings and sub bass",
+     "tremolo violins swelling",
+     "a frightening build to a peak"
+    ],
+    "negative_local_styles": [
+     "vocals",
+     "happy"
+    ],
+    "duration_ms": 7800,
+    "lines": []
+   },
+   {
+    "section_name": "the choice",
+    "positive_local_styles": [
+     "a held dissonant string chord at full height",
+     "the detuned music box plays two notes over it",
+     "then a sudden stop into silence"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "happy"
+    ],
+    "duration_ms": 5700,
+    "lines": []
+   }
+  ]
+ }
+}

@@ -228,16 +228,36 @@ const INSERTS: Record<string, Ins> = {
     vig(g, 0.45);
   } },
   // the three rules, read in your lap under the table so she can't see (one more each step)
-  rules: { n: 3, draw: (g, st) => {
+  rules: { n: 4, draw: (g, st) => {
     g.fillStyle = "#2a2230"; g.fillRect(0, 0, IW, IH);
     g.fillStyle = "#3a3f55"; g.beginPath(); g.ellipse(IW / 2, IH + 120, 520, 420, 0, 0, Math.PI * 2); g.fill();        // your lap
     g.fillStyle = "#6a4a30"; g.fillRect(0, 0, IW, 150); g.fillStyle = "rgba(0,0,0,0.45)"; g.fillRect(0, 150, IW, 40);   // the table's edge above, its shadow
     g.fillStyle = "#f2c23a"; g.beginPath(); g.roundRect(120, 240, IW - 240, 1080, 60); g.fill(); g.lineWidth = 10; g.strokeStyle = INK; g.stroke();
     const R: [string, boolean][] = [["Rule one. Don't let her see you read this.", false], ["Rule two. Don't eat anything she gives you.", false], ["Rule three. Get to the front door. Walk. Don't run.", false]];
-    thread(g, 145, 265, IW - 290, 1030, "MUM", [["Don't eat it. I'm still at work.", false], ...R.slice(0, st + 1)], { font: 40 });
+    thread(g, 145, 265, IW - 290, 1030, "MUM", [["Don't eat it. I'm still at work.", false], ...R.slice(0, st)], { font: 40 });
     g.fillStyle = "rgba(120,170,255,0.10)"; g.fillRect(0, 0, IW, IH);
     holdHand(g, 150, 1240, 1); holdHand(g, IW - 150, 1240, -1);
     vig(g, 0.55);
+  } },
+  // Mum holds the pan out to you: three golden pancakes, steam; above, the lower half of her face, smiling
+  pan: { n: 1, draw: (g) => {
+    g.fillStyle = "#2a2a34"; g.fillRect(0, 0, IW, IH);
+    g.fillStyle = "#d98a5a"; g.beginPath(); g.ellipse(IW / 2, 520, 420, 300, 0, Math.PI, 0); g.fill(); g.fillRect(-20, 520, IW + 40, IH);   // her sweater
+    g.fillStyle = "#f3eee2"; g.fillRect(230, 560, 350, IH); g.lineWidth = 10; g.strokeStyle = INK; g.strokeRect(230, 560, 350, IH);       // the apron
+    // her chin and the smile, cut by the top of the frame
+    g.fillStyle = "#e8b896"; g.beginPath(); g.ellipse(IW / 2, 120, 270, 260, 0, 0, Math.PI); g.fill(); g.lineWidth = 12; g.strokeStyle = INK; g.stroke();
+    g.fillStyle = "rgba(240,140,130,0.55)"; for (const s2 of [-1, 1]) { g.beginPath(); g.ellipse(IW / 2 + s2 * 170, 170, 60, 30, 0, 0, Math.PI * 2); g.fill(); }
+    g.lineWidth = 14; g.beginPath(); g.arc(IW / 2, 110, 120, 0.12 * Math.PI, 0.88 * Math.PI); g.stroke();
+    // the pan held out toward you, a stack of pancakes, butter, steam
+    g.fillStyle = "#1a1b20"; g.beginPath(); g.roundRect(560, 960, 200, 56, 28); g.fill();                                                  // the handle
+    g.fillStyle = "#e8b896"; g.beginPath(); g.roundRect(600, 925, 150, 125, 56); g.fill(); g.lineWidth = 10; g.strokeStyle = INK; g.stroke();   // her hand on it
+    g.fillStyle = "#2a2c33"; g.beginPath(); g.ellipse(IW / 2 - 20, 1000, 270, 120, 0, 0, Math.PI * 2); g.fill(); g.lineWidth = 12; g.strokeStyle = INK; g.stroke();
+    g.fillStyle = "#3a3d47"; g.beginPath(); g.ellipse(IW / 2 - 20, 985, 235, 92, 0, 0, Math.PI * 2); g.fill();
+    for (let k = 0; k < 3; k++) { g.fillStyle = k % 2 ? "#e0a656" : "#d99a48"; g.beginPath(); g.ellipse(IW / 2 - 20, 985 - k * 34, 180, 58, 0, 0, Math.PI * 2); g.fill(); g.lineWidth = 8; g.strokeStyle = INK; g.stroke(); }
+    g.fillStyle = "#fff2a0"; g.fillRect(IW / 2 - 70, 880, 80, 40); g.strokeRect(IW / 2 - 70, 880, 80, 40);
+    g.strokeStyle = "rgba(240,236,250,0.8)"; g.lineWidth = 12; g.lineCap = "round";
+    for (const x of [280, 375, 470]) { g.beginPath(); g.moveTo(x, 840); g.bezierCurveTo(x - 40, 760, x + 40, 700, x, 620); g.stroke(); }
+    vig(g, 0.6);
   } },
   // Mum's hospital lanyard on its hook by the door: her ID, NIGHT SHIFT 9 PM - 9 AM
   badge: { n: 1, draw: (g) => {
@@ -256,15 +276,16 @@ const INSERTS: Record<string, Ins> = {
     g.fillStyle = "#c0392b"; g.font = F(50); g.fillText("NIGHT SHIFT", IW / 2, 1145); g.fillStyle = "#1b1f2a"; g.font = F(44); g.fillText("9 PM – 9 AM", IW / 2, 1210);
     vig(g, 0.45);
   } },
-  // the oven clock: 07:42 in green LED digits, the knobs below
+  // the oven clock: 7:42 AM in big green LED digits, well inside the card, the knobs below
   oven: { n: 1, draw: (g) => {
-    g.fillStyle = "#e8e6e0"; g.fillRect(0, 0, IW, IH); g.fillStyle = "#d4d1c9"; g.fillRect(0, 0, IW, 110);
-    g.fillStyle = "#2a2c33"; g.beginPath(); g.ellipse(250, 40, 260, 70, 0, 0, Math.PI); g.fill();                      // the pan's edge above
-    g.fillStyle = "#14161c"; g.beginPath(); g.roundRect(110, 470, IW - 220, 330, 30); g.fill(); g.lineWidth = 10; g.strokeStyle = INK; g.stroke();
-    g.fillStyle = "#4dff8a"; g.shadowColor = "#4dff8a"; g.shadowBlur = 40; g.font = "bold 230px 'DejaVu Sans Mono', monospace"; g.textAlign = "center"; g.fillText("07:42", IW / 2, 720); g.shadowBlur = 0;
-    for (const x of [170, 330, 490, 650]) { g.fillStyle = "#3a3d47"; g.beginPath(); g.arc(x, 1030, 62, 0, Math.PI * 2); g.fill(); g.lineWidth = 8; g.strokeStyle = INK; g.stroke(); g.fillStyle = "#e8e6e0"; g.fillRect(x - 8, 975, 16, 50); }
-    g.fillStyle = "#2a2c33"; g.fillRect(0, 1200, IW, 20);
-    vig(g, 0.45);
+    g.fillStyle = "#3a3d47"; g.fillRect(0, 0, IW, IH);
+    g.fillStyle = "#e8e6e0"; g.beginPath(); g.roundRect(60, 330, IW - 120, 820, 40); g.fill(); g.lineWidth = 10; g.strokeStyle = INK; g.stroke();
+    g.fillStyle = "#14161c"; g.beginPath(); g.roundRect(120, 420, IW - 240, 380, 30); g.fill(); g.lineWidth = 10; g.strokeStyle = INK; g.stroke();
+    g.fillStyle = "#4dff8a"; g.shadowColor = "#4dff8a"; g.shadowBlur = 40; g.textAlign = "center";
+    g.font = "bold 210px 'DejaVu Sans Mono', monospace"; g.fillText("7:42", IW / 2 - 40, 690);
+    g.font = "bold 64px 'DejaVu Sans Mono', monospace"; g.fillText("AM", IW / 2 + 225, 690); g.shadowBlur = 0;
+    for (const x of [200, 330, 480, 610]) { g.fillStyle = "#3a3d47"; g.beginPath(); g.arc(x, 960, 52, 0, Math.PI * 2); g.fill(); g.lineWidth = 8; g.strokeStyle = INK; g.stroke(); g.fillStyle = "#e8e6e0"; g.fillRect(x - 7, 912, 14, 42); }
+    vig(g, 0.6);
   } },
   // Mum's phone on the counter by the stove, nobody near it: dark; then lit, typing; then sent: the thread is the
   // texts you've been getting, sent from this phone
@@ -287,9 +308,10 @@ const insertRig = (a: At, v = "text1"): PropRig => {
 // ---------------------------------------------------------------- the vote panels
 const CW = 1024, CH = 300;
 const choiceTex = (v: string) => stex(`bfChoice_${v}`, CW, CH, (g) => {
-  const c = v === "a" ? WARM : COOL, label = v === "a" ? "THE STOVE" : "THE DOOR";
+  const c = v === "a" ? WARM : v === "b" ? COOL : "#ffffff", label = v === "a" ? "THE STOVE" : "THE DOOR";
   g.clearRect(0, 0, CW, CH); g.fillStyle = "rgba(14,10,20,0.88)"; g.beginPath(); g.roundRect(14, 14, CW - 28, CH - 28, 44); g.fill();
   g.strokeStyle = c; g.lineWidth = 12; g.shadowColor = c; g.shadowBlur = 40; g.stroke(); g.shadowBlur = 0;
+  if (v === "q") { g.fillStyle = "#ffffff"; g.font = F(86); g.textAlign = "center"; g.fillText("WHAT DO YOU DO?", CW / 2, CH / 2 + 38); return; }
   g.fillStyle = c; g.beginPath(); g.arc(150, CH / 2, 96, 0, Math.PI * 2); g.fill(); g.fillStyle = "#140e18"; g.font = F(130); g.textAlign = "center"; g.fillText(v.toUpperCase(), 150, CH / 2 + 46);
   g.fillStyle = "#ffffff"; g.font = F(112); g.textAlign = "left"; g.fillText(label, 280, CH / 2 + 40);
 });
@@ -303,6 +325,26 @@ const choiceRig = (a: At, v = "a"): PropRig => {
   return { root, update: ({ step = 0, camPos }) => {
     const k = Math.max(0, Math.min(1, step / 0.35)), back = 1 + 0.18 * Math.sin(k * Math.PI);
     m.visible = k > 0.001; m.scale.setScalar(Math.max(0.001, k * back)); mat.opacity = k; m.lookAt(camPos);
+  } };
+};
+
+// ---------------------------------------------------------------- the dread vignette
+const dreadTex = () => stex("bfDread", 256, 456, (g) => {
+  // an elliptical falloff (the frame is tall): clear-ish in the middle, dark well before the edges
+  g.save(); g.scale(1, 456 / 256);
+  const v = g.createRadialGradient(128, 128, 30, 128, 128, 150); v.addColorStop(0, "rgba(6,4,14,0.16)"); v.addColorStop(0.5, "rgba(6,4,14,0.55)"); v.addColorStop(1, "rgba(6,4,14,1)");
+  g.fillStyle = v; g.fillRect(0, 0, 256, 256); g.restore();
+});
+const dreadRig = (a: At, v = "soft"): PropRig => {
+  // the shot's vertical fov arrives as the prop's scale (fov / 100): the vignette is sized to fill the frame exactly
+  const fov = (a.s ?? 0.44) * 100, root = rigRoot({ ...a, s: 1 }), base = v === "dark" ? 1 : v === "heavy" ? 0.85 : 0.65;
+  const h = 2 * 0.5 * Math.tan((fov * Math.PI) / 360) * 1.14, w = (h * 9) / 16;
+  const mat = new THREE.MeshBasicMaterial({ map: dreadTex(), transparent: true, opacity: base, depthTest: false, depthWrite: false, toneMapped: false });
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), mat); m.renderOrder = 10; m.layers.set(NOINK); root.add(m);
+  return { root, update: ({ step = 0, camPos }) => {
+    const k = Math.max(0, Math.min(1, step)); mat.opacity = Math.min(1, base + 0.2 * k);
+    const d = root.position.clone().sub(camPos).normalize().multiplyScalar(0.5); m.position.copy(camPos).add(d).sub(root.position); m.lookAt(camPos);
+    m.scale.setScalar(1 - 0.12 * k);
   } };
 };
 
@@ -343,11 +385,13 @@ export const BREAKFAST_THEME: Theme = {
       build: () => undefined, rig: (a) => plateRig(a), steps: [], stepCount: () => 1 },
     bfFrontDoor: { name: "Front door (frosted glass)", desc: "the front door's leaf for the bfKitchen hallway frame (`at` = [0.95, 0, -4.47]), facing +z: deep green, a frosted glass panel lit by daylight. Variant shadow: a dark head-and-shoulders silhouette behind the glass. Each step is a knock: the leaf jolts", category: "theme", themes: ["home", "horror"], tags: ["door", "front door", "knock", "silhouette"], radius: 0.45, height: 2.05,
       build: () => undefined, rig: (a, v) => frontDoorRig(a, v ?? "empty"), steps: ["a knock"], stepCount: () => 50, variants: { empty: () => undefined, shadow: () => undefined } },
-    bfInsert: { name: "Close insert (Don't Eat It)", desc: "an upright 9:16 insert card (0.54 x 0.96 m, facing +z), `at` = its centre: an `at` camera 1.0 m in front at fov 51 sees only the card. A state per step. Variants: text1 (your phone: MUM: Don't eat it. I'm still at work.), rules (the phone in your lap under the table: rule one, two, three), badge (Mum's hospital lanyard on its hook: NURSE, NIGHT SHIFT 9 PM - 9 AM), oven (the oven clock 07:42), mumPhone (Mum's pink phone on the counter: dark; lit, typing; sent: Open the door. Now. Delivered)", category: "theme", themes: ["home", "insert"], tags: ["insert", "card", "close-up", "phone", "text"], radius: 0.3, height: 0.96,
+    bfInsert: { name: "Close insert (Don't Eat It)", desc: "an upright 9:16 insert card (0.54 x 0.96 m, facing +z), `at` = its centre: an `at` camera 1.0 m in front at fov 51 sees only the card. A state per step. Variants: pan (Mum holding the pan of pancakes out to you, her smile above), text1 (your phone: MUM: Don't eat it. I'm still at work.), rules (the phone in your lap under the table: the first text only; then rule one, two, three), badge (Mum's hospital lanyard on its hook: NURSE, NIGHT SHIFT 9 PM - 9 AM), oven (the oven clock 7:42 AM), mumPhone (Mum's pink phone on the counter: dark; lit, typing; sent: Open the door. Now. Delivered)", category: "theme", themes: ["home", "insert"], tags: ["insert", "card", "close-up", "phone", "text"], radius: 0.3, height: 0.96,
       build: () => undefined, rig: (a, v) => insertRig(a, v ?? "text1"), steps: ["its next state"], stepCount: () => 2000,
       variants: Object.fromEntries(Object.keys(INSERTS).map((k) => [k, () => undefined])) },
-    bfChoice: { name: "Vote panels (Don't Eat It)", desc: "the end-card vote over the last frame: a glowing panel turned to the camera, popping in on its first step (hidden before it). Variants: a (A · THE STOVE, warm orange), b (B · THE DOOR, cool blue); 1.0 m wide. Drawn over everything", category: "theme", themes: ["home", "vote"], tags: ["choice", "vote", "end card", "panel"], radius: 0.05, height: 0.1,
-      build: () => undefined, rig: (a, v) => choiceRig(a, v ?? "a"), steps: ["pops in"], stepCount: () => 1, variants: { a: () => undefined, b: () => undefined } },
+    bfChoice: { name: "Vote panels (Don't Eat It)", desc: "the end-card vote over the last frame: a glowing panel turned to the camera, popping in on its first step (hidden before it). Variants: a (A · THE STOVE, warm orange), b (B · THE DOOR, cool blue), q (WHAT DO YOU DO?, white); 1.0 m wide. Drawn over everything", category: "theme", themes: ["home", "vote"], tags: ["choice", "vote", "end card", "panel"], radius: 0.05, height: 0.1,
+      build: () => undefined, rig: (a, v) => choiceRig(a, v ?? "a"), steps: ["pops in"], stepCount: () => 1, variants: { a: () => undefined, b: () => undefined, q: () => undefined } },
+    bfDread: { name: "Dread (dark edges)", desc: "the dark closing in: a vignette 0.5 m in front of the lens, square to it, darkening the edges of the frame and dimming its centre a little (put `at` near what the shot looks at; give the shot's vertical fov as `scale` = fov / 100, so it fills the frame). Variants: soft, heavy, dark; on its step it closes in further (a breath held)", category: "theme", themes: ["horror", "mood"], tags: ["vignette", "dark", "overlay", "dread"], radius: 0.05, height: 0.1,
+      build: () => undefined, rig: (a, v) => dreadRig(a, v ?? "soft"), steps: ["closes in"], stepCount: () => 1, variants: { soft: () => undefined, heavy: () => undefined, dark: () => undefined } },
   },
   sets: {
     bfKitchen: { id: "bfKitchen", title: "The kitchen at 7:42: the stove, the table, the open arch onto the hallway and the front door", lights: ["interior", "interiorCool"], build: () => bfKitchen() },

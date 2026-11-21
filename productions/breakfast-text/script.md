@@ -37,8 +37,12 @@ lights up on the table in the foreground.)*
 > **MUM (kitchen):** Pancakes, sweetheart. Your favourite.
 > **NARRATOR:** Mum has never called you sweetheart. Not once. She calls you Bug.
 
+*(v2, the owner's preview notes: a slow push into Mum's smile; heavy breathing.)*
+> **BUG (thought, whispered):** Wait… who is that?
+
 ## THE RULES · 0:17
 *(Buzz. The phone, in your lap under the table so she can't see.)*
+> **NARRATOR:** You're given three rules to follow.
 > **TEXT:** Rule one. Don't let her see you read this.
 > **TEXT:** Rule two. Don't eat anything she gives you.
 > **TEXT:** Rule three. Get to the front door. Walk. Don't run.
@@ -58,6 +62,7 @@ move.)*
 ## THE DOOR · 0:44
 *(Three hard knocks at the front door.)*
 > **MUM (door, muffled):** Bug? It's me! I left my phone at home, let me in!
+> **BUG (thought, whispered):** That's… Mum's voice too.
 
 *(Close: Mum's phone on the counter, next to the stove. It lights up: another text, sent. Nobody's touching it.)*
 > **NARRATOR:** Mum's phone is on the counter. Right next to the stove. It lights up. Nobody's touching it.
@@ -69,9 +74,13 @@ move.)*
 
 *(Pounding at the door.)*
 > **MUM (door):** Bug, whatever's in there, don't eat anything!
-> **NARRATOR:** One of them is your mum. The one at the stove… or the one at the door?
+> **NARRATOR:** One of them is your mum. The one at the stove… or the one at the door? What do you do?
 
-*(On the last word, panels: **A · THE STOVE** / **B · THE DOOR**. Cut to black within half a second.)*
+*(Panels pop in: **A · THE STOVE** on "stove", **B · THE DOOR** on "door", **WHAT DO YOU DO?** on "What". Cut to black within half a second.)*
+
+**v2 (owner's preview notes, 21 Nov 2026):** darker, colder light after the first text and the dark closing in round the
+frame; heavy breathing and heartbeats; Bug's whispered thoughts (caption pale yellow); the rules introduced by the
+narrator; "What do you do?" at the end; a clear close-up of the pan; the clock as 7:42 AM inside the frame; a darker score.
 
 ---
 
