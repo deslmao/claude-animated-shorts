@@ -98,6 +98,40 @@ two stops you know.
   answer decides Part 2 👇"
 - **Cover:** frame 1 (his screaming face) with "HE HAS NO REFLECTION."
 
+## Visual and sound plan (the owner: "lots of visuals and sound effects")
+Something changes on screen or in the sound every 1–2 seconds. 🎬 = picture, 🔊 = sound.
+
+| Time | 🎬 Visuals | 🔊 Sound |
+|---|---|---|
+| 0:00 | his face lunges into the lens; the camera shakes with the scream; the lights flicker | train rattle from frame 1, his scream, a bass hit |
+| 0:03 | whip-pan to you, flinching back in your seat | a whoosh, your sharp gasp |
+| 0:06 | wide: the empty night carriage, the 9:47 display, the line map above the windows | rails clacking, the hum of the lights |
+| 0:09 | slow push in on him, turned round in his seat, unblinking | a low drone creeping in |
+| 0:13 | close: his hands gripping the seat back | the seat creaking |
+| 0:16 | insert: water dripping off his coat into a puddle that spreads | drip, drip, drip, loud |
+| 0:20 | insert: the dark window, your reflection; the camera slides to his seat in the glass: empty | a glassy shimmer, the drone rising |
+| 0:24 | split: him in the seat / the empty seat in the glass | a heartbeat starts, then stays |
+| 0:28 | the lights stutter and go dim for a beat | an electrical buzz-crackle |
+| 0:31 | close: your face, eyes darting; you stand | the heavy breathing starts |
+| 0:34 | the end door slides open; you step through; it shuts behind you | the door hiss and thud |
+| 0:37 | over your shoulder: the door slides open again; he's in the doorway | the same hiss, slower; a string screech |
+| 0:40 | the next carriage: empty, swaying; through the glass, the next one: empty | wind through the gaps, rails louder |
+| 0:44 | his reflection still missing from every window you pass | a whisper of his "why me" in the sound bed |
+| 0:46 | the run: low tracking shots of your feet, poles flashing past, doors bursting open, lights strobing | running footsteps, panting, doors banging, a pounding beat |
+| 0:52 | you stop, bent over, at the last carriage; the camera circles you | gasping, the beat cuts out, only the rails |
+| 0:55 | stillness: you slowly straighten | silence apart from the rails (about 0.8 s) |
+| 0:56 | **jumpscare**: you turn, and his face fills the frame; then the smile spreads | a sting with a scream-hit, then dead silence |
+| 0:58 | extreme close: his lips, whispering | his whisper, close in the ear |
+| 1:00 | the speaker grille; the display glitches from your stop to DEATH CITY | the chime, then the announcer |
+| 1:04 | the line map: the camera pushes in on DEATH CITY, a stop that wasn't there (the rewatch clue) | a reverse cymbal swell |
+| 1:07 | the brakes; the doors hiss open onto fog and a flickering DEATH CITY sign | the brakes screeching, the doors hissing, fog wind |
+| 1:10 | frozen frame: you in the doorway, him behind you; A · GET OFF / B · STAY ON pop in | a pop on each panel, a held low chord, then the cut |
+
+**New art for this:** the night carriage (sliding end doors, poles, seats, line map, display, flickering lights), real
+window reflections that leave him out, the running shots, the jumpscare close-up, the foggy DEATH CITY platform.
+**New sounds (ElevenLabs):** a train interior at night, his screams and the whisper, sliding doors, running through a
+train, panting, a jumpscare sting, the announcement chime, brakes, the doors hissing open, fog wind.
+
 ## Production notes
 - **Sets:** a new night-train set: two or three carriages with sliding end doors, dark windows showing the passengers'
   reflections, the line map, a destination display, and the foggy DEATH CITY platform.
