@@ -1,0 +1,95 @@
+{
+ "hash": "1d554833d02cd8",
+ "text": "Do you get off to escape him… into Death City, a place that never existed?",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.783,
+ "dur": 4.832653,
+ "words": [
+  {
+   "w": "Do",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "you",
+   "t0": 0.221,
+   "t1": 0.302
+  },
+  {
+   "w": "get",
+   "t0": 0.36,
+   "t1": 0.476
+  },
+  {
+   "w": "off",
+   "t0": 0.522,
+   "t1": 0.65
+  },
+  {
+   "w": "to",
+   "t0": 0.685,
+   "t1": 0.743
+  },
+  {
+   "w": "escape",
+   "t0": 0.836,
+   "t1": 1.207
+  },
+  {
+   "w": "him…",
+   "t0": 1.242,
+   "t1": 1.602
+  },
+  {
+   "w": "into",
+   "t0": 1.858,
+   "t1": 2.09
+  },
+  {
+   "w": "Death",
+   "t0": 2.159,
+   "t1": 2.38
+  },
+  {
+   "w": "City,",
+   "t0": 2.438,
+   "t1": 2.949
+  },
+  {
+   "w": "a",
+   "t0": 3.019,
+   "t1": 3.077
+  },
+  {
+   "w": "place",
+   "t0": 3.146,
+   "t1": 3.39
+  },
+  {
+   "w": "that",
+   "t0": 3.425,
+   "t1": 3.541
+  },
+  {
+   "w": "never",
+   "t0": 3.599,
+   "t1": 3.82
+  },
+  {
+   "w": "existed?",
+   "t0": 3.889,
+   "t1": 4.783
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-21T11:40:47.848Z"
+}

@@ -388,6 +388,11 @@
    "s": 2.5,
    "level": -14,
    "p": "A man's distant echoing scream 'why me', ghostly and faint, far away down a tunnel"
+  },
+  "el_man_scream": {
+   "s": 3,
+   "level": -6,
+   "p": "A grown man screaming in raw anguish and despair, a long hoarse desperate scream, close, inside a train, no words"
   }
  },
  "bed": {

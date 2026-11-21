@@ -1,0 +1,70 @@
+{
+ "hash": "053c4e8a5ad1ee",
+ "text": "You stop. You gasp for air. You think to yourself…",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.529,
+ "dur": 3.578776,
+ "words": [
+  {
+   "w": "You",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "stop.",
+   "t0": 0.255,
+   "t1": 0.72
+  },
+  {
+   "w": "You",
+   "t0": 0.882,
+   "t1": 1.01
+  },
+  {
+   "w": "gasp",
+   "t0": 1.08,
+   "t1": 1.451
+  },
+  {
+   "w": "for",
+   "t0": 1.521,
+   "t1": 1.625
+  },
+  {
+   "w": "air.",
+   "t0": 1.695,
+   "t1": 2.113
+  },
+  {
+   "w": "You",
+   "t0": 2.241,
+   "t1": 2.357
+  },
+  {
+   "w": "think",
+   "t0": 2.426,
+   "t1": 2.612
+  },
+  {
+   "w": "to",
+   "t0": 2.659,
+   "t1": 2.705
+  },
+  {
+   "w": "yourself…",
+   "t0": 2.763,
+   "t1": 3.529
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-21T11:40:47.260Z"
+}

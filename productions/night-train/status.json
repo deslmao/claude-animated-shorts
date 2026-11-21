@@ -4,14 +4,14 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-21T10:59:16.909Z",
-   "inputs": "0753901932af20n",
-   "detail": "valid; 38 warning(s):\n  shot 2 (ntCarriage): ntMan: talk span 0-5 s outside the shot\n  shot 3 (ntCarriage): prop \"ntEndDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 5 (ntCarriage): light \"night\" on an indoor set\n  shot 7 (ntCarriage): light \"night\" on an indoor set\n  shot 8 (ntCarriage): light \"night\" on an indoor set\n  shot 10 (ntCarriage): light \"night\" on an indoor set\n  shot 11 (ntCarriage): light \"night\" on an indoor set\n  shot 11 (ntCarriage): prop \"ntEndDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 12 (ntCarriage): light \"night\" on an indoor set\n  shot 12 (ntCarriage): prop \"ntEndDoor\" overlaps something already in the set at [0.0, 7.0]\n  shot 13 (ntCarriage): light \"night\" on an indoor set\n  shot 13 (ntCarriage): prop \"ntEndDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 13 (ntCarriage): prop \"ntEndDoor\" overlaps something already in the set at [0.0, 7.0]\n  shot 14 (ntCarriage): light \"night\" on an indoor set\n  shot 14 (ntCarriage): ntYou: walk 0-3.4 s outside the shot\n  shot 15 (ntCarriage): light \"night\" on an indoor set\n  shot 16 (ntCarriage): light \"night\" on an indoor set\n  shot 17 (ntCarriage): light \"night\" on an indoor set\n  shot 18 (ntCarriage): light \"night\" on an indoor set\n  shot 19 (ntCarriage): light \"night\" on an indoor set\n  shot 20 (ntCarriage): light \"night\" on an indoor set\n  shot 1 (ntCarriage): ntMan fills 93 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 2 (ntCarriage): ntYou fills 100 % of the frame in the foreground @0.3s (is it hiding the action?)\n  shot 2 (ntCarriage): ntMan fills 28 % of the frame in the foreground @3.9s (is it hiding the action?)\n  shot 3 (ntCarriage): ntMan fills 28 % of the frame in the foreground @2.0s (is it hiding the action?)\n  shot 3 (ntCarriage): ntYou fills 41 % of the frame in the foreground @2.0s (is it hiding the action?)\n  shot 4 (ntCarriage): ntMan fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 6 (ntCarriage): ntYou fills 44 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 9 (ntCarriage): ntMan fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 10 (ntCarriage): ntYou fills 100 % of the frame in the foreground @1.2s (is it hiding the action?)\n  shot 11 (ntCarriage): ntYou fills 51 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 12 (ntCarriage): ntMan fills 28 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 13 (ntCarriage): ntMan fills 32 % of the frame in the foreground @5.8s (is it hiding the action?)\n  shot 14 (ntCarriage): ntYou fills 34 % of the frame in the foreground @1.6s (is it hiding the action?)\n  shot 15 (ntCarriage): ntYou fills 65 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 16 (ntCarriage): ntMan fills 90 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 20 (ntCarriage): ntYou fills 28 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 20 (ntCarriage): ntMan fills 33 % of the frame in the foreground @0.0s (is it hiding the action?)"
+   "at": "2026-11-21T11:41:44.810Z",
+   "inputs": "1f165edd380960n",
+   "detail": "valid; 40 warning(s):\n  shot 3 (ntCarriage): prop \"ntEndDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 7 (ntCarriage): light \"night\" on an indoor set\n  shot 8 (ntCarriage): light \"night\" on an indoor set\n  shot 10 (ntCarriage): light \"night\" on an indoor set\n  shot 11 (ntCarriage): light \"night\" on an indoor set\n  shot 11 (ntCarriage): prop \"ntEndDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 12 (ntCarriage): light \"night\" on an indoor set\n  shot 12 (ntCarriage): prop \"ntEndDoor\" overlaps something already in the set at [0.0, 7.0]\n  shot 13 (ntCarriage): light \"night\" on an indoor set\n  shot 13 (ntCarriage): prop \"ntEndDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 14 (ntCarriage): light \"night\" on an indoor set\n  shot 14 (ntCarriage): prop \"ntEndDoor\" overlaps something already in the set at [0.0, 7.0]\n  shot 15 (ntCarriage): light \"night\" on an indoor set\n  shot 15 (ntCarriage): prop \"ntEndDoor\" overlaps something already in the set at [0.0, 7.0]\n  shot 16 (ntCarriage): light \"night\" on an indoor set\n  shot 16 (ntCarriage): ntYou: walk 0-3.4 s outside the shot\n  shot 17 (ntCarriage): light \"night\" on an indoor set\n  shot 17 (ntCarriage): prop \"ntEndDoor\" overlaps something already in the set at [0.0, -7.0]\n  shot 18 (ntCarriage): light \"night\" on an indoor set\n  shot 19 (ntCarriage): light \"night\" on an indoor set\n  shot 20 (ntCarriage): light \"night\" on an indoor set\n  shot 21 (ntCarriage): light \"night\" on an indoor set\n  shot 22 (ntCarriage): light \"night\" on an indoor set\n  shot 1 (ntCarriage): ntMan fills 93 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 2 (ntCarriage): ntYou fills 100 % of the frame in the foreground @0.3s (is it hiding the action?)\n  shot 2 (ntCarriage): ntMan fills 28 % of the frame in the foreground @3.9s (is it hiding the action?)\n  shot 3 (ntCarriage): ntMan fills 28 % of the frame in the foreground @2.0s (is it hiding the action?)\n  shot 3 (ntCarriage): ntYou fills 41 % of the frame in the foreground @2.0s (is it hiding the action?)\n  shot 4 (ntCarriage): ntMan fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 5 (ntCarriage): ntMan fills 38 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 6 (ntCarriage): ntYou fills 44 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 9 (ntCarriage): ntMan fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 10 (ntCarriage): ntYou fills 100 % of the frame in the foreground @2.6s (is it hiding the action?)\n  shot 11 (ntCarriage): ntYou fills 51 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 12 (ntCarriage): ntMan fills 28 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 15 (ntCarriage): ntMan fills 32 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 16 (ntCarriage): ntYou fills 34 % of the frame in the foreground @1.6s (is it hiding the action?)\n  shot 18 (ntCarriage): ntMan fills 90 % of the frame in the foreground @0.3s (is it hiding the action?)\n  shot 22 (ntCarriage): ntYou fills 28 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 22 (ntCarriage): ntMan fills 33 % of the frame in the foreground @0.0s (is it hiding the action?)"
   },
   "assets": {
    "state": "done",
-   "at": "2026-11-21T10:59:16.912Z",
-   "inputs": "0753901932af20",
+   "at": "2026-11-21T11:41:44.815Z",
+   "inputs": "1f165edd380960",
    "detail": "42 library assets reused, none missing",
    "data": {
     "reused": 42,
@@ -39,13 +39,14 @@
       "ntFlicker",
       "ntEndDoor",
       "bfDread",
+      "ntDrips",
       "ntInsert",
-      "ntRed",
       "ntSideDoor",
       "ntChoice"
      ],
      "sfx": [
       "el_hit_boom",
+      "el_man_scream",
       "el_lights_buzz",
       "el_gasp_teen",
       "el_whoosh_dark",
@@ -72,41 +73,40 @@
       "scared",
       "shock",
       "neutral",
-      "angry",
-      "nervous"
+      "angry"
      ]
     }
    }
   },
   "approval": {
    "state": "done",
-   "at": "2026-11-21T10:59:16.915Z",
-   "inputs": "0cd0e40f0d24e5",
+   "at": "2026-11-21T11:41:44.820Z",
+   "inputs": "0f52c1ad94dc49",
    "detail": "all narration already generated (no cost)"
   },
   "narration": {
    "state": "done",
-   "at": "2026-11-21T10:59:16.916Z",
-   "inputs": "0cd0e40f0d24e5",
+   "at": "2026-11-21T11:41:44.821Z",
+   "inputs": "0f52c1ad94dc49",
    "detail": "all lines already generated (cached)"
   },
   "sound": {
    "state": "done",
-   "at": "2026-11-21T10:59:31.323Z",
-   "inputs": "1d6d452b293971",
-   "detail": "soundtrack built: -14.1 LUFS"
+   "at": "2026-11-21T11:42:01.422Z",
+   "inputs": "0b9b5bcc031e58",
+   "detail": "soundtrack built: -14.2 LUFS"
   },
   "checks": {
    "state": "done",
-   "at": "2026-11-21T10:59:37.722Z",
-   "inputs": "1d6d452b293971",
+   "at": "2026-11-21T11:42:07.662Z",
+   "inputs": "0b9b5bcc031e58",
    "detail": "preflight PASS; library intact"
   }
  },
  "approval": {
-  "scriptHash": "0cd0e40f0d24e5",
-  "chars": 887,
-  "at": "2026-11-21T10:43:43.809Z",
+  "scriptHash": "0f52c1ad94dc49",
+  "chars": 84,
+  "at": "2026-11-21T11:41:12.727Z",
   "by": "the owner, in the conversation"
  }
 }

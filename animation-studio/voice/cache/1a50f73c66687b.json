@@ -1,0 +1,65 @@
+{
+ "hash": "1a50f73c66687b",
+ "text": "[screaming] WHY DID THIS HAPPEN TO ME?! WHY ME?!",
+ "voice": "ntManScream",
+ "lead": 0,
+ "end": 3.6,
+ "dur": 3.63102,
+ "words": [
+  {
+   "w": "[screaming]",
+   "t0": 0,
+   "t1": 0.26
+  },
+  {
+   "w": "WHY",
+   "t0": 0.275,
+   "t1": 0.32
+  },
+  {
+   "w": "DID",
+   "t0": 0.38,
+   "t1": 0.56
+  },
+  {
+   "w": "THIS",
+   "t0": 0.624,
+   "t1": 0.88
+  },
+  {
+   "w": "HAPPEN",
+   "t0": 0.96,
+   "t1": 1.44
+  },
+  {
+   "w": "TO",
+   "t0": 1.52,
+   "t1": 1.68
+  },
+  {
+   "w": "ME?!",
+   "t0": 1.787,
+   "t1": 2.08
+  },
+  {
+   "w": "WHY",
+   "t0": 2.26,
+   "t1": 2.8
+  },
+  {
+   "w": "ME?!",
+   "t0": 3.013,
+   "t1": 3.6
+  }
+ ],
+ "voiceId": "pqHfZKP75CvOlQylNhV4",
+ "model": "eleven_v3",
+ "settings": {
+  "stability": 0,
+  "similarity_boost": 0.8,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1
+ },
+ "created": "2026-11-21T11:40:42.865Z"
+}

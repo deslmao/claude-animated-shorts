@@ -24,13 +24,14 @@
    "ntFlicker",
    "ntEndDoor",
    "bfDread",
+   "ntDrips",
    "ntInsert",
-   "ntRed",
    "ntSideDoor",
    "ntChoice"
   ],
   "sfx": [
    "el_hit_boom",
+   "el_man_scream",
    "el_lights_buzz",
    "el_gasp_teen",
    "el_whoosh_dark",
@@ -57,8 +58,7 @@
    "scared",
    "shock",
    "neutral",
-   "angry",
-   "nervous"
+   "angry"
   ]
  }
 }

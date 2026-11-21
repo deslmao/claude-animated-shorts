@@ -188,25 +188,53 @@ const redRig = (a: At): PropRig => {
   return { root, update: ({ camPos }) => { const d = root.position.clone().sub(camPos).normalize().multiplyScalar(0.5); m.position.copy(camPos).add(d).sub(root.position); m.lookAt(camPos); } };
 };
 
+/** his soaked coat dripping: drops falling from the hem (`at` = the hem's front edge, its height as y) onto a spreading
+ *  puddle on the floor. Give steady steps (one every 0.15 s): the drops fall with them */
+const dripsRig = (a: At): PropRig => {
+  const root = rigRoot(a), h = a.y ?? 0.5, drops: THREE.Mesh[] = [];
+  const dm = new THREE.MeshBasicMaterial({ color: "#a8d4f0", toneMapped: false });
+  for (let i = 0; i < 9; i++) { const d = new THREE.Mesh(new THREE.SphereGeometry(0.012, 8, 6), dm); d.scale.set(1, 1.6, 1); d.position.set(((i * 37) % 9 - 4) * 0.04, 0, ((i * 53) % 5 - 2) * 0.03); root.add(d); drops.push(d); }
+  const pm = new THREE.MeshBasicMaterial({ color: "#6f9fc0", transparent: true, opacity: 0.55, depthWrite: false, toneMapped: false });
+  const puddle = new THREE.Mesh(new THREE.CircleGeometry(0.3, 32).rotateX(-Math.PI / 2), pm); puddle.position.y = -h + 0.004; root.add(puddle);
+  return { root, update: ({ step = 0 }) => {
+    drops.forEach((d, i) => { const ph = (step * 0.35 + i * 0.37) % 1; d.position.y = -ph * ph * h; d.visible = ph < 0.97; });
+    puddle.scale.set(1 + Math.min(1, step / 40) * 0.6, 1, 0.7 + Math.min(1, step / 40) * 0.4);
+  } };
+};
+
 // ---------------------------------------------------------------- inserts (9:16 cards)
 type Ins = { n: number; draw: (g: CanvasRenderingContext2D, st: number) => void };
 const vig = (g: CanvasRenderingContext2D, a = 0.55) => { const v = g.createRadialGradient(IW / 2, IH / 2, IW * 0.3, IW / 2, IH / 2, IH * 0.75); v.addColorStop(0, "rgba(0,0,0,0)"); v.addColorStop(1, `rgba(0,0,0,${a})`); g.fillStyle = v; g.fillRect(0, 0, IW, IH); };
-/** a bench seen face on (three seats), its moquette */
-const benchDraw = (g: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, alpha = 1) => {
-  g.save(); g.globalAlpha = alpha; g.fillStyle = "#2b3a6a"; g.beginPath(); g.roundRect(x, y, w, h * 0.62, 18); g.fill(); g.beginPath(); g.roundRect(x - 10, y + h * 0.6, w + 20, h * 0.4, 14); g.fill();
-  g.fillStyle = "#e0b13a"; const r = rnd(3); for (let i = 0; i < 50; i++) g.fillRect(x + r() * w, y + r() * h, 6, 6); g.restore();
-};
-/** the man's face (pale, wet hair, a beard): mood = scream / stare / smile */
-const manFace = (g: CanvasRenderingContext2D, x: number, y: number, r: number, mood: "scream" | "stare" | "smile", alpha = 1) => {
-  g.save(); g.globalAlpha = alpha; g.lineWidth = r * 0.07; g.strokeStyle = INK;
-  g.fillStyle = "#2a2622"; g.beginPath(); g.ellipse(x, y - r * 0.55, r * 1.1, r * 0.75, 0, Math.PI, 0); g.fill();
-  for (let k = -4; k <= 4; k++) { g.beginPath(); g.moveTo(x + k * r * 0.22, y - r * 0.6); g.lineTo(x + k * r * 0.25, y + r * 0.1); g.lineWidth = r * 0.08; g.strokeStyle = "#2a2622"; g.stroke(); }   // wet hair, hanging
-  g.fillStyle = "#c8cfc9"; g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2); g.fill(); g.lineWidth = r * 0.07; g.strokeStyle = INK; g.stroke();
-  g.fillStyle = "#2a2622"; g.beginPath(); g.ellipse(x, y + r * 0.62, r * 0.75, r * 0.42, 0, 0, Math.PI); g.fill();                         // the beard
-  g.fillStyle = INK; for (const s of [-1, 1]) { g.beginPath(); g.arc(x + s * r * 0.36, y - r * 0.1, r * (mood === "stare" ? 0.2 : 0.14), 0, Math.PI * 2); g.fillStyle = "#ffffff"; g.fill(); g.stroke(); g.fillStyle = INK; g.beginPath(); g.arc(x + s * r * 0.36, y - r * 0.1, r * 0.06, 0, Math.PI * 2); g.fill(); }
-  if (mood === "scream") { g.fillStyle = "#3a0d10"; g.beginPath(); g.ellipse(x, y + r * 0.42, r * 0.3, r * 0.38, 0, 0, Math.PI * 2); g.fill(); g.stroke(); }
-  else if (mood === "smile") { g.lineWidth = r * 0.09; g.beginPath(); g.arc(x, y + r * 0.2, r * 0.5, 0.12 * Math.PI, 0.88 * Math.PI); g.stroke(); }
-  else { g.lineWidth = r * 0.08; g.beginPath(); g.moveTo(x - r * 0.3, y + r * 0.42); g.lineTo(x + r * 0.3, y + r * 0.42); g.stroke(); }
+/** the bay seen side on, as wide as (x, w): your bench on the left (you on it, facing right), his bench on the right
+ *  (facing left), him on it only when `withMan`. `glass` dims and blues it like a reflection */
+const bay = (g: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, withMan: boolean, a: number) => {
+  g.save(); g.globalAlpha = a; const fy = y + h * 0.86, sx = w / 810, sy = h / 700;
+  const X = (u: number) => x + u * sx, Y = (v: number) => y + v * sy;
+  g.fillStyle = "#59616b"; g.fillRect(x, fy, w, y + h - fy);                                                     // floor
+  g.fillStyle = "#e6eef8"; g.fillRect(X(120), Y(30), 570 * sx, 14 * sy);                                         // ceiling light
+  const seatSide = (bx: number, dir: 1 | -1) => {
+    g.fillStyle = "#2b3a6a"; g.beginPath(); g.roundRect(X(bx), Y(430), 190 * sx, 50 * sy, 12); g.fill();             // seat
+    g.beginPath(); g.roundRect(X(dir > 0 ? bx - 10 : bx + 160), Y(170), 40 * sx, 300 * sy, 14); g.fill();           // backrest
+    g.fillStyle = "#e0b13a"; for (let k = 0; k < 6; k++) g.fillRect(X(bx + 15 + k * 28), Y(445), 8 * sx, 8 * sy);
+    g.fillStyle = "#5a6470"; g.fillRect(X(bx + 10), Y(480), 170 * sx, (fy - Y(480)));
+  };
+  seatSide(90, 1); seatSide(530, -1);
+  // you: on the left seat, facing right; a navy hoodie, dark side-swept hair, eyes wide
+  g.lineWidth = 7; g.strokeStyle = INK;
+  g.fillStyle = "#2a2c3a"; g.beginPath(); g.roundRect(X(190), Y(400), 150 * sx, 50 * sy, 20); g.fill(); g.fillRect(X(300), Y(430), 36 * sx, 160 * sy);   // legs
+  g.fillStyle = "#2f4a7a"; g.beginPath(); g.roundRect(X(150), Y(250), 120 * sx, 190 * sy, 40); g.fill(); g.stroke();   // hoodie
+  g.fillStyle = "#d9a886"; g.beginPath(); g.ellipse(X(215), Y(205), 62 * sx, 66 * sy, 0, 0, Math.PI * 2); g.fill(); g.stroke();
+  g.fillStyle = "#1e1a1a"; g.beginPath(); g.ellipse(X(205), Y(165), 66 * sx, 36 * sy, -0.2, Math.PI, 0); g.fill();
+  g.fillStyle = "#ffffff"; g.beginPath(); g.arc(X(250), Y(200), 15 * sx, 0, Math.PI * 2); g.fill(); g.stroke(); g.fillStyle = INK; g.beginPath(); g.arc(X(254), Y(200), 6 * sx, 0, Math.PI * 2); g.fill();
+  if (withMan) {
+    // him: on the right seat, facing left, straight at you; the long wet coat, the beard, wide staring eyes
+    g.fillStyle = "#2a2c30"; g.beginPath(); g.roundRect(X(470), Y(400), 160 * sx, 50 * sy, 20); g.fill(); g.fillRect(X(470), Y(430), 36 * sx, 160 * sy);
+    g.fillStyle = "#3d4a44"; g.beginPath(); g.roundRect(X(540), Y(220), 130 * sx, 300 * sy, 40); g.fill(); g.stroke();
+    g.fillStyle = "rgba(150,190,220,0.9)"; for (const [u, v] of [[560, 545], [610, 575], [585, 610]] as const) { g.beginPath(); g.ellipse(X(u), Y(v), 6 * sx, 10 * sy, 0, 0, Math.PI * 2); g.fill(); }
+    g.fillStyle = "#c8cfc9"; g.beginPath(); g.ellipse(X(600), Y(170), 66 * sx, 72 * sy, 0, 0, Math.PI * 2); g.fill(); g.stroke();
+    g.fillStyle = "#2a2622"; g.beginPath(); g.ellipse(X(610), Y(125), 72 * sx, 40 * sy, 0.2, Math.PI, 0); g.fill(); g.beginPath(); g.ellipse(X(585), Y(215), 46 * sx, 30 * sy, 0, 0, Math.PI); g.fill();
+    g.fillStyle = "#ffffff"; g.beginPath(); g.arc(X(565), Y(165), 17 * sx, 0, Math.PI * 2); g.fill(); g.stroke(); g.fillStyle = INK; g.beginPath(); g.arc(X(559), Y(165), 6 * sx, 0, Math.PI * 2); g.fill();
+  }
   g.restore();
 };
 const INSERTS: Record<string, Ins> = {
@@ -222,32 +250,31 @@ const INSERTS: Record<string, Ins> = {
     vig(g, 0.6);
   } },
   // the dark window: your reflection, the lit carriage, the seats opposite: empty where he sits
-  reflection: { n: 1, draw: (g) => {
-    g.fillStyle = "#060810"; g.fillRect(0, 0, IW, IH);
-    g.strokeStyle = "#8a929c"; g.lineWidth = 30; g.strokeRect(15, 15, IW - 30, IH - 30);                              // the window frame
-    g.globalAlpha = 0.8; g.fillStyle = "#cfe0ff"; g.fillRect(150, 120, 500, 18); g.globalAlpha = 1; g.fillStyle = "#1a2236"; g.fillRect(45, 160, IW - 90, 420);                    // the ceiling lights in the glass
-    benchDraw(g, 70, 600, 360, 330, 0.85);                                                                           // his seats: empty
-    // you, in the glass: a teen in a navy hoodie, eyes wide
-    g.save(); g.globalAlpha = 0.85; g.fillStyle = "#2f4a7a"; g.beginPath(); g.ellipse(590, 1180, 190, 260, 0, Math.PI, 0); g.fill(); g.fillRect(400, 1180, 380, 300);
-    g.fillStyle = "#d9a886"; g.beginPath(); g.arc(590, 900, 130, 0, Math.PI * 2); g.fill(); g.fillStyle = "#1e1a1a"; g.beginPath(); g.ellipse(580, 820, 150, 80, -0.2, Math.PI, 0); g.fill();
-    g.fillStyle = "#ffffff"; for (const s of [-1, 1]) { g.beginPath(); g.arc(590 + s * 45, 900, 26, 0, Math.PI * 2); g.fill(); } g.fillStyle = INK; for (const s of [-1, 1]) { g.beginPath(); g.arc(590 + s * 45, 900, 9, 0, Math.PI * 2); g.fill(); }
+  // the window, clearly: the bay seen side on as its reflection in the glass: you on your seat (left), the seat facing
+  // you (right): EMPTY. Step: a red ring round the empty seat
+  reflection: { n: 2, draw: (g, st) => {
+    g.fillStyle = "#4a525c"; g.fillRect(0, 0, IW, IH);
+    g.fillStyle = "#1a2a44"; g.beginPath(); g.roundRect(50, 240, IW - 100, 960, 40); g.fill();             // the glass
+    g.save(); g.beginPath(); g.roundRect(50, 240, IW - 100, 960, 40); g.clip();
+    bay(g, 50, 260, IW - 100, 920, false, 0.92);
+    g.fillStyle = "rgba(255,255,255,0.10)"; g.beginPath(); g.moveTo(80, 240); g.lineTo(260, 240); g.lineTo(80, 700); g.closePath(); g.fill();   // the glass's sheen
     g.restore();
-    g.fillStyle = "rgba(255,210,120,0.6)"; for (let i = 0; i < 6; i++) g.fillRect(40 + i * 130, 480 + (i % 2) * 40, 70, 3);   // lights outside, through the glass
-    vig(g, 0.6);
+    g.lineWidth = 26; g.strokeStyle = "#8a929c"; g.beginPath(); g.roundRect(50, 240, IW - 100, 960, 40); g.stroke();
+    if (st) { g.strokeStyle = RED; g.lineWidth = 12; g.setLineDash([26, 16]); g.shadowColor = RED; g.shadowBlur = 24; g.beginPath(); g.ellipse(560, 760, 190, 300, 0, 0, Math.PI * 2); g.stroke(); g.setLineDash([]); g.shadowBlur = 0; }
+    vig(g, 0.4);
   } },
-  // the proof: above, him in his seat, staring; below, the same seat in the glass: empty
+  // the proof, side by side: above, the real bay (you, and him on the seat facing you); below, the same bay in the
+  // window: you, and an empty seat
   split: { n: 1, draw: (g) => {
-    g.fillStyle = "#b9c0c8"; g.fillRect(0, 0, IW, IH / 2);
-    benchDraw(g, 170, 380, 470, 320);
-    g.fillStyle = "#3d4a44"; g.beginPath(); g.roundRect(250, 330, 310, 420, 60); g.fill(); g.lineWidth = 10; g.strokeStyle = INK; g.stroke();
-    manFace(g, IW / 2, 250, 120, "stare");
-    g.fillStyle = "#060810"; g.fillRect(0, IH / 2, IW, IH / 2);
-    benchDraw(g, 170, IH / 2 + 380, 470, 320, 0.85);
-    g.fillStyle = "rgba(207,224,255,0.4)"; g.fillRect(200, IH / 2 + 80, 400, 14);
-    g.fillStyle = "#ffffff"; g.fillRect(0, IH / 2 - 6, IW, 12);
-    vig(g, 0.5);
+    g.fillStyle = "#c9d2dc"; g.fillRect(0, 0, IW, IH / 2);
+    bay(g, 0, 20, IW, IH / 2 - 40, true, 1);
+    g.fillStyle = "#1a2a44"; g.fillRect(0, IH / 2, IW, IH / 2);
+    bay(g, 0, IH / 2 + 20, IW, IH / 2 - 40, false, 0.92);
+    g.fillStyle = "rgba(255,255,255,0.10)"; g.beginPath(); g.moveTo(0, IH / 2); g.lineTo(200, IH / 2); g.lineTo(0, IH / 2 + 400); g.closePath(); g.fill();
+    g.fillStyle = "#ffffff"; g.fillRect(0, IH / 2 - 8, IW, 16);
+    g.fillStyle = "#14121c"; g.font = F(40); g.textAlign = "center"; g.fillText("REAL", IW / 2, 70); g.fillStyle = "#dfe8ff"; g.fillText("IN THE WINDOW", IW / 2, IH / 2 + 70);
+    vig(g, 0.35);
   } },
-  // the LED display: your stop; it glitches; DEATH CITY
   display: { n: 3, draw: (g, st) => {
     g.fillStyle = "#2a2e34"; g.fillRect(0, 0, IW, IH);
     g.fillStyle = "#0a0a0c"; g.beginPath(); g.roundRect(40, 520, IW - 80, 380, 24); g.fill(); g.lineWidth = 12; g.strokeStyle = "#5a6470"; g.stroke();
@@ -280,13 +307,14 @@ const insertRig = (a: At, v = "drip"): PropRig => {
 };
 
 // ---------------------------------------------------------------- the vote panels
-const CW = 1024, CH = 300;
-const choiceTex = (v: string) => stex(`ntChoice_${v}`, CW, CH, (g) => {
-  const c = v === "a" ? "#ff5a4e" : "#5ee08a", label = v === "a" ? "GET OFF" : "STAY ON";
+const CW = 1024, CH = 400;
+const choiceTex = (v: string) => stex(`ntChoice2_${v}`, CW, CH, (g) => {
+  const c = v === "a" ? "#ff5a4e" : "#5ee08a", label = v === "a" ? "GET OFF" : "STAY ON", sub = v === "a" ? "into Death City" : "with him";
   g.clearRect(0, 0, CW, CH); g.fillStyle = "rgba(8,8,14,0.9)"; g.beginPath(); g.roundRect(14, 14, CW - 28, CH - 28, 44); g.fill();
   g.strokeStyle = c; g.lineWidth = 12; g.shadowColor = c; g.shadowBlur = 40; g.stroke(); g.shadowBlur = 0;
-  g.fillStyle = c; g.beginPath(); g.arc(150, CH / 2, 96, 0, Math.PI * 2); g.fill(); g.fillStyle = "#0a0a10"; g.font = F(130); g.textAlign = "center"; g.fillText(v.toUpperCase(), 150, CH / 2 + 46);
-  g.fillStyle = "#ffffff"; g.font = F(116); g.textAlign = "left"; g.fillText(label, 280, CH / 2 + 42);
+  g.fillStyle = c; g.beginPath(); g.arc(150, CH / 2, 100, 0, Math.PI * 2); g.fill(); g.fillStyle = "#0a0a10"; g.font = F(130); g.textAlign = "center"; g.fillText(v.toUpperCase(), 150, CH / 2 + 46);
+  g.fillStyle = "#ffffff"; g.font = F(116); g.textAlign = "left"; g.fillText(label, 285, CH / 2 - 10);
+  g.fillStyle = c; g.font = F(70); g.fillText(sub, 290, CH / 2 + 100);
 });
 const choiceRig = (a: At, v = "a"): PropRig => {
   const root = rigRoot(a), w = 1.0, h = w * CH / CW;
@@ -328,10 +356,12 @@ export const NIGHTTRAIN_THEME: Theme = {
       build: () => undefined, rig: (a) => flickerRig(a), steps: ["a flicker"], stepCount: () => 50 },
     ntRed: { name: "Emergency lighting (red)", desc: "the carriage in its red emergency lights: a red veil over the frame; give the shot's vertical fov as scale = fov / 100", category: "theme", themes: ["horror"], tags: ["red", "emergency", "light", "overlay"], radius: 0.05, height: 0.1,
       build: () => undefined, rig: (a) => redRig(a), steps: [], stepCount: () => 1 },
-    ntInsert: { name: "Close insert (The Last Train)", desc: "an upright 9:16 insert card (0.54 x 0.96 m, facing +z), `at` = its centre: an `at` camera 1.0 m in front at fov 51 sees only the card. A state per step. Variants: drip (water dripping off his coat; the puddle spreads), reflection (the dark window: you, the empty seats where he sits), split (him in his seat above; the same seat in the glass, empty, below), display (NEXT STOP ASHFIELD; glitch; DEATH CITY), map (the line map; DEATH CITY ringed)", category: "theme", themes: ["train", "insert"], tags: ["insert", "close-up", "clue"], radius: 0.3, height: 0.96,
+    ntDrips: { name: "Soaked coat dripping", desc: "water dripping off his coat's hem (`at` = the hem's front edge, at its height) onto a spreading puddle on the floor; give steady steps (one every 0.15 s)", category: "theme", themes: ["horror"], tags: ["water", "drip", "puddle", "wet"], radius: 0.05, height: 0.1,
+      build: () => undefined, rig: (a) => dripsRig(a), steps: ["the drops fall"], stepCount: () => 2000 },
+    ntInsert: { name: "Close insert (The Last Train)", desc: "an upright 9:16 insert card (0.54 x 0.96 m, facing +z), `at` = its centre: an `at` camera 1.0 m in front at fov 51 sees only the card. A state per step. Variants: drip (water dripping off his coat; the puddle spreads), reflection (the window, clearly: the bay side on in the glass, you on your seat, his seat EMPTY; step: a red ring round it), split (REAL above: you and him on the seat facing you; IN THE WINDOW below: you and an empty seat), display (NEXT STOP ASHFIELD; glitch; DEATH CITY), map (the line map; DEATH CITY ringed)", category: "theme", themes: ["train", "insert"], tags: ["insert", "close-up", "clue"], radius: 0.3, height: 0.96,
       build: () => undefined, rig: (a, v) => insertRig(a, v ?? "drip"), steps: ["its next state"], stepCount: () => 2000,
       variants: Object.fromEntries(Object.keys(INSERTS).map((k) => [k, () => undefined])) },
-    ntChoice: { name: "Vote panels (The Last Train)", desc: "the end-card vote: a glowing panel turned to the camera, popping in on its first step. Variants: a (A · GET OFF, red), b (B · STAY ON, green); 1.0 m wide. Drawn over everything", category: "theme", themes: ["vote"], tags: ["choice", "vote", "panel"], radius: 0.05, height: 0.1,
+    ntChoice: { name: "Vote panels (The Last Train)", desc: "the end-card vote: a glowing panel turned to the camera, popping in on its first step. Variants: a (A · GET OFF / into Death City, red), b (B · STAY ON / with him, green); 1.0 m wide. Drawn over everything", category: "theme", themes: ["vote"], tags: ["choice", "vote", "panel"], radius: 0.05, height: 0.1,
       build: () => undefined, rig: (a, v) => choiceRig(a, v ?? "a"), steps: ["pops in"], stepCount: () => 1, variants: { a: () => undefined, b: () => undefined } },
   },
   sets: {

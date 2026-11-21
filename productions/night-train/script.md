@@ -160,3 +160,20 @@ train, panting, a jumpscare sting, the announcement chime, brakes, the doors his
 - **Length:** 62.9 s.
 - **One line changed to your own words:** "He's on the three seats in front of you. Facing you." (the seats face each
   other in bays).
+
+## v2: the owner's preview notes (21 Nov 2026)
+- **He screams for real:** the voice is generated with an audio tag ([screaming] / [shouting]), a raw scream is layered
+  under it, and his mouth is wide open (no talking mouth).
+- **The coat:** full body first, then the camera zooms into his coat: water dripping off the hem into a puddle; then the
+  close-up.
+- **The reflection, cleaner:** the window shows the bay side on, you on your seat, his seat EMPTY, ringed in red; then
+  REAL (you and him) above IN THE WINDOW (you and an empty seat).
+- **Thoughts are announced:** "You think to yourself…" before each thought.
+- **"So is the next one":** now a real shot of another empty carriage (not the door's grey glass).
+- **No red screen.**
+- **First person before the jumpscare:** your eyes, gasping, "You think to yourself… I must have lost him", then you turn
+  round (a whip) into his face.
+- **The last frame:** "Do you get off to escape him… into Death City, a place that never existed? Or stay on… with the
+  man who has no reflection?" with **A · GET OFF / into Death City** and **B · STAY ON / with him**.
+- **The map line, in the owner's words:** "You know the whole area. That doesn't exist."
+- **Length:** 68.9 s (under 70); about 42 visual changes (one every ~1.6 s); five lighting setups.

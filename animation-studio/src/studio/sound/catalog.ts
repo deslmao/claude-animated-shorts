@@ -160,6 +160,7 @@ export const SFX = {
   el_drip_loud: "recorded: Heavy drops of water dripping slowly onto a metal train floor, loud and close, in silence (3 s)",
   el_reverse_swell: "recorded: A reverse cymbal swell rising into a sudden stop, eerie (2.5 s)",
   el_scream_far: "recorded: A man's distant echoing scream 'why me', ghostly and faint, far away down a tunnel (2.5 s)",
+  el_man_scream: "recorded: A grown man screaming in raw anguish, a long hoarse desperate scream, no words (3 s)",
   el_siren_far: "recorded: Distant police and ambulance sirens echoing through a rainy futuristic city at night (5.0 s)",
 } as const;
 export type SfxName = keyof typeof SFX;

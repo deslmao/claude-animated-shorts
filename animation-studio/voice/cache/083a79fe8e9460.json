@@ -1,0 +1,40 @@
+{
+ "hash": "083a79fe8e9460",
+ "text": "You think to yourself…",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 1.393,
+ "dur": 1.436735,
+ "words": [
+  {
+   "w": "You",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "think",
+   "t0": 0.221,
+   "t1": 0.395
+  },
+  {
+   "w": "to",
+   "t0": 0.441,
+   "t1": 0.499
+  },
+  {
+   "w": "yourself…",
+   "t0": 0.546,
+   "t1": 1.393
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-21T11:40:45.078Z"
+}

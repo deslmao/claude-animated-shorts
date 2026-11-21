@@ -1,0 +1,65 @@
+{
+ "hash": "16e111faabff60",
+ "text": "[shouting] I was just going home! Just like you!",
+ "voice": "ntManScream",
+ "lead": 0,
+ "end": 2.56,
+ "dur": 2.586122,
+ "words": [
+  {
+   "w": "[shouting]",
+   "t0": 0,
+   "t1": 0.14
+  },
+  {
+   "w": "I",
+   "t0": 0.15,
+   "t1": 0.16
+  },
+  {
+   "w": "was",
+   "t0": 0.22,
+   "t1": 0.4
+  },
+  {
+   "w": "just",
+   "t0": 0.448,
+   "t1": 0.64
+  },
+  {
+   "w": "going",
+   "t0": 0.693,
+   "t1": 0.96
+  },
+  {
+   "w": "home!",
+   "t0": 1.04,
+   "t1": 1.44
+  },
+  {
+   "w": "Just",
+   "t0": 1.504,
+   "t1": 1.76
+  },
+  {
+   "w": "like",
+   "t0": 1.824,
+   "t1": 2.08
+  },
+  {
+   "w": "you!",
+   "t0": 2.18,
+   "t1": 2.56
+  }
+ ],
+ "voiceId": "pqHfZKP75CvOlQylNhV4",
+ "model": "eleven_v3",
+ "settings": {
+  "stability": 0,
+  "similarity_boost": 0.8,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1
+ },
+ "created": "2026-11-21T11:40:44.581Z"
+}

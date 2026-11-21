@@ -9,8 +9,9 @@ type V = [number, number, number];
 const at = (pos: V, look: V, fov: number) => ({ move: "at" as const, pos, look, fov });
 type Cam = ReturnType<typeof at>;
 const N = (text: string): Line => ({ text, who: "narrator" });
-const man = (text: string): Line => ({ text, who: "ntMan" });
 const whisper = (text: string): Line => ({ text, who: "narrator", voice: "ntManWhisper" });
+/** the man screaming / shouting (eleven_v3 with an audio tag); the caption is the clean line */
+const scream = (tag: string, text: string): Line => ({ text: `[${tag}] ${text}`, who: "narrator", voice: "ntManScream", sub: text });
 const thought = (text: string): Line => ({ text, who: "narrator", voice: "ntThought" });
 const announcer = (text: string): Line => ({ text, who: "narrator", voice: "ntAnnouncer" });
 /** a shot's cameras: the first at t 0, then hard cuts at times or words */
@@ -23,7 +24,6 @@ const steady = (n: number, dt = 0.15) => Array.from({ length: n }, (_, i) => ({ 
 const OUT = (look: V): PropSpec => ({ id: "ntOutside", at: look, steps: steady(90) });
 const DREAD = (look: V, fov: number, variant: "soft" | "heavy" | "dark" = "soft", on?: { t: number } | { word: string }): PropSpec => ({ id: "bfDread", at: look, variant, scale: fov / 100, steps: [on ?? { t: 99 }] });
 const FLICK = (look: V, fov: number, ts: number[]): PropSpec => ({ id: "ntFlicker", at: look, scale: fov / 100, steps: ts.map((t) => ({ t })) });
-const RED = (look: V, fov: number): PropSpec => ({ id: "ntRed", at: look, scale: fov / 100, steps: [{ t: -0.7 }] });
 const FRONT_DOOR = (steps: { t: number }[] = [{ t: 99 }]): PropSpec => ({ id: "ntEndDoor", variant: "front", at: [0, 0, -7], steps });
 const BACK_DOOR = (steps: ({ t: number } | { word: string })[] = [{ t: 99 }]): PropSpec => ({ id: "ntEndDoor", variant: "back", at: [0, 0, 7], steps });
 const SIDE_DOOR = (steps: { t: number }[] = [{ t: 99 }]): PropSpec => ({ id: "ntSideDoor", at: [1.43, 0, -6.3], yaw: -90, steps });
@@ -40,12 +40,12 @@ export const NIGHT_TRAIN: Storyboard = {
   id: "night-train", title: "The Man on the Last Train Has No Reflection.",
   cast: { ntMan: "ntMan", ntYou: "ntYou" },
   voice: "georgeHushed", voices: { ntMan: "ntMan" },
-  captionColors: { ntMan: "#ff6a5e", ntManWhisper: "#ff6a5e", ntThought: "#fff2a8", ntAnnouncer: "#7dffa8" },
-  // the score (sound/samples/music/nighttrain_score.json: ten sections written to these timings): an orchestral hit for the
+  captionColors: { ntMan: "#ff6a5e", ntManScream: "#ff6a5e", ntManWhisper: "#ff6a5e", ntThought: "#fff2a8", ntAnnouncer: "#7dffa8" },
+  // the score (sound/samples/music/nighttrain_score2.json, re-timed after the owner's preview notes: ten sections written to these timings): an orchestral hit for the
   // scream, a wheel-like pulsing drone under the man opposite, a glassy harmonic and heartbeat for the reflection, faster
   // pulsing as he follows, hollow wind in the empty train, pounding percussion for the run, near silence before the
   // jumpscare, a detuned chime for DEATH CITY, a held chord under the choice that stops dead
-  music: { file: "nighttrain_score", gain: 0, duck: -5, curve: [[0, -3], [2.6, -6], [41.4, -4], [44.2, -12], [47.7, -14], [50.1, -6], [57.3, -3], [62.5, -3], [62.95, -24]] },
+  music: { file: "nighttrain_score2", gain: 0, duck: -5, curve: [[0, -3], [3.7, -6], [43.0, -4], [46.0, -12], [51.6, -14], [54.6, -6], [59.1, -3], [68.5, -3], [68.95, -24]] },
   engine: 3, autoSfx: false,
   clarity: {
     premise: "On the last train home, a screaming man with no reflection follows you through an empty train, until the speakers announce a stop that doesn't exist.",
@@ -57,23 +57,23 @@ export const NIGHT_TRAIN: Storyboard = {
       { fact: "he's coming after you", said: "He's following you." },
       { fact: "nobody can help", said: "It's just you… and him." },
       { fact: "the stop", said: "The next stop is… Death City." },
-      { fact: "the stop is impossible", said: "There is no Death City." },
-      { fact: "the choice", said: "Do you get off… or stay on and run for the next stop?" },
+      { fact: "the stop is impossible", said: "You know the whole area. That doesn't exist." },
+      { fact: "the choice", said: "Or stay on… with the man who has no reflection?" },
     ],
   },
   shots: [
     // ---- FRAME 0: the banner, and his scream (setup 1: the lit carriage)
-    { say: man("Why did this happen to me? WHY ME?!"), ...LIT, hold: 0.1, title: { text: "HE HAS NO REFLECTION.", sub: "THE LAST TRAIN · 9:47 PM", instant: true },
+    { say: scream("screaming", "WHY DID THIS HAPPEN TO ME?! WHY ME?!"), ...LIT, hold: 0.1, title: { text: "HE HAS NO REFLECTION.", sub: "THE LAST TRAIN · 9:47 PM", instant: true },
       ...cuts(at([0.78, 1.22, 2.75], [0.8, 1.2, 1.68], 40), { t: 1.5, c: at([0.79, 1.24, 2.45], [0.8, 1.22, 1.68], 36) }),
       kicks: [0.05, 1.5],
-      actors: [{ who: "ntMan", at: MAN_SEAT, mode: "sit", act: "scared", face: "scared", facing: "camera", gesture: "fists", blink: false }],
+      actors: [{ who: "ntMan", at: MAN_SEAT, mode: "sit", act: "scared", face: "shock", keepFace: true, facing: "camera", gesture: "fists", blink: false }],
       props: [OUT([0.8, 1.2, 1.68]), FLICK(MAN_FACE, 40, [0.3, 1.9])],
-      sfx: [{ t: 0, name: "el_hit_boom", gain: -4 }, { t: 0.3, name: "el_lights_buzz", gain: -8 }],
+      sfx: [{ t: 0, name: "el_hit_boom", gain: -4 }, { t: 0, name: "el_man_scream", gain: -8 }, { t: 0.3, name: "el_lights_buzz", gain: -8 }],
       note: "frame 0: the banner; a man in a soaked torn coat lunging at you, screaming; the camera shakes; the lights stutter" },
     { say: N("Imagine you're on the last train home, and the man in front of you won't stop screaming."), ...LIT, hold: 0.1, transition: "whip",
       ...cuts(at([0.74, 1.2, 2.25], YOU_FACE, 40), { word: "train", c: at([-0.3, 1.55, 4.7], [0.8, 1.0, 2.4], 46) }, { word: "screaming", c: at([0.45, 1.35, 4.4], [0.8, 1.05, 1.68], 40) }),
       actors: [{ who: "ntYou", at: YOU_SEAT, mode: "sit", act: "shock", face: "shock", keepFace: true, facing: "toward:ntMan" },
-        { who: "ntMan", at: MAN_SEAT, mode: "sit", act: "scared", face: "scared", facing: "toward:ntYou", gesture: "fists", blink: false, talk: [[0, 5]] }],
+        { who: "ntMan", at: MAN_SEAT, mode: "sit", act: "scared", face: "shock", keepFace: true, facing: "toward:ntYou", gesture: "fists", blink: false }],
       props: [OUT(YOU_FACE)], sfx: [{ t: 0, name: "el_gasp_teen" }, { t: 0, name: "el_whoosh_dark", gain: -8 }, { t: 0.5, name: "el_scream_far", gain: -6 }],
       note: "you flinch back in your seat; the two of you across the bay; over your shoulder at him" },
     { say: N("It's 9:47. He's on the three seats in front of you. Facing you. Staring right at you."), ...LIT, hold: 0.1,
@@ -82,26 +82,32 @@ export const NIGHT_TRAIN: Storyboard = {
         { who: "ntYou", at: YOU_SEAT, mode: "sit", act: "scared", back: true, facing: "toward:ntMan" }],
       props: [OUT([0, 2.06, -6.99]), FRONT_DOOR(), DREAD(MAN_FACE, 42)], sfx: [{ t: 0, name: "el_counter_tick", gain: -10 }, { word: "Staring", name: "el_sting_strings", gain: -10 }],
       note: "the LED display over the end door: 21:47; over your shoulder: the man on the seats facing yours; his face: staring, unblinking" },
-    { say: man("I was just going home! Just like you!"), ...LIT, hold: 0.1, ...cuts(at([0.85, 1.2, 2.45], MAN_FACE, 36), { t: 1.2, c: at([0.6, 0.95, 2.35], [0.8, 0.8, 1.7], 40) }),
+    { say: scream("shouting", "I was just going home! Just like you!"), ...LIT, hold: 0.1, ...cuts(at([0.85, 1.2, 2.45], MAN_FACE, 36), { t: 1.2, c: at([0.6, 0.95, 2.35], [0.8, 0.8, 1.7], 40) }),
       kicks: [0.1],
-      actors: [{ who: "ntMan", at: MAN_SEAT, mode: "sit", act: "angry", face: "angry", facing: "camera", gesture: "fists", blink: false }],
+      actors: [{ who: "ntMan", at: MAN_SEAT, mode: "sit", act: "angry", face: "shock", keepFace: true, facing: "camera", gesture: "fists", blink: false }],
       props: [OUT(MAN_FACE), DREAD(MAN_FACE, 40)], note: "his face, shouting; his fists clenched on his knees" },
-    insert("drip", "water dripping off his coat's torn hem; the puddle spreads", { say: N("His coat is soaking wet. It hasn't rained all week."), hold: 0.1,
-      sfx: [{ t: 0, name: "el_drip_loud" }] }, [{ word: "rained" }]),
+    { say: N("His coat is soaking wet. It hasn't rained all week."), ...LIT, hold: 0.1,
+      camera: at([-0.15, 1.25, 3.5], [0.8, 0.75, 1.68], 46),
+      cams: [{ t: 0, ...at([-0.15, 1.25, 3.5], [0.8, 0.75, 1.68], 46), blockOk: true }, { t: 0.6, ...at([0.5, 1.0, 2.95], [0.8, 0.62, 2.0], 40), glide: 1.3, blockOk: true },
+        { word: "rained", ...CARD_CAM, blockOk: true }],
+      actors: [{ who: "ntMan", at: MAN_SEAT, mode: "sit", act: "neutral", face: "blank", keepFace: true, blink: false, idle: 0, facing: "camera", gesture: "hang" }],
+      props: [OUT([0.3, 1.0, 2.2]), { id: "ntDrips", at: [0.8, 0.5, 2.22], steps: steady(60) }, { id: "ntInsert", at: CARD, variant: "drip", steps: [{ t: 99 }] }],
+      sfx: [{ t: 0.4, name: "el_drip_loud" }],
+      note: "him, full body, still; the camera zooms into his coat: water dripping off the hem into a puddle; then the close-up of the drips" },
     // ---- THE REFLECTION (setup 2: the dark window)
     { say: N("You look at the window."), ...LIT, hold: 0.05, ...glide(at([0.35, 1.2, 4.2], [1.2, 1.25, 3.0], 44), at([0.4, 1.2, 4.0], [1.25, 1.3, 2.9], 42), 1.5),
       actors: [{ who: "ntYou", at: YOU_SEAT, mode: "sit", act: "scared", face: "scared", keepFace: true, facing: 1, beats: [{ t: 0.2, look: "right" }] }],
       props: [OUT([1.2, 1.25, 3.0])], sfx: [{ t: 0, name: "el_breath_hold", gain: -6 }], note: "you turn your head to the dark window" },
-    insert("reflection", "the dark window: your reflection, the lit carriage, the seats opposite: empty", { say: N("You can see yourself. You can see the empty seats."), hold: 0.05,
-      sfx: [{ t: 0, name: "el_reverse_swell", gain: -10 }] }),
-    insert("split", "above: him in his seat; below: the same seat in the glass: empty", { say: N("But where he's sitting… there's nobody there."), hold: 0.15,
+    insert("reflection", "the window, clearly: the bay in the glass, you on your seat, his seat EMPTY; a red ring round it", { say: N("You can see yourself. You can see the empty seats."), hold: 0.05,
+      sfx: [{ t: 0, name: "el_reverse_swell", gain: -10 }, { word: "empty", name: "el_sting_strings", gain: -12 }] }, [{ word: "empty" }], false),
+    insert("split", "REAL above: you and him facing you; IN THE WINDOW below: you and an empty seat", { say: N("But where he's sitting… there's nobody there."), hold: 0.15,
       sfx: [{ t: 0.4, name: "el_heartbeat", gain: -6 }] }, undefined, false),
     { say: N("He has no reflection."), ...LIT, hold: 0.25, ...glide(at([0.8, 1.22, 2.55], MAN_FACE, 36), at([0.8, 1.21, 2.3], MAN_FACE, 32), 1.6),
       actors: [{ who: "ntMan", at: MAN_SEAT, mode: "sit", act: "neutral", face: "blank", keepFace: true, blink: false, idle: 0, facing: "camera", gesture: "hang" }],
       props: [OUT(MAN_FACE), DREAD(MAN_FACE, 36, "heavy"), FLICK(MAN_FACE, 36, [0.6])], sfx: [{ t: 0, name: "el_heartbeat", gain: -4 }, { t: 0.6, name: "el_lights_buzz", gain: -8 }],
       note: "his face, pushing in: no blink, no expression" },
     // ---- YOU MOVE (setup 3: the lights failing)
-    { say: thought("Don't look at him. Just get up. Walk."), ...DARK, hold: 0.05,
+    { say: [N("You think to yourself…"), { ...thought("Don't look at him. Just get up. Walk."), gap: 0.15 }], ...DARK, hold: 0.05,
       ...cuts(at([-0.2, 1.65, 6.3], [0.35, 1.0, 0.5], 48), { word: "Just", c: at([0.35, 1.18, 2.45], YOU_FACE, 38) }),
       actors: [{ who: "ntYou", at: YOU_SEAT, mode: "sit", act: "scared", face: "scared", keepFace: true, facing: "camera", beats: [{ t: 0.8, look: "left" }, { t: 1.4, look: "right" }] },
         { who: "ntMan", at: MAN_SEAT, mode: "sit", act: "neutral", face: "blank", keepFace: true, blink: false, idle: 0, facing: "toward:ntYou", gesture: "hang" }],
@@ -117,12 +123,18 @@ export const NIGHT_TRAIN: Storyboard = {
         { who: "ntMan", at: [0, 0, 7.45], act: "neutral", face: "blank", keepFace: true, blink: false, idle: 0, facing: "camera", gesture: "hang" }],
       props: [OUT([0.05, 1.3, 7.2]), BACK_DOOR([{ word: "door" }]), DREAD([0, 1.3, 7], 40), FLICK([0, 1.3, 7], 40, [0.2])], sfx: [{ word: "door", name: "el_train_doors" }, { word: "following", name: "el_sting_strings", gain: -6 }],
       note: "the next carriage: behind you the end door slides open again: he's standing in the gangway" },
-    { say: N("And then you notice: this carriage is empty. So is the next one. It's just you… and him."), ...DARK, hold: 0.15,
-      ...cuts(at([-0.3, 1.65, 4.4], [0.1, 1.05, -5.0], 46), { word: "next", c: at([0.05, 1.45, -5.95], [0, 1.4, -7.0], 30) }, { word: "him", c: at([-0.3, 1.4, 2.6], [0, 1.4, 7.0], 34) }),
+    { say: N("And then you notice: this carriage is empty."), ...DARK, hold: 0.1, ...cuts(at([-0.3, 1.65, 4.4], [0.1, 1.05, -5.0], 46)),
+      actors: [{ who: "ntYou", at: [0.3, 0, 3.2], act: "scared", face: "scared", keepFace: true, back: true, facing: 0, gesture: "hang" }],
+      props: [OUT([0.1, 1.05, -5.0]), FRONT_DOOR(), DREAD([0.1, 1.05, -5.0], 46), FLICK([0.1, 1.05, -5.0], 46, [1.0])], sfx: [{ t: 0.2, name: "el_scream_far", gain: -10 }],
+      note: "the carriage you're in: empty, swaying" },
+    { say: N("So is the next one."), ...DARK, hold: 0.1, ...glide(at([0.1, 1.6, -6.3], [0, 1.0, 4.0], 50), at([0.1, 1.6, -5.6], [0, 1.0, 4.0], 48), 1.6),
+      actors: [], props: [OUT([0, 1.0, 0]), BACK_DOOR(), DREAD([0, 1.0, 0], 50), FLICK([0, 1.0, 0], 50, [0.5])], sfx: [{ t: 0, name: "el_train_doors", gain: -10 }],
+      note: "the next carriage, end to end: empty seats, the lights stuttering, nobody" },
+    { say: N("It's just you… and him."), ...DARK, hold: 0.15, ...cuts(at([-0.3, 1.4, 2.6], [0, 1.4, 7.0], 34)),
       actors: [{ who: "ntYou", at: [0.3, 0, 3.2], act: "scared", face: "scared", keepFace: true, back: true, facing: 0, gesture: "hang" },
         { who: "ntMan", at: [0, 0, 6.2], act: "neutral", face: "blank", keepFace: true, blink: false, idle: 0, facing: "camera", gesture: "hang" }],
-      props: [OUT([0, 1.1, -5.0]), FRONT_DOOR(), BACK_DOOR([{ t: -0.7 }]), DREAD([0, 1.2, 0], 46), FLICK([0, 1.2, 0], 46, [1.0, 3.6])], sfx: [{ t: 0.2, name: "el_scream_far", gain: -10 }, { word: "him", name: "el_hit_sub", gain: -6 }],
-      note: "the empty carriage, swaying; through the end door's glass the next one, empty; over your shoulder, him, at the far end" },
+      props: [OUT([0, 1.4, 7.0]), BACK_DOOR([{ t: -0.7 }]), DREAD([0, 1.4, 7.0], 34)], sfx: [{ word: "him", name: "el_hit_sub", gain: -6 }],
+      note: "over your shoulder: him, standing at the far end" },
     // ---- THE RUN (setup 4: strobing)
     { say: N("You run. As fast as you can. You don't look back."), ...DARK, hold: 0.05,
       ...cuts(at([0, 1.3, -2.6], [0, 1.1, 2.0], 46),
@@ -130,35 +142,37 @@ export const NIGHT_TRAIN: Storyboard = {
       actors: [{ who: "ntYou", at: [0, 0, 2.2], act: "scared", face: "scared", keepFace: true, walk: { to: [0, 0, -5.7], t0: 0, t1: 3.4, mode: "run", view: "front" } }],
       props: [OUT([0, 1.1, 2.0]), FLICK([0, 1.1, -2], 46, [0.2, 0.6, 1.0, 1.4, 1.8, 2.2, 2.6, 3.0])], sfx: [{ t: 0, name: "el_run_train" }, { t: 0.2, name: "el_pant_teen", gain: -6 }, { t: 0.5, name: "el_lights_buzz", gain: -8 }],
       note: "you run straight at us; side on past the bays; your feet pounding toward the last door; the lights strobing" },
-    // ---- THE LAST CARRIAGE (setup 5: the red emergency lights)
-    { say: { ...thought("I… I lost him. I must have lost him."), gap: 0.2 }, ...DARK, hold: 0.85,
-      ...glide(at([0.95, 1.3, -4.6], [0, 1.1, -5.9], 44), at([-0.9, 1.3, -4.7], [0, 1.1, -5.9], 44), 3.6),
-      actors: [{ who: "ntYou", at: [0, 0, -5.9], act: "nervous", face: "nervous", keepFace: true, facing: "camera", gesture: "hang" }],
-      props: [OUT([0, 1.1, -5.9]), RED([0, 1.1, -5.9], 44), DREAD([0, 1.1, -5.9], 44)], sfx: [{ t: 0, name: "el_pant_teen", gain: -2 }],
-      note: "the last carriage in red emergency light; you stop, gasping; the camera circles you; then nothing but the rails" },
-    { say: { ...whisper("This is your stop."), gap: 1.0 }, ...DARK, hold: 0.25,
+    // ---- YOUR EYES: you stop, gasping (first person), then you turn round
+    { say: [N("You gasp for air. You think to yourself…"), { ...thought("I… I lost him. I must have lost him."), gap: 0.15 }], ...DARK, hold: 0.6,
+      camera: at([0, 1.42, -5.9], [0, 1.3, -7.4], 50),
+      cams: [{ t: 0, ...at([0, 1.42, -5.9], [0, 1.3, -7.4], 50), blockOk: true }, { t: 0.3, ...at([0.02, 1.36, -5.92], [0.05, 1.18, -7.4], 50), glide: 0.7, blockOk: true },
+        { t: 1.1, ...at([-0.02, 1.43, -5.9], [-0.03, 1.32, -7.4], 50), glide: 0.7, blockOk: true }, { t: 1.9, ...at([0.01, 1.38, -5.91], [0.02, 1.22, -7.4], 50), glide: 0.8, blockOk: true },
+        { t: 2.8, ...at([0, 1.44, -5.9], [0, 1.34, -7.4], 50), glide: 0.9, blockOk: true }, { t: 3.8, ...at([0.01, 1.4, -5.9], [0, 1.28, -7.4], 50), glide: 1.0, blockOk: true }],
+      actors: [], props: [OUT([0, 1.3, -7.4]), FRONT_DOOR(), DREAD([0, 1.3, -7.4], 50, "heavy")], sfx: [{ t: 0, name: "el_pant_teen", gain: -2 }],
+      note: "your eyes: the last door in front of you, the view heaving as you gasp for air; then silence but the rails" },
+    { say: { ...whisper("This is your stop."), gap: 0.75 }, ...DARK, hold: 0.25, transition: "whip",
       ...cuts(at([0, 1.5, -5.95], [0, 1.52, -5.35], 50), { t: 1.0, c: at([0, 1.5, -5.75], [0, 1.5, -5.35], 46) }),
       kicks: [0.02],
       actors: [{ who: "ntMan", at: [0, 0, -5.35], act: "neutral", face: "blank", keepFace: true, blink: false, idle: 0, facing: "camera", gesture: "hang", beats: [{ t: 0.6, face: "smile" }] }],
-      props: [RED([0, 1.5, -5.35], 50), DREAD([0, 1.5, -5.35], 50, "heavy")], sfx: [{ t: 0, name: "el_jumpscare" }],
-      note: "the jumpscare: you turn and his face fills the frame; the smile spreads; he whispers" },
+      props: [DREAD([0, 1.5, -5.35], 50, "heavy")], sfx: [{ t: 0, name: "el_jumpscare" }],
+      note: "the jumpscare: you turn round (a whip) and his face fills the frame; the smile spreads; he whispers" },
     // ---- THE STOP THAT DOESN'T EXIST (inserts; setup 6: the platform)
-    insert("display", "the LED display: NEXT STOP ASHFIELD; it glitches; DEATH CITY, in red", { say: { ...announcer("The next stop is… Death City."), gap: 0.5 }, hold: 0.15,
+    insert("display", "the LED display: NEXT STOP ASHFIELD; it glitches; DEATH CITY, in red", { say: { ...announcer("The next stop is… Death City."), gap: 0.3 }, hold: 0.15,
       sfx: [{ t: 0, name: "el_chime_announce" }, { word: "Death", name: "el_hit_boom", gain: -8 }] }, [{ word: "next" }, { word: "Death" }], false),
-    insert("map", "the line map: every stop you know, and DEATH CITY between them, ringed", { say: N("You've ridden this line every day for years. There is no Death City."), hold: 0.1,
-      sfx: [{ t: 0, name: "el_reverse_swell", gain: -8 }, { word: "no", name: "el_sting_strings", gain: -8 }] }, [{ word: "no" }]),
-    { say: { ...N("The doors open."), gap: 1.0 }, ...DARK, hold: 0.1, ...glide(at([-0.9, 1.5, -4.6], [1.43, 1.3, -6.3], 50), at([-0.6, 1.45, -4.9], [1.43, 1.3, -6.3], 46), 2.4),
-      actors: [], props: [SIDE_DOOR([{ t: 1.0 }]), DREAD([1.43, 1.3, -6.3], 50)],
-      sfx: [{ t: 0, name: "el_brakes" }, { t: 1.0, name: "el_doors_open" }, { t: 1.2, name: "el_fog_wind" }],
+    insert("map", "the line map: every stop you know, and DEATH CITY between them, ringed", { say: N("You know the whole area. That doesn't exist."), hold: 0.1,
+      sfx: [{ t: 0, name: "el_reverse_swell", gain: -8 }, { word: "exist", name: "el_sting_strings", gain: -8 }] }, [{ word: "exist" }]),
+    { say: { ...N("The doors open."), gap: 0.6 }, ...DARK, hold: 0.1, ...glide(at([-0.9, 1.5, -4.6], [1.43, 1.3, -6.3], 50), at([-0.6, 1.45, -4.9], [1.43, 1.3, -6.3], 46), 2.4),
+      actors: [], props: [SIDE_DOOR([{ t: 0.6 }]), DREAD([1.43, 1.3, -6.3], 50)],
+      sfx: [{ t: 0, name: "el_brakes" }, { t: 0.6, name: "el_doors_open" }, { t: 0.8, name: "el_fog_wind" }],
       note: "the brakes; the red exit doors hiss open onto fog and a red DEATH CITY sign" },
-    { say: N("Do you get off… or stay on and run for the next stop?"), ...DARK, hold: 0.45,
+    { say: [N("Do you get off to escape him… into Death City, a place that never existed?"), { ...N("Or stay on… with the man who has no reflection?"), gap: 0.2 }], ...DARK, hold: 0.45,
       ...cuts(at([-0.9, 1.5, -4.6], [1.43, 1.3, -6.3], 50)),
       actors: [{ who: "ntYou", at: [0.92, 0, -6.0], act: "scared", back: true, facing: 1, gesture: "hang" },
         { who: "ntMan", at: [0.3, 0, -5.9], act: "neutral", face: "grin", keepFace: true, blink: false, idle: 0, facing: "camera", gesture: "hang" }],
       props: [SIDE_DOOR([{ t: -0.7 }]), DREAD([1.3, 1.35, -6.35], 46),
         { id: "ntChoice", variant: "a", at: [0.06, 1.81, -5.485], scale: 0.28, steps: [{ word: "off" }] },
         { id: "ntChoice", variant: "b", at: [0.236, 1.68, -5.243], scale: 0.28, steps: [{ word: "stay" }] }],
-      sfx: [{ t: 0, name: "el_fog_wind", gain: -4 }, { word: "off", name: "pop", gain: -8 }, { word: "stay", name: "pop", gain: -8 }],
-      note: "the last frame: you at the open doors, the fog and the sign; him right behind you, smiling; A · GET OFF / B · STAY ON; cut half a second after the last word" },
+      sfx: [{ t: 0, name: "el_fog_wind", gain: -4 }, { word: "off", name: "pop", gain: -8 }, { word: "stay", name: "pop", gain: -8 }, { t: 0, name: "el_heartbeat", gain: -8 }],
+      note: "the last frame: you at the open doors, the fog and the sign; him right behind you, smiling; A · GET OFF into Death City / B · STAY ON with him; cut half a second after the last word" },
   ],
 };

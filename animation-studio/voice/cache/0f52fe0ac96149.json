@@ -1,0 +1,60 @@
+{
+ "hash": "0f52fe0ac96149",
+ "text": "And then you notice: this carriage is empty.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.74,
+ "dur": 2.76898,
+ "words": [
+  {
+   "w": "And",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "then",
+   "t0": 0.197,
+   "t1": 0.325
+  },
+  {
+   "w": "you",
+   "t0": 0.372,
+   "t1": 0.453
+  },
+  {
+   "w": "notice:",
+   "t0": 0.522,
+   "t1": 1.01
+  },
+  {
+   "w": "this",
+   "t0": 1.196,
+   "t1": 1.382
+  },
+  {
+   "w": "carriage",
+   "t0": 1.451,
+   "t1": 1.823
+  },
+  {
+   "w": "is",
+   "t0": 1.858,
+   "t1": 1.927
+  },
+  {
+   "w": "empty.",
+   "t0": 1.985,
+   "t1": 2.74
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-21T11:40:45.701Z"
+}
