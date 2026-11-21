@@ -1,0 +1,105 @@
+{
+ "hash": "0670aff66ca8d8",
+ "text": "It's 9:47. He's on the three seats in front of you. Facing you. Staring right at you.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 5.666,
+ "dur": 5.694694,
+ "words": [
+  {
+   "w": "It's",
+   "t0": 0,
+   "t1": 0.209
+  },
+  {
+   "w": "9:47.",
+   "t0": 0.279,
+   "t1": 1.242
+  },
+  {
+   "w": "He's",
+   "t0": 1.428,
+   "t1": 1.614
+  },
+  {
+   "w": "on",
+   "t0": 1.66,
+   "t1": 1.73
+  },
+  {
+   "w": "the",
+   "t0": 1.776,
+   "t1": 1.846
+  },
+  {
+   "w": "three",
+   "t0": 1.892,
+   "t1": 2.125
+  },
+  {
+   "w": "seats",
+   "t0": 2.183,
+   "t1": 2.461
+  },
+  {
+   "w": "in",
+   "t0": 2.496,
+   "t1": 2.566
+  },
+  {
+   "w": "front",
+   "t0": 2.624,
+   "t1": 2.821
+  },
+  {
+   "w": "of",
+   "t0": 2.868,
+   "t1": 2.926
+  },
+  {
+   "w": "you.",
+   "t0": 2.984,
+   "t1": 3.239
+  },
+  {
+   "w": "Facing",
+   "t0": 3.367,
+   "t1": 3.773
+  },
+  {
+   "w": "you.",
+   "t0": 3.831,
+   "t1": 4.052
+  },
+  {
+   "w": "Staring",
+   "t0": 4.18,
+   "t1": 4.621
+  },
+  {
+   "w": "right",
+   "t0": 4.69,
+   "t1": 4.911
+  },
+  {
+   "w": "at",
+   "t0": 4.957,
+   "t1": 5.062
+  },
+  {
+   "w": "you.",
+   "t0": 5.132,
+   "t1": 5.666
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-21T10:43:51.744Z"
+}

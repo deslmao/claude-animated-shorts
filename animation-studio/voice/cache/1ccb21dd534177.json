@@ -1,0 +1,60 @@
+{
+ "hash": "1ccb21dd534177",
+ "text": "Don't look at him. Just get up. Walk.",
+ "voice": "ntThought",
+ "lead": 0,
+ "end": 3.065,
+ "dur": 3.108571,
+ "words": [
+  {
+   "w": "Don't",
+   "t0": 0,
+   "t1": 0.255
+  },
+  {
+   "w": "look",
+   "t0": 0.29,
+   "t1": 0.418
+  },
+  {
+   "w": "at",
+   "t0": 0.453,
+   "t1": 0.499
+  },
+  {
+   "w": "him.",
+   "t0": 0.546,
+   "t1": 0.836
+  },
+  {
+   "w": "Just",
+   "t0": 1.265,
+   "t1": 1.486
+  },
+  {
+   "w": "get",
+   "t0": 1.521,
+   "t1": 1.66
+  },
+  {
+   "w": "up.",
+   "t0": 1.73,
+   "t1": 1.985
+  },
+  {
+   "w": "Walk.",
+   "t0": 2.218,
+   "t1": 3.065
+  }
+ ],
+ "voiceId": "pYDLV125o4CgqP8i49Lg",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.75,
+  "style": 0.35,
+  "use_speaker_boost": true,
+  "speed": 0.9
+ },
+ "created": "2026-11-21T10:43:55.787Z"
+}

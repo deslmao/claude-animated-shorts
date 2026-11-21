@@ -1,0 +1,17 @@
+{
+ "composition": "Short-night-train",
+ "fingerprint": "1d6d452b293971",
+ "engine": "sound-2",
+ "frames": 1886,
+ "seconds": 62.86666666666667,
+ "lines": 19,
+ "lufs": -14.1,
+ "truePeak": -1.7,
+ "stems": {
+  "voice_lufs": -18.72,
+  "music_vs_voice_lu": -10.0,
+  "ambience_vs_voice_lu": -20.02,
+  "sfx_cues": 36
+ },
+ "built": "2026-11-21T10:59:31Z"
+}

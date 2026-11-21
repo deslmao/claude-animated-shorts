@@ -1,0 +1,60 @@
+{
+ "hash": "0b2c29a72caced",
+ "text": "Why did this happen to me? WHY ME?!",
+ "voice": "ntMan",
+ "lead": 0,
+ "end": 2.879,
+ "dur": 2.925714,
+ "words": [
+  {
+   "w": "Why",
+   "t0": 0,
+   "t1": 0.209
+  },
+  {
+   "w": "did",
+   "t0": 0.255,
+   "t1": 0.383
+  },
+  {
+   "w": "this",
+   "t0": 0.418,
+   "t1": 0.557
+  },
+  {
+   "w": "happen",
+   "t0": 0.627,
+   "t1": 0.94
+  },
+  {
+   "w": "to",
+   "t0": 0.987,
+   "t1": 1.057
+  },
+  {
+   "w": "me?",
+   "t0": 1.138,
+   "t1": 1.428
+  },
+  {
+   "w": "WHY",
+   "t0": 1.637,
+   "t1": 1.974
+  },
+  {
+   "w": "ME?!",
+   "t0": 2.148,
+   "t1": 2.879
+  }
+ ],
+ "voiceId": "pqHfZKP75CvOlQylNhV4",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.22,
+  "similarity_boost": 0.75,
+  "style": 0.7,
+  "use_speaker_boost": true,
+  "speed": 1
+ },
+ "created": "2026-11-21T10:43:50.255Z"
+}

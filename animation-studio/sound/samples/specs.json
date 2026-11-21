@@ -321,6 +321,73 @@
    "s": 6,
    "level": -8,
    "p": "A frightened child breathing heavily and shakily through the mouth, trying to stay quiet, close to the microphone, trembling breaths, no words"
+  },
+  "el_train_doors": {
+   "s": 2,
+   "level": -6,
+   "p": "A train carriage interior sliding door opening with a pneumatic hiss and a metallic thud, inside a train"
+  },
+  "el_run_train": {
+   "s": 5,
+   "level": -6,
+   "p": "A teenager sprinting fast through a moving train, rapid footsteps on a metal floor, clothes rustling, the train rattling"
+  },
+  "el_pant_teen": {
+   "s": 4,
+   "level": -6,
+   "p": "A frightened teenage boy gasping and panting for breath after running, bent over, close"
+  },
+  "el_gasp_teen": {
+   "s": 1.2,
+   "level": -6,
+   "p": "A teenage boy's sharp frightened gasp, close"
+  },
+  "el_jumpscare": {
+   "s": 2,
+   "level": -2,
+   "stereo": true,
+   "p": "A sudden loud horror jumpscare sting: a violent orchestral stab with a distorted shriek, then silence"
+  },
+  "el_chime_announce": {
+   "s": 2,
+   "level": -6,
+   "p": "A train public address chime, two descending tones before an announcement, through ceiling speakers"
+  },
+  "el_brakes": {
+   "s": 4,
+   "level": -6,
+   "p": "A train braking to a stop, long metallic brake screech and a hiss, heard from inside the carriage"
+  },
+  "el_doors_open": {
+   "s": 2.5,
+   "level": -6,
+   "p": "Train exit doors hissing open with a pneumatic whoosh and a beep, cold air rushing in"
+  },
+  "el_fog_wind": {
+   "s": 5,
+   "level": -10,
+   "stereo": true,
+   "p": "Cold empty wind on a deserted foggy station platform at night, eerie and hollow"
+  },
+  "el_lights_buzz": {
+   "s": 2.5,
+   "level": -8,
+   "p": "Fluorescent lights flickering and failing in a train carriage, electrical buzz and crackle"
+  },
+  "el_drip_loud": {
+   "s": 3,
+   "level": -8,
+   "p": "Heavy drops of water dripping slowly onto a metal train floor, loud and close, in silence"
+  },
+  "el_reverse_swell": {
+   "s": 2.5,
+   "level": -8,
+   "p": "A reverse cymbal swell rising into a sudden stop, eerie"
+  },
+  "el_scream_far": {
+   "s": 2.5,
+   "level": -14,
+   "p": "A man's distant echoing scream 'why me', ghostly and faint, far away down a tunnel"
   }
  },
  "bed": {
@@ -371,6 +438,10 @@
   "elb_market": {
    "s": 22,
    "p": "A busy indoor futuristic market at night: a murmuring crowd, soft electronic beeps, glass clinking, a low neon hum, rain outside"
+  },
+  "elb_train_night": {
+   "s": 22,
+   "p": "Inside an almost empty commuter train at night: a steady rattle of wheels over rail joints, a low motor hum, the carriage creaking, faint wind"
   }
  }
 }

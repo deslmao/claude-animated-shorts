@@ -1,0 +1,64 @@
+{
+ "reused": 42,
+ "missing": [],
+ "byKind": {
+  "character": [
+   "ntMan",
+   "ntYou"
+  ],
+  "set": [
+   "ntCarriage"
+  ],
+  "camera": [
+   "at"
+  ],
+  "light": [
+   "interiorCool",
+   "night"
+  ],
+  "ambience": [
+   "elb_train_night"
+  ],
+  "prop": [
+   "ntOutside",
+   "ntFlicker",
+   "ntEndDoor",
+   "bfDread",
+   "ntInsert",
+   "ntRed",
+   "ntSideDoor",
+   "ntChoice"
+  ],
+  "sfx": [
+   "el_hit_boom",
+   "el_lights_buzz",
+   "el_gasp_teen",
+   "el_whoosh_dark",
+   "el_scream_far",
+   "el_counter_tick",
+   "el_sting_strings",
+   "el_drip_loud",
+   "el_breath_hold",
+   "el_reverse_swell",
+   "el_heartbeat",
+   "el_breath_heavy",
+   "el_train_doors",
+   "el_hit_sub",
+   "el_run_train",
+   "el_pant_teen",
+   "el_jumpscare",
+   "el_chime_announce",
+   "el_brakes",
+   "el_doors_open",
+   "el_fog_wind",
+   "pop"
+  ],
+  "act": [
+   "scared",
+   "shock",
+   "neutral",
+   "angry",
+   "nervous"
+  ]
+ }
+}

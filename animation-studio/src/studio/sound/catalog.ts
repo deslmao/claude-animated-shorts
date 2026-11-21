@@ -63,6 +63,7 @@ export const AMBIENCES = {
   elb_roof_night: "recorded loop: A high rooftop at night above a huge futuristic city: wind, distant city hum far below, soft rain, a faint drone flying past",
   elb_flat_rain: "recorded loop: A tiny apartment in a futuristic city at night: rain on the window, a fridge hum, muffled neon buzz and traffic outside",
   elb_classroom: "recorded loop: A quiet high school classroom during a lesson: pens scratching, a chair creaking, a pupil coughing, a teacher talking far away, rain outside the window",
+  elb_train_night: "recorded loop: Inside an almost empty commuter train at night: wheels over rail joints, a motor hum, creaks, faint wind",
   elb_market: "recorded loop: A busy indoor futuristic market at night: a murmuring crowd, soft electronic beeps, glass clinking, a low neon hum, rain outside",
   elb_vault: "recorded loop: A high-tech corporate vault interior: a cold low electrical hum, servers whirring softly, very quiet and sterile",
 } as const;
@@ -146,6 +147,19 @@ export const SFX = {
   el_door_pound: "recorded: Fists pounding frantically on a front door, heard from inside, the door rattling (4 s)",
   el_mum_humming: "recorded: A woman softly humming a cheerful tune to herself while cooking, no words (6 s)",
   el_breath_heavy: "recorded: A frightened child breathing heavily and shakily, trying to stay quiet, close (6 s)",
+  el_train_doors: "recorded: A train carriage interior sliding door opening with a pneumatic hiss and a metallic thud, inside a train (2 s)",
+  el_run_train: "recorded: A teenager sprinting fast through a moving train, rapid footsteps on a metal floor, clothes rustling, the train rattling (5 s)",
+  el_pant_teen: "recorded: A frightened teenage boy gasping and panting for breath after running, bent over, close (4 s)",
+  el_gasp_teen: "recorded: A teenage boy's sharp frightened gasp, close (1.2 s)",
+  el_jumpscare: "recorded: A sudden loud horror jumpscare sting: a violent orchestral stab with a distorted shriek, then silence (2 s)",
+  el_chime_announce: "recorded: A train public address chime, two descending tones before an announcement, through ceiling speakers (2 s)",
+  el_brakes: "recorded: A train braking to a stop, long metallic brake screech and a hiss, heard from inside the carriage (4 s)",
+  el_doors_open: "recorded: Train exit doors hissing open with a pneumatic whoosh and a beep, cold air rushing in (2.5 s)",
+  el_fog_wind: "recorded: Cold empty wind on a deserted foggy station platform at night, eerie and hollow (5 s)",
+  el_lights_buzz: "recorded: Fluorescent lights flickering and failing in a train carriage, electrical buzz and crackle (2.5 s)",
+  el_drip_loud: "recorded: Heavy drops of water dripping slowly onto a metal train floor, loud and close, in silence (3 s)",
+  el_reverse_swell: "recorded: A reverse cymbal swell rising into a sudden stop, eerie (2.5 s)",
+  el_scream_far: "recorded: A man's distant echoing scream 'why me', ghostly and faint, far away down a tunnel (2.5 s)",
   el_siren_far: "recorded: Distant police and ambulance sirens echoing through a rainy futuristic city at night (5.0 s)",
 } as const;
 export type SfxName = keyof typeof SFX;

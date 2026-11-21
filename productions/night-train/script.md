@@ -150,3 +150,13 @@ train, panting, a jumpscare sting, the announcement chime, brakes, the doors his
 - **Same look as the breakfast Short:** cold light and the dark closing in around the frame.
 - **Length:** about 75 s, with escalation every 5–10 s and no gap over 1.5 s except the held breath before the
   jumpscare (about 0.8 s, with the rails still loud).
+
+## Built to the format system (21 Nov 2026)
+- **Frame 0.00:** his scream, the camera shaking, the lights stuttering, under the banner **HE HAS NO REFLECTION. /
+  THE LAST TRAIN · 9:47 PM** (shown whole from the first frame).
+- **Pace:** about 37 visual changes in 62.9 s, one every ~1.7 s (cuts on words inside shots, insert state changes).
+- **Six lighting setups:** the lit carriage, the dark window, the empty carriage with its lights failing, the strobing
+  run, the last carriage in red emergency light, the foggy DEATH CITY platform.
+- **Length:** 62.9 s.
+- **One line changed to your own words:** "He's on the three seats in front of you. Facing you." (the seats face each
+  other in bays).

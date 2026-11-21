@@ -167,7 +167,9 @@ export type ShotSpec = {
   /** extra sound cues */
   sfx?: SfxSpec[];
   /** a time / place card typed out at the top of the shot (The Empty Seat v3), e.g. { text: "THREE WEEKS EARLIER", sub: "MONDAY 7:52 AM · BUS 9" } */
-  title?: { text: string; sub?: string };
+  /** instant (opt-in, the owner's format system: a two-line banner on frame 0.00): shown whole from the shot's first
+   *  frame instead of typed out */
+  title?: { text: string; sub?: string; instant?: boolean };
   /** story props in this shot (see props/registry.ts): at a mark or [x, y, z]; yaw in degrees; scale; variant name;
    *  offset [dx, dz] metres from the mark */
   props?: PropSpec[];

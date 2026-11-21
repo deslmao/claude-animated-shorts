@@ -1,0 +1,55 @@
+{
+ "hash": "07d595b574e696",
+ "text": "But where he's sitting… there's nobody there.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.879,
+ "dur": 2.925714,
+ "words": [
+  {
+   "w": "But",
+   "t0": 0,
+   "t1": 0.186
+  },
+  {
+   "w": "where",
+   "t0": 0.209,
+   "t1": 0.406
+  },
+  {
+   "w": "he's",
+   "t0": 0.441,
+   "t1": 0.569
+  },
+  {
+   "w": "sitting…",
+   "t0": 0.604,
+   "t1": 1.115
+  },
+  {
+   "w": "there's",
+   "t0": 1.579,
+   "t1": 1.8
+  },
+  {
+   "w": "nobody",
+   "t0": 1.846,
+   "t1": 2.148
+  },
+  {
+   "w": "there.",
+   "t0": 2.194,
+   "t1": 2.879
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-21T10:43:54.555Z"
+}

@@ -1,0 +1,70 @@
+{
+ "hash": "1f70e2b3424ac6",
+ "text": "You can see yourself. You can see the empty seats.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.344,
+ "dur": 3.369796,
+ "words": [
+  {
+   "w": "You",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "can",
+   "t0": 0.209,
+   "t1": 0.337
+  },
+  {
+   "w": "see",
+   "t0": 0.383,
+   "t1": 0.522
+  },
+  {
+   "w": "yourself.",
+   "t0": 0.557,
+   "t1": 1.173
+  },
+  {
+   "w": "You",
+   "t0": 1.579,
+   "t1": 1.695
+  },
+  {
+   "w": "can",
+   "t0": 1.741,
+   "t1": 1.858
+  },
+  {
+   "w": "see",
+   "t0": 1.916,
+   "t1": 2.078
+  },
+  {
+   "w": "the",
+   "t0": 2.113,
+   "t1": 2.194
+  },
+  {
+   "w": "empty",
+   "t0": 2.252,
+   "t1": 2.531
+  },
+  {
+   "w": "seats.",
+   "t0": 2.589,
+   "t1": 3.344
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-21T10:43:54.090Z"
+}

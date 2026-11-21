@@ -1,0 +1,70 @@
+{
+ "hash": "176e4bbeee6849",
+ "text": "His coat is soaking wet. It hasn't rained all week.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.297,
+ "dur": 3.343673,
+ "words": [
+  {
+   "w": "His",
+   "t0": 0,
+   "t1": 0.197
+  },
+  {
+   "w": "coat",
+   "t0": 0.267,
+   "t1": 0.499
+  },
+  {
+   "w": "is",
+   "t0": 0.557,
+   "t1": 0.639
+  },
+  {
+   "w": "soaking",
+   "t0": 0.685,
+   "t1": 1.033
+  },
+  {
+   "w": "wet.",
+   "t0": 1.103,
+   "t1": 1.498
+  },
+  {
+   "w": "It",
+   "t0": 1.718,
+   "t1": 1.846
+  },
+  {
+   "w": "hasn't",
+   "t0": 1.881,
+   "t1": 2.113
+  },
+  {
+   "w": "rained",
+   "t0": 2.159,
+   "t1": 2.438
+  },
+  {
+   "w": "all",
+   "t0": 2.473,
+   "t1": 2.601
+  },
+  {
+   "w": "week.",
+   "t0": 2.659,
+   "t1": 3.297
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-21T10:43:52.898Z"
+}

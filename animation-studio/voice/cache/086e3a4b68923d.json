@@ -1,0 +1,105 @@
+{
+ "hash": "086e3a4b68923d",
+ "text": "Imagine you're on the last train home, and the man in front of you won't stop screaming.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.69,
+ "dur": 4.728163,
+ "words": [
+  {
+   "w": "Imagine",
+   "t0": 0,
+   "t1": 0.464
+  },
+  {
+   "w": "you're",
+   "t0": 0.499,
+   "t1": 0.673
+  },
+  {
+   "w": "on",
+   "t0": 0.697,
+   "t1": 0.766
+  },
+  {
+   "w": "the",
+   "t0": 0.813,
+   "t1": 0.882
+  },
+  {
+   "w": "last",
+   "t0": 0.952,
+   "t1": 1.231
+  },
+  {
+   "w": "train",
+   "t0": 1.265,
+   "t1": 1.521
+  },
+  {
+   "w": "home,",
+   "t0": 1.602,
+   "t1": 2.032
+  },
+  {
+   "w": "and",
+   "t0": 2.218,
+   "t1": 2.345
+  },
+  {
+   "w": "the",
+   "t0": 2.392,
+   "t1": 2.461
+  },
+  {
+   "w": "man",
+   "t0": 2.496,
+   "t1": 2.67
+  },
+  {
+   "w": "in",
+   "t0": 2.717,
+   "t1": 2.786
+  },
+  {
+   "w": "front",
+   "t0": 2.844,
+   "t1": 3.042
+  },
+  {
+   "w": "of",
+   "t0": 3.077,
+   "t1": 3.135
+  },
+  {
+   "w": "you",
+   "t0": 3.181,
+   "t1": 3.251
+  },
+  {
+   "w": "won't",
+   "t0": 3.309,
+   "t1": 3.506
+  },
+  {
+   "w": "stop",
+   "t0": 3.553,
+   "t1": 3.785
+  },
+  {
+   "w": "screaming.",
+   "t0": 3.843,
+   "t1": 4.69
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-21T10:43:50.994Z"
+}
