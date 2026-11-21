@@ -68,3 +68,5 @@ tell it. `npm run short` fails without it. The owner approves `productions/<id>/
 - **A figure seen from steeply above flattens.** Keep cameras within about 50° of horizontal on actors.
 - **The camera check counts any camera below floor level (y < 0.05) as inside scenery.**
 - **A caption lingers about 0.25 s after its word,** so hold 0.3 s before cutting to a readable insert.
+- **Any storyboard edit makes the soundtrack stale,** even a camera tweak. Run `--until checks` again right before
+  committing a render request, or the workflow stops at preflight.
