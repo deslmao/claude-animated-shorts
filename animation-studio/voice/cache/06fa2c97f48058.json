@@ -1,0 +1,40 @@
+{
+ "hash": "06fa2c97f48058",
+ "text": "Who's texting you… Bug?",
+ "voice": "bfMum",
+ "lead": 0,
+ "end": 2.043,
+ "dur": 2.089796,
+ "words": [
+  {
+   "w": "Who's",
+   "t0": 0,
+   "t1": 0.267
+  },
+  {
+   "w": "texting",
+   "t0": 0.313,
+   "t1": 0.72
+  },
+  {
+   "w": "you…",
+   "t0": 0.778,
+   "t1": 1.022
+  },
+  {
+   "w": "Bug?",
+   "t0": 1.277,
+   "t1": 2.043
+  }
+ ],
+ "voiceId": "hpp4J3VqNfWAUOO0d1Us",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-21T06:51:35.079Z"
+}

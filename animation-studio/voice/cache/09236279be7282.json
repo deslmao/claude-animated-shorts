@@ -1,0 +1,50 @@
+{
+ "hash": "09236279be7282",
+ "text": "One of them is your mum.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 1.44,
+ "dur": 1.48898,
+ "words": [
+  {
+   "w": "One",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "of",
+   "t0": 0.197,
+   "t1": 0.244
+  },
+  {
+   "w": "them",
+   "t0": 0.29,
+   "t1": 0.406
+  },
+  {
+   "w": "is",
+   "t0": 0.464,
+   "t1": 0.534
+  },
+  {
+   "w": "your",
+   "t0": 0.592,
+   "t1": 0.731
+  },
+  {
+   "w": "mum.",
+   "t0": 0.789,
+   "t1": 1.44
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-21T06:51:39.408Z"
+}

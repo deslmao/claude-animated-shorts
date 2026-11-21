@@ -1,0 +1,75 @@
+{
+ "hash": "0a2d5c4443cbe3",
+ "text": "Mum's phone is on the counter. Right next to the stove.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.344,
+ "dur": 3.369796,
+ "words": [
+  {
+   "w": "Mum's",
+   "t0": 0,
+   "t1": 0.372
+  },
+  {
+   "w": "phone",
+   "t0": 0.406,
+   "t1": 0.697
+  },
+  {
+   "w": "is",
+   "t0": 0.72,
+   "t1": 0.789
+  },
+  {
+   "w": "on",
+   "t0": 0.836,
+   "t1": 0.906
+  },
+  {
+   "w": "the",
+   "t0": 0.94,
+   "t1": 1.01
+  },
+  {
+   "w": "counter.",
+   "t0": 1.057,
+   "t1": 1.579
+  },
+  {
+   "w": "Right",
+   "t0": 1.765,
+   "t1": 1.974
+  },
+  {
+   "w": "next",
+   "t0": 2.02,
+   "t1": 2.241
+  },
+  {
+   "w": "to",
+   "t0": 2.264,
+   "t1": 2.322
+  },
+  {
+   "w": "the",
+   "t0": 2.38,
+   "t1": 2.45
+  },
+  {
+   "w": "stove.",
+   "t0": 2.496,
+   "t1": 3.344
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-21T06:51:36.723Z"
+}

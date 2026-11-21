@@ -281,6 +281,41 @@
    "level": -6,
    "stereo": true,
    "p": "Memories flooding back: a warm swelling shimmer of chimes and soft light, rising and blooming, magical and emotional"
+  },
+  "el_sizzle": {
+   "s": 6,
+   "level": -10,
+   "p": "Pancake batter sizzling gently in a hot frying pan on a kitchen stove, close, cosy morning, a soft bubbling hiss"
+  },
+  "el_pancake_flip": {
+   "s": 1.2,
+   "level": -10,
+   "p": "A pancake flipped in a frying pan: a soft whoosh and a gentle sizzling slap as it lands"
+  },
+  "el_phone_buzz_table": {
+   "s": 1.5,
+   "level": -6,
+   "p": "A smartphone vibrating twice on a wooden kitchen table, a hard rattling buzz, close and loud in a quiet room"
+  },
+  "el_plate_down": {
+   "s": 1.2,
+   "level": -8,
+   "p": "A ceramic plate of food set down on a wooden kitchen table, slid slightly forward, a soft clack and scrape"
+  },
+  "el_knock_front": {
+   "s": 3,
+   "level": -4,
+   "p": "Three hard loud knocks on a wooden front door, heard from inside the house down a short hallway, urgent"
+  },
+  "el_door_pound": {
+   "s": 4,
+   "level": -4,
+   "p": "Someone pounding frantically with their fists on a front door, heard from inside the house down a hallway, the door rattling in its frame"
+  },
+  "el_mum_humming": {
+   "s": 6,
+   "level": -10,
+   "p": "A woman in her thirties softly humming a cheerful simple tune to herself while cooking breakfast, close, no words"
   }
  },
  "bed": {

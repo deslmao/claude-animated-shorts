@@ -1,0 +1,75 @@
+{
+ "hash": "0797a612043f73",
+ "text": "The one at the stove… or the one at the door?",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.972,
+ "dur": 3.004082,
+ "words": [
+  {
+   "w": "The",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "one",
+   "t0": 0.232,
+   "t1": 0.36
+  },
+  {
+   "w": "at",
+   "t0": 0.395,
+   "t1": 0.453
+  },
+  {
+   "w": "the",
+   "t0": 0.488,
+   "t1": 0.557
+  },
+  {
+   "w": "stove…",
+   "t0": 0.615,
+   "t1": 1.242
+  },
+  {
+   "w": "or",
+   "t0": 1.579,
+   "t1": 1.707
+  },
+  {
+   "w": "the",
+   "t0": 1.753,
+   "t1": 1.823
+  },
+  {
+   "w": "one",
+   "t0": 1.881,
+   "t1": 2.009
+  },
+  {
+   "w": "at",
+   "t0": 2.032,
+   "t1": 2.09
+  },
+  {
+   "w": "the",
+   "t0": 2.125,
+   "t1": 2.194
+  },
+  {
+   "w": "door?",
+   "t0": 2.229,
+   "t1": 2.972
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-21T06:51:39.848Z"
+}

@@ -55,7 +55,9 @@ def decode(path):
 # it; atempo restores the length), a hollow double echo, and the natural voice faint underneath
 FX = {"uncanny": "asetrate={sr}*0.84,aresample={sr},atempo=1.1905,aecho=0.8:0.6:45|110:0.35|0.22,lowpass=f=6500",
       # radio (The Empty Seat v2: the bus dispatch radio): a narrow band, squashed and lightly clipped, no dry voice
-      "radio": "highpass=f=420,lowpass=f=3200,acompressor=threshold=-24dB:ratio=8:attack=2:release=60,volume=2.2,alimiter=limit=0.7"}
+      "radio": "highpass=f=420,lowpass=f=3200,acompressor=threshold=-24dB:ratio=8:attack=2:release=60,volume=2.2,alimiter=limit=0.7",
+      # door (Don't Eat It: Mum at the front door): through a closed door down a hallway: muffled, a little room echo
+      "door": "lowpass=f=1300,highpass=f=110,aecho=0.7:0.5:28|61:0.28|0.16,volume=1.9,alimiter=limit=0.8"}
 FX_DRY = {"uncanny": 0.22}
 
 

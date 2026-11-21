@@ -1,0 +1,60 @@
+{
+ "hash": "0c07dd6dc65acd",
+ "text": "Rule two. Don't eat anything she gives you.",
+ "voice": "bfText",
+ "lead": 0,
+ "end": 2.647,
+ "dur": 2.690612,
+ "words": [
+  {
+   "w": "Rule",
+   "t0": 0,
+   "t1": 0.302
+  },
+  {
+   "w": "two.",
+   "t0": 0.337,
+   "t1": 0.778
+  },
+  {
+   "w": "Don't",
+   "t0": 0.964,
+   "t1": 1.173
+  },
+  {
+   "w": "eat",
+   "t0": 1.219,
+   "t1": 1.347
+  },
+  {
+   "w": "anything",
+   "t0": 1.393,
+   "t1": 1.695
+  },
+  {
+   "w": "she",
+   "t0": 1.753,
+   "t1": 1.846
+  },
+  {
+   "w": "gives",
+   "t0": 1.904,
+   "t1": 2.113
+  },
+  {
+   "w": "you.",
+   "t0": 2.159,
+   "t1": 2.647
+  }
+ ],
+ "voiceId": "hpp4J3VqNfWAUOO0d1Us",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.65,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-21T06:51:32.923Z"
+}

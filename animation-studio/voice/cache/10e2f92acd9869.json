@@ -1,0 +1,80 @@
+{
+ "hash": "10e2f92acd9869",
+ "text": "Bug? It's me! I left my phone at home, let me in!",
+ "voice": "bfMumDoor",
+ "lead": 0,
+ "end": 3.204,
+ "dur": 3.239184,
+ "words": [
+  {
+   "w": "Bug?",
+   "t0": 0,
+   "t1": 0.464
+  },
+  {
+   "w": "It's",
+   "t0": 0.499,
+   "t1": 0.673
+  },
+  {
+   "w": "me!",
+   "t0": 0.731,
+   "t1": 1.115
+  },
+  {
+   "w": "I",
+   "t0": 1.382,
+   "t1": 1.428
+  },
+  {
+   "w": "left",
+   "t0": 1.544,
+   "t1": 1.695
+  },
+  {
+   "w": "my",
+   "t0": 1.741,
+   "t1": 1.823
+  },
+  {
+   "w": "phone",
+   "t0": 1.869,
+   "t1": 2.067
+  },
+  {
+   "w": "at",
+   "t0": 2.09,
+   "t1": 2.148
+  },
+  {
+   "w": "home,",
+   "t0": 2.194,
+   "t1": 2.415
+  },
+  {
+   "w": "let",
+   "t0": 2.438,
+   "t1": 2.554
+  },
+  {
+   "w": "me",
+   "t0": 2.601,
+   "t1": 2.67
+  },
+  {
+   "w": "in!",
+   "t0": 2.74,
+   "t1": 3.204
+  }
+ ],
+ "voiceId": "hpp4J3VqNfWAUOO0d1Us",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.3,
+  "similarity_boost": 0.75,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.05
+ },
+ "created": "2026-11-21T06:51:36.149Z"
+}

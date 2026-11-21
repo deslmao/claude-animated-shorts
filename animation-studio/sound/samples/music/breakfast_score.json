@@ -1,0 +1,151 @@
+{
+ "model_id": "music_v1",
+ "composition_plan": {
+  "positive_global_styles": [
+   "cinematic suspense score for a short animated mystery",
+   "instrumental",
+   "music box",
+   "pizzicato strings",
+   "soft piano",
+   "low string drones",
+   "subtle ticking percussion"
+  ],
+  "negative_global_styles": [
+   "vocals",
+   "singing",
+   "lyrics",
+   "rap",
+   "electronic dance",
+   "rock",
+   "comedy",
+   "country"
+  ],
+  "sections": [
+   {
+    "section_name": "sunny breakfast",
+    "positive_local_styles": [
+     "a light, cosy morning tune",
+     "pizzicato strings and glockenspiel",
+     "gentle, homely, warm"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "dark"
+    ],
+    "duration_ms": 3800,
+    "lines": []
+   },
+   {
+    "section_name": "the text",
+    "positive_local_styles": [
+     "the same tune slowed onto a lone music box, slightly out of tune",
+     "a soft low string note underneath",
+     "uneasy, quiet"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "bright"
+    ],
+    "duration_ms": 7500,
+    "lines": []
+   },
+   {
+    "section_name": "sweetheart",
+    "positive_local_styles": [
+     "the music box melody in a minor key",
+     "a ticking clock rhythm",
+     "a low cello drone",
+     "unsettling, wrong"
+    ],
+    "negative_local_styles": [
+     "loud",
+     "drums"
+    ],
+    "duration_ms": 6300,
+    "lines": []
+   },
+   {
+    "section_name": "the rules",
+    "positive_local_styles": [
+     "a quiet tense pulse",
+     "low strings",
+     "soft ticking",
+     "holding the breath, secret"
+    ],
+    "negative_local_styles": [
+     "melody",
+     "loud"
+    ],
+    "duration_ms": 8800,
+    "lines": []
+   },
+   {
+    "section_name": "her smile",
+    "positive_local_styles": [
+     "a thin high violin harmonic",
+     "a slow heartbeat thump",
+     "dread, very sparse"
+    ],
+    "negative_local_styles": [
+     "melody",
+     "drums"
+    ],
+    "duration_ms": 8700,
+    "lines": []
+   },
+   {
+    "section_name": "the knock",
+    "positive_local_styles": [
+     "sudden silence then deep low strings",
+     "tremolo violins rising slowly",
+     "suspense"
+    ],
+    "negative_local_styles": [
+     "melody",
+     "drums"
+    ],
+    "duration_ms": 4700,
+    "lines": []
+   },
+   {
+    "section_name": "the phone lights up",
+    "positive_local_styles": [
+     "a creeping rising string cluster",
+     "the music box theme returning, distorted",
+     "growing fear"
+    ],
+    "negative_local_styles": [
+     "drums"
+    ],
+    "duration_ms": 7200,
+    "lines": []
+   },
+   {
+    "section_name": "two mums",
+    "positive_local_styles": [
+     "urgent pulsing low strings",
+     "tremolo violins swelling",
+     "a tense build to a peak"
+    ],
+    "negative_local_styles": [
+     "vocals"
+    ],
+    "duration_ms": 7900,
+    "lines": []
+   },
+   {
+    "section_name": "the choice",
+    "positive_local_styles": [
+     "held tense string chord at full height",
+     "the music box plays its first two notes over it",
+     "then a sudden stop"
+    ],
+    "negative_local_styles": [
+     "drums"
+    ],
+    "duration_ms": 4600,
+    "lines": []
+   }
+  ]
+ }
+}

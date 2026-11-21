@@ -1,0 +1,80 @@
+{
+ "hash": "1ecccc29a20154",
+ "text": "Mum works nights at the hospital. Her shift doesn't end until nine.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.133,
+ "dur": 4.179592,
+ "words": [
+  {
+   "w": "Mum",
+   "t0": 0,
+   "t1": 0.29
+  },
+  {
+   "w": "works",
+   "t0": 0.348,
+   "t1": 0.604
+  },
+  {
+   "w": "nights",
+   "t0": 0.673,
+   "t1": 0.94
+  },
+  {
+   "w": "at",
+   "t0": 0.975,
+   "t1": 1.045
+  },
+  {
+   "w": "the",
+   "t0": 1.08,
+   "t1": 1.149
+  },
+  {
+   "w": "hospital.",
+   "t0": 1.196,
+   "t1": 1.811
+  },
+  {
+   "w": "Her",
+   "t0": 2.032,
+   "t1": 2.171
+  },
+  {
+   "w": "shift",
+   "t0": 2.218,
+   "t1": 2.473
+  },
+  {
+   "w": "doesn't",
+   "t0": 2.519,
+   "t1": 2.775
+  },
+  {
+   "w": "end",
+   "t0": 2.844,
+   "t1": 3.007
+  },
+  {
+   "w": "until",
+   "t0": 3.065,
+   "t1": 3.32
+  },
+  {
+   "w": "nine.",
+   "t0": 3.39,
+   "t1": 4.133
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-21T06:51:30.121Z"
+}

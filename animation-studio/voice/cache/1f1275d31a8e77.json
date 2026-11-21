@@ -1,0 +1,80 @@
+{
+ "hash": "1f1275d31a8e77",
+ "text": "Mum has never called you sweetheart. Not once. She calls you Bug.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.133,
+ "dur": 4.179592,
+ "words": [
+  {
+   "w": "Mum",
+   "t0": 0,
+   "t1": 0.267
+  },
+  {
+   "w": "has",
+   "t0": 0.313,
+   "t1": 0.406
+  },
+  {
+   "w": "never",
+   "t0": 0.464,
+   "t1": 0.639
+  },
+  {
+   "w": "called",
+   "t0": 0.697,
+   "t1": 0.94
+  },
+  {
+   "w": "you",
+   "t0": 0.975,
+   "t1": 1.057
+  },
+  {
+   "w": "sweetheart.",
+   "t0": 1.115,
+   "t1": 1.718
+  },
+  {
+   "w": "Not",
+   "t0": 1.881,
+   "t1": 2.055
+  },
+  {
+   "w": "once.",
+   "t0": 2.136,
+   "t1": 2.601
+  },
+  {
+   "w": "She",
+   "t0": 2.821,
+   "t1": 2.937
+  },
+  {
+   "w": "calls",
+   "t0": 2.984,
+   "t1": 3.204
+  },
+  {
+   "w": "you",
+   "t0": 3.251,
+   "t1": 3.332
+  },
+  {
+   "w": "Bug.",
+   "t0": 3.402,
+   "t1": 4.133
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-21T06:51:31.813Z"
+}

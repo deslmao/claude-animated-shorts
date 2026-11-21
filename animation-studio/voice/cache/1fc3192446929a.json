@@ -1,0 +1,65 @@
+{
+ "hash": "1fc3192446929a",
+ "text": "Rule one. Don't let her see you read this.",
+ "voice": "bfText",
+ "lead": 0,
+ "end": 2.276,
+ "dur": 2.324898,
+ "words": [
+  {
+   "w": "Rule",
+   "t0": 0,
+   "t1": 0.313
+  },
+  {
+   "w": "one.",
+   "t0": 0.372,
+   "t1": 0.592
+  },
+  {
+   "w": "Don't",
+   "t0": 0.615,
+   "t1": 0.801
+  },
+  {
+   "w": "let",
+   "t0": 0.836,
+   "t1": 0.94
+  },
+  {
+   "w": "her",
+   "t0": 0.975,
+   "t1": 1.045
+  },
+  {
+   "w": "see",
+   "t0": 1.091,
+   "t1": 1.219
+  },
+  {
+   "w": "you",
+   "t0": 1.254,
+   "t1": 1.324
+  },
+  {
+   "w": "read",
+   "t0": 1.393,
+   "t1": 1.556
+  },
+  {
+   "w": "this.",
+   "t0": 1.602,
+   "t1": 2.276
+  }
+ ],
+ "voiceId": "hpp4J3VqNfWAUOO0d1Us",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.65,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-21T06:51:32.353Z"
+}

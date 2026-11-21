@@ -1,0 +1,50 @@
+{
+ "hash": "001b1291c9ce9e",
+ "text": "It lights up. Nobody's touching it.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.322,
+ "dur": 2.35102,
+ "words": [
+  {
+   "w": "It",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "lights",
+   "t0": 0.221,
+   "t1": 0.476
+  },
+  {
+   "w": "up.",
+   "t0": 0.569,
+   "t1": 0.871
+  },
+  {
+   "w": "Nobody's",
+   "t0": 1.033,
+   "t1": 1.405
+  },
+  {
+   "w": "touching",
+   "t0": 1.451,
+   "t1": 1.788
+  },
+  {
+   "w": "it.",
+   "t0": 1.846,
+   "t1": 2.322
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-21T06:51:37.185Z"
+}

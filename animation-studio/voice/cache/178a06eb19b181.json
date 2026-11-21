@@ -1,0 +1,55 @@
+{
+ "hash": "178a06eb19b181",
+ "text": "Bug, whatever's in there, don't eat anything!",
+ "voice": "bfMumDoor",
+ "lead": 0,
+ "end": 2.276,
+ "dur": 2.324898,
+ "words": [
+  {
+   "w": "Bug,",
+   "t0": 0,
+   "t1": 0.302
+  },
+  {
+   "w": "whatever's",
+   "t0": 0.325,
+   "t1": 0.685
+  },
+  {
+   "w": "in",
+   "t0": 0.731,
+   "t1": 0.789
+  },
+  {
+   "w": "there,",
+   "t0": 0.824,
+   "t1": 1.033
+  },
+  {
+   "w": "don't",
+   "t0": 1.057,
+   "t1": 1.277
+  },
+  {
+   "w": "eat",
+   "t0": 1.324,
+   "t1": 1.474
+  },
+  {
+   "w": "anything!",
+   "t0": 1.521,
+   "t1": 2.276
+  }
+ ],
+ "voiceId": "hpp4J3VqNfWAUOO0d1Us",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.3,
+  "similarity_boost": 0.75,
+  "style": 0.5,
+  "use_speaker_boost": true,
+  "speed": 1.05
+ },
+ "created": "2026-11-21T06:51:38.946Z"
+}

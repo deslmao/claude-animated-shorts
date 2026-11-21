@@ -1,0 +1,105 @@
+{
+ "id": "breakfast-text",
+ "composition": "Short-breakfast-text",
+ "stages": {
+  "validate": {
+   "state": "done",
+   "at": "2026-11-21T07:06:25.472Z",
+   "inputs": "0ffa8e83518228n",
+   "detail": "valid; 16 warning(s):\n  shot 8 (bfKitchen): prop \"bfFrontDoor\" overlaps something already in the set at [0.9, -4.5]\n  shot 10 (bfKitchen): prop \"bfFrontDoor\" overlaps something already in the set at [0.9, -4.5]\n  shot 12 (bfKitchen): prop \"bfFrontDoor\" overlaps something already in the set at [0.9, -4.5]\n  shot 14 (bfKitchen): prop \"bfFrontDoor\" overlaps something already in the set at [0.9, -4.5]\n  shot 16 (bfKitchen): prop \"bfFrontDoor\" overlaps something already in the set at [0.9, -4.5]\n  shot 17 (bfKitchen): prop \"bfFrontDoor\" overlaps something already in the set at [0.9, -4.5]\n  shot 18 (bfKitchen): prop \"bfFrontDoor\" overlaps something already in the set at [0.9, -4.5]\n  shot 1 (bfKitchen): mum fills 42 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 5 (bfKitchen): bug fills 33 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 5 (bfKitchen): mum fills 25 % of the frame in the foreground @1.4s (is it hiding the action?)\n  shot 6 (bfKitchen): bug fills 65 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 9 (bfKitchen): mum fills 40 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 12 (bfKitchen): mum fills 84 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 13 (bfKitchen): bug fills 54 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 16 (bfKitchen): mum fills 51 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 18 (bfKitchen): mum fills 38 % of the frame in the foreground @0.0s (is it hiding the action?)"
+  },
+  "assets": {
+   "state": "done",
+   "at": "2026-11-21T07:06:25.475Z",
+   "inputs": "0ffa8e83518228",
+   "detail": "33 library assets reused, none missing",
+   "data": {
+    "reused": 33,
+    "missing": [],
+    "byKind": {
+     "character": [
+      "mum",
+      "bug"
+     ],
+     "set": [
+      "bfKitchen"
+     ],
+     "camera": [
+      "at"
+     ],
+     "light": [
+      "interior"
+     ],
+     "ambience": [
+      "elb_kitchen_day"
+     ],
+     "prop": [
+      "bfPan",
+      "bfPhone",
+      "bfInsert",
+      "bfFrontDoor",
+      "bfPlate",
+      "bfChoice"
+     ],
+     "sfx": [
+      "el_sizzle",
+      "el_mum_humming",
+      "el_pancake_flip",
+      "el_phone_buzz_table",
+      "msg_chime",
+      "el_clock_tick",
+      "el_heart_slow",
+      "el_plate_down",
+      "chair_scrape",
+      "el_sting_strings",
+      "el_heartbeat_fast",
+      "el_knock_front",
+      "el_vial_chime",
+      "el_door_pound",
+      "knock_heavy",
+      "pop"
+     ],
+     "act": [
+      "happy",
+      "neutral",
+      "confused",
+      "scared"
+     ],
+     "item": [
+      "fryPan"
+     ]
+    }
+   }
+  },
+  "approval": {
+   "state": "done",
+   "at": "2026-11-21T07:06:25.476Z",
+   "inputs": "1cf3aae8cbf6d1",
+   "detail": "all narration already generated (no cost)"
+  },
+  "narration": {
+   "state": "done",
+   "at": "2026-11-21T07:06:25.477Z",
+   "inputs": "1cf3aae8cbf6d1",
+   "detail": "all lines already generated (cached)"
+  },
+  "sound": {
+   "state": "done",
+   "at": "2026-11-21T07:06:38.147Z",
+   "inputs": "0cd9a8260e34bc",
+   "detail": "soundtrack built: -14.1 LUFS"
+  },
+  "checks": {
+   "state": "done",
+   "at": "2026-11-21T07:06:43.823Z",
+   "inputs": "0cd9a8260e34bc",
+   "detail": "preflight PASS; library intact"
+  }
+ },
+ "approval": {
+  "scriptHash": "1cf3aae8cbf6d1",
+  "chars": 856,
+  "at": "2026-11-21T06:51:22.347Z",
+  "by": "the owner, in the conversation"
+ }
+}

@@ -1,0 +1,75 @@
+{
+ "hash": "0a5898a4862f1c",
+ "text": "Imagine your mum is making you breakfast. Then she texts you.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.901,
+ "dur": 3.94449,
+ "words": [
+  {
+   "w": "Imagine",
+   "t0": 0,
+   "t1": 0.418
+  },
+  {
+   "w": "your",
+   "t0": 0.464,
+   "t1": 0.58
+  },
+  {
+   "w": "mum",
+   "t0": 0.639,
+   "t1": 0.848
+  },
+  {
+   "w": "is",
+   "t0": 0.906,
+   "t1": 0.987
+  },
+  {
+   "w": "making",
+   "t0": 1.045,
+   "t1": 1.289
+  },
+  {
+   "w": "you",
+   "t0": 1.335,
+   "t1": 1.405
+  },
+  {
+   "w": "breakfast.",
+   "t0": 1.451,
+   "t1": 2.125
+  },
+  {
+   "w": "Then",
+   "t0": 2.461,
+   "t1": 2.647
+  },
+  {
+   "w": "she",
+   "t0": 2.694,
+   "t1": 2.798
+  },
+  {
+   "w": "texts",
+   "t0": 2.868,
+   "t1": 3.274
+  },
+  {
+   "w": "you.",
+   "t0": 3.332,
+   "t1": 3.901
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-21T06:51:28.970Z"
+}

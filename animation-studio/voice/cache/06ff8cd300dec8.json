@@ -1,0 +1,90 @@
+{
+ "hash": "06ff8cd300dec8",
+ "text": "Don't, Bug. That isn't me. I've been here all morning. I made your favourite.",
+ "voice": "bfMum",
+ "lead": 0,
+ "end": 4.83,
+ "dur": 4.858776,
+ "words": [
+  {
+   "w": "Don't,",
+   "t0": 0,
+   "t1": 0.372
+  },
+  {
+   "w": "Bug.",
+   "t0": 0.418,
+   "t1": 0.755
+  },
+  {
+   "w": "That",
+   "t0": 0.778,
+   "t1": 0.917
+  },
+  {
+   "w": "isn't",
+   "t0": 0.964,
+   "t1": 1.173
+  },
+  {
+   "w": "me.",
+   "t0": 1.231,
+   "t1": 1.614
+  },
+  {
+   "w": "I've",
+   "t0": 1.95,
+   "t1": 2.125
+  },
+  {
+   "w": "been",
+   "t0": 2.148,
+   "t1": 2.287
+  },
+  {
+   "w": "here",
+   "t0": 2.322,
+   "t1": 2.473
+  },
+  {
+   "w": "all",
+   "t0": 2.508,
+   "t1": 2.647
+  },
+  {
+   "w": "morning.",
+   "t0": 2.717,
+   "t1": 3.228
+  },
+  {
+   "w": "I",
+   "t0": 3.448,
+   "t1": 3.495
+  },
+  {
+   "w": "made",
+   "t0": 3.622,
+   "t1": 3.785
+  },
+  {
+   "w": "your",
+   "t0": 3.808,
+   "t1": 3.924
+  },
+  {
+   "w": "favourite.",
+   "t0": 3.982,
+   "t1": 4.83
+  }
+ ],
+ "voiceId": "hpp4J3VqNfWAUOO0d1Us",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-21T06:51:38.387Z"
+}

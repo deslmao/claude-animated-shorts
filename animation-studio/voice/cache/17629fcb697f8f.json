@@ -1,0 +1,70 @@
+{
+ "hash": "17629fcb697f8f",
+ "text": "Rule three. Get to the front door. Walk. Don't run.",
+ "voice": "bfText",
+ "lead": 0,
+ "end": 3.947,
+ "dur": 3.996735,
+ "words": [
+  {
+   "w": "Rule",
+   "t0": 0,
+   "t1": 0.279
+  },
+  {
+   "w": "three.",
+   "t0": 0.325,
+   "t1": 0.755
+  },
+  {
+   "w": "Get",
+   "t0": 1.01,
+   "t1": 1.184
+  },
+  {
+   "w": "to",
+   "t0": 1.219,
+   "t1": 1.265
+  },
+  {
+   "w": "the",
+   "t0": 1.312,
+   "t1": 1.382
+  },
+  {
+   "w": "front",
+   "t0": 1.428,
+   "t1": 1.637
+  },
+  {
+   "w": "door.",
+   "t0": 1.672,
+   "t1": 2.09
+  },
+  {
+   "w": "Walk.",
+   "t0": 2.38,
+   "t1": 2.949
+  },
+  {
+   "w": "Don't",
+   "t0": 3.077,
+   "t1": 3.309
+  },
+  {
+   "w": "run.",
+   "t0": 3.355,
+   "t1": 3.947
+  }
+ ],
+ "voiceId": "hpp4J3VqNfWAUOO0d1Us",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.65,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-21T06:51:33.590Z"
+}

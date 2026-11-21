@@ -8,7 +8,7 @@ import { windowViewHD, ceilingHD, ceilingTilesHD } from "../materials/paint2";
 import { col, glow, box } from "../props/kit";
 
 /** at = world x (back wall) or world z (side walls) of the opening centre */
-export type Opening = { wall: "back" | "left" | "right"; at: number; w: number; h: number; sill: number; kind?: "window" | "door"; view?: "garden" | "city" | "campus" };
+export type Opening = { wall: "back" | "left" | "right"; at: number; w: number; h: number; sill: number; kind?: "window" | "door" | "arch"; view?: "garden" | "city" | "campus" };
 export type RoomSpec = { w: number; d: number; h: number; floor: THREE.Material; wall: THREE.Material; lower?: THREE.Material; lowerH?: number;
   trim?: string; ceiling?: string; tiles?: boolean; openings?: Opening[] };
 
@@ -77,6 +77,8 @@ export const buildRoom = (root: THREE.Object3D, s: RoomSpec) => {
       } else {
         // door: frame + painted panel door slightly open
         for (const [a0, a1, b0, b1] of [[h.x0 - 0.1, h.x0, 0, h.y1], [h.x1, h.x1 + 0.1, 0, h.y1], [h.x0 - 0.1, h.x1 + 0.1, h.y1, h.y1 + 0.1]]) box(detail, trim, sd.m, a0, a1, b0, b1, -0.02, 0.05);
+        // arch (opt-in, Don't Eat It): the frame only, no leaf: an open doorway the set builds a space behind
+        if (o.kind === "arch") return;
         box(detail, col("#8a5a3c"), sd.m, h.x0 + 0.02, h.x1 - 0.02, 0.01, h.y1 - 0.02, -0.12, -0.08);
         for (const yy of [0.35, 1.25]) box(detail, col("#7a4f33"), sd.m, h.x0 + 0.15, h.x1 - 0.15, yy, yy + 0.6, -0.08, -0.06);
         box(detail, col("#c9a24e"), sd.m, h.x1 - 0.18, h.x1 - 0.12, 1.0, 1.06, -0.06, -0.02);

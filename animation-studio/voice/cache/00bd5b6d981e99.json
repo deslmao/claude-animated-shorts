@@ -1,0 +1,40 @@
+{
+ "hash": "00bd5b6d981e99",
+ "text": "Pancakes, sweetheart. Your favourite.",
+ "voice": "bfMum",
+ "lead": 0,
+ "end": 2.368,
+ "dur": 2.403265,
+ "words": [
+  {
+   "w": "Pancakes,",
+   "t0": 0,
+   "t1": 0.604
+  },
+  {
+   "w": "sweetheart.",
+   "t0": 0.627,
+   "t1": 1.219
+  },
+  {
+   "w": "Your",
+   "t0": 1.405,
+   "t1": 1.567
+  },
+  {
+   "w": "favourite.",
+   "t0": 1.625,
+   "t1": 2.368
+  }
+ ],
+ "voiceId": "hpp4J3VqNfWAUOO0d1Us",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-21T06:51:31.136Z"
+}

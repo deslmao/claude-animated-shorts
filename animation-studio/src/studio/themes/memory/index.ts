@@ -166,7 +166,7 @@ const INSERTS: Record<string, Ins> = {
     g.fillStyle = "#120e14"; g.fillRect(0, 0, IW, IH);
     const star = (x: number, y: number, r: number, c: string, rot = 0) => {
       g.save(); g.translate(x, y); g.rotate(rot); g.beginPath();
-      for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + (i * Math.PI) / 5, rr = i % 2 ? r * 0.45 : r; i ? g.lineTo(Math.cos(a) * rr, Math.sin(a) * rr) : g.moveTo(Math.cos(a) * rr, Math.sin(a) * rr); }
+      for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + (i * Math.PI) / 5, rr = i % 2 ? r * 0.45 : r; if (i) g.lineTo(Math.cos(a) * rr, Math.sin(a) * rr); else g.moveTo(Math.cos(a) * rr, Math.sin(a) * rr); }
       g.closePath(); g.fillStyle = c; g.fill(); g.lineWidth = Math.max(3, r * 0.12); g.strokeStyle = INK; g.stroke(); g.restore();
     };
     const COLS = ["#ffd86a", "#ff9ab8", "#9fe0ff", "#c8a8ff", "#ffb070"];

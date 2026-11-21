@@ -6,8 +6,9 @@
 export type VoiceSettings = { stability: number; similarity_boost: number; style: number; use_speaker_boost: boolean; speed: number };
 /** fx (optional, applied in the soundtrack mix, never to the generated clip): "uncanny" = the same voice pitched
  *  down about 3 semitones at the same length (timings and lip-sync unchanged), a hollow echo, the natural voice faint
- *  underneath (a thing speaking in someone else's voice); "radio" = a two-way radio: a narrow band, squashed (The Empty Seat v2) */
-export type VoicePreset = { name: string; voiceId: string; model: string; settings: VoiceSettings; note: string; fx?: "uncanny" | "radio" };
+ *  underneath (a thing speaking in someone else's voice); "radio" = a two-way radio: a narrow band, squashed (The Empty Seat v2); "door" = heard through a
+ *  closed front door: muffled, low-passed, a little room echo (Don't Eat It) */
+export type VoicePreset = { name: string; voiceId: string; model: string; settings: VoiceSettings; note: string; fx?: "uncanny" | "radio" | "door" };
 
 /** the channel's settings: the audition settings (stability 0.5, similarity 0.75), no style exaggeration, and a slight
  *  speed-up toward the reference pace (3.5-4.1 words/s; George reads ~3.1 words/s at speed 1.0) */
@@ -79,6 +80,11 @@ export const VOICES: Record<string, VoicePreset> = {
   mmLumi: { name: "Lola - Soft, Innocent & Calming", voiceId: "f9imtLc2jfOLXtqe3Ihb", model: MODEL, settings: { ...CHANNEL, stability: 0.5, style: 0.25, speed: 0.95 }, note: "Lumi, 17: soft, bright, playful, later lost (library voice 'Lola', added to the account)" },
   mmBroker: { name: "Brian - Deep, Resonant and Comforting", voiceId: "nPczCjzI2devNBz1zQrb", model: MODEL, settings: { ...CHANNEL, stability: 0.55, style: 0.3, speed: 0.92 }, note: "the Broker: smooth, slow, cold" },
   // Stop Time Part 1 v2 (The Knock): the officer at the door, Theo's teacher, the back-alley doc
+  // Don't Eat It. I'm Still at Work. (productions/breakfast-text): Mum in the kitchen, Mum through the front door, the
+  // texts read in Mum's voice through a phone filter (the narrator is georgeHushed)
+  bfMum: { name: "Bella - Professional, Bright, Warm", voiceId: "hpp4J3VqNfWAUOO0d1Us", model: MODEL, settings: { ...CHANNEL, stability: 0.55, style: 0.2, speed: 0.95 }, note: "Mum in the kitchen: warm, close, a little too sweet" },
+  bfMumDoor: { name: "Bella - Professional, Bright, Warm", voiceId: "hpp4J3VqNfWAUOO0d1Us", model: MODEL, settings: { ...CHANNEL, stability: 0.3, style: 0.5, speed: 1.05 }, note: "Mum at the front door: panicked, through the door", fx: "door" },
+  bfText: { name: "Bella - Professional, Bright, Warm", voiceId: "hpp4J3VqNfWAUOO0d1Us", model: MODEL, settings: { ...CHANNEL, stability: 0.65, style: 0, speed: 0.95 }, note: "the texts, read flat in Mum's voice through a phone filter", fx: "radio" },
   tsOfficer: { name: "Daniel - Steady Broadcaster", voiceId: "onwK4e9ZLuTAKqWW03F9", model: MODEL, settings: { ...CHANNEL, stability: 0.6, style: 0.15, speed: 0.9 }, note: "a police officer bringing a boy the worst news at dawn: quiet, gentle, slow" },
   tsTeacher: { name: "Matilda - Knowledgable, Professional", voiceId: "XrExE9yKIg1WjnnlVkGX", model: MODEL, settings: { ...CHANNEL, stability: 0.4, style: 0.35, speed: 1.0 }, note: "Theo's teacher: sharp, worried, calling after him" },
   tsDoc: { name: "Bill - Wise, Mature, Balanced", voiceId: "pqHfZKP75CvOlQylNhV4", model: MODEL, settings: { ...CHANNEL, stability: 0.45, style: 0.3, speed: 0.95 }, note: "the back-alley doc: rough, matter-of-fact, a warning in it" },

@@ -138,6 +138,13 @@ export const SFX = {
   el_humming: "recorded: A teenage girl softly humming a gentle made-up lullaby, no words (6 s)",
   el_cough: "recorded: A sick teenage girl coughing weakly twice (2 s)",
   el_memory_flood: "recorded: Memories flooding back: a warm swelling shimmer of chimes and light (3.5 s)",
+  el_sizzle: "recorded: Pancake batter sizzling gently in a hot frying pan, close, a cosy morning (6 s)",
+  el_pancake_flip: "recorded: A pancake flipped in a pan: a soft whoosh and a sizzling slap as it lands (1.2 s)",
+  el_phone_buzz_table: "recorded: A phone vibrating twice on a wooden kitchen table, loud in a quiet room (1.5 s)",
+  el_plate_down: "recorded: A plate of food set down on a wooden table and slid forward (1.2 s)",
+  el_knock_front: "recorded: Three hard knocks on a front door, heard from inside down a hallway (3 s)",
+  el_door_pound: "recorded: Fists pounding frantically on a front door, heard from inside, the door rattling (4 s)",
+  el_mum_humming: "recorded: A woman softly humming a cheerful tune to herself while cooking, no words (6 s)",
   el_siren_far: "recorded: Distant police and ambulance sirens echoing through a rainy futuristic city at night (5.0 s)",
 } as const;
 export type SfxName = keyof typeof SFX;
