@@ -47,6 +47,9 @@ tell it. `npm run short` fails without it. The owner approves `productions/<id>/
 
 ## Claude usage
 - Keep reports concise: what changed, what was tested, what remains.
+- **Every completed-video response includes the GitHub link to its titles and descriptions:**
+  `https://github.com/deslmao/claude-animated-shorts/blob/claude/admiring-hopper-kbrb3d/productions/<id>/publish/PUBLISHING.md`
+  (the owner's standing request).
 - Read only the files the task needs. Reuse existing assets, rigs, camera moves and rendering.
 - Run tests once after changes that affect them (an engine change means `npm test`; a storyboard-only change means
   `--until checks`). Don't re-inspect unchanged files or re-run unaffected tests.
