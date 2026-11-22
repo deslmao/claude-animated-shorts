@@ -4,14 +4,14 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-22T07:23:22.564Z",
-   "inputs": "01e80c010f7ab1n",
-   "detail": "valid; 35 warning(s):\n  shot 1 (apartment): light \"night\" on an indoor set\n  shot 3 (apartment): light \"night\" on an indoor set\n  shot 6 (apartment): light \"night\" on an indoor set\n  shot 7 (apartment): light \"night\" on an indoor set\n  shot 8 (apartment): light \"night\" on an indoor set\n  shot 9 (apartment): light \"night\" on an indoor set\n  shot 10 (apartment): light \"night\" on an indoor set\n  shot 11 (apartment): light \"night\" on an indoor set\n  shot 12 (apartment): light \"night\" on an indoor set\n  shot 13 (apartment): light \"night\" on an indoor set\n  shot 14 (apartment): light \"night\" on an indoor set\n  shot 15 (apartment): light \"night\" on an indoor set\n  shot 16 (apartment): light \"night\" on an indoor set\n  shot 17 (apartment): light \"night\" on an indoor set\n  shot 1 (apartment): ssIsaac fills 39 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 2 (apartment): ssMe fills 37 % of the frame in the foreground @2.4s (is it hiding the action?)\n  shot 2 (apartment): ssIsaac fills 96 % of the frame in the foreground @3.2s (is it hiding the action?)\n  shot 4 (apartment): ssMe fills 58 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 4 (apartment): ssGlendon fills 60 % of the frame in the foreground @0.8s (is it hiding the action?)\n  shot 5 (apartment): ssMe fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 8 (apartment): ssIsaac's hand (sixSeven) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 8 (apartment): ssIsaac fills 60 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 8 (apartment): ssMe fills 100 % of the frame in the foreground @2.8s (is it hiding the action?)\n  shot 9 (apartment): ssMe fills 96 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 9 (apartment): ssIsaac's hand (sixSeven) is out of frame @3.4s (side): widen the shot or change the gesture\n  shot 9 (apartment): ssIsaac fills 90 % of the frame in the foreground @3.4s (is it hiding the action?)\n  shot 11 (apartment): ssIsaac's hand (sixSeven) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 11 (apartment): ssIsaac fills 52 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 12 (apartment): ssGlendon fills 40 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 12 (apartment): ssIsaac fills 38 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 13 (apartment): ssIsaac's raised hand (sixSeven) is out of frame @1.6s (side): widen the shot or change the gesture\n  shot 13 (apartment): ssIsaac fills 94 % of the frame in the foreground @1.6s (is it hiding the action?)\n  shot 14 (apartment): ssIsaac fills 81 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 16 (apartment): ssMe fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 17 (apartment): ssIsaac fills 39 % of the frame in the foreground @0.0s (is it hiding the action?)"
+   "at": "2026-11-22T07:36:45.273Z",
+   "inputs": "1fe74d6531420bn",
+   "detail": "valid; 36 warning(s):\n  shot 1 (apartment): light \"night\" on an indoor set\n  shot 3 (apartment): light \"night\" on an indoor set\n  shot 6 (apartment): light \"night\" on an indoor set\n  shot 7 (apartment): light \"night\" on an indoor set\n  shot 8 (apartment): light \"night\" on an indoor set\n  shot 9 (apartment): light \"night\" on an indoor set\n  shot 10 (apartment): light \"night\" on an indoor set\n  shot 11 (apartment): light \"night\" on an indoor set\n  shot 12 (apartment): light \"night\" on an indoor set\n  shot 13 (apartment): light \"night\" on an indoor set\n  shot 14 (apartment): light \"night\" on an indoor set\n  shot 15 (apartment): light \"night\" on an indoor set\n  shot 16 (apartment): light \"night\" on an indoor set\n  shot 17 (apartment): light \"night\" on an indoor set\n  shot 1 (apartment): ssIsaac fills 39 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 2 (apartment): ssMe fills 37 % of the frame in the foreground @2.4s (is it hiding the action?)\n  shot 2 (apartment): ssIsaac fills 96 % of the frame in the foreground @3.2s (is it hiding the action?)\n  shot 4 (apartment): ssMe fills 58 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 4 (apartment): ssGlendon fills 60 % of the frame in the foreground @0.8s (is it hiding the action?)\n  shot 5 (apartment): ssMe fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 8 (apartment): ssIsaac's hand (sixSeven) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 8 (apartment): ssIsaac fills 60 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 8 (apartment): ssMe fills 100 % of the frame in the foreground @2.8s (is it hiding the action?)\n  shot 9 (apartment): ssMe fills 96 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 9 (apartment): ssIsaac's hand (sixSeven) is out of frame @3.4s (side): widen the shot or change the gesture\n  shot 9 (apartment): ssIsaac fills 90 % of the frame in the foreground @3.4s (is it hiding the action?)\n  shot 11 (apartment): ssIsaac's hand (sixSeven) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 11 (apartment): ssIsaac fills 52 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 12 (apartment): ssIsaac's hand (sixSeven) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 12 (apartment): ssGlendon fills 37 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 12 (apartment): ssIsaac fills 34 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 13 (apartment): ssIsaac's raised hand (sixSeven) is out of frame @1.6s (side): widen the shot or change the gesture\n  shot 13 (apartment): ssIsaac fills 94 % of the frame in the foreground @1.6s (is it hiding the action?)\n  shot 14 (apartment): ssIsaac fills 81 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 16 (apartment): ssMe fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 17 (apartment): ssIsaac fills 39 % of the frame in the foreground @0.0s (is it hiding the action?)"
   },
   "assets": {
    "state": "done",
-   "at": "2026-11-22T07:23:22.567Z",
-   "inputs": "01e80c010f7ab1",
+   "at": "2026-11-22T07:36:45.276Z",
+   "inputs": "1fe74d6531420b",
    "detail": "40 library assets reused, none missing",
    "data": {
     "reused": 40,
@@ -80,26 +80,26 @@
   },
   "approval": {
    "state": "done",
-   "at": "2026-11-22T07:23:22.568Z",
+   "at": "2026-11-22T07:36:45.278Z",
    "inputs": "1feca04e50655c",
    "detail": "all narration already generated (no cost)"
   },
   "narration": {
    "state": "done",
-   "at": "2026-11-22T07:23:22.569Z",
+   "at": "2026-11-22T07:36:45.279Z",
    "inputs": "1feca04e50655c",
    "detail": "all lines already generated (cached)"
   },
   "sound": {
    "state": "done",
-   "at": "2026-11-22T07:23:35.257Z",
-   "inputs": "0e9dd758f3fe16",
+   "at": "2026-11-22T07:36:59.573Z",
+   "inputs": "175bb042265e62",
    "detail": "soundtrack built: -14.1 LUFS"
   },
   "checks": {
    "state": "done",
-   "at": "2026-11-22T07:23:40.662Z",
-   "inputs": "0e9dd758f3fe16",
+   "at": "2026-11-22T07:37:05.821Z",
+   "inputs": "175bb042265e62",
    "detail": "preflight PASS; library intact"
   }
  },
