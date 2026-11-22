@@ -1,0 +1,60 @@
+{
+ "hash": "19458721b7de87",
+ "text": "[laughing hysterically] SIX SEVEN! SIX SEVEN! SIX SEVEN!",
+ "voice": "ssIsaac",
+ "lead": 0,
+ "end": 4.96,
+ "dur": 4.989388,
+ "words": [
+  {
+   "w": "[laughing",
+   "t0": 0,
+   "t1": 0.48
+  },
+  {
+   "w": "hysterically]",
+   "t0": 0.537,
+   "t1": 1.253
+  },
+  {
+   "w": "SIX",
+   "t0": 1.3,
+   "t1": 1.44
+  },
+  {
+   "w": "SEVEN!",
+   "t0": 1.547,
+   "t1": 2.4
+  },
+  {
+   "w": "SIX",
+   "t0": 2.48,
+   "t1": 2.72
+  },
+  {
+   "w": "SEVEN!",
+   "t0": 2.827,
+   "t1": 3.72
+  },
+  {
+   "w": "SIX",
+   "t0": 3.79,
+   "t1": 4
+  },
+  {
+   "w": "SEVEN!",
+   "t0": 4.133,
+   "t1": 4.96
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_v3",
+ "settings": {
+  "stability": 0,
+  "similarity_boost": 0.8,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1
+ },
+ "created": "2026-11-22T07:16:50.399Z"
+}

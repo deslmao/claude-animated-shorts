@@ -27,6 +27,8 @@ tell it. `npm run short` fails without it. The owner approves `productions/<id>/
 
 ## Format system (the owner's standing rule, 21 Nov 2026: every video from now on)
 - **Frame 0.00:** motion plus a two-line banner (the hook as on-screen text) from the very first frame.
+- **The hook (the owner, 22 Nov 2026):** the breakfast pattern. An everyday situation, then the twist, in two short
+  spoken lines ("Imagine your mum is making you breakfast. Then she texts you."). No vague teasers.
 - **Pace:** a visual change (a cut, an insert, a new angle or a big camera move) every 1.7–2.1 s on average; cut
   pace about 1.78 s.
 - **Variety:** 5–6 distinct rooms or lighting setups per video.

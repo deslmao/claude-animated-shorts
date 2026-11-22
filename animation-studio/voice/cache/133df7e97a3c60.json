@@ -1,0 +1,90 @@
+{
+ "hash": "133df7e97a3c60",
+ "text": "Then me and Glendon's hands move automatically. Going through six seven. Again. And again.",
+ "voice": "ssMe",
+ "lead": 0,
+ "end": 6.177,
+ "dur": 6.217143,
+ "words": [
+  {
+   "w": "Then",
+   "t0": 0,
+   "t1": 0.244
+  },
+  {
+   "w": "me",
+   "t0": 0.325,
+   "t1": 0.464
+  },
+  {
+   "w": "and",
+   "t0": 0.511,
+   "t1": 0.592
+  },
+  {
+   "w": "Glendon's",
+   "t0": 0.65,
+   "t1": 1.08
+  },
+  {
+   "w": "hands",
+   "t0": 1.126,
+   "t1": 1.405
+  },
+  {
+   "w": "move",
+   "t0": 1.474,
+   "t1": 1.707
+  },
+  {
+   "w": "automatically.",
+   "t0": 1.73,
+   "t1": 2.392
+  },
+  {
+   "w": "Going",
+   "t0": 2.67,
+   "t1": 2.984
+  },
+  {
+   "w": "through",
+   "t0": 3.03,
+   "t1": 3.286
+  },
+  {
+   "w": "six",
+   "t0": 3.344,
+   "t1": 3.576
+  },
+  {
+   "w": "seven.",
+   "t0": 3.634,
+   "t1": 4.063
+  },
+  {
+   "w": "Again.",
+   "t0": 4.435,
+   "t1": 5.004
+  },
+  {
+   "w": "And",
+   "t0": 5.283,
+   "t1": 5.445
+  },
+  {
+   "w": "again.",
+   "t0": 5.492,
+   "t1": 6.177
+  }
+ ],
+ "voiceId": "IKne3meq5aSn9XLyUdCD",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 1.02
+ },
+ "created": "2026-11-22T07:16:51.149Z"
+}

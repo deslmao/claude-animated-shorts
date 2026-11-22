@@ -1,0 +1,135 @@
+{
+ "model_id": "music_v1",
+ "composition_plan": {
+  "positive_global_styles": [
+   "horror-comedy score for an animated short about teens and a Ouija board",
+   "instrumental",
+   "creepy and playful"
+  ],
+  "negative_global_styles": [
+   "vocals",
+   "singing",
+   "lyrics",
+   "rap",
+   "country"
+  ],
+  "sections": [
+   {
+    "section_name": "cold open",
+    "positive_local_styles": [
+     "a dark orchestral hit and a ghostly drone",
+     "eerie"
+    ],
+    "negative_local_styles": [
+     "happy",
+     "drums"
+    ],
+    "duration_ms": 5100,
+    "lines": []
+   },
+   {
+    "section_name": "chilling",
+    "positive_local_styles": [
+     "a lazy lo-fi hip hop beat",
+     "mellow keys",
+     "relaxed and a bit goofy"
+    ],
+    "negative_local_styles": [
+     "dark",
+     "orchestral"
+    ],
+    "duration_ms": 9300,
+    "lines": []
+   },
+   {
+    "section_name": "jump scare",
+    "positive_local_styles": [
+     "a sharp horror stab, then low strings",
+     "creepy"
+    ],
+    "negative_local_styles": [
+     "happy"
+    ],
+    "duration_ms": 3700,
+    "lines": []
+   },
+   {
+    "section_name": "the board",
+    "positive_local_styles": [
+     "creeping pizzicato strings",
+     "a music box",
+     "slow and mysterious"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "happy"
+    ],
+    "duration_ms": 7700,
+    "lines": []
+   },
+   {
+    "section_name": "the bit",
+    "positive_local_styles": [
+     "a wonky tense pulse",
+     "slightly comic but uneasy",
+     "ticking"
+    ],
+    "negative_local_styles": [
+     "vocals"
+    ],
+    "duration_ms": 10900,
+    "lines": []
+   },
+   {
+    "section_name": "out of control",
+    "positive_local_styles": [
+     "fast building strings and drums",
+     "rising panic"
+    ],
+    "negative_local_styles": [
+     "happy"
+    ],
+    "duration_ms": 11500,
+    "lines": []
+   },
+   {
+    "section_name": "lights off",
+    "positive_local_styles": [
+     "near silence",
+     "a faint low hum"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "melody"
+    ],
+    "duration_ms": 3000,
+    "lines": []
+   },
+   {
+    "section_name": "floating",
+    "positive_local_styles": [
+     "terrifying dissonant strings swelling",
+     "a deep drone",
+     "horror"
+    ],
+    "negative_local_styles": [
+     "happy"
+    ],
+    "duration_ms": 9700,
+    "lines": []
+   },
+   {
+    "section_name": "last words",
+    "positive_local_styles": [
+     "a single held eerie note",
+     "then a sudden stop"
+    ],
+    "negative_local_styles": [
+     "drums"
+    ],
+    "duration_ms": 3000,
+    "lines": []
+   }
+  ]
+ }
+}

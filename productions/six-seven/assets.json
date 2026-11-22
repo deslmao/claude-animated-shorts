@@ -1,5 +1,5 @@
 {
- "reused": 39,
+ "reused": 40,
  "missing": [],
  "byKind": {
   "character": [
@@ -22,12 +22,11 @@
   ],
   "prop": [
    "ssNight",
-   "timeTint",
    "bfDread",
    "ssBoard",
    "ssInsert",
-   "ntRed",
    "memTint",
+   "ssBoardCard",
    "ntFlicker"
   ],
   "sfx": [
@@ -41,10 +40,12 @@
    "el_hit_boom",
    "el_sting_strings",
    "el_heartbeat_fast",
+   "el_teen_laugh",
    "el_lights_off",
    "el_torch_click",
-   "el_teen_laugh",
-   "el_group_scream"
+   "el_group_scream",
+   "el_run_train",
+   "el_breath_heavy"
   ],
   "act": [
    "scared",

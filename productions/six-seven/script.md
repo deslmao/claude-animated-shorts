@@ -113,3 +113,19 @@ cold glow.)*
   - a choking gasp;
   - all of us screaming.
 - **Ending:** the owner's line is the ending (no vote).
+
+## v2: the owner's preview notes (22 Nov 2026)
+- **A better hook, in the breakfast pattern** (an everyday thing, then the twist): banner **HE DID THE 6 7 MEME / ON A
+  OUIJA BOARD**; the narrator: "My best friend did the six seven meme on a Ouija board. It was the last thing he ever
+  said."
+- **No red screen, no blue screen.** The jump scare and the floating are lit normally, with the dark closing in at the edges.
+- **The board, slower and smoother:** a close-up where the planchette glides on a curve and settles on each stop, the
+  way it does in a seance: round the letters, then 6, then 7. The second time, 7, 6, 7, 6, slow at first, then faster.
+- **"SIX SEVEN! SIX SEVEN! SIX SEVEN!"**, not "sixty-seven" (every 6 7 is now voiced as words).
+- **After the hands keep going:** Isaac, close, laughing ("HAHAHA! SIX SEVEN!"), then Glendon turns to look at him:
+  "STOP IT, it's getting out of control!!!"
+- **Isaac holds his neck, not his mouth:** both hands clutching his throat, shaking.
+- **No flying animation:** he stays facing us, choking, floating off the floor.
+- **Glendon screams and runs away** ("AAAAAHHH!", out the door), then "And his last words?" on you, alone.
+- **Length:** 63.9 s; 35 camera cuts plus the planchette moves (about one visual change every 1.7 s); five setups
+  (the cosy room, the phone, candlelight, the board close-up, torchlight).

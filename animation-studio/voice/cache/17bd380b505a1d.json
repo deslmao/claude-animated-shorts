@@ -1,0 +1,30 @@
+{
+ "hash": "17bd380b505a1d",
+ "text": "[screaming] AAAAAHHH!",
+ "voice": "ssGlendon",
+ "lead": 0,
+ "end": 2,
+ "dur": 2.037551,
+ "words": [
+  {
+   "w": "[screaming]",
+   "t0": 0,
+   "t1": 0.24
+  },
+  {
+   "w": "AAAAAHHH!",
+   "t0": 0.36,
+   "t1": 2
+  }
+ ],
+ "voiceId": "pYDLV125o4CgqP8i49Lg",
+ "model": "eleven_v3",
+ "settings": {
+  "stability": 0,
+  "similarity_boost": 0.8,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1
+ },
+ "created": "2026-11-22T07:16:53.696Z"
+}

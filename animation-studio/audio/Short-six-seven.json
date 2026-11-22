@@ -1,17 +1,17 @@
 {
  "composition": "Short-six-seven",
- "fingerprint": "1a97aeab1f8ddf",
+ "fingerprint": "0d2edc78a15332",
  "engine": "sound-2",
- "frames": 1715,
- "seconds": 57.166666666666664,
- "lines": 16,
- "lufs": -14.2,
+ "frames": 1917,
+ "seconds": 63.9,
+ "lines": 18,
+ "lufs": -14.1,
  "truePeak": -1.6,
  "stems": {
-  "voice_lufs": -17.56,
+  "voice_lufs": -14.76,
   "music_vs_voice_lu": -10.0,
-  "ambience_vs_voice_lu": -20.01,
-  "sfx_cues": 21
+  "ambience_vs_voice_lu": -20.03,
+  "sfx_cues": 26
  },
- "built": "2026-11-22T06:42:56Z"
+ "built": "2026-11-22T07:18:50Z"
 }

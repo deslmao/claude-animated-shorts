@@ -138,6 +138,61 @@ const INSERTS: Record<string, Ins> = {
   // two hands (yours and Glendon's), dragged 6, 7, 6, 7 faster and faster
   board2: { n: PATHS.loop.length, draw: (g, st) => boardClose(g, PATHS.loop[st], [ME_HAND, GLEN_HAND], 1) },
 };
+// ---------------------------------------------------------------- the board close-up, moving smoothly
+// The board card is two layers: the board itself (still, in candlelight) and, over it, the planchette with the hands on
+// it, drawn on a layer twice the card's size with the arms reaching in from far off the card. That layer glides from
+// stop to stop (each step eased) along a curved line, so the planchette moves the way it does in a seance: slow,
+// circling, then settling on a letter.
+const CK = 0.78, COX = (IW - BW * CK) / 2, COY = (IH - BH * CK) / 2 - 40;
+const boardBackTex = () => stex("ssBoardBack", IW, IH, (g) => {
+  g.fillStyle = "#120a08"; g.fillRect(0, 0, IW, IH);
+  g.fillStyle = "rgba(255,170,80,0.26)"; g.beginPath(); g.ellipse(IW / 2, IH / 2, 520, 600, 0, 0, Math.PI * 2); g.fill();
+  g.save(); g.translate(COX, COY); g.scale(CK, CK); drawBoard(g); g.restore();
+  g.fillStyle = "rgba(255,150,60,0.08)"; g.fillRect(0, 0, IW, IH);
+  vig(g, 0.65);
+});
+/** the planchette at the overlay's centre, hands on it; arms reach in from `from` (directions, in overlay pixels) */
+const handsTex = (key: string, hands: [number, number, string, string][]) => stex(`ssHands_${key}`, IW, IH, (g) => {
+  g.clearRect(0, 0, IW, IH);
+  const cx = IW / 2, cy = IH / 2, k = 0.5;                      // the overlay is twice the card: half the pixel scale
+  drawPlanchette(g, cx, cy, 0.85 * CK * k);
+  for (const [fx, fy, skin, sleeve] of hands) {
+    const ang = Math.atan2(cy - fy, cx - fx), tx = cx - Math.cos(ang) * 31, ty = cy - Math.sin(ang) * 31;
+    g.lineCap = "round"; g.strokeStyle = INK; g.lineWidth = 32; g.beginPath(); g.moveTo(fx, fy); g.lineTo(tx, ty); g.stroke();
+    g.strokeStyle = sleeve; g.lineWidth = 25; g.beginPath(); g.moveTo(fx, fy); g.lineTo(tx - Math.cos(ang) * 20, ty - Math.sin(ang) * 20); g.stroke();
+    g.fillStyle = skin; g.lineWidth = 4; g.strokeStyle = INK; g.beginPath(); g.ellipse(tx, ty, 17, 14, ang, 0, Math.PI * 2); g.fill(); g.stroke();
+    for (let i = -1; i <= 1; i++) { g.beginPath(); g.ellipse(tx + Math.cos(ang) * 15 + Math.cos(ang + Math.PI / 2) * i * 8, ty + Math.sin(ang) * 15 + Math.sin(ang + Math.PI / 2) * i * 8, 5, 4, ang, 0, Math.PI * 2); g.fill(); g.stroke(); }
+  }
+});
+// arms come from far off the card: below-left (you), above (Isaac), the right (Glendon)
+const H_ME: [number, number, string, string] = [IW * 0.1, IH * 1.0, "#e8b896", "#3f7a4a"];
+const H_ISAAC: [number, number, string, string] = [IW * 0.5, 0, "#c9946c", "#e0b13a"];
+const H_GLEN: [number, number, string, string] = [IW, IH * 0.58, "#f0c8a8", "#d96a2a"];
+const CARD_PATHS: Record<string, string[]> = {
+  board3: ["MID", "C", "K", "W", "P", "6", "7"],
+  board2: ["7", "6", "7", "6", "7", "6", "7", "6", "7", "6", "7", "6", "7", "6", "7"],
+};
+const stopXY = (k: string): [number, number] => {
+  const [bx, by] = BOARD_AT[k] ?? BOARD_AT.MID, px = COX + bx * CK, py = COY + (by + 18) * CK;
+  return [(px / IW - 0.5) * 0.54, (0.5 - py / IH) * 0.96];
+};
+const boardCardRig = (a: At, v = "board3"): PropRig => {
+  const root = rigRoot(a);
+  const back = new THREE.Mesh(new THREE.PlaneGeometry(0.54, 0.96), new THREE.MeshBasicMaterial({ map: boardBackTex(), toneMapped: false })); back.layers.set(NOINK); root.add(back);
+  const hands = v === "board2" ? [H_ME, H_GLEN] : [H_ME, H_ISAAC, H_GLEN];
+  const over = new THREE.Mesh(new THREE.PlaneGeometry(1.08, 1.92), new THREE.MeshBasicMaterial({ map: handsTex(v, hands), transparent: true, depthWrite: false, toneMapped: false }));
+  over.position.z = 0.002; over.layers.set(NOINK); root.add(over);
+  const path = CARD_PATHS[v] ?? CARD_PATHS.board3;
+  return { root, update: ({ step = 0 }) => {
+    const n = Math.max(0, Math.min(path.length - 1, Math.floor(step))), f0 = Math.min(1, step - n), f = f0 * f0 * (3 - 2 * f0);
+    const A = stopXY(path[n]), B = stopXY(path[Math.min(path.length - 1, n + 1)]);
+    // a curved glide: the planchette bows off the straight line and circles a little as it goes
+    const bow = Math.sin(f * Math.PI) * 0.025, dx = B[0] - A[0], dy = B[1] - A[1], L = Math.hypot(dx, dy) || 1;
+    const x = A[0] + dx * f - (dy / L) * bow, y = A[1] + dy * f + (dx / L) * bow;
+    over.position.x = x; over.position.y = y; over.rotation.z = Math.sin(step * 2.3) * 0.05;
+  } };
+};
+
 const insertRig = (a: At, v = "phone"): PropRig => {
   const root = rigRoot(a), ins = INSERTS[v] ?? INSERTS.phone, texAt = (st: number) => stex(`ssIns_${v}_${st}`, IW, IH, (g) => ins.draw(g, st));
   const m = new THREE.Mesh(new THREE.PlaneGeometry(0.54, 0.96), new THREE.MeshBasicMaterial({ map: texAt(0), toneMapped: false })); m.layers.set(NOINK); root.add(m);
@@ -190,6 +245,8 @@ export const SIXSEVEN_THEME: Theme = {
   props: {
     ssBoard: { name: "Ouija board on a table", desc: "a Ouija board lying flat (0.62 m wide; on the apartment's coffee table: `at` [-2.6, 0.42, -0.75]), its planchette moving a stop per step. Variants: rest (in the middle), wander (round the letters, then 6, then 7), loop (6, 7, 6, 7…)", category: "theme", themes: ["horror"], tags: ["ouija", "board", "planchette"], radius: 0.05, height: 0.02,
       build: () => undefined, rig: (a, v) => boardRig(a, v ?? "rest"), steps: ["the planchette moves to the next stop"], stepCount: () => 20, variants: { rest: () => undefined, wander: () => undefined, loop: () => undefined } },
+    ssBoardCard: { name: "Ouija close-up, moving (6 7)", desc: "an upright 9:16 card (0.54 x 0.96 m, facing +z; an `at` camera 1.0 m in front at fov 51 sees only it): the board in candlelight with the planchette and hands gliding smoothly from stop to stop, a step per stop (each move eased, on a slight curve). Variants: board3 (three hands; round the letters, then 6, then 7), board2 (your hand and Glendon's: 7, 6, 7, 6…)", category: "theme", themes: ["horror", "insert"], tags: ["ouija", "planchette", "close-up"], radius: 0.3, height: 0.96,
+      build: () => undefined, rig: (a, v) => boardCardRig(a, v ?? "board3"), steps: ["glides to the next stop"], stepCount: () => 40, variants: { board3: () => undefined, board2: () => undefined } },
     ssNight: { name: "Night window (apartment)", desc: "night outside the apartment's living-room window: a dark pane with a moon over the painted daytime garden; `at` [-2.6, 1.625, -2.594]", category: "theme", themes: ["night"], tags: ["window", "night"], radius: 0.05, height: 0.1,
       build: () => undefined, rig: (a) => nightRig(a), steps: [], stepCount: () => 1 },
     ssInsert: { name: "Close insert (6 7)", desc: "an upright 9:16 insert card (0.54 x 0.96 m, facing +z), `at` = its centre: an `at` camera 1.0 m in front at fov 51 sees only the card. A state per step. Variants: phone (Isaac's phone: a cartoon cat bounced up and down to 'huss huss huss'; loops), board3 (three hands on the planchette, round the letters, then 6, then 7), board2 (two hands dragged 6, 7, 6, 7…)", category: "theme", themes: ["horror", "insert"], tags: ["insert", "phone", "ouija", "close-up"], radius: 0.3, height: 0.96,

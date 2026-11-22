@@ -1,0 +1,40 @@
+{
+ "hash": "1749a390283f8d",
+ "text": "[strangled, choking] Six… seven…",
+ "voice": "ssIsaacMuffled",
+ "lead": 0,
+ "end": 2.64,
+ "dur": 2.690612,
+ "words": [
+  {
+   "w": "[strangled,",
+   "t0": 0,
+   "t1": 0.32
+  },
+  {
+   "w": "choking]",
+   "t0": 0.33,
+   "t1": 0.48
+  },
+  {
+   "w": "Six…",
+   "t0": 0.5,
+   "t1": 0.64
+  },
+  {
+   "w": "seven…",
+   "t0": 0.933,
+   "t1": 2.64
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_v3",
+ "settings": {
+  "stability": 0,
+  "similarity_boost": 0.8,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.9
+ },
+ "created": "2026-11-22T07:16:54.719Z"
+}
