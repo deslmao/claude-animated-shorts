@@ -1,11 +1,11 @@
 {
-  "run_id": "43650769766",
-  "artifact": "Short-whale-city-run29",
-  "frames": 3164,
+  "run_id": "45001790046",
+  "artifact": "Short-six-seven-run54",
+  "frames": 1917,
   "width": 1080,
   "height": 1920,
   "audio": "required",
-  "seams": "158,316,474,632,791,949,1107,1265,1423,1582,1740,1898,2056,2214,2373,2531,2689,2847,3005",
-  "keep": "productions/whale-city/final/Short-whale-city.mp4",
-  "note": "The Whale City final render (run 29, 20 chunks). Full QA with all 19 chunk seams, then keep the MP4 in the repo (no GitHub Release)."
+  "seams": "95,191,287,383,479,575,670,766,862,958,1054,1150,1246,1341,1437,1533,1629,1725,1821",
+  "keep": "productions/six-seven/final/Short-six-seven.mp4",
+  "note": "6 7 final render (run 54, 20 chunks). Full QA with all 19 chunk seams, then keep the MP4 in the repo (no GitHub Release)."
 }
