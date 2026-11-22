@@ -84,6 +84,12 @@ export const VOICES: Record<string, VoicePreset> = {
   // texts read in Mum's voice through a phone filter (the narrator is georgeHushed)
   bfMum: { name: "Bella - Professional, Bright, Warm", voiceId: "hpp4J3VqNfWAUOO0d1Us", model: MODEL, settings: { ...CHANNEL, stability: 0.55, style: 0.2, speed: 0.95 }, note: "Mum in the kitchen: warm, close, a little too sweet" },
   bfMumDoor: { name: "Bella - Professional, Bright, Warm", voiceId: "hpp4J3VqNfWAUOO0d1Us", model: MODEL, settings: { ...CHANNEL, stability: 0.3, style: 0.5, speed: 1.05 }, note: "Mum at the front door: panicked, through the door", fx: "door" },
+  // 6 7 (productions/six-seven): you (an Aussie teen, narrating and talking), Isaac, Glendon, the meme on Isaac's phone
+  ssMe: { name: "Charlie - Deep, Confident, Energetic", voiceId: "IKne3meq5aSn9XLyUdCD", model: MODEL, settings: { ...CHANNEL, stability: 0.45, style: 0.3, speed: 1.02 }, note: "you: an Aussie, telling his mates what happened" },
+  ssIsaac: { name: "Archie - English teen youth", voiceId: "kmSVBPu7loj4ayNinwWM", model: "eleven_v3", settings: { stability: 0.0, similarity_boost: 0.8, style: 0, use_speaker_boost: true, speed: 1.0 }, note: "Isaac: giggly, a menace (v3 audio tags: [laughing])" },
+  ssIsaacMuffled: { name: "Archie - English teen youth", voiceId: "kmSVBPu7loj4ayNinwWM", model: "eleven_v3", settings: { stability: 0.0, similarity_boost: 0.8, style: 0, use_speaker_boost: true, speed: 0.9 }, note: "Isaac's last words: strangled, muffled", fx: "door" },
+  ssGlendon: { name: "Toby - Raspy, Youthful and Articulate", voiceId: "pYDLV125o4CgqP8i49Lg", model: "eleven_v3", settings: { stability: 0.0, similarity_boost: 0.8, style: 0, use_speaker_boost: true, speed: 1.0 }, note: "Glendon: panicking (v3 audio tags: [shouting])" },
+  ssPhone: { name: "Brian - Deep, Resonant and Comforting", voiceId: "nPczCjzI2devNBz1zQrb", model: MODEL, settings: { ...CHANNEL, stability: 0.6, style: 0.2, speed: 0.95 }, note: "the meme on Isaac's phone (our own parody re-voice), through the phone speaker", fx: "radio" },
   // The Last Train (productions/night-train): the man screaming, the man whispering (uncanny), your thoughts, the announcer
   ntMan: { name: "Bill - Wise, Mature, Balanced", voiceId: "pqHfZKP75CvOlQylNhV4", model: MODEL, settings: { ...CHANNEL, stability: 0.22, style: 0.7, speed: 1.0 }, note: "the man on the train: hoarse, desperate, screaming" },
   // eleven_v3 with audio tags ([screaming], [shouting]): a real scream (the owner's preview note: "the audio isn't screaming")

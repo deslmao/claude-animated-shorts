@@ -1,0 +1,50 @@
+{
+ "hash": "107779cf7701b4",
+ "text": "[laughing hysterically] 67! 67! 67! 67!",
+ "voice": "ssIsaac",
+ "lead": 0,
+ "end": 5.76,
+ "dur": 5.799184,
+ "words": [
+  {
+   "w": "[laughing",
+   "t0": 0,
+   "t1": 0.56
+  },
+  {
+   "w": "hysterically]",
+   "t0": 0.72,
+   "t1": 2
+  },
+  {
+   "w": "67!",
+   "t0": 2.16,
+   "t1": 2.56
+  },
+  {
+   "w": "67!",
+   "t0": 2.72,
+   "t1": 3.68
+  },
+  {
+   "w": "67!",
+   "t0": 3.84,
+   "t1": 4.88
+  },
+  {
+   "w": "67!",
+   "t0": 4.96,
+   "t1": 5.76
+  }
+ ],
+ "voiceId": "kmSVBPu7loj4ayNinwWM",
+ "model": "eleven_v3",
+ "settings": {
+  "stability": 0,
+  "similarity_boost": 0.8,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1
+ },
+ "created": "2026-11-22T06:31:12.203Z"
+}

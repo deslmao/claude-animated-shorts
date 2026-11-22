@@ -1,0 +1,85 @@
+{
+ "hash": "1090414061988a",
+ "text": "“6 7.” The last words that came out of my best friend's mouth.",
+ "voice": "ssMe",
+ "lead": 0,
+ "end": 3.994,
+ "dur": 4.022857,
+ "words": [
+  {
+   "w": "“6",
+   "t0": 0,
+   "t1": 0.279
+  },
+  {
+   "w": "7.”",
+   "t0": 0.325,
+   "t1": 0.766
+  },
+  {
+   "w": "The",
+   "t0": 1.265,
+   "t1": 1.393
+  },
+  {
+   "w": "last",
+   "t0": 1.463,
+   "t1": 1.718
+  },
+  {
+   "w": "words",
+   "t0": 1.765,
+   "t1": 2.032
+  },
+  {
+   "w": "that",
+   "t0": 2.067,
+   "t1": 2.183
+  },
+  {
+   "w": "came",
+   "t0": 2.229,
+   "t1": 2.426
+  },
+  {
+   "w": "out",
+   "t0": 2.461,
+   "t1": 2.554
+  },
+  {
+   "w": "of",
+   "t0": 2.577,
+   "t1": 2.624
+  },
+  {
+   "w": "my",
+   "t0": 2.67,
+   "t1": 2.74
+  },
+  {
+   "w": "best",
+   "t0": 2.81,
+   "t1": 3.007
+  },
+  {
+   "w": "friend's",
+   "t0": 3.053,
+   "t1": 3.32
+  },
+  {
+   "w": "mouth.",
+   "t0": 3.367,
+   "t1": 3.994
+  }
+ ],
+ "voiceId": "IKne3meq5aSn9XLyUdCD",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 1.02
+ },
+ "created": "2026-11-22T06:31:06.126Z"
+}

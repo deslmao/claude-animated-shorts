@@ -393,6 +393,48 @@
    "s": 3,
    "level": -6,
    "p": "A grown man screaming in raw anguish and despair, a long hoarse desperate scream, close, inside a train, no words"
+  },
+  "el_whispers_bed": {
+   "s": 10,
+   "level": -12,
+   "stereo": true,
+   "p": "An unsettling low hum with faint creepy whispers in a dark room, barely audible, ghostly, building dread, no music"
+  },
+  "el_planchette": {
+   "s": 3,
+   "level": -8,
+   "p": "A small wooden planchette sliding across a wooden Ouija board in a quiet room, scraping, stopping, sliding again"
+  },
+  "el_lights_off": {
+   "s": 1.5,
+   "level": -6,
+   "p": "All the lights in a house cutting out at once: an electrical clunk and a dying buzz, then silence"
+  },
+  "el_torch_click": {
+   "s": 1,
+   "level": -8,
+   "p": "Two phone flashlights clicking on in a dark room"
+  },
+  "el_choke": {
+   "s": 3,
+   "level": -6,
+   "p": "A teenage boy choking and gasping for air, strangled, struggling to breathe, close"
+  },
+  "el_group_scream": {
+   "s": 2.5,
+   "level": -4,
+   "p": "Two teenage boys screaming in terror at the same time in a dark living room"
+  },
+  "el_teen_laugh": {
+   "s": 4,
+   "level": -8,
+   "p": "A teenage boy laughing hysterically in the dark, echoing slightly, getting creepier"
+  },
+  "el_float_rise": {
+   "s": 3,
+   "level": -8,
+   "stereo": true,
+   "p": "A supernatural rising whoosh, a deep eerie drone swelling as something is lifted into the air by an invisible force"
   }
  },
  "bed": {

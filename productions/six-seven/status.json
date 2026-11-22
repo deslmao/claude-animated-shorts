@@ -1,0 +1,111 @@
+{
+ "id": "six-seven",
+ "composition": "Short-six-seven",
+ "stages": {
+  "validate": {
+   "state": "done",
+   "at": "2026-11-22T06:42:46.790Z",
+   "inputs": "1dc72a201c6c3bn",
+   "detail": "valid; 31 warning(s):\n  shot 1 (apartment): light \"night\" on an indoor set\n  shot 3 (apartment): light \"night\" on an indoor set\n  shot 6 (apartment): light \"night\" on an indoor set\n  shot 7 (apartment): light \"night\" on an indoor set\n  shot 8 (apartment): light \"night\" on an indoor set\n  shot 9 (apartment): light \"night\" on an indoor set\n  shot 10 (apartment): light \"night\" on an indoor set\n  shot 11 (apartment): light \"night\" on an indoor set\n  shot 12 (apartment): light \"night\" on an indoor set\n  shot 13 (apartment): light \"night\" on an indoor set\n  shot 14 (apartment): light \"night\" on an indoor set\n  shot 15 (apartment): light \"night\" on an indoor set\n  shot 1 (apartment): ssIsaac fills 39 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 2 (apartment): ssMe fills 37 % of the frame in the foreground @2.4s (is it hiding the action?)\n  shot 2 (apartment): ssIsaac fills 96 % of the frame in the foreground @3.2s (is it hiding the action?)\n  shot 4 (apartment): ssMe fills 58 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 4 (apartment): ssGlendon fills 60 % of the frame in the foreground @0.8s (is it hiding the action?)\n  shot 5 (apartment): ssMe fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 8 (apartment): ssIsaac's hand (sixSeven) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 8 (apartment): ssIsaac fills 59 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 8 (apartment): ssMe fills 100 % of the frame in the foreground @2.8s (is it hiding the action?)\n  shot 9 (apartment): ssMe fills 96 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 9 (apartment): ssIsaac's hand (sixSeven) is out of frame @3.4s (side): widen the shot or change the gesture\n  shot 9 (apartment): ssIsaac fills 90 % of the frame in the foreground @3.4s (is it hiding the action?)\n  shot 11 (apartment): ssGlendon fills 95 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 12 (apartment): ssIsaac's hand (sixSeven) is out of frame @1.6s (side): widen the shot or change the gesture\n  shot 12 (apartment): ssIsaac fills 94 % of the frame in the foreground @1.6s (is it hiding the action?)\n  shot 13 (apartment): ssIsaac fills 93 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 14 (apartment): ssMe fills 100 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 14 (apartment): ssGlendon fills 97 % of the frame in the foreground @0.6s (is it hiding the action?)\n  shot 15 (apartment): ssIsaac fills 39 % of the frame in the foreground @0.0s (is it hiding the action?)"
+  },
+  "assets": {
+   "state": "done",
+   "at": "2026-11-22T06:42:46.792Z",
+   "inputs": "1dc72a201c6c3b",
+   "detail": "39 library assets reused, none missing",
+   "data": {
+    "reused": 39,
+    "missing": [],
+    "byKind": {
+     "character": [
+      "ssMe",
+      "ssIsaac",
+      "ssGlendon"
+     ],
+     "set": [
+      "apartment"
+     ],
+     "camera": [
+      "at"
+     ],
+     "light": [
+      "night",
+      "interior"
+     ],
+     "ambience": [
+      "elb_house_night"
+     ],
+     "prop": [
+      "ssNight",
+      "timeTint",
+      "bfDread",
+      "ssBoard",
+      "ssInsert",
+      "ntRed",
+      "memTint",
+      "ntFlicker"
+     ],
+     "sfx": [
+      "el_choke",
+      "el_float_rise",
+      "el_whispers_bed",
+      "phone_tap",
+      "el_jumpscare",
+      "el_planchette",
+      "el_hit_sub",
+      "el_hit_boom",
+      "el_sting_strings",
+      "el_heartbeat_fast",
+      "el_lights_off",
+      "el_torch_click",
+      "el_teen_laugh",
+      "el_group_scream"
+     ],
+     "act": [
+      "scared",
+      "neutral",
+      "happy",
+      "shock",
+      "nervous",
+      "laugh",
+      "angry"
+     ],
+     "item": [
+      "phone",
+      "ouijaBoard"
+     ]
+    }
+   }
+  },
+  "approval": {
+   "state": "done",
+   "at": "2026-11-22T06:42:46.794Z",
+   "inputs": "1f54f21504c311",
+   "detail": "all narration already generated (no cost)"
+  },
+  "narration": {
+   "state": "done",
+   "at": "2026-11-22T06:42:46.794Z",
+   "inputs": "1f54f21504c311",
+   "detail": "all lines already generated (cached)"
+  },
+  "sound": {
+   "state": "done",
+   "at": "2026-11-22T06:42:56.395Z",
+   "inputs": "1a97aeab1f8ddf",
+   "detail": "soundtrack built: -14.2 LUFS"
+  },
+  "checks": {
+   "state": "done",
+   "at": "2026-11-22T06:43:01.064Z",
+   "inputs": "1a97aeab1f8ddf",
+   "detail": "preflight PASS; library intact"
+  }
+ },
+ "approval": {
+  "scriptHash": "1f54f21504c311",
+  "chars": 897,
+  "at": "2026-11-22T06:31:04.612Z",
+  "by": "the owner, in the conversation"
+ }
+}

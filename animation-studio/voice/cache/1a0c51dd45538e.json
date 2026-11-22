@@ -1,0 +1,40 @@
+{
+ "hash": "1a0c51dd45538e",
+ "text": "The lights go off.",
+ "voice": "ssMe",
+ "lead": 0,
+ "end": 0.975,
+ "dur": 1.018776,
+ "words": [
+  {
+   "w": "The",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "lights",
+   "t0": 0.232,
+   "t1": 0.453
+  },
+  {
+   "w": "go",
+   "t0": 0.488,
+   "t1": 0.592
+  },
+  {
+   "w": "off.",
+   "t0": 0.662,
+   "t1": 0.975
+  }
+ ],
+ "voiceId": "IKne3meq5aSn9XLyUdCD",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 1.02
+ },
+ "created": "2026-11-22T06:31:15.582Z"
+}

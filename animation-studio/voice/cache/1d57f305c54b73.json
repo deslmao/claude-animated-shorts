@@ -1,0 +1,85 @@
+{
+ "hash": "1d57f305c54b73",
+ "text": "It floats around all of the letters… but goes to 6… and 7.",
+ "voice": "ssMe",
+ "lead": 0,
+ "end": 4.505,
+ "dur": 4.545306,
+ "words": [
+  {
+   "w": "It",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "floats",
+   "t0": 0.232,
+   "t1": 0.546
+  },
+  {
+   "w": "around",
+   "t0": 0.58,
+   "t1": 0.882
+  },
+  {
+   "w": "all",
+   "t0": 0.975,
+   "t1": 1.196
+  },
+  {
+   "w": "of",
+   "t0": 1.242,
+   "t1": 1.289
+  },
+  {
+   "w": "the",
+   "t0": 1.324,
+   "t1": 1.405
+  },
+  {
+   "w": "letters…",
+   "t0": 1.451,
+   "t1": 1.95
+  },
+  {
+   "w": "but",
+   "t0": 2.543,
+   "t1": 2.705
+  },
+  {
+   "w": "goes",
+   "t0": 2.763,
+   "t1": 2.972
+  },
+  {
+   "w": "to",
+   "t0": 3.019,
+   "t1": 3.077
+  },
+  {
+   "w": "6…",
+   "t0": 3.146,
+   "t1": 3.553
+  },
+  {
+   "w": "and",
+   "t0": 3.704,
+   "t1": 3.831
+  },
+  {
+   "w": "7.",
+   "t0": 3.889,
+   "t1": 4.505
+  }
+ ],
+ "voiceId": "IKne3meq5aSn9XLyUdCD",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 1.02
+ },
+ "created": "2026-11-22T06:31:09.821Z"
+}

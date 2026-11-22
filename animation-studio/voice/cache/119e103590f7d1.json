@@ -1,0 +1,65 @@
+{
+ "hash": "119e103590f7d1",
+ "text": "[panicked shouting] STOP IT, it's getting out of control!!!",
+ "voice": "ssGlendon",
+ "lead": 0,
+ "end": 2.4,
+ "dur": 2.429388,
+ "words": [
+  {
+   "w": "[panicked",
+   "t0": 0,
+   "t1": 0.133
+  },
+  {
+   "w": "shouting]",
+   "t0": 0.136,
+   "t1": 0.28
+  },
+  {
+   "w": "STOP",
+   "t0": 0.304,
+   "t1": 0.4
+  },
+  {
+   "w": "IT,",
+   "t0": 0.48,
+   "t1": 0.72
+  },
+  {
+   "w": "it's",
+   "t0": 0.747,
+   "t1": 0.88
+  },
+  {
+   "w": "getting",
+   "t0": 0.91,
+   "t1": 1.12
+  },
+  {
+   "w": "out",
+   "t0": 1.16,
+   "t1": 1.28
+  },
+  {
+   "w": "of",
+   "t0": 1.307,
+   "t1": 1.36
+  },
+  {
+   "w": "control!!!",
+   "t0": 1.46,
+   "t1": 2.4
+  }
+ ],
+ "voiceId": "pYDLV125o4CgqP8i49Lg",
+ "model": "eleven_v3",
+ "settings": {
+  "stability": 0,
+  "similarity_boost": 0.8,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 1
+ },
+ "created": "2026-11-22T06:31:15.117Z"
+}

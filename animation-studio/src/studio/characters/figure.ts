@@ -446,9 +446,11 @@ export type Gesture = "hang" | "wave" | "point" | "pointUp" | "shrug" | "facepal
   | "cheer" | "talk" | "scratchHead" | "coverMouth" | "present" | "fists" | "clap" | "belly" | "stop" | "pump" | "spread" | "hold"
   | "tickleSelf" | "tickle" | "operate" | "read" | "offer" | "write" | "grab" | "block"
   /** eat (Video 04): the held item raised to the mouth, drawn over the face (a bite) */
-  | "eat";
+  | "eat"
+  /** sixSeven (6 7): the "6 7" meme hands: forearms out, palms up, the two hands bobbing up and down in turn */
+  | "sixSeven";
 export const GESTURES: Gesture[] = ["hang", "wave", "point", "pointUp", "shrug", "facepalm", "chin", "thumbsUp", "crossArms", "hips", "raiseHand",
-  "cheer", "talk", "scratchHead", "coverMouth", "present", "fists", "clap", "belly", "stop", "spread", "hold", "tickleSelf", "tickle", "operate", "read", "offer", "write", "grab", "block", "eat"];
+  "cheer", "talk", "scratchHead", "coverMouth", "present", "fists", "clap", "belly", "stop", "spread", "hold", "tickleSelf", "tickle", "operate", "read", "offer", "write", "grab", "block", "eat", "sixSeven"];
 /** gestures that show a held item off overhead (raise it, point it up, cheer with it); any other gesture becomes "hold"
  *  (the item at chest height, close to the body, so it stays in frame in medium shots) while something is held */
 const CARRY: Gesture[] = ["hold", "raiseHand", "pointUp", "cheer", "operate", "read", "offer", "write", "grab", "eat"];
@@ -524,11 +526,13 @@ export const rigFront = (L: Look, pose: Pose) => {
   const sw = mode === "march" || mode === "walk" ? Math.sin(two * phase) : 0;
   const arms: ArmDef[] = [];
   const add = (side: number, E: P2, Hd: P2, layer: 0 | 1 | 2 = 0, hand: Hand = "dot", dir?: number) => arms.push({ pts: [sh(side), E, Hd], layer, hand, dir });
-  const g0: Gesture = mode === "run" ? "pump" : mode === "jump" ? (gesture === "hang" ? "cheer" : gesture) : mode === "sit" || mode === "fall" ? "hang" : gesture;
+  // sixSeven (6 7) is the one gesture a sitter keeps (the meme is done sitting down); every other seated pose is unchanged
+  const seatedSixSeven = mode === "sit" && gesture === "sixSeven";
+  const g0: Gesture = mode === "run" ? "pump" : mode === "jump" ? (gesture === "hang" ? "cheer" : gesture) : seatedSixSeven ? gesture : mode === "sit" || mode === "fall" ? "hang" : gesture;
   const g: Gesture = pose.hold && ITEMS[pose.hold] && mode !== "fall" && !CARRY.includes(g0) ? "hold" : g0;
   const one = (fn: (s: number) => void) => { fn(hs); const o = -hs; arms.push({ pts: hang(o, -sw * o), layer: 0, hand: "dot" }); };
   const S1 = (s: number) => sh(s);
-  if (mode === "sit") for (const s of [-1, 1]) add(s, [tcx + s * (1.1 * T.a + 6 * u), shY + 0.4 * HH], [tcx + s * (1.2 * T.a + 10 * u), torsoBot + 0.04 * HH]);
+  if (mode === "sit" && !seatedSixSeven) for (const s of [-1, 1]) add(s, [tcx + s * (1.1 * T.a + 6 * u), shY + 0.4 * HH], [tcx + s * (1.2 * T.a + 10 * u), torsoBot + 0.04 * HH]);
   else if (mode === "fall") for (const s of [-1, 1]) add(s, [tcx + s * (1.15 * T.a + 12 * u), shY - 0.25 * HH], [tcx + s * (1.3 * T.a + 24 * u), shY - 0.68 * HH], 0, "open");
   else switch (g) {
     case "hang": for (const s of [-1, 1]) arms.push({ pts: hang(s, sw * s), layer: 0, hand: "dot" }); break;
@@ -548,6 +552,7 @@ export const rigFront = (L: Look, pose: Pose) => {
     case "facepalm": one((s) => add(s, [tcx + s * 1.0 * T.a, chin + 0.36 * HH], [300 + 6 * u * facing + s * 4 * u, hc + 0.02 * HH], 2, "open")); break;
     case "scratchHead": one((s) => { const S = S1(s); add(s, [S[0] + s * 0.46 * HH, S[1] - 0.2 * HH], [300 + s * 0.42 * W, hc - 0.55 * H.b], 2, "dot"); }); break;
     case "coverMouth": for (const s of [-1, 1]) add(s, [tcx + s * 1.05 * T.a, chin + 0.4 * HH], [300 + 8 * u * facing + s * 9 * u, hc + 0.5 * H.b], 2, "open"); break;
+    case "sixSeven": { const w = Math.sin(t * 9); for (const s of [-1, 1]) { const S = S1(s), dy = s * w * 0.36 * HH; add(s, [S[0] + s * 0.3 * HH, S[1] + 0.46 * HH], [S[0] + s * 0.62 * HH, S[1] + 0.22 * HH + dy], 1, "open"); } break; }
     case "shrug": for (const s of [-1, 1]) { const S = S1(s); add(s, [S[0] + s * 0.36 * HH, S[1] + 0.34 * HH], [S[0] + s * 0.64 * HH, S[1] + 0.02 * HH], 0, "open"); } break;
     case "spread": for (const s of [-1, 1]) { const S = S1(s); add(s, [S[0] + s * 0.36 * HH, S[1] - 0.12 * HH], [S[0] + s * 0.7 * HH, S[1] - 0.42 * HH], 0, "open"); } break;
     case "cheer": for (const s of [-1, 1]) { const S = S1(s); add(s, [S[0] + s * 0.3 * HH, S[1] - 0.34 * HH], [S[0] + s * 0.48 * HH, S[1] - 0.76 * HH], 0, "fist"); } break;

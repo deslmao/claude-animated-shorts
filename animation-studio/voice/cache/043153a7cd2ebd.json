@@ -1,0 +1,40 @@
+{
+ "hash": "043153a7cd2ebd",
+ "text": "And Isaac's still laughing.",
+ "voice": "ssMe",
+ "lead": 0,
+ "end": 1.533,
+ "dur": 1.567347,
+ "words": [
+  {
+   "w": "And",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "Isaac's",
+   "t0": 0.244,
+   "t1": 0.58
+  },
+  {
+   "w": "still",
+   "t0": 0.604,
+   "t1": 0.836
+  },
+  {
+   "w": "laughing.",
+   "t0": 0.894,
+   "t1": 1.533
+  }
+ ],
+ "voiceId": "IKne3meq5aSn9XLyUdCD",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 1.02
+ },
+ "created": "2026-11-22T06:31:16.060Z"
+}

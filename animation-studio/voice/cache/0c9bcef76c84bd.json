@@ -1,0 +1,55 @@
+{
+ "hash": "0c9bcef76c84bd",
+ "text": "Then Glendon pulls out a Ouija board.",
+ "voice": "ssMe",
+ "lead": 0,
+ "end": 2.183,
+ "dur": 2.220408,
+ "words": [
+  {
+   "w": "Then",
+   "t0": 0,
+   "t1": 0.232
+  },
+  {
+   "w": "Glendon",
+   "t0": 0.302,
+   "t1": 0.685
+  },
+  {
+   "w": "pulls",
+   "t0": 0.766,
+   "t1": 1.01
+  },
+  {
+   "w": "out",
+   "t0": 1.057,
+   "t1": 1.173
+  },
+  {
+   "w": "a",
+   "t0": 1.207,
+   "t1": 1.231
+  },
+  {
+   "w": "Ouija",
+   "t0": 1.289,
+   "t1": 1.544
+  },
+  {
+   "w": "board.",
+   "t0": 1.591,
+   "t1": 2.183
+  }
+ ],
+ "voiceId": "IKne3meq5aSn9XLyUdCD",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 1.02
+ },
+ "created": "2026-11-22T06:31:08.085Z"
+}

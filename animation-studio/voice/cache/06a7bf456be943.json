@@ -1,0 +1,100 @@
+{
+ "hash": "06a7bf456be943",
+ "text": "In this town, everyone is partying except for me. I'm locked in. HUSS HUSS HUSS HUSS.",
+ "voice": "ssPhone",
+ "lead": 0,
+ "end": 5.248,
+ "dur": 5.276735,
+ "words": [
+  {
+   "w": "In",
+   "t0": 0,
+   "t1": 0.139
+  },
+  {
+   "w": "this",
+   "t0": 0.186,
+   "t1": 0.325
+  },
+  {
+   "w": "town,",
+   "t0": 0.372,
+   "t1": 0.639
+  },
+  {
+   "w": "everyone",
+   "t0": 0.673,
+   "t1": 1.022
+  },
+  {
+   "w": "is",
+   "t0": 1.057,
+   "t1": 1.115
+  },
+  {
+   "w": "partying",
+   "t0": 1.184,
+   "t1": 1.509
+  },
+  {
+   "w": "except",
+   "t0": 1.579,
+   "t1": 1.869
+  },
+  {
+   "w": "for",
+   "t0": 1.892,
+   "t1": 1.985
+  },
+  {
+   "w": "me.",
+   "t0": 2.032,
+   "t1": 2.334
+  },
+  {
+   "w": "I'm",
+   "t0": 2.554,
+   "t1": 2.705
+  },
+  {
+   "w": "locked",
+   "t0": 2.763,
+   "t1": 3.007
+  },
+  {
+   "w": "in.",
+   "t0": 3.053,
+   "t1": 3.367
+  },
+  {
+   "w": "HUSS",
+   "t0": 3.622,
+   "t1": 3.924
+  },
+  {
+   "w": "HUSS",
+   "t0": 3.994,
+   "t1": 4.203
+  },
+  {
+   "w": "HUSS",
+   "t0": 4.261,
+   "t1": 4.458
+  },
+  {
+   "w": "HUSS.",
+   "t0": 4.528,
+   "t1": 5.248
+  }
+ ],
+ "voiceId": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-22T06:31:07.552Z"
+}

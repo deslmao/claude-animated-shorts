@@ -161,6 +161,14 @@ export const SFX = {
   el_reverse_swell: "recorded: A reverse cymbal swell rising into a sudden stop, eerie (2.5 s)",
   el_scream_far: "recorded: A man's distant echoing scream 'why me', ghostly and faint, far away down a tunnel (2.5 s)",
   el_man_scream: "recorded: A grown man screaming in raw anguish, a long hoarse desperate scream, no words (3 s)",
+  el_whispers_bed: "recorded: An unsettling low hum with faint creepy whispers in a dark room, barely audible, ghostly, building dread, no music (10 s)",
+  el_planchette: "recorded: A small wooden planchette sliding across a wooden Ouija board in a quiet room, scraping, stopping, sliding again (3 s)",
+  el_lights_off: "recorded: All the lights in a house cutting out at once: an electrical clunk and a dying buzz, then silence (1.5 s)",
+  el_torch_click: "recorded: Two phone flashlights clicking on in a dark room (1 s)",
+  el_choke: "recorded: A teenage boy choking and gasping for air, strangled, struggling to breathe, close (3 s)",
+  el_group_scream: "recorded: Two teenage boys screaming in terror at the same time in a dark living room (2.5 s)",
+  el_teen_laugh: "recorded: A teenage boy laughing hysterically in the dark, echoing slightly, getting creepier (4 s)",
+  el_float_rise: "recorded: A supernatural rising whoosh, a deep eerie drone swelling as something is lifted into the air by an invisible force (3 s)",
   el_siren_far: "recorded: Distant police and ambulance sirens echoing through a rainy futuristic city at night (5.0 s)",
 } as const;
 export type SfxName = keyof typeof SFX;

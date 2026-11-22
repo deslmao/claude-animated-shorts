@@ -1,0 +1,63 @@
+{
+ "reused": 39,
+ "missing": [],
+ "byKind": {
+  "character": [
+   "ssMe",
+   "ssIsaac",
+   "ssGlendon"
+  ],
+  "set": [
+   "apartment"
+  ],
+  "camera": [
+   "at"
+  ],
+  "light": [
+   "night",
+   "interior"
+  ],
+  "ambience": [
+   "elb_house_night"
+  ],
+  "prop": [
+   "ssNight",
+   "timeTint",
+   "bfDread",
+   "ssBoard",
+   "ssInsert",
+   "ntRed",
+   "memTint",
+   "ntFlicker"
+  ],
+  "sfx": [
+   "el_choke",
+   "el_float_rise",
+   "el_whispers_bed",
+   "phone_tap",
+   "el_jumpscare",
+   "el_planchette",
+   "el_hit_sub",
+   "el_hit_boom",
+   "el_sting_strings",
+   "el_heartbeat_fast",
+   "el_lights_off",
+   "el_torch_click",
+   "el_teen_laugh",
+   "el_group_scream"
+  ],
+  "act": [
+   "scared",
+   "neutral",
+   "happy",
+   "shock",
+   "nervous",
+   "laugh",
+   "angry"
+  ],
+  "item": [
+   "phone",
+   "ouijaBoard"
+  ]
+ }
+}

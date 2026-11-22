@@ -1,0 +1,80 @@
+{
+ "hash": "1449902e1a26d1",
+ "text": "We were chilling at Glendon's place. In the living room, scrolling mindlessly.",
+ "voice": "ssMe",
+ "lead": 0,
+ "end": 4.458,
+ "dur": 4.493061,
+ "words": [
+  {
+   "w": "We",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "were",
+   "t0": 0.197,
+   "t1": 0.325
+  },
+  {
+   "w": "chilling",
+   "t0": 0.372,
+   "t1": 0.708
+  },
+  {
+   "w": "at",
+   "t0": 0.755,
+   "t1": 0.813
+  },
+  {
+   "w": "Glendon's",
+   "t0": 0.859,
+   "t1": 1.254
+  },
+  {
+   "w": "place.",
+   "t0": 1.289,
+   "t1": 1.718
+  },
+  {
+   "w": "In",
+   "t0": 2.09,
+   "t1": 2.229
+  },
+  {
+   "w": "the",
+   "t0": 2.264,
+   "t1": 2.334
+  },
+  {
+   "w": "living",
+   "t0": 2.368,
+   "t1": 2.589
+  },
+  {
+   "w": "room,",
+   "t0": 2.635,
+   "t1": 2.926
+  },
+  {
+   "w": "scrolling",
+   "t0": 3.042,
+   "t1": 3.495
+  },
+  {
+   "w": "mindlessly.",
+   "t0": 3.553,
+   "t1": 4.458
+  }
+ ],
+ "voiceId": "IKne3meq5aSn9XLyUdCD",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 1.02
+ },
+ "created": "2026-11-22T06:31:06.770Z"
+}
