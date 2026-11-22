@@ -1,0 +1,70 @@
+{
+ "hash": "16ead2ce1c5f63",
+ "text": "Then who's at the stove… and who's at the door?",
+ "voice": "bfThought",
+ "lead": 0,
+ "end": 4.133,
+ "dur": 4.179592,
+ "words": [
+  {
+   "w": "Then",
+   "t0": 0,
+   "t1": 0.209
+  },
+  {
+   "w": "who's",
+   "t0": 0.244,
+   "t1": 0.476
+  },
+  {
+   "w": "at",
+   "t0": 0.534,
+   "t1": 0.627
+  },
+  {
+   "w": "the",
+   "t0": 0.685,
+   "t1": 0.778
+  },
+  {
+   "w": "stove…",
+   "t0": 0.859,
+   "t1": 1.625
+  },
+  {
+   "w": "and",
+   "t0": 2.415,
+   "t1": 2.601
+  },
+  {
+   "w": "who's",
+   "t0": 2.67,
+   "t1": 2.914
+  },
+  {
+   "w": "at",
+   "t0": 2.972,
+   "t1": 3.065
+  },
+  {
+   "w": "the",
+   "t0": 3.135,
+   "t1": 3.228
+  },
+  {
+   "w": "door?",
+   "t0": 3.309,
+   "t1": 4.133
+  }
+ ],
+ "voiceId": "1tDEBGOo8EqEPApM49eJ",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.75,
+  "style": 0.35,
+  "use_speaker_boost": true,
+  "speed": 0.88
+ },
+ "created": "2026-11-22T09:26:44.284Z"
+}

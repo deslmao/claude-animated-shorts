@@ -1,0 +1,70 @@
+{
+ "hash": "1f7a769d8ff3ca",
+ "text": "Bug. Don't say anything. Walk to the back door. Now.",
+ "voice": "bfText",
+ "lead": 0,
+ "end": 4.18,
+ "dur": 4.205714,
+ "words": [
+  {
+   "w": "Bug.",
+   "t0": 0,
+   "t1": 0.58
+  },
+  {
+   "w": "Don't",
+   "t0": 0.917,
+   "t1": 1.138
+  },
+  {
+   "w": "say",
+   "t0": 1.184,
+   "t1": 1.324
+  },
+  {
+   "w": "anything.",
+   "t0": 1.37,
+   "t1": 1.858
+  },
+  {
+   "w": "Walk",
+   "t0": 2.194,
+   "t1": 2.403
+  },
+  {
+   "w": "to",
+   "t0": 2.45,
+   "t1": 2.496
+  },
+  {
+   "w": "the",
+   "t0": 2.543,
+   "t1": 2.612
+  },
+  {
+   "w": "back",
+   "t0": 2.647,
+   "t1": 2.821
+  },
+  {
+   "w": "door.",
+   "t0": 2.879,
+   "t1": 3.297
+  },
+  {
+   "w": "Now.",
+   "t0": 3.483,
+   "t1": 4.18
+  }
+ ],
+ "voiceId": "hpp4J3VqNfWAUOO0d1Us",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.65,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-22T09:26:45.774Z"
+}

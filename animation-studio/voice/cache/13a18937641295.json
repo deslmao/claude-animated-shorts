@@ -1,0 +1,35 @@
+{
+ "hash": "13a18937641295",
+ "text": "Hang up, Bug.",
+ "voice": "bfMum",
+ "lead": 0,
+ "end": 1.161,
+ "dur": 1.201633,
+ "words": [
+  {
+   "w": "Hang",
+   "t0": 0,
+   "t1": 0.244
+  },
+  {
+   "w": "up,",
+   "t0": 0.302,
+   "t1": 0.453
+  },
+  {
+   "w": "Bug.",
+   "t0": 0.476,
+   "t1": 1.161
+  }
+ ],
+ "voiceId": "hpp4J3VqNfWAUOO0d1Us",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-22T09:26:48.810Z"
+}

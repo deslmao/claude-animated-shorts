@@ -1,0 +1,45 @@
+{
+ "hash": "0d42b7df71d25a",
+ "text": "The text says hang up.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 1.579,
+ "dur": 1.619592,
+ "words": [
+  {
+   "w": "The",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "text",
+   "t0": 0.221,
+   "t1": 0.511
+  },
+  {
+   "w": "says",
+   "t0": 0.546,
+   "t1": 0.755
+  },
+  {
+   "w": "hang",
+   "t0": 0.824,
+   "t1": 0.987
+  },
+  {
+   "w": "up.",
+   "t0": 1.068,
+   "t1": 1.579
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-22T09:26:49.757Z"
+}

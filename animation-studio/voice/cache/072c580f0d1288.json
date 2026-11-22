@@ -1,0 +1,40 @@
+{
+ "hash": "072c580f0d1288",
+ "text": "Mum's voice says don't.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 1.44,
+ "dur": 1.48898,
+ "words": [
+  {
+   "w": "Mum's",
+   "t0": 0,
+   "t1": 0.337
+  },
+  {
+   "w": "voice",
+   "t0": 0.383,
+   "t1": 0.639
+  },
+  {
+   "w": "says",
+   "t0": 0.662,
+   "t1": 0.894
+  },
+  {
+   "w": "don't.",
+   "t0": 0.964,
+   "t1": 1.44
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-22T09:26:50.239Z"
+}

@@ -1,0 +1,55 @@
+{
+ "hash": "0a12d9f5eb6512",
+ "text": "I'm still at work, love. What's wrong?",
+ "voice": "bfText",
+ "lead": 0,
+ "end": 2.043,
+ "dur": 2.089796,
+ "words": [
+  {
+   "w": "I'm",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "still",
+   "t0": 0.221,
+   "t1": 0.406
+  },
+  {
+   "w": "at",
+   "t0": 0.453,
+   "t1": 0.511
+  },
+  {
+   "w": "work,",
+   "t0": 0.557,
+   "t1": 0.801
+  },
+  {
+   "w": "love.",
+   "t0": 0.836,
+   "t1": 1.126
+  },
+  {
+   "w": "What's",
+   "t0": 1.149,
+   "t1": 1.347
+  },
+  {
+   "w": "wrong?",
+   "t0": 1.37,
+   "t1": 2.043
+  }
+ ],
+ "voiceId": "hpp4J3VqNfWAUOO0d1Us",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.65,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-22T09:26:42.167Z"
+}

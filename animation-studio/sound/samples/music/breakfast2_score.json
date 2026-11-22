@@ -1,0 +1,146 @@
+{
+ "model_id": "music_v1",
+ "composition_plan": {
+  "positive_global_styles": [
+   "dark cinematic horror-mystery score for an animated short: a mum who is not your mum",
+   "instrumental",
+   "eerie and tense"
+  ],
+  "negative_global_styles": [
+   "hip hop",
+   "lo-fi",
+   "beat",
+   "drum loop",
+   "edm",
+   "dj",
+   "comedy",
+   "upbeat",
+   "vocals"
+  ],
+  "sections": [
+   {
+    "section_name": "frame 0",
+    "positive_local_styles": [
+     "a cosy pizzicato breakfast tune, slightly off-key",
+     "a phone ringing under it"
+    ],
+    "negative_local_styles": [
+     "upbeat",
+     "hip hop",
+     "beat",
+     "comedy"
+    ],
+    "duration_ms": 3000,
+    "lines": []
+   },
+   {
+    "section_name": "the call",
+    "positive_local_styles": [
+     "the tune collapses onto a detuned music box",
+     "a low tense string note"
+    ],
+    "negative_local_styles": [
+     "upbeat",
+     "hip hop",
+     "beat",
+     "comedy"
+    ],
+    "duration_ms": 4600,
+    "lines": []
+   },
+   {
+    "section_name": "you were right",
+    "positive_local_styles": [
+     "a dark orchestral hit",
+     "low uneasy strings"
+    ],
+    "negative_local_styles": [
+     "upbeat",
+     "hip hop",
+     "beat",
+     "comedy"
+    ],
+    "duration_ms": 3900,
+    "lines": []
+   },
+   {
+    "section_name": "the house goes quiet",
+    "positive_local_styles": [
+     "near silence",
+     "a sub drone",
+     "a faint high string"
+    ],
+    "negative_local_styles": [
+     "upbeat",
+     "hip hop",
+     "beat",
+     "comedy"
+    ],
+    "duration_ms": 7800,
+    "lines": []
+   },
+   {
+    "section_name": "the whisper",
+    "positive_local_styles": [
+     "a held-breath pulse",
+     "a slow heartbeat on low drums",
+     "tense"
+    ],
+    "negative_local_styles": [
+     "upbeat",
+     "hip hop",
+     "beat",
+     "comedy"
+    ],
+    "duration_ms": 5300,
+    "lines": []
+   },
+   {
+    "section_name": "it turns",
+    "positive_local_styles": [
+     "dissonant strings swelling",
+     "a horror stab",
+     "terrifying"
+    ],
+    "negative_local_styles": [
+     "upbeat",
+     "hip hop",
+     "beat",
+     "comedy"
+    ],
+    "duration_ms": 5800,
+    "lines": []
+   },
+   {
+    "section_name": "the text",
+    "positive_local_styles": [
+     "a warped music box over a rising string build",
+     "dread"
+    ],
+    "negative_local_styles": [
+     "upbeat",
+     "hip hop",
+     "beat",
+     "comedy"
+    ],
+    "duration_ms": 6600,
+    "lines": []
+   },
+   {
+    "section_name": "the choice",
+    "positive_local_styles": [
+     "a held minor chord",
+     "then a sudden stop"
+    ],
+    "negative_local_styles": [
+     "upbeat",
+     "hip hop",
+     "beat",
+     "comedy"
+    ],
+    "duration_ms": 4500,
+    "lines": []
+   }
+  ]
+ }
+}

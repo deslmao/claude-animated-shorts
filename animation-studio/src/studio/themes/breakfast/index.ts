@@ -220,7 +220,43 @@ const holdHand = (g: CanvasRenderingContext2D, x: number, y: number, side: 1 | -
   g.beginPath(); g.roundRect(30, -230, 56, 170, 28); g.fill(); g.stroke();                          // the thumb over the edge
   g.restore();
 };
+/** Part 2: your phone in your hand, ringing Mum's work: calling (state 0), then connected with a running timer (1) */
+const callScreen = (g: CanvasRenderingContext2D, st: number) => {
+  // the kitchen behind, warm and out of focus: the window's light, the stove, a smear of Mum's orange sweater
+  const bg = g.createLinearGradient(0, 0, 0, IH); bg.addColorStop(0, "#f3d9a8"); bg.addColorStop(1, "#c98f5e"); g.fillStyle = bg; g.fillRect(0, 0, IW, IH);
+  g.fillStyle = "rgba(255,255,240,0.55)"; g.beginPath(); g.roundRect(-60, 60, 380, 520, 40); g.fill();
+  g.fillStyle = "rgba(217,138,90,0.7)"; g.beginPath(); g.ellipse(620, 520, 170, 300, 0, 0, Math.PI * 2); g.fill();
+  g.fillStyle = "rgba(232,184,150,0.75)"; g.beginPath(); g.arc(620, 230, 110, 0, Math.PI * 2); g.fill();
+  // the phone
+  g.fillStyle = "#f2c23a"; g.beginPath(); g.roundRect(150, 260, IW - 300, 1120, 64); g.fill(); g.lineWidth = 10; g.strokeStyle = INK; g.stroke();
+  const x = 175, y = 285, w = IW - 350, h = 1070;
+  g.save(); g.beginPath(); g.roundRect(x, y, w, h, 44); g.clip();
+  const sc = g.createLinearGradient(0, y, 0, y + h); sc.addColorStop(0, "#1d2a3f"); sc.addColorStop(1, "#0c1019"); g.fillStyle = sc; g.fillRect(x, y, w, h);
+  g.fillStyle = "#8b93a5"; g.font = F(28, "normal"); g.textAlign = "left"; g.fillText("7:44", x + 30, y + 44);
+  g.fillStyle = "#ffffff"; g.beginPath(); g.arc(x + w / 2, y + 250, 92, 0, Math.PI * 2); g.fill();                     // the hospital icon
+  g.fillStyle = "#d8343a"; g.fillRect(x + w / 2 - 22, y + 190, 44, 120); g.fillRect(x + w / 2 - 60, y + 228, 120, 44);
+  g.fillStyle = "#ffffff"; g.font = F(60); g.textAlign = "center"; g.fillText("MUM'S WORK", x + w / 2, y + 430);
+  g.fillStyle = "#9fb0c8"; g.font = F(34, "normal"); g.fillText("City Hospital · Ward 4", x + w / 2, y + 482);
+  g.fillStyle = st ? "#4dff8a" : "#c9d3e3"; g.font = F(46); g.fillText(st ? "00:03" : "Calling…", x + w / 2, y + 570);
+  if (st) { g.strokeStyle = "#4dff8a"; g.lineWidth = 8; g.lineCap = "round"; g.beginPath(); for (let i = 0; i < 18; i++) { const xx = x + 90 + i * ((w - 180) / 17), hh = [20, 46, 70, 34, 88, 52, 26, 64, 92, 40, 72, 30, 58, 84, 36, 60, 24, 44][i]; g.moveTo(xx, y + 680 - hh / 2); g.lineTo(xx, y + 680 + hh / 2); } g.stroke(); }
+  for (const [i, c] of [[0, "#3a4458"], [1, "#3a4458"], [2, "#e5484d"]] as [number, string][]) { g.fillStyle = c; g.beginPath(); g.arc(x + w / 2 + (i - 1) * 150, y + 900, 62, 0, Math.PI * 2); g.fill(); }
+  g.strokeStyle = "#ffffff"; g.lineWidth = 12; g.beginPath(); g.arc(x + w / 2 + 150, y + 912, 30, Math.PI * 1.15, Math.PI * 1.85); g.stroke();           // the hang-up handset
+  g.restore();
+  holdHand(g, 160, 1320, 1); holdHand(g, IW - 160, 1320, -1);
+  vig(g, 0.35);
+};
 const INSERTS: Record<string, Ins> = {
+  // Part 2: ringing Mum's work, in your hands, in the bright kitchen: calling, then she picks up
+  call: { n: 2, draw: (g, st) => callScreen(g, st) },
+  // Part 2: Mum's phone on the counter lights up on its own with one new text to you: Hang up, Bug.
+  mumHang: { n: 2, draw: (g, st) => {
+    g.fillStyle = "#e9e2d4"; g.fillRect(0, 0, IW, IH); g.fillStyle = "#d7cfbf"; for (let y = 0; y < IH; y += 160) g.fillRect(0, y, IW, 4);
+    g.fillStyle = "#e8e6e0"; g.fillRect(0, 0, 150, IH); g.fillStyle = "#3a3d47"; g.beginPath(); g.ellipse(40, 300, 110, 110, 0, 0, Math.PI * 2); g.fill();
+    g.fillStyle = "#e86a96"; g.beginPath(); g.roundRect(190, 150, IW - 290, 1140, 64); g.fill(); g.lineWidth = 10; g.strokeStyle = INK; g.stroke();
+    if (!st) { g.fillStyle = "#07080c"; g.beginPath(); g.roundRect(215, 175, IW - 340, 1090, 44); g.fill(); g.fillStyle = "rgba(255,255,255,0.08)"; g.beginPath(); g.moveTo(260, 175); g.lineTo(420, 175); g.lineTo(260, 600); g.closePath(); g.fill(); }
+    else { thread(g, 215, 175, IW - 340, 1090, "To: BUG", [["Open the door. Now.", true], ["Hang up, Bug.", true]], { font: 52, sent: "Delivered" }); g.fillStyle = "rgba(160,190,255,0.12)"; g.fillRect(0, 0, IW, IH); }
+    vig(g, 0.5);
+  } },
   // the first text: your phone on the table, the screen filling the card
   text1: { n: 1, draw: (g) => {
     wood(g, 0, IH); g.fillStyle = "#f2c23a"; g.beginPath(); g.roundRect(70, 90, IW - 140, IH - 180, 70); g.fill(); g.lineWidth = 10; g.strokeStyle = INK; g.stroke();
@@ -308,12 +344,16 @@ const insertRig = (a: At, v = "text1"): PropRig => {
 // ---------------------------------------------------------------- the vote panels
 const CW = 1024, CH = 300;
 const choiceTex = (v: string) => stex(`bfChoice_${v}`, CW, CH, (g) => {
-  const c = v === "a" ? WARM : v === "b" ? COOL : "#ffffff", label = v === "a" ? "THE STOVE" : "THE DOOR";
+  // a / b / q: Part 1 (THE STOVE / THE DOOR / WHAT DO YOU DO?); c / d / w: Part 2 (HANG UP / STAY ON THE LINE / WHO DO YOU TRUST?)
+  const c = v === "a" || v === "c" ? WARM : v === "b" || v === "d" ? COOL : "#ffffff";
+  const label = ({ a: "THE STOVE", b: "THE DOOR", c: "HANG UP", d: "STAY ON THE LINE" } as Record<string, string>)[v] ?? "";
   g.clearRect(0, 0, CW, CH); g.fillStyle = "rgba(14,10,20,0.88)"; g.beginPath(); g.roundRect(14, 14, CW - 28, CH - 28, 44); g.fill();
   g.strokeStyle = c; g.lineWidth = 12; g.shadowColor = c; g.shadowBlur = 40; g.stroke(); g.shadowBlur = 0;
-  if (v === "q") { g.fillStyle = "#ffffff"; g.font = F(86); g.textAlign = "center"; g.fillText("WHAT DO YOU DO?", CW / 2, CH / 2 + 38); return; }
-  g.fillStyle = c; g.beginPath(); g.arc(150, CH / 2, 96, 0, Math.PI * 2); g.fill(); g.fillStyle = "#140e18"; g.font = F(130); g.textAlign = "center"; g.fillText(v.toUpperCase(), 150, CH / 2 + 46);
-  g.fillStyle = "#ffffff"; g.font = F(112); g.textAlign = "left"; g.fillText(label, 280, CH / 2 + 40);
+  if (v === "q" || v === "w") { g.fillStyle = "#ffffff"; g.font = F(v === "w" ? 80 : 86); g.textAlign = "center"; g.fillText(v === "w" ? "WHO DO YOU TRUST?" : "WHAT DO YOU DO?", CW / 2, CH / 2 + 34); return; }
+  const letter = v === "a" || v === "c" ? "A" : "B";
+  g.fillStyle = c; g.beginPath(); g.arc(150, CH / 2, 96, 0, Math.PI * 2); g.fill(); g.fillStyle = "#140e18"; g.font = F(130); g.textAlign = "center"; g.fillText(letter, 150, CH / 2 + 46);
+  let fs = 112; g.font = F(fs); while (g.measureText(label).width > CW - 330 && fs > 60) { fs -= 4; g.font = F(fs); }
+  g.fillStyle = "#ffffff"; g.textAlign = "left"; g.fillText(label, 280, CH / 2 + fs * 0.36);
 });
 const choiceRig = (a: At, v = "a"): PropRig => {
   const root = rigRoot(a), w = 1.0, h = w * CH / CW;
@@ -385,11 +425,11 @@ export const BREAKFAST_THEME: Theme = {
       build: () => undefined, rig: (a) => plateRig(a), steps: [], stepCount: () => 1 },
     bfFrontDoor: { name: "Front door (frosted glass)", desc: "the front door's leaf for the bfKitchen hallway frame (`at` = [0.95, 0, -4.47]), facing +z: deep green, a frosted glass panel lit by daylight. Variant shadow: a dark head-and-shoulders silhouette behind the glass. Each step is a knock: the leaf jolts", category: "theme", themes: ["home", "horror"], tags: ["door", "front door", "knock", "silhouette"], radius: 0.45, height: 2.05,
       build: () => undefined, rig: (a, v) => frontDoorRig(a, v ?? "empty"), steps: ["a knock"], stepCount: () => 50, variants: { empty: () => undefined, shadow: () => undefined } },
-    bfInsert: { name: "Close insert (Don't Eat It)", desc: "an upright 9:16 insert card (0.54 x 0.96 m, facing +z), `at` = its centre: an `at` camera 1.0 m in front at fov 51 sees only the card. A state per step. Variants: pan (Mum holding the pan of pancakes out to you, her smile above), text1 (your phone: MUM: Don't eat it. I'm still at work.), rules (the phone in your lap under the table: the first text only; then rule one, two, three), badge (Mum's hospital lanyard on its hook: NURSE, NIGHT SHIFT 9 PM - 9 AM), oven (the oven clock 7:42 AM), mumPhone (Mum's pink phone on the counter: dark; lit, typing; sent: Open the door. Now. Delivered)", category: "theme", themes: ["home", "insert"], tags: ["insert", "card", "close-up", "phone", "text"], radius: 0.3, height: 0.96,
+    bfInsert: { name: "Close insert (Don't Eat It)", desc: "an upright 9:16 insert card (0.54 x 0.96 m, facing +z), `at` = its centre: an `at` camera 1.0 m in front at fov 51 sees only the card. A state per step. Variants: pan (Mum holding the pan of pancakes out to you, her smile above), text1 (your phone: MUM: Don't eat it. I'm still at work.), rules (the phone in your lap under the table: the first text only; then rule one, two, three), badge (Mum's hospital lanyard on its hook: NURSE, NIGHT SHIFT 9 PM - 9 AM), oven (the oven clock 7:42 AM), mumPhone (Mum's pink phone on the counter: dark; lit, typing; sent: Open the door. Now. Delivered); Part 2: call (your phone in your hands in the bright kitchen: Calling… MUM'S WORK, City Hospital; then connected, 00:03), mumHang (Mum's phone on the counter: dark; then a new text, Hang up, Bug.)", category: "theme", themes: ["home", "insert"], tags: ["insert", "card", "close-up", "phone", "text"], radius: 0.3, height: 0.96,
       build: () => undefined, rig: (a, v) => insertRig(a, v ?? "text1"), steps: ["its next state"], stepCount: () => 2000,
       variants: Object.fromEntries(Object.keys(INSERTS).map((k) => [k, () => undefined])) },
-    bfChoice: { name: "Vote panels (Don't Eat It)", desc: "the end-card vote over the last frame: a glowing panel turned to the camera, popping in on its first step (hidden before it). Variants: a (A · THE STOVE, warm orange), b (B · THE DOOR, cool blue), q (WHAT DO YOU DO?, white); 1.0 m wide. Drawn over everything", category: "theme", themes: ["home", "vote"], tags: ["choice", "vote", "end card", "panel"], radius: 0.05, height: 0.1,
-      build: () => undefined, rig: (a, v) => choiceRig(a, v ?? "a"), steps: ["pops in"], stepCount: () => 1, variants: { a: () => undefined, b: () => undefined, q: () => undefined } },
+    bfChoice: { name: "Vote panels (Don't Eat It)", desc: "the end-card vote over the last frame: a glowing panel turned to the camera, popping in on its first step (hidden before it). Variants: a (A · THE STOVE, warm orange), b (B · THE DOOR, cool blue), q (WHAT DO YOU DO?, white); Part 2: c (A · HANG UP), d (B · STAY ON THE LINE), w (WHO DO YOU TRUST?); 1.0 m wide. Drawn over everything", category: "theme", themes: ["home", "vote"], tags: ["choice", "vote", "end card", "panel"], radius: 0.05, height: 0.1,
+      build: () => undefined, rig: (a, v) => choiceRig(a, v ?? "a"), steps: ["pops in"], stepCount: () => 1, variants: { a: () => undefined, b: () => undefined, q: () => undefined, c: () => undefined, d: () => undefined, w: () => undefined } },
     bfDread: { name: "Dread (dark edges)", desc: "the dark closing in: a vignette 0.5 m in front of the lens, square to it, darkening the edges of the frame and dimming its centre a little (put `at` near what the shot looks at; give the shot's vertical fov as `scale` = fov / 100, so it fills the frame). Variants: soft, heavy, dark; on its step it closes in further (a breath held)", category: "theme", themes: ["horror", "mood"], tags: ["vignette", "dark", "overlay", "dread"], radius: 0.05, height: 0.1,
       build: () => undefined, rig: (a, v) => dreadRig(a, v ?? "soft"), steps: ["closes in"], stepCount: () => 1, variants: { soft: () => undefined, heavy: () => undefined, dark: () => undefined } },
   },

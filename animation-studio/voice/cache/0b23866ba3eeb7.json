@@ -1,0 +1,40 @@
+{
+ "hash": "0b23866ba3eeb7",
+ "text": "Who do you trust?",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 1.3,
+ "dur": 1.332245,
+ "words": [
+  {
+   "w": "Who",
+   "t0": 0,
+   "t1": 0.197
+  },
+  {
+   "w": "do",
+   "t0": 0.244,
+   "t1": 0.313
+  },
+  {
+   "w": "you",
+   "t0": 0.372,
+   "t1": 0.453
+  },
+  {
+   "w": "trust?",
+   "t0": 0.511,
+   "t1": 1.3
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-22T09:26:50.637Z"
+}

@@ -1,0 +1,17 @@
+{
+ "composition": "Short-breakfast-2",
+ "fingerprint": "0e9b89c0f9535c",
+ "engine": "sound-2",
+ "frames": 1245,
+ "seconds": 41.5,
+ "lines": 20,
+ "lufs": -14.2,
+ "truePeak": -1.7,
+ "stems": {
+  "voice_lufs": -17.29,
+  "music_vs_voice_lu": -9.98,
+  "ambience_vs_voice_lu": -20.01,
+  "sfx_cues": 33
+ },
+ "built": "2026-11-22T09:28:43Z"
+}

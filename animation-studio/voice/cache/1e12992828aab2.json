@@ -1,0 +1,70 @@
+{
+ "hash": "1e12992828aab2",
+ "text": "Mum's phone lights up on the counter. One new text.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.158,
+ "dur": 3.186939,
+ "words": [
+  {
+   "w": "Mum's",
+   "t0": 0,
+   "t1": 0.337
+  },
+  {
+   "w": "phone",
+   "t0": 0.372,
+   "t1": 0.65
+  },
+  {
+   "w": "lights",
+   "t0": 0.685,
+   "t1": 0.906
+  },
+  {
+   "w": "up",
+   "t0": 0.952,
+   "t1": 1.045
+  },
+  {
+   "w": "on",
+   "t0": 1.091,
+   "t1": 1.161
+  },
+  {
+   "w": "the",
+   "t0": 1.196,
+   "t1": 1.265
+  },
+  {
+   "w": "counter.",
+   "t0": 1.312,
+   "t1": 1.823
+  },
+  {
+   "w": "One",
+   "t0": 1.95,
+   "t1": 2.148
+  },
+  {
+   "w": "new",
+   "t0": 2.194,
+   "t1": 2.322
+  },
+  {
+   "w": "text.",
+   "t0": 2.38,
+   "t1": 3.158
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-22T09:26:48.321Z"
+}

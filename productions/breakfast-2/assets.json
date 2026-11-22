@@ -1,0 +1,59 @@
+{
+ "reused": 35,
+ "missing": [],
+ "byKind": {
+  "character": [
+   "mum",
+   "bug"
+  ],
+  "set": [
+   "bfKitchen"
+  ],
+  "camera": [
+   "at"
+  ],
+  "light": [
+   "interior",
+   "interiorCool"
+  ],
+  "ambience": [
+   "elb_kitchen_day"
+  ],
+  "prop": [
+   "bfPan",
+   "bfPhone",
+   "bfPlate",
+   "bfInsert",
+   "bfDread",
+   "bfFrontDoor",
+   "bfChoice"
+  ],
+  "sfx": [
+   "el_sizzle",
+   "el_mum_humming",
+   "el_pancake_flip",
+   "el_phone_ringout",
+   "phone_tap",
+   "el_hospital_line",
+   "el_breath_heavy",
+   "el_hit_sub",
+   "knock_heavy",
+   "el_ear_ring",
+   "el_heartbeat_fast",
+   "el_neck_creak",
+   "el_sting_strings",
+   "el_riser_short",
+   "el_vial_chime",
+   "msg_chime",
+   "pop"
+  ],
+  "act": [
+   "happy",
+   "scared",
+   "neutral"
+  ],
+  "item": [
+   "phone"
+  ]
+ }
+}

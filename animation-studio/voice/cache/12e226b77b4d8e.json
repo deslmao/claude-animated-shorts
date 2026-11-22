@@ -1,0 +1,55 @@
+{
+ "hash": "12e226b77b4d8e",
+ "text": "The thing at the stove stops moving.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.183,
+ "dur": 2.220408,
+ "words": [
+  {
+   "w": "The",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "thing",
+   "t0": 0.209,
+   "t1": 0.36
+  },
+  {
+   "w": "at",
+   "t0": 0.395,
+   "t1": 0.464
+  },
+  {
+   "w": "the",
+   "t0": 0.499,
+   "t1": 0.569
+  },
+  {
+   "w": "stove",
+   "t0": 0.615,
+   "t1": 1.01
+  },
+  {
+   "w": "stops",
+   "t0": 1.057,
+   "t1": 1.358
+  },
+  {
+   "w": "moving.",
+   "t0": 1.428,
+   "t1": 2.183
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-22T09:26:45.239Z"
+}

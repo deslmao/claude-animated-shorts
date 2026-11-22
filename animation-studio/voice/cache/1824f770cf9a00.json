@@ -1,0 +1,60 @@
+{
+ "hash": "1824f770cf9a00",
+ "text": "The voice at the door says it too.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.043,
+ "dur": 2.089796,
+ "words": [
+  {
+   "w": "The",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "voice",
+   "t0": 0.209,
+   "t1": 0.441
+  },
+  {
+   "w": "at",
+   "t0": 0.476,
+   "t1": 0.546
+  },
+  {
+   "w": "the",
+   "t0": 0.58,
+   "t1": 0.65
+  },
+  {
+   "w": "door",
+   "t0": 0.697,
+   "t1": 0.929
+  },
+  {
+   "w": "says",
+   "t0": 0.998,
+   "t1": 1.184
+  },
+  {
+   "w": "it",
+   "t0": 1.242,
+   "t1": 1.324
+  },
+  {
+   "w": "too.",
+   "t0": 1.37,
+   "t1": 2.043
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-22T09:26:47.266Z"
+}

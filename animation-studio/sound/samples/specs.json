@@ -435,6 +435,26 @@
    "level": -8,
    "stereo": true,
    "p": "A supernatural rising whoosh, a deep eerie drone swelling as something is lifted into the air by an invisible force"
+  },
+  "el_phone_ringout": {
+   "s": 3,
+   "level": -10,
+   "p": "A phone call ringing out, the ringback tone heard through a mobile phone's earpiece, two rings, close"
+  },
+  "el_hospital_line": {
+   "s": 6,
+   "level": -14,
+   "p": "A busy hospital ward heard faintly through a phone call: a heart monitor beeping steadily, a distant pager, muffled voices"
+  },
+  "el_neck_creak": {
+   "s": 1.5,
+   "level": -8,
+   "p": "A slow wet creaking crack of a neck turning too far, close, horror"
+  },
+  "el_ear_ring": {
+   "s": 3,
+   "level": -16,
+   "p": "Sudden dead silence in a kitchen with a faint high ringing in the ears, eerie"
   }
  },
  "bed": {
