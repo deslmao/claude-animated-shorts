@@ -1,5 +1,5 @@
 {
- "reused": 35,
+ "reused": 34,
  "missing": [],
  "byKind": {
   "character": [
@@ -51,9 +51,6 @@
    "happy",
    "scared",
    "neutral"
-  ],
-  "item": [
-   "phone"
   ]
  }
 }

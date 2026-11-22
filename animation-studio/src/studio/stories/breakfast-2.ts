@@ -77,7 +77,7 @@ export const BREAKFAST_2: Storyboard = {
       sfx: [{ t: 0, name: "el_phone_ringout", gain: -8 }, { word: "Hello", name: "phone_tap", gain: -10 }, { word: "Hello", name: "el_hospital_line", gain: -14 }] }, [{ word: "Hello" }]),
     // ---- THE TOP COMMENT WAS RIGHT
     { say: call("I'm still at work, love. What's wrong?"), ...K, hold: 0.15, ...glide(at([-0.75, 1.25, 0.6], [0.3, 1.12, 1.62], 44), at([-0.55, 1.22, 0.85], [0.3, 1.12, 1.62], 40), 2.6),
-      actors: [{ who: "bug", at: BUG_STAND, act: "scared", face: "shock", keepFace: true, facing: "camera", gesture: "read", hold: "phone" }],
+      actors: [{ who: "bug", at: BUG_STAND, act: "scared", face: "shock", keepFace: true, facing: "camera", gesture: "hang" }],
       props: [DREAD([0.3, 1.12, 1.62], 44)], sfx: [LINE(0, -12), { t: 0.3, name: "el_breath_heavy", gain: -10 }], note: "you, close, the phone in your hand: Mum's voice, the hospital behind it" },
     insert("badge", "Mum's hospital lanyard on its hook: NURSE · NIGHT SHIFT 9 PM – 9 AM", {
       ...withCuts(lock(CARD_CAM), ["hospital", at([0, 1.28, 3.72], [0, 1.28, 3.2], 51)]),
@@ -96,9 +96,10 @@ export const BREAKFAST_2: Storyboard = {
       sfx: [{ t: 0.05, name: "knock_heavy", gain: -6 }, { t: 0.3, name: "knock_heavy", gain: -8 }, { word: "stops", name: "el_ear_ring" }, { t: 0, name: "el_sizzle", gain: -14 }],
       note: "the wide kitchen: two last knocks, then silence; the thing at the stove stands dead still, its back to you" },
     { say: call("Bug. Don't say anything. Walk to the back door. Now."), ...KC, hold: 0.15,
-      ...withCuts(lock(at([0.02, 1.32, 1.0], [0.3, 1.25, 1.62], 34)), ["Walk", at([-0.2, 1.1, 2.3], [0.3, 1.0, 1.6], 44)]),
-      actors: [{ who: "bug", at: BUG_STAND, act: "scared", face: "scared", keepFace: true, facing: "camera", gesture: "read", hold: "phone", beats: [{ t: 0, look: "left" }] }],
-      props: [DREAD([0.3, 1.25, 1.62], 34, "heavy")], sfx: [LINE(0, -16), { t: 0, name: "el_heartbeat_fast", gain: -8 }], note: "you, very close, eyes on the stove: Mum whispering on the line" },
+      ...withCuts(lock(at([-0.12, 1.3, 0.5], [0.3, 1.2, 1.62], 36)), ["Walk", at([-0.15, 1.5, 0.35], [-0.6, 1.45, -0.95], 32)]),
+      actors: [{ who: "bug", at: BUG_STAND, act: "scared", face: "scared", keepFace: true, facing: "camera", gesture: "hang", beats: [{ t: 0, look: "left" }] },
+        { who: "mum", at: [-0.6, 0, -0.95], act: "neutral", back: true, facing: 0, gesture: "hang", idle: 0 }],
+      props: [DREAD([0.3, 1.25, 1.62], 34, "heavy")], sfx: [LINE(0, -16), { t: 0, name: "el_heartbeat_fast", gain: -8 }], note: "you, very close, eyes on the stove: Mum whispering on the line; on Walk, the thing's back at the stove, listening" },
     // ---- IT HEARD YOU
     { dur: 1.1, ...KC, ...lock(at([-0.15, 1.5, 0.35], [-0.6, 1.5, -0.95], 30)),
       actors: [{ who: "mum", at: [-0.6, 0, -0.95], act: "neutral", back: true, facing: 0, gesture: "hang", idle: 0 }],
@@ -110,15 +111,15 @@ export const BREAKFAST_2: Storyboard = {
       actors: [], props: [DOOR("shadow"), DREAD([0.95, 1.3, -4.4], 30, "heavy")], sfx: [{ t: 0, name: "el_riser_short", gain: -10 }], note: "the front door, close: the silhouette in the glass says the same words" },
     { say: [N("The voice at the door says it too."), { ...N("Word for word."), gap: 0.2 }], ...KC, hold: 0.15,
       ...withCuts(lock(at([-0.75, 1.25, 0.6], [0.3, 1.12, 1.62], 44)), ["Word", at([-0.45, 1.3, 1.05], [0.3, 1.22, 1.62], 34)]),
-      actors: [{ who: "bug", at: BUG_STAND, act: "scared", face: "shock", keepFace: true, facing: "camera", gesture: "read", hold: "phone" }],
+      actors: [{ who: "bug", at: BUG_STAND, act: "scared", face: "shock", keepFace: true, facing: "camera", gesture: "hang" }],
       props: [DREAD([0.3, 1.12, 1.62], 44, "heavy")], sfx: [{ t: 0, name: "el_breath_heavy", gain: -6 }], note: "you, frozen, the phone in your hand" },
     // ---- THE TEXT
     insert("mumHang", "Mum's pink phone on the counter: dark; it lights up by itself: Hang up, Bug. Delivered.", {
       say: [N("Mum's phone lights up on the counter. One new text."), { text: "Hang up, Bug.", who: "narrator", voice: "bfMum", gap: 0.25 }], hold: 0.15,
       sfx: [{ word: "lights", name: "el_vial_chime", gain: -10 }, { word: "Hang", name: "msg_chime", gain: -6 }] }, [{ word: "lights" }], false),
     { say: call("Don't you dare hang up! Bug, run!"), ...KC, hold: 0.1,
-      ...glide(at([0.02, 1.32, 1.0], [0.3, 1.25, 1.62], 34), at([0.12, 1.3, 1.25], [0.3, 1.25, 1.62], 30), 2.0), kicks: [0.15],
-      actors: [{ who: "bug", at: BUG_STAND, act: "scared", face: "scared", keepFace: true, facing: "camera", gesture: "read", hold: "phone" }],
+      ...glide(at([-0.12, 1.3, 0.5], [0.3, 1.2, 1.62], 36), at([-0.02, 1.28, 0.8], [0.3, 1.2, 1.62], 32), 2.0), kicks: [0.15],
+      actors: [{ who: "bug", at: BUG_STAND, act: "scared", face: "scared", keepFace: true, facing: "camera", gesture: "hang" }],
       props: [DREAD([0.3, 1.25, 1.62], 34, "heavy")], sfx: [LINE(0, -12), { t: 0, name: "el_heartbeat_fast", gain: -6 }], note: "you, close: Mum shouting down the line" },
     // ---- THE CHOICE
     { say: [N("The text says hang up."), { ...N("Mum's voice says don't."), gap: 0.15 }, { ...N("Who do you trust?"), gap: 0.2 }], ...KC, hold: 0.45,

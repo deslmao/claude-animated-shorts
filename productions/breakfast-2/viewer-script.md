@@ -23,7 +23,7 @@ What the viewer sees and hears, in order. Nothing else reaches them.
 > **NARRATOR:** The knocking stops.
 > **NARRATOR:** The thing at the stove stops moving.
 
-**7.** _you, very close, eyes on the stove: Mum whispering on the line_
+**7.** _you, very close, eyes on the stove: Mum whispering on the line; on Walk, the thing's back at the stove, listening_
 > **bfText (voice-over):** Bug. Don't say anything. Walk to the back door. Now.
 
 **8.** _close on the back of its head: a creak as it starts to turn_

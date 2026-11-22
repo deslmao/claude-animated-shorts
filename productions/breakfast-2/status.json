@@ -4,17 +4,17 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-22T09:28:31.851Z",
-   "inputs": "0799f27bb1743an",
-   "detail": "valid; 16 warning(s):\n  shot 5 (bfKitchen): prop \"bfFrontDoor\" overlaps something already in the set at [0.9, -4.5]\n  shot 10 (bfKitchen): prop \"bfFrontDoor\" overlaps something already in the set at [0.9, -4.5]\n  shot 14 (bfKitchen): prop \"bfFrontDoor\" overlaps something already in the set at [0.9, -4.5]\n  shot 1 (bfKitchen): mum fills 42 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 3 (bfKitchen): bug fills 54 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 5 (bfKitchen): mum fills 51 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 6 (bfKitchen): mum fills 82 % of the frame in the foreground @1.8s (is it hiding the action?)\n  shot 7 (bfKitchen): bug's hand (read) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 7 (bfKitchen): bug fills 52 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 8 (bfKitchen): mum fills 82 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 9 (bfKitchen): mum fills 54 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 9 (bfKitchen): mum's hand (present) is out of frame @0.2s (side): widen the shot or change the gesture\n  shot 11 (bfKitchen): bug fills 54 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 13 (bfKitchen): bug's hand (read) is out of frame @0.0s (side): widen the shot or change the gesture\n  shot 13 (bfKitchen): bug fills 52 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 14 (bfKitchen): mum fills 38 % of the frame in the foreground @0.0s (is it hiding the action?)"
+   "at": "2026-11-22T09:34:49.196Z",
+   "inputs": "12d5ad2bf24582n",
+   "detail": "valid; 15 warning(s):\n  shot 5 (bfKitchen): prop \"bfFrontDoor\" overlaps something already in the set at [0.9, -4.5]\n  shot 10 (bfKitchen): prop \"bfFrontDoor\" overlaps something already in the set at [0.9, -4.5]\n  shot 14 (bfKitchen): prop \"bfFrontDoor\" overlaps something already in the set at [0.9, -4.5]\n  shot 1 (bfKitchen): mum fills 42 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 3 (bfKitchen): bug fills 54 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 5 (bfKitchen): mum fills 51 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 6 (bfKitchen): mum fills 82 % of the frame in the foreground @1.8s (is it hiding the action?)\n  shot 7 (bfKitchen): bug fills 58 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 7 (bfKitchen): mum fills 87 % of the frame in the foreground @2.2s (is it hiding the action?)\n  shot 8 (bfKitchen): mum fills 82 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 9 (bfKitchen): mum fills 54 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 9 (bfKitchen): mum's hand (present) is out of frame @0.2s (side): widen the shot or change the gesture\n  shot 11 (bfKitchen): bug fills 54 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 13 (bfKitchen): bug fills 58 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 14 (bfKitchen): mum fills 38 % of the frame in the foreground @0.0s (is it hiding the action?)"
   },
   "assets": {
    "state": "done",
-   "at": "2026-11-22T09:28:31.854Z",
-   "inputs": "0799f27bb1743a",
-   "detail": "35 library assets reused, none missing",
+   "at": "2026-11-22T09:34:49.199Z",
+   "inputs": "12d5ad2bf24582",
+   "detail": "34 library assets reused, none missing",
    "data": {
-    "reused": 35,
+    "reused": 34,
     "missing": [],
     "byKind": {
      "character": [
@@ -66,35 +66,32 @@
       "happy",
       "scared",
       "neutral"
-     ],
-     "item": [
-      "phone"
      ]
     }
    }
   },
   "approval": {
    "state": "done",
-   "at": "2026-11-22T09:28:31.856Z",
+   "at": "2026-11-22T09:34:49.201Z",
    "inputs": "17948b9605443c",
    "detail": "all narration already generated (no cost)"
   },
   "narration": {
    "state": "done",
-   "at": "2026-11-22T09:28:31.857Z",
+   "at": "2026-11-22T09:34:49.201Z",
    "inputs": "17948b9605443c",
    "detail": "all lines already generated (cached)"
   },
   "sound": {
    "state": "done",
-   "at": "2026-11-22T09:28:43.376Z",
-   "inputs": "0e9b89c0f9535c",
+   "at": "2026-11-22T09:34:59.874Z",
+   "inputs": "1b994094ff5624",
    "detail": "soundtrack built: -14.2 LUFS"
   },
   "checks": {
    "state": "done",
-   "at": "2026-11-22T09:28:48.493Z",
-   "inputs": "0e9b89c0f9535c",
+   "at": "2026-11-22T09:35:04.734Z",
+   "inputs": "1b994094ff5624",
    "detail": "preflight PASS; library intact"
   }
  },
