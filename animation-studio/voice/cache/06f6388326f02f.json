@@ -1,0 +1,90 @@
+{
+ "hash": "06f6388326f02f",
+ "text": "Your top question: how did she text you, if her phone's on the counter?",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.04,
+ "dur": 4.075102,
+ "words": [
+  {
+   "w": "Your",
+   "t0": 0,
+   "t1": 0.232
+  },
+  {
+   "w": "top",
+   "t0": 0.29,
+   "t1": 0.464
+  },
+  {
+   "w": "question:",
+   "t0": 0.534,
+   "t1": 1.138
+  },
+  {
+   "w": "how",
+   "t0": 1.358,
+   "t1": 1.498
+  },
+  {
+   "w": "did",
+   "t0": 1.544,
+   "t1": 1.66
+  },
+  {
+   "w": "she",
+   "t0": 1.695,
+   "t1": 1.8
+  },
+  {
+   "w": "text",
+   "t0": 1.858,
+   "t1": 2.159
+  },
+  {
+   "w": "you,",
+   "t0": 2.206,
+   "t1": 2.403
+  },
+  {
+   "w": "if",
+   "t0": 2.438,
+   "t1": 2.554
+  },
+  {
+   "w": "her",
+   "t0": 2.612,
+   "t1": 2.682
+  },
+  {
+   "w": "phone's",
+   "t0": 2.728,
+   "t1": 3.03
+  },
+  {
+   "w": "on",
+   "t0": 3.065,
+   "t1": 3.135
+  },
+  {
+   "w": "the",
+   "t0": 3.17,
+   "t1": 3.239
+  },
+  {
+   "w": "counter?",
+   "t0": 3.274,
+   "t1": 4.04
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-22T20:57:22.620Z"
+}

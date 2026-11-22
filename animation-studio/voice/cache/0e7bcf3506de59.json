@@ -1,0 +1,60 @@
+{
+ "hash": "0e7bcf3506de59",
+ "text": "Bug… I saw her on the kitchen camera.",
+ "voice": "bfText",
+ "lead": 0,
+ "end": 2.879,
+ "dur": 2.925714,
+ "words": [
+  {
+   "w": "Bug…",
+   "t0": 0,
+   "t1": 0.569
+  },
+  {
+   "w": "I",
+   "t0": 0.975,
+   "t1": 1.022
+  },
+  {
+   "w": "saw",
+   "t0": 1.149,
+   "t1": 1.37
+  },
+  {
+   "w": "her",
+   "t0": 1.428,
+   "t1": 1.509
+  },
+  {
+   "w": "on",
+   "t0": 1.567,
+   "t1": 1.637
+  },
+  {
+   "w": "the",
+   "t0": 1.672,
+   "t1": 1.741
+  },
+  {
+   "w": "kitchen",
+   "t0": 1.776,
+   "t1": 2.055
+  },
+  {
+   "w": "camera.",
+   "t0": 2.113,
+   "t1": 2.879
+  }
+ ],
+ "voiceId": "hpp4J3VqNfWAUOO0d1Us",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.65,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-22T20:57:23.769Z"
+}

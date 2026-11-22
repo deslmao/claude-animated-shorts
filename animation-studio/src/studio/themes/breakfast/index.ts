@@ -142,6 +142,22 @@ const plateRig = (a: At): PropRig => {
   b.build(root, true);
   return { root, update: () => undefined };
 };
+/** Part 2: the little home camera high on the kitchen wall (`at` on the wall, facing +z, tilted down at the room), its
+ *  red light on: how Mum, at work, saw "herself" making your breakfast */
+const homeCamRig = (a: At): PropRig => {
+  const root = rigRoot(a), tilt = new THREE.Group(); tilt.rotation.x = 0.4; root.add(tilt);
+  const b = new Batch(), I = new THREE.Matrix4();
+  box(b, col("#e9e9ec"), I, -0.03, 0.03, -0.09, 0.0, 0.0, 0.03);                         // the wall bracket
+  box(b, col("#f4f4f6"), I, -0.065, 0.065, -0.045, 0.045, 0.02, 0.16);                    // the body
+  b.build(tilt, true);
+  const lens = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.034, 0.03, 24).rotateX(Math.PI / 2), new THREE.MeshStandardMaterial({ color: "#15161b", roughness: 0.3 }));
+  lens.position.set(-0.012, 0, 0.175); tilt.add(lens);
+  const glass = new THREE.Mesh(new THREE.CircleGeometry(0.018, 20), new THREE.MeshBasicMaterial({ color: "#3a4a6a", toneMapped: false }));
+  glass.position.set(-0.012, 0, 0.1905); glass.layers.set(NOINK); tilt.add(glass);
+  const led = new THREE.Mesh(new THREE.SphereGeometry(0.009, 12, 8), new THREE.MeshBasicMaterial({ color: "#ff2a2a", toneMapped: false }));
+  led.position.set(0.045, 0.027, 0.162); led.layers.set(NOINK); tilt.add(led);
+  return { root, update: () => undefined };
+};
 /** the front door's leaf with frosted glass (daylight). shadow: a dark head-and-shoulders silhouette behind the glass.
  *  Each step is a knock: the leaf jolts in its frame */
 const silhouetteTex = () => stex("bfSilhouette", 256, 384, (g) => {
@@ -246,6 +262,38 @@ const callScreen = (g: CanvasRenderingContext2D, st: number) => {
   vig(g, 0.35);
 };
 const INSERTS: Record<string, Ins> = {
+  // Part 2: Mum's computer at the hospital: the kitchen camera's live feed (her double at your stove) and, beside it, the
+  // messages window she's been texting you from
+  camFeed: { n: 1, draw: (g) => {
+    g.fillStyle = "#cfe0e6"; g.fillRect(0, 0, IW, IH); g.fillStyle = "#b9ccd3"; g.fillRect(0, 1180, IW, IH - 1180);                    // the ward wall, the desk
+    g.fillStyle = "#2b2f38"; g.beginPath(); g.roundRect(40, 250, IW - 80, 820, 30); g.fill(); g.lineWidth = 10; g.strokeStyle = INK; g.stroke();   // the monitor
+    g.fillStyle = "#2b2f38"; g.fillRect(IW / 2 - 50, 1070, 100, 90); g.fillRect(IW / 2 - 170, 1150, 340, 34);
+    // the camera feed: grainy, grey-green, seen from high in the corner
+    const fx = 70, fy = 280, fw = IW - 140, fh = 500;
+    g.save(); g.beginPath(); g.rect(fx, fy, fw, fh); g.clip();
+    g.fillStyle = "#7d8b80"; g.fillRect(fx, fy, fw, fh); g.fillStyle = "#97a598"; g.fillRect(fx, fy, fw, 200);                          // wall, floor
+    g.fillStyle = "#5f6c62"; g.fillRect(fx, fy + 170, fw, 90); g.fillStyle = "#4a554d"; g.fillRect(fx + 60, fy + 150, 170, 120);           // counter, stove
+    g.fillStyle = "#c08a64"; g.beginPath(); g.ellipse(fx + 300, fy + 330, 62, 120, 0, 0, Math.PI * 2); g.fill();                          // her body (the sweater)
+    g.fillStyle = "#c9b19a"; g.beginPath(); g.arc(fx + 300, fy + 190, 52, 0, Math.PI * 2); g.fill();                                      // her head
+    g.fillStyle = "#5a3a2a"; g.beginPath(); g.arc(fx + 300, fy + 128, 30, 0, Math.PI * 2); g.fill(); g.beginPath(); g.arc(fx + 300, fy + 172, 50, Math.PI, 0); g.fill();   // the bun
+    g.fillStyle = "#6d7a70"; g.fillRect(fx + 470, fy + 300, 150, 90); g.fillStyle = "#59645b"; g.fillRect(fx + 480, fy + 390, 12, 110); g.fillRect(fx + 600, fy + 390, 12, 110);   // the table
+    for (let i = 0; i < 2600; i++) { const v = 90 + ((i * 7919) % 120); g.fillStyle = `rgba(${v},${v},${v},0.22)`; g.fillRect(fx + ((i * 104729) % fw), fy + ((i * 15485863) % fh), 3, 3); }   // grain
+    for (let y = fy; y < fy + fh; y += 6) { g.fillStyle = "rgba(0,0,0,0.08)"; g.fillRect(fx, y, fw, 2); }
+    g.restore();
+    g.fillStyle = "#ff3030"; g.beginPath(); g.arc(fx + 34, fy + 34, 12, 0, Math.PI * 2); g.fill();
+    g.fillStyle = "#ffffff"; g.font = F(32); g.textAlign = "left"; g.fillText("KITCHEN CAM · LIVE", fx + 58, fy + 45);
+    g.textAlign = "right"; g.font = F(30, "normal"); g.fillText("07:43", fx + fw - 24, fy + 45);
+    // the messages window under the feed: what she sent you
+    g.fillStyle = "#0e1118"; g.fillRect(fx, fy + fh + 12, fw, 268);
+    g.fillStyle = "#8b93a5"; g.font = F(28, "normal"); g.textAlign = "left"; g.fillText("Messages · To: Bug", fx + 24, fy + fh + 52);
+    g.font = F(34);
+    for (const [k, t] of ["Don't eat it. I'm still at work.", "Rule three. Get to the front door."].entries()) {
+      const w = g.measureText(t).width + 50, x = fx + fw - 24 - w, y = fy + fh + 78 + k * 90;
+      g.fillStyle = "#2f6bff"; g.beginPath(); g.roundRect(x, y, w, 70, 30); g.fill(); g.fillStyle = "#ffffff"; g.fillText(t, x + 25, y + 47);
+    }
+    g.fillStyle = "#e8e6e0"; g.beginPath(); g.roundRect(120, 1230, IW - 240, 110, 16); g.fill(); g.lineWidth = 8; g.strokeStyle = INK; g.stroke();   // the keyboard
+    vig(g, 0.45);
+  } },
   // Part 2: ringing Mum's work, in your hands, in the bright kitchen: calling, then she picks up
   call: { n: 2, draw: (g, st) => callScreen(g, st) },
   // Part 2: Mum's phone on the counter lights up on its own with one new text to you: Hang up, Bug.
@@ -421,11 +469,13 @@ export const BREAKFAST_THEME: Theme = {
       build: () => undefined, rig: (a) => panRig(a), steps: ["flips the pancake"], stepCount: () => 50 },
     bfPhone: { name: "Phone lying flat", desc: "a phone lying flat, screen up; its screen lights (a notification) on its first step. Variants yours (yellow case) / mum (pink case)", category: "theme", themes: ["modern", "home"], tags: ["phone", "text", "screen"], radius: 0.09, height: 0.01,
       build: () => undefined, rig: (a, v) => phoneRig(a, v ?? "yours"), steps: ["lights up"], stepCount: () => 1, variants: { yours: () => undefined, mum: () => undefined } },
+    bfHomeCam: { name: "Home camera (Don't Eat It, Part 2)", desc: "a small white home security camera on a wall bracket, red light on, tilted down into the room; `at` on the wall surface, facing +z (bfKitchen back wall: z -1.9, e.g. [-0.05, 2.25, -1.89])", category: "theme", themes: ["home", "horror"], tags: ["camera", "security", "cctv", "clue"], radius: 0.08, height: 0.12,
+      build: () => undefined, rig: (a) => homeCamRig(a), steps: [], stepCount: () => 0 },
     bfPlate: { name: "Plate of pancakes", desc: "three pancakes on a plate with butter and syrup, a fork beside it (on a table top: y 0.78)", category: "theme", themes: ["home", "kitchen"], tags: ["food", "breakfast", "pancakes", "plate"], radius: 0.18, height: 0.08,
       build: () => undefined, rig: (a) => plateRig(a), steps: [], stepCount: () => 1 },
     bfFrontDoor: { name: "Front door (frosted glass)", desc: "the front door's leaf for the bfKitchen hallway frame (`at` = [0.95, 0, -4.47]), facing +z: deep green, a frosted glass panel lit by daylight. Variant shadow: a dark head-and-shoulders silhouette behind the glass. Each step is a knock: the leaf jolts", category: "theme", themes: ["home", "horror"], tags: ["door", "front door", "knock", "silhouette"], radius: 0.45, height: 2.05,
       build: () => undefined, rig: (a, v) => frontDoorRig(a, v ?? "empty"), steps: ["a knock"], stepCount: () => 50, variants: { empty: () => undefined, shadow: () => undefined } },
-    bfInsert: { name: "Close insert (Don't Eat It)", desc: "an upright 9:16 insert card (0.54 x 0.96 m, facing +z), `at` = its centre: an `at` camera 1.0 m in front at fov 51 sees only the card. A state per step. Variants: pan (Mum holding the pan of pancakes out to you, her smile above), text1 (your phone: MUM: Don't eat it. I'm still at work.), rules (the phone in your lap under the table: the first text only; then rule one, two, three), badge (Mum's hospital lanyard on its hook: NURSE, NIGHT SHIFT 9 PM - 9 AM), oven (the oven clock 7:42 AM), mumPhone (Mum's pink phone on the counter: dark; lit, typing; sent: Open the door. Now. Delivered); Part 2: call (your phone in your hands in the bright kitchen: Calling… MUM'S WORK, City Hospital; then connected, 00:03), mumHang (Mum's phone on the counter: dark; then a new text, Hang up, Bug.)", category: "theme", themes: ["home", "insert"], tags: ["insert", "card", "close-up", "phone", "text"], radius: 0.3, height: 0.96,
+    bfInsert: { name: "Close insert (Don't Eat It)", desc: "an upright 9:16 insert card (0.54 x 0.96 m, facing +z), `at` = its centre: an `at` camera 1.0 m in front at fov 51 sees only the card. A state per step. Variants: pan (Mum holding the pan of pancakes out to you, her smile above), text1 (your phone: MUM: Don't eat it. I'm still at work.), rules (the phone in your lap under the table: the first text only; then rule one, two, three), badge (Mum's hospital lanyard on its hook: NURSE, NIGHT SHIFT 9 PM - 9 AM), oven (the oven clock 7:42 AM), mumPhone (Mum's pink phone on the counter: dark; lit, typing; sent: Open the door. Now. Delivered); Part 2: camFeed (Mum's computer at the hospital: KITCHEN CAM LIVE, her double at your stove, and the messages window she texted you from), call (your phone in your hands in the bright kitchen: Calling… MUM'S WORK, City Hospital; then connected, 00:03), mumHang (Mum's phone on the counter: dark; then a new text, Hang up, Bug.)", category: "theme", themes: ["home", "insert"], tags: ["insert", "card", "close-up", "phone", "text"], radius: 0.3, height: 0.96,
       build: () => undefined, rig: (a, v) => insertRig(a, v ?? "text1"), steps: ["its next state"], stepCount: () => 2000,
       variants: Object.fromEntries(Object.keys(INSERTS).map((k) => [k, () => undefined])) },
     bfChoice: { name: "Vote panels (Don't Eat It)", desc: "the end-card vote over the last frame: a glowing panel turned to the camera, popping in on its first step (hidden before it). Variants: a (A · THE STOVE, warm orange), b (B · THE DOOR, cool blue), q (WHAT DO YOU DO?, white); Part 2: c (A · HANG UP), d (B · STAY ON THE LINE), w (WHO DO YOU TRUST?); 1.0 m wide. Drawn over everything", category: "theme", themes: ["home", "vote"], tags: ["choice", "vote", "end card", "panel"], radius: 0.05, height: 0.1,

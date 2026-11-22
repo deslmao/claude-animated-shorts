@@ -3,7 +3,7 @@
 // Mum's work, and she answers from the hospital: neither Mum in your house is her. Then both of them ask who you're
 // talking to, and Mum's phone on the counter texts you to hang up.
 // Built to the format system and what Part 1's numbers taught us: frame 0 in the bright kitchen with the hook as a
-// two-line banner, ~50 s, a visual change every ~1.8 s, five setups (the bright kitchen, your phone, the cold kitchen,
+// two-line banner, ~58 s (v2 answers the comments' questions: the work computer, the kitchen camera, the text Mum never sent), a visual change every ~1.8 s, six setups (the bright kitchen, your phone, the cold kitchen,
 // the hallway and front door, Mum's phone on the counter). Reuses Part 1's sets, cast, phones, voices and inserts.
 import type { Storyboard, Line, ShotSpec, PropSpec, CameraBeat } from "../story/types";
 
@@ -30,6 +30,8 @@ const PAN = (steps: { t: number }[] = [{ t: 99 }]): PropSpec => ({ id: "bfPan", 
 const MUM_PHONE: PropSpec = { id: "bfPhone", variant: "mum", at: [-0.2, 0.925, -1.62], yaw: -70, steps: [{ t: 99 }] };
 const PLATE: PropSpec = { id: "bfPlate", at: [0.25, 0.78, 0.66], steps: [{ t: -0.7 }] };
 const DOOR = (variant: "empty" | "shadow" = "shadow", steps: { t: number }[] = [{ t: 99 }]): PropSpec => ({ id: "bfFrontDoor", variant, at: [0.95, 0, -4.47], steps });
+// the home camera high on the back wall, above the arch to the hallway (seen in the wide kitchen shots)
+const HOMECAM: PropSpec = { id: "bfHomeCam", at: [0.95, 2.28, -1.89], steps: [] };
 const MUM_STOVE: V = [-0.4, 0, -1.0], BUG_STAND: V = [0.3, 0, 1.6];
 // the hospital behind Mum's voice whenever she's on the line
 const LINE = (t = 0, gain = -14) => ({ t, name: "el_hospital_line" as const, gain });
@@ -39,11 +41,11 @@ export const BREAKFAST_2: Storyboard = {
   cast: { mum: "mum", bug: "bug" },
   voice: "georgeHushed", voices: { mum: "bfMum" },
   captionColors: { mum: "#ffb070", bfMum: "#ffb070", bfMumDoor: "#8fc8ff", bfText: "#ffc8dc", bfThought: "#fff2a8" },
-  // the score (sound/samples/music/breakfast2_score.json: eight sections to these timings): the breakfast tune slightly off
+  // the score (sound/samples/music/breakfast2_score2.json: nine sections to these timings): the breakfast tune slightly off
   // for frame 0, collapsing onto a detuned music box with the call, a hit on "you were right", near silence as the house
-  // goes quiet, a held-breath heartbeat under the whisper, a horror swell as it turns, a warped music box under the text,
+  // goes quiet (after a quiet ticking pulse under the comments' answers and a sting on "I never sent that"), a held-breath heartbeat under the whisper, a horror swell as it turns, a warped music box under the text,
   // a held chord that stops dead
-  music: { file: "breakfast2_score", gain: 0, duck: -5, curve: [[0, -6], [3.0, -6], [11.5, -10], [19.3, -6], [37.0, -3], [41.0, -2], [41.4, -24]] },
+  music: { file: "breakfast2_score2", gain: 0, duck: -5, curve: [[0, -6], [3.0, -6], [15.6, -9], [28.9, -6], [32.4, -10], [40.2, -6], [53.7, -3], [57.7, -2], [58.1, -24]] },
   engine: 3, autoSfx: false,
   clarity: {
     premise: "You ring Mum's work and she answers from the hospital, so neither of the mums in your house is her, and now both of them want to know who you're talking to.",
@@ -53,6 +55,10 @@ export const BREAKFAST_2: Storyboard = {
       { fact: "she's at work", said: "I'm still at work, love." },
       { fact: "the top comment was right", said: "Most of you said: neither. You were right." },
       { fact: "what that means", said: "Then who's at the stove… and who's at the door?" },
+      { fact: "the comments' question", said: "how did she text you, if her phone's on the counter?" },
+      { fact: "she texted from work", said: "I texted you from my work computer." },
+      { fact: "how she knew", said: "I saw her on the kitchen camera." },
+      { fact: "the last text wasn't her", said: "I never sent that." },
       { fact: "the danger", said: "Walk to the back door. Now." },
       { fact: "it heard you", said: "Who are you talking to, Bug?" },
       { fact: "it's in two places", said: "The voice at the door says it too." },
@@ -89,6 +95,21 @@ export const BREAKFAST_2: Storyboard = {
       actors: [{ who: "mum", at: [-0.6, 0, -0.95], act: "happy", back: true, facing: 0, gesture: "hang" }],
       props: [DOOR("shadow"), DREAD([-0.6, 1.2, -0.95], 38, "soft")], sfx: [{ t: 0, name: "el_sizzle", gain: -10 }, { t: 0, name: "el_breath_heavy", gain: -10 }],
       note: "the thing's back at the stove; then, down the hallway, the silhouette in the front door's glass" },
+    // ---- THE COMMENTS' QUESTIONS, ANSWERED
+    insert("mumPhone", "Mum's pink phone on the counter, the thread of texts to you: Don't eat it… Rule three… Open the door. Now. Delivered.", {
+      say: N("Your top question: how did she text you, if her phone's on the counter?"), hold: 0.1, sfx: [LINE(0, -20)] }, [{ t: -0.7 }, { t: -0.7 }]),
+    { say: [call("I texted you from my work computer."), { ...call("Bug… I saw her on the kitchen camera."), gap: 0.2 }], ...KC, hold: 0.2,
+      ...withCuts(lock(CARD_CAM), ["camera", at([0.55, 1.75, -0.65], [0.95, 2.25, -1.89], 30)]),
+      actors: [], props: [{ id: "bfInsert", at: CARD, variant: "camFeed", steps: [{ t: 99 }] }, HOMECAM],
+      sfx: [LINE(0, -14), { word: "camera", name: "el_hit_sub", gain: -10 }],
+      note: "Mum's computer at the hospital: the kitchen camera's live feed, her double at your stove, the messages she sent you; on 'camera', the little camera high on your kitchen wall, its red light on" },
+    { say: { text: "Then… “Open the door. Now.”?", who: "narrator", voice: "bfThought", sub: "Then… “Open the door. Now.”?" }, ...KC, hold: 0.15,
+      ...withCuts(lock(at([-0.75, 1.25, 0.6], [0.3, 1.12, 1.62], 44)), ["Open", at([-0.5, 1.28, 0.85], [0.3, 1.18, 1.62], 40)]),
+      actors: [{ who: "bug", at: BUG_STAND, act: "confused", face: "confused", keepFace: true, facing: "camera", gesture: "hang" }],
+      props: [DREAD([0.3, 1.12, 1.62], 44)], sfx: [{ t: 0, name: "el_breath_heavy", gain: -10 }], note: "you, close: the last text" },
+    insert("mumPhone", "Mum's phone on the counter, pushing in on the last text: Open the door. Now.", {
+      say: [call("I never sent that."), { ...N("Mum didn't send the last text."), gap: 0.2 }], hold: 0.2,
+      sfx: [LINE(0, -16), { word: "never", name: "el_sting_strings", gain: -6 }] }, [{ t: -0.7 }, { t: -0.7 }]),
     { say: [N("The knocking stops."), { ...N("The thing at the stove stops moving."), gap: 0.3 }], ...KC, hold: 0.3,
       ...withCuts(glide(at([1.55, 1.4, 0.8], [0.2, 1.1, -1.6], 50), at([1.4, 1.38, 0.55], [0.2, 1.1, -1.6], 48), 1.6), ["thing", at([-0.15, 1.5, 0.35], [-0.6, 1.5, -0.95], 30)]),
       actors: [{ who: "mum", at: [-0.6, 0, -0.95], act: "neutral", back: true, facing: 0, gesture: "hang", idle: 0 }],

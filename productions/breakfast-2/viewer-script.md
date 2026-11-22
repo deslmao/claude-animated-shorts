@@ -19,33 +19,47 @@ What the viewer sees and hears, in order. Nothing else reaches them.
 **5.** _the thing's back at the stove; then, down the hallway, the silhouette in the front door's glass_
 > **bfThought (voice-over):** Then who's at the stove… and who's at the door?
 
-**6.** _the wide kitchen: two last knocks, then silence; the thing at the stove stands dead still, its back to you_
+**6.** _Mum's pink phone on the counter, the thread of texts to you: Don't eat it… Rule three… Open the door. Now. Delivered._
+> **NARRATOR:** Your top question: how did she text you, if her phone's on the counter?
+
+**7.** _Mum's computer at the hospital: the kitchen camera's live feed, her double at your stove, the messages she sent you; on 'camera', the little camera high on your kitchen wall, its red light on_
+> **bfText (voice-over):** I texted you from my work computer.
+> **bfText (voice-over):** Bug… I saw her on the kitchen camera.
+
+**8.** _you, close: the last text_
+> **bfThought (voice-over):** Then… “Open the door. Now.”?
+
+**9.** _Mum's phone on the counter, pushing in on the last text: Open the door. Now._
+> **bfText (voice-over):** I never sent that.
+> **NARRATOR:** Mum didn't send the last text.
+
+**10.** _the wide kitchen: two last knocks, then silence; the thing at the stove stands dead still, its back to you_
 > **NARRATOR:** The knocking stops.
 > **NARRATOR:** The thing at the stove stops moving.
 
-**7.** _you, very close, eyes on the stove: Mum whispering on the line; on Walk, the thing's back at the stove, listening_
+**11.** _you, very close, eyes on the stove: Mum whispering on the line; on Walk, the thing's back at the stove, listening_
 > **bfText (voice-over):** Bug. Don't say anything. Walk to the back door. Now.
 
-**8.** _close on the back of its head: a creak as it starts to turn_
+**12.** _close on the back of its head: a creak as it starts to turn_
 
-**9.** _its face, turned all the way round, smiling, the frame tilted; pushing in_
+**13.** _its face, turned all the way round, smiling, the frame tilted; pushing in_
 > **MUM:** Who are you talking to, Bug?
 
-**10.** _the front door, close: the silhouette in the glass says the same words_
+**14.** _the front door, close: the silhouette in the glass says the same words_
 > **bfMumDoor (voice-over):** Who are you talking to, Bug?
 
-**11.** _you, frozen, the phone in your hand_
+**15.** _you, frozen, the phone in your hand_
 > **NARRATOR:** The voice at the door says it too.
 > **NARRATOR:** Word for word.
 
-**12.** _Mum's pink phone on the counter: dark; it lights up by itself: Hang up, Bug. Delivered._
+**16.** _Mum's pink phone on the counter: dark; it lights up by itself: Hang up, Bug. Delivered._
 > **NARRATOR:** Mum's phone lights up on the counter. One new text.
 > **bfMum (voice-over):** Hang up, Bug.
 
-**13.** _you, close: Mum shouting down the line_
+**17.** _you, close: Mum shouting down the line_
 > **bfText (voice-over):** Don't you dare hang up! Bug, run!
 
-**14.** _the last frame: the thing has come round from the stove and stands between you and the hallway, smiling; the silhouette in the door glass beyond; A · HANG UP, B · STAY ON THE LINE, WHO DO YOU TRUST? pop in; cut half a second after the last word_
+**18.** _the last frame: the thing has come round from the stove and stands between you and the hallway, smiling; the silhouette in the door glass beyond; A · HANG UP, B · STAY ON THE LINE, WHO DO YOU TRUST? pop in; cut half a second after the last word_
 > **NARRATOR:** The text says hang up.
 > **NARRATOR:** Mum's voice says don't.
 > **NARRATOR:** Who do you trust?
@@ -61,11 +75,27 @@ What the viewer sees and hears, in order. Nothing else reaches them.
 | she's at work | "I'm still at work, love." | 3 |
 | the top comment was right | "Most of you said: neither. You were right." | 4 |
 | what that means | "Then who's at the stove… and who's at the door?" | 5 |
-| the danger | "Walk to the back door. Now." | 7 |
-| it heard you | "Who are you talking to, Bug?" | 9 |
-| it's in two places | "The voice at the door says it too." | 11 |
-| the phone mystery | "Mum's phone lights up on the counter." | 12 |
-| the new text | "Hang up, Bug." | 12 |
-| the text says | "The text says hang up." | 14 |
-| Mum says | "Mum's voice says don't." | 14 |
-| the choice | "Who do you trust?" | 14 |
+| the comments' question | "how did she text you, if her phone's on the counter?" | 6 |
+| she texted from work | "I texted you from my work computer." | 7 |
+| how she knew | "I saw her on the kitchen camera." | 7 |
+| the last text wasn't her | "I never sent that." | 9 |
+| the danger | "Walk to the back door. Now." | 11 |
+| it heard you | "Who are you talking to, Bug?" | 13 |
+| it's in two places | "The voice at the door says it too." | 15 |
+| the phone mystery | "Mum's phone lights up on the counter." | 16 |
+| the new text | "Hang up, Bug." | 16 |
+| the text says | "The text says hang up." | 18 |
+| Mum says | "Mum's voice says don't." | 18 |
+| the choice | "Who do you trust?" | 18 |
+
+## v2: answering the comments (approved by the owner, 22 Nov 2026)
+After "Then who's at the stove… and who's at the door?":
+> **NARRATOR:** Your top question: how did she text you, if her phone's on the counter? *(Mum's phone: the thread of texts.)*
+> **MUM (phone):** I texted you from my work computer. Bug… I saw her on the kitchen camera. *(Mum's hospital computer:
+> KITCHEN CAM · LIVE, her double at your stove, the messages window; then the little camera above the arch, red light on.)*
+> **BUG (thought):** Then… "Open the door. Now."?
+> **MUM (phone):** I never sent that. **NARRATOR:** Mum didn't send the last text. *(Pushing in on that text.)*
+
+- **One line changed:** "The voice at the door says it too. **Word for word.**" (the two voices play one after the other).
+- **Length:** 58.2 s; 21 shots and cuts, plus 3 insert changes and 3 vote panels (a change about every 1.9 s); six
+  setups.

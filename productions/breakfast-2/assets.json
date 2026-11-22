@@ -1,5 +1,5 @@
 {
- "reused": 34,
+ "reused": 36,
  "missing": [],
  "byKind": {
   "character": [
@@ -26,6 +26,7 @@
    "bfInsert",
    "bfDread",
    "bfFrontDoor",
+   "bfHomeCam",
    "bfChoice"
   ],
   "sfx": [
@@ -37,11 +38,11 @@
    "el_hospital_line",
    "el_breath_heavy",
    "el_hit_sub",
+   "el_sting_strings",
    "knock_heavy",
    "el_ear_ring",
    "el_heartbeat_fast",
    "el_neck_creak",
-   "el_sting_strings",
    "el_riser_short",
    "el_vial_chime",
    "msg_chime",
@@ -50,6 +51,7 @@
   "act": [
    "happy",
    "scared",
+   "confused",
    "neutral"
   ]
  }
