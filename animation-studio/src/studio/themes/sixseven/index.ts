@@ -155,7 +155,7 @@ const boardBackTex = () => stex("ssBoardBack", IW, IH, (g) => {
 const handsTex = (key: string, hands: [number, number, string, string][]) => stex(`ssHands_${key}`, IW, IH, (g) => {
   g.clearRect(0, 0, IW, IH);
   const cx = IW / 2, cy = IH / 2, k = 0.5;                      // the overlay is twice the card: half the pixel scale
-  drawPlanchette(g, cx, cy, 0.85 * CK * k);
+  drawPlanchette(g, cx, cy, 1.35 * CK * k);
   for (const [fx, fy, skin, sleeve] of hands) {
     const ang = Math.atan2(cy - fy, cx - fx), tx = cx - Math.cos(ang) * 31, ty = cy - Math.sin(ang) * 31;
     g.lineCap = "round"; g.strokeStyle = INK; g.lineWidth = 32; g.beginPath(); g.moveTo(fx, fy); g.lineTo(tx, ty); g.stroke();

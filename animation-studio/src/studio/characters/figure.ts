@@ -555,7 +555,7 @@ export const rigFront = (L: Look, pose: Pose) => {
     case "scratchHead": one((s) => { const S = S1(s); add(s, [S[0] + s * 0.46 * HH, S[1] - 0.2 * HH], [300 + s * 0.42 * W, hc - 0.55 * H.b], 2, "dot"); }); break;
     case "coverMouth": for (const s of [-1, 1]) add(s, [tcx + s * 1.05 * T.a, chin + 0.4 * HH], [300 + 8 * u * facing + s * 9 * u, hc + 0.5 * H.b], 2, "open"); break;
     case "sixSeven": { const w = Math.sin(t * 9); for (const s of [-1, 1]) { const S = S1(s), dy = s * w * 0.36 * HH; add(s, [S[0] + s * 0.3 * HH, S[1] + 0.46 * HH], [S[0] + s * 0.62 * HH, S[1] + 0.22 * HH + dy], 1, "open"); } break; }
-    case "choke": { const j = Math.sin(t * 31) * 1.6 * u; for (const s of [-1, 1]) add(s, [tcx + s * 1.1 * T.a, chin + 0.42 * HH], [300 + 8 * u * facing + s * 16 * u + j, chin + 0.1 * HH], 2, "open"); break; }
+    case "choke": { const j = Math.sin(t * 31) * 1.6 * u; for (const s of [-1, 1]) add(s, [tcx + s * 1.1 * T.a, chin + 0.42 * HH], [300 + 8 * u * facing + s * 12 * u + j, chin + 0.02 * HH], 2, "open"); break; }
     case "shrug": for (const s of [-1, 1]) { const S = S1(s); add(s, [S[0] + s * 0.36 * HH, S[1] + 0.34 * HH], [S[0] + s * 0.64 * HH, S[1] + 0.02 * HH], 0, "open"); } break;
     case "spread": for (const s of [-1, 1]) { const S = S1(s); add(s, [S[0] + s * 0.36 * HH, S[1] - 0.12 * HH], [S[0] + s * 0.7 * HH, S[1] - 0.42 * HH], 0, "open"); } break;
     case "cheer": for (const s of [-1, 1]) { const S = S1(s); add(s, [S[0] + s * 0.3 * HH, S[1] - 0.34 * HH], [S[0] + s * 0.48 * HH, S[1] - 0.76 * HH], 0, "fist"); } break;

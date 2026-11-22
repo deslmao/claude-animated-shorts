@@ -147,7 +147,7 @@ export const SIX_SEVEN: Storyboard = {
       note: "the lights die; torchlight; Isaac, still laughing in the dark, still doing the hands" },
     // ---- THE END (setup 6: the cold glow)
     { say: N("Then all of a sudden, his neck starts choking. He holds onto it… and he floats in the air."), ...DARK, hold: 0.15,
-      ...cuts(at([-2.95, 1.2, -0.3], [-3.05, 1.1, -1.62], 38, 13, 0.06), { word: "holds", c: at([-3.0, 1.15, -0.4], [-3.05, 1.05, -1.62], 34, 14, 0.08) }, { word: "floats", c: at([-2.9, 1.2, 0.9], [-3.05, 1.6, -1.62], 46, 8, 0.1, 5) }),
+      ...cuts(at([-2.95, 1.85, -0.3], [-3.05, 1.95, -1.62], 38, 13, 0.06), { word: "holds", c: at([-3.0, 1.75, -0.5], [-3.05, 1.78, -1.62], 32, 14, 0.08) }, { word: "floats", c: at([-2.9, 1.15, 1.1], [-3.05, 1.4, -1.62], 52, 8, 0.1, 5) }),
       actors: [{ who: "ssIsaac", at: FLOAT, act: "scared", face: "scared", keepFace: true, blink: false, facing: "camera", gesture: "choke", idle: 0.6 }],
       props: [NIGHT_WIN, DREAD([-3.05, 1.5, -1.62], 40, "heavy")],
       sfx: [{ t: 0.2, name: "el_choke" }, { word: "floats", name: "el_float_rise" }], note: "torchlight on Isaac, facing us: both hands clutching his neck, choking; the wide reveals he's floating off the floor" },
