@@ -161,7 +161,7 @@ export const SIX_SEVEN: Storyboard = {
     { say: { ...N("And his last words?"), gap: 0.6 }, ...DARK, hold: 0.1,
       ...cuts(at([-3.05, 1.18, -0.75], ME_FACE, 36, 13, 0.08), { t: 0.6, c: at([-2.75, 1.25, -0.2], [-3.0, 1.0, -1.82], 44, 6, 0.1, 4) }),
       kicks: [0.02],
-      actors: [{ who: "ssMe", at: SEAT_ME, mode: "sit", act: "scared", face: "shock", keepFace: true, facing: "camera", gesture: "hang" }],
+      actors: [{ who: "ssMe", at: SEAT_ME, mode: "sit", act: "scared", face: "shock", keepFace: true, blink: false, facing: "camera", gesture: "hang" }],
       props: [NIGHT_WIN, DREAD(ME_FACE, 36, "heavy")], sfx: [{ t: 0, name: "el_breath_heavy", gain: -6 }],
       note: "you, alone on the sofa, frozen" },
     { say: { ...isaacLast("Six… seven…"), gap: 0.2 }, ...DARK, hold: 0.25,
