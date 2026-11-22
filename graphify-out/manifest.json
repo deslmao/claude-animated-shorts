@@ -1,0 +1,1028 @@
+{
+  "animation-studio/src/Phone.tsx": {
+    "mtime": 1793601187.4909434,
+    "seen": 1795327610.0763245,
+    "ast_hash": "e95c54ff5f997c7bdde2b2478eec0a69",
+    "semantic_hash": "e95c54ff5f997c7bdde2b2478eec0a69"
+  },
+  "animation-studio/src/Root.tsx": {
+    "mtime": 1793931346.1849082,
+    "seen": 1795327610.076333,
+    "ast_hash": "bc876233ae55b2cf37058051c66f356a",
+    "semantic_hash": "bc876233ae55b2cf37058051c66f356a"
+  },
+  "animation-studio/src/RoundedBox.tsx": {
+    "mtime": 1793601187.4965265,
+    "seen": 1795327610.0763364,
+    "ast_hash": "5d46c4b8c53d1c711654cb1ed017f3e1",
+    "semantic_hash": "5d46c4b8c53d1c711654cb1ed017f3e1"
+  },
+  "animation-studio/src/Scene.tsx": {
+    "mtime": 1793601187.4965265,
+    "seen": 1795327610.0763383,
+    "ast_hash": "ccc000ab093aa7b0e48ca694187521f4",
+    "semantic_hash": "ccc000ab093aa7b0e48ca694187521f4"
+  },
+  "animation-studio/src/helpers/get-media-metadata.ts": {
+    "mtime": 1793601187.4965265,
+    "seen": 1795327610.07634,
+    "ast_hash": "e0613cf28cbaf8ec9a8186fcb8cbacb0",
+    "semantic_hash": "e0613cf28cbaf8ec9a8186fcb8cbacb0"
+  },
+  "animation-studio/src/helpers/layout.ts": {
+    "mtime": 1793601187.4967065,
+    "seen": 1795327610.076341,
+    "ast_hash": "d7abdf68a6c8ddbc244706a36561510c",
+    "semantic_hash": "d7abdf68a6c8ddbc244706a36561510c"
+  },
+  "animation-studio/src/helpers/rounded-rectangle.ts": {
+    "mtime": 1793601187.4967065,
+    "seen": 1795327610.0763426,
+    "ast_hash": "928bfb3e32a5a96ceea1b1f66f2b7830",
+    "semantic_hash": "928bfb3e32a5a96ceea1b1f66f2b7830"
+  },
+  "animation-studio/src/index.ts": {
+    "mtime": 1793601187.4967065,
+    "seen": 1795327610.0763438,
+    "ast_hash": "d92d9dee1ab16aa44a75ae7fbfb843ca",
+    "semantic_hash": "d92d9dee1ab16aa44a75ae7fbfb843ca"
+  },
+  "animation-studio/src/studio/camera/framing.ts": {
+    "mtime": 1793698726.9766998,
+    "seen": 1795327610.0763454,
+    "ast_hash": "52d798eb99241c0979dedd7ed66ab126",
+    "semantic_hash": "52d798eb99241c0979dedd7ed66ab126"
+  },
+  "animation-studio/src/studio/camera/keys.ts": {
+    "mtime": 1793947196.1061127,
+    "seen": 1795327610.0763469,
+    "ast_hash": "8dcffa21a9ea100d6d37552bf1b1aaea",
+    "semantic_hash": "8dcffa21a9ea100d6d37552bf1b1aaea"
+  },
+  "animation-studio/src/studio/camera/moves.ts": {
+    "mtime": 1793777853.752491,
+    "seen": 1795327610.076348,
+    "ast_hash": "b13cb6b8d7cf46704c0d6e965c7c5b96",
+    "semantic_hash": "b13cb6b8d7cf46704c0d6e965c7c5b96"
+  },
+  "animation-studio/src/studio/cards/cards.ts": {
+    "mtime": 1793830544.4172764,
+    "seen": 1795327610.0763497,
+    "ast_hash": "e4526d2fd417a42cfe708ab684526d74",
+    "semantic_hash": "e4526d2fd417a42cfe708ab684526d74"
+  },
+  "animation-studio/src/studio/cards/person.ts": {
+    "mtime": 1793696522.802309,
+    "seen": 1795327610.076351,
+    "ast_hash": "57477c0713716084b4408266b983cee1",
+    "semantic_hash": "57477c0713716084b4408266b983cee1"
+  },
+  "animation-studio/src/studio/characters/acting.ts": {
+    "mtime": 1793668781.1866014,
+    "seen": 1795327610.0763524,
+    "ast_hash": "36820cb9309016505290d0d625915e26",
+    "semantic_hash": "36820cb9309016505290d0d625915e26"
+  },
+  "animation-studio/src/studio/characters/cast.ts": {
+    "mtime": 1794626790.249305,
+    "seen": 1795327610.0763533,
+    "ast_hash": "e97fd090c19e79a8894fd52b6c0262e5",
+    "semantic_hash": "e97fd090c19e79a8894fd52b6c0262e5"
+  },
+  "animation-studio/src/studio/characters/figure.ts": {
+    "mtime": 1795140491.7353265,
+    "seen": 1795327610.0763543,
+    "ast_hash": "97abb599405032818de6f888ee1b303e",
+    "semantic_hash": "97abb599405032818de6f888ee1b303e"
+  },
+  "animation-studio/src/studio/characters/items.ts": {
+    "mtime": 1793740656.173291,
+    "seen": 1795327610.0763557,
+    "ast_hash": "b24fdcb2d44889a2089e9f427e3d3cb0",
+    "semantic_hash": "b24fdcb2d44889a2089e9f427e3d3cb0"
+  },
+  "animation-studio/src/studio/characters/roster.ts": {
+    "mtime": 1793677781.4047415,
+    "seen": 1795327610.076357,
+    "ast_hash": "01981158c4e15086d57a1c95b1d5da63",
+    "semantic_hash": "01981158c4e15086d57a1c95b1d5da63"
+  },
+  "animation-studio/src/studio/characters/toon.ts": {
+    "mtime": 1793621263.162485,
+    "seen": 1795327610.0763583,
+    "ast_hash": "344053ec066f3755a34be9f49a8a22ae",
+    "semantic_hash": "344053ec066f3755a34be9f49a8a22ae"
+  },
+  "animation-studio/src/studio/checks/CastTest.tsx": {
+    "mtime": 1793622197.2491329,
+    "seen": 1795327610.0763597,
+    "ast_hash": "b45a08be7829b01ee33ac8083ed32e8a",
+    "semantic_hash": "b45a08be7829b01ee33ac8083ed32e8a"
+  },
+  "animation-studio/src/studio/checks/CharacterSheet.tsx": {
+    "mtime": 1794626790.249482,
+    "seen": 1795327610.0763607,
+    "ast_hash": "72fa7a714075aa4b857bd05b175990d7",
+    "semantic_hash": "72fa7a714075aa4b857bd05b175990d7"
+  },
+  "animation-studio/src/studio/checks/FoundationTest.tsx": {
+    "mtime": 1793620607.4464772,
+    "seen": 1795327610.076362,
+    "ast_hash": "14ab524609ca45f12cb099b8be35a16a",
+    "semantic_hash": "14ab524609ca45f12cb099b8be35a16a"
+  },
+  "animation-studio/src/studio/checks/LookCheck.tsx": {
+    "mtime": 1793620057.4022362,
+    "seen": 1795327610.0763636,
+    "ast_hash": "f7dcb0b16b935b76c95f0e544ee27611",
+    "semantic_hash": "f7dcb0b16b935b76c95f0e544ee27611"
+  },
+  "animation-studio/src/studio/checks/MovesTest.tsx": {
+    "mtime": 1793656177.3838766,
+    "seen": 1795327610.0763648,
+    "ast_hash": "219348e24ff29c03bbaa84f596be89b3",
+    "semantic_hash": "219348e24ff29c03bbaa84f596be89b3"
+  },
+  "animation-studio/src/studio/checks/SetTour.tsx": {
+    "mtime": 1793654190.8911562,
+    "seen": 1795327610.0763664,
+    "ast_hash": "d85d63272eb551b344d104578feccf46",
+    "semantic_hash": "d85d63272eb551b344d104578feccf46"
+  },
+  "animation-studio/src/studio/fx/diagrams.ts": {
+    "mtime": 1793756454.118962,
+    "seen": 1795327610.0763674,
+    "ast_hash": "8f09510d90af68b4e8eb598a910a958b",
+    "semantic_hash": "8f09510d90af68b4e8eb598a910a958b"
+  },
+  "animation-studio/src/studio/fx/effects.ts": {
+    "mtime": 1793920841.2258615,
+    "seen": 1795327610.0763688,
+    "ast_hash": "25dfdb44661dec7ca22dad6de3ae29d3",
+    "semantic_hash": "25dfdb44661dec7ca22dad6de3ae29d3"
+  },
+  "animation-studio/src/studio/fx/thought.ts": {
+    "mtime": 1793919885.033569,
+    "seen": 1795327610.0763705,
+    "ast_hash": "0ee4a1b107f5864a30d0301375b1d27d",
+    "semantic_hash": "0ee4a1b107f5864a30d0301375b1d27d"
+  },
+  "animation-studio/src/studio/library/registry.ts": {
+    "mtime": 1794626790.2496543,
+    "seen": 1795327610.0763717,
+    "ast_hash": "5bbb00c787b6f1dff5feac2e07f0b76d",
+    "semantic_hash": "5bbb00c787b6f1dff5feac2e07f0b76d"
+  },
+  "animation-studio/src/studio/look/StudioFilm.tsx": {
+    "mtime": 1793933845.5629454,
+    "seen": 1795327610.076373,
+    "ast_hash": "e0ebcd019787a4c3a5ee9a031213b46a",
+    "semantic_hash": "e0ebcd019787a4c3a5ee9a031213b46a"
+  },
+  "animation-studio/src/studio/look/cardshade.ts": {
+    "mtime": 1793619867.0334353,
+    "seen": 1795327610.0763743,
+    "ast_hash": "67f34907558dea57540d3aae712cbc7c",
+    "semantic_hash": "67f34907558dea57540d3aae712cbc7c"
+  },
+  "animation-studio/src/studio/look/grade.ts": {
+    "mtime": 1793656087.6961198,
+    "seen": 1795327610.0763752,
+    "ast_hash": "50c46771f692bddf598b101e138cfca7",
+    "semantic_hash": "50c46771f692bddf598b101e138cfca7"
+  },
+  "animation-studio/src/studio/look/ink.ts": {
+    "mtime": 1793933845.4812984,
+    "seen": 1795327610.076377,
+    "ast_hash": "1355cdb53c58376c45226e5470083003",
+    "semantic_hash": "1355cdb53c58376c45226e5470083003"
+  },
+  "animation-studio/src/studio/look/lensblur.ts": {
+    "mtime": 1793619867.0332654,
+    "seen": 1795327610.076378,
+    "ast_hash": "cd2910be8cb78070355ac907183ae4b0",
+    "semantic_hash": "cd2910be8cb78070355ac907183ae4b0"
+  },
+  "animation-studio/src/studio/look/lights.ts": {
+    "mtime": 1793656087.6971931,
+    "seen": 1795327610.0763793,
+    "ast_hash": "3e636a369a5a04dc9f724993414b156e",
+    "semantic_hash": "3e636a369a5a04dc9f724993414b156e"
+  },
+  "animation-studio/src/studio/look/motionblur.ts": {
+    "mtime": 1793918187.3510158,
+    "seen": 1795327610.0763807,
+    "ast_hash": "135661346c16a3bd6f871dcd70bd090c",
+    "semantic_hash": "135661346c16a3bd6f871dcd70bd090c"
+  },
+  "animation-studio/src/studio/look/shade.ts": {
+    "mtime": 1793619867.0334125,
+    "seen": 1795327610.076382,
+    "ast_hash": "84dfa610f5010eea30f85419b124a978",
+    "semantic_hash": "84dfa610f5010eea30f85419b124a978"
+  },
+  "animation-studio/src/studio/materials/geo.ts": {
+    "mtime": 1793619891.72624,
+    "seen": 1795327610.076383,
+    "ast_hash": "e56a7324a05e14b88d9b2af20ef7e11d",
+    "semantic_hash": "e56a7324a05e14b88d9b2af20ef7e11d"
+  },
+  "animation-studio/src/studio/materials/paint.ts": {
+    "mtime": 1793623412.8683817,
+    "seen": 1795327610.0763843,
+    "ast_hash": "1feef549152c463bced315ec8fbd73c1",
+    "semantic_hash": "1feef549152c463bced315ec8fbd73c1"
+  },
+  "animation-studio/src/studio/materials/paint2.ts": {
+    "mtime": 1793675603.7862725,
+    "seen": 1795327610.0763853,
+    "ast_hash": "76afe9c5d324caa6bc5282c56589281a",
+    "semantic_hash": "76afe9c5d324caa6bc5282c56589281a"
+  },
+  "animation-studio/src/studio/props/displays.ts": {
+    "mtime": 1793961093.24258,
+    "seen": 1795327610.076387,
+    "ast_hash": "9aa5aee84da75809605defcc57135a12",
+    "semantic_hash": "9aa5aee84da75809605defcc57135a12"
+  },
+  "animation-studio/src/studio/props/documents.ts": {
+    "mtime": 1793789661.168738,
+    "seen": 1795327610.076388,
+    "ast_hash": "131fc776bbf2e414dff875e4612b19b9",
+    "semantic_hash": "131fc776bbf2e414dff875e4612b19b9"
+  },
+  "animation-studio/src/studio/props/economy.ts": {
+    "mtime": 1793827232.1273358,
+    "seen": 1795327610.0763886,
+    "ast_hash": "19ddc06ea2edf78c245792bb7f8fc06a",
+    "semantic_hash": "19ddc06ea2edf78c245792bb7f8fc06a"
+  },
+  "animation-studio/src/studio/props/interior.ts": {
+    "mtime": 1793695267.8704104,
+    "seen": 1795327610.0763924,
+    "ast_hash": "19858c830ab5ca6399e0bc355945a29f",
+    "semantic_hash": "19858c830ab5ca6399e0bc355945a29f"
+  },
+  "animation-studio/src/studio/props/kit.ts": {
+    "mtime": 1793623552.3841848,
+    "seen": 1795327610.0763934,
+    "ast_hash": "7087f97827605b331794b6536e468a3e",
+    "semantic_hash": "7087f97827605b331794b6536e468a3e"
+  },
+  "animation-studio/src/studio/props/nature.ts": {
+    "mtime": 1793623590.224184,
+    "seen": 1795327610.0763948,
+    "ast_hash": "7d1302a0531426a907b36b6d44a518f9",
+    "semantic_hash": "7d1302a0531426a907b36b6d44a518f9"
+  },
+  "animation-studio/src/studio/props/outdoor.ts": {
+    "mtime": 1793695560.12728,
+    "seen": 1795327610.0763962,
+    "ast_hash": "c6f2d84886843638a8c1e8fe4e0e73d1",
+    "semantic_hash": "c6f2d84886843638a8c1e8fe4e0e73d1"
+  },
+  "animation-studio/src/studio/props/registry.ts": {
+    "mtime": 1793961093.2448516,
+    "seen": 1795327610.0763977,
+    "ast_hash": "032b063508eb0a1ed551534c3ddc8d5a",
+    "semantic_hash": "032b063508eb0a1ed551534c3ddc8d5a"
+  },
+  "animation-studio/src/studio/scene/SetWorld.ts": {
+    "mtime": 1793961093.2448516,
+    "seen": 1795327610.0763993,
+    "ast_hash": "68101b662ccdadbe173458a252e51dc0",
+    "semantic_hash": "68101b662ccdadbe173458a252e51dc0"
+  },
+  "animation-studio/src/studio/scene/environment.ts": {
+    "mtime": 1793655618.177756,
+    "seen": 1795327610.0764008,
+    "ast_hash": "8b34439e766bc0389747937eb9bb9c0b",
+    "semantic_hash": "8b34439e766bc0389747937eb9bb9c0b"
+  },
+  "animation-studio/src/studio/sets/clear.ts": {
+    "mtime": 1793657957.103209,
+    "seen": 1795327610.076402,
+    "ast_hash": "d73be5112a82c1954d9c6d48674f595b",
+    "semantic_hash": "d73be5112a82c1954d9c6d48674f595b"
+  },
+  "animation-studio/src/studio/sets/floor.gen.ts": {
+    "mtime": 1795259702.8755798,
+    "seen": 1795327610.0764031,
+    "ast_hash": "a94a36007ee9d6e381d26b2e5f50420b",
+    "semantic_hash": "a94a36007ee9d6e381d26b2e5f50420b"
+  },
+  "animation-studio/src/studio/sets/floor.ts": {
+    "mtime": 1793677180.48472,
+    "seen": 1795327610.0764046,
+    "ast_hash": "bcdad73ab2e856c2d45efc7ac6e48d3e",
+    "semantic_hash": "bcdad73ab2e856c2d45efc7ac6e48d3e"
+  },
+  "animation-studio/src/studio/sets/home.ts": {
+    "mtime": 1793653993.471848,
+    "seen": 1795327610.0764058,
+    "ast_hash": "8c62928b4b9ceb77a2215f404945bc9e",
+    "semantic_hash": "8c62928b4b9ceb77a2215f404945bc9e"
+  },
+  "animation-studio/src/studio/sets/index.ts": {
+    "mtime": 1793677816.175262,
+    "seen": 1795327610.0764067,
+    "ast_hash": "8f8465fb8e98aedc76031506692bc5a3",
+    "semantic_hash": "8f8465fb8e98aedc76031506692bc5a3"
+  },
+  "animation-studio/src/studio/sets/indoor.ts": {
+    "mtime": 1793695230.1746042,
+    "seen": 1795327610.0764081,
+    "ast_hash": "27c2ed47dfde5e74158935f6861a4fa0",
+    "semantic_hash": "27c2ed47dfde5e74158935f6861a4fa0"
+  },
+  "animation-studio/src/studio/sets/layouts.ts": {
+    "mtime": 1793699758.5129373,
+    "seen": 1795327610.0764096,
+    "ast_hash": "5f32de8d312703db224406d496e6f58f",
+    "semantic_hash": "5f32de8d312703db224406d496e6f58f"
+  },
+  "animation-studio/src/studio/sets/outdoor.ts": {
+    "mtime": 1793695491.1914673,
+    "seen": 1795327610.0764105,
+    "ast_hash": "134b94741b9f3a2e80bf910027c1102f",
+    "semantic_hash": "134b94741b9f3a2e80bf910027c1102f"
+  },
+  "animation-studio/src/studio/sets/propstudio.ts": {
+    "mtime": 1793655592.6138089,
+    "seen": 1795327610.076412,
+    "ast_hash": "f16f82657e3b8afae79705f497d15186",
+    "semantic_hash": "f16f82657e3b8afae79705f497d15186"
+  },
+  "animation-studio/src/studio/sets/room.ts": {
+    "mtime": 1795243452.7358556,
+    "seen": 1795327610.0764134,
+    "ast_hash": "8f46bfcd9f92ff927e5a6af110f174ed",
+    "semantic_hash": "8f46bfcd9f92ff927e5a6af110f174ed"
+  },
+  "animation-studio/src/studio/sets/types.ts": {
+    "mtime": 1793657957.1026096,
+    "seen": 1795327610.0764148,
+    "ast_hash": "f4839ef67f34d5e2362d9ee940a08ee0",
+    "semantic_hash": "f4839ef67f34d5e2362d9ee940a08ee0"
+  },
+  "animation-studio/src/studio/sound/catalog.ts": {
+    "mtime": 1795261203.8974535,
+    "seen": 1795327610.0764158,
+    "ast_hash": "f4b2d322529e388798e7db4037f0f2cb",
+    "semantic_hash": "f4b2d322529e388798e7db4037f0f2cb"
+  },
+  "animation-studio/src/studio/sound/cues.ts": {
+    "mtime": 1795042558.4577765,
+    "seen": 1795327610.076417,
+    "ast_hash": "773dc862241a4fec4aab0212fb6d504c",
+    "semantic_hash": "773dc862241a4fec4aab0212fb6d504c"
+  },
+  "animation-studio/src/studio/stories/breakfast-text.ts": {
+    "mtime": 1795248290.8979738,
+    "seen": 1795327610.0764182,
+    "ast_hash": "af7288500bf1bc6aae0f41779008bb21",
+    "semantic_hash": "af7288500bf1bc6aae0f41779008bb21"
+  },
+  "animation-studio/src/studio/stories/buried-treasure.ts": {
+    "mtime": 1793758022.0016098,
+    "seen": 1795327610.0764198,
+    "ast_hash": "fde5436306ed1b76093b6ea8c4a627bc",
+    "semantic_hash": "fde5436306ed1b76093b6ea8c4a627bc"
+  },
+  "animation-studio/src/studio/stories/camera-kit.ts": {
+    "mtime": 1793945280.2740304,
+    "seen": 1795327610.0764208,
+    "ast_hash": "3fd800e68a06a57073a6008cf726edc7",
+    "semantic_hash": "3fd800e68a06a57073a6008cf726edc7"
+  },
+  "animation-studio/src/studio/stories/capabilities.ts": {
+    "mtime": 1793698091.6447453,
+    "seen": 1795327610.0764222,
+    "ast_hash": "450a02750b736d3787463a0254c4fbc3",
+    "semantic_hash": "450a02750b736d3787463a0254c4fbc3"
+  },
+  "animation-studio/src/studio/stories/doorway-effect.ts": {
+    "mtime": 1793931002.506169,
+    "seen": 1795327610.0764232,
+    "ast_hash": "1443d0c6b344fa43397af6f3ff561100",
+    "semantic_hash": "1443d0c6b344fa43397af6f3ff561100"
+  },
+  "animation-studio/src/studio/stories/empty-seat.ts": {
+    "mtime": 1794999188.4928572,
+    "seen": 1795327610.0764244,
+    "ast_hash": "cd15e4d2df041845f6893dbf6f5fbd81",
+    "semantic_hash": "cd15e4d2df041845f6893dbf6f5fbd81"
+  },
+  "animation-studio/src/studio/stories/every-lie.ts": {
+    "mtime": 1794180867.9413013,
+    "seen": 1795327610.0764258,
+    "ast_hash": "ee3dc4fce770607b96c7b60d12249b4b",
+    "semantic_hash": "ee3dc4fce770607b96c7b60d12249b4b"
+  },
+  "animation-studio/src/studio/stories/extra-door-2.ts": {
+    "mtime": 1794134604.3467562,
+    "seen": 1795327610.0764267,
+    "ast_hash": "5ad641332b75f4ef38bae45e620390fe",
+    "semantic_hash": "5ad641332b75f4ef38bae45e620390fe"
+  },
+  "animation-studio/src/studio/stories/extra-door.ts": {
+    "mtime": 1794035748.8614173,
+    "seen": 1795327610.076428,
+    "ast_hash": "4df9b4e328a3ab947928721c11f9390a",
+    "semantic_hash": "4df9b4e328a3ab947928721c11f9390a"
+  },
+  "animation-studio/src/studio/stories/float-away.ts": {
+    "mtime": 1794216993.0081158,
+    "seen": 1795327610.0764291,
+    "ast_hash": "4b48b8db7e8d70a096546896b3fa99cb",
+    "semantic_hash": "4b48b8db7e8d70a096546896b3fa99cb"
+  },
+  "animation-studio/src/studio/stories/index.ts": {
+    "mtime": 1795257754.7897058,
+    "seen": 1795327610.07643,
+    "ast_hash": "47cf3972c71a6aa37e70406963954ccd",
+    "semantic_hash": "47cf3972c71a6aa37e70406963954ccd"
+  },
+  "animation-studio/src/studio/stories/ink-orbit.ts": {
+    "mtime": 1793829268.3692005,
+    "seen": 1795327610.0764315,
+    "ast_hash": "e11780554dbfe3e4efaf3148e46f6484",
+    "semantic_hash": "e11780554dbfe3e4efaf3148e46f6484"
+  },
+  "animation-studio/src/studio/stories/locked-out-climax.ts": {
+    "mtime": 1794562635.896246,
+    "seen": 1795327610.0764327,
+    "ast_hash": "cbe50313cbe8bef532f4c219ebf18ef1",
+    "semantic_hash": "cbe50313cbe8bef532f4c219ebf18ef1"
+  },
+  "animation-studio/src/studio/stories/locked-out-keys.ts": {
+    "mtime": 1794561868.8067489,
+    "seen": 1795327610.076434,
+    "ast_hash": "25cb623b26d195f8650f5c30474b708c",
+    "semantic_hash": "25cb623b26d195f8650f5c30474b708c"
+  },
+  "animation-studio/src/studio/stories/locked-out.ts": {
+    "mtime": 1794604965.0689092,
+    "seen": 1795327610.0764356,
+    "ast_hash": "754a3faa3f4ae944089ca4bdc0f1ecd0",
+    "semantic_hash": "754a3faa3f4ae944089ca4bdc0f1ecd0"
+  },
+  "animation-studio/src/studio/stories/marathon-1904.ts": {
+    "mtime": 1793996480.6309743,
+    "seen": 1795327610.0764368,
+    "ast_hash": "ea62907f6a2bccf7b942c3f9e168a45d",
+    "semantic_hash": "ea62907f6a2bccf7b942c3f9e168a45d"
+  },
+  "animation-studio/src/studio/stories/memory-money.ts": {
+    "mtime": 1795174989.3837636,
+    "seen": 1795327610.076438,
+    "ast_hash": "5053901ed45f7f5fa70fbb59feeb708c",
+    "semantic_hash": "5053901ed45f7f5fa70fbb59feeb708c"
+  },
+  "animation-studio/src/studio/stories/night-shift.ts": {
+    "mtime": 1794257815.540508,
+    "seen": 1795327610.0764394,
+    "ast_hash": "b47b51dcd4508622cab379c1a1dbfbe1",
+    "semantic_hash": "b47b51dcd4508622cab379c1a1dbfbe1"
+  },
+  "animation-studio/src/studio/stories/night-train.ts": {
+    "mtime": 1795261514.4876873,
+    "seen": 1795327610.0764406,
+    "ast_hash": "b7f8d52475aa3319b03585474e0e1cd8",
+    "semantic_hash": "b7f8d52475aa3319b03585474e0e1cd8"
+  },
+  "animation-studio/src/studio/stories/nova-commands.ts": {
+    "mtime": 1795132987.5888119,
+    "seen": 1795327610.0764418,
+    "ast_hash": "daf0633da2872d857327547931e33047",
+    "semantic_hash": "daf0633da2872d857327547931e33047"
+  },
+  "animation-studio/src/studio/stories/ollie-1.ts": {
+    "mtime": 1794874220.6466162,
+    "seen": 1795327610.076443,
+    "ast_hash": "3bacf1ee56c9988906f9c827d45be2be",
+    "semantic_hash": "3bacf1ee56c9988906f9c827d45be2be"
+  },
+  "animation-studio/src/studio/stories/ollie-2.ts": {
+    "mtime": 1795053867.016579,
+    "seen": 1795327610.0764441,
+    "ast_hash": "cb3c7659b5c845da29d72ddef00c576b",
+    "semantic_hash": "cb3c7659b5c845da29d72ddef00c576b"
+  },
+  "animation-studio/src/studio/stories/ollie-bedside-test.ts": {
+    "mtime": 1794734535.2101707,
+    "seen": 1795327610.0764456,
+    "ast_hash": "af568d6100e6d8aa968b9be8a86be281",
+    "semantic_hash": "af568d6100e6d8aa968b9be8a86be281"
+  },
+  "animation-studio/src/studio/stories/ollie-roof-test.ts": {
+    "mtime": 1794731074.561997,
+    "seen": 1795327610.0764475,
+    "ast_hash": "4e1b9ad2bb5667b6e2252afa0f6f0854",
+    "semantic_hash": "4e1b9ad2bb5667b6e2252afa0f6f0854"
+  },
+  "animation-studio/src/studio/stories/one-too-many-thumbs.ts": {
+    "mtime": 1794653731.627796,
+    "seen": 1795327610.076449,
+    "ast_hash": "ad33db883cae8059921c563201f8169c",
+    "semantic_hash": "ad33db883cae8059921c563201f8169c"
+  },
+  "animation-studio/src/studio/stories/one-too-many.ts": {
+    "mtime": 1794645120.1228287,
+    "seen": 1795327610.0764503,
+    "ast_hash": "1607a970427225a04f207c8424d521b7",
+    "semantic_hash": "1607a970427225a04f207c8424d521b7"
+  },
+  "animation-studio/src/studio/stories/other-jamie.ts": {
+    "mtime": 1794720625.2489145,
+    "seen": 1795327610.0764515,
+    "ast_hash": "f52a212c2e426dd43106b156decf7a82",
+    "semantic_hash": "f52a212c2e426dd43106b156decf7a82"
+  },
+  "animation-studio/src/studio/stories/pirate-democracy.ts": {
+    "mtime": 1793845580.3425624,
+    "seen": 1795327610.076453,
+    "ast_hash": "571c594cca75b43ed2eb794574cddd4b",
+    "semantic_hash": "571c594cca75b43ed2eb794574cddd4b"
+  },
+  "animation-studio/src/studio/stories/steps-4012.ts": {
+    "mtime": 1794883901.1321788,
+    "seen": 1795327610.0764542,
+    "ast_hash": "fc98cc9d23d7dc19779eb93ca470b66f",
+    "semantic_hash": "fc98cc9d23d7dc19779eb93ca470b66f"
+  },
+  "animation-studio/src/studio/stories/stop-time-1.ts": {
+    "mtime": 1795149574.3237967,
+    "seen": 1795327610.076455,
+    "ast_hash": "a7aa04aa45e3f1c253650ef0718f6334",
+    "semantic_hash": "a7aa04aa45e3f1c253650ef0718f6334"
+  },
+  "animation-studio/src/studio/stories/tickle.ts": {
+    "mtime": 1793741570.5527222,
+    "seen": 1795327610.0764565,
+    "ast_hash": "92a95371702a2e97acbf013ba0296ae9",
+    "semantic_hash": "92a95371702a2e97acbf013ba0296ae9"
+  },
+  "animation-studio/src/studio/stories/voice/breakfast-text.ts": {
+    "mtime": 1795247555.3213131,
+    "seen": 1795327610.0764575,
+    "ast_hash": "908acc8916129165d6c69b569d37ca5e",
+    "semantic_hash": "908acc8916129165d6c69b569d37ca5e"
+  },
+  "animation-studio/src/studio/stories/voice/buried-treasure.ts": {
+    "mtime": 1793690742.55182,
+    "seen": 1795327610.0764585,
+    "ast_hash": "cf3bb185d1ffd5f326d153ff9fc83d63",
+    "semantic_hash": "cf3bb185d1ffd5f326d153ff9fc83d63"
+  },
+  "animation-studio/src/studio/stories/voice/doorway-effect.ts": {
+    "mtime": 1793954514.5681176,
+    "seen": 1795327610.07646,
+    "ast_hash": "1c10c9872e71b28f6c1c07fba40ecefa",
+    "semantic_hash": "1c10c9872e71b28f6c1c07fba40ecefa"
+  },
+  "animation-studio/src/studio/stories/voice/empty-seat.ts": {
+    "mtime": 1794999229.1456544,
+    "seen": 1795327610.0764608,
+    "ast_hash": "276ab27df2ddc0d1ccaf4a1552f9bef4",
+    "semantic_hash": "276ab27df2ddc0d1ccaf4a1552f9bef4"
+  },
+  "animation-studio/src/studio/stories/voice/every-lie.ts": {
+    "mtime": 1794175657.5795052,
+    "seen": 1795327610.076462,
+    "ast_hash": "f02cb81eca14042fa555ae27a9fcdb58",
+    "semantic_hash": "f02cb81eca14042fa555ae27a9fcdb58"
+  },
+  "animation-studio/src/studio/stories/voice/extra-door-2.ts": {
+    "mtime": 1794094337.0152407,
+    "seen": 1795327610.0764635,
+    "ast_hash": "60d7a23b446049349dad41c031c9ce81",
+    "semantic_hash": "60d7a23b446049349dad41c031c9ce81"
+  },
+  "animation-studio/src/studio/stories/voice/extra-door.ts": {
+    "mtime": 1794033716.7333958,
+    "seen": 1795327610.0764644,
+    "ast_hash": "526532af4fb10be5999c11918764623f",
+    "semantic_hash": "526532af4fb10be5999c11918764623f"
+  },
+  "animation-studio/src/studio/stories/voice/float-away.ts": {
+    "mtime": 1794201437.4008634,
+    "seen": 1795327610.0764728,
+    "ast_hash": "8dbf9edfa478e7537d3d1a6369f55ee2",
+    "semantic_hash": "8dbf9edfa478e7537d3d1a6369f55ee2"
+  },
+  "animation-studio/src/studio/stories/voice/index.ts": {
+    "mtime": 1795261276.2196732,
+    "seen": 1795327610.0764742,
+    "ast_hash": "9aca5f8ba5f50060f4e8a9bd66abe7ba",
+    "semantic_hash": "9aca5f8ba5f50060f4e8a9bd66abe7ba"
+  },
+  "animation-studio/src/studio/stories/voice/locked-out.ts": {
+    "mtime": 1794604885.7534912,
+    "seen": 1795327610.0764751,
+    "ast_hash": "1d03c83ccafe81b1ad5070eeae0b667c",
+    "semantic_hash": "1d03c83ccafe81b1ad5070eeae0b667c"
+  },
+  "animation-studio/src/studio/stories/voice/marathon-1904.ts": {
+    "mtime": 1793955692.2001877,
+    "seen": 1795327610.0764763,
+    "ast_hash": "3b16e458d473811a5a5c1bba591b4f97",
+    "semantic_hash": "3b16e458d473811a5a5c1bba591b4f97"
+  },
+  "animation-studio/src/studio/stories/voice/memory-money.ts": {
+    "mtime": 1795172278.6795983,
+    "seen": 1795327610.0764775,
+    "ast_hash": "c1eff69888ae44421c80ec51d0a5c6ca",
+    "semantic_hash": "c1eff69888ae44421c80ec51d0a5c6ca"
+  },
+  "animation-studio/src/studio/stories/voice/night-shift.ts": {
+    "mtime": 1794229183.9142487,
+    "seen": 1795327610.0764787,
+    "ast_hash": "f31b11f1ac2e38c496e50e455bf89b7a",
+    "semantic_hash": "f31b11f1ac2e38c496e50e455bf89b7a"
+  },
+  "animation-studio/src/studio/stories/voice/night-train.ts": {
+    "mtime": 1795261276.2196732,
+    "seen": 1795327610.07648,
+    "ast_hash": "9c6b12c40be680b522bc72368b890b83",
+    "semantic_hash": "9c6b12c40be680b522bc72368b890b83"
+  },
+  "animation-studio/src/studio/stories/voice/nova-commands.ts": {
+    "mtime": 1795129325.433718,
+    "seen": 1795327610.0764813,
+    "ast_hash": "e529f2b6051acfea18c6042a3333b362",
+    "semantic_hash": "e529f2b6051acfea18c6042a3333b362"
+  },
+  "animation-studio/src/studio/stories/voice/ollie-1.ts": {
+    "mtime": 1794874281.9940095,
+    "seen": 1795327610.0764823,
+    "ast_hash": "2961d38658af86dc247c92e5fb2d220b",
+    "semantic_hash": "2961d38658af86dc247c92e5fb2d220b"
+  },
+  "animation-studio/src/studio/stories/voice/ollie-2.ts": {
+    "mtime": 1795041778.9252348,
+    "seen": 1795327610.0764835,
+    "ast_hash": "01279c8cf85bee5fdba1db5309bdf740",
+    "semantic_hash": "01279c8cf85bee5fdba1db5309bdf740"
+  },
+  "animation-studio/src/studio/stories/voice/one-too-many.ts": {
+    "mtime": 1794645129.3173625,
+    "seen": 1795327610.076485,
+    "ast_hash": "1fc69b588495bdd499c5b23ba3dd0369",
+    "semantic_hash": "1fc69b588495bdd499c5b23ba3dd0369"
+  },
+  "animation-studio/src/studio/stories/voice/other-jamie.ts": {
+    "mtime": 1794713790.0386648,
+    "seen": 1795327610.076486,
+    "ast_hash": "5dec2e4f4e3f3f70c07bb943fa0b1f31",
+    "semantic_hash": "5dec2e4f4e3f3f70c07bb943fa0b1f31"
+  },
+  "animation-studio/src/studio/stories/voice/pirate-democracy.ts": {
+    "mtime": 1793756016.6932843,
+    "seen": 1795327610.0764875,
+    "ast_hash": "80233edd7dc0580e16a97c8725cdb4ee",
+    "semantic_hash": "80233edd7dc0580e16a97c8725cdb4ee"
+  },
+  "animation-studio/src/studio/stories/voice/steps-4012.ts": {
+    "mtime": 1794880960.1198645,
+    "seen": 1795327610.0764885,
+    "ast_hash": "5cba7c25d56e9eafbdf5f8a219d4cb1c",
+    "semantic_hash": "5cba7c25d56e9eafbdf5f8a219d4cb1c"
+  },
+  "animation-studio/src/studio/stories/voice/stop-time-1.ts": {
+    "mtime": 1795146177.8540843,
+    "seen": 1795327610.07649,
+    "ast_hash": "304fdb5af8158ea21763753a7d6099bd",
+    "semantic_hash": "304fdb5af8158ea21763753a7d6099bd"
+  },
+  "animation-studio/src/studio/stories/voice/tickle.ts": {
+    "mtime": 1793682804.9511418,
+    "seen": 1795327610.076491,
+    "ast_hash": "49557dbdaf90b6562d89aaa29fd0ebc1",
+    "semantic_hash": "49557dbdaf90b6562d89aaa29fd0ebc1"
+  },
+  "animation-studio/src/studio/stories/voice/whale-city.ts": {
+    "mtime": 1794660282.6103501,
+    "seen": 1795327610.0764923,
+    "ast_hash": "254d9e94078eb766322ef347d12ab784",
+    "semantic_hash": "254d9e94078eb766322ef347d12ab784"
+  },
+  "animation-studio/src/studio/stories/voice/yawn-demo.ts": {
+    "mtime": 1793676651.6887012,
+    "seen": 1795327610.0764935,
+    "ast_hash": "7be09ea234f4223624c93178072e7eed",
+    "semantic_hash": "7be09ea234f4223624c93178072e7eed"
+  },
+  "animation-studio/src/studio/stories/whale-city-thumb.ts": {
+    "mtime": 1794701161.3781927,
+    "seen": 1795327610.0764947,
+    "ast_hash": "ef6375958b5c7a56976dda48db15c9e9",
+    "semantic_hash": "ef6375958b5c7a56976dda48db15c9e9"
+  },
+  "animation-studio/src/studio/stories/whale-city.ts": {
+    "mtime": 1794669927.4954553,
+    "seen": 1795327610.076496,
+    "ast_hash": "bafef16384d9ef46394d80c42ebfd25e",
+    "semantic_hash": "bafef16384d9ef46394d80c42ebfd25e"
+  },
+  "animation-studio/src/studio/stories/yawn-demo.ts": {
+    "mtime": 1793697645.9751148,
+    "seen": 1795327610.0764968,
+    "ast_hash": "71d612e71d42e8972e303a796cf50776",
+    "semantic_hash": "71d612e71d42e8972e303a796cf50776"
+  },
+  "animation-studio/src/studio/story/Captions.tsx": {
+    "mtime": 1794972280.8177319,
+    "seen": 1795327610.076498,
+    "ast_hash": "98c3a146c58138b514a3d668bc647ed0",
+    "semantic_hash": "98c3a146c58138b514a3d668bc647ed0"
+  },
+  "animation-studio/src/studio/story/Short.tsx": {
+    "mtime": 1794984908.3894238,
+    "seen": 1795327610.0764992,
+    "ast_hash": "9580012bed2283abac549e0dfb23995a",
+    "semantic_hash": "9580012bed2283abac549e0dfb23995a"
+  },
+  "animation-studio/src/studio/story/TitleCards.tsx": {
+    "mtime": 1795257533.4104965,
+    "seen": 1795327610.0765002,
+    "ast_hash": "f38ee1265730eba53a73e342b595ebb4",
+    "semantic_hash": "f38ee1265730eba53a73e342b595ebb4"
+  },
+  "animation-studio/src/studio/story/caption-place.ts": {
+    "mtime": 1793788275.0283298,
+    "seen": 1795327610.0765011,
+    "ast_hash": "5b6120e6d188e72b4d22791922d47369",
+    "semantic_hash": "5b6120e6d188e72b4d22791922d47369"
+  },
+  "animation-studio/src/studio/story/caption-timing.ts": {
+    "mtime": 1794972280.8171496,
+    "seen": 1795327610.0765023,
+    "ast_hash": "762d22a7e705f8fb3ea4cec034939080",
+    "semantic_hash": "762d22a7e705f8fb3ea4cec034939080"
+  },
+  "animation-studio/src/studio/story/clearance.ts": {
+    "mtime": 1793947196.1061127,
+    "seen": 1795327610.0765033,
+    "ast_hash": "8ba0827e3dc1dcee16489a4d4d7b468b",
+    "semantic_hash": "8ba0827e3dc1dcee16489a4d4d7b468b"
+  },
+  "animation-studio/src/studio/story/compile.ts": {
+    "mtime": 1795053764.9292538,
+    "seen": 1795327610.0765042,
+    "ast_hash": "d8ee5af24cda19cf63c571ab7a67e092",
+    "semantic_hash": "d8ee5af24cda19cf63c571ab7a67e092"
+  },
+  "animation-studio/src/studio/story/crowd.ts": {
+    "mtime": 1793839740.4121623,
+    "seen": 1795327610.0765057,
+    "ast_hash": "6334edbe7f2619befda8f4dd7ec2db2b",
+    "semantic_hash": "6334edbe7f2619befda8f4dd7ec2db2b"
+  },
+  "animation-studio/src/studio/story/fingerprint.ts": {
+    "mtime": 1793741192.2211518,
+    "seen": 1795327610.0765066,
+    "ast_hash": "3361e28428121ee1a295c380bb31f086",
+    "semantic_hash": "3361e28428121ee1a295c380bb31f086"
+  },
+  "animation-studio/src/studio/story/timing.ts": {
+    "mtime": 1794735281.833161,
+    "seen": 1795327610.0765073,
+    "ast_hash": "289416924c90a4fb7ca19611370075ea",
+    "semantic_hash": "289416924c90a4fb7ca19611370075ea"
+  },
+  "animation-studio/src/studio/story/types.ts": {
+    "mtime": 1795257533.409818,
+    "seen": 1795327610.0765085,
+    "ast_hash": "599998c206b64fe707b727a9af09aa90",
+    "semantic_hash": "599998c206b64fe707b727a9af09aa90"
+  },
+  "animation-studio/src/studio/story/validate.ts": {
+    "mtime": 1795040734.6641796,
+    "seen": 1795327610.076512,
+    "ast_hash": "c33c5fb706f592ab469c5d490f896a5b",
+    "semantic_hash": "c33c5fb706f592ab469c5d490f896a5b"
+  },
+  "animation-studio/src/studio/themes/breakfast/index.ts": {
+    "mtime": 1795248290.897524,
+    "seen": 1795327610.076513,
+    "ast_hash": "75c9d5c65987f90ecbd2d169020f4abd",
+    "semantic_hash": "75c9d5c65987f90ecbd2d169020f4abd"
+  },
+  "animation-studio/src/studio/themes/emptyseat/index.ts": {
+    "mtime": 1794984885.3313286,
+    "seen": 1795327610.076514,
+    "ast_hash": "3b08ca4428fa5f74d667bbc4bb11f936",
+    "semantic_hash": "3b08ca4428fa5f74d667bbc4bb11f936"
+  },
+  "animation-studio/src/studio/themes/everyday/index.ts": {
+    "mtime": 1793920684.3970013,
+    "seen": 1795327610.076515,
+    "ast_hash": "5a46981fe86f88100697a317deff6f83",
+    "semantic_hash": "5a46981fe86f88100697a317deff6f83"
+  },
+  "animation-studio/src/studio/themes/everylie/index.ts": {
+    "mtime": 1794180691.2476618,
+    "seen": 1795327610.0765162,
+    "ast_hash": "37a5d06a23d218c7fde0850d5e50440e",
+    "semantic_hash": "37a5d06a23d218c7fde0850d5e50440e"
+  },
+  "animation-studio/src/studio/themes/extradoor/index.ts": {
+    "mtime": 1794133186.3580654,
+    "seen": 1795327610.076517,
+    "ast_hash": "5414b1556bd3812f22533150250f403f",
+    "semantic_hash": "5414b1556bd3812f22533150250f403f"
+  },
+  "animation-studio/src/studio/themes/floataway/index.ts": {
+    "mtime": 1794208425.7760887,
+    "seen": 1795327610.076518,
+    "ast_hash": "a4507a36a19b7397afdda7ba0185b429",
+    "semantic_hash": "a4507a36a19b7397afdda7ba0185b429"
+  },
+  "animation-studio/src/studio/themes/futuretext/index.ts": {
+    "mtime": 1794517941.7744188,
+    "seen": 1795327610.0765193,
+    "ast_hash": "8d64452cd3ae7a184caf1d96b8100cc0",
+    "semantic_hash": "8d64452cd3ae7a184caf1d96b8100cc0"
+  },
+  "animation-studio/src/studio/themes/index.ts": {
+    "mtime": 1795257670.113805,
+    "seen": 1795327610.0765202,
+    "ast_hash": "9ab590ae6482157a552bb1262d25f3dc",
+    "semantic_hash": "9ab590ae6482157a552bb1262d25f3dc"
+  },
+  "animation-studio/src/studio/themes/lockedout/index.ts": {
+    "mtime": 1794604483.4129384,
+    "seen": 1795327610.0765212,
+    "ast_hash": "8869b734d0dc2aae369e8df211ffafcd",
+    "semantic_hash": "8869b734d0dc2aae369e8df211ffafcd"
+  },
+  "animation-studio/src/studio/themes/memory/index.ts": {
+    "mtime": 1795244841.956284,
+    "seen": 1795327610.0765224,
+    "ast_hash": "985a23074d8bd4cca09c6b067717f1a2",
+    "semantic_hash": "985a23074d8bd4cca09c6b067717f1a2"
+  },
+  "animation-studio/src/studio/themes/nightshift/index.ts": {
+    "mtime": 1794257555.3490725,
+    "seen": 1795327610.0765233,
+    "ast_hash": "ad70b0a9644d7feea173d09ea860e763",
+    "semantic_hash": "ad70b0a9644d7feea173d09ea860e763"
+  },
+  "animation-studio/src/studio/themes/nighttrain/index.ts": {
+    "mtime": 1795261131.0441856,
+    "seen": 1795327610.0765245,
+    "ast_hash": "f661227cff6ec5bb51ffc072b4b04797",
+    "semantic_hash": "f661227cff6ec5bb51ffc072b4b04797"
+  },
+  "animation-studio/src/studio/themes/nova/index.ts": {
+    "mtime": 1795129883.2403789,
+    "seen": 1795327610.076526,
+    "ast_hash": "3c92a85c5ac3c2d365aa911bf0867206",
+    "semantic_hash": "3c92a85c5ac3c2d365aa911bf0867206"
+  },
+  "animation-studio/src/studio/themes/ollie/index.ts": {
+    "mtime": 1795041073.2735865,
+    "seen": 1795327610.076527,
+    "ast_hash": "1bda50ee915bf6a8f4bf249c5fb0ac64",
+    "semantic_hash": "1bda50ee915bf6a8f4bf249c5fb0ac64"
+  },
+  "animation-studio/src/studio/themes/onetoomany/index.ts": {
+    "mtime": 1794628427.776237,
+    "seen": 1795327610.0765283,
+    "ast_hash": "916a7846b9e88eac582871ef81aeda2e",
+    "semantic_hash": "916a7846b9e88eac582871ef81aeda2e"
+  },
+  "animation-studio/src/studio/themes/otherjamie/index.ts": {
+    "mtime": 1794720492.7456203,
+    "seen": 1795327610.07653,
+    "ast_hash": "78eb36f23034382902ddd0c5c9002555",
+    "semantic_hash": "78eb36f23034382902ddd0c5c9002555"
+  },
+  "animation-studio/src/studio/themes/pirates/index.ts": {
+    "mtime": 1793832813.919748,
+    "seen": 1795327610.076531,
+    "ast_hash": "6c55cc9f2edf317f6dc4396c8533f1fd",
+    "semantic_hash": "6c55cc9f2edf317f6dc4396c8533f1fd"
+  },
+  "animation-studio/src/studio/themes/race1904/index.ts": {
+    "mtime": 1793967637.2252407,
+    "seen": 1795327610.076532,
+    "ast_hash": "382b6766e5e7c8b3abe61b75edc572b6",
+    "semantic_hash": "382b6766e5e7c8b3abe61b75edc572b6"
+  },
+  "animation-studio/src/studio/themes/science/index.ts": {
+    "mtime": 1793745937.1853058,
+    "seen": 1795327610.076533,
+    "ast_hash": "22cda2e56267a3bae87c69ee366a552d",
+    "semantic_hash": "22cda2e56267a3bae87c69ee366a552d"
+  },
+  "animation-studio/src/studio/themes/steps/index.ts": {
+    "mtime": 1794973106.6465745,
+    "seen": 1795327610.0765343,
+    "ast_hash": "c0c7c91b0367cfc054591c9df17083c4",
+    "semantic_hash": "c0c7c91b0367cfc054591c9df17083c4"
+  },
+  "animation-studio/src/studio/themes/timestop/index.ts": {
+    "mtime": 1795149244.1870577,
+    "seen": 1795327610.0765352,
+    "ast_hash": "a58b87f75650ff22e40db4537e6745a2",
+    "semantic_hash": "a58b87f75650ff22e40db4537e6745a2"
+  },
+  "animation-studio/src/studio/themes/whalecity/index.ts": {
+    "mtime": 1794700408.5106807,
+    "seen": 1795327610.0765367,
+    "ast_hash": "257d090947cdb1c752995544b03f7a54",
+    "semantic_hash": "257d090947cdb1c752995544b03f7a54"
+  },
+  "animation-studio/src/studio/voice/narration.ts": {
+    "mtime": 1794639093.9273124,
+    "seen": 1795327610.0765376,
+    "ast_hash": "893ed2572be2653ce6531e5af0d720de",
+    "semantic_hash": "893ed2572be2653ce6531e5af0d720de"
+  },
+  "animation-studio/src/studio/voice/voices.ts": {
+    "mtime": 1795261203.892534,
+    "seen": 1795327610.0765388,
+    "ast_hash": "2ba657639dd697e3e0ff613f79c8b848",
+    "semantic_hash": "2ba657639dd697e3e0ff613f79c8b848"
+  },
+  "animation-studio/src/videos/bridge/Bridge.tsx": {
+    "mtime": 1793602241.5460107,
+    "seen": 1795327610.07654,
+    "ast_hash": "0e5e4b2308e5f8ec15968906160536a5",
+    "semantic_hash": "0e5e4b2308e5f8ec15968906160536a5"
+  },
+  "animation-studio/src/videos/bridge/build.ts": {
+    "mtime": 1793602226.7610266,
+    "seen": 1795327610.076541,
+    "ast_hash": "e4bc17560c71fa50229e87313767b93d",
+    "semantic_hash": "e4bc17560c71fa50229e87313767b93d"
+  },
+  "animation-studio/src/videos/bridge/cardshade.ts": {
+    "mtime": 1793602226.761314,
+    "seen": 1795327610.076542,
+    "ast_hash": "67f34907558dea57540d3aae712cbc7c",
+    "semantic_hash": "67f34907558dea57540d3aae712cbc7c"
+  },
+  "animation-studio/src/videos/bridge/cast.ts": {
+    "mtime": 1793612872.7290258,
+    "seen": 1795327610.076543,
+    "ast_hash": "1297f67dbf7d5fb6c401eb16ee00d9ff",
+    "semantic_hash": "1297f67dbf7d5fb6c401eb16ee00d9ff"
+  },
+  "animation-studio/src/videos/bridge/grade.ts": {
+    "mtime": 1793602226.7619617,
+    "seen": 1795327610.076544,
+    "ast_hash": "02e3f7e9c7fd49e2fdce0b1ad2d13799",
+    "semantic_hash": "02e3f7e9c7fd49e2fdce0b1ad2d13799"
+  },
+  "animation-studio/src/videos/bridge/ink.ts": {
+    "mtime": 1793602226.7622864,
+    "seen": 1795327610.076545,
+    "ast_hash": "4094eb732370b118e21406a8ba281bb2",
+    "semantic_hash": "4094eb732370b118e21406a8ba281bb2"
+  },
+  "animation-studio/src/videos/bridge/lensblur.ts": {
+    "mtime": 1793602226.7627194,
+    "seen": 1795327610.076546,
+    "ast_hash": "cd2910be8cb78070355ac907183ae4b0",
+    "semantic_hash": "cd2910be8cb78070355ac907183ae4b0"
+  },
+  "animation-studio/src/videos/bridge/lights.ts": {
+    "mtime": 1793602226.7634215,
+    "seen": 1795327610.0765476,
+    "ast_hash": "9b63c4ebe4a39b434fb0c2026b5964d4",
+    "semantic_hash": "9b63c4ebe4a39b434fb0c2026b5964d4"
+  },
+  "animation-studio/src/videos/bridge/paint.ts": {
+    "mtime": 1793602226.7639778,
+    "seen": 1795327610.0765488,
+    "ast_hash": "b497b5128fae1d3afd113fb24cd66112",
+    "semantic_hash": "b497b5128fae1d3afd113fb24cd66112"
+  },
+  "animation-studio/src/videos/bridge/shade.ts": {
+    "mtime": 1793602226.7645385,
+    "seen": 1795327610.0765505,
+    "ast_hash": "84dfa610f5010eea30f85419b124a978",
+    "semantic_hash": "84dfa610f5010eea30f85419b124a978"
+  },
+  "animation-studio/src/videos/bridge/story.ts": {
+    "mtime": 1793602226.764722,
+    "seen": 1795327610.0765517,
+    "ast_hash": "553694548e3a1231d32d2540431db758",
+    "semantic_hash": "553694548e3a1231d32d2540431db758"
+  },
+  "animation-studio/src/videos/bridge/toon.ts": {
+    "mtime": 1793602226.7650204,
+    "seen": 1795327610.0765965,
+    "ast_hash": "9a0894343c126de5c8632ada03180ace",
+    "semantic_hash": "9a0894343c126de5c8632ada03180ace"
+  },
+  "animation-studio/src/videos/bridge/world.ts": {
+    "mtime": 1793613195.4090185,
+    "seen": 1795327610.0765994,
+    "ast_hash": "d83f252b78e0c8be3e1af28337e8def1",
+    "semantic_hash": "d83f252b78e0c8be3e1af28337e8def1"
+  }
+}

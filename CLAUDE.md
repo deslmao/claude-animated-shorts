@@ -54,6 +54,11 @@ tell it. `npm run short` fails without it. The owner approves `productions/<id>/
 7. **The final quality check is the cloud render plus its full QA.** Don't skip it, and don't duplicate it locally.
 
 ## Claude usage
+- **The engine has a knowledge graph** (`graphify-out/graph.json`, `graphify-out/GRAPH_REPORT.md`: every function,
+  theme, set, prop and story in `animation-studio/src`, and how they connect). To find where something lives or what
+  uses it, query it first (`graphify query "<question>"`, `graphify explain "<name>"`) instead of reading files to
+  search. Open only the file you then need to edit. After engine changes, refresh it with `graphify update` (code
+  only, no model tokens).
 - Keep reports concise: what changed, what was tested, what remains.
 - **Every completed-video response includes the GitHub link to its titles and descriptions:**
   `https://github.com/deslmao/claude-animated-shorts/blob/claude/admiring-hopper-kbrb3d/productions/<id>/publish/PUBLISHING.md`
