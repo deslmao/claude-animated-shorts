@@ -176,3 +176,17 @@ The technique to reuse (not the story):
 - **Visual change every 1.7–2.1 s on average;** cut pace about 1.78 s.
 - **5–6 distinct rooms or lighting setups.**
 - **40–70 s long:** 44 of the 50 top videos studied fall in that range.
+
+## Our own numbers (YouTube Studio, 22 Nov 2026)
+| Short | Views | Stayed to watch | Avg viewed | Hook (frame 0) |
+|---|---|---|---|---|
+| Mum's Making Breakfast… | 1,354 | **70.9 %** | 67 % (0:46 of 1:09) | everyday + twist, readable as the title itself; a lit kitchen |
+| The Man on the Last Train… | 562 | 51.1 % | 50 % (0:34 of 1:09) | a man screaming into the lens; a dark carriage |
+| 5 Stories That Shouldn't Be Possible (long-form, 11:07) | 5 | — | 20 % | CTR 1.6 % |
+
+**What this says:**
+- **The swipe happens in the first second.** About 20 points more viewers stayed on the breakfast Short, and YouTube
+  showed it to 2.4× as many people.
+- **The hook that worked is a sentence you can read at a glance:** a normal situation, then the twist ("Mum's making
+  breakfast. Then she texts: 'Don't eat it. I'm still at work.'"). A scream with no context didn't.
+- **Long-form isn't working yet;** Shorts only for now.
