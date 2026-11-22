@@ -16,3 +16,6 @@ remotion-tmp/
 # Productions: the finished MP4 is published as a GitHub Release; review frames are re-renderable (the sheet is kept)
 productions/*/*.mp4
 productions/*/review/
+
+# graphify scratch output (temporary; not part of the repo)
+graphify-out/
