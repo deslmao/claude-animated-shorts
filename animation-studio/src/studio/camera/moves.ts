@@ -27,7 +27,7 @@ export type Move =
   | { move: "dutch"; marks: V3[]; size?: ShotSize; from?: number; roll?: number; creep?: number }
   /** an explicit camera (inserts, POV): pos / look / fov, an optional push (fraction of the distance closed over the
    *  set-up, eased) and a deterministic hand-held bob (amplitude in metres), lens blur cInf focused on `focus` */
-  | { move: "aim"; pos: V3; look: V3; fov: number; push?: number; bob?: number; cInf: number; focus: V3 };
+  | { move: "aim"; pos: V3; look: V3; fov: number; push?: number; bob?: number; roll?: number; cInf: number; focus: V3 };
 
 export type ShotPlan = { key: Key; dof: (f: number) => { cInf: number; focus?: V3 } };
 
@@ -88,7 +88,7 @@ export const plan = (m: Move, f0: number, f1: number, o: { cut?: boolean; dur?: 
     }
     case "aim": {
       const bob = (f: number): V3 => (m.bob ? [Math.sin(f * 0.21) * m.bob, Math.sin(f * 0.17 + 1.3) * m.bob * 0.7, 0] : [0, 0, 0]);
-      return k((f) => { const b = bob(f), d = dolly(m.pos, m.look, 1 - (m.push ?? 0.04) * u(f)); return { ...d, pos: [d.pos[0] + b[0], d.pos[1] + b[1], d.pos[2] + b[2]], fov: m.fov }; }, m.cInf, m.focus);
+      return k((f) => { const b = bob(f), d = dolly(m.pos, m.look, 1 - (m.push ?? 0.04) * u(f)); return { ...d, pos: [d.pos[0] + b[0], d.pos[1] + b[1], d.pos[2] + b[2]], fov: m.fov, ...(m.roll ? { roll: m.roll } : {}) }; }, m.cInf, m.focus);
     }
     case "dutch": {
       const c = fitShot(m.marks, { size: m.size ?? "medium", from: m.from, roll: m.roll ?? 0.08 });

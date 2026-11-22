@@ -248,7 +248,7 @@ const moveOf = (s: ShotSpec, c: CameraSpec, t0 = 0, cast: Storyboard["cast"] = {
       const pos: V3 = [d.c[0] + Math.sin(ar) * dist, c.height ?? d.c[1] + dist * 0.2, d.c[2] + Math.cos(ar) * dist];
       return { move: "aim", pos, look: d.c, fov, push: c.push ?? 0.06, cInf: c.size === "extreme" ? 15 : 13, focus: d.c };
     }
-    case "at": return { move: "aim", pos: c.pos, look: c.look, fov: c.fov ?? 40, cInf: 0, focus: c.look };
+    case "at": return { move: "aim", pos: c.pos, look: c.look, fov: c.fov ?? 40, push: c.creep, roll: c.roll ? (c.roll * Math.PI) / 180 : undefined, cInf: c.blur ?? 0, focus: c.look };
     case "pov": {
       // from the actor's eyes (a step toward the target, so their own card is behind the lens), a light hand-held bob
       const a = s.actors.find((x) => x.who === c.from.split(".")[0]); if (!a) throw new Error(`POV from "${c.from}", who is not in the shot`);

@@ -43,7 +43,10 @@ export type CameraSpec =
   /** a point of view: from an actor's eyes toward another actor, a prop or a part ("milo.hands") */
   | { move: "pov"; from: string; at: string }
   /** an authored camera position in set coordinates: the start or a waypoint of a flight (an aerial over the set) */
-  | { move: "at"; pos: V3; look: V3; fov?: number };
+  /** at: a hand-placed camera. Opt-in (the cartoon-short look, 22 Nov 2026): blur = background lens blur in px at
+   *  1080 wide (close-ups 12-14, medium 10, wide 0), focused on `look`; creep = how much closer the camera drifts over
+   *  the shot (default 0.04; 0.06-0.1 = a hold that is never frozen); roll = a tilt in degrees (4-5 on tense shots) */
+  | { move: "at"; pos: V3; look: V3; fov?: number; blur?: number; creep?: number; roll?: number };
 
 /** when something happens: t seconds after the shot starts, or on a spoken word of this shot's lines
  *  (word: "catches" lands 2 frames before that word; "yawn" also matches "yawning"; n = which occurrence, from 1) */
