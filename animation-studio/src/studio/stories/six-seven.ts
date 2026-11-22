@@ -35,7 +35,7 @@ const every = (t0: number, dt: number, n: number): When[] => Array.from({ length
 // the sofa (facing the camera, seat top 0.58) and the coffee table in front of it (top 0.42, z -0.75)
 const SEAT_ME: V = [-3.2, 0.55, -1.82], SEAT_ISAAC: V = [-2.6, 0.55, -1.82], SEAT_GLEN: V = [-2.0, 0.55, -1.82];
 const FLOAT: V = [-3.05, 0.75, -1.62];
-const ISAAC_FACE: V = [-2.6, 1.18, -1.82], ME_FACE: V = [-3.2, 1.18, -1.82], GLEN_FACE: V = [-2.0, 1.25, -1.82];
+const ISAAC_FACE: V = [-2.6, 1.18, -1.82], ME_FACE: V = [-3.2, 1.18, -1.82];
 
 export const SIX_SEVEN: Storyboard = {
   id: "six-seven", title: "6 7",
