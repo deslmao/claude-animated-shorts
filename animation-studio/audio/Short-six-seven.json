@@ -1,6 +1,6 @@
 {
  "composition": "Short-six-seven",
- "fingerprint": "17da29dd6af090",
+ "fingerprint": "1f8a11cda76a57",
  "engine": "sound-2",
  "frames": 1917,
  "seconds": 63.9,
@@ -10,8 +10,8 @@
  "stems": {
   "voice_lufs": -14.76,
   "music_vs_voice_lu": -10.0,
-  "ambience_vs_voice_lu": -20.03,
+  "ambience_vs_voice_lu": -20.04,
   "sfx_cues": 26
  },
- "built": "2026-11-22T07:44:50Z"
+ "built": "2026-11-22T07:51:14Z"
 }

@@ -42,11 +42,11 @@ export const SIX_SEVEN: Storyboard = {
   cast: { ssMe: "ssMe", ssIsaac: "ssIsaac", ssGlendon: "ssGlendon" },
   voice: "ssMe", voices: { ssMe: "ssMe" },
   captionColors: { ssMe: "#9be38f", ssIsaac: "#ffd65a", ssIsaacMuffled: "#ffd65a", ssGlendon: "#ff9a52", ssPhone: "#e9edf5" },
-  // the score (sound/samples/music/sixseven_score2.json: nine sections written to these timings): a horror hit for the
-  // cold open, a lazy lo-fi beat for the chill, a stab for the jump scare, creeping strings for the board, a wonky
-  // tense pulse under Isaac's bit, a build as it gets out of control, near silence as the lights die, terror for the
+  // the score (sound/samples/music/sixseven_score3.json: nine sections, all horror, no beat (the owner: "supposed to be scary")): a horror hit for the
+  // cold open, an uneasy pad and a detuned music box for the chill, a stab for the jump scare, creeping strings for the
+  // board, ticking strings and a dread drone under Isaac's bit, frantic strings and drums as it gets out of control, near silence as the lights die, terror for the
   // floating, a held note that stops dead on "7"
-  music: { file: "sixseven_score2", gain: 0, duck: -5, curve: [[0, -4], [5.0, -8], [14.4, -5], [18.1, -7], [48.2, -12], [51.2, -5], [60.9, -3], [63.4, -3], [63.85, -24]] },
+  music: { file: "sixseven_score3", gain: 0, duck: -5, curve: [[0, -4], [5.0, -8], [14.4, -5], [18.1, -7], [48.2, -12], [51.2, -5], [60.9, -3], [63.4, -3], [63.85, -24]] },
   engine: 3, autoSfx: false,
   clarity: {
     premise: "Three mates mess with a Ouija board, it keeps spelling 6 7, and Isaac won't stop doing the bit, until it's the last thing he ever says.",
