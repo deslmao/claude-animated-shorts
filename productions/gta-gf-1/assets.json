@@ -1,5 +1,5 @@
 {
- "reused": 45,
+ "reused": 47,
  "missing": [],
  "byKind": {
   "character": [
@@ -26,10 +26,12 @@
   ],
   "prop": [
    "ggInsert",
+   "ggGrade",
    "ssNight",
    "ggTvGlow",
    "ggPlate",
-   "ggHud"
+   "ggHud",
+   "ggShadow"
   ],
   "sfx": [
    "el_type_tap",

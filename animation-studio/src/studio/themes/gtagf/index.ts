@@ -97,22 +97,21 @@ const chat = (g: CanvasRenderingContext2D, o: { who: string; mine: string; smile
   g.fillStyle = "#0e0f14"; g.fillRect(0, 0, IW, IH);
   g.fillStyle = "#ffffff"; g.beginPath(); g.roundRect(28, 28, IW - 56, IH - 56, 70); g.fill();
   g.save(); g.beginPath(); g.roundRect(28, 28, IW - 56, IH - 56, 70); g.clip();
-  // the status bar: the time (big, so the jump reads) and the battery
-  g.fillStyle = "#15161c"; g.font = FS(58); g.textAlign = "left"; g.textBaseline = "middle"; g.fillText(o.clock, 110, 330);
-  g.strokeStyle = "#15161c"; g.lineWidth = 4; g.strokeRect(IW - 200, 313, 80, 34); g.fillRect(IW - 120, 323, 8, 14);
-  g.fillStyle = o.clock.startsWith("9") ? "#e5484d" : "#30c060"; g.fillRect(IW - 196, 317, o.clock.startsWith("9") ? 18 : 60, 26);
-  // the header: the contact's round photo and name
-  g.fillStyle = "#f3f4f7"; g.fillRect(0, 380, IW, 150); g.fillStyle = "#d9dbe3"; g.fillRect(0, 528, IW, 3);
-  g.fillStyle = o.who === "Gordon" ? "#2fb5a7" : "#f29ac0"; g.beginPath(); g.arc(IW / 2, 436, 34, 0, Math.PI * 2); g.fill();
-  g.fillStyle = "#ffffff"; g.font = FS(36); g.textAlign = "center"; g.fillText(o.who[0], IW / 2, 438);
-  g.fillStyle = "#15161c"; g.font = FS(34, "normal"); g.fillText(o.who, IW / 2, 502);
-  // the thread
-  let y = 600;
+  // the status bar: the time (big, so the jump reads) and the battery, below the frame-0 banner
+  g.fillStyle = "#15161c"; g.font = FS(64); g.textAlign = "left"; g.textBaseline = "middle"; g.fillText(o.clock, 110, 420);
+  g.strokeStyle = "#15161c"; g.lineWidth = 4; g.strokeRect(IW - 200, 402, 80, 34); g.fillRect(IW - 120, 412, 8, 14);
+  g.fillStyle = o.clock.startsWith("9") ? "#e5484d" : "#30c060"; g.fillRect(IW - 196, 406, o.clock.startsWith("9") ? 18 : 60, 26);
+  // the contact, small
+  g.fillStyle = o.who === "Gordon" ? "#2fb5a7" : "#f29ac0"; g.beginPath(); g.arc(IW / 2 - 70, 500, 22, 0, Math.PI * 2); g.fill();
+  g.fillStyle = "#15161c"; g.font = FS(36); g.textAlign = "left"; g.fillText(o.who, IW / 2 - 36, 502);
+  g.fillStyle = "#d9dbe3"; g.fillRect(60, 545, IW - 120, 3);
+  // the thread (kept above the caption band, ~y 950-1110 on the card)
+  let y = 580;
   if (!o.typing) {
-    const [, b] = bubble(g, o.mine, true, y, o.smile); y = b + 14;
-    if (o.delivered) { g.fillStyle = "#8a8d99"; g.font = FS(30, "normal"); g.textAlign = "right"; g.fillText(`Delivered ${o.delivered}`, IW - 120, y + 16); y += 60; }
+    const [, b] = bubble(g, o.mine, true, y, o.smile); y = b + 10;
+    if (o.delivered) { g.fillStyle = "#8a8d99"; g.font = FS(30, "normal"); g.textAlign = "right"; g.fillText(`Delivered ${o.delivered}`, IW - 120, y + 14); y += 46; }
   }
-  if (o.reply) { y += 40; bubble(g, "sorry. gta", false, y); }
+  if (o.reply) { y += 24; bubble(g, "sorry. gta", false, y); }
   // the input box
   g.fillStyle = "#f3f4f7"; g.fillRect(0, IH - 260, IW, 232); g.fillStyle = "#ffffff"; g.beginPath(); g.roundRect(100, IH - 230, IW - 260, 96, 48); g.fill();
   g.strokeStyle = "#d0d3dc"; g.lineWidth = 3; g.stroke();
@@ -180,8 +179,8 @@ const views = (g: CanvasRenderingContext2D, st: number) => {
   g.fillStyle = "#ffffff"; g.font = FS(46); g.textAlign = "left"; g.fillText("Trailer 1", 50, 715);
   // the counter, huge
   const n = VIEWS[Math.min(st, VIEWS.length - 1)];
-  g.textAlign = "center"; g.fillStyle = "#ffffff"; const txt = n.toLocaleString("en-US"); g.font = FR(110); const k = Math.min(1, 660 / g.measureText(txt).width); g.font = FR(Math.floor(110 * k)); g.fillText(txt, IW / 2, 850);
-  g.fillStyle = "#b8bbc6"; g.font = FS(54); g.fillText("views", IW / 2, 925);
+  g.textAlign = "center"; g.fillStyle = "#ffffff"; const txt = n.toLocaleString("en-US"); g.font = FR(110); const k = Math.min(1, 660 / g.measureText(txt).width); g.font = FR(Math.floor(110 * k)); g.fillText(txt, IW / 2, 790);
+  g.fillStyle = "#b8bbc6"; g.font = FS(54); g.fillText("views", IW / 2, 870);
   // the 24 HOURS badge and a clock hand going round
   g.fillStyle = "#e5484d"; g.beginPath(); g.roundRect(IW / 2 - 190, 1140, 380, 100, 50); g.fill(); g.fillStyle = "#ffffff"; g.font = FR(56); g.fillText("24 HOURS", IW / 2, 1192);
   const a = (st / 15) * Math.PI * 2 - Math.PI / 2; g.strokeStyle = "#ffffff"; g.lineWidth = 6; g.beginPath(); g.arc(IW / 2, 1330, 50, 0, Math.PI * 2); g.stroke();
@@ -221,7 +220,7 @@ const receipt = (g: CanvasRenderingContext2D, st: number) => {
   if (st >= 9) {
     g.fillStyle = "#2a2a2a"; g.fillRect(x0 + 24, 610, w - 48, 4);
     g.font = FS(34); g.textAlign = "center"; g.fillText("TOTAL (estimated)", IW / 2, 670);
-    g.font = FR(58); g.fillStyle = "#0a7a3a"; g.fillText("$1,840,000,000", IW / 2, 760);
+    g.font = FR(46); g.fillStyle = "#0a7a3a"; g.fillText("$1,840,000,000", IW / 2, 760);
     g.font = FS(28, "normal"); g.fillStyle = "#6b6f7a"; g.fillText("by launch day", IW / 2, 830);
   }
   vig(g, 0.35);
@@ -300,6 +299,45 @@ const tvGlowRig = (a: At): PropRig => {
   return { root, update: ({ step = 0 }) => { L.intensity = (1.4 + 0.35 * Math.sin(step * 4.1) + 0.25 * Math.sin(step * 11.3)) * (a.s ?? 1); } };
 };
 
+// ---------------------------------------------------------------- the grade: one light for the characters and the set
+// The cast are drawn cards that scene lights don't reach, so the light of a place is laid over the whole frame: a
+// multiply layer (the colour of the light, darker at the edges) and an additive glow from where the light comes from.
+const gradeTex = (key: string, mul: [string, string], glow: { x: number; y: number; r: number; col: string }) => [
+  stex(`ggGradeM_${key}`, 270, 480, (g) => { const v = g.createRadialGradient(135, 270, 40, 135, 240, 330); v.addColorStop(0, mul[0]); v.addColorStop(1, mul[1]); g.fillStyle = v; g.fillRect(0, 0, 270, 480); }),
+  stex(`ggGradeA_${key}`, 270, 480, (g) => { g.clearRect(0, 0, 270, 480); const v = g.createRadialGradient(glow.x * 270, glow.y * 480, 0, glow.x * 270, glow.y * 480, glow.r * 480); v.addColorStop(0, glow.col); v.addColorStop(1, "rgba(0,0,0,0)"); g.fillStyle = v; g.fillRect(0, 0, 270, 480); }),
+];
+const GRADES: Record<string, () => THREE.Texture[]> = {
+  // the flat at night: a cool blue cast, the TV's glow from below the frame, warm lamp-light kept in the middle
+  tv: () => gradeTex("tv", ["#d9e4ff", "#5d6f9e"], { x: 0.5, y: 1.05, r: 0.75, col: "rgba(90,150,255,0.55)" }),
+  // the sunset road: warm from the right, the shadows violet
+  sunset: () => gradeTex("sunset", ["#ffe6cc", "#b78aa8"], { x: 0.95, y: 0.35, r: 0.7, col: "rgba(255,150,70,0.45)" }),
+  // a sunny day in the game: a touch of warmth, a soft vignette
+  day: () => gradeTex("day", ["#fff8ec", "#d8c9b8"], { x: 0.8, y: 0.1, r: 0.6, col: "rgba(255,230,180,0.25)" }),
+  // the bedroom by day: warm window light from the left
+  room: () => gradeTex("room", ["#fff6e6", "#cdb8a0"], { x: 0.05, y: 0.3, r: 0.8, col: "rgba(255,220,160,0.35)" }),
+};
+const gradeRig = (a: At, v = "tv"): PropRig => {
+  const fov = (a.s ?? 0.46) * 100, root = rigRoot({ ...a, s: 1 }), h = 2 * 0.5 * Math.tan((fov * Math.PI) / 360) * 1.2, w = (h * 9) / 16;
+  const [mt, at] = (GRADES[v] ?? GRADES.tv)();
+  const mm = new THREE.MeshBasicMaterial({ map: mt, blending: THREE.MultiplyBlending, premultipliedAlpha: true, transparent: true, depthTest: false, depthWrite: false, toneMapped: false });
+  const am = new THREE.MeshBasicMaterial({ map: at, blending: THREE.AdditiveBlending, transparent: true, depthTest: false, depthWrite: false, toneMapped: false });
+  const m1 = new THREE.Mesh(new THREE.PlaneGeometry(w, h), mm), m2 = new THREE.Mesh(new THREE.PlaneGeometry(w, h), am);
+  m1.renderOrder = 9; m2.renderOrder = 9; m1.layers.set(NOINK); m2.layers.set(NOINK); root.add(m1, m2);
+  return { root, update: ({ step = 0, camPos }) => {
+    const d = root.position.clone().sub(camPos).normalize().multiplyScalar(0.5);
+    for (const m of [m1, m2]) { m.position.copy(camPos).add(d).sub(root.position); m.lookAt(camPos); }
+    // the TV flickers (a step every ~0.3 s drives it)
+    if (v === "tv") am.opacity = 0.75 + 0.2 * Math.sin(step * 4.1) + 0.1 * Math.sin(step * 11.3);
+  } };
+};
+/** a soft contact shadow on the game's ground under a character's feet */
+const shadowRig = (a: At): PropRig => {
+  const root = rigRoot(a), t = stex("ggShadow", 128, 128, (g) => { const v = g.createRadialGradient(64, 64, 4, 64, 64, 62); v.addColorStop(0, "rgba(20,14,30,0.55)"); v.addColorStop(1, "rgba(20,14,30,0)"); g.fillStyle = v; g.fillRect(0, 0, 128, 128); });
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(0.9, 0.5).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({ map: t, transparent: true, depthWrite: false, toneMapped: false }));
+  m.position.y = 0.01 - (a.y ?? 0); m.renderOrder = -1; m.layers.set(NOINK); root.add(m);
+  return { root, update: () => undefined };
+};
+
 // ---------------------------------------------------------------- items
 const gamepad = (p: Pen, x: number, y: number, u: number, s: number) => {
   // a dark controller held in front of the chest: the body, two grips, two sticks, four pastel buttons
@@ -343,6 +381,10 @@ export const GTAGF_THEME: Theme = {
       build: () => undefined, rig: (a) => tvRig(a), steps: [], stepCount: () => 1 },
     ggTvGlow: { name: "TV glow", desc: "the TV's flickering cool blue light (a point light at `at`, ~1 m in front of the faces it lights; `scale` = strength; give it a step every ~0.3 s, which drives the flicker)", category: "theme", themes: ["home", "night"], tags: ["light", "tv", "glow"], radius: 1.2, height: 0.6,
       build: () => undefined, rig: (a) => tvGlowRig(a), steps: ["flicker"], stepCount: () => 400 },
+    ggGrade: { name: "Light grade (GTA GF)", desc: "the light of a place laid over the whole frame (characters and set alike): a multiply colour layer and an additive glow, square to the lens 0.5 m out (put `at` near what the shot looks at; `scale` = the shot's vertical fov / 100). Variants: tv (the flat at night: cool blue, the TV's flickering glow from below; give it a step every ~0.3 s), sunset (warm from the right, violet shadows), day (the sunny game), room (the bedroom: warm window light from the left)", category: "theme", themes: ["overlay", "light"], tags: ["grade", "light", "tint", "overlay"], radius: 0.05, height: 0.1,
+      build: () => undefined, rig: (a, v) => gradeRig(a, v ?? "tv"), steps: ["flicker"], stepCount: () => 400, variants: { tv: () => undefined, sunset: () => undefined, day: () => undefined, room: () => undefined } },
+    ggShadow: { name: "Contact shadow (game)", desc: "a soft dark ellipse on the game plate's ground under a character's feet (0.9 x 0.5 m); `at` = the feet, raised by any height (it always draws on the ground at y 0)", category: "theme", themes: ["game"], tags: ["shadow"], radius: 0.05, height: 0.1,
+      build: () => undefined, rig: (a) => shadowRig(a), steps: [], stepCount: () => 1 },
     ggHud: { name: "Game HUD (our own)", desc: "our own game HUD over a game shot: a round pastel map bottom-left, a cash counter top-right; square to the lens (put `at` near what the shot looks at; `scale` = the shot's vertical fov / 100)", category: "theme", themes: ["game", "overlay"], tags: ["hud", "overlay", "game"], radius: 0.05, height: 0.1,
       build: () => undefined, rig: (a) => hudRig(a), steps: [], stepCount: () => 1 },
   },
