@@ -100,3 +100,6 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
 - **23 Nov (owner):** match Rick's clips' quality (realistic, detailed sets and their animation grammar) with our own
   models. **Claude:** no GTA characters or lookalikes (copyright claims and takedowns, lost revenue, and the owner's
   own rule). Use original characters that fit the world's archetypes instead.
+- **23 Nov:** Miami look v2 stills done (no ink on the world, textures, haze, clouds, skyline, grass). Engine opt-ins
+  `alive`, `captionStyle: "short"` and `transition: "dissolve"` were added with defaults unchanged. `npm test`: 2 set-view
+  framing fails (alderRow, already known; ntCarriage "bay"), neither touched by these changes.

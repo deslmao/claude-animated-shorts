@@ -48,6 +48,17 @@ views on Instagram, and on YouTube 71% stayed to watch.
 
 No follow-ups are scheduled.
 
+## Miami / GTA-style look (design phase, 23 Nov)
+- **The world:** `blender/miami/miami.py` (headless Blender 4.0 Eevee; `blender -b --factory-startup -P
+  blender/miami/miami.py -- <street|beach|motel> out.png [scale]`). Needs `apt-get install blender libegl1
+  libegl-mesa0 libgl1-mesa-dri`.
+- **The cast:** `animation-studio/src/studio/characters/miami.ts` (placeholder names Rico and Lola). Sheet: the
+  `CharacterSheet` page `miami` (`miami-cut` = transparent). Cut-outs in `blender/miami/cast/`.
+- **Stills:** `productions/miami-look/` (v1 and v2). The next look gaps: denser props, finer asphalt, characters lit
+  more like the scene.
+- **Engine opt-ins for the STUDY.md grammar:** `alive: true`, `captionStyle: "short"`, `transition: "dissolve"`.
+- **Waiting on the owner:** the two characters' names, and approval of the look before any animation.
+
 ## Open owner requests
 1. **STUDY.md:** done from 5 of the 10 Shorts the owner uploaded on 23 Nov (`STUDY.md`). Waiting for the other 5, plus
    a turn to count. The main findings:
