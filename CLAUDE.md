@@ -55,6 +55,10 @@ tell it. `npm run short` fails without it. The owner approves `productions/<id>/
 6. **Make one focused correction pass,** unless a defect is serious.
 7. **The final quality check is the cloud render plus its full QA.** Don't skip it, and don't duplicate it locally.
 
+## Logs and handoff (the owner, 23 Nov 2026)
+- Append every owner prompt, word for word, to `_log/PROMPTS.md`; every decision (with its date and reason) to
+  `_log/DECISIONS.md`; and keep `HANDOFF.md` current, so anyone can take over at any moment.
+
 ## Claude usage
 - **The engine has a knowledge graph** (`graphify-out/graph.json`, `graphify-out/GRAPH_REPORT.md`: every function,
   theme, set, prop and story in `animation-studio/src`, and how they connect). To find where something lives or what
