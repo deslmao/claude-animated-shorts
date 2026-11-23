@@ -106,3 +106,8 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
 - **23 Nov (owner):** the cast are **Gordon** (the backwards snapback, shades, palm-print shirt) and **Lucy** (big curls,
   a cap, the pink denim jacket). Claude noted that Lucy must stay visually distinct from GTA VI's "Lucia".
 - **23 Nov (owner):** third pass approved: dress the sets to Rick's clips' density and realism.
+- **23 Nov:** Miami look v3 stills (dressed sets, street camera down the road) are in `productions/miami-look/still_v3_*`.
+  **Honest gap:** Rick's clips' photo-real foliage, rock and ground textures come from asset libraries. Procedural
+  shapes alone can't match them. **The next step to close it:** CC0 libraries such as Poly Haven (textures, plants,
+  HDRI skies), but `polyhaven.com` and `dl.polyhaven.org` are blocked by this environment's network policy. They're
+  reachable from GitHub runners, or the owner could allow the host.
