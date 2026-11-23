@@ -116,3 +116,6 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
   the site and API return 200, and a 1k HDRI downloads. The repo's saved environment `claude-animated-shorts` can't be
   edited from this session (only the current environment can), so the owner adds the same hosts there in Settings if
   wanted. Poly Haven assets are CC0 (no attribution required).
+- **23 Nov (owner):** the owner set the **Default** environment's network to unrestricted (any domain). Verified: Poly
+  Haven and other sites answer. The earlier allowlist no longer applies. The saved ElevenLabs and Notion keys are still
+  sent only to their own hosts.
