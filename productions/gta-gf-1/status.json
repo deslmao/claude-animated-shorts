@@ -4,14 +4,14 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-23T12:41:02.550Z",
-   "inputs": "13ee235d851b66n",
-   "detail": "valid; 11 warning(s):\n  shot 12 (ggPlate): prop \"ggPlate\" overlaps something already in the set at [100.0, -10.0]\n  shot 13 (ggPlate): prop \"ggPlate\" overlaps something already in the set at [200.0, -10.0]\n  shot 14 (ggPlate): prop \"ggPlate\" overlaps something already in the set at [300.0, -10.0]\n  shot 1 (stepsRoom): ggLucy fills 36 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 4 (apartment): ggGordon fills 43 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 4 (apartment): ggLucy fills 62 % of the frame in the foreground @1.4s (is it hiding the action?)\n  shot 6 (apartment): ggLucy fills 51 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 9 (apartment): ggGordon fills 45 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 16 (apartment): ggGordon fills 34 % of the frame in the foreground @1.8s (is it hiding the action?)\n  shot 17 (apartment): ggLucy fills 36 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 17 (apartment): ggGordon fills 40 % of the frame in the foreground @1.0s (is it hiding the action?)"
+   "at": "2026-11-23T12:56:42.803Z",
+   "inputs": "0068cf15f9608bn",
+   "detail": "valid; 10 warning(s):\n  shot 12 (ggPlate): prop \"ggPlate\" overlaps something already in the set at [100.0, -10.0]\n  shot 13 (ggPlate): prop \"ggPlate\" overlaps something already in the set at [200.0, -10.0]\n  shot 14 (ggPlate): prop \"ggPlate\" overlaps something already in the set at [300.0, -10.0]\n  shot 1 (stepsRoom): ggLucy fills 36 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 4 (apartment): ggGordon fills 43 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 4 (apartment): ggLucy fills 62 % of the frame in the foreground @1.4s (is it hiding the action?)\n  shot 6 (apartment): ggLucy fills 51 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 9 (apartment): ggGordon fills 45 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 17 (apartment): ggLucy fills 36 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 17 (apartment): ggGordon fills 40 % of the frame in the foreground @1.0s (is it hiding the action?)"
   },
   "assets": {
    "state": "done",
-   "at": "2026-11-23T12:41:02.556Z",
-   "inputs": "13ee235d851b66",
+   "at": "2026-11-23T12:56:42.807Z",
+   "inputs": "0068cf15f9608b",
    "detail": "48 library assets reused, none missing",
    "data": {
     "reused": 48,
@@ -88,26 +88,26 @@
   },
   "approval": {
    "state": "done",
-   "at": "2026-11-23T12:41:02.559Z",
+   "at": "2026-11-23T12:56:42.809Z",
    "inputs": "045f579e7d2c69",
    "detail": "all narration already generated (no cost)"
   },
   "narration": {
    "state": "done",
-   "at": "2026-11-23T12:41:02.560Z",
+   "at": "2026-11-23T12:56:42.810Z",
    "inputs": "045f579e7d2c69",
    "detail": "all lines already generated (cached)"
   },
   "sound": {
    "state": "done",
-   "at": "2026-11-23T12:41:17.243Z",
-   "inputs": "1063ba661fe856",
+   "at": "2026-11-23T12:56:55.204Z",
+   "inputs": "02db6c28182a12",
    "detail": "soundtrack built: -14.2 LUFS"
   },
   "checks": {
    "state": "done",
-   "at": "2026-11-23T12:41:24.457Z",
-   "inputs": "1063ba661fe856",
+   "at": "2026-11-23T12:57:02.275Z",
+   "inputs": "02db6c28182a12",
    "detail": "preflight PASS; library intact"
   }
  },

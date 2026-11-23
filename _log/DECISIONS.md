@@ -166,3 +166,7 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
     - the flat lit "interior" with a stronger TV glow.
   - **The frame-0 banner** is now "6 HOURS TO REPLY / HERE'S WHY". The approved wording overflowed the banner box; the
     meaning is the same.
+- **23 Nov (critic loop done):** rounds 2-5 scored about 5 (motion 4) with hard fails 9, 5, 2, 4. The loop stopped at
+  the agreed 5-round cap. `_review/scores.md` records what holds each category below 8: the 2D cast rig (two-handed
+  holds, body acting, lighting on the cards), sparse interiors, and still plates. Two framing fixes were made after
+  round 5, then the cloud 540p preview was requested for the owner.
