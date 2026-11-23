@@ -1,5 +1,5 @@
 {
- "reused": 36,
+ "reused": 38,
  "missing": [],
  "byKind": {
   "character": [
@@ -24,8 +24,8 @@
    "bfPhone",
    "bfPlate",
    "bfInsert",
-   "bfDread",
    "bfFrontDoor",
+   "bfDread",
    "bfHomeCam",
    "bfChoice"
   ],
@@ -33,10 +33,13 @@
    "el_sizzle",
    "el_mum_humming",
    "el_pancake_flip",
+   "el_phone_buzz_table",
+   "msg_chime",
+   "el_knock_front",
    "el_phone_ringout",
+   "el_breath_heavy",
    "phone_tap",
    "el_hospital_line",
-   "el_breath_heavy",
    "el_hit_sub",
    "el_sting_strings",
    "knock_heavy",
@@ -45,7 +48,6 @@
    "el_neck_creak",
    "el_riser_short",
    "el_vial_chime",
-   "msg_chime",
    "pop"
   ],
   "act": [

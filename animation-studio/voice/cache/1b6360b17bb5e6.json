@@ -1,0 +1,65 @@
+{
+ "hash": "1b6360b17bb5e6",
+ "text": "Mum's making your breakfast. But she just texted you.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.576,
+ "dur": 3.604898,
+ "words": [
+  {
+   "w": "Mum's",
+   "t0": 0,
+   "t1": 0.36
+  },
+  {
+   "w": "making",
+   "t0": 0.418,
+   "t1": 0.662
+  },
+  {
+   "w": "your",
+   "t0": 0.708,
+   "t1": 0.813
+  },
+  {
+   "w": "breakfast.",
+   "t0": 0.848,
+   "t1": 1.556
+  },
+  {
+   "w": "But",
+   "t0": 2.02,
+   "t1": 2.171
+  },
+  {
+   "w": "she",
+   "t0": 2.206,
+   "t1": 2.31
+  },
+  {
+   "w": "just",
+   "t0": 2.38,
+   "t1": 2.543
+  },
+  {
+   "w": "texted",
+   "t0": 2.577,
+   "t1": 2.995
+  },
+  {
+   "w": "you.",
+   "t0": 3.053,
+   "t1": 3.576
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-23T02:20:38.067Z"
+}

@@ -4,17 +4,17 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-22T21:03:42.827Z",
-   "inputs": "04bf44554eceadn",
-   "detail": "valid; 16 warning(s):\n  shot 5 (bfKitchen): prop \"bfFrontDoor\" overlaps something already in the set at [0.9, -4.5]\n  shot 14 (bfKitchen): prop \"bfFrontDoor\" overlaps something already in the set at [0.9, -4.5]\n  shot 18 (bfKitchen): prop \"bfFrontDoor\" overlaps something already in the set at [0.9, -4.5]\n  shot 1 (bfKitchen): mum fills 42 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 3 (bfKitchen): bug fills 54 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 5 (bfKitchen): mum fills 51 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 8 (bfKitchen): bug fills 54 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 10 (bfKitchen): mum fills 82 % of the frame in the foreground @1.8s (is it hiding the action?)\n  shot 11 (bfKitchen): bug fills 58 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 11 (bfKitchen): mum fills 87 % of the frame in the foreground @2.2s (is it hiding the action?)\n  shot 12 (bfKitchen): mum fills 82 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 13 (bfKitchen): mum fills 54 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 13 (bfKitchen): mum's hand (present) is out of frame @0.2s (side): widen the shot or change the gesture\n  shot 15 (bfKitchen): bug fills 54 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 17 (bfKitchen): bug fills 58 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 18 (bfKitchen): mum fills 38 % of the frame in the foreground @0.0s (is it hiding the action?)"
+   "at": "2026-11-23T02:24:17.700Z",
+   "inputs": "0e9d95c1758d4dn",
+   "detail": "valid; 19 warning(s):\n  shot 3 (bfKitchen): prop \"bfFrontDoor\" overlaps something already in the set at [0.9, -4.5]\n  shot 8 (bfKitchen): prop \"bfFrontDoor\" overlaps something already in the set at [0.9, -4.5]\n  shot 17 (bfKitchen): prop \"bfFrontDoor\" overlaps something already in the set at [0.9, -4.5]\n  shot 21 (bfKitchen): prop \"bfFrontDoor\" overlaps something already in the set at [0.9, -4.5]\n  shot 1 (bfKitchen): mum fills 42 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 4 (bfKitchen): bug fills 54 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 4 (bfKitchen): mum fills 50 % of the frame in the foreground @1.8s (is it hiding the action?)\n  shot 6 (bfKitchen): bug fills 54 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 8 (bfKitchen): mum fills 51 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 11 (bfKitchen): bug fills 54 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 13 (bfKitchen): mum fills 82 % of the frame in the foreground @1.8s (is it hiding the action?)\n  shot 14 (bfKitchen): bug fills 58 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 14 (bfKitchen): mum fills 87 % of the frame in the foreground @2.2s (is it hiding the action?)\n  shot 15 (bfKitchen): mum fills 82 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 16 (bfKitchen): mum fills 54 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 16 (bfKitchen): mum's hand (present) is out of frame @0.2s (side): widen the shot or change the gesture\n  shot 18 (bfKitchen): bug fills 54 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 20 (bfKitchen): bug fills 58 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 21 (bfKitchen): mum fills 38 % of the frame in the foreground @0.0s (is it hiding the action?)"
   },
   "assets": {
    "state": "done",
-   "at": "2026-11-22T21:03:42.830Z",
-   "inputs": "04bf44554ecead",
-   "detail": "36 library assets reused, none missing",
+   "at": "2026-11-23T02:24:17.704Z",
+   "inputs": "0e9d95c1758d4d",
+   "detail": "38 library assets reused, none missing",
    "data": {
-    "reused": 36,
+    "reused": 38,
     "missing": [],
     "byKind": {
      "character": [
@@ -39,8 +39,8 @@
       "bfPhone",
       "bfPlate",
       "bfInsert",
-      "bfDread",
       "bfFrontDoor",
+      "bfDread",
       "bfHomeCam",
       "bfChoice"
      ],
@@ -48,10 +48,13 @@
       "el_sizzle",
       "el_mum_humming",
       "el_pancake_flip",
+      "el_phone_buzz_table",
+      "msg_chime",
+      "el_knock_front",
       "el_phone_ringout",
+      "el_breath_heavy",
       "phone_tap",
       "el_hospital_line",
-      "el_breath_heavy",
       "el_hit_sub",
       "el_sting_strings",
       "knock_heavy",
@@ -60,7 +63,6 @@
       "el_neck_creak",
       "el_riser_short",
       "el_vial_chime",
-      "msg_chime",
       "pop"
      ],
      "act": [
@@ -74,33 +76,33 @@
   },
   "approval": {
    "state": "done",
-   "at": "2026-11-22T21:03:42.833Z",
-   "inputs": "1042bf9e026f11",
+   "at": "2026-11-23T02:24:17.707Z",
+   "inputs": "17224cdb2fcee2",
    "detail": "all narration already generated (no cost)"
   },
   "narration": {
    "state": "done",
-   "at": "2026-11-22T21:03:42.833Z",
-   "inputs": "1042bf9e026f11",
+   "at": "2026-11-23T02:24:17.708Z",
+   "inputs": "17224cdb2fcee2",
    "detail": "all lines already generated (cached)"
   },
   "sound": {
    "state": "done",
-   "at": "2026-11-22T21:04:00.125Z",
-   "inputs": "1fad5569279f0c",
+   "at": "2026-11-23T02:24:35.441Z",
+   "inputs": "06e219c2ef0b0b",
    "detail": "soundtrack built: -14.1 LUFS"
   },
   "checks": {
    "state": "done",
-   "at": "2026-11-22T21:04:05.752Z",
-   "inputs": "1fad5569279f0c",
+   "at": "2026-11-23T02:24:42.023Z",
+   "inputs": "06e219c2ef0b0b",
    "detail": "preflight PASS; library intact"
   }
  },
  "approval": {
-  "scriptHash": "1042bf9e026f11",
-  "chars": 219,
-  "at": "2026-11-22T20:57:12.144Z",
+  "scriptHash": "17224cdb2fcee2",
+  "chars": 110,
+  "at": "2026-11-23T02:20:28.909Z",
   "by": "the owner, in the conversation"
  }
 }

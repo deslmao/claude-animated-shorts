@@ -1,0 +1,75 @@
+{
+ "hash": "0fdfd79e4286b6",
+ "text": "And someone with her voice is knocking at the front door.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.972,
+ "dur": 3.004082,
+ "words": [
+  {
+   "w": "And",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "someone",
+   "t0": 0.221,
+   "t1": 0.546
+  },
+  {
+   "w": "with",
+   "t0": 0.569,
+   "t1": 0.708
+  },
+  {
+   "w": "her",
+   "t0": 0.743,
+   "t1": 0.836
+  },
+  {
+   "w": "voice",
+   "t0": 0.906,
+   "t1": 1.196
+  },
+  {
+   "w": "is",
+   "t0": 1.242,
+   "t1": 1.358
+  },
+  {
+   "w": "knocking",
+   "t0": 1.416,
+   "t1": 1.707
+  },
+  {
+   "w": "at",
+   "t0": 1.753,
+   "t1": 1.811
+  },
+  {
+   "w": "the",
+   "t0": 1.846,
+   "t1": 1.916
+  },
+  {
+   "w": "front",
+   "t0": 1.962,
+   "t1": 2.171
+  },
+  {
+   "w": "door.",
+   "t0": 2.218,
+   "t1": 2.972
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-23T02:20:38.671Z"
+}

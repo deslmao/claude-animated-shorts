@@ -32,6 +32,7 @@ const PLATE: PropSpec = { id: "bfPlate", at: [0.25, 0.78, 0.66], steps: [{ t: -0
 const DOOR = (variant: "empty" | "shadow" = "shadow", steps: { t: number }[] = [{ t: 99 }]): PropSpec => ({ id: "bfFrontDoor", variant, at: [0.95, 0, -4.47], steps });
 // the home camera high on the back wall, above the arch to the hallway (seen in the wide kitchen shots)
 const HOMECAM: PropSpec = { id: "bfHomeCam", at: [0.95, 2.28, -1.89], steps: [] };
+const KNOCKS = (t0: number) => [0.31, 0.53, 0.74, 0.94, 1.17].map((k) => ({ t: t0 + k }));
 const MUM_STOVE: V = [-0.4, 0, -1.0], BUG_STAND: V = [0.3, 0, 1.6];
 // the hospital behind Mum's voice whenever she's on the line
 const LINE = (t = 0, gain = -14) => ({ t, name: "el_hospital_line" as const, gain });
@@ -41,15 +42,18 @@ export const BREAKFAST_2: Storyboard = {
   cast: { mum: "mum", bug: "bug" },
   voice: "georgeHushed", voices: { mum: "bfMum" },
   captionColors: { mum: "#ffb070", bfMum: "#ffb070", bfMumDoor: "#8fc8ff", bfText: "#ffc8dc", bfThought: "#fff2a8" },
-  // the score (sound/samples/music/breakfast2_score2.json: nine sections to these timings): the breakfast tune slightly off
-  // for frame 0, collapsing onto a detuned music box with the call, a hit on "you were right", near silence as the house
+  // the score (sound/samples/music/breakfast2_score3.json: ten sections to these timings): the breakfast tune slightly off
+  // under the recap, collapsing onto a detuned music box with the call, a hit on "you were right", near silence as the house
   // goes quiet (after a quiet ticking pulse under the comments' answers and a sting on "I never sent that"), a held-breath heartbeat under the whisper, a horror swell as it turns, a warped music box under the text,
   // a held chord that stops dead
-  music: { file: "breakfast2_score2", gain: 0, duck: -5, curve: [[0, -6], [3.0, -6], [15.6, -9], [28.9, -6], [32.4, -10], [40.2, -6], [53.7, -3], [57.7, -2], [58.1, -24]] },
+  music: { file: "breakfast2_score3", gain: 0, duck: -5, curve: [[0, -6], [11.0, -6], [23.6, -9], [36.9, -6], [40.4, -10], [48.2, -6], [61.7, -3], [65.7, -2], [66.1, -24]] },
   engine: 3, autoSfx: false,
   clarity: {
     premise: "You ring Mum's work and she answers from the hospital, so neither of the mums in your house is her, and now both of them want to know who you're talking to.",
     facts: [
+      { fact: "the recap: the impossible text", said: "Mum's making your breakfast. But she just texted you." },
+      { fact: "the recap: the text", said: "Don't eat it. I'm still at work." },
+      { fact: "the recap: the second Mum", said: "And someone with her voice is knocking at the front door." },
       { fact: "what you did", said: "You don't open the door. You ring Mum's work instead." },
       { fact: "the twist", said: "And Mum picks up." },
       { fact: "she's at work", said: "I'm still at work, love." },
@@ -70,14 +74,29 @@ export const BREAKFAST_2: Storyboard = {
     ],
   },
   shots: [
-    // ---- FRAME 0: the bright kitchen, Mum (the thing) flipping pancakes, the banner; you're ringing out
-    { say: N("You don't open the door. You ring Mum's work instead."), ...K, hold: 0.05,
+    // ---- FRAME 0: the recap, as the hook (Part 1's proven opening): the bright kitchen, Mum (the thing) flipping
+    // pancakes, the banner; then her text on your phone
+    { say: N("Mum's making your breakfast. But she just texted you."), ...K, hold: 0.05,
       title: { text: "YOU RANG MUM'S WORK", sub: "AND SHE PICKED UP", instant: true },
-      ...withCuts(glide(at([0.32, 1.02, 1.35], [-0.55, 1.08, -1.3], 46), at([0.26, 1.02, 1.12], [-0.55, 1.1, -1.3], 44), 1.5), ["ring", at([-0.3, 1.3, 0.85], [-0.68, 1.12, -1.15], 46)]),
+      ...glide(at([0.32, 1.02, 1.35], [-0.55, 1.08, -1.3], 46), at([0.26, 1.02, 1.12], [-0.55, 1.1, -1.3], 44), 2.6),
       actors: [{ who: "mum", at: MUM_STOVE, act: "happy", face: "smile_closed", keepFace: true, facing: "camera", gesture: "operate", beats: [{ t: 1.4, face: "smile" }] }],
-      props: [PAN([{ t: 0.05 }, { t: 2.3 }]), MUM_PHONE, PLATE],
-      sfx: [{ t: 0, name: "el_sizzle", gain: -2 }, { t: 0, name: "el_mum_humming", gain: -6 }, { t: 0.05, name: "el_pancake_flip" }, { t: 2.3, name: "el_pancake_flip", gain: -4 }, { t: 0.4, name: "el_phone_ringout", gain: -4 }],
-      note: "frame 0: the bright kitchen; the thing that looks like Mum flips pancakes at the stove, smiling; the phone rings out" },
+      props: [PAN([{ t: 0.05 }, { t: 1.6 }]), MUM_PHONE, PLATE],
+      sfx: [{ t: 0, name: "el_sizzle", gain: -2 }, { t: 0, name: "el_mum_humming", gain: -6 }, { t: 0.05, name: "el_pancake_flip" }, { t: 1.6, name: "el_pancake_flip", gain: -4 }, { word: "texted", name: "el_phone_buzz_table", gain: -4 }],
+      note: "frame 0 (the recap): the bright kitchen; the thing that looks like Mum flips pancakes at the stove, smiling" },
+    insert("text1", "the recap: your phone: MUM: Don't eat it. I'm still at work.", {
+      say: { text: "Don't eat it. I'm still at work.", who: "narrator", voice: "bfText" }, hold: 0.2, sfx: [{ t: 0, name: "msg_chime", gain: -6 }, { t: 0, name: "el_sizzle", gain: -12 }] }),
+    { say: N("And someone with her voice is knocking at the front door."), ...K, hold: 0.1,
+      ...glide(at([0.95, 1.35, 0.7], [0.95, 1.28, -5.0], 30), at([0.95, 1.35, 0.2], [0.95, 1.28, -5.0], 28), 3.2),
+      actors: [], props: [DOOR("shadow", KNOCKS(0.1)), DREAD([0.95, 1.28, -4.4], 30)], sfx: [{ t: 0.1, name: "el_knock_front" }],
+      note: "the recap: down the hallway, three hard knocks; a woman's silhouette in the front door's frosted glass" },
+    // ---- PART 2 STARTS: you ring Mum's work
+    { say: N("You don't open the door. You ring Mum's work instead."), ...K, hold: 0.05,
+      ...withCuts(glide(at([-0.75, 1.25, 0.6], [0.3, 1.12, 1.62], 44), at([-0.6, 1.24, 0.8], [0.3, 1.12, 1.62], 41), 2.5), ["ring", at([-0.3, 1.3, 0.85], [-0.68, 1.12, -1.15], 46)]),
+      actors: [{ who: "bug", at: BUG_STAND, act: "scared", face: "scared", keepFace: true, facing: "camera", gesture: "hang", beats: [{ t: 0, look: "right" }] },
+        { who: "mum", at: MUM_STOVE, act: "happy", face: "smile_closed", keepFace: true, facing: "camera", gesture: "operate" }],
+      props: [PAN([{ t: 1.9 }]), MUM_PHONE],
+      sfx: [{ t: 0, name: "el_sizzle", gain: -6 }, { t: 0.3, name: "el_phone_ringout", gain: -4 }, { t: 0, name: "el_breath_heavy", gain: -12 }],
+      note: "you, close, eyes on the hallway; on 'ring', the thing at the stove, still flipping pancakes, smiling; the phone rings out" },
     insert("call", "your phone in your hands: Calling… MUM'S WORK; then she picks up, 00:03", {
       say: [call("Hello? Bug?"), { ...N("And Mum picks up."), gap: 0.25 }], hold: 0.25,
       sfx: [{ t: 0, name: "el_phone_ringout", gain: -8 }, { word: "Hello", name: "phone_tap", gain: -10 }, { word: "Hello", name: "el_hospital_line", gain: -14 }] }, [{ word: "Hello" }]),
