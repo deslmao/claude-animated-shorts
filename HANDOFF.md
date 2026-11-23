@@ -1,6 +1,6 @@
 # HANDOFF: where everything stands (keep this current)
 
-**Last updated:** 23 Nov 2026, ~08:10 UTC.
+**Last updated:** 23 Nov 2026, ~09:30 UTC.
 
 **Repo and branch:** `deslmao/claude-animated-shorts`, branch `claude/admiring-hopper-kbrb3d`. Never push elsewhere,
 no pull requests.
@@ -59,7 +59,9 @@ No follow-ups are scheduled.
 - **Engine opt-ins for the STUDY.md grammar:** `alive: true`, `captionStyle: "short"`, `transition: "dissolve"`.
 - **The cast names:** Gordon and Lucy (owner, 23 Nov). The third dressing pass is approved (v3 stills).
 - **Poly Haven is now allowed** on the Default environment (`polyhaven.com`, `dl.polyhaven.org`, `api.polyhaven.com`).
-  Next: pull CC0 textures, plants and HDRI skies into `miami.py` to reach Rick's clips' realism.
+  **v4 done:** Poly Haven textures, a real sky and real plants are in (`blender/miami/ASSETS.md`; fetch with
+  `python3 blender/miami/assets_fetch.py`, needs `python3-numpy`). Stills: `productions/miami-look/still_v4_*`.
+  Half-scale Eevee takes about 4.5 min per still here. **Waiting on the owner:** approval of the v4 look.
 
 ## Open owner requests
 1. **STUDY.md:** done from 5 of the 10 Shorts the owner uploaded on 23 Nov (`STUDY.md`). Waiting for the other 5, plus

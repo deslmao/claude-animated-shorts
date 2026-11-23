@@ -42,9 +42,85 @@ def hexc(h, a=1.0):
     lin = lambda c: c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4
     return (lin(r), lin(g), lin(b), a)
 
+# ---------------------------------------------------------------- Poly Haven (CC0) layer, used when the cache exists
+# python3 blender/miami/assets_fetch.py fills blender/miami/assets/. MIAMI_PH=0 renders the procedural-only look.
+import json
+PHDIR = os.path.join(HERE, "assets")
+PHM = json.load(open(os.path.join(PHDIR, "manifest.json"))) if os.environ.get("MIAMI_PH", "1") != "0" and os.path.exists(os.path.join(PHDIR, "manifest.json")) else None
+# our surface kind -> (Poly Haven role, metres per tile, tint mode, tint amount): MULTIPLY paints our pastel over a white
+# texture; COLOR keeps the photo's light and dark but nudges its hue toward our palette
+TEXROLE = {"stucco": ("stucco", 2.2, "MULTIPLY", 1.0), "asphalt": ("asphalt", 3.5, "COLOR", 0.15), "sand": ("sand", 2.6, "COLOR", 0.55),
+           "bark": ("bark", 1.4, "COLOR", 0.2), "tiles": ("walk", 2.4, "COLOR", 0.25), "lawn": ("lawn", 1.6, "COLOR", 0.2),
+           "planks": ("planks", 2.0, "COLOR", 0.2), "wetsand": ("wetsand", 2.6, "COLOR", 0.3)}
+GAIN = {"sand": 1.9, "wetsand": 1.2}                                     # brighten darker photos to Miami pale sand
+IMGS = {}
+def ph_img(rel, data=False):
+    if rel not in IMGS:
+        im = bpy.data.images.load(os.path.join(PHDIR, rel))
+        if data: im.colorspace_settings.name = "Non-Color"
+        IMGS[rel] = im
+    return IMGS[rel]
+
+def pbr(m, kind, color):
+    """a Poly Haven photo texture, box-projected in metres, tinted to our palette, with a large-scale variation so the
+    tiling never shows, plus roughness and a bump from the photo"""
+    role, size, mode, amt = TEXROLE[kind]; t = PHM["textures"][role]
+    nt = m.node_tree; n = nt.nodes; L = nt.links; b = n["Principled BSDF"]
+    tc = n.new("ShaderNodeTexCoord"); mp = n.new("ShaderNodeMapping"); mp.inputs["Scale"].default_value = (1 / size,) * 3
+    L.new(tc.outputs["Object"], mp.inputs["Vector"])
+    def tex(rel, data=False):
+        x = n.new("ShaderNodeTexImage"); x.image = ph_img(rel, data); x.projection = "BOX"; x.projection_blend = 0.25
+        L.new(mp.outputs[0], x.inputs["Vector"]); return x
+    d = tex(t["diff"]); r = tex(t["rough"], True)
+    tint = n.new("ShaderNodeMix"); tint.data_type = "RGBA"; tint.blend_type = mode; tint.inputs["Factor"].default_value = amt
+    L.new(d.outputs["Color"], tint.inputs["A"]); tint.inputs["B"].default_value = hexc(color)
+    big = n.new("ShaderNodeTexNoise"); L.new(tc.outputs["Object"], big.inputs["Vector"]); big.inputs["Scale"].default_value = 0.08; big.inputs["Detail"].default_value = 4
+    ramp = n.new("ShaderNodeValToRGB"); ramp.color_ramp.elements[0].position = 0.3; ramp.color_ramp.elements[0].color = (0.8, 0.8, 0.8, 1)
+    ramp.color_ramp.elements[1].position = 0.7; g = GAIN.get(kind, 1.0); ramp.color_ramp.elements[1].color = (g, g, g, 1)
+    ramp.color_ramp.elements[0].color = (0.8 * g, 0.8 * g, 0.8 * g, 1); L.new(big.outputs["Fac"], ramp.inputs["Fac"])
+    var = n.new("ShaderNodeMix"); var.data_type = "RGBA"; var.blend_type = "MULTIPLY"; var.inputs["Factor"].default_value = 1
+    L.new(tint.outputs["Result"], var.inputs["A"]); L.new(ramp.outputs["Color"], var.inputs["B"])
+    L.new(var.outputs["Result"], b.inputs["Base Color"]); L.new(r.outputs["Color"], b.inputs["Roughness"])
+    bump = n.new("ShaderNodeBump"); bump.inputs["Strength"].default_value = 0.35; bump.inputs["Distance"].default_value = 0.03
+    L.new(d.outputs["Color"], bump.inputs["Height"]); L.new(bump.outputs["Normal"], b.inputs["Normal"])
+
+PLANTS = {}
+def plant_lib(role):
+    """import a Poly Haven model once; its variants (objects named ..._a, _b, ...) each become a collection to instance"""
+    if role in PLANTS: return PLANTS[role]
+    from mathutils import Vector
+    before = set(bpy.data.objects); bpy.ops.import_scene.gltf(filepath=os.path.join(PHDIR, PHM["models"][role]["file"]))
+    new = [o for o in bpy.data.objects if o not in before]; bpy.context.view_layer.update()
+    groups = {}
+    for o in new:
+        tail = o.name.rsplit("_", 1)[-1]
+        groups.setdefault(tail if len(tail) == 1 and tail.isalpha() else "", []).append(o)
+    if "" in groups and len(groups) > 1: groups = {"": new}                # mixed naming: one plant
+    out = []
+    for key, objs in sorted(groups.items()):
+        coll = bpy.data.collections.new(f"ph_{role}_{key}")
+        for o in objs:
+            for c in list(o.users_collection): c.objects.unlink(o)
+            coll.objects.link(o)
+            if o.type == "MESH":
+                for m in o.data.materials:
+                    if m and m.blend_method != "OPAQUE": m.blend_method = "HASHED"; m.shadow_method = "HASHED"
+        pts = [o.matrix_world @ Vector(c) for o in objs if o.type == "MESH" for c in o.bound_box]
+        cx = sum(p.x for p in pts) / len(pts); cy = sum(p.y for p in pts) / len(pts); z0 = min(p.z for p in pts); h = max(p.z for p in pts) - z0
+        coll.instance_offset = (cx, cy, z0); out.append((coll, max(h, 1e-3)))
+    PLANTS[role] = out; return out
+
+def plant(role, x, y, z=0.0, h=1.0, rot=None, seed=0, variant=None):
+    """a real plant (Poly Haven) instanced at (x, y, z), scaled to height h"""
+    rnd = random.Random(seed); lib = plant_lib(role); coll, hh = lib[variant % len(lib) if variant is not None else rnd.randrange(len(lib))]
+    e = bpy.data.objects.new(f"{role}{seed}", None); e.instance_type = "COLLECTION"; e.instance_collection = coll
+    s = h / hh; e.location = (x, y, z); e.scale = (s, s, s); e.rotation_euler = (0, 0, rot if rot is not None else rnd.uniform(0, math.tau))
+    sc.collection.objects.link(e); return e
+
 MATS = {}
 def surface(m, kind, color):
     """procedural surface detail (STUDY: textured materials, never flat fills): colour variation plus a bump"""
+    if PHM and kind in TEXROLE: return pbr(m, kind, color)
     nt = m.node_tree; n = nt.nodes; L = nt.links; b = n["Principled BSDF"]
     tc = n.new("ShaderNodeTexCoord")
     base = hexc(color); dark = tuple(c * 0.78 for c in base[:3]) + (1,); light = tuple(min(1, c * 1.12) for c in base[:3]) + (1,)
@@ -84,6 +160,7 @@ def mat(name, color, rough=0.75, metal=0.0, emit=None, estr=0.0, spec=0.3, tex=N
     if "Specular IOR Level" in b.inputs: b.inputs["Specular IOR Level"].default_value = spec
     if emit:
         b.inputs["Emission Color"].default_value = hexc(emit); b.inputs["Emission Strength"].default_value = estr
+    if tex == "planks" and not PHM: tex = "bark"
     if tex: surface(m, tex, color)
     MATS[key] = m; return m
 
@@ -234,6 +311,9 @@ LEAF = mat("leafy", "#3f8a45", rough=0.8, tex="lawn"); LEAF2 = mat("leafy2", "#5
 FLOWERS = [mat(f"flower{c}", c, rough=0.6) for c in ("#ff5c8a", "#ffd24a", "#ffffff", "#c86bff")]
 def bush(x, y, r=0.7, z=0.0, seed=0, flowers=True):
     rnd = random.Random(seed)
+    if PHM:                                                                     # a real shrub (Poly Haven)
+        role = ["shrub_a", "tropical", "shrub_a"][seed % 3] if r > 0.5 else "shrub_a"
+        return plant(role, x, y, z, h=r * (2.6 if role == "tropical" else 1.7), seed=seed)
     bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=3, radius=r, location=(x, y, z + r * 0.7)); o = bpy.context.object
     o.scale = (1, rnd.uniform(0.8, 1.2), 0.85); tx = bpy.data.textures.new(f"bt{seed}", "CLOUDS"); tx.noise_scale = 0.35
     md = o.modifiers.new("lumpy", "DISPLACE"); md.texture = tx; md.strength = r * 0.45
@@ -331,7 +411,7 @@ def gulls(cam_pos, look, n=6, seed=5):
             o = bpy.context.object; o.scale = (0.7, 0.16, 1); o.data.materials.append(G); link(o)
 
 def pier(x0, y0, length, w=4.0):
-    W = mat("pierwood", "#a8835a", rough=0.85, tex="bark")
+    W = mat("pierwood", "#a8835a", rough=0.85, tex="planks")
     box(x0, y0 - length / 2, 1.6, w, length, 0.25, W)
     for k in range(int(length / 4)):
         for s in (-1, 1): cyl(x0 + s * (w / 2 - 0.2), y0 - k * 4, -1, 0.18, 2.7, W, verts=8)
@@ -384,13 +464,26 @@ def sky_and_sun(light_dir, strength=5.5):
     """a golden-hour gradient sky (peach horizon, warm blue top) and a low warm sun; light_dir = the way the light travels"""
     from mathutils import Vector
     w = bpy.data.worlds.new("w"); sc.world = w; w.use_nodes = True; nt = w.node_tree
-    bg = nt.nodes["Background"]; tc = nt.nodes.new("ShaderNodeTexCoord"); sep = nt.nodes.new("ShaderNodeSeparateXYZ")
+    bg = nt.nodes["Background"]
+    if PHM:
+        # a real photographed sky (Poly Haven, CC0), turned so its sun sits where our sun lamp shines from
+        import numpy as np
+        im = bpy.data.images.load(os.path.join(PHDIR, PHM["hdris"][os.environ.get("MIAMI_HDRI", "sky")]["file"])); W_, H_ = im.size
+        px = np.array(im.pixels[:], dtype=np.float32).reshape(H_, W_, 4)[:, :, :3].sum(axis=2)
+        row, col = np.unravel_index(int(px.argmax()), px.shape); phi_hdr = (col / W_ - 0.5) * math.tau
+        S = -Vector(light_dir).normalized(); phi_want = math.atan2(S.y, -S.x)
+        env = nt.nodes.new("ShaderNodeTexEnvironment"); env.image = im
+        tc = nt.nodes.new("ShaderNodeTexCoord"); mp = nt.nodes.new("ShaderNodeMapping"); mp.inputs["Rotation"].default_value = (0, 0, phi_want - phi_hdr)
+        nt.links.new(tc.outputs["Generated"], mp.inputs["Vector"]); nt.links.new(mp.outputs[0], env.inputs["Vector"])
+        hs = nt.nodes.new("ShaderNodeHueSaturation"); hs.inputs["Saturation"].default_value = float(os.environ.get("MIAMI_SKYSAT", "1.45"))
+        nt.links.new(env.outputs["Color"], hs.inputs["Color"]); nt.links.new(hs.outputs["Color"], bg.inputs["Color"]); bg.inputs["Strength"].default_value = float(os.environ.get("MIAMI_SKY", "0.9"))
+    tc = nt.nodes.new("ShaderNodeTexCoord"); sep = nt.nodes.new("ShaderNodeSeparateXYZ")
     ramp = nt.nodes.new("ShaderNodeValToRGB"); cr = ramp.color_ramp
     cr.elements[0].position = 0.0; cr.elements[0].color = hexc("#ffc48f")
     cr.elements[1].position = 0.5; cr.elements[1].color = hexc("#4f90e6")
     mid = cr.elements.new(0.14); mid.color = hexc("#f7d9b0")
     nt.links.new(tc.outputs["Generated"], sep.inputs[0]); nt.links.new(sep.outputs["Z"], ramp.inputs["Fac"])
-    nt.links.new(ramp.outputs["Color"], bg.inputs["Color"]); bg.inputs["Strength"].default_value = 1.0
+    if not PHM: nt.links.new(ramp.outputs["Color"], bg.inputs["Color"]); bg.inputs["Strength"].default_value = 1.0
     D = Vector(light_dir).normalized()
     bpy.ops.object.light_add(type="SUN", location=(0, 0, 50))
     s = bpy.context.object; s.data.energy = strength; s.data.color = hexc("#ffb878")[:3]; s.data.angle = math.radians(1.5)
@@ -398,7 +491,7 @@ def sky_and_sun(light_dir, strength=5.5):
     # a soft violet-blue sky fill from the opposite side, so shadows stay coloured (never brown)
     F = Vector((-D.x, -D.y, D.z * 3)).normalized()
     bpy.ops.object.light_add(type="SUN", location=(0, 0, 50)); f = bpy.context.object
-    f.data.energy = 0.9; f.data.color = hexc("#8f9cff")[:3]; f.data.angle = math.radians(60); f.data.use_shadow = False
+    f.data.energy = 0.75 if PHM else 0.9; f.data.color = hexc("#8f9cff")[:3]; f.data.angle = math.radians(60); f.data.use_shadow = False
     f.rotation_euler = F.to_track_quat("-Z", "Y").to_euler()
 
 def atmosphere(cam_pos, look, density=0.0016):
@@ -409,7 +502,7 @@ def atmosphere(cam_pos, look, density=0.0016):
     from mathutils import Vector
     fwd = Vector((look[0] - cam_pos[0], look[1] - cam_pos[1], 0)).normalized(); side = Vector((-fwd.y, fwd.x, 0))
     rnd = random.Random(3)
-    for k in range(9):
+    for k in range(0 if PHM else 9):
         d = rnd.uniform(260, 380); off = rnd.uniform(-1, 1) * d * 0.45; zc = rnd.uniform(70, 170)
         c = Vector(cam_pos) + fwd * d + side * off; c.z = zc
         bpy.ops.mesh.primitive_plane_add(size=1, location=c); o = bpy.context.object
@@ -484,7 +577,10 @@ def street():
     BENCH = mat("bench", "#f7f3ea", rough=0.6)
     for xx in (-12, 9, 24): box(xx, 7.6, 0.15, 2.0, 0.6, 0.45, BENCH); box(xx, 7.85, 0.6, 2.0, 0.1, 0.45, BENCH)
     for xx in (-20, 2, 13): cyl(xx, 6.9, 0.15, 0.22, 0.75, mat("hydrant", "#f25f7a", rough=0.5), verts=12)
-    for xx in range(-44, 45, 5): box(xx, 9.2, 0.15, 1.4, 0.7, 0.55, mat("planter", "#e6b98a", rough=0.8)); box(xx, 9.2, 0.7, 1.2, 0.5, 0.25, FROND)
+    for xx in range(-44, 45, 5):
+        box(xx, 9.2, 0.15, 1.4, 0.7, 0.55, mat("planter", "#e6b98a", rough=0.8))
+        if PHM: plant("calathea", xx, 9.2, 0.7, h=0.55, seed=xx + 500)
+        else: box(xx, 9.2, 0.7, 1.2, 0.5, 0.25, FROND)
     car(-6.5, -2.2, math.pi / 2, "#6fd6c9"); car(3.2, 2.3, -math.pi / 2, "#f59ab4"); car(16, -2.4, math.pi / 2, "#fbd36b")
     skyline(150, n=55)
     for xx in range(-44, 45, 5): grass(xx - 0.6, xx + 0.6, 8.95, 9.45, z=0.95, count=500, length=0.22)
@@ -507,6 +603,10 @@ def street():
     for xx in range(-40, 41, 10):
         if not -16 < xx + 2.5 < -8: bush(xx + 2.5, -7.8, r=0.6, z=0.15, seed=xx + 300)
     grass(-80, 80, -12.0, -9.3, z=0.06, count=9000, color="#8fa75a", length=0.18)
+    if PHM:
+        rg = random.Random(21)
+        for k in range(140): plant("grass", rg.uniform(-40, 40), rg.uniform(-11.8, -9.4), 0.06, h=rg.uniform(0.12, 0.22), seed=k + 900)
+        for k in range(8): plant("potted", -30 + k * 8.3, 9.85, 0.15, h=1.0, seed=k + 950)
     # looking down the street (STUDY.md: their wides run deep, so every layer adds detail)
     cam = camera((-17.0, -8.4, 1.9), (14.0, 3.7, 4.2), lens=24)
     atmosphere(cam.location, (14.0, 4.5, 4.2))
@@ -550,9 +650,14 @@ def beach():
     box(11, -1.5, 1.6, 7.0, 0.03, 0.8, mat("net", "#2b2d36", rough=0.9))
     for k in range(14): box(-12 + k * 1.9, -14.3 + random.uniform(-0.4, 0.4), 0.01, random.uniform(0.6, 1.4), 0.12, 0.04, mat("seaweed", "#4f6a3a", rough=0.9), rot=random.uniform(-0.5, 0.5))
     stones(-14, 14, -14, 0, n=90)
+    if PHM:
+        rs = random.Random(31)
+        ground(-80, 80, -16, -12.5, "#c9ab7c", z=0.004, name="wetsand", tex="wetsand")
+        for k in range(30): plant("shell", rs.uniform(-10, 8), rs.uniform(-13, 1), 0.0, h=0.06, seed=k + 1000)
+        for k in range(90): plant("grass", rs.uniform(-7, 5), rs.uniform(2.0, 4.8), 0.0, h=rs.uniform(0.15, 0.3), seed=k + 1100)
     pier(-26, -16, 70); sailboat(18, -60, 1.3); sailboat(-8, -95, 1.6, c="#ffd0dc"); sailboat(40, -120, 2.0)
-    for k in range(16): box(-20 + k * 2.6, 9.0, 0, 0.12, 0.12, 1.1, mat("fence", "#b8956a", rough=0.9, tex="bark"))
-    box(0, 9.0, 0.85, 42, 0.05, 0.08, mat("fence", "#b8956a", rough=0.9, tex="bark"))
+    for k in range(16): box(-20 + k * 2.6, 9.0, 0, 0.12, 0.12, 1.1, mat("fence", "#b8956a", rough=0.9, tex="planks"))
+    box(0, 9.0, 0.85, 42, 0.05, 0.08, mat("fence", "#b8956a", rough=0.9, tex="planks"))
     for (bx, by) in [(-12, 6), (-9, 3.5), (10.5, 5), (14, 2)]: bush(bx, by, r=0.8, seed=int(bx * 3), flowers=False)
     # foreground (STUDY.md: something near the lens in most wides): dune grass at the frame's foot, a palm at one side,
     # a towel and flip-flops near the lens
@@ -610,6 +715,8 @@ def motel():
     for xx in range(-14, 15, 3): box(xx, -15.0, 0.0, 1.4, 0.25, 0.14, mat("wheelstop", "#f2d27a", rough=0.6))
     for xx in (-12, 0, 12): lamp(xx, -17.5)
     for xx in (-6, 6): trashcan(xx, 4.2, c="#2fb5a7")
+    if PHM:
+        for k, xx in enumerate(range(-13, 14, 6)): plant("potted", xx - 0.75, 4.55, 0.0, h=0.95, seed=k + 1200)
     for (bx, by) in [(-1.5, -7.6), (10, -7.6), (14, -6)]: bush(bx, by, r=0.55, seed=int(bx * 5 + 7))
     car(-11.5, -12.6, math.pi / 2 - 0.1, "#ffb36b"); car(3.5, -13.0, math.pi / 2 + 0.06, "#f7f3ea"); car(15, -12.5, math.pi / 2, "#8fd9c6")
     cam = camera((-5.5, -22.0, 3.4), (0.5, 2, 2.6), lens=24)

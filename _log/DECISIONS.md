@@ -119,3 +119,11 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
 - **23 Nov (owner):** the owner set the **Default** environment's network to unrestricted (any domain). Verified: Poly
   Haven and other sites answer. The earlier allowlist no longer applies. The saved ElevenLabs and Notion keys are still
   sent only to their own hosts.
+- **23 Nov (Claude):** Miami look v4 uses Poly Haven CC0 assets (`blender/miami/ASSETS.md`):
+  - photo textures on the asphalt, pavements, sand, stucco, palm bark and planks;
+  - a real photographed sky (blue, partly cloudy) instead of the painted gradient;
+  - real shrubs, planters, grass clumps and shells.
+
+  The assets are fetched into a git-ignored cache (`assets_fetch.py`, about 110 MB) rather than committed, and
+  `MIAMI_PH=0` keeps the old procedural look. Our buildings, palms, cars and cast stay our own. The stills are in
+  `productions/miami-look/still_v4_*` and `compare_v3_v4_*`. One correction pass so far (brighter sand, more shadow fill).
