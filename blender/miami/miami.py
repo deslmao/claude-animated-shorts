@@ -478,6 +478,7 @@ def street():
     LAMP = mat("lamp_pole", "#2d5f6a", rough=0.5); GLOBE = mat("globe", "#fff1cf", emit="#ffe3a8", estr=1.2)
     for xx in range(-40, 41, 8):
         for yy in (6.6, -6.6):
+            if yy < 0 and -15 < xx + 4 < -8: continue                      # keep the lens clear
             cyl(xx + 4, yy, 0.15, 0.07, 4.4, LAMP, verts=10)
             bpy.ops.mesh.primitive_uv_sphere_add(radius=0.22, location=(xx + 4, yy, 4.7)); o = bpy.context.object; o.data.materials.append(GLOBE); link(o)
     BENCH = mat("bench", "#f7f3ea", rough=0.6)
@@ -494,8 +495,8 @@ def street():
     for xx in (-24, -6, 19, 33): trashcan(xx, 6.9, z=0.15, c=random.choice(["#2fb5a7", "#ff8aa0", "#f2a541"]))
     newsbox(-16, 6.9, z=0.15); newsbox(-15.3, 6.9, z=0.15, c="#3fb3c9", word="SOL TIMES"); phonebooth(4.8, 7.4, z=0.15)
     crosswalk(-10.5, -6, 6); crosswalk(28, -6, 6)
-    trafficlight(-12.6, 6.6, z=0.15, rot=-math.pi / 2); trafficlight(-8.4, -6.6, z=0.15, rot=math.pi / 2)
-    streetsign(-13.2, 6.5, 0.15, "MARINO DR"); streetsign(-7.6, -6.5, 0.15, "CALLE SOLANA", c="#2f4f8f")
+    trafficlight(-12.6, 6.6, z=0.15, rot=-math.pi / 2); trafficlight(-6.4, -6.6, z=0.15, rot=math.pi / 2)
+    streetsign(-13.2, 6.5, 0.15, "MARINO DR"); streetsign(-5.6, -6.5, 0.15, "CALLE SOLANA", c="#2f4f8f")
     for k, xx in enumerate([-36, -29, -22, 10, 22, 29, 36]): car(xx, 4.6, -math.pi / 2, ["#c9a7f0", "#7fd6e9", "#ffb36b", "#f59ab4", "#8fd9c6", "#fbd36b", "#f7f3ea"][k])
     for k, xx in enumerate([-33, -18, 26, 34]): car(xx, -4.7, math.pi / 2, ["#ff8aa0", "#a9c4f0", "#f7d27a", "#c3a9ea"][k])
     box(0, 6.05, 0.0, 160, 0.3, 0.16, mat("curb", "#d8d2c6", rough=0.7)); box(0, -6.05, 0.0, 160, 0.3, 0.16, mat("curb", "#d8d2c6", rough=0.7))
@@ -506,10 +507,10 @@ def street():
     for xx in range(-40, 41, 10): bush(xx + 2.5, -7.8, r=0.6, z=0.15, seed=xx + 300)
     grass(-80, 80, -12.0, -9.3, z=0.06, count=9000, color="#8fa75a", length=0.18)
     # looking down the street (STUDY.md: their wides run deep, so every layer adds detail)
-    cam = camera((-17.0, -7.6, 1.9), (14.0, 4.5, 4.2), lens=24)
+    cam = camera((-17.0, -8.4, 1.9), (14.0, 3.7, 4.2), lens=24)
     atmosphere(cam.location, (14.0, 4.5, 4.2))
-    card("gordon_34.png", -12.6, -7.0, 1.85, (cam.location.x, cam.location.y), z=0.15)
-    card("lucy_front.png", -12.0, -7.9, 1.62, (cam.location.x, cam.location.y), z=0.15)
+    card("gordon_34.png", -12.7, -6.65, 1.85, (cam.location.x, cam.location.y), z=0.15)
+    card("lucy_front.png", -11.7, -7.15, 1.62, (cam.location.x, cam.location.y), z=0.15)
 
 def beach():
     sky_and_sun((0.4, -0.82, -0.42))
@@ -603,7 +604,7 @@ def motel():
     for xx in (-12, 0, 12): lamp(xx, -17.5)
     for xx in (-6, 6): trashcan(xx, 4.2, c="#2fb5a7")
     for (bx, by) in [(-1.5, -7.6), (10, -7.6), (14, -6)]: bush(bx, by, r=0.55, seed=int(bx * 5 + 7))
-    car(-3.5, -12.8, math.pi / 2 - 0.1, "#ffb36b"); car(3.5, -13.0, math.pi / 2 + 0.06, "#f7f3ea"); car(15, -12.5, math.pi / 2, "#8fd9c6")
+    car(-11.5, -12.6, math.pi / 2 - 0.1, "#ffb36b"); car(3.5, -13.0, math.pi / 2 + 0.06, "#f7f3ea"); car(15, -12.5, math.pi / 2, "#8fd9c6")
     cam = camera((-5.5, -22.0, 3.4), (0.5, 2, 2.6), lens=24)
     atmosphere(cam.location, (0.5, 2, 2.6))
     card("gordon_side.png", -4.6, -14.2, 1.85, (cam.location.x, cam.location.y))
