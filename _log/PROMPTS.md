@@ -16283,3 +16283,8 @@ Oldest first. Times are UTC (the owner is in GMT+11). Extracted from the session
     Sorry, i think we got the wrong type. 
      The script is supposed to explain to girlfriends WHY gta 6 is so hyped and why they're boyfriends are spending 6 hours on it everyday instead of replying to their texts.
 
+## 415. 2026-11-23 10:40
+
+    approve production finally , we have better quality and animation and also a better niche. 
+    Also maybe you could analyse rick's clips scripts to see how it is engaging?
+

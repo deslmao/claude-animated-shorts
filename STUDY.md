@@ -140,3 +140,47 @@ Their sets carry roughly **1.3–2.4× our detail.** It shows in:
 ## Still to do
 - **The other 5 Shorts** (the brief asked for the 10 newest). The numbers above are from 5.
 - **A turn:** none was isolated cleanly in these 5. It's worth counting from the next batch.
+
+---
+
+## 7. Scripts: why they hold you (added 23 Nov, from transcripts of the same 5 Shorts)
+The 5 voice-overs were transcribed with ElevenLabs speech-to-text, which gives word timings. The full transcripts stay
+in the session scratchpad and are not committed. Only short phrases are quoted here, for analysis.
+
+| Measure | Rick's (5 Shorts) |
+|---|---|
+| Words | 204–231 per ~60 s |
+| Speaking pace | **3.3–3.9 words/s** (median 3.7) |
+| First sentence | **exactly 15 words in all 5**, spoken in ~4 s |
+| "You see," (the setup) | starts at **~4 s** in 4 of 5 |
+| The big question ("So how…?", "So what's in there?", "But how…?") | at **42 s, 41 s, 33 s, 7 s and 33 s**: mostly at ~55–70% |
+| "Well, it's called…" (the named answer) | right after the question, in 3 of 5 |
+| On-screen character lines | 0–3 per Short, each 3–10 words, mostly sarcastic |
+| Connecting words per Short | "So" 1–5, "But" 0–3, "Then/yet/while" 1–3 |
+| Outro, call to action, "subscribe" | **none**: the last line is the payoff |
+
+**The recipe they repeat:**
+1. **The opener is a paradox in one 15-word sentence.** An action that seems to contradict itself: a bomb rolled in
+   that won't go off; a tunnel out of prison that leads into a bank; gold shot into a gold mine. You can't scroll
+   away without wanting to know why.
+2. **"You see," gives the stakes in the next 4 seconds:** who, where, and what happens if it goes wrong (10,000 samurai
+   attack at sunrise).
+3. **Then a chain of cause and effect, never a list.** Each sentence starts with "So…", "But…" or "Then…", so every
+   event causes the next and nothing is a loose fact. The trouble escalates: the town adds an arrow, the crashes double,
+   the sheriff crashes, he chops the tree down, he hits the stump.
+4. **A comic side character every ~10 s:** the tow-truck man with his lawn chair, the rich man banging his head, the
+   cellmate's "Congrats." They're small jokes, but they keep the energy up.
+5. **The question is held back until ~60–70%.** Then the narrator asks it out loud and names the answer ("Well, it's
+   called target fixation"), so the viewer gets a word to remember and repeat.
+6. **The explanation takes about 15 s, then the last line lands on an image that loops.** Video 1 ends on "even when
+   it's just a stump", which leads straight back into "If you plant a tree…". There's no outro.
+7. **Present tense, plain words, and "you"** in the openers and explanations.
+
+**What this means for us** (we keep our own stories, characters and jokes):
+- **Open with a one-sentence paradox of about 15 words, under 4 s.** Our "breakfast" hook already does this in two
+  lines. Use the same discipline.
+- **Turn lists into chains.** Join facts with "So / But / Then" so each causes the next.
+- **Hold the main question to ~60% and say it out loud,** then answer it with a name.
+- **End on the payoff image, ideally one that loops into the opening.** Put the comment question in the pinned comment
+  and caption, not the last 3 seconds. That's a test worth running against our current "comment below" endings.
+- **Aim for 3.5–3.8 words a second,** about 200–220 words per minute.

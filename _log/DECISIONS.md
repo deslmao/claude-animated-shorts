@@ -143,3 +143,12 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
   - the twist: Lucy tries it, and six hours later she replies "sorry. gta".
 
   The tips list stays as material for later episodes. The script awaits approval.
+- **23 Nov (owner):** GTA GF Ep 1 v2 approved for production. The owner also asked for an analysis of Rick's clips'
+  scripts. It's in STUDY.md §7 (the 5 transcripts via ElevenLabs speech-to-text, kept out of the repo):
+  - a 15-word paradox opener;
+  - "You see," at 4 s;
+  - a So/But/Then chain of cause and effect;
+  - the question held to ~60–70%, then named;
+  - no outro, and an ending that loops.
+
+  Ep 1 is produced as approved. The findings apply from Ep 2, and the "no outro, loop ending" idea is worth testing.
