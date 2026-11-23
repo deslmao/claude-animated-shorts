@@ -176,11 +176,11 @@ const views = (g: CanvasRenderingContext2D, st: number) => {
   g.strokeStyle = "#3a1d4a"; g.lineWidth = 12; g.beginPath(); g.moveTo(600, 600); g.quadraticCurveTo(620, 420, 590, 330); g.stroke();
   g.fillStyle = "#3a1d4a"; for (let k = 0; k < 6; k++) { const a = -Math.PI / 2 + (k - 2.5) * 0.5; g.beginPath(); g.ellipse(590 + Math.cos(a) * 60, 345 + Math.sin(a) * 26, 76, 13, a, 0, Math.PI * 2); g.fill(); }
   g.fillStyle = "rgba(0,0,0,0.55)"; g.beginPath(); g.arc(IW / 2, 440, 70, 0, Math.PI * 2); g.fill(); g.fillStyle = "#ffffff"; g.beginPath(); g.moveTo(IW / 2 - 22, 404); g.lineTo(IW / 2 + 36, 440); g.lineTo(IW / 2 - 22, 476); g.closePath(); g.fill();
-  g.fillStyle = "#ffffff"; g.font = FS(46); g.textAlign = "left"; g.fillText("Trailer 1", 50, 715);
+  g.fillStyle = "#ffffff"; g.font = FS(42); g.textAlign = "left"; g.fillText("Trailer 1", 50, 690);
   // the counter, huge
   const n = VIEWS[Math.min(st, VIEWS.length - 1)];
-  g.textAlign = "center"; g.fillStyle = "#ffffff"; const txt = n.toLocaleString("en-US"); g.font = FR(110); const k = Math.min(1, 660 / g.measureText(txt).width); g.font = FR(Math.floor(110 * k)); g.fillText(txt, IW / 2, 790);
-  g.fillStyle = "#b8bbc6"; g.font = FS(54); g.fillText("views", IW / 2, 870);
+  g.textAlign = "center"; g.fillStyle = "#ffffff"; const txt = n.toLocaleString("en-US"); g.font = FR(110); const k = Math.min(1, 660 / g.measureText(txt).width); g.font = FR(Math.floor(110 * k)); g.fillText(txt, IW / 2, 805);
+  g.fillStyle = "#b8bbc6"; g.font = FS(54); g.fillText("views", IW / 2, 885);
   // the 24 HOURS badge and a clock hand going round
   g.fillStyle = "#e5484d"; g.beginPath(); g.roundRect(IW / 2 - 190, 1140, 380, 100, 50); g.fill(); g.fillStyle = "#ffffff"; g.font = FR(56); g.fillText("24 HOURS", IW / 2, 1192);
   const a = (st / 15) * Math.PI * 2 - Math.PI / 2; g.strokeStyle = "#ffffff"; g.lineWidth = 6; g.beginPath(); g.arc(IW / 2, 1330, 50, 0, Math.PI * 2); g.stroke();
@@ -308,7 +308,7 @@ const gradeTex = (key: string, mul: [string, string], glow: { x: number; y: numb
 ];
 const GRADES: Record<string, () => THREE.Texture[]> = {
   // the flat at night: a cool blue cast, the TV's glow from below the frame, warm lamp-light kept in the middle
-  tv: () => gradeTex("tv", ["#d9e4ff", "#5d6f9e"], { x: 0.5, y: 1.05, r: 0.75, col: "rgba(90,150,255,0.55)" }),
+  tv: () => gradeTex("tv", ["#cfdcff", "#3f4f82"], { x: 0.5, y: 0.95, r: 0.6, col: "rgba(80,150,255,0.85)" }),
   // the sunset road: warm from the right, the shadows violet
   sunset: () => gradeTex("sunset", ["#ffe6cc", "#b78aa8"], { x: 0.95, y: 0.35, r: 0.7, col: "rgba(255,150,70,0.45)" }),
   // a sunny day in the game: a touch of warmth, a soft vignette
@@ -317,7 +317,7 @@ const GRADES: Record<string, () => THREE.Texture[]> = {
   room: () => gradeTex("room", ["#fff6e6", "#cdb8a0"], { x: 0.05, y: 0.3, r: 0.8, col: "rgba(255,220,160,0.35)" }),
 };
 const gradeRig = (a: At, v = "tv"): PropRig => {
-  const fov = (a.s ?? 0.46) * 100, root = rigRoot({ ...a, s: 1 }), h = 2 * 0.5 * Math.tan((fov * Math.PI) / 360) * 1.2, w = (h * 9) / 16;
+  const fov = (a.s ?? 0.46) * 100, root = rigRoot({ ...a, s: 1 }), h = 2 * 0.5 * Math.tan((fov * Math.PI) / 360) * 2.6, w = h;
   const [mt, at] = (GRADES[v] ?? GRADES.tv)();
   const mm = new THREE.MeshBasicMaterial({ map: mt, blending: THREE.MultiplyBlending, premultipliedAlpha: true, transparent: true, depthTest: false, depthWrite: false, toneMapped: false });
   const am = new THREE.MeshBasicMaterial({ map: at, blending: THREE.AdditiveBlending, transparent: true, depthTest: false, depthWrite: false, toneMapped: false });
