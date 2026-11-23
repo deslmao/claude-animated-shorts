@@ -111,3 +111,8 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
   shapes alone can't match them. **The next step to close it:** CC0 libraries such as Poly Haven (textures, plants,
   HDRI skies), but `polyhaven.com` and `dl.polyhaven.org` are blocked by this environment's network policy. They're
   reachable from GitHub runners, or the owner could allow the host.
+- **23 Nov (owner):** allow Poly Haven. `polyhaven.com`, `dl.polyhaven.org` and `api.polyhaven.com` (the asset API
+  that lists the download links) were added to the **Default** environment, the one this session runs in. Verified:
+  the site and API return 200, and a 1k HDRI downloads. The repo's saved environment `claude-animated-shorts` can't be
+  edited from this session (only the current environment can), so the owner adds the same hosts there in Settings if
+  wanted. Poly Haven assets are CC0 (no attribution required).

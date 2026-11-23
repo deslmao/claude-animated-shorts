@@ -1,6 +1,6 @@
 # HANDOFF: where everything stands (keep this current)
 
-**Last updated:** 23 Nov 2026, ~05:25 UTC.
+**Last updated:** 23 Nov 2026, ~08:10 UTC.
 
 **Repo and branch:** `deslmao/claude-animated-shorts`, branch `claude/admiring-hopper-kbrb3d`. Never push elsewhere,
 no pull requests.
@@ -52,12 +52,14 @@ No follow-ups are scheduled.
 - **The world:** `blender/miami/miami.py` (headless Blender 4.0 Eevee; `blender -b --factory-startup -P
   blender/miami/miami.py -- <street|beach|motel> out.png [scale]`). Needs `apt-get install blender libegl1
   libegl-mesa0 libgl1-mesa-dri`.
-- **The cast:** `animation-studio/src/studio/characters/miami.ts` (placeholder names Rico and Lola). Sheet: the
+- **The cast:** `animation-studio/src/studio/characters/miami.ts` (Gordon and Lucy). Sheet: the
   `CharacterSheet` page `miami` (`miami-cut` = transparent). Cut-outs in `blender/miami/cast/`.
 - **Stills:** `productions/miami-look/` (v1 and v2). The next look gaps: denser props, finer asphalt, characters lit
   more like the scene.
 - **Engine opt-ins for the STUDY.md grammar:** `alive: true`, `captionStyle: "short"`, `transition: "dissolve"`.
-- **Waiting on the owner:** the two characters' names, and approval of the look before any animation.
+- **The cast names:** Gordon and Lucy (owner, 23 Nov). The third dressing pass is approved (v3 stills).
+- **Poly Haven is now allowed** on the Default environment (`polyhaven.com`, `dl.polyhaven.org`, `api.polyhaven.com`).
+  Next: pull CC0 textures, plants and HDRI skies into `miami.py` to reach Rick's clips' realism.
 
 ## Open owner requests
 1. **STUDY.md:** done from 5 of the 10 Shorts the owner uploaded on 23 Nov (`STUDY.md`). Waiting for the other 5, plus
