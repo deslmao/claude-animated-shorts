@@ -16265,3 +16265,16 @@ Oldest first. Times are UTC (the owner is in GMT+11). Extracted from the session
     - fix the weakest category first, then render again.
     Keep every round in _review/rounds/ and a score table. Loop until every score is 8 or more.
 
+## 413. 2026-11-23 10:00
+
+    Make the voices with Elevenlabs that we normally do. 
+    Lets make the script for GTA 6. Yes explained to girlfriends is good make a script about it.
+    Here is ideas for future videos: 
+    [a ~20-minute GTA 6 tips video transcript, "10 things the game doesn't tell you": shooting ranges and the focus
+    meter; sprint and classic controls, targeting modes, grabbing in melee; the car options wheel, podcasts and turn
+    signals; the hold-down map overlay and fences, focus mode outside combat; sending the partner to sell goods; buying
+    garages; stealth, silencers, throwing objects, binoculars and tagging; saving outfits to your vehicle to lose the
+    cops; pushing cars and boats; taking 10+ hours to reach Vice City; cheats unlocking after the story; being rescued
+    when lost at sea. The full text is in the session transcript.]
+    This is a transcript on What you can do in GTA its liek bugs i think?
+

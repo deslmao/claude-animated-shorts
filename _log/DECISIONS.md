@@ -127,3 +127,11 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
   The assets are fetched into a git-ignored cache (`assets_fetch.py`, about 110 MB) rather than committed, and
   `MIAMI_PH=0` keeps the old procedural look. Our buildings, palms, cars and cast stay our own. The stills are in
   `productions/miami-look/still_v4_*` and `compare_v3_v4_*`. One correction pass so far (brighter sand, more shadow fill).
+- **23 Nov (owner):** the new series is **"GTA 6, Explained to Your Girlfriend"**, with Gordon and Lucy. Voices come
+  from ElevenLabs as usual.
+  - **Claude, Ep 1 "The Lucky Shirt":** the outfit-in-your-car trick for losing the cops. It's verified in 3 guides,
+    and it has the strongest real-life twist ("you've worn that shirt for three days").
+  - **The two worlds:** "real life" is the flat at night; "the game" is our own Miami city.
+  - **No game footage, logos, or game characters or places.**
+  - The viewer script is waiting for the owner's approval before any voices are made.
+  - The owner's tips transcript became `productions/research/gta6-episode-ideas.md` (facts only, in our own words).
