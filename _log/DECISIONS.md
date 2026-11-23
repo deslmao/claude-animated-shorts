@@ -185,3 +185,7 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
 
   The owner asked to "publish full render". The standing rule holds: the final is rendered with `publish: false`, and
   the owner uploads.
+- **23 Nov:** final run 62's built-in QA flagged near-blank frames, which were the plain white phone chat screens, and
+  one repeated frame at the end of a wall-picture push. Both were fixed properly rather than explained away: a pastel
+  chat wallpaper with doodles (it passes the QA's own near-blank check locally), and longer camera glides on the wall
+  pictures. Then the final was re-rendered.

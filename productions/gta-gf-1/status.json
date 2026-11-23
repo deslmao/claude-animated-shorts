@@ -4,14 +4,14 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-23T21:18:31.086Z",
-   "inputs": "013378f8cefdc2n",
+   "at": "2026-11-23T21:40:27.135Z",
+   "inputs": "0eb8526e540614n",
    "detail": "valid; 12 warning(s):\n  shot 11 (ggPlate): prop \"ggPlate\" overlaps something already in the set at [400.0, -10.0]\n  shot 12 (ggPlate): prop \"ggPlate\" overlaps something already in the set at [100.0, -10.0]\n  shot 13 (ggPlate): prop \"ggPlate\" overlaps something already in the set at [200.0, -10.0]\n  shot 14 (ggPlate): ggGordon: walk 0-1.6 s outside the shot\n  shot 14 (ggPlate): prop \"ggPlate\" overlaps something already in the set at [500.0, -10.0]\n  shot 1 (stepsRoom): ggLucy fills 36 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 4 (apartment): ggGordon fills 43 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 4 (apartment): ggLucy fills 62 % of the frame in the foreground @1.4s (is it hiding the action?)\n  shot 6 (apartment): ggLucy fills 51 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 9 (apartment): ggGordon fills 45 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 17 (apartment): ggLucy fills 36 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 17 (apartment): ggGordon fills 40 % of the frame in the foreground @1.0s (is it hiding the action?)"
   },
   "assets": {
    "state": "done",
-   "at": "2026-11-23T21:18:31.090Z",
-   "inputs": "013378f8cefdc2",
+   "at": "2026-11-23T21:40:27.139Z",
+   "inputs": "0eb8526e540614",
    "detail": "50 library assets reused, none missing",
    "data": {
     "reused": 50,
@@ -90,26 +90,26 @@
   },
   "approval": {
    "state": "done",
-   "at": "2026-11-23T21:18:31.093Z",
+   "at": "2026-11-23T21:40:27.143Z",
    "inputs": "045f579e7d2c69",
    "detail": "all narration already generated (no cost)"
   },
   "narration": {
    "state": "done",
-   "at": "2026-11-23T21:18:31.094Z",
+   "at": "2026-11-23T21:40:27.144Z",
    "inputs": "045f579e7d2c69",
    "detail": "all lines already generated (cached)"
   },
   "sound": {
    "state": "done",
-   "at": "2026-11-23T21:18:42.803Z",
-   "inputs": "1b9bff2ca3a3c7",
+   "at": "2026-11-23T21:40:38.772Z",
+   "inputs": "15d7c22fb7d4ce",
    "detail": "soundtrack built: -14.2 LUFS"
   },
   "checks": {
    "state": "done",
-   "at": "2026-11-23T21:18:48.425Z",
-   "inputs": "1b9bff2ca3a3c7",
+   "at": "2026-11-23T21:40:44.421Z",
+   "inputs": "15d7c22fb7d4ce",
    "detail": "preflight PASS; library intact"
   }
  },

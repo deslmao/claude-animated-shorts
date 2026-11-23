@@ -46,7 +46,7 @@ const WALL: V = [-0.55, 1.5, -2.56];
 const wallInsert = (variant: string, note: string, extra: Partial<ShotSpec>, steps: When[]): ShotSpec => {
   const c0 = at([-0.4, 1.58, -0.95], WALL, 51, 6, 0), c1 = at([-0.5, 1.56, -1.2], WALL, 51, 6, 0), x: Partial<ShotSpec> = { ...extra };
   delete x.cams;
-  return { ...FLAT, camera: c0, cams: [{ t: 0, ...c0, blockOk: true }, { t: 0.1, ...c1, glide: 6, blockOk: true }], actors: [],
+  return { ...FLAT, camera: c0, cams: [{ t: 0, ...c0, blockOk: true }, { t: 0.1, ...c1, glide: 14, blockOk: true }], actors: [],
     props: [{ id: "ggWall", at: WALL, variant, steps }, GRADE("tv", WALL)], note, ...x };
 };
 const cardCam = (card: V, d = 1.0, dx = 0, dy = 0, roll = 0) => at([card[0] + dx, card[1] + dy, card[2] + d], [card[0] + dx * 0.4, card[1] + dy * 0.4, card[2]], 51, 0, 0.04, roll);

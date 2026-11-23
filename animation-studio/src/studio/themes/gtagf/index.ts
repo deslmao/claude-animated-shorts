@@ -96,8 +96,18 @@ const bubble = (g: CanvasRenderingContext2D, text: string, mine: boolean, y: num
  *  reply: the other one's reply (null = none yet); typing = the input box still holds the message */
 const chat = (g: CanvasRenderingContext2D, o: { who: string; mine: string; smile: boolean; clock: string; delivered: string | null; reply: boolean; typing: boolean; ring?: number }) => {
   g.fillStyle = "#0e0f14"; g.fillRect(0, 0, IW, IH);
-  g.fillStyle = "#ffffff"; g.beginPath(); g.roundRect(28, 28, IW - 56, IH - 56, 70); g.fill();
   g.save(); g.beginPath(); g.roundRect(28, 28, IW - 56, IH - 56, 70); g.clip();
+  // the chat wallpaper: a soft pastel gradient with faint doodles (palms, hearts, controllers), never a blank white
+  const wg = g.createLinearGradient(0, 0, IW, IH); wg.addColorStop(0, "#f9e6f1"); wg.addColorStop(0.5, "#eef0fb"); wg.addColorStop(1, "#e1f3ef"); g.fillStyle = wg; g.fillRect(0, 0, IW, IH);
+  g.strokeStyle = "rgba(110,80,150,0.32)"; g.fillStyle = "rgba(110,80,150,0.26)"; g.lineWidth = 5;
+  for (let i = 0; i < 120; i++) {
+    const x = 30 + ((i * 97) % (IW - 60)), y = 30 + ((i * 151 + (i % 7) * 40) % (IH - 60)), k = i % 3;
+    g.save(); g.translate(x, y); g.rotate(((i * 37) % 60 - 30) / 60); g.scale(1.3, 1.3);
+    if (k === 0) { g.beginPath(); g.moveTo(0, 26); g.quadraticCurveTo(4, 0, 0, -22); g.stroke(); for (const a of [-1, -0.4, 0.4, 1]) { g.beginPath(); g.ellipse(Math.sin(a) * 16, -22 + Math.abs(a) * 6, 16, 5, a, 0, Math.PI * 2); g.fill(); } }
+    else if (k === 1) { g.beginPath(); g.moveTo(0, 12); g.bezierCurveTo(-22, -6, -10, -22, 0, -10); g.bezierCurveTo(10, -22, 22, -6, 0, 12); g.fill(); }
+    else { g.beginPath(); g.roundRect(-20, -10, 40, 20, 9); g.stroke(); g.beginPath(); g.arc(-9, 0, 3, 0, Math.PI * 2); g.arc(9, 0, 3, 0, Math.PI * 2); g.fill(); }
+    g.restore();
+  }
   // the status bar: the time (big, so the jump reads) and the battery, below the frame-0 banner
   g.fillStyle = "#15161c"; g.font = FS(64); g.textAlign = "left"; g.textBaseline = "middle"; g.fillText(o.clock, 110, 420);
   g.strokeStyle = "#15161c"; g.lineWidth = 4; g.strokeRect(IW - 200, 402, 80, 34); g.fillRect(IW - 120, 412, 8, 14);
