@@ -41,6 +41,9 @@ export const propWorld = (set: string, q: PropSpec): V3 => { const w = whereOf(s
 const armKey = (p: Pose) => `${p.gesture ?? "hang"}|${p.hold ?? ""}|${p.hand ?? 1}|${p.mode ?? "stand"}`;
 const KEEP_WHILE_TALKING = ["thumbsUp", "point", "pointUp", "hold", "tickle", "tickleSelf", "operate", "wave", "raiseHand", "cheer", "stop", "crossArms", "hips", "offer", "write", "grab", "block", "read"];
 const FADE = 8;
+const DISSOLVE = 5;
+/** set per compile from the storyboard's opt-in `alive` flag (STUDY.md: never a still frame) */
+let ALIVE = false;
 /** zoom-through / whip transitions: a short dissolve (frames) hides the join while the cameras carry the motion */
 const ZFADE = 6;
 
@@ -248,7 +251,7 @@ const moveOf = (s: ShotSpec, c: CameraSpec, t0 = 0, cast: Storyboard["cast"] = {
       const pos: V3 = [d.c[0] + Math.sin(ar) * dist, c.height ?? d.c[1] + dist * 0.2, d.c[2] + Math.cos(ar) * dist];
       return { move: "aim", pos, look: d.c, fov, push: c.push ?? 0.06, cInf: c.size === "extreme" ? 15 : 13, focus: d.c };
     }
-    case "at": return { move: "aim", pos: c.pos, look: c.look, fov: c.fov ?? 40, push: c.creep, roll: c.roll ? (c.roll * Math.PI) / 180 : undefined, cInf: c.blur ?? 0, focus: c.look };
+    case "at": return { move: "aim", pos: c.pos, look: c.look, fov: c.fov ?? 40, push: ALIVE ? Math.max(c.creep ?? 0.04, 0.12) : c.creep, roll: c.roll ? (c.roll * Math.PI) / 180 : undefined, cInf: c.blur ?? 0, focus: c.look };
     case "pov": {
       // from the actor's eyes (a step toward the target, so their own card is behind the lens), a light hand-held bob
       const a = s.actors.find((x) => x.who === c.from.split(".")[0]); if (!a) throw new Error(`POV from "${c.from}", who is not in the shot`);
@@ -404,10 +407,11 @@ const propAnim = (s: ShotSpec, q: PropSpec): PropAnim | undefined => {
  *  sizes shots to their lines and turns word anchors into times; everything below works on that resolved copy */
 export const compile = (sb0: Storyboard, narr?: Narration) => {
   const timing = resolve(sb0, narr), sb = timing.sb;
+  ALIVE = !!sb.alive;
   const ranges = shotFrames(sb), total = ranges[ranges.length - 1].b;
   const seedOf = (who: string) => Object.keys(sb.cast).indexOf(who) + 1;
   const shots: WorldShot[] = sb.shots.map((s, k) => {
-    const { a, b } = ranges[k], pre = s.transition === "fade" ? FADE : s.transition === "zoom" || s.transition === "whip" ? ZFADE : 0;
+    const { a, b } = ranges[k], pre = s.transition === "fade" ? FADE : s.transition === "dissolve" ? DISSOLVE : s.transition === "zoom" || s.transition === "whip" ? ZFADE : 0;
     const p = cameraOf(s, sb.cast, a, b, pre);
     const props = (s.props ?? []).map((q) => { const w = whereOf(s.set, q.at); return { id: q.id, variant: q.variant, at: { x: w[0] + (q.offset?.[0] ?? 0), y: w[1], z: w[2] + (q.offset?.[1] ?? 0), yaw: ((q.yaw ?? 0) * Math.PI) / 180, s: q.scale ?? 1 }, animate: propAnim(s, q) }; });
     return { id: k + 1, a, b, set: s.set, light: s.light ?? SETS[s.set].lights[0], keys: p.keys, dof: p.dof, kicks: (s.kicks ?? []).map((t) => [a / FPS + (t as number), 1] as [number, number]), ...(props.length ? { props } : {}), ...(sb.motionBlur ? { ...(() => { const sh = shutterOf(s, a, b, sb.motionBlur === true ? 0.5 : sb.motionBlur, ["zoom", "whip"].includes(sb.shots[k + 1]?.transition ?? ""), !!sb.controlledBlur, ["zoom", "whip"].includes(s.transition ?? "")) as ((f: number) => number) & { cap?: (f: number) => number }; return { shutter: sh, ...(sh.cap ? { shutterCap: sh.cap } : {}) }; })() } : {}) };
@@ -444,7 +448,7 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
     total, flashes, dips, motionBlur: !!sb.motionBlur, controlledBlur: !!(sb.motionBlur && sb.controlledBlur), stableInk: (sb.engine ?? 1) >= 2, inkSides: (sb.engine ?? 1) >= 3,
     layersAt: (f) => {
       for (let k = 1; k < sb.shots.length; k++) {
-        const tr = sb.shots[k].transition, F = tr === "fade" ? FADE : tr === "zoom" || tr === "whip" ? ZFADE : 0; if (!F) continue;
+        const tr = sb.shots[k].transition, F = tr === "fade" ? FADE : tr === "dissolve" ? DISSOLVE : tr === "zoom" || tr === "whip" ? ZFADE : 0; if (!F) continue;
         const c = ranges[k].a;
         if (f >= c - F / 2 && f < c + F / 2) return [{ id: k, alpha: 1 }, { id: k + 1, alpha: (f - (c - F / 2) + 1) / (F + 1) }];
       }

@@ -17,7 +17,7 @@ import type { Narration } from "../voice/narration";
 const load = () => Promise.resolve(true);
 export const makeShort = (sb: Storyboard, narr?: Narration) => {
   const film = compile(sb, narr);
-  const groups = sb.captions === false ? [] : placeCaptions(film, captionGroups(film.timing.lines, film.total));
+  const groups = sb.captions === false ? [] : placeCaptions(film, captionGroups(film.timing.lines, film.total, sb.captionStyle));
   const titles: TitleCard[] = sb.shots.flatMap((s, k) => (s.title && film.shots[k] ? [{ f0: film.shots[k].a, f1: film.shots[k].b, ...s.title }] : []));
   const makeWorld = () => new SetWorld(film.shots, film.director, { clearShots: true, stable: (sb.engine ?? 1) >= 2 });
   const Comp: React.FC = () => (

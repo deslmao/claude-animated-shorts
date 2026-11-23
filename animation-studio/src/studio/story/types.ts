@@ -159,7 +159,7 @@ export type ShotSpec = {
   set: string;
   light?: LightName;          // default: the set's first light
   camera: CameraSpec;
-  transition?: "cut" | "fade" | "flash" | "dip" | "zoom" | "whip"; // into this shot (zoom: through the outgoing subject into this shot; whip: a fast pan)
+  transition?: "cut" | "fade" | "flash" | "dip" | "zoom" | "whip" | "dissolve"; // dissolve (opt-in, STUDY.md): a 5-frame crossfade // into this shot (zoom: through the outgoing subject into this shot; whip: a fast pan)
   actors: ActorSpec[];
   fx?: FxSpec[];
   kicks?: (number | WordRef)[]; // impact shakes (seconds into the shot, or on a word)
@@ -195,6 +195,12 @@ export type Storyboard = {
   voices?: Record<string, string>;
   /** word-by-word captions (default true) */
   captions?: boolean;
+  /** opt-in caption style (STUDY.md): "short" = 1-2 words at a time, centred 70 % down, ~58 px tall; translated /
+   *  tagged lines (`sub`) are split into word chunks too instead of one long line */
+  captionStyle?: "short";
+  /** opt-in (STUDY.md "never still"): every placed camera keeps pushing in, at least 12 % of the distance over its beat
+   *  (~0.2 %/frame), so no shot holds a frozen frame */
+  alive?: boolean;
   /** the storytelling gate: the premise and every fact the viewer must be TOLD (required for new productions) */
   clarity?: StoryClarity;
   /** caption colour per speaker or per voice preset (The Empty Seat v2: voiced scenes; voice-over lines are spoken by
