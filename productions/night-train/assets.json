@@ -1,5 +1,5 @@
 {
- "reused": 42,
+ "reused": 38,
  "missing": [],
  "byKind": {
   "character": [
@@ -13,37 +13,34 @@
    "at"
   ],
   "light": [
-   "interiorCool",
-   "night"
+   "night",
+   "interiorCool"
   ],
   "ambience": [
    "elb_train_night"
   ],
   "prop": [
+   "ntInsert",
    "ntOutside",
+   "bfDread",
    "ntFlicker",
    "ntEndDoor",
-   "bfDread",
    "ntDrips",
-   "ntInsert",
    "ntSideDoor",
    "ntChoice"
   ],
   "sfx": [
    "el_hit_boom",
-   "el_man_scream",
-   "el_lights_buzz",
-   "el_gasp_teen",
-   "el_whoosh_dark",
-   "el_scream_far",
-   "el_counter_tick",
+   "el_heartbeat",
+   "el_reverse_swell",
    "el_sting_strings",
+   "el_lights_buzz",
+   "el_counter_tick",
    "el_drip_loud",
    "el_breath_hold",
-   "el_reverse_swell",
-   "el_heartbeat",
    "el_breath_heavy",
    "el_train_doors",
+   "el_scream_far",
    "el_hit_sub",
    "el_run_train",
    "el_pant_teen",
@@ -55,9 +52,8 @@
    "pop"
   ],
   "act": [
-   "scared",
-   "shock",
    "neutral",
+   "scared",
    "angry"
   ]
  }

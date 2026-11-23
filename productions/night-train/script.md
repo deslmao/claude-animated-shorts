@@ -177,3 +177,13 @@ train, panting, a jumpscare sting, the announcement chime, brakes, the doors his
   man who has no reflection?" with **A · GET OFF / into Death City** and **B · STAY ON / with him**.
 - **The map line, in the owner's words:** "You know the whole area. That doesn't exist."
 - **Length:** 68.9 s (under 70); about 42 visual changes (one every ~1.6 s); five lighting setups.
+
+## v3: a new hook (the owner, 23 Nov 2026; YouTube showed only 40–51% stayed to watch)
+- **Frame 0:** the split, REAL (you, and him facing you) above IN THE WINDOW (you, and his seat empty), under the banner
+  **HE HAS NO REFLECTION / THE LAST TRAIN · 9:47 PM**.
+- **The narrator:** "Imagine you're on the last train home. Then you look at the window… and the man across from you
+  isn't in it." Then a hard cut to him: silent, staring, no blink.
+- **The scream is gone from the opening;** his shout ("I was just going home!") stays as escalation.
+- **The middle reflection scene is shorter:** "You look at the window again." / "Still nothing. He has no reflection."
+- **Length:** 63.0 s (was 68.9 s). Cover: the new frame 0 with **HE'S NOT IN IT. / THE LAST TRAIN · PART 1**.
+- **Post it as a new upload,** then unlist the old one.

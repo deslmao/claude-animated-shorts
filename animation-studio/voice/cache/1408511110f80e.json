@@ -1,0 +1,50 @@
+{
+ "hash": "1408511110f80e",
+ "text": "You look at the window again.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 1.579,
+ "dur": 1.619592,
+ "words": [
+  {
+   "w": "You",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "look",
+   "t0": 0.221,
+   "t1": 0.36
+  },
+  {
+   "w": "at",
+   "t0": 0.395,
+   "t1": 0.453
+  },
+  {
+   "w": "the",
+   "t0": 0.488,
+   "t1": 0.557
+  },
+  {
+   "w": "window",
+   "t0": 0.592,
+   "t1": 0.848
+  },
+  {
+   "w": "again.",
+   "t0": 0.906,
+   "t1": 1.579
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-23T04:53:06.777Z"
+}

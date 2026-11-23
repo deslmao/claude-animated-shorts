@@ -1,0 +1,95 @@
+{
+ "hash": "0ab60806c87034",
+ "text": "Then you look at the window… and the man across from you isn't in it.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.808,
+ "dur": 3.84,
+ "words": [
+  {
+   "w": "Then",
+   "t0": 0,
+   "t1": 0.221
+  },
+  {
+   "w": "you",
+   "t0": 0.267,
+   "t1": 0.337
+  },
+  {
+   "w": "look",
+   "t0": 0.395,
+   "t1": 0.522
+  },
+  {
+   "w": "at",
+   "t0": 0.557,
+   "t1": 0.615
+  },
+  {
+   "w": "the",
+   "t0": 0.639,
+   "t1": 0.708
+  },
+  {
+   "w": "window…",
+   "t0": 0.755,
+   "t1": 1.312
+  },
+  {
+   "w": "and",
+   "t0": 1.718,
+   "t1": 1.846
+  },
+  {
+   "w": "the",
+   "t0": 1.892,
+   "t1": 1.962
+  },
+  {
+   "w": "man",
+   "t0": 1.997,
+   "t1": 2.159
+  },
+  {
+   "w": "across",
+   "t0": 2.206,
+   "t1": 2.473
+  },
+  {
+   "w": "from",
+   "t0": 2.508,
+   "t1": 2.635
+  },
+  {
+   "w": "you",
+   "t0": 2.694,
+   "t1": 2.786
+  },
+  {
+   "w": "isn't",
+   "t0": 2.868,
+   "t1": 3.1
+  },
+  {
+   "w": "in",
+   "t0": 3.146,
+   "t1": 3.228
+  },
+  {
+   "w": "it.",
+   "t0": 3.286,
+   "t1": 3.808
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-23T04:53:06.279Z"
+}

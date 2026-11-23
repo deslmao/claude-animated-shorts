@@ -1,0 +1,161 @@
+{
+ "model_id": "music_v1",
+ "composition_plan": {
+  "positive_global_styles": [
+   "dark cinematic horror score for a short animated chase on a night train",
+   "instrumental",
+   "low drones",
+   "dissonant strings",
+   "sub bass",
+   "industrial metallic percussion",
+   "tense and frightening"
+  ],
+  "negative_global_styles": [
+   "vocals",
+   "singing",
+   "lyrics",
+   "rap",
+   "pop",
+   "happy",
+   "comedy",
+   "electronic dance"
+  ],
+  "sections": [
+   {
+    "section_name": "the hook",
+    "positive_local_styles": [
+     "a glassy high violin harmonic",
+     "a slow heartbeat thump",
+     "a cold low hit as the cut lands"
+    ],
+    "negative_local_styles": [
+     "melody",
+     "happy"
+    ],
+    "duration_ms": 7100,
+    "lines": []
+   },
+   {
+    "section_name": "the man opposite",
+    "positive_local_styles": [
+     "a low pulsing drone like train wheels",
+     "a creeping cello line",
+     "uneasy ticking metallic percussion"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "happy"
+    ],
+    "duration_ms": 11400,
+    "lines": []
+   },
+   {
+    "section_name": "no reflection",
+    "positive_local_styles": [
+     "a thin high violin harmonic",
+     "a glassy shimmer",
+     "a slow heartbeat thump"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "happy"
+    ],
+    "duration_ms": 3800,
+    "lines": []
+   },
+   {
+    "section_name": "he follows",
+    "positive_local_styles": [
+     "low strings pulsing faster",
+     "rising tension",
+     "metallic scrapes"
+    ],
+    "negative_local_styles": [
+     "happy"
+    ],
+    "duration_ms": 9300,
+    "lines": []
+   },
+   {
+    "section_name": "the empty train",
+    "positive_local_styles": [
+     "hollow wind-like drone",
+     "distant echoes",
+     "an ominous low brass note"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "happy"
+    ],
+    "duration_ms": 5500,
+    "lines": []
+   },
+   {
+    "section_name": "the run",
+    "positive_local_styles": [
+     "fast pounding percussion and driving low strings",
+     "a frantic chase"
+    ],
+    "negative_local_styles": [
+     "happy"
+    ],
+    "duration_ms": 3000,
+    "lines": []
+   },
+   {
+    "section_name": "lost him",
+    "positive_local_styles": [
+     "near silence, only a faint high tone",
+     "holding the breath"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "melody",
+     "happy"
+    ],
+    "duration_ms": 5600,
+    "lines": []
+   },
+   {
+    "section_name": "this is your stop",
+    "positive_local_styles": [
+     "a deep sub bass swell under silence",
+     "a whispering dissonant cluster"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "happy"
+    ],
+    "duration_ms": 3000,
+    "lines": []
+   },
+   {
+    "section_name": "death city",
+    "positive_local_styles": [
+     "a cold eerie music box like chime melody, detuned",
+     "deep drone",
+     "a slow menacing build"
+    ],
+    "negative_local_styles": [
+     "happy"
+    ],
+    "duration_ms": 6200,
+    "lines": []
+   },
+   {
+    "section_name": "the choice",
+    "positive_local_styles": [
+     "a held dissonant orchestral chord, slowly rising to full height",
+     "a heartbeat underneath",
+     "then a sudden stop into silence"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "happy"
+    ],
+    "duration_ms": 8100,
+    "lines": []
+   }
+  ]
+ }
+}

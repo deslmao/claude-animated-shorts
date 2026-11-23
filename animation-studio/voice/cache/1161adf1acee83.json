@@ -1,0 +1,55 @@
+{
+ "hash": "1161adf1acee83",
+ "text": "Imagine you're on the last train home.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.183,
+ "dur": 2.220408,
+ "words": [
+  {
+   "w": "Imagine",
+   "t0": 0,
+   "t1": 0.441
+  },
+  {
+   "w": "you're",
+   "t0": 0.476,
+   "t1": 0.65
+  },
+  {
+   "w": "on",
+   "t0": 0.673,
+   "t1": 0.743
+  },
+  {
+   "w": "the",
+   "t0": 0.778,
+   "t1": 0.848
+  },
+  {
+   "w": "last",
+   "t0": 0.894,
+   "t1": 1.138
+  },
+  {
+   "w": "train",
+   "t0": 1.173,
+   "t1": 1.428
+  },
+  {
+   "w": "home.",
+   "t0": 1.498,
+   "t1": 2.183
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-23T04:53:05.613Z"
+}
