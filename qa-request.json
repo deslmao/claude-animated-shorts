@@ -1,11 +1,11 @@
 {
-  "run_id": "45100148414",
-  "artifact": "Short-breakfast-2-run58",
-  "frames": 1987,
+  "run_id": "45114379015",
+  "artifact": "Short-breakfast-2-run59",
+  "frames": 2069,
   "width": 1080,
   "height": 1920,
   "audio": "required",
-  "seams": "99,198,298,397,496,596,695,794,894,993,1092,1192,1291,1390,1490,1589,1688,1788,1887",
+  "seams": "103,206,310,413,517,620,724,827,931,1034,1137,1241,1344,1448,1551,1655,1758,1862,1965",
   "keep": "productions/breakfast-2/final/Short-breakfast-2.mp4",
-  "note": "Don't Eat It, Part 2 v3 final render with the recap (run 58, 20 chunks). Full QA with all 19 chunk seams, then keep the MP4 in the repo (no GitHub Release)."
+  "note": "Don't Eat It, Part 2 v4 final render (run 59, 20 chunks). Full QA with all 19 chunk seams, then keep the MP4 in the repo (no GitHub Release)."
 }
