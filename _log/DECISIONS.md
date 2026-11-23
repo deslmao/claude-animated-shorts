@@ -97,3 +97,6 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
   ink). The cast is drawn with our own engine and stands in it as cards. Opt-in engine additions: hat `snapback`
   (worn backwards), glasses `shades`, layers `openShirt` (leaf print) and `denim` (pockets and stitching). The cast's
   names are placeholders (Rico, Lola) until the owner names them.
+- **23 Nov (owner):** match Rick's clips' quality (realistic, detailed sets and their animation grammar) with our own
+  models. **Claude:** no GTA characters or lookalikes (copyright claims and takedowns, lost revenue, and the owner's
+  own rule). Use original characters that fit the world's archetypes instead.

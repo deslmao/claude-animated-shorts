@@ -21,9 +21,10 @@ ee.use_gtao = True; ee.gtao_distance = 1.5
 ee.use_bloom = True; ee.bloom_threshold = 1.0; ee.bloom_intensity = 0.06
 ee.use_soft_shadows = True; ee.shadow_cascade_size = "4096"
 ee.use_ssr = True
+ee.use_volumetric_lights = True; ee.volumetric_start = 2; ee.volumetric_end = 420; ee.volumetric_tile_size = "8"
 sc.view_settings.view_transform = "Standard"; sc.view_settings.look = "None"; sc.view_settings.exposure = -0.15
 # ink: thin near-black outlines on silhouettes and creases (Freestyle), ~3 px at 1080 wide
-sc.render.use_freestyle = True; sc.render.line_thickness_mode = "ABSOLUTE"; sc.render.line_thickness = 2.6 * SCALE
+sc.render.use_freestyle = False; sc.render.line_thickness_mode = "ABSOLUTE"; sc.render.line_thickness = 2.6 * SCALE
 vl = sc.view_layers[0]; vl.use_freestyle = True
 fs = vl.freestyle_settings; fs.crease_angle = math.radians(140)
 ls = fs.linesets.new("ink") if not fs.linesets else fs.linesets[0]
@@ -42,8 +43,39 @@ def hexc(h, a=1.0):
     return (lin(r), lin(g), lin(b), a)
 
 MATS = {}
-def mat(name, color, rough=0.75, metal=0.0, emit=None, estr=0.0, spec=0.3):
-    key = (name, color, rough, metal, emit, estr)
+def surface(m, kind, color):
+    """procedural surface detail (STUDY: textured materials, never flat fills): colour variation plus a bump"""
+    nt = m.node_tree; n = nt.nodes; L = nt.links; b = n["Principled BSDF"]
+    tc = n.new("ShaderNodeTexCoord")
+    base = hexc(color); dark = tuple(c * 0.78 for c in base[:3]) + (1,); light = tuple(min(1, c * 1.12) for c in base[:3]) + (1,)
+    noise = n.new("ShaderNodeTexNoise"); L.new(tc.outputs["Object"], noise.inputs["Vector"])
+    cfg = {"stucco": (14, 0.55, 0.25), "asphalt": (38, 0.6, 0.35), "sand": (22, 0.5, 0.3), "bark": (9, 0.6, 0.6), "tiles": (6, 0.5, 0.2), "lawn": (30, 0.6, 0.3)}[kind]
+    noise.inputs["Scale"].default_value = cfg[0]; noise.inputs["Detail"].default_value = 8; noise.inputs["Roughness"].default_value = cfg[1]
+    big = n.new("ShaderNodeTexNoise"); L.new(tc.outputs["Object"], big.inputs["Vector"]); big.inputs["Scale"].default_value = 0.35; big.inputs["Detail"].default_value = 3
+    mix = n.new("ShaderNodeMix"); mix.data_type = "RGBA"; mix.inputs["A"].default_value = dark; mix.inputs["B"].default_value = light
+    mul = n.new("ShaderNodeMath"); mul.operation = "MULTIPLY"; L.new(noise.outputs["Fac"], mul.inputs[0]); L.new(big.outputs["Fac"], mul.inputs[1]); mul.inputs[1].default_value = 1
+    add = n.new("ShaderNodeMath"); add.operation = "ADD"; L.new(noise.outputs["Fac"], add.inputs[0]); L.new(big.outputs["Fac"], add.inputs[1])
+    half = n.new("ShaderNodeMath"); half.operation = "MULTIPLY"; L.new(add.outputs[0], half.inputs[0]); half.inputs[1].default_value = 0.5
+    L.new(half.outputs[0], mix.inputs["Factor"]); col = mix.outputs["Result"]
+    if kind == "asphalt" or kind == "tiles":
+        vor = n.new("ShaderNodeTexVoronoi"); vor.feature = "DISTANCE_TO_EDGE"; L.new(tc.outputs["Object"], vor.inputs["Vector"])
+        vor.inputs["Scale"].default_value = 0.22 if kind == "asphalt" else 2.4
+        ramp = n.new("ShaderNodeValToRGB"); ramp.color_ramp.elements[0].position = 0.0; ramp.color_ramp.elements[0].color = (0.25, 0.25, 0.28, 1)
+        ramp.color_ramp.elements[1].position = 0.004 if kind == "asphalt" else 0.012; ramp.color_ramp.elements[1].color = (1, 1, 1, 1)
+        L.new(vor.outputs["Distance"], ramp.inputs["Fac"])
+        crack = n.new("ShaderNodeMix"); crack.data_type = "RGBA"; crack.blend_type = "MULTIPLY"; crack.inputs["Factor"].default_value = 1
+        L.new(col, crack.inputs["A"]); L.new(ramp.outputs["Color"], crack.inputs["B"]); col = crack.outputs["Result"]
+    if kind == "bark":
+        wave = n.new("ShaderNodeTexWave"); wave.wave_type = "RINGS" if False else "BANDS"; wave.bands_direction = "Z"; L.new(tc.outputs["Object"], wave.inputs["Vector"])
+        wave.inputs["Scale"].default_value = 3.2; wave.inputs["Distortion"].default_value = 3
+        mw = n.new("ShaderNodeMix"); mw.data_type = "RGBA"; mw.blend_type = "MULTIPLY"; mw.inputs["Factor"].default_value = 0.45
+        L.new(col, mw.inputs["A"]); L.new(wave.outputs["Color"], mw.inputs["B"]); col = mw.outputs["Result"]
+    L.new(col, b.inputs["Base Color"])
+    bump = n.new("ShaderNodeBump"); bump.inputs["Strength"].default_value = cfg[2]; bump.inputs["Distance"].default_value = 0.02
+    L.new(noise.outputs["Fac"], bump.inputs["Height"]); L.new(bump.outputs["Normal"], b.inputs["Normal"])
+
+def mat(name, color, rough=0.75, metal=0.0, emit=None, estr=0.0, spec=0.3, tex=None):
+    key = (name, color, rough, metal, emit, estr, tex)
     if key in MATS: return MATS[key]
     m = bpy.data.materials.new(name); m.use_nodes = True
     b = m.node_tree.nodes["Principled BSDF"]
@@ -52,6 +84,7 @@ def mat(name, color, rough=0.75, metal=0.0, emit=None, estr=0.0, spec=0.3):
     if "Specular IOR Level" in b.inputs: b.inputs["Specular IOR Level"].default_value = spec
     if emit:
         b.inputs["Emission Color"].default_value = hexc(emit); b.inputs["Emission Strength"].default_value = estr
+    if tex: surface(m, tex, color)
     MATS[key] = m; return m
 
 def link(o, coll=INKED):
@@ -87,7 +120,7 @@ NEON = ["#ff4fa3", "#3ff0e0", "#ffd24a", "#a46bff"]
 def hotel(x, y, w, d, floors, body, trim, sign, face=-1, tower=True):
     """an art-deco hotel: facade toward -y (face=-1) at y; w along x, d deep"""
     fh = 3.2; h = floors * fh + 1.2
-    B = mat(f"b{body}", body, rough=0.8); T = mat(f"t{trim}", trim, rough=0.55)
+    B = mat(f"b{body}", body, rough=0.8, tex="stucco"); T = mat(f"t{trim}", trim, rough=0.55)
     cy_ = y + d / 2 * (-face)
     box(x, cy_, 0, w, d, h, B, bevel=0.05)
     # stepped parapet and a racing-stripe band near the top
@@ -129,7 +162,7 @@ def hotel(x, y, w, d, floors, body, trim, sign, face=-1, tower=True):
 
 # ---------------------------------------------------------------- palm tree
 FROND = mat("frond", "#3e9e57", rough=0.7); FROND2 = mat("frond2", "#2f7f47", rough=0.7)
-TRUNK = mat("trunk", "#b08a62", rough=0.9); NUT = mat("nut", "#6b4a2b", rough=0.8)
+TRUNK = mat("trunk", "#b08a62", rough=0.9, tex="bark"); NUT = mat("nut", "#6b4a2b", rough=0.8)
 def palm(x, y, h=8.0, lean=0.0, seed=0):
     rnd = random.Random(seed); segs = 9; px, py, pz = x, y, 0.0
     ang = rnd.uniform(0, math.tau); dx, dy = math.cos(ang) * lean, math.sin(ang) * lean
@@ -205,8 +238,8 @@ def card(png, x, y, height, cam_xy, z=0.0):
     return link(o, CARDS)
 
 # ---------------------------------------------------------------- ground, sea, sky, sun
-def ground(x0, x1, y0, y1, color, z=0.0, rough=0.9, name="ground"):
-    return box((x0 + x1) / 2, (y0 + y1) / 2, z - 0.1, x1 - x0, y1 - y0, 0.1, mat(name, color, rough=rough))
+def ground(x0, x1, y0, y1, color, z=0.0, rough=0.9, name="ground", tex=None):
+    return box((x0 + x1) / 2, (y0 + y1) / 2, z - 0.1, x1 - x0, y1 - y0, 0.1, mat(name, color, rough=rough, tex=tex))
 
 def sea(y_edge, x0=-200, x1=200):
     S = mat("sea", "#21c4c6", rough=0.22, spec=0.35, emit="#18b8c4", estr=0.35)
@@ -225,7 +258,7 @@ def sky_and_sun(light_dir, strength=5.5):
     bg = nt.nodes["Background"]; tc = nt.nodes.new("ShaderNodeTexCoord"); sep = nt.nodes.new("ShaderNodeSeparateXYZ")
     ramp = nt.nodes.new("ShaderNodeValToRGB"); cr = ramp.color_ramp
     cr.elements[0].position = 0.0; cr.elements[0].color = hexc("#ffc48f")
-    cr.elements[1].position = 0.55; cr.elements[1].color = hexc("#5f9be0")
+    cr.elements[1].position = 0.5; cr.elements[1].color = hexc("#4f90e6")
     mid = cr.elements.new(0.14); mid.color = hexc("#f7d9b0")
     nt.links.new(tc.outputs["Generated"], sep.inputs[0]); nt.links.new(sep.outputs["Z"], ramp.inputs["Fac"])
     nt.links.new(ramp.outputs["Color"], bg.inputs["Color"]); bg.inputs["Strength"].default_value = 1.0
@@ -238,6 +271,49 @@ def sky_and_sun(light_dir, strength=5.5):
     bpy.ops.object.light_add(type="SUN", location=(0, 0, 50)); f = bpy.context.object
     f.data.energy = 0.9; f.data.color = hexc("#8f9cff")[:3]; f.data.angle = math.radians(60); f.data.use_shadow = False
     f.rotation_euler = F.to_track_quat("-Z", "Y").to_euler()
+
+def atmosphere(cam_pos, look, density=0.0016):
+    """warm golden haze (atmospheric depth) plus painted cumulus far behind the scene, turned to the lens"""
+    nt = sc.world.node_tree; vol = nt.nodes.new("ShaderNodeVolumePrincipled")
+    vol.inputs["Color"].default_value = hexc("#ffd6ad"); vol.inputs["Density"].default_value = density; vol.inputs["Anisotropy"].default_value = 0.35
+    nt.links.new(vol.outputs[0], nt.nodes["World Output"].inputs["Volume"])
+    from mathutils import Vector
+    fwd = Vector((look[0] - cam_pos[0], look[1] - cam_pos[1], 0)).normalized(); side = Vector((-fwd.y, fwd.x, 0))
+    rnd = random.Random(3)
+    for k in range(9):
+        d = rnd.uniform(260, 380); off = rnd.uniform(-1, 1) * d * 0.45; zc = rnd.uniform(70, 170)
+        c = Vector(cam_pos) + fwd * d + side * off; c.z = zc
+        bpy.ops.mesh.primitive_plane_add(size=1, location=c); o = bpy.context.object
+        o.scale = (rnd.uniform(90, 160), rnd.uniform(40, 70), 1); o.rotation_euler = (math.pi / 2, 0, math.atan2(fwd.y, fwd.x) + math.pi / 2)
+        m = bpy.data.materials.new(f"cloud{k}"); m.use_nodes = True; n = m.node_tree.nodes; n.clear(); Lk = m.node_tree.links
+        out = n.new("ShaderNodeOutputMaterial"); tc = n.new("ShaderNodeTexCoord"); no = n.new("ShaderNodeTexNoise"); no.inputs["Scale"].default_value = 2.2; no.inputs["Detail"].default_value = 10
+        grad = n.new("ShaderNodeTexGradient"); grad.gradient_type = "SPHERICAL"
+        mp = n.new("ShaderNodeMapping"); mp.inputs["Location"].default_value = (-0.5, -0.5, 0)
+        Lk.new(tc.outputs["Generated"], mp.inputs["Vector"]); Lk.new(mp.outputs[0], grad.inputs["Vector"]); Lk.new(tc.outputs["Generated"], no.inputs["Vector"])
+        mm = n.new("ShaderNodeMath"); mm.operation = "MULTIPLY"; Lk.new(no.outputs["Fac"], mm.inputs[0]); Lk.new(grad.outputs["Fac"], mm.inputs[1])
+        ramp = n.new("ShaderNodeValToRGB"); ramp.color_ramp.elements[0].position = 0.18; ramp.color_ramp.elements[1].position = 0.34; Lk.new(mm.outputs[0], ramp.inputs["Fac"])
+        em = n.new("ShaderNodeEmission"); em.inputs["Color"].default_value = hexc("#fff0e0"); em.inputs["Strength"].default_value = 1.15
+        tr = n.new("ShaderNodeBsdfTransparent"); mx = n.new("ShaderNodeMixShader")
+        Lk.new(ramp.outputs["Color"], mx.inputs["Fac"]); Lk.new(tr.outputs[0], mx.inputs[1]); Lk.new(em.outputs[0], mx.inputs[2]); Lk.new(mx.outputs[0], out.inputs["Surface"])
+        m.blend_method = "BLEND"; m.shadow_method = "NONE"; o.data.materials.append(m)
+
+def skyline(y0, n=40, x0=-160, x1=160):
+    """the rest of the city, far off and hazed: towers and blocks in muted pastels"""
+    rnd = random.Random(11)
+    for i in range(n):
+        x = rnd.uniform(x0, x1); y = y0 + rnd.uniform(0, 120); w = rnd.uniform(10, 24); h = rnd.uniform(10, 38)
+        box(x, y, 0, w, rnd.uniform(10, 22), h, mat(f"far{i % 5}", ["#e7c6cf", "#cfe3df", "#efe0bd", "#d3d8ec", "#ecd2c2"][i % 5], rough=0.9), coll=sc.collection)
+
+def grass(x0, x1, y0, y1, z=0.0, count=2600, color="#4f9a4a", length=0.32):
+    """a strip of real grass blades (hair particles), STUDY: foliage everywhere"""
+    bpy.ops.mesh.primitive_plane_add(size=1, location=((x0 + x1) / 2, (y0 + y1) / 2, z)); o = bpy.context.object
+    o.scale = (x1 - x0, y1 - y0, 1); bpy.ops.object.transform_apply(scale=True)
+    o.data.materials.append(mat("soil", "#6b5a3e", rough=1)); o.data.materials.append(mat(f"blade{color}", color, rough=0.7))
+    ps = o.modifiers.new("grass", "PARTICLE_SYSTEM").particle_system.settings
+    ps.type = "HAIR"; ps.count = count; ps.hair_length = length; ps.material = 2; ps.use_advanced_hair = True
+    ps.root_radius = 0.6; ps.tip_radius = 0.0; ps.radius_scale = 0.012; ps.child_type = "INTERPOLATED"; ps.rendered_child_count = 6
+    ps.brownian_factor = 0.06; ps.length_random = 0.5
+    sc.collection.objects.link(o) if o.name not in sc.collection.objects else None
 
 def camera(pos, look, lens=32):
     bpy.ops.object.camera_add(location=pos); c = bpy.context.object; c.data.lens = lens
@@ -256,11 +332,11 @@ SIGNS = ["SOLVANA", "MIRALUX", "CORALEE", "PALMETTA", "BAYLUNE", "VELOMAR"]
 
 def street():
     sky_and_sun((0.55, 0.8, -0.21))
-    ground(-80, 80, -6, 6, "#55535f", name="asphalt")
+    ground(-80, 80, -6, 6, "#55535f", name="asphalt", tex="asphalt")
     for xx in range(-60, 61, 6): box(xx, 0, 0.001, 2.6, 0.18, 0.01, mat("lane", "#f4e7c4", rough=0.6))
-    ground(-80, 80, 6, 10, "#efdcc6", z=0.15, name="walk")
-    ground(-80, 80, -9, -6, "#efdcc6", z=0.15, name="walk2")
-    ground(-80, 80, -40, -9, "#f2d6a2", z=0.05, name="sand")
+    ground(-80, 80, 6, 10, "#efdcc6", z=0.15, name="walk", tex="tiles")
+    ground(-80, 80, -9, -6, "#efdcc6", z=0.15, name="walk2", tex="tiles")
+    ground(-80, 80, -40, -9, "#f2d6a2", z=0.05, name="sand", tex="sand")
     for xx in range(-60, 61, 3): box(xx, 6.05, 0.0, 2.9, 0.15, 0.17, WHITE)
     sea(-40)
     x = -46
@@ -280,13 +356,17 @@ def street():
     for xx in (-20, 2, 13): cyl(xx, 6.9, 0.15, 0.22, 0.75, mat("hydrant", "#f25f7a", rough=0.5), verts=12)
     for xx in range(-44, 45, 5): box(xx, 9.2, 0.15, 1.4, 0.7, 0.55, mat("planter", "#e6b98a", rough=0.8)); box(xx, 9.2, 0.7, 1.2, 0.5, 0.25, FROND)
     car(-6.5, -2.2, math.pi / 2, "#6fd6c9"); car(3.2, 2.3, -math.pi / 2, "#f59ab4"); car(16, -2.4, math.pi / 2, "#fbd36b")
+    skyline(150, n=55)
+    for xx in range(-44, 45, 5): grass(xx - 0.6, xx + 0.6, 8.95, 9.45, z=0.95, count=500, length=0.22)
+    grass(-80, 80, -12.0, -9.3, z=0.06, count=9000, color="#8fa75a", length=0.18)
     cam = camera((-2.5, -17.0, 2.0), (1.5, 8, 5.5), lens=24)
+    atmosphere(cam.location, (1.5, 8, 5.5))
     card("rico_34.png", -1.6, -8.2, 1.85, (cam.location.x, cam.location.y), z=0.15)
     card("lola_front.png", -0.4, -7.8, 1.62, (cam.location.x, cam.location.y), z=0.15)
 
 def beach():
     sky_and_sun((0.4, -0.82, -0.42))
-    ground(-80, 80, -16, 30, "#f7dca4", name="sand")
+    ground(-80, 80, -16, 30, "#f7dca4", name="sand", tex="sand")
     sea(-16)
     # the lifeguard hut: stilts, a striped pastel cabin, a ramp, a flag of our own
     L = mat("hutpink", "#f7a8c4", rough=0.7); S = mat("hutmint", "#9fe3d1", rough=0.7)
@@ -315,15 +395,17 @@ def beach():
     # the beach-front hotels behind, across the dunes
     for i, xx in enumerate(range(-40, 41, 16)): hotel(xx, 26, 14, 10, 3 + i % 2, PASTELS[(i + 2) % 7], TRIMS[i % 6], SIGNS[(i + 2) % 6], face=-1, tower=i % 2 == 1)
     cam = camera((-1.5, 7.5, 2.0), (1.5, -30, 1.6), lens=24)
+    grass(-30, -8, 8, 14, count=4000, color="#8aa64e", length=0.5); grass(6, 30, 6, 12, count=4000, color="#8aa64e", length=0.5)
+    atmosphere(cam.location, (1.5, -30, 1.6), density=0.0011)
     card("lola_34.png", -1.7, -0.6, 1.62, (cam.location.x, cam.location.y))
     card("rico_front.png", -0.4, -1.0, 1.85, (cam.location.x, cam.location.y))
 
 def motel():
     sky_and_sun((0.5, 0.82, -0.22))
-    ground(-60, 60, -40, 40, "#e9d3b8", name="lot")
+    ground(-60, 60, -40, 40, "#c9c3bd", name="lot", tex="asphalt")
     for k in range(-30, 31, 3): box(k, -10, 0.002, 0.12, 5, 0.01, mat("lane", "#f4e7c4", rough=0.6))
     # the motel: two storeys, an open walkway with a railing, doors in pastel, the office with a neon sign
-    B = mat("motelbody", "#fbe3a8", rough=0.8); T = mat("moteltrim", "#2fb5a7", rough=0.55)
+    B = mat("motelbody", "#fbe3a8", rough=0.8, tex="stucco"); T = mat("moteltrim", "#2fb5a7", rough=0.55)
     box(0, 8, 0, 30, 6, 6.6, B, bevel=0.04)
     box(0, 4.6, 3.1, 30.4, 1.4, 0.22, WHITE)                       # the upper walkway slab
     for xx in range(-14, 15, 2): cyl(xx, 4.0, 0, 0.09, 3.1, WHITE, verts=8)
@@ -347,7 +429,10 @@ def motel():
     for k in range(4): box(-1 + k * 3.3, -7.6, 0.02, 0.9, 2.0, 0.4, mat(f"lounger{k}", ["#ffffff", "#ff8aa0"][k % 2], rough=0.6))
     for (px, py, h) in [(-13, -6, 8.5), (12.5, -1, 9.5), (-3, 1.5, 7), (16, -8, 8)]: palm(px, py, h=h, lean=0.1, seed=int(px * 7 + py))
     car(-10.5, -11, math.pi / 2 + 0.25, "#c9a7f0"); car(11, -12.5, math.pi / 2 - 0.2, "#7fd6e9")
+    skyline(140, n=55)
+    grass(-16, 16, 11.2, 13, count=3000, length=0.35); grass(-15, -6, -9, -4, count=2500, length=0.3)
     cam = camera((-5.5, -22.0, 3.4), (0.5, 2, 2.6), lens=24)
+    atmosphere(cam.location, (0.5, 2, 2.6))
     card("rico_side.png", -4.6, -14.2, 1.85, (cam.location.x, cam.location.y))
     card("lola_side.png", -3.5, -13.6, 1.62, (cam.location.x, cam.location.y))
 
