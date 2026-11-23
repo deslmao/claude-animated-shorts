@@ -1,11 +1,11 @@
 {
-  "run_id": "45114920085",
-  "artifact": "Short-night-train-run60",
-  "frames": 1890,
+  "run_id": "45276269483",
+  "artifact": "Short-gta-gf-1-run64",
+  "frames": 1618,
   "width": 1080,
   "height": 1920,
   "audio": "required",
-  "seams": "94,189,283,378,472,567,661,756,850,945,1039,1134,1228,1323,1417,1512,1606,1701,1795",
-  "keep": "productions/night-train/final/Short-night-train.mp4",
-  "note": "The Last Train v3 final render (run 60, 20 chunks, the reflection hook). Full QA with all 19 chunk seams, then keep the MP4 in the repo (no GitHub Release)."
+  "seams": "80,161,242,323,404,485,566,647,728,809,889,970,1051,1132,1213,1294,1375,1456,1537",
+  "keep": "productions/gta-gf-1/final/Short-gta-gf-1.mp4",
+  "note": "GTA 6, Explained to Your Girlfriend, Ep 1 final render (run 64, 20 chunks; its built-in QA passed). Full QA with all 19 chunk seams, then keep the MP4 in the repo (no GitHub Release)."
 }
