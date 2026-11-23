@@ -189,3 +189,5 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
   one repeated frame at the end of a wall-picture push. Both were fixed properly rather than explained away: a pastel
   chat wallpaper with doodles (it passes the QA's own near-blank check locally), and longer camera glides on the wall
   pictures. Then the final was re-rendered.
+- **23 Nov:** GTA GF Ep 1 is done. Final run 64 passed the full QA (QA run 20) with no flags, and the MP4 is kept in
+  the repo. Nothing was uploaded: the owner posts from `publish/PUBLISHING.md`.

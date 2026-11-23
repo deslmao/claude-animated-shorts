@@ -1,6 +1,6 @@
 # HANDOFF: where everything stands (keep this current)
 
-**Last updated:** 23 Nov 2026, ~09:30 UTC.
+**Last updated:** 23 Nov 2026, ~22:35 UTC.
 
 **Repo and branch:** `deslmao/claude-animated-shorts`, branch `claude/admiring-hopper-kbrb3d`. Never push elsewhere,
 no pull requests.
@@ -44,7 +44,7 @@ views on Instagram, and on YouTube 71% stayed to watch.
 | `breakfast-text` | Don't Eat It, Part 1 | published | — |
 | `night-train` | The Last Train | v1 published (scream hook, run 50). **v3 DONE:** reflection hook, 63 s, final run 60 QA'd as publishable (`productions/night-train/final/QA-REPORT.md`) | the owner posts v3 as a NEW upload and unlists the old one; compare its stayed-to-watch with v1's 40–51% |
 | `six-seven` | 6 7 | final run 54 QA'd, publishable | the owner posts; check its stayed-to-watch against breakfast's 71% |
-| `gta-gf-1` | GTA 6, Explained to Your Girlfriend, Ep 1 (Gordon and Lucy; Blender Miami plates + engine cast), 52.8 s | critic loop done (5 rounds, `_review/scores.md`: ~5/10, hard fails 14 → 4); **540p cloud preview run 61** requested | the owner watches the preview (artifact `Short-gta-gf-1_preview-run61`), then one correction pass, final + QA, publishing |
+| `gta-gf-1` | GTA 6, Explained to Your Girlfriend, Ep 1 (Gordon and Lucy; Blender Miami plates + engine cast), 53.9 s | **DONE.** Final run 64, full QA passed with no flags, MP4 in the repo (`productions/gta-gf-1/final/Short-gta-gf-1.mp4`); publishing package in `publish/` | the owner posts; Ep 2 from `productions/research/gta6-episode-ideas.md`, using the STUDY.md §7 script recipe |
 | `breakfast-2` | Don't Eat It, Part 2 | **DONE.** v4 final run 59, full QA passed, MP4 in the repo (`productions/breakfast-2/final/Short-breakfast-2.mp4`), 1:09 | the owner posts (Instagram first); after 24–48 h, read the comments for Part 3 (A · HANG UP / B · STAY ON THE LINE) |
 
 No follow-ups are scheduled.
