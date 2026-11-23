@@ -1,5 +1,5 @@
 {
- "reused": 48,
+ "reused": 50,
  "missing": [],
  "byKind": {
   "character": [
@@ -31,8 +31,10 @@
    "ggTvGlow",
    "ggWall",
    "ggPlate",
+   "ggCar",
    "ggHud",
-   "ggShadow"
+   "ggShadow",
+   "ggBall"
   ],
   "sfx": [
    "el_type_tap",
@@ -48,9 +50,9 @@
    "el_crowd_aww",
    "el_receipt_print",
    "el_cash_register",
+   "el_car_cruise",
    "el_reel_cast",
-   "el_ball_bounce",
-   "el_car_cruise"
+   "el_ball_bounce"
   ],
   "act": [
    "happy",

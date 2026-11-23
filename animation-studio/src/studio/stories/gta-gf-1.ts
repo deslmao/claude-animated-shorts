@@ -52,7 +52,7 @@ const wallInsert = (variant: string, note: string, extra: Partial<ShotSpec>, ste
 const cardCam = (card: V, d = 1.0, dx = 0, dy = 0, roll = 0) => at([card[0] + dx, card[1] + dy, card[2] + d], [card[0] + dx * 0.4, card[1] + dy * 0.4, card[2]], 51, 0, 0.04, roll);
 
 // ---- the game: each Blender plate hangs 30 m down -z from a level camera at its own x (PLATE_CAM heights)
-const PX = { street: 0, pier: 100, motel: 200, sunset: 300 } as const, PH = { street: 1.75, pier: 1.6, motel: 1.6, sunset: 1.6 } as const;
+const PX = { street: 0, pier: 100, motel: 200, sunset: 300, drive: 400, drive_sunset: 500 } as const, PH = { street: 1.75, pier: 1.6, motel: 1.6, sunset: 1.6, drive: 1.6, drive_sunset: 1.6 } as const;
 type P = keyof typeof PX;
 const PLATE = (p: P): PropSpec => ({ id: "ggPlate", variant: p, at: [PX[p], 0, -10], steps: [] });
 /** the plate's own camera (level, 53.13 deg), pushed in `push` metres; sideways `dx` (small, or the plate misaligns) */
@@ -61,6 +61,11 @@ const plateCam = (p: P, push = 0, dx = 0, creep = 0.05) => at([PX[p] + dx, PH[p]
 const GRADE = (v: "tv" | "sunset" | "day" | "room", look: V): PropSpec => ({ id: "ggGrade", variant: v, at: look, scale: 0.53, steps: v === "tv" ? every(0, 0.3, 40) : [] });
 /** `at` 0.31 m up (the shadow rig draws itself on the ground below): a decal, not a footprint the cast must avoid */
 const SHADOW = (x: number, z: number): PropSpec => ({ id: "ggShadow", at: [x, 0.31, z - 0.05], steps: [] });
+/** Gordon driving our convertible across the drive plate, left to right along the road 6.5 m out (from x0 to x1, t0-t1 s) */
+const DRIVE_Z = -8.5;
+const driver = (p: P, x0: number, x1: number, t0: number, t1: number, extra: object = {}) => ({ who: "ggGordon", at: [PX[p] + x0, 0.6, DRIVE_Z] as V, mode: "sit" as const, act: "happy" as const, face: "grin" as const, keepFace: true, facing: 1 as const,
+  walk: { to: [PX[p] + x1, 0.6, DRIVE_Z] as V, t0, t1, mode: "ride" as const }, ...extra });
+const CAR = (paint = "pink"): PropSpec => ({ id: "ggCar", variant: paint, at: [0, 0, DRIVE_Z], track: { who: "ggGordon", offset: [0, 0.3] }, steps: [] });
 const HUD = (p: P): PropSpec => ({ id: "ggHud", at: [PX[p], PH[p], -10], scale: 0.5313, steps: [] });
 
 export const GTA_GF_1: Storyboard = {
@@ -69,10 +74,10 @@ export const GTA_GF_1: Storyboard = {
   voice: "ggNarrator", voices: { ggGordon: "ggGordon", ggLucy: "ggLucy" },
   captionColors: { ggLucy: "#ffb3dc", ggGordon: "#8ff0e4" },
   captionStyle: "short", alive: true,
-  // the score (sound/samples/music/gtagf1_score1.json: seven sections to these timings): a cheeky synth riff under the
+  // the score (sound/samples/music/gtagf1_score2.json: seven sections to these timings): a cheeky synth riff under the
   // text, a laid-back synthwave groove for the question, building through the hype, a cheesy game-show brass riff on the
   // money, the full sunny Miami drop in the game, pulled back on the sofa, the riff again and a one-stab button
-  music: { file: "gtagf1_score1", gain: 0, duck: -5, curve: [[0, -9], [6.2, -10], [28.7, -8], [36.0, -5], [41.7, -10], [48.7, -8], [52.6, -6]] },
+  music: { file: "gtagf1_score2", gain: 0, duck: -5, curve: [[0, -9], [6.2, -10], [28.7, -8], [36.0, -5], [42.85, -10], [49.85, -8], [53.7, -6]] },
   engine: 3, autoSfx: false,
   clarity: {
     premise: "Your boyfriend takes six hours to text back because of GTA 6; here's why it's that big a deal, and then his girlfriend tries it and does the same to him.",
@@ -149,26 +154,29 @@ export const GTA_GF_1: Storyboard = {
       [{ word: "when" }, { word: "finally" }, { word: "came" }, { word: "made" }, { word: "an" }, { word: "estimated" }, { word: "one" }, { word: "point" }, { word: "billion" }]),
     // ---- reason 5: the world (setup 4: through the TV into the game street)
     { say: N("And inside, it's a whole sunny state you can go anywhere in."), ...GAME, hold: 0.1, transition: "dissolve",
-      ...cuts(cardCam(GAME_CARD, 1.0), { t: 0.08, c: { ...cardCam(GAME_CARD, 0.35), glide: 0 } as Cam }, { word: "it's", c: plateCam("street", 0, -0.25, 0.12) }, glideTo(plateCam("street", 0.5, 0.25, 0.1), 2.0, 0.7)),
-      actors: [{ who: "ggGordon", at: [-0.5, 0, -8.0], act: "happy", face: "grin", keepFace: true, facing: "camera", walk: { to: [0.15, 0, -5.6], t0: 0.6, t1: 2.65, view: "front" } }],
-      props: [{ id: "ggInsert", at: GAME_CARD, variant: "tv", steps: [] }, PLATE("street"), HUD("street"), GRADE("day", [0, 1.6, -6]), SHADOW(0.15, -5.6)],
-      sfx: [{ t: 0.05, name: "el_whoosh_bright" }],
-      note: "the camera pushes into the TV (the game street on it), and through it: Gordon's game self strolls along the sunny pavement, our HUD on screen" },
+      ...cuts(cardCam(GAME_CARD, 1.0), { t: 0.08, c: { ...cardCam(GAME_CARD, 0.35), glide: 0 } as Cam }, { word: "it's", c: plateCam("drive", 0, -0.2, 0.1) }, glideTo(plateCam("drive", 0.4, 0.2, 0.08), 2.1, 0.62)),
+      actors: [driver("drive", -4.6, 3.4, 0.55, 2.5)],
+      props: [{ id: "ggInsert", at: GAME_CARD, variant: "tv", steps: [] }, PLATE("drive"), CAR(), HUD("drive"), GRADE("day", [PX.drive, 1.6, -6])],
+      sfx: [{ t: 0.05, name: "el_whoosh_bright" }, { t: 0.5, name: "el_car_cruise", gain: -4 }],
+      note: "the camera pushes into the TV (the game street on it), and through it: Gordon cruises past in his pink convertible on the sunny beach road, our HUD on screen" },
     { say: N("He can go fishing."), ...GAME, hold: 0.05,
       ...cuts(plateCam("pier", 0, 0, 0.14), glideTo(plateCam("pier", 0.6, 0, 0.1), 0.9)),
       actors: [{ who: "ggGordon", at: [PX.pier - 0.35, 0, -5.2], act: "happy", face: "smile", keepFace: true, facing: "camera", gesture: "offer", hold: "fishingRod", nod: [0.2], beats: [{ t: 0.25, gesture: "pointUp" }, { t: 0.55, gesture: "offer" }] }],
       props: [PLATE("pier"), HUD("pier"), GRADE("day", [PX.pier, 1.6, -6]), SHADOW(PX.pier - 0.35, -5.2)], sfx: [{ t: 0, name: "el_reel_cast", gain: -4 }],
       note: "the game: Gordon fishing off the pier" },
-    { say: N("Play basketball."), ...GAME, hold: 0.05,
-      ...cuts(plateCam("motel", 0, 0, 0.14), glideTo(plateCam("motel", 0.6, 0, 0.1), 0.8)),
-      actors: [{ who: "ggGordon", at: [PX.motel + 0.15, 0, -4.6], act: "excited", face: "excited", keepFace: true, facing: "camera", gesture: "hold", hold: "basketball", nod: [0.15, 0.5], beats: [{ t: 0.2, gesture: "raiseHand" }, { t: 0.45, gesture: "hold" }, { t: 0.65, gesture: "raiseHand" }] }],
-      props: [PLATE("motel"), HUD("motel"), GRADE("day", [PX.motel, 1.6, -6]), SHADOW(PX.motel + 0.15, -4.6)], sfx: [{ t: 0, name: "el_ball_bounce", gain: -4 }],
-      note: "the game: shooting hoops by the motel" },
-    { say: N("Or just drive at sunset."), ...GAME, light: "golden", hold: 0.3,
-      ...cuts(plateCam("sunset", 0, 0, 0.12), glideTo(plateCam("sunset", 0.8, 0, 0.1), 1.3)),
-      actors: [{ who: "ggGordon", at: [PX.sunset - 0.15, 0, -3.9], act: "proud", face: "proud", keepFace: true, facing: "camera", gesture: "hips", beats: [{ t: 0.5, gesture: "thumbsUp" }] }],
-      props: [PLATE("sunset"), HUD("sunset"), GRADE("sunset", [PX.sunset, 1.6, -6]), SHADOW(PX.sunset - 0.15, -3.9)], sfx: [{ t: 0, name: "el_car_cruise", gain: -6 }],
-      note: "the game: his pink car on the beach road at sunset" },
+    { say: N("Play basketball."), ...GAME, hold: 1.05,
+      ...cuts(plateCam("motel", 0, 0, 0.12), glideTo(plateCam("motel", 0.5, 0, 0.08), 1.8)),
+      actors: [{ who: "ggGordon", at: [PX.motel - 0.35, 0, -4.2], act: "excited", face: "excited", keepFace: true, facing: "camera", gesture: "hold", hold: "basketball",
+        beats: [{ t: 0.25, gesture: "raiseHand" }, { t: 0.55, gesture: "raiseHand", hold: null }, { t: 1.35, gesture: "thumbsUp", face: "laugh" }] }],
+      props: [PLATE("motel"), HUD("motel"), GRADE("day", [PX.motel, 1.6, -6]), SHADOW(PX.motel - 0.35, -4.2),
+        { id: "ggBall", at: [PX.motel - 0.15, 2.1, -4.15], variant: "motel", steps: [{ t: 0.55 }, { t: 1.25 }] }],
+      sfx: [{ t: 0, name: "el_ball_bounce", gain: -6 }, { t: 1.2, name: "el_hit_sub", gain: -14 }],
+      note: "the game: Gordon shoots by the motel; the ball arcs off his hand into the net; he cheers" },
+    { say: N("Or just drive at sunset."), ...GAME, light: "golden", hold: 0.45,
+      ...cuts(plateCam("drive_sunset", 0, -0.2, 0.1), glideTo(plateCam("drive_sunset", 0.4, 0.2, 0.08), 1.7)),
+      actors: [driver("drive_sunset", -3.8, 3.4, 0.0, 1.6, { act: "proud", face: "proud" })],
+      props: [PLATE("drive_sunset"), CAR(), HUD("drive_sunset"), GRADE("sunset", [PX.drive_sunset, 1.6, -6])], sfx: [{ t: 0, name: "el_car_cruise", gain: -4 }],
+      note: "the game: Gordon cruises the beach road in his pink convertible at sunset" },
     // ---- back on the sofa
     { say: lucy("So you're not ignoring me…"), ...FLAT, hold: 0.1, transition: "dissolve",
       ...cuts(at([-2.9, 1.42, 2.2], [-2.9, 1.0, -1.82], 54, 6, 0.08), glideTo(at([-2.9, 1.4, 1.85], [-2.9, 1.0, -1.82], 54, 6, 0.08), 1.5)),

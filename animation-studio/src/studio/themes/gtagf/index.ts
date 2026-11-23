@@ -17,7 +17,8 @@ import { staticFile } from "remotion";
 import { registerPreload } from "../../look/preload";
 import type { Theme } from "..";
 import type { Pen } from "../../characters/toon";
-import { At } from "../../props/kit";
+import { At, col, box, rbox, cyl, sph } from "../../props/kit";
+import { Batch } from "../../materials/geo";
 import { NOINK } from "../../look/ink";
 import type { PropRig } from "../../props/registry";
 import type { SetDef } from "../../sets/types";
@@ -38,7 +39,7 @@ const FR = (px: number) => `900 ${px}px 'DejaVu Sans', Arial, sans-serif`;
 
 // ---------------------------------------------------------------- the Blender plates (public/gta/plate_<name>.jpg)
 /** each plate's level camera height above the ground the cast stands on (blender/miami/miami.py PLATES) */
-export const PLATE_CAM: Record<string, number> = { street: 1.75, pier: 1.6, motel: 1.6, sunset: 1.6 };
+export const PLATE_CAM: Record<string, number> = { street: 1.75, pier: 1.6, motel: 1.6, sunset: 1.6, drive: 1.6, drive_sunset: 1.6 };
 export const PLATE_FOV = 53.13, PLATE_D = 30;
 /** the prop's `at` is the ground point 10 m in front of the plate's camera (so the frame checks see it) */
 const PLATE_AT = 10;
@@ -349,6 +350,60 @@ const shadowRig = (a: At): PropRig => {
   return { root, update: () => undefined };
 };
 
+// ---------------------------------------------------------------- the convertible and the basketball
+/** our own 80s pastel convertible (no real model): forward is local +z. A long low body, a white leather bench, a raked
+ *  windscreen, chrome bumpers and trim, white-wall wheels that turn. The driver sits on the bench at local (0.38, -0.3),
+ *  0.6 m up: ride with `track { who, offset: [0, 0.3] }` and the driver walking with mode "ride" at y 0.6 */
+const CAR_R = 0.34, CAR_WHEELS: [number, number][] = [[-0.86, -1.35], [0.86, -1.35], [-0.86, 1.4], [0.86, 1.4]];
+const carBody = (b: Batch, m: THREE.Matrix4, paint: string) => {
+  const P = col(paint), W = col("#f4efe4"), C = col("#dfe4ea"), D = col("#2a2c36"), G = new THREE.MeshLambertMaterial({ color: "#9fd2ee", transparent: true, opacity: 0.45 });
+  rbox(b, P, m, 0, 0.28, 0, 1.82, 0.5, 4.3, 0.14);                          // the body
+  rbox(b, P, m, 0, 0.74, 1.35, 1.76, 0.1, 1.55, 0.05);                      // the bonnet
+  rbox(b, P, m, 0, 0.74, -1.55, 1.76, 0.1, 1.2, 0.05);                      // the rear deck
+  for (const s of [-1, 1]) rbox(b, P, m, s * 0.84, 0.74, -0.25, 0.12, 0.14, 1.9, 0.04);   // the door tops
+  rbox(b, W, m, 0, 0.55, -0.35, 1.5, 0.12, 0.6, 0.05);                      // the bench seat
+  rbox(b, W, m, 0, 0.62, -0.72, 1.5, 0.55, 0.16, 0.06);                     // the bench back
+  box(b, C, m, -0.93, 0.93, 0.58, 0.63, -2.0, 2.0);                         // the chrome belt line
+  for (const z of [-2.18, 2.18]) rbox(b, C, m, 0, 0.32, z, 1.86, 0.16, 0.12, 0.05);       // bumpers
+  for (const s of [-1, 1]) { sph(b, col("#fff4c9"), m, s * 0.62, 0.62, 2.16, 0.16, 0.09, 0.04, 12); sph(b, col("#ff4a5a"), m, s * 0.66, 0.62, -2.16, 0.14, 0.07, 0.04, 12); }
+  b.add(new THREE.PlaneGeometry(1.6, 0.42), G, m.clone().multiply(new THREE.Matrix4().compose(new THREE.Vector3(0, 1.05, 0.55), new THREE.Quaternion().setFromEuler(new THREE.Euler(-0.45, 0, 0)), new THREE.Vector3(1, 1, 1))));
+  box(b, C, m, -0.81, 0.79, 0.84, 1.28, 0.5, 0.58); box(b, C, m, 0.79, 0.81, 0.84, 1.28, 0.5, 0.58);   // windscreen posts
+  b.add(new THREE.TorusGeometry(0.17, 0.025, 6, 18), D, m.clone().multiply(new THREE.Matrix4().compose(new THREE.Vector3(0.38, 0.98, 0.15), new THREE.Quaternion().setFromEuler(new THREE.Euler(-1.0, 0, 0)), new THREE.Vector3(1, 1, 1))));
+};
+const carWheel = (b: Batch, m: THREE.Matrix4) => {
+  cyl(b, col("#1f2028"), m, -0.11, 0, 0, CAR_R, CAR_R, 0.22, 20, 0, Math.PI / 2);
+  cyl(b, col("#f4f2ec"), m, -0.115, 0, 0, CAR_R * 0.62, CAR_R * 0.62, 0.23, 18, 0, Math.PI / 2);
+  cyl(b, col("#c9ced6"), m, -0.12, 0, 0, CAR_R * 0.36, CAR_R * 0.36, 0.24, 12, 0, Math.PI / 2);
+  box(b, col("#8a909a"), m, -0.125, 0.125, -0.02, 0.02, -CAR_R * 0.34, CAR_R * 0.34);       // a hub bar (shows the turn)
+};
+const CAR_PAINT: Record<string, string> = { pink: "#f59ab4", mint: "#7fd6c9", sun: "#fbd36b" };
+const BALL_SHOTS: Record<string, string> = { motel: "1.55,0.95,-4.39" };
+const carRig = (a: At, paint = "#f59ab4"): PropRig => {
+  const root = new THREE.Group(), body = new THREE.Group(), b = new Batch();
+  carBody(b, new THREE.Matrix4(), paint); b.build(body, true); root.add(body);
+  const wheels = CAR_WHEELS.map(([x, z]) => { const g = new THREE.Group(), wb = new Batch(); carWheel(wb, new THREE.Matrix4()); wb.build(g, true); g.position.set(x, CAR_R, z); root.add(g); return g; });
+  root.position.set(a.x, a.y ?? 0, a.z); root.rotation.y = a.yaw ?? 0;
+  return { root, update: ({ track }) => {
+    if (!track) return;
+    root.position.set(track.pos[0], a.y ?? 0, track.pos[2]); root.rotation.y = track.heading;
+    for (const w of wheels) w.rotation.x = track.dist / CAR_R;
+    body.position.y = track.speed > 0.2 ? 0.01 * Math.sin(track.dist * 6) : 0;               // a gentle bounce on the road
+  } };
+};
+/** a basketball shot: the ball leaves the hands at `at` (step 0 -> 1: an eased arc to the rim, `variant` "dx,dy,dz" =
+ *  the rim's offset from `at`, peaking 1.2 m above the higher end), then drops through the net (step 1 -> 2) */
+const ballRig = (a: At, v = "2,1,-4"): PropRig => {
+  const [dx, dy, dz] = v.split(",").map(Number), root = rigRoot({ ...a, s: 1 });
+  const t = stex("ggBallTex", 128, 64, (g) => { g.fillStyle = "#f07a28"; g.fillRect(0, 0, 128, 64); g.strokeStyle = "#2a1a10"; g.lineWidth = 3; for (const x of [32, 64, 96]) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, 64); g.stroke(); } g.beginPath(); g.moveTo(0, 32); g.lineTo(128, 32); g.stroke(); });
+  const ball = new THREE.Mesh(new THREE.SphereGeometry(0.12, 18, 12), new THREE.MeshBasicMaterial({ map: t, toneMapped: false })); root.add(ball);
+  return { root, update: ({ step = 0 }) => {
+    if (step <= 0) { ball.visible = false; return; }
+    ball.visible = true;
+    if (step < 1) { const f = step; ball.position.set(dx * f, dy * f + 4 * 1.2 * f * (1 - f), dz * f); ball.rotation.x = -f * 9; }
+    else { const f = Math.min(1, step - 1); ball.position.set(dx, dy - 0.9 * f * f, dz); ball.rotation.x = -9 - f * 3; ball.visible = f < 1; }
+  } };
+};
+
 // ---------------------------------------------------------------- items
 const gamepad = (p: Pen, x: number, y: number, u: number, s: number) => {
   // a dark controller held in front of the chest: the body, two grips, two sticks, four pastel buttons
@@ -383,14 +438,18 @@ export const GTAGF_THEME: Theme = {
     basketball: { name: "Basketball", desc: "an orange basketball", themes: ["sport"], tags: ["basketball", "ball"], draw: (p, x, y, u) => basketball(p, x, y, u) },
   },
   props: {
-    ggPlate: { name: "Game plate (Blender backdrop)", desc: "on the ggPlate set: the Blender plate of our Miami city 30 m down -z from a level camera at (x, PLATE_CAM, 0) (street 1.75, pier / motel / sunset 1.6), with a ground that catches the cast's shadows; `at` = [x, 0, -10], the ground point 10 m in front of that camera. Variants: street, pier, motel, sunset", category: "theme", themes: ["miami", "game"], tags: ["backdrop", "plate", "blender"], radius: 0.05, height: 0.1,
-      build: () => undefined, rig: (a, v) => plateRig(a, v ?? "street"), steps: [], stepCount: () => 1, variants: { street: () => undefined, pier: () => undefined, motel: () => undefined, sunset: () => undefined } },
+    ggPlate: { name: "Game plate (Blender backdrop)", desc: "on the ggPlate set: the Blender plate of our Miami city 30 m down -z from a level camera at (x, PLATE_CAM, 0) (street 1.75, pier / motel / sunset 1.6), with a ground that catches the cast's shadows; `at` = [x, 0, -10], the ground point 10 m in front of that camera. Variants: street, pier, motel, sunset, drive (side-on across the beach road, by day), drive_sunset (the same at sunset)", category: "theme", themes: ["miami", "game"], tags: ["backdrop", "plate", "blender"], radius: 0.05, height: 0.1,
+      build: () => undefined, rig: (a, v) => plateRig(a, v ?? "street"), steps: [], stepCount: () => 1, variants: { street: () => undefined, pier: () => undefined, motel: () => undefined, sunset: () => undefined, drive: () => undefined, drive_sunset: () => undefined } },
     ggInsert: { name: "Close insert (GTA GF)", desc: "an upright 9:16 card (0.54 x 0.96 m, facing +z; an `at` camera 1.0 m in front at fov 51 sees only it), a state per step. Variants: textLucy (Lucy's phone: 'hey :)' typed, sent at 3:02 PM, the clock racing to 9:14 PM, the reply 'sorry. gta'; 7 states), textGordon (the same from Gordon's phone, 'hey?'), title (GTA 6 EXPLAINED TO YOUR GIRLFRIEND · EP 1), calendar (2013 → 2026, 14 states), views (a counter racing to 90,000,000 in 24 hours, 16 states), delayed (COMING SOON, then DELAYED, then DELAYED again), receipt (printing longer; the total $1,840,000,000 est. on state 9), tv (the TV screen: the game street with our HUD)", category: "theme", themes: ["insert"], tags: ["insert", "phone", "text", "title", "calendar", "views", "receipt"], radius: 0.3, height: 0.96,
       build: () => undefined, rig: (a, v) => insertRig(a, v ?? "textLucy"), steps: ["its next state"], stepCount: () => 40,
       variants: Object.fromEntries([...Object.keys(INSERTS), "tv"].map((k) => [k, () => undefined])) },
     ggWall: { name: "Framed insert on a wall (GTA GF)", desc: "an insert card (the ggInsert variants: calendar, views, delayed, receipt, title) as a real framed picture hung on a wall, facing +z, lit by the room: 0.68 x 1.1 m with its frame; `at` = its centre (on the apartment's back wall: z -2.56). A state per step", category: "theme", themes: ["insert", "home"], tags: ["frame", "poster", "wall", "insert"], radius: 0.35, height: 1.1,
       build: () => undefined, rig: (a, v) => wallRig(a, v ?? "calendar"), steps: ["its next state"], stepCount: () => 40,
       variants: Object.fromEntries(Object.keys(INSERTS).map((k) => [k, () => undefined])) },
+    ggCar: { name: "80s convertible (our own)", desc: "a long, low pastel convertible of our own design (4.3 m, forward = +z): white leather bench, raked windscreen, chrome bumpers and belt line, white-wall wheels that turn as it moves. A driver rides it: the driver sits at y 0.6, mode sit, walking with mode \"ride\"; the car follows with track { who, offset: [0, 0.3] }. Variants: pink (default), mint, sun (yellow)", category: "theme", themes: ["miami", "car", "vehicle"], tags: ["car", "convertible", "drive", "vehicle", "80s"], radius: 1.3, height: 1.3, box: [0.95, 2.2],
+      build: () => undefined, rig: (a, v) => carRig(a, CAR_PAINT[v ?? "pink"] ?? CAR_PAINT.pink), steps: [], stepCount: () => 1, variants: { pink: () => undefined, mint: () => undefined, sun: () => undefined } },
+    ggBall: { name: "Basketball shot (GTA GF)", desc: "a basketball leaving the hands at `at`: on its first step it arcs (one STEP_DUR) to the rim (variant motel: the motel plate's hoop, 1.55 m right, 0.95 m up and 4.39 m on from the ball's start at Gordon's raised hand [x-0.15, 2.1, -4.15] with Gordon at [x-0.35, 0, -4.2]), on the second it drops through the net and is gone; hidden before its first step", category: "theme", themes: ["sport"], tags: ["basketball", "ball", "shot"], radius: 0.05, height: 0.1,
+      build: () => undefined, rig: (a, v) => ballRig(a, BALL_SHOTS[v ?? "motel"] ?? BALL_SHOTS.motel), steps: ["the shot", "through the net"], stepCount: () => 2, variants: { motel: () => undefined } },
     ggTV: { name: "TV on a stand", desc: "a flat TV (1.24 m) on a low wooden stand, its screen facing -z (the game's sunset on it); `at` = the stand's foot centre; on the apartment, face the sofa from [-2.6, 0, 1.4]", category: "theme", themes: ["home"], tags: ["tv", "television", "screen"], radius: 0.8, height: 1.3,
       build: () => undefined, rig: (a) => tvRig(a), steps: [], stepCount: () => 1 },
     ggTvGlow: { name: "TV glow", desc: "the TV's flickering cool blue light (a point light at `at`, ~1 m in front of the faces it lights; `scale` = strength; give it a step every ~0.3 s, which drives the flicker)", category: "theme", themes: ["home", "night"], tags: ["light", "tv", "glow"], radius: 1.2, height: 0.6,

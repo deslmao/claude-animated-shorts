@@ -170,3 +170,18 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
   the agreed 5-round cap. `_review/scores.md` records what holds each category below 8: the 2D cast rig (two-handed
   holds, body acting, lighting on the cards), sparse interiors, and still plates. Two framing fixes were made after
   round 5, then the cloud 540p preview was requested for the owner.
+- **23 Nov (owner, preview run 61: "quite good"):**
+  - the walk in the city looked unnatural;
+  - the basketball shot looked bad (the hoop wasn't even in the motel plate);
+  - in "drive at sunset" Gordon wasn't in a car.
+
+  **Fixed:**
+  - our own pink 80s convertible (`ggCar`, ridden like the 1904 car);
+  - new side-on Blender plates across the beach road by day and at sunset (`plate_drive`, `plate_drive_sunset`), so
+    Gordon drives past in profile;
+  - the motel plate re-rendered with the hoop in view, and a `ggBall` arc from his raised hand into the net, then a
+    thumbs-up;
+  - a new score cut to the new length (53.9 s, `gtagf1_score2`).
+
+  The owner asked to "publish full render". The standing rule holds: the final is rendered with `publish: false`, and
+  the owner uploads.

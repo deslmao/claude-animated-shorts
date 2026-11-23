@@ -32,16 +32,16 @@ What the viewer sees and hears, in order. Nothing else reaches them.
 **10.** _a till receipt printing on and on; the total: $1,840,000,000 (est.)_
 > **NARRATOR:** So when it finally came out, it made an estimated one point eight billion dollars by launch day. That's more than double the last one's launch.
 
-**11.** _the camera pushes into the TV (the game street on it), and through it: Gordon's game self strolls along the sunny pavement, our HUD on screen_
+**11.** _the camera pushes into the TV (the game street on it), and through it: Gordon cruises past in his pink convertible on the sunny beach road, our HUD on screen_
 > **NARRATOR:** And inside, it's a whole sunny state you can go anywhere in.
 
 **12.** _the game: Gordon fishing off the pier_
 > **NARRATOR:** He can go fishing.
 
-**13.** _the game: shooting hoops by the motel_
+**13.** _the game: Gordon shoots by the motel; the ball arcs off his hand into the net; he cheers_
 > **NARRATOR:** Play basketball.
 
-**14.** _the game: his pink car on the beach road at sunset_
+**14.** _the game: Gordon cruises the beach road in his pink convertible at sunset_
 > **NARRATOR:** Or just drive at sunset.
 
 **15.** _Lucy has sat down beside him, slowly coming round_

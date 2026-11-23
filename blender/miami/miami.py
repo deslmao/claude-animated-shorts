@@ -559,6 +559,8 @@ def mist(start, depth, color="#ffd7a8"):
 SIGNS = ["SOLVANA", "MIRALUX", "CORALEE", "PALMETTA", "BAYLUNE", "VELOMAR"]
 
 def street():
+    DRIVE = bool(PLATE) and "pos" in PLATE and PLATE["pos"][1] < -10    # the side-on drive plates: keep the lens and the lane clear
+    near = lambda x, y: DRIVE and abs(x + 6) < 4.5 and y < -5
     sky_and_sun((0.55, 0.8, -0.21))
     ground(-80, 80, -6, 6, "#55535f", name="asphalt", tex="asphalt")
     for xx in range(-60, 61, 6): box(xx, 0, 0.001, 2.6, 0.18, 0.01, mat("lane", "#f4e7c4", rough=0.6))
@@ -578,6 +580,7 @@ def street():
     for xx in range(-40, 41, 8):
         for yy in (6.6, -6.6):
             if yy < 0 and -15 < xx + 4 < -8: continue                      # keep the lens clear
+            if near(xx + 4, yy): continue
             cyl(xx + 4, yy, 0.15, 0.07, 4.4, LAMP, verts=10)
             bpy.ops.mesh.primitive_uv_sphere_add(radius=0.22, location=(xx + 4, yy, 4.7)); o = bpy.context.object; o.data.materials.append(GLOBE); link(o)
     BENCH = mat("bench", "#f7f3ea", rough=0.6)
@@ -587,7 +590,7 @@ def street():
         box(xx, 9.2, 0.15, 1.4, 0.7, 0.55, mat("planter", "#e6b98a", rough=0.8))
         if PHM: plant("calathea", xx, 9.2, 0.7, h=0.55, seed=xx + 500)
         else: box(xx, 9.2, 0.7, 1.2, 0.5, 0.25, FROND)
-    car(-6.5, -2.2, math.pi / 2, "#6fd6c9"); car(3.2, 2.3, -math.pi / 2, "#f59ab4"); car(16, -2.4, math.pi / 2, "#fbd36b")
+    if not DRIVE: car(-6.5, -2.2, math.pi / 2, "#6fd6c9"); car(3.2, 2.3, -math.pi / 2, "#f59ab4"); car(16, -2.4, math.pi / 2, "#fbd36b")
     skyline(150, n=55)
     for xx in range(-44, 45, 5): grass(xx - 0.6, xx + 0.6, 8.95, 9.45, z=0.95, count=500, length=0.22)
     # dressing: hedges with flowers under the hotels, café tables, bins, news boxes, a phone booth, a crossing,
@@ -597,8 +600,9 @@ def street():
     for xx in (-24, -6, 19, 33): trashcan(xx, 6.9, z=0.15, c=random.choice(["#2fb5a7", "#ff8aa0", "#f2a541"]))
     newsbox(-16, 6.9, z=0.15); newsbox(-15.3, 6.9, z=0.15, c="#3fb3c9", word="SOL TIMES"); phonebooth(4.8, 7.4, z=0.15)
     crosswalk(-10.5, -6, 6); crosswalk(28, -6, 6)
-    trafficlight(-12.6, 6.6, z=0.15, rot=-math.pi / 2); trafficlight(-6.4, -6.6, z=0.15, rot=math.pi / 2)
-    streetsign(-13.2, 6.5, 0.15, "MARINO DR"); streetsign(-5.6, -6.5, 0.15, "CALLE SOLANA", c="#2f4f8f")
+    trafficlight(-12.6, 6.6, z=0.15, rot=-math.pi / 2)
+    if not DRIVE: trafficlight(-6.4, -6.6, z=0.15, rot=math.pi / 2)
+    streetsign(-13.2, 6.5, 0.15, "MARINO DR"); (None if DRIVE else streetsign(-5.6, -6.5, 0.15, "CALLE SOLANA", c="#2f4f8f"))
     for k, xx in enumerate([-36, -29, -22, 10, 22, 29, 36]): car(xx, 4.6, -math.pi / 2, ["#c9a7f0", "#7fd6e9", "#ffb36b", "#f59ab4", "#8fd9c6", "#fbd36b", "#f7f3ea"][k])
     for k, xx in enumerate([-33, -18, 26, 34]): car(xx, -4.7, math.pi / 2, ["#ff8aa0", "#a9c4f0", "#f7d27a", "#c3a9ea"][k])
     box(0, 6.05, 0.0, 160, 0.3, 0.16, mat("curb", "#d8d2c6", rough=0.7)); box(0, -6.05, 0.0, 160, 0.3, 0.16, mat("curb", "#d8d2c6", rough=0.7))
@@ -607,7 +611,7 @@ def street():
         balcony_rows(x + w / 2 + 1.5, 10.5, w, fl, every=1 if i % 2 else 2); ac_units(x + w / 2, 10.5, w, fl, seed=i); rooftop(x + w / 2, 10.5, fl * 3.2 + 2.1, seed=i)
         x += w + 1.2
     for xx in range(-40, 41, 10):
-        if not -16 < xx + 2.5 < -8: bush(xx + 2.5, -7.8, r=0.6, z=0.15, seed=xx + 300)
+        if not -16 < xx + 2.5 < -8 and not near(xx + 2.5, -7.8): bush(xx + 2.5, -7.8, r=0.6, z=0.15, seed=xx + 300)
     grass(-80, 80, -12.0, -9.3, z=0.06, count=9000, color="#8fa75a", length=0.18)
     if PHM:
         rg = random.Random(21)
@@ -721,7 +725,7 @@ def motel():
     for xx in range(-14, 15, 3): box(xx, -15.0, 0.0, 1.4, 0.25, 0.14, mat("wheelstop", "#f2d27a", rough=0.6))
     for xx in (-12, 0, 12): lamp(xx, -17.5)
     for xx in (-6, 6): trashcan(xx, 4.2, c="#2fb5a7")
-    HX, HY = -7.2, -11.5
+    HX, HY = -1.25, -16.0
     cyl(HX, HY - 0.9, 0, 0.09, 3.3, mat("hooppole", "#2fb5a7", rough=0.5), verts=12)
     box(HX, HY - 0.75, 2.9, 1.8, 0.06, 1.1, WHITE, bevel=0.02); box(HX, HY - 0.71, 3.05, 0.6, 0.02, 0.45, mat("hoopsq", "#ff7a8a", rough=0.5))
     bpy.ops.mesh.primitive_torus_add(major_radius=0.23, minor_radius=0.02, location=(HX, HY - 0.48, 3.05)); o = bpy.context.object; o.data.materials.append(mat("rim", "#ff6a3a", rough=0.4)); link(o)
@@ -740,6 +744,9 @@ PLATES = {   # the engine composites the animated cast over these; ground = the 
     "plate_street": dict(scene="street", pos=(-17.0, -8.4, 1.9), look=(14.0, 3.7, 1.9), ground=0.15),
     "plate_pier": dict(scene="beach", pos=(-27.4, -22.0, 3.45), look=(-14.0, -62.0, 3.45), ground=1.85),
     "plate_motel": dict(scene="motel", pos=(-4.6, -24.5, 1.6), look=(0.2, -2.0, 1.6), ground=0.0),
+    # the drive (GTA GF): side-on across Ocean drive from the beach-side pavement, the road in front, the hotels behind
+    "plate_drive": dict(scene="street", pos=(-6.0, -10.2, 1.6), look=(-6.0, 20.0, 1.6), ground=0.0),
+    "plate_drive_sunset": dict(scene="street", pos=(-6.0, -10.2, 1.6), look=(-6.0, 20.0, 1.6), ground=0.0, hdri="sky_warm", sun=(0.75, 0.6, -0.12), sunE=4.0),
     "plate_sunset": dict(scene="street", pos=(-31.0, -1.6, 1.6), look=(10.0, 0.4, 1.6), ground=0.0, hdri="sky_warm", sun=(-0.9, 0.35, -0.12), sunE=4.0),
 }
 if PLACE in PLATES:

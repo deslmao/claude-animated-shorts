@@ -16288,3 +16288,8 @@ Oldest first. Times are UTC (the owner is in GMT+11). Extracted from the session
     approve production finally , we have better quality and animation and also a better niche. 
     Also maybe you could analyse rick's clips scripts to see how it is engaging?
 
+## 416. 2026-11-23 13:30
+
+    [uploaded: Short-gta-gf-1_preview.mp4] The video is quite good
+    however, a problem with our video is the animation aswell, when gordon walks on the city, it doesnt look natural and realistic, and shooting the basketball looks so bad "Drive at sunset" gordon isnt even in a car, fix these and publish full render.
+
