@@ -1,5 +1,5 @@
 {
- "reused": 46,
+ "reused": 45,
  "missing": [],
  "byKind": {
   "character": [
@@ -16,7 +16,6 @@
   ],
   "light": [
    "interior",
-   "night",
    "day",
    "golden"
   ],
