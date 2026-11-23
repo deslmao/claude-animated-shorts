@@ -1,17 +1,20 @@
 # The Man on the Last Train Has No Reflection.: publishing package (vote series, Part 1)
 
-**Video:** `Short-night-train-run50` (the download link is in `../final/QA-REPORT.md` once the final render and QA are
-done): 1080 × 1920, 30 fps, 1:09, with our own original score.
+**Video (v3, the new hook):** `Short-night-train-run60` (download link in `../final/QA-REPORT.md`), 1080 × 1920, 30 fps,
+1:03, with our own original score.
+
+**Post it as a NEW upload,** then unlist the old run 50 version (the scream hook: 40–51% stayed to watch) so the two
+don't sit side by side.
 
 **Nothing has been uploaded or published.** This folder holds the copy and the cover, ready to paste.
 
 ---
 
 ## Cover
-**File:** `cover.jpg` (1080 × 1920), frame 0:
-- his screaming face;
-- the banner **HE HAS NO REFLECTION. / THE LAST TRAIN · 9:47 PM**;
-- on a dark band: **"WHY ME?!" / THE LAST TRAIN · PART 1**.
+**File:** `cover.jpg` (1080 × 1920), the new frame 0:
+- the window split: REAL (you, and him facing you) above IN THE WINDOW (you, and his seat empty);
+- the banner **HE HAS NO REFLECTION / THE LAST TRAIN · 9:47 PM**;
+- on a dark band: **HE'S NOT IN IT. / THE LAST TRAIN · PART 1**.
 
 The band sits at y 1200–1540, inside Instagram's 3:4 grid crop (y 240–1680).
 
@@ -30,7 +33,7 @@ The Man on the Last Train Has No Reflection.
 
 **Description:**
 ```
-It's 9:47 on the last train home. The man in front of you won't stop screaming. Then you look at the window.
+It's 9:47 on the last train home. You look at the window… and the man across from you isn't in it.
 
 Get off… or stay on? The most-liked answer decides Part 2 👇
 
@@ -78,7 +81,6 @@ Instagram allows at most 5 hashtags, so this set is exactly 5.
 ## Pinned comment (the same on all three platforms)
 ```
 A · GET OFF or B · STAY ON? The most-liked answer decides Part 2 👇
-(Rewatch 0:21 and look at the window 👀)
 ```
 
 ---

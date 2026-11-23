@@ -1,30 +1,27 @@
-# The Man on the Last Train Has No Reflection.: final render QA
+# The Man on the Last Train Has No Reflection. (v3, the reflection hook): final render QA
 
-**Run 50** (cloud, 20 chunks), 21 Nov 2026: https://github.com/deslmao/claude-animated-shorts/actions/runs/44958301438
-**Download:** the artifact **`Short-night-train-run50`** on that run's page (Artifacts, at the bottom). No GitHub Release.
+**Run 60** (cloud, 20 chunks), 23 Nov 2026: https://github.com/deslmao/claude-animated-shorts/actions/runs/45114920085
+**Download:** the artifact **`Short-night-train-run60`** on that run's page (Artifacts, at the bottom). No GitHub Release.
+**QA:** https://github.com/deslmao/claude-animated-shorts/actions/runs/45118063016
+(Run 50, the scream-hook version, is the one already published: post v3 as a new upload.)
 
 ## Verdict: publishable ✅
-
 | Check | Result |
 |---|---|
 | H.264, 1080 × 1920, 30 fps | ✅ |
-| 2,066 frames = 1:08.9 | ✅ |
-| corrupt, unexplained soft frames | ✅ none |
-| black spans, frozen spans ≥ 0.5 s | ✅ none |
-| audio: AAC 48 kHz stereo, starts at 0, in sync (-0.001 s) | ✅ |
-| loudness | ✅ -14.2 LUFS, true peak -1.6 dBFS |
-| duplicated frames | ⚠️ one, at frame 1099: **not a seam** |
-| near-blank frames | ⚠️ frames 246–302: **the LED display shot** |
+| 1,890 frames = 1:03.0 | ✅ |
+| corrupt, soft frames; black, frozen spans | ✅ none |
+| audio: AAC 48 kHz stereo, starts at 0, in sync (0.000 s) | ✅ |
+| loudness | ✅ −14.2 LUFS, true peak −1.8 dBFS |
+| duplicated frames | ⚠️ frame 172: **not a seam** (the seams are every 94.5 frames: 94, 189) |
+| near-blank frames | ⚠️ frames 213–269: **the 21:47 display shot** (the same flag as run 50) |
 
-**Why the run shows "failure" (both flags are intended pictures, not faults):**
-- **Frame 1099 (0:36.6):**
-  - The chunk seams fall every 103.3 frames (2,066 / 20); the nearest are 1033 and 1136.
-  - Frame 1099 is inside the locked-off shot of the gangway door: he stands still in the doorway (no idle motion) and
-    the door has finished opening, so two consecutive frames are identical.
-- **Frames 246–302 (0:08.2–0:10.1):**
-  - This is the shot of the 21:47 display over the end door: a plain grey end wall, the ceiling and the small amber
-    display, low in detail by design.
-  - The camera is 2.7 m from the wall, not against scenery. The half-scale still of this shot was checked before the
-    render.
+**Why the run shows "failure" (both are intended pictures):**
+- **Frame 172 (0:05.7):** the hard cut to him staring. He doesn't blink, there's no idle motion, and the push-in has
+  barely started, so two frames match. Re-rendered frames 171 and 172 differ by 0.08 levels.
+- **Frames 213–269 (0:07.1–0:09.0):** the LED display over the end door, a plain grey wall by design. The camera isn't
+  against scenery; a re-rendered still of frame 240 shows the display clearly.
+
+Because the check is marked failed, the workflow didn't keep the MP4 in the repo: download it from the run 60 artifact.
 
 Publishing copy and cover: `../publish/PUBLISHING.md`, `../publish/cover.jpg`.

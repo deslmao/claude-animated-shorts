@@ -85,3 +85,4 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
   - **Recommended before Blender:** never-still cameras and idle motion, 5-frame dissolves, and 1–2-word captions at
     ~70% of the height (all cheap, opt-in engine changes).
   - **Blender** would mainly help set detail and light.
+- **23 Nov:** The Last Train v3 final (run 60) is publishable. The QA flags were his unblinking stare (frame 172) and the plain display wall (213–269). The pinned comment's rewatch line was dropped (its timestamp no longer matched).

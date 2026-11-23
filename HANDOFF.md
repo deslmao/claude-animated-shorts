@@ -42,11 +42,11 @@ views on Instagram, and on YouTube 71% stayed to watch.
 | ID | What | State | Next |
 |---|---|---|---|
 | `breakfast-text` | Don't Eat It, Part 1 | published | — |
-| `night-train` | The Last Train | v1 published (scream hook). **v3** (reflection hook, 63 s) final render requested 23 Nov ~04:58 UTC | QA (1,890 frames), then QA-REPORT and PUBLISHING update; tell the owner to post as a new upload and unlist the old one |
+| `night-train` | The Last Train | v1 published (scream hook, run 50). **v3 DONE:** reflection hook, 63 s, final run 60 QA'd as publishable (`productions/night-train/final/QA-REPORT.md`) | the owner posts v3 as a NEW upload and unlists the old one; compare its stayed-to-watch with v1's 40–51% |
 | `six-seven` | 6 7 | final run 54 QA'd, publishable | the owner posts; check its stayed-to-watch against breakfast's 71% |
 | `breakfast-2` | Don't Eat It, Part 2 | **DONE.** v4 final run 59, full QA passed, MP4 in the repo (`productions/breakfast-2/final/Short-breakfast-2.mp4`), 1:09 | the owner posts (Instagram first); after 24–48 h, read the comments for Part 3 (A · HANG UP / B · STAY ON THE LINE) |
 
-**One follow-up is scheduled** (send_later, ~05:19 UTC): the train v3 final, then its QA via `qa-request.json`.
+No follow-ups are scheduled.
 
 ## Open owner requests
 1. **STUDY.md:** done from 5 of the 10 Shorts the owner uploaded on 23 Nov (`STUDY.md`). Waiting for the other 5, plus
