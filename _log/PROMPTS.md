@@ -16209,3 +16209,13 @@ Oldest first. Times are UTC (the owner is in GMT+11). Extracted from the session
 
     No the study.md created by us just now, using the Rick's clips. and try to replicate their models using blender right? i think
 
+## 406. 2026-11-23 06:50
+
+    show me the stills, i need us to replicate rick's clips clean animation and models as close as wecan, and also  these
+    	Rick's clips	Ours (6 7)
+    Frames where nothing moves	1.5–5%	40%
+    Frames repeating the previous one	0.3–1.7%	20%
+    How detailed the backgrounds are	1.3–2.4× ours	—
+    Caption height on screen	70% down, 1–2 words at a time	64% down, long lines
+    Average time between visual changes	1.1–3.1 s (1.97 s overall)
+
