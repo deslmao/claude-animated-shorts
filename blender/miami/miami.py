@@ -474,7 +474,7 @@ def street():
         x += w + 1.2
     for xx in range(-42, 43, 9): palm(xx, 8.4, h=random.uniform(7.5, 10), lean=0.08, seed=xx)
     for xx in range(-38, 39, 11):
-        if not -9 < xx + 3 < 6: palm(xx + 3, -7.6, h=random.uniform(7, 9.5), lean=0.1, seed=xx + 99)
+        if not -18 < xx + 3 < 6: palm(xx + 3, -7.6, h=random.uniform(7, 9.5), lean=0.1, seed=xx + 99)
     LAMP = mat("lamp_pole", "#2d5f6a", rough=0.5); GLOBE = mat("globe", "#fff1cf", emit="#ffe3a8", estr=1.2)
     for xx in range(-40, 41, 8):
         for yy in (6.6, -6.6):
@@ -504,7 +504,8 @@ def street():
     for i, (w, fl) in enumerate([(14, 4), (16, 3), (13, 5), (17, 3), (14, 4), (15, 3)]):
         balcony_rows(x + w / 2 + 1.5, 10.5, w, fl, every=1 if i % 2 else 2); ac_units(x + w / 2, 10.5, w, fl, seed=i); rooftop(x + w / 2, 10.5, fl * 3.2 + 2.1, seed=i)
         x += w + 1.2
-    for xx in range(-40, 41, 10): bush(xx + 2.5, -7.8, r=0.6, z=0.15, seed=xx + 300)
+    for xx in range(-40, 41, 10):
+        if not -16 < xx + 2.5 < -8: bush(xx + 2.5, -7.8, r=0.6, z=0.15, seed=xx + 300)
     grass(-80, 80, -12.0, -9.3, z=0.06, count=9000, color="#8fa75a", length=0.18)
     # looking down the street (STUDY.md: their wides run deep, so every layer adds detail)
     cam = camera((-17.0, -8.4, 1.9), (14.0, 3.7, 4.2), lens=24)
@@ -553,8 +554,14 @@ def beach():
     for k in range(16): box(-20 + k * 2.6, 9.0, 0, 0.12, 0.12, 1.1, mat("fence", "#b8956a", rough=0.9, tex="bark"))
     box(0, 9.0, 0.85, 42, 0.05, 0.08, mat("fence", "#b8956a", rough=0.9, tex="bark"))
     for (bx, by) in [(-12, 6), (-9, 3.5), (10.5, 5), (14, 2)]: bush(bx, by, r=0.8, seed=int(bx * 3), flowers=False)
-    cam = camera((-1.5, 7.5, 2.0), (1.5, -30, 1.6), lens=24)
-    gulls(cam.location, (1.5, -30, 1.6), n=7)
+    # foreground (STUDY.md: something near the lens in most wides): dune grass at the frame's foot, a palm at one side,
+    # a towel and flip-flops near the lens
+    grass(-6, 4, 2.2, 4.6, count=7000, color="#9db05e", length=0.55)
+    palm(2.6, 2.4, h=8.5, lean=0.06, seed=777)
+    box(-1.0, 1.2, 0.005, 1.0, 2.0, 0.02, mat("towelNear", "#ff7a8a", rough=0.9), rot=-0.25)
+    for sx in (-0.15, 0.15): box(-2.3 + sx, 1.6, 0.0, 0.12, 0.28, 0.03, mat("flipflop", "#3fb3c9", rough=0.6), rot=0.3)
+    cam = camera((-1.5, 4.6, 1.75), (1.5, -30, 1.7), lens=24)
+    gulls(cam.location, (1.5, -30, 1.7), n=7)
     grass(-30, -8, 8, 14, count=4000, color="#8aa64e", length=0.5); grass(6, 30, 6, 12, count=4000, color="#8aa64e", length=0.5)
     atmosphere(cam.location, (1.5, -30, 1.6), density=0.0011)
     card("lucy_34.png", -1.7, -0.6, 1.62, (cam.location.x, cam.location.y))
