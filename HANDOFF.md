@@ -44,7 +44,7 @@ views on Instagram, and on YouTube 71% stayed to watch.
 | `breakfast-text` | Don't Eat It, Part 1 | published | — |
 | `night-train` | The Last Train | v1 published (scream hook, run 50). **v3 DONE:** reflection hook, 63 s, final run 60 QA'd as publishable (`productions/night-train/final/QA-REPORT.md`) | the owner posts v3 as a NEW upload and unlists the old one; compare its stayed-to-watch with v1's 40–51% |
 | `six-seven` | 6 7 | final run 54 QA'd, publishable | the owner posts; check its stayed-to-watch against breakfast's 71% |
-| `gta-gf-1` | GTA 6, Explained to Your Girlfriend, Ep 1 (Gordon and Lucy; Blender Miami plates + engine cast) | storyboard, voices, score done; **critic loop** in `_review/rounds/` (score table `_review/scores.md`; render a round with the scratchpad's `critic_round.sh N`, then a fresh critic agent) | loop to 8+ (max 5 rounds), then the cloud 540p preview for the owner, final + QA, publishing |
+| `gta-gf-1` | GTA 6, Explained to Your Girlfriend, Ep 1 (Gordon and Lucy; Blender Miami plates + engine cast), 52.8 s | critic loop done (5 rounds, `_review/scores.md`: ~5/10, hard fails 14 → 4); **540p cloud preview run 61** requested | the owner watches the preview (artifact `Short-gta-gf-1_preview-run61`), then one correction pass, final + QA, publishing |
 | `breakfast-2` | Don't Eat It, Part 2 | **DONE.** v4 final run 59, full QA passed, MP4 in the repo (`productions/breakfast-2/final/Short-breakfast-2.mp4`), 1:09 | the owner posts (Instagram first); after 24–48 h, read the comments for Part 3 (A · HANG UP / B · STAY ON THE LINE) |
 
 No follow-ups are scheduled.
