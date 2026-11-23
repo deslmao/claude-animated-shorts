@@ -16,7 +16,7 @@ sc = bpy.context.scene
 sc.render.resolution_x, sc.render.resolution_y = int(1080 * SCALE), int(1920 * SCALE)
 sc.render.engine = "BLENDER_EEVEE"
 ee = sc.eevee
-ee.taa_render_samples = 48
+ee.taa_render_samples = 32
 ee.use_gtao = True; ee.gtao_distance = 1.5
 ee.use_bloom = True; ee.bloom_threshold = 1.0; ee.bloom_intensity = 0.06
 ee.use_soft_shadows = True; ee.shadow_cascade_size = "4096"
@@ -59,9 +59,9 @@ def surface(m, kind, color):
     L.new(half.outputs[0], mix.inputs["Factor"]); col = mix.outputs["Result"]
     if kind == "asphalt" or kind == "tiles":
         vor = n.new("ShaderNodeTexVoronoi"); vor.feature = "DISTANCE_TO_EDGE"; L.new(tc.outputs["Object"], vor.inputs["Vector"])
-        vor.inputs["Scale"].default_value = 0.22 if kind == "asphalt" else 2.4
+        vor.inputs["Scale"].default_value = 0.6 if kind == "asphalt" else 2.4
         ramp = n.new("ShaderNodeValToRGB"); ramp.color_ramp.elements[0].position = 0.0; ramp.color_ramp.elements[0].color = (0.25, 0.25, 0.28, 1)
-        ramp.color_ramp.elements[1].position = 0.004 if kind == "asphalt" else 0.012; ramp.color_ramp.elements[1].color = (1, 1, 1, 1)
+        ramp.color_ramp.elements[1].position = 0.0025 if kind == "asphalt" else 0.012; ramp.color_ramp.elements[1].color = (1, 1, 1, 1)
         L.new(vor.outputs["Distance"], ramp.inputs["Fac"])
         crack = n.new("ShaderNodeMix"); crack.data_type = "RGBA"; crack.blend_type = "MULTIPLY"; crack.inputs["Factor"].default_value = 1
         L.new(col, crack.inputs["A"]); L.new(ramp.outputs["Color"], crack.inputs["B"]); col = crack.outputs["Result"]
@@ -161,7 +161,21 @@ def hotel(x, y, w, d, floors, body, trim, sign, face=-1, tower=True):
     return h
 
 # ---------------------------------------------------------------- palm tree
-FROND = mat("frond", "#3e9e57", rough=0.7); FROND2 = mat("frond2", "#2f7f47", rough=0.7)
+def frond_mat(name, color):
+    """a palm frond: leaflets cut by the UVs (alpha), a midrib, colour variation, light passing through"""
+    m = mat(name, color, rough=0.6); nt = m.node_tree; n = nt.nodes; L = nt.links; b = n["Principled BSDF"]
+    uv = n.new("ShaderNodeUVMap"); sep = n.new("ShaderNodeSeparateXYZ"); L.new(uv.outputs[0], sep.inputs[0])
+    mx = n.new("ShaderNodeMath"); mx.operation = "MULTIPLY"; mx.inputs[1].default_value = 34; L.new(sep.outputs["X"], mx.inputs[0])
+    fr = n.new("ShaderNodeMath"); fr.operation = "FRACT"; L.new(mx.outputs[0], fr.inputs[0])
+    gt = n.new("ShaderNodeMath"); gt.operation = "GREATER_THAN"; gt.inputs[1].default_value = 0.28; L.new(fr.outputs[0], gt.inputs[0])
+    dy = n.new("ShaderNodeMath"); dy.operation = "SUBTRACT"; dy.inputs[1].default_value = 0.5; L.new(sep.outputs["Y"], dy.inputs[0])
+    ab = n.new("ShaderNodeMath"); ab.operation = "ABSOLUTE"; L.new(dy.outputs[0], ab.inputs[0])
+    rib = n.new("ShaderNodeMath"); rib.operation = "LESS_THAN"; rib.inputs[1].default_value = 0.06; L.new(ab.outputs[0], rib.inputs[0])
+    a = n.new("ShaderNodeMath"); a.operation = "MAXIMUM"; L.new(gt.outputs[0], a.inputs[0]); L.new(rib.outputs[0], a.inputs[1])
+    L.new(a.outputs[0], b.inputs["Alpha"])
+    if "Subsurface Weight" in b.inputs: b.inputs["Subsurface Weight"].default_value = 0.25
+    m.blend_method = "HASHED"; m.shadow_method = "HASHED"; return m
+FROND = frond_mat("frond", "#4aa35a"); FROND2 = frond_mat("frond2", "#337f45"); DEADF = frond_mat("frondDead", "#a3874f")
 TRUNK = mat("trunk", "#b08a62", rough=0.9, tex="bark"); NUT = mat("nut", "#6b4a2b", rough=0.8)
 def palm(x, y, h=8.0, lean=0.0, seed=0):
     rnd = random.Random(seed); segs = 9; px, py, pz = x, y, 0.0
@@ -172,21 +186,22 @@ def palm(x, y, h=8.0, lean=0.0, seed=0):
         box(px, py, pz + h / segs * 0.92, r * 2.25, r * 2.25, 0.06, TRUNK)        # the trunk rings
         px += dx * (0.6 + t); py += dy * (0.6 + t); pz += h / segs
     for k in range(3): bpy.ops.mesh.primitive_uv_sphere_add(radius=0.16, location=(px + 0.15 * math.cos(k * 2.1), py + 0.15 * math.sin(k * 2.1), pz - 0.15)); o = bpy.context.object; o.data.materials.append(NUT); link(o)
-    for k in range(9):
-        a = k / 9 * math.tau + rnd.uniform(-0.2, 0.2),
-        a = a[0]; L = rnd.uniform(2.6, 3.4)
+    NF = 14
+    for k in range(NF):
+        a = k / NF * math.tau + rnd.uniform(-0.2, 0.2); L = rnd.uniform(2.6, 3.6)
+        dead = k % 7 == 3
         bpy.ops.mesh.primitive_plane_add(size=1, location=(0, 0, 0))
         o = bpy.context.object; me = o.data
         # a long tapered leaf that droops: build from the plane by scaling and bending with a simple deform
-        o.scale = (L, 0.55, 1); bpy.ops.object.transform_apply(scale=True)
+        o.scale = (L, 0.95, 1); bpy.ops.object.transform_apply(scale=True)
         bpy.ops.object.mode_set(mode="EDIT"); bpy.ops.mesh.subdivide(number_cuts=8); bpy.ops.object.mode_set(mode="OBJECT")
         for v in me.vertices:
             u = min(1.0, max(0.0, (v.co.x + L / 2) / L))
             v.co.y *= (1 - u) ** 0.6 * 1.0 + 0.05
-            v.co.z = -0.9 * u * u * L * 0.35
+            v.co.z = (-1.7 if dead else -0.9) * u * u * L * 0.35
             v.co.x += L / 2
-        o.location = (px, py, pz); o.rotation_euler = (0, -0.25, a)
-        o.data.materials.append(FROND if k % 2 else FROND2)
+        o.location = (px, py, pz); o.rotation_euler = (rnd.uniform(-0.15, 0.15), -0.25 + (0.6 if dead else rnd.uniform(-0.25, 0.3)), a)
+        o.data.materials.append(DEADF if dead else (FROND if k % 2 else FROND2))
         md = o.modifiers.new("thick", "SOLIDIFY"); md.thickness = 0.03
         link(o)
 
@@ -214,6 +229,120 @@ def car(x, y, rot, body, top="#f7f3ea"):
     bpy.context.view_layer.objects.active = parts[0]; bpy.ops.object.join()
     o = bpy.context.object; o.location = (x, y, 0); o.rotation_euler = (0, 0, rot); return o
 
+# ---------------------------------------------------------------- set dressing (STUDY.md: their sets are 1.3-2.4x fuller)
+LEAF = mat("leafy", "#3f8a45", rough=0.8, tex="lawn"); LEAF2 = mat("leafy2", "#5aa250", rough=0.8, tex="lawn")
+FLOWERS = [mat(f"flower{c}", c, rough=0.6) for c in ("#ff5c8a", "#ffd24a", "#ffffff", "#c86bff")]
+def bush(x, y, r=0.7, z=0.0, seed=0, flowers=True):
+    rnd = random.Random(seed)
+    bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=3, radius=r, location=(x, y, z + r * 0.7)); o = bpy.context.object
+    o.scale = (1, rnd.uniform(0.8, 1.2), 0.85); tx = bpy.data.textures.new(f"bt{seed}", "CLOUDS"); tx.noise_scale = 0.35
+    md = o.modifiers.new("lumpy", "DISPLACE"); md.texture = tx; md.strength = r * 0.45
+    o.data.materials.append(LEAF if seed % 2 else LEAF2); bpy.ops.object.shade_smooth(); link(o)
+    if flowers:
+        for k in range(10):
+            t, ph = rnd.uniform(0, math.tau), rnd.uniform(0.2, 1.3)
+            bpy.ops.mesh.primitive_uv_sphere_add(segments=8, ring_count=6, radius=0.06, location=(x + math.cos(t) * math.sin(ph) * r * 1.05, y + math.sin(t) * math.sin(ph) * r * 1.05, z + r * 0.7 + math.cos(ph) * r * 0.9))
+            f = bpy.context.object; f.data.materials.append(FLOWERS[seed % 4]); link(f)
+
+def hedge(x0, x1, y, z=0.0, h=0.9, seed=0):
+    for k, xx in enumerate([x0 + i * 0.9 for i in range(int((x1 - x0) / 0.9) + 1)]): bush(xx, y, r=0.55, z=z, seed=seed + k, flowers=k % 3 == 0)
+
+def lamp(x, y, z=0.0):
+    P = mat("lamp_pole", "#2d5f6a", rough=0.5); G = mat("globe", "#fff1cf", emit="#ffe3a8", estr=1.2)
+    cyl(x, y, z, 0.08, 4.6, P, verts=10); box(x, y, z, 0.32, 0.32, 0.5, P)
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=0.24, location=(x, y, z + 4.85)); o = bpy.context.object; o.data.materials.append(G); link(o)
+
+def trashcan(x, y, z=0.0, c="#2fb5a7"):
+    cyl(x, y, z, 0.32, 0.95, mat(f"bin{c}", c, rough=0.5), verts=16); cyl(x, y, z + 0.95, 0.35, 0.08, mat("binlid", "#e7e2d8", rough=0.5), verts=16)
+
+def newsbox(x, y, z=0.0, c="#f25f7a", word="DAILY SOL"):
+    box(x, y, z, 0.55, 0.45, 1.05, mat(f"news{c}", c, rough=0.5), bevel=0.03); box(x, y - 0.23, z + 0.55, 0.42, 0.02, 0.3, GLASS)
+    text(word, x, y - 0.245, z + 0.92, 0.07, mat("signpaint", "#1d2340", rough=0.5), extrude=0.005)
+
+def phonebooth(x, y, z=0.0):
+    F = mat("booth", "#d7dde3", rough=0.4, metal=0.4)
+    box(x, y, z, 0.9, 0.9, 2.3, GLASS); box(x, y, z + 2.3, 1.0, 1.0, 0.22, F, bevel=0.03)
+    for sx in (-0.45, 0.45):
+        for sy in (-0.45, 0.45): box(x + sx, y + sy, z, 0.06, 0.06, 2.3, F)
+    text("FONO", x, y - 0.52, z + 2.41, 0.12, mat("neonB", "#ffffff", emit="#ff4fa3", estr=7.0), extrude=0.01)
+
+def trafficlight(x, y, z=0.0, rot=0.0):
+    P = mat("tlpole", "#3d4a52", rough=0.5)
+    cyl(x, y, z, 0.09, 5.4, P, verts=10); box(x + 1.4 * math.cos(rot), y + 1.4 * math.sin(rot), z + 5.2, 2.8, 0.12, 0.12, P, rot=rot)
+    hx, hy = x + 2.5 * math.cos(rot), y + 2.5 * math.sin(rot); box(hx, hy, z + 4.1, 0.38, 0.32, 1.1, mat("tlhead", "#2b2d36", rough=0.5))
+    for k, c in enumerate(["#ff4a4a", "#3a3020", "#2a3a2a"]):
+        bpy.ops.mesh.primitive_uv_sphere_add(radius=0.11, location=(hx, hy - 0.17, z + 4.95 - k * 0.32)); o = bpy.context.object
+        o.data.materials.append(mat(f"tl{k}", c, emit=c if k == 0 else None, estr=4.0 if k == 0 else 0)); link(o)
+
+def streetsign(x, y, z, word, c="#2f6a43"):
+    cyl(x, y, z, 0.04, 3.0, mat("signpole", "#9aa0a6", rough=0.4), verts=8)
+    box(x, y, z + 2.8, 1.5, 0.05, 0.34, mat(f"ss{c}", c, rough=0.5)); text(word, x, y - 0.03, z + 2.97, 0.17, WHITE, extrude=0.005)
+
+def cafe(x, y, z=0.0, n=3, c="#ff8aa0"):
+    for i in range(n):
+        tx = x + i * 2.2; cyl(tx, y, z, 0.04, 0.75, WHITE, verts=8); cyl(tx, y, z + 0.75, 0.42, 0.04, WHITE, verts=16)
+        for s in (-1, 1): box(tx + s * 0.62, y, z, 0.42, 0.42, 0.45, mat(f"chair{c}", c, rough=0.6), bevel=0.02); box(tx + s * 0.62 + s * 0.19, y, z + 0.45, 0.05, 0.42, 0.45, mat(f"chair{c}", c, rough=0.6))
+        cyl(tx, y, z, 0.03, 2.3, WHITE, verts=8)
+        bpy.ops.mesh.primitive_cone_add(vertices=12, radius1=1.2, radius2=0.04, depth=0.45, location=(tx, y, z + 2.4)); o = bpy.context.object; o.data.materials.append(mat(f"umb{c}", c, rough=0.6)); link(o)
+
+def balcony_rows(x, y, w, floors, face=-1, every=2):
+    R_ = mat("rail", "#f7f3ea", rough=0.5)
+    for f in range(1, floors, every):
+        z = f * 3.2 + 0.4
+        box(x, y + face * 0.6, z, w * 0.5, 1.1, 0.12, WHITE)
+        box(x, y + face * 1.12, z + 0.95, w * 0.5, 0.05, 0.05, R_)
+        for k in range(int(w * 0.5 / 0.28)): box(x - w * 0.25 + k * 0.28, y + face * 1.12, z, 0.03, 0.03, 0.95, R_)
+
+def ac_units(x, y, w, floors, face=-1, seed=0):
+    rnd = random.Random(seed); U = mat("acunit", "#d9dcd6", rough=0.6)
+    for f in range(1, floors):
+        for k in range(2):
+            if rnd.random() < 0.55: box(x + rnd.uniform(-w / 2.6, w / 2.6), y + face * 0.25, f * 3.2 + 0.2, 0.75, 0.5, 0.5, U, bevel=0.02)
+
+def rooftop(x, y, h, seed=0):
+    rnd = random.Random(seed); T = mat("tank", "#b9b2a6", rough=0.7)
+    cyl(x + rnd.uniform(-3, 3), y + rnd.uniform(1, 4), h + 0.9, 0.9, 1.6, T, verts=16)
+    cyl(x + rnd.uniform(-4, 4), y + rnd.uniform(1, 4), h + 0.9, 0.04, 3.5, mat("ant", "#6e7175", rough=0.4), verts=6)
+    box(x + rnd.uniform(-3, 3), y + rnd.uniform(2, 5), h + 0.9, 1.4, 1.0, 0.8, mat("roofbox", "#cfc7ba", rough=0.8))
+
+def crosswalk(x, y0, y1):
+    for k in range(int((y1 - y0) / 0.9)): box(x, y0 + 0.45 + k * 0.9, 0.003, 3.2, 0.5, 0.01, mat("zebra", "#f4efe2", rough=0.6))
+
+def beachchair(x, y, rot, c):
+    C = mat(f"bc{c}", c, rough=0.7); Fm = mat("bcframe", "#f7f3ea", rough=0.5)
+    bpy.ops.mesh.primitive_plane_add(size=1, location=(x, y, 0.35), rotation=(0.35, 0, rot)); o = bpy.context.object; o.scale = (0.6, 1.6, 1); o.data.materials.append(C)
+    md = o.modifiers.new("t", "SOLIDIFY"); md.thickness = 0.03; link(o)
+    for s in (-1, 1): box(x + s * 0.3 * math.cos(rot), y + s * 0.3 * math.sin(rot), 0, 0.04, 1.4, 0.35, Fm, rot=rot)
+
+def sailboat(x, y, s=1.0, c="#f7f3ea"):
+    box(x, y, -0.1, 1.4 * s, 4.5 * s, 0.6 * s, mat(f"hull{c}", c, rough=0.4), bevel=0.2 * s)
+    cyl(x, y, 0.5 * s, 0.05 * s, 6 * s, WHITE, verts=6)
+    bpy.ops.mesh.primitive_plane_add(size=1, location=(x, y + 0.9 * s, 3.4 * s), rotation=(math.pi / 2, 0, math.pi / 2)); o = bpy.context.object
+    o.scale = (2.0 * s, 5.0 * s, 1); o.data.materials.append(mat("sail", "#fff6ea", rough=0.6)); link(o)
+
+def gulls(cam_pos, look, n=6, seed=5):
+    from mathutils import Vector
+    rnd = random.Random(seed); fwd = Vector((look[0] - cam_pos[0], look[1] - cam_pos[1], 0)).normalized(); side = Vector((-fwd.y, fwd.x, 0))
+    G = mat("gull", "#f4f4f4", rough=0.6)
+    for k in range(n):
+        c = Vector(cam_pos) + fwd * rnd.uniform(25, 60) + side * rnd.uniform(-12, 12); c.z = rnd.uniform(9, 22)
+        for sgn in (-1, 1):
+            bpy.ops.mesh.primitive_plane_add(size=1, location=c + side * sgn * 0.32, rotation=(0, sgn * 0.35, math.atan2(fwd.y, fwd.x) + math.pi / 2))
+            o = bpy.context.object; o.scale = (0.7, 0.16, 1); o.data.materials.append(G); link(o)
+
+def pier(x0, y0, length, w=4.0):
+    W = mat("pierwood", "#a8835a", rough=0.85, tex="bark")
+    box(x0, y0 - length / 2, 1.6, w, length, 0.25, W)
+    for k in range(int(length / 4)):
+        for s in (-1, 1): cyl(x0 + s * (w / 2 - 0.2), y0 - k * 4, -1, 0.18, 2.7, W, verts=8)
+        box(x0 + w / 2 - 0.1, y0 - k * 4, 1.85, 0.1, 0.1, 1.0, W); box(x0 - w / 2 + 0.1, y0 - k * 4, 1.85, 0.1, 0.1, 1.0, W)
+
+def stones(x0, x1, y0, y1, n=40, seed=3, color="#e8dcc6"):
+    rnd = random.Random(seed); S = mat(f"shell{color}", color, rough=0.6)
+    for k in range(n):
+        bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=1, radius=rnd.uniform(0.04, 0.11), location=(rnd.uniform(x0, x1), rnd.uniform(y0, y1), 0.02)); o = bpy.context.object
+        o.scale = (1, rnd.uniform(0.6, 1.3), 0.5); o.data.materials.append(S); link(o)
+
 # ---------------------------------------------------------------- the cast: camera-facing cards (our own 2D characters)
 def card(png, x, y, height, cam_xy, z=0.0):
     img = bpy.data.images.load(os.path.join(HERE, "cast", png))
@@ -228,7 +357,7 @@ def card(png, x, y, height, cam_xy, z=0.0):
     out = nt.nodes.new("ShaderNodeOutputMaterial"); tx = nt.nodes.new("ShaderNodeTexImage"); tx.image = img
     em = nt.nodes.new("ShaderNodeEmission"); df = nt.nodes.new("ShaderNodeBsdfDiffuse"); add = nt.nodes.new("ShaderNodeAddShader")
     tr = nt.nodes.new("ShaderNodeBsdfTransparent"); mix = nt.nodes.new("ShaderNodeMixShader")
-    nt.links.new(tx.outputs["Color"], em.inputs["Color"]); em.inputs["Strength"].default_value = 0.72
+    nt.links.new(tx.outputs["Color"], em.inputs["Color"]); em.inputs["Strength"].default_value = 0.6
     nt.links.new(tx.outputs["Color"], df.inputs["Color"])
     nt.links.new(em.outputs[0], add.inputs[0]); nt.links.new(df.outputs[0], add.inputs[1])
     nt.links.new(tx.outputs["Alpha"], mix.inputs["Fac"]); nt.links.new(tr.outputs[0], mix.inputs[1]); nt.links.new(add.outputs[0], mix.inputs[2])
@@ -265,7 +394,7 @@ def sky_and_sun(light_dir, strength=5.5):
     D = Vector(light_dir).normalized()
     bpy.ops.object.light_add(type="SUN", location=(0, 0, 50))
     s = bpy.context.object; s.data.energy = strength; s.data.color = hexc("#ffb878")[:3]; s.data.angle = math.radians(1.5)
-    s.rotation_euler = D.to_track_quat("-Z", "Y").to_euler()
+    s.rotation_euler = D.to_track_quat("-Z", "Y").to_euler(); s.data.use_contact_shadow = True
     # a soft violet-blue sky fill from the opposite side, so shadows stay coloured (never brown)
     F = Vector((-D.x, -D.y, D.z * 3)).normalized()
     bpy.ops.object.light_add(type="SUN", location=(0, 0, 50)); f = bpy.context.object
@@ -358,11 +487,29 @@ def street():
     car(-6.5, -2.2, math.pi / 2, "#6fd6c9"); car(3.2, 2.3, -math.pi / 2, "#f59ab4"); car(16, -2.4, math.pi / 2, "#fbd36b")
     skyline(150, n=55)
     for xx in range(-44, 45, 5): grass(xx - 0.6, xx + 0.6, 8.95, 9.45, z=0.95, count=500, length=0.22)
+    # dressing: hedges with flowers under the hotels, café tables, bins, news boxes, a phone booth, a crossing,
+    # traffic lights, street signs, a row of parked cars, balconies, AC units, rooftop clutter, curbs
+    hedge(-44, 44, 9.75, z=0.15, seed=10)
+    cafe(-30, 8.0, z=0.15, n=3, c="#ff8aa0"); cafe(8, 8.0, z=0.15, n=2, c="#7fd6e9")
+    for xx in (-24, -6, 19, 33): trashcan(xx, 6.9, z=0.15, c=random.choice(["#2fb5a7", "#ff8aa0", "#f2a541"]))
+    newsbox(-16, 6.9, z=0.15); newsbox(-15.3, 6.9, z=0.15, c="#3fb3c9", word="SOL TIMES"); phonebooth(4.8, 7.4, z=0.15)
+    crosswalk(-10.5, -6, 6); crosswalk(28, -6, 6)
+    trafficlight(-12.6, 6.6, z=0.15, rot=-math.pi / 2); trafficlight(-8.4, -6.6, z=0.15, rot=math.pi / 2)
+    streetsign(-13.2, 6.5, 0.15, "MARINO DR"); streetsign(-7.6, -6.5, 0.15, "CALLE SOLANA", c="#2f4f8f")
+    for k, xx in enumerate([-36, -29, -22, 10, 22, 29, 36]): car(xx, 4.6, -math.pi / 2, ["#c9a7f0", "#7fd6e9", "#ffb36b", "#f59ab4", "#8fd9c6", "#fbd36b", "#f7f3ea"][k])
+    for k, xx in enumerate([-33, -18, 26, 34]): car(xx, -4.7, math.pi / 2, ["#ff8aa0", "#a9c4f0", "#f7d27a", "#c3a9ea"][k])
+    box(0, 6.05, 0.0, 160, 0.3, 0.16, mat("curb", "#d8d2c6", rough=0.7)); box(0, -6.05, 0.0, 160, 0.3, 0.16, mat("curb", "#d8d2c6", rough=0.7))
+    x = -46
+    for i, (w, fl) in enumerate([(14, 4), (16, 3), (13, 5), (17, 3), (14, 4), (15, 3)]):
+        balcony_rows(x + w / 2 + 1.5, 10.5, w, fl, every=1 if i % 2 else 2); ac_units(x + w / 2, 10.5, w, fl, seed=i); rooftop(x + w / 2, 10.5, fl * 3.2 + 2.1, seed=i)
+        x += w + 1.2
+    for xx in range(-40, 41, 10): bush(xx + 2.5, -7.8, r=0.6, z=0.15, seed=xx + 300)
     grass(-80, 80, -12.0, -9.3, z=0.06, count=9000, color="#8fa75a", length=0.18)
-    cam = camera((-2.5, -17.0, 2.0), (1.5, 8, 5.5), lens=24)
-    atmosphere(cam.location, (1.5, 8, 5.5))
-    card("rico_34.png", -1.6, -8.2, 1.85, (cam.location.x, cam.location.y), z=0.15)
-    card("lola_front.png", -0.4, -7.8, 1.62, (cam.location.x, cam.location.y), z=0.15)
+    # looking down the street (STUDY.md: their wides run deep, so every layer adds detail)
+    cam = camera((-17.0, -7.6, 1.9), (14.0, 4.5, 4.2), lens=24)
+    atmosphere(cam.location, (14.0, 4.5, 4.2))
+    card("gordon_34.png", -12.6, -7.0, 1.85, (cam.location.x, cam.location.y), z=0.15)
+    card("lucy_front.png", -12.0, -7.9, 1.62, (cam.location.x, cam.location.y), z=0.15)
 
 def beach():
     sky_and_sun((0.4, -0.82, -0.42))
@@ -394,15 +541,27 @@ def beach():
     for k in range(5): bpy.ops.mesh.primitive_uv_sphere_add(radius=0.5, location=(-3 + k * 2.2, -14.6, -0.3)); o = bpy.context.object; o.scale = (2.4, 0.5, 0.35); o.data.materials.append(mat("wet", "#d9b98a", rough=0.3)); link(o)
     # the beach-front hotels behind, across the dunes
     for i, xx in enumerate(range(-40, 41, 16)): hotel(xx, 26, 14, 10, 3 + i % 2, PASTELS[(i + 2) % 7], TRIMS[i % 6], SIGNS[(i + 2) % 6], face=-1, tower=i % 2 == 1)
+    # dressing: beach chairs, more towels, a volleyball net, seaweed and shells, a pier and sailboats out at sea,
+    # dune grass tufts and a fence, bushes, gulls
+    for k, (bx, by, r_, c) in enumerate([(3.6, -3.0, 0.3, "#ff8aa0"), (4.6, -3.2, 0.2, "#7fd6e9"), (-8.2, -5.0, -0.2, "#ffd36b"), (-9.2, -5.4, -0.3, "#c9a7f0"), (8.0, -6.5, 0.1, "#8fd9c6")]): beachchair(bx, by, r_, c)
+    for s_ in (-1, 1): cyl(11 + s_ * 3.5, -1.5, 0, 0.05, 2.4, WHITE, verts=8)
+    box(11, -1.5, 1.6, 7.0, 0.03, 0.8, mat("net", "#2b2d36", rough=0.9))
+    for k in range(14): box(-12 + k * 1.9, -14.3 + random.uniform(-0.4, 0.4), 0.01, random.uniform(0.6, 1.4), 0.12, 0.04, mat("seaweed", "#4f6a3a", rough=0.9), rot=random.uniform(-0.5, 0.5))
+    stones(-14, 14, -14, 0, n=90)
+    pier(-26, -16, 70); sailboat(18, -60, 1.3); sailboat(-8, -95, 1.6, c="#ffd0dc"); sailboat(40, -120, 2.0)
+    for k in range(16): box(-20 + k * 2.6, 9.0, 0, 0.12, 0.12, 1.1, mat("fence", "#b8956a", rough=0.9, tex="bark"))
+    box(0, 9.0, 0.85, 42, 0.05, 0.08, mat("fence", "#b8956a", rough=0.9, tex="bark"))
+    for (bx, by) in [(-12, 6), (-9, 3.5), (10.5, 5), (14, 2)]: bush(bx, by, r=0.8, seed=int(bx * 3), flowers=False)
     cam = camera((-1.5, 7.5, 2.0), (1.5, -30, 1.6), lens=24)
+    gulls(cam.location, (1.5, -30, 1.6), n=7)
     grass(-30, -8, 8, 14, count=4000, color="#8aa64e", length=0.5); grass(6, 30, 6, 12, count=4000, color="#8aa64e", length=0.5)
     atmosphere(cam.location, (1.5, -30, 1.6), density=0.0011)
-    card("lola_34.png", -1.7, -0.6, 1.62, (cam.location.x, cam.location.y))
-    card("rico_front.png", -0.4, -1.0, 1.85, (cam.location.x, cam.location.y))
+    card("lucy_34.png", -1.7, -0.6, 1.62, (cam.location.x, cam.location.y))
+    card("gordon_front.png", -0.4, -1.0, 1.85, (cam.location.x, cam.location.y))
 
 def motel():
     sky_and_sun((0.5, 0.82, -0.22))
-    ground(-60, 60, -40, 40, "#c9c3bd", name="lot", tex="asphalt")
+    ground(-60, 60, -40, 40, "#6a6872", name="lot", tex="asphalt")
     for k in range(-30, 31, 3): box(k, -10, 0.002, 0.12, 5, 0.01, mat("lane", "#f4e7c4", rough=0.6))
     # the motel: two storeys, an open walkway with a railing, doors in pastel, the office with a neon sign
     B = mat("motelbody", "#fbe3a8", rough=0.8, tex="stucco"); T = mat("moteltrim", "#2fb5a7", rough=0.55)
@@ -431,10 +590,24 @@ def motel():
     car(-10.5, -11, math.pi / 2 + 0.25, "#c9a7f0"); car(11, -12.5, math.pi / 2 - 0.2, "#7fd6e9")
     skyline(140, n=55)
     grass(-16, 16, 11.2, 13, count=3000, length=0.35); grass(-15, -6, -9, -4, count=2500, length=0.3)
+    # dressing: hedges along the motel, a vending machine and an ice box, the office block with its own neon,
+    # pool ladder and a diving board, wheel stops, lamp posts, bins, potted plants
+    hedge(-15, 15, 10.9, seed=40)
+    box(-15.6, 4.6, 0, 1.0, 0.8, 1.9, mat("vend", "#e5484d", rough=0.4), bevel=0.04); box(-15.6, 4.18, 0.5, 0.8, 0.02, 1.2, mat("vendglow", "#fff2d6", emit="#fff2d6", estr=1.6))
+    box(-14.2, 4.6, 0, 1.2, 0.8, 1.1, mat("icebox", "#e9eef2", rough=0.4), bevel=0.04); text("HIELO", -14.2, 4.18, 0.8, 0.22, mat("signpaint", "#2f6bbf", rough=0.5), extrude=0.005)
+    box(19, 3, 0, 6, 5, 3.6, mat("office", "#f4a9c0", rough=0.8, tex="stucco"), bevel=0.04); box(19, 0.45, 0.4, 3.4, 0.08, 2.0, GLASS)
+    text("OFICINA", 19, 0.4, 3.0, 0.5, mat("neonA", "#ffffff", emit="#3ff0e0", estr=7.0))
+    for k in range(3): cyl(-1.4, -6.55 + k * 0.0, 0.0, 0.03, 1.1, mat("chrome", "#d9dde2", rough=0.2, metal=0.9), verts=8)
+    box(9.6, -3, 0.12, 0.6, 2.6, 0.08, WHITE); box(9.6, -1.8, 0, 0.5, 0.3, 0.12, WHITE)
+    for xx in range(-14, 15, 3): box(xx, -15.0, 0.0, 1.4, 0.25, 0.14, mat("wheelstop", "#f2d27a", rough=0.6))
+    for xx in (-12, 0, 12): lamp(xx, -17.5)
+    for xx in (-6, 6): trashcan(xx, 4.2, c="#2fb5a7")
+    for (bx, by) in [(-1.5, -7.6), (10, -7.6), (14, -6)]: bush(bx, by, r=0.55, seed=int(bx * 5 + 7))
+    car(-3.5, -12.8, math.pi / 2 - 0.1, "#ffb36b"); car(3.5, -13.0, math.pi / 2 + 0.06, "#f7f3ea"); car(15, -12.5, math.pi / 2, "#8fd9c6")
     cam = camera((-5.5, -22.0, 3.4), (0.5, 2, 2.6), lens=24)
     atmosphere(cam.location, (0.5, 2, 2.6))
-    card("rico_side.png", -4.6, -14.2, 1.85, (cam.location.x, cam.location.y))
-    card("lola_side.png", -3.5, -13.6, 1.62, (cam.location.x, cam.location.y))
+    card("gordon_side.png", -4.6, -14.2, 1.85, (cam.location.x, cam.location.y))
+    card("lucy_side.png", -3.5, -13.6, 1.62, (cam.location.x, cam.location.y))
 
 {"street": street, "beach": beach, "motel": motel}[PLACE]()
 sc.render.filepath = OUT

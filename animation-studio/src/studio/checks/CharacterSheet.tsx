@@ -6,7 +6,7 @@ import { Pen } from "../characters/toon";
 import { figureFront, figureSide, Look, Pose, SidePose, EXPRESSIONS, ACT_NAMES, GESTURES, act } from "../characters/figure";
 import { MILO, JUNO, JUNO_OUT, GUS, crowd, Era, CAST } from "../characters/cast";
 import { ROSTER } from "../characters/roster";
-import { MIAMI_RICO, MIAMI_LOLA } from "../characters/miami";
+import { MIAMI_GORDON, MIAMI_LUCY } from "../characters/miami";
 
 export const SHEET_W = 2000, SHEET_H = 2800;
 type Cell = { look: Look; pose?: Pose; side?: SidePose; label: string; mirror?: boolean; silhouette?: boolean; scale?: number; crop?: "head" };
@@ -90,7 +90,7 @@ const pageOf = (page: string, g: CanvasRenderingContext2D) => {
     // the Miami cast: front, 3/4, side; six expressions; an eight-frame walk. "miami-cut" = the same, no background
     if (page === "miami-cut") g.clearRect(0, 0, SHEET_W, SHEET_H);
     let y = 20;
-    for (const [nm, L] of [["Name 1 (Rico)", MIAMI_RICO], ["Name 2 (Lola)", MIAMI_LOLA]] as [string, Look][]) {
+    for (const [nm, L] of [["Gordon", MIAMI_GORDON], ["Lucy", MIAMI_LUCY]] as [string, Look][]) {
       y = grid(g, [{ look: L, pose: { expr: "neutral" }, label: "front" }, { look: L, pose: { expr: "smile", facing: 1 }, label: "3/4" }, { look: L, side: { expr: "neutral" }, label: "side" }], 3, y, 620, nm);
       const faces: [string, Pose][] = [["neutral", { expr: "neutral" }], ["grin", { expr: "grin" }], ["shock", { expr: "shock" }], ["angry", { expr: "angry" }], ["suspicious", { expr: "suspicious" }], ["laugh", { expr: "laugh" }]];
       y = grid(g, faces.map(([l, pz]) => ({ look: L, pose: pz, label: l, crop: "head" as const })), 6, y, 300);

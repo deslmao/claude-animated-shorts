@@ -103,3 +103,6 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
 - **23 Nov:** Miami look v2 stills done (no ink on the world, textures, haze, clouds, skyline, grass). Engine opt-ins
   `alive`, `captionStyle: "short"` and `transition: "dissolve"` were added with defaults unchanged. `npm test`: 2 set-view
   framing fails (alderRow, already known; ntCarriage "bay"), neither touched by these changes.
+- **23 Nov (owner):** the cast are **Gordon** (the backwards snapback, shades, palm-print shirt) and **Lucy** (big curls,
+  a cap, the pink denim jacket). Claude noted that Lucy must stay visually distinct from GTA VI's "Lucia".
+- **23 Nov (owner):** third pass approved: dress the sets to Rick's clips' density and realism.
