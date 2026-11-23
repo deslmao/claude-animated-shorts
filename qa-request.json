@@ -1,11 +1,11 @@
 {
-  "run_id": "45114379015",
-  "artifact": "Short-breakfast-2-run59",
-  "frames": 2069,
+  "run_id": "45114920085",
+  "artifact": "Short-night-train-run60",
+  "frames": 1890,
   "width": 1080,
   "height": 1920,
   "audio": "required",
-  "seams": "103,206,310,413,517,620,724,827,931,1034,1137,1241,1344,1448,1551,1655,1758,1862,1965",
-  "keep": "productions/breakfast-2/final/Short-breakfast-2.mp4",
-  "note": "Don't Eat It, Part 2 v4 final render (run 59, 20 chunks). Full QA with all 19 chunk seams, then keep the MP4 in the repo (no GitHub Release)."
+  "seams": "94,189,283,378,472,567,661,756,850,945,1039,1134,1228,1323,1417,1512,1606,1701,1795",
+  "keep": "productions/night-train/final/Short-night-train.mp4",
+  "note": "The Last Train v3 final render (run 60, 20 chunks, the reflection hook). Full QA with all 19 chunk seams, then keep the MP4 in the repo (no GitHub Release)."
 }
