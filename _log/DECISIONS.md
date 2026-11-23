@@ -152,3 +152,17 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
   - no outro, and an ending that loops.
 
   Ep 1 is produced as approved. The findings apply from Ep 2, and the "no outro, loop ending" idea is worth testing.
+- **23 Nov (critic loop, round 1):** the independent critic scored characters 4, motion 3, light 4, world 4, camera 4,
+  captions 5, with 14 of 20 frames failing.
+  - **Round 2 fixes motion first:** a camera push on every character shot, and gesture changes and nods on the spoken
+    words.
+  - **The cheap hard fails in the same pass:**
+    - headroom on the close-ups;
+    - captions off faces;
+    - the phone UI inset and lower (clear of the banner);
+    - the counter overlap;
+    - the title's empty floor (now a synthwave grid);
+    - the game cast sharp (no lens blur in front of a plate), clear of the post and the map;
+    - the flat lit "interior" with a stronger TV glow.
+  - **The frame-0 banner** is now "6 HOURS TO REPLY / HERE'S WHY". The approved wording overflowed the banner box; the
+    meaning is the same.

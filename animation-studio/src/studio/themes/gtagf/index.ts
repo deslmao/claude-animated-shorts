@@ -85,7 +85,7 @@ const smiley = (g: CanvasRenderingContext2D, x: number, y: number, r: number) =>
 };
 const bubble = (g: CanvasRenderingContext2D, text: string, mine: boolean, y: number, smile = false, alpha = 1) => {
   g.save(); g.globalAlpha = alpha; g.font = FS(54);
-  const tw = g.measureText(text).width + (smile ? 74 : 0), w = tw + 80, h = 104, x = mine ? IW - 70 - w : 70;
+  const tw = g.measureText(text).width + (smile ? 74 : 0), w = tw + 80, h = 104, x = mine ? IW - 110 - w : 110;
   g.fillStyle = mine ? "#2f8cff" : "#e7e8ee"; g.beginPath(); g.roundRect(x, y, w, h, 50); g.fill();
   g.fillStyle = mine ? "#ffffff" : "#15161c"; g.textBaseline = "middle"; g.textAlign = "left"; g.fillText(text, x + 40, y + h / 2 + 2);
   if (smile) smiley(g, x + 40 + tw - 34, y + h / 2, 26);
@@ -98,29 +98,29 @@ const chat = (g: CanvasRenderingContext2D, o: { who: string; mine: string; smile
   g.fillStyle = "#ffffff"; g.beginPath(); g.roundRect(28, 28, IW - 56, IH - 56, 70); g.fill();
   g.save(); g.beginPath(); g.roundRect(28, 28, IW - 56, IH - 56, 70); g.clip();
   // the status bar: the time (big, so the jump reads) and the battery
-  g.fillStyle = "#15161c"; g.font = FS(58); g.textAlign = "left"; g.textBaseline = "middle"; g.fillText(o.clock, 90, 240);
-  g.strokeStyle = "#15161c"; g.lineWidth = 4; g.strokeRect(IW - 180, 223, 80, 34); g.fillRect(IW - 100, 233, 8, 14);
-  g.fillStyle = o.clock.startsWith("9") ? "#e5484d" : "#30c060"; g.fillRect(IW - 176, 227, o.clock.startsWith("9") ? 18 : 60, 26);
+  g.fillStyle = "#15161c"; g.font = FS(58); g.textAlign = "left"; g.textBaseline = "middle"; g.fillText(o.clock, 110, 330);
+  g.strokeStyle = "#15161c"; g.lineWidth = 4; g.strokeRect(IW - 200, 313, 80, 34); g.fillRect(IW - 120, 323, 8, 14);
+  g.fillStyle = o.clock.startsWith("9") ? "#e5484d" : "#30c060"; g.fillRect(IW - 196, 317, o.clock.startsWith("9") ? 18 : 60, 26);
   // the header: the contact's round photo and name
-  g.fillStyle = "#f3f4f7"; g.fillRect(0, 290, IW, 150); g.fillStyle = "#d9dbe3"; g.fillRect(0, 438, IW, 3);
-  g.fillStyle = o.who === "Gordon" ? "#2fb5a7" : "#f29ac0"; g.beginPath(); g.arc(IW / 2, 346, 34, 0, Math.PI * 2); g.fill();
-  g.fillStyle = "#ffffff"; g.font = FS(36); g.textAlign = "center"; g.fillText(o.who[0], IW / 2, 348);
-  g.fillStyle = "#15161c"; g.font = FS(34, "normal"); g.fillText(o.who, IW / 2, 412);
+  g.fillStyle = "#f3f4f7"; g.fillRect(0, 380, IW, 150); g.fillStyle = "#d9dbe3"; g.fillRect(0, 528, IW, 3);
+  g.fillStyle = o.who === "Gordon" ? "#2fb5a7" : "#f29ac0"; g.beginPath(); g.arc(IW / 2, 436, 34, 0, Math.PI * 2); g.fill();
+  g.fillStyle = "#ffffff"; g.font = FS(36); g.textAlign = "center"; g.fillText(o.who[0], IW / 2, 438);
+  g.fillStyle = "#15161c"; g.font = FS(34, "normal"); g.fillText(o.who, IW / 2, 502);
   // the thread
-  let y = 520;
+  let y = 600;
   if (!o.typing) {
     const [, b] = bubble(g, o.mine, true, y, o.smile); y = b + 14;
-    if (o.delivered) { g.fillStyle = "#8a8d99"; g.font = FS(30, "normal"); g.textAlign = "right"; g.fillText(`Delivered ${o.delivered}`, IW - 80, y + 16); y += 60; }
+    if (o.delivered) { g.fillStyle = "#8a8d99"; g.font = FS(30, "normal"); g.textAlign = "right"; g.fillText(`Delivered ${o.delivered}`, IW - 120, y + 16); y += 60; }
   }
   if (o.reply) { y += 40; bubble(g, "sorry. gta", false, y); }
   // the input box
-  g.fillStyle = "#f3f4f7"; g.fillRect(0, IH - 210, IW, 182); g.fillStyle = "#ffffff"; g.beginPath(); g.roundRect(60, IH - 180, IW - 200, 96, 48); g.fill();
+  g.fillStyle = "#f3f4f7"; g.fillRect(0, IH - 260, IW, 232); g.fillStyle = "#ffffff"; g.beginPath(); g.roundRect(100, IH - 230, IW - 260, 96, 48); g.fill();
   g.strokeStyle = "#d0d3dc"; g.lineWidth = 3; g.stroke();
   g.fillStyle = o.typing ? "#15161c" : "#a6a9b4"; g.font = FS(46, "normal"); g.textAlign = "left";
-  g.fillText(o.typing ? o.mine + "|" : "Message", 100, IH - 130);
-  if (o.typing && o.smile) smiley(g, 100 + g.measureText(o.mine).width + 34, IH - 132, 24);
-  g.fillStyle = "#2f8cff"; g.beginPath(); g.arc(IW - 95, IH - 132, 44, 0, Math.PI * 2); g.fill();
-  g.fillStyle = "#ffffff"; g.beginPath(); g.moveTo(IW - 112, IH - 150); g.lineTo(IW - 74, IH - 132); g.lineTo(IW - 112, IH - 114); g.closePath(); g.fill();
+  g.fillText(o.typing ? o.mine + "|" : "Message", 140, IH - 180);
+  if (o.typing && o.smile) smiley(g, 140 + g.measureText(o.mine).width + 34, IH - 182, 24);
+  g.fillStyle = "#2f8cff"; g.beginPath(); g.arc(IW - 125, IH - 182, 44, 0, Math.PI * 2); g.fill();
+  g.fillStyle = "#ffffff"; g.beginPath(); g.moveTo(IW - 142, IH - 200); g.lineTo(IW - 104, IH - 182); g.lineTo(IW - 142, IH - 164); g.closePath(); g.fill();
   g.restore();
   // a buzz ring round the phone (the reply arriving)
   if (o.ring) { g.strokeStyle = `rgba(47,140,255,${0.5 * o.ring})`; g.lineWidth = 16; g.beginPath(); g.roundRect(14, 14, IW - 28, IH - 28, 80); g.stroke(); }
@@ -139,6 +139,9 @@ const titleCard = (g: CanvasRenderingContext2D) => {
   const palmS = (x: number, s: number) => { g.strokeStyle = "#1b0f2e"; g.lineWidth = 16 * s; g.beginPath(); g.moveTo(x, IH * 0.62); g.quadraticCurveTo(x + 30 * s, IH * 0.62 - 220 * s, x + 10 * s, IH * 0.62 - 380 * s); g.stroke();
     g.fillStyle = "#1b0f2e"; for (let k = 0; k < 7; k++) { const a = -Math.PI / 2 + (k - 3) * 0.48; g.beginPath(); g.ellipse(x + 10 * s + Math.cos(a) * 80 * s, IH * 0.62 - 380 * s + Math.sin(a) * 40 * s + 30 * s, 100 * s, 16 * s, a, 0, Math.PI * 2); g.fill(); } };
   palmS(110, 1.1); palmS(IW - 130, 0.9);
+  const hz = IH * 0.62; g.strokeStyle = "rgba(255,79,163,0.85)"; g.lineWidth = 4;
+  for (let i = 1; i < 14; i++) { const y = hz + (IH - hz) * Math.pow(i / 13, 1.8); g.beginPath(); g.moveTo(0, y); g.lineTo(IW, y); g.stroke(); }
+  for (let i = -10; i <= 10; i++) { g.beginPath(); g.moveTo(IW / 2 + i * 30, hz); g.lineTo(IW / 2 + i * 190, IH); g.stroke(); }
   g.textAlign = "center"; g.textBaseline = "middle";
   g.lineJoin = "round"; g.strokeStyle = "#1b0f2e"; g.lineWidth = 22; g.fillStyle = "#ffffff";
   g.font = FR(170); g.strokeText("GTA 6", IW / 2, 300); g.fillStyle = "#3ff0e0"; g.fillText("GTA 6", IW / 2, 300);
@@ -174,11 +177,11 @@ const views = (g: CanvasRenderingContext2D, st: number) => {
   g.strokeStyle = "#3a1d4a"; g.lineWidth = 12; g.beginPath(); g.moveTo(600, 600); g.quadraticCurveTo(620, 420, 590, 330); g.stroke();
   g.fillStyle = "#3a1d4a"; for (let k = 0; k < 6; k++) { const a = -Math.PI / 2 + (k - 2.5) * 0.5; g.beginPath(); g.ellipse(590 + Math.cos(a) * 60, 345 + Math.sin(a) * 26, 76, 13, a, 0, Math.PI * 2); g.fill(); }
   g.fillStyle = "rgba(0,0,0,0.55)"; g.beginPath(); g.arc(IW / 2, 440, 70, 0, Math.PI * 2); g.fill(); g.fillStyle = "#ffffff"; g.beginPath(); g.moveTo(IW / 2 - 22, 404); g.lineTo(IW / 2 + 36, 440); g.lineTo(IW / 2 - 22, 476); g.closePath(); g.fill();
-  g.fillStyle = "#ffffff"; g.font = FS(46); g.textAlign = "left"; g.fillText("Trailer 1", 50, 740);
+  g.fillStyle = "#ffffff"; g.font = FS(46); g.textAlign = "left"; g.fillText("Trailer 1", 50, 715);
   // the counter, huge
   const n = VIEWS[Math.min(st, VIEWS.length - 1)];
-  g.textAlign = "center"; g.fillStyle = "#ffffff"; const txt = n.toLocaleString("en-US"); g.font = FR(110); const k = Math.min(1, 660 / g.measureText(txt).width); g.font = FR(Math.floor(110 * k)); g.fillText(txt, IW / 2, 790);
-  g.fillStyle = "#b8bbc6"; g.font = FS(54); g.fillText("views", IW / 2, 870);
+  g.textAlign = "center"; g.fillStyle = "#ffffff"; const txt = n.toLocaleString("en-US"); g.font = FR(110); const k = Math.min(1, 660 / g.measureText(txt).width); g.font = FR(Math.floor(110 * k)); g.fillText(txt, IW / 2, 850);
+  g.fillStyle = "#b8bbc6"; g.font = FS(54); g.fillText("views", IW / 2, 925);
   // the 24 HOURS badge and a clock hand going round
   g.fillStyle = "#e5484d"; g.beginPath(); g.roundRect(IW / 2 - 190, 1140, 380, 100, 50); g.fill(); g.fillStyle = "#ffffff"; g.font = FR(56); g.fillText("24 HOURS", IW / 2, 1192);
   const a = (st / 15) * Math.PI * 2 - Math.PI / 2; g.strokeStyle = "#ffffff"; g.lineWidth = 6; g.beginPath(); g.arc(IW / 2, 1330, 50, 0, Math.PI * 2); g.stroke();
@@ -258,7 +261,7 @@ const insertRig = (a: At, v = "textLucy"): PropRig => {
 /** a round pastel street map (bottom left) with a pink arrow, a cash counter (top right); nothing from any real game */
 const hudTex = () => stex("ggHud", IW, IH, (g) => {
   g.clearRect(0, 0, IW, IH);
-  const cx = 150, cy = IH - 190, r = 105;
+  const cx = 115, cy = IH - 125, r = 78;
   g.save(); g.beginPath(); g.arc(cx, cy, r, 0, Math.PI * 2); g.clip();
   g.fillStyle = "rgba(40,170,180,0.85)"; g.fillRect(cx - r, cy - r, r * 2, r * 2);
   g.fillStyle = "rgba(255,226,170,0.9)"; g.fillRect(cx - r, cy - 20, r * 2, 40); g.fillRect(cx + 10, cy - r, 34, r * 2); g.fillRect(cx - 80, cy + 40, 30, 80);
