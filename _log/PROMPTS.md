@@ -16242,3 +16242,26 @@ Oldest first. Times are UTC (the owner is in GMT+11). Extracted from the session
 
     I made it so you can reach any domain
 
+## 412. 2026-11-23 09:40
+
+    Using this transcript:
+    Take it and make it yours: your own characters, your own world, your own kind of humor. The skill is the starting point.
+    3:013 minutes, 1 secondThe originality is yours. A few ideas to get you started.
+    3:063 minutes, 6 secondsShorts about the game: "In GTA 6, you can...", with a twist at the end.
+    3:123 minutes, 12 secondsLike this one: robbing a liquor store counts as a date.
+    3:163 minutes, 16 secondsFun facts: one fact per Short, acted out by your characters.
+    3:213 minutes, 21 secondsGTA 6 versus real life: what happens in the game, and what would happen to you if you tried it. A channel for girlfriends.
+    3:303 minutes, 30 secondsA lot of guys have girlfriends who don't get why he's been playing for six hours straight.
+    3:353 minutes, 35 secondsMake a channel just for them: GTA 6, explained to your girlfriend. And make it funny.
+    3:413 minutes, 41 secondsThe life of an NPC: a whole series about the clerk who gets robbed every single day.
+    3:483 minutes, 48 secondsOr a couple that comes back: Ray and Nova, a new episode every day, so people return for them.
+    3:553 minutes, 55 secondsPick one, post every day, and make every Short a little better than the last. Now let's go to work.
+    Make the first Short from my script and voice-over, then loop on your own:
+    - render the film at half resolution, and only the 20 critic frames at full resolution;
+    - a separate, strict critic who hasn't seen your work compares those 20 frames with the closest
+      study frames and scores 1-10: characters, motion, light, world, camera, captions;
+    - it fails any frame with a face cut by the frame, a caption over a face, a prop that isn't held,
+      an empty background or a limb through a body;
+    - fix the weakest category first, then render again.
+    Keep every round in _review/rounds/ and a score table. Loop until every score is 8 or more.
+
