@@ -135,3 +135,11 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
   - **No game footage, logos, or game characters or places.**
   - The viewer script is waiting for the owner's approval before any voices are made.
   - The owner's tips transcript became `productions/research/gta6-episode-ideas.md` (facts only, in our own words).
+- **23 Nov (owner):** the series is about *why* GTA 6 is so hyped and why boyfriends play six hours a day instead of
+  texting back, not about game tips. Ep 1 was rewritten as v2, "Why He Hasn't Replied":
+  - the hook: "you text him 'hey'… six hours later: 'sorry. GTA.'";
+  - the reasons: a 13-year wait, the 90M-views trailer record, two delays, ~$1.84B by launch day (an estimate), a whole
+    sunny state to play in;
+  - the twist: Lucy tries it, and six hours later she replies "sorry. gta".
+
+  The tips list stays as material for later episodes. The script awaits approval.

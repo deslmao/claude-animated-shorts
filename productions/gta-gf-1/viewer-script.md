@@ -1,104 +1,110 @@
-# GTA 6, Explained to Your Girlfriend · Ep 1: The Lucky Shirt: viewer script
+# GTA 6, Explained to Your Girlfriend · Ep 1: Why He Hasn't Replied: viewer script (v2)
 
 **For the owner's approval. No voices are made until this is approved.**
+
+**The brief (owner, 23 Nov):** explain to girlfriends **why** GTA 6 is so hyped, and why their boyfriends spend six hours
+a day on it instead of answering their texts.
 
 What the viewer sees and hears, in order. Nothing else reaches them. About 55 s.
 
 **Cast:**
 - **NARRATOR:** carries the story.
-- **LUCY:** the girlfriend, dry and unimpressed.
-- **GORDON:** the boyfriend, six hours into GTA 6, very proud of himself.
+- **LUCY:** the girlfriend, dry and unimpressed, then slowly won over.
+- **GORDON:** the boyfriend, glued to the screen.
 
-**The two worlds:**
-- **"Real life"** is their flat at night, lit by the TV.
-- **"The game"** is our own sunny Miami-style city: the street, the motel and the beach from the v4 look. The game's
-  Gordon wears the same snapback and shades.
+**Two worlds:**
+- **"Real life":** Lucy's room and Gordon's flat, lit by the TV.
+- **"The game":** our own sunny Miami-style city: the v4 street, motel and beach.
 
 No game footage, logos, or the game's own characters or places.
 
-**Frame 0 banner:** **SIX HOURS OF GTA 6** / **THE COPS LOST HIM BECAUSE HE CHANGED HIS SHIRT**
+**Frame 0 banner:** **HE REPLIED 6 HOURS LATER** / **HERE'S WHY**
 
 ---
 
-**1.** _frame 0: the flat at night; Gordon on the sofa, controller up, the TV glow flickering; Lucy in the doorway_
-> **NARRATOR:** Imagine your boyfriend has been playing GTA 6 for six hours.
+**1.** _frame 0: Lucy on her bed, typing; her phone fills the frame: "hey 🙂" · Delivered_
+> **NARRATOR:** Imagine you text your boyfriend "hey".
 
-**2.** _close on Gordon, grinning at the screen_
-> **NARRATOR:** Then he tells you the cops can't find him… because he changed his shirt.
+**2.** _the phone: the clock jumps 3:02 PM → 9:14 PM; a reply pops in: "sorry. gta"_
+> **NARRATOR:** Then he replies six hours later: "sorry. GTA."
 
 **3.** _title card: GTA 6, EXPLAINED TO YOUR GIRLFRIEND · EP 1_
 > **NARRATOR:** GTA 6, explained to your girlfriend.
 
-**4.** _Lucy and Gordon on the sofa; the camera pushes into the TV, and through it into the sunny game street_
-> **NARRATOR:** This is Lucy. This is Gordon. And this is Gordon's game: a city where you do crimes, and the police
-> chase you.
+**4.** _Gordon's flat: Gordon on the sofa, the controller up, the TV glow on his face; Lucy in the doorway, arms folded_
+> **NARRATOR:** This is Gordon. This is Lucy. And Lucy wants to know what's so special about a video game.
 
-**5.** _the game street: the game's Gordon jumps a kerb in a pastel car, a police light flashing behind him_
-> **NARRATOR:** When you do a crime, the police get your description. Your car. Your face. Your clothes.
+**5.** _an insert: a calendar flipping fast, 2013 → 2026_
+> **NARRATOR:** First: the last GTA came out in 2013. He's been waiting thirteen years.
 
-**6.** _an insert: a police "WANTED" card with three icons: CAR · FACE · SHIRT (the palm-print shirt drawn on it)_
-> **NARRATOR:** They know exactly what you're wearing.
+**6.** _Lucy, close_
+> **LUCY:** That's longer than he's known me.
 
-**7.** _back on the sofa, Lucy, flat_
-> **LUCY:** So they know your shirt.
-> **GORDON:** Exactly. Watch this.
+**7.** _an insert: a phone screen of view counts climbing fast to 90,000,000, with a "24 HOURS" badge_
+> **NARRATOR:** When the first trailer came out, ninety million people watched it in one day. No video that wasn't a song
+> had ever been watched that fast.
 
-**8.** _the game: the car swings behind the motel; Gordon jumps out and opens the boot_
-> **NARRATOR:** He hides behind a motel and opens the boot.
+**8.** _an insert: a "COMING SOON" sign stamped DELAYED, then DELAYED again_
+> **NARRATOR:** Then they delayed the game. Twice.
 
-**9.** _close on the boot: a spare outfit, folded, with a tag that reads SAVED_
-> **NARRATOR:** Inside: a spare outfit. He saved it there, on purpose.
+**9.** _Gordon, close, a hand on his heart_
+> **GORDON:** We suffered.
 
-**10.** _a quick spin: palm-print shirt → plain blue tracksuit; the SHIRT icon on the WANTED card fades out_
-> **NARRATOR:** Change the whole outfit, get out of sight, and the police lose the shirt they were looking for.
+**10.** _an insert: a cash register spitting out a receipt that just keeps going: about $1,800,000,000_
+> **NARRATOR:** So when it finally came out, it made an estimated one point eight billion dollars by launch day. That's
+> more than double the last one's launch.
 
-**11.** _the beach road: a police car rolls past the "new" Gordon, who waves_
-> **NARRATOR:** A hat alone won't do it. It has to be the whole outfit.
+**11.** _the camera pushes into the TV, and through it into the game's sunny street; Gordon's game character drives a
+pastel car along the beach road_
+> **NARRATOR:** And inside, it's a whole sunny state you can go anywhere in.
 
-**12.** _the sofa: Lucy turns slowly to look at Gordon_
-> **LUCY:** Babe. Your character keeps a spare outfit in his car…
+**12.** _quick cuts in the game: fishing off the pier · shooting hoops by the motel · a sunset drive past the palms_
+> **NARRATOR:** He can go fishing. Play basketball. Or just drive at sunset.
 
-**13.** _close on Gordon's real shirt: the same palm-print shirt, a crumb on it_
-> **LUCY:** …and you've worn that shirt for three days.
+**13.** _the sofa: Lucy, slowly sitting down beside him_
+> **LUCY:** So you're not ignoring me…
+> **GORDON:** I'm on holiday. In Miami. From my sofa.
 
-**14.** _Gordon, frozen, the controller still up_
-> **GORDON:** …It's my lucky shirt.
+**14.** _Lucy takes the controller "just to try"; the TV glow on her face; her phone, forgotten on the cushion, starts
+buzzing_
+> **NARRATOR:** So she tries it. Just once.
 
-**15.** _Lucy, close, deadpan; the camera pushes in_
-> **LUCY:** The cops in your game would find you in four seconds.
+**15.** _the twist: Gordon, now holding his own phone; his text to Lucy: "hey?" · Delivered; the clock jumps
+3:02 PM → 9:14 PM_
+> **NARRATOR:** Six hours later…
 
-**16.** _the TV behind them: "WANTED" flashes up on the screen; the ending banner: WHAT SHOULD GORDON EXPLAIN NEXT?_
-> **NARRATOR:** Girlfriends: what should Gordon explain next? Tell us in the comments.
+**16.** _Lucy's reply pops in: "sorry. gta"; the ending banner: WHAT SHOULD WE EXPLAIN NEXT?_
+> **NARRATOR:** Girlfriends: what should we explain to you next? Tell us in the comments.
 
 ---
 
 ## Clarity block (every fact the viewer is told, and the words that tell it)
-- **Premise:** your boyfriend has played GTA 6 for six hours, and the cops lost him because he changed his shirt. "Imagine your boyfriend has been playing GTA 6 for six hours. Then he tells you the cops can't find him… because he changed his shirt."
-- **Who they are:** "This is Lucy. This is Gordon."
-- **What the game is:** "a city where you do crimes, and the police chase you."
-- **The description:** "the police get your description. Your car. Your face. Your clothes."
-- **The trick:** "a spare outfit. He saved it there, on purpose." and "Change the whole outfit, get out of sight, and the police lose the shirt they were looking for."
-- **The real-game detail:** "A hat alone won't do it. It has to be the whole outfit."
-- **The joke's setup:** the real Gordon wears the same shirt the whole video, and it's shown close in line 13.
+- **Premise:** your boyfriend takes six hours to reply because of GTA. "Imagine you text your boyfriend 'hey'. Then he replies six hours later: 'sorry. GTA.'"
+- **Who they are and the question:** "This is Gordon. This is Lucy. And Lucy wants to know what's so special about a video game."
+- **The wait:** "the last GTA came out in 2013. He's been waiting thirteen years."
+- **The hype:** "ninety million people watched it in one day. No video that wasn't a song had ever been watched that fast."
+- **The delays:** "Then they delayed the game. Twice."
+- **The size:** "an estimated one point eight billion dollars by launch day… more than double the last one's launch."
+- **Why six hours:** "a whole sunny state you can go anywhere in… fishing… basketball… drive at sunset."
+- **The twist:** it's set up by lines 1–2 (the same text, the same clock jump, the same reply) and repeated in 15–16 with the roles swapped.
 
 ## Fact check
-The outfit trick matches several GTA 6 guides:
-- a full outfit change clears the clothing part of your description, and a hat or glasses alone doesn't;
-- a spare outfit can be kept in your vehicle;
-- you also need to break line of sight.
-
-Sources: [Mobalytics](https://mobalytics.gg/gamebase/guides/grand-theft-auto-6-how-to-lose-cops), [KeenGamer](https://www.keengamer.com/articles/guides/gta-6-how-to-lose-the-cops-and-clear-your-wanted-level/), [GTABase](https://www.gtabase.com/articles/gta-6/gta-6-wanted-level-explained-police-system-guide).
-
-The script never claims the shirt alone loses the cops: line 10 says "get out of sight" too.
+- **GTA V's release:** September 2013. GTA VI came out on 19 Nov 2026, after two delays (from 2025 to May 2026, then
+  to November 2026).
+- **Trailer 1** (Dec 2023): 90.4 million views in 24 hours, a Guinness record. It beat MrBeast's record for a non-music
+  video, and only BTS's "Butter" had more. Sources: [Push Square](https://pushsquare.com/news/2023/12/gta-6-trailer-pulls-90-million-views-in-24-hours-sets-new-world-records), [PC Gamer](https://www.pcgamer.com/gta-6-trailer-smashes-a-youtube-viewership-recordbut-still-cant-compare-with-another-three-letter-acronym), [YouTube Trends](https://www.youtube.com/trends/articles/grand-theft-auto-vi-trailer-new-record).
+- **Sales by launch day:** an estimated $1.84 billion (Sensor Tower), more than double GTA V's launch record. It's an
+  estimate, not an official figure, so the script says "estimated". Sources: [Fox 5 NY](https://www.fox5ny.com/news/gta-vi-pulls-estimated-1-84-billion-release-day-more-than-double-gta-vs-launch-record), [80.lv](https://80.lv/articles/report-gta-6-generated-nearly-usd2b-in-sales-by-launch-day).
+- **Activities** (fishing, basketball): from the GTA 6 tips video the owner shared.
 
 ## Format check (CLAUDE.md)
-- **Frame 0:** motion (the TV flicker, then a push) plus the two-line banner.
-- **The hook:** the breakfast pattern, an everyday situation (six hours of gaming), then the twist (he changed his shirt).
-- **Pace:** 16 beats plus word cuts, which gives about 30 visual changes in about 55 s (about 1.8 s apart).
+- **Frame 0:** motion (typing, the phone) plus the two-line banner.
+- **The hook:** the breakfast pattern, an everyday situation (you text him "hey"), then the twist (six hours later: "sorry. GTA").
+- **Pace:** 16 beats plus word cuts and inserts, which gives about 30 visual changes in about 55 s (about 1.8 s apart).
 - **Setups:**
-  1. the flat at night;
-  2. the title card;
-  3. the game street;
-  4. the motel lot;
-  5. the beach road;
-  6. the inserts (the WANTED card, the boot).
+  1. Lucy's room;
+  2. Gordon's flat (TV glow);
+  3. the inserts (calendar, views, delay sign, receipt);
+  4. the game street and beach;
+  5. the motel and pier;
+  6. the title card.
