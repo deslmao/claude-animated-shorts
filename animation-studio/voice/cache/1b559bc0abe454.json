@@ -1,0 +1,55 @@
+{
+ "hash": "1b559bc0abe454",
+ "text": "None of them. Your mum's at work.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 2.136,
+ "dur": 2.168163,
+ "words": [
+  {
+   "w": "None",
+   "t0": 0,
+   "t1": 0.244
+  },
+  {
+   "w": "of",
+   "t0": 0.279,
+   "t1": 0.337
+  },
+  {
+   "w": "them.",
+   "t0": 0.383,
+   "t1": 0.662
+  },
+  {
+   "w": "Your",
+   "t0": 0.824,
+   "t1": 0.987
+  },
+  {
+   "w": "mum's",
+   "t0": 1.033,
+   "t1": 1.265
+  },
+  {
+   "w": "at",
+   "t0": 1.3,
+   "t1": 1.37
+  },
+  {
+   "w": "work.",
+   "t0": 1.416,
+   "t1": 2.136
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-23T04:48:29.851Z"
+}

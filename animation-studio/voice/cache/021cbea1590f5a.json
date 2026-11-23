@@ -1,0 +1,80 @@
+{
+ "hash": "021cbea1590f5a",
+ "text": "In Part 1, Mum was making your breakfast. Then she texted you.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 4.18,
+ "dur": 4.205714,
+ "words": [
+  {
+   "w": "In",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "Part",
+   "t0": 0.232,
+   "t1": 0.464
+  },
+  {
+   "w": "1,",
+   "t0": 0.522,
+   "t1": 0.894
+  },
+  {
+   "w": "Mum",
+   "t0": 1.057,
+   "t1": 1.289
+  },
+  {
+   "w": "was",
+   "t0": 1.335,
+   "t1": 1.44
+  },
+  {
+   "w": "making",
+   "t0": 1.498,
+   "t1": 1.753
+  },
+  {
+   "w": "your",
+   "t0": 1.8,
+   "t1": 1.916
+  },
+  {
+   "w": "breakfast.",
+   "t0": 1.95,
+   "t1": 2.647
+  },
+  {
+   "w": "Then",
+   "t0": 2.833,
+   "t1": 3.007
+  },
+  {
+   "w": "she",
+   "t0": 3.053,
+   "t1": 3.146
+  },
+  {
+   "w": "texted",
+   "t0": 3.216,
+   "t1": 3.599
+  },
+  {
+   "w": "you.",
+   "t0": 3.657,
+   "t1": 4.18
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-23T04:48:28.113Z"
+}

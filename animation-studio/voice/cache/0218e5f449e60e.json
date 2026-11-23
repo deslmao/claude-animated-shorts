@@ -1,0 +1,75 @@
+{
+ "hash": "0218e5f449e60e",
+ "text": "So you don't open the door. You ring Mum's work instead.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 3.576,
+ "dur": 3.604898,
+ "words": [
+  {
+   "w": "So",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "you",
+   "t0": 0.221,
+   "t1": 0.29
+  },
+  {
+   "w": "don't",
+   "t0": 0.325,
+   "t1": 0.499
+  },
+  {
+   "w": "open",
+   "t0": 0.557,
+   "t1": 0.755
+  },
+  {
+   "w": "the",
+   "t0": 0.801,
+   "t1": 0.871
+  },
+  {
+   "w": "door.",
+   "t0": 0.906,
+   "t1": 1.347
+  },
+  {
+   "w": "You",
+   "t0": 1.683,
+   "t1": 1.8
+  },
+  {
+   "w": "ring",
+   "t0": 1.869,
+   "t1": 2.032
+  },
+  {
+   "w": "Mum's",
+   "t0": 2.101,
+   "t1": 2.38
+  },
+  {
+   "w": "work",
+   "t0": 2.426,
+   "t1": 2.67
+  },
+  {
+   "w": "instead.",
+   "t0": 2.728,
+   "t1": 3.576
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-23T04:48:30.931Z"
+}

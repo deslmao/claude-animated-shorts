@@ -42,22 +42,23 @@ export const BREAKFAST_2: Storyboard = {
   cast: { mum: "mum", bug: "bug" },
   voice: "georgeHushed", voices: { mum: "bfMum" },
   captionColors: { mum: "#ffb070", bfMum: "#ffb070", bfMumDoor: "#8fc8ff", bfText: "#ffc8dc", bfThought: "#fff2a8" },
-  // the score (sound/samples/music/breakfast2_score3.json: ten sections to these timings): the breakfast tune slightly off
+  // the score (sound/samples/music/breakfast2_score4.json: eleven sections to these timings): the breakfast tune slightly off
   // under the recap, collapsing onto a detuned music box with the call, a hit on "you were right", near silence as the house
   // goes quiet (after a quiet ticking pulse under the comments' answers and a sting on "I never sent that"), a held-breath heartbeat under the whisper, a horror swell as it turns, a warped music box under the text,
   // a held chord that stops dead
-  music: { file: "breakfast2_score3", gain: 0, duck: -5, curve: [[0, -6], [11.0, -6], [23.6, -9], [36.9, -6], [40.4, -10], [48.2, -6], [61.7, -3], [65.7, -2], [66.1, -24]] },
+  music: { file: "breakfast2_score4", gain: 0, duck: -5, curve: [[0, -6], [16.3, -6], [26.4, -9], [39.7, -6], [43.1, -10], [50.9, -6], [64.4, -3], [68.5, -2], [68.9, -24]] },
   engine: 3, autoSfx: false,
   clarity: {
     premise: "You ring Mum's work and she answers from the hospital, so neither of the mums in your house is her, and now both of them want to know who you're talking to.",
     facts: [
-      { fact: "the recap: the impossible text", said: "Mum's making your breakfast. But she just texted you." },
+      { fact: "the recap: the impossible text", said: "In Part 1, Mum was making your breakfast. Then she texted you." },
       { fact: "the recap: the text", said: "Don't eat it. I'm still at work." },
-      { fact: "the recap: the second Mum", said: "And someone with her voice is knocking at the front door." },
-      { fact: "what you did", said: "You don't open the door. You ring Mum's work instead." },
+      { fact: "the recap: the second Mum", said: "And someone with her voice knocked at the front door." },
+      { fact: "the top comment", said: "None of them. Your mum's at work." },
+      { fact: "the top comment was right", said: "You were right." },
+      { fact: "what you did", said: "So you don't open the door. You ring Mum's work instead." },
       { fact: "the twist", said: "And Mum picks up." },
       { fact: "she's at work", said: "I'm still at work, love." },
-      { fact: "the top comment was right", said: "Most of you said: neither. You were right." },
       { fact: "what that means", said: "Then who's at the stove… and who's at the door?" },
       { fact: "the comments' question", said: "how did she text you, if her phone's on the counter?" },
       { fact: "she texted from work", said: "I texted you from my work computer." },
@@ -76,7 +77,7 @@ export const BREAKFAST_2: Storyboard = {
   shots: [
     // ---- FRAME 0: the recap, as the hook (Part 1's proven opening): the bright kitchen, Mum (the thing) flipping
     // pancakes, the banner; then her text on your phone
-    { say: N("Mum's making your breakfast. But she just texted you."), ...K, hold: 0.05,
+    { say: N("In Part 1, Mum was making your breakfast. Then she texted you."), ...K, hold: 0.05,
       title: { text: "YOU RANG MUM'S WORK", sub: "AND SHE PICKED UP", instant: true },
       ...glide(at([0.32, 1.02, 1.35], [-0.55, 1.08, -1.3], 46), at([0.26, 1.02, 1.12], [-0.55, 1.1, -1.3], 44), 2.6),
       actors: [{ who: "mum", at: MUM_STOVE, act: "happy", face: "smile_closed", keepFace: true, facing: "camera", gesture: "operate", beats: [{ t: 1.4, face: "smile" }] }],
@@ -85,12 +86,16 @@ export const BREAKFAST_2: Storyboard = {
       note: "frame 0 (the recap): the bright kitchen; the thing that looks like Mum flips pancakes at the stove, smiling" },
     insert("text1", "the recap: your phone: MUM: Don't eat it. I'm still at work.", {
       say: { text: "Don't eat it. I'm still at work.", who: "narrator", voice: "bfText" }, hold: 0.2, sfx: [{ t: 0, name: "msg_chime", gain: -6 }, { t: 0, name: "el_sizzle", gain: -12 }] }),
-    { say: N("And someone with her voice is knocking at the front door."), ...K, hold: 0.1,
+    { say: N("And someone with her voice knocked at the front door."), ...K, hold: 0.1,
       ...glide(at([0.95, 1.35, 0.7], [0.95, 1.28, -5.0], 30), at([0.95, 1.35, 0.2], [0.95, 1.28, -5.0], 28), 3.2),
       actors: [], props: [DOOR("shadow", KNOCKS(0.1)), DREAD([0.95, 1.28, -4.4], 30)], sfx: [{ t: 0.1, name: "el_knock_front" }],
       note: "the recap: down the hallway, three hard knocks; a woman's silhouette in the front door's frosted glass" },
+    // ---- THE TOP COMMENT (the owner: show it, "you were right", then you ring Mum)
+    insert("comment", "the top comment on Part 1: None if them. Your moms at work; the heart turns red on 'right'", {
+      say: [N("Your top comment said…"), { ...N("None of them. Your mum's at work."), gap: 0.15 }, { ...N("You were right."), gap: 0.2 }], hold: 0.1,
+      sfx: [{ t: 0.1, name: "pop", gain: -10 }, { word: "right", name: "el_hit_sub", gain: -8 }, { word: "right", name: "ding", gain: -14 }] }, [{ word: "right" }], false),
     // ---- PART 2 STARTS: you ring Mum's work
-    { say: N("You don't open the door. You ring Mum's work instead."), ...K, hold: 0.05,
+    { say: N("So you don't open the door. You ring Mum's work instead."), ...K, hold: 0.05,
       ...withCuts(glide(at([-0.75, 1.25, 0.6], [0.3, 1.12, 1.62], 44), at([-0.6, 1.24, 0.8], [0.3, 1.12, 1.62], 41), 2.5), ["ring", at([-0.3, 1.3, 0.85], [-0.68, 1.12, -1.15], 46)]),
       actors: [{ who: "bug", at: BUG_STAND, act: "scared", face: "scared", keepFace: true, facing: "camera", gesture: "hang", beats: [{ t: 0, look: "right" }] },
         { who: "mum", at: MUM_STOVE, act: "happy", face: "smile_closed", keepFace: true, facing: "camera", gesture: "operate" }],
@@ -106,7 +111,7 @@ export const BREAKFAST_2: Storyboard = {
       props: [DREAD([0.3, 1.12, 1.62], 44)], sfx: [LINE(0, -12), { t: 0.3, name: "el_breath_heavy", gain: -10 }], note: "you, close, the phone in your hand: Mum's voice, the hospital behind it" },
     insert("badge", "Mum's hospital lanyard on its hook: NURSE · NIGHT SHIFT 9 PM – 9 AM", {
       ...withCuts(lock(CARD_CAM), ["hospital", at([0, 1.28, 3.72], [0, 1.28, 3.2], 51)]),
-      say: [N("Most of you said: neither. You were right."), { ...N("Mum's at the hospital."), gap: 0.15 }], hold: 0.1, sfx: [LINE(0, -18), { word: "right", name: "el_hit_sub", gain: -10 }] }),
+      say: N("Mum's at the hospital."), hold: 0.2, sfx: [LINE(0, -18)] }),
     // ---- THE HOUSE GOES QUIET (the kitchen turns cold)
     { say: { ...thought("Then who's at the stove… and who's at the door?"), gap: 0.1 }, ...KC, hold: 0.2,
       cams: [{ t: 0, ...at([0.22, 1.08, 1.4], [-0.6, 1.2, -0.95], 38), blockOk: true }, { word: "door", ...at([0.95, 1.35, 0.2], [0.95, 1.28, -5.0], 28), blockOk: true }],

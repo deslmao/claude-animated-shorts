@@ -262,6 +262,22 @@ const callScreen = (g: CanvasRenderingContext2D, st: number) => {
   vig(g, 0.35);
 };
 const INSERTS: Record<string, Ins> = {
+  // Part 2: the top comment on Part 1, on a dark card (our own styling; no username or photo): the words and the likes
+  comment: { n: 2, draw: (g, st) => {
+    const bg = g.createLinearGradient(0, 0, 0, IH); bg.addColorStop(0, "#1b1622"); bg.addColorStop(1, "#0d0b12"); g.fillStyle = bg; g.fillRect(0, 0, IW, IH);
+    g.fillStyle = "#ffd36a"; g.font = F(46); g.textAlign = "center"; g.fillText("YOUR TOP COMMENT", IW / 2, 470);
+    g.fillStyle = "#24202c"; g.beginPath(); g.roundRect(60, 540, IW - 120, 360, 40); g.fill(); g.lineWidth = 6; g.strokeStyle = "#3a3446"; g.stroke();
+    g.fillStyle = "#6b6478"; g.beginPath(); g.arc(150, 640, 52, 0, Math.PI * 2); g.fill();                                    // a plain avatar
+    g.fillStyle = "#9a93a8"; g.beginPath(); g.arc(150, 626, 20, 0, Math.PI * 2); g.fill(); g.beginPath(); g.ellipse(150, 676, 34, 20, 0, Math.PI, 0); g.fill();
+    g.fillStyle = "#a59fb3"; g.font = F(32, "normal"); g.textAlign = "left"; g.fillText("1d", 230, 618);
+    g.fillStyle = "#ffffff"; g.font = F(44);
+    g.fillText("None if them.", 230, 700); g.fillText("Your moms at work", 230, 760);
+    const red = st >= 1; g.fillStyle = red ? "#ff3b4f" : "#8b8598";
+    heart(g, IW - 150, 612, 2.4, red ? "#ff3b4f" : "#8b8598");
+    g.font = F(34); g.textAlign = "left"; g.fillText(red ? "76" : "75", IW - 118, 626);
+    g.fillStyle = "rgba(255,211,106,0.12)"; g.beginPath(); g.roundRect(60, 540, IW - 120, 360, 40); g.fill();
+    vig(g, 0.5);
+  } },
   // Part 2: Mum's computer at the hospital: the kitchen camera's live feed (her double at your stove) and, beside it, the
   // messages window she's been texting you from
   camFeed: { n: 1, draw: (g) => {
@@ -475,7 +491,7 @@ export const BREAKFAST_THEME: Theme = {
       build: () => undefined, rig: (a) => plateRig(a), steps: [], stepCount: () => 1 },
     bfFrontDoor: { name: "Front door (frosted glass)", desc: "the front door's leaf for the bfKitchen hallway frame (`at` = [0.95, 0, -4.47]), facing +z: deep green, a frosted glass panel lit by daylight. Variant shadow: a dark head-and-shoulders silhouette behind the glass. Each step is a knock: the leaf jolts", category: "theme", themes: ["home", "horror"], tags: ["door", "front door", "knock", "silhouette"], radius: 0.45, height: 2.05,
       build: () => undefined, rig: (a, v) => frontDoorRig(a, v ?? "empty"), steps: ["a knock"], stepCount: () => 50, variants: { empty: () => undefined, shadow: () => undefined } },
-    bfInsert: { name: "Close insert (Don't Eat It)", desc: "an upright 9:16 insert card (0.54 x 0.96 m, facing +z), `at` = its centre: an `at` camera 1.0 m in front at fov 51 sees only the card. A state per step. Variants: pan (Mum holding the pan of pancakes out to you, her smile above), text1 (your phone: MUM: Don't eat it. I'm still at work.), rules (the phone in your lap under the table: the first text only; then rule one, two, three), badge (Mum's hospital lanyard on its hook: NURSE, NIGHT SHIFT 9 PM - 9 AM), oven (the oven clock 7:42 AM), mumPhone (Mum's pink phone on the counter: dark; lit, typing; sent: Open the door. Now. Delivered); Part 2: camFeed (Mum's computer at the hospital: KITCHEN CAM LIVE, her double at your stove, and the messages window she texted you from), call (your phone in your hands in the bright kitchen: Calling… MUM'S WORK, City Hospital; then connected, 00:03), mumHang (Mum's phone on the counter: dark; then a new text, Hang up, Bug.)", category: "theme", themes: ["home", "insert"], tags: ["insert", "card", "close-up", "phone", "text"], radius: 0.3, height: 0.96,
+    bfInsert: { name: "Close insert (Don't Eat It)", desc: "an upright 9:16 insert card (0.54 x 0.96 m, facing +z), `at` = its centre: an `at` camera 1.0 m in front at fov 51 sees only the card. A state per step. Variants: pan (Mum holding the pan of pancakes out to you, her smile above), text1 (your phone: MUM: Don't eat it. I'm still at work.), rules (the phone in your lap under the table: the first text only; then rule one, two, three), badge (Mum's hospital lanyard on its hook: NURSE, NIGHT SHIFT 9 PM - 9 AM), oven (the oven clock 7:42 AM), mumPhone (Mum's pink phone on the counter: dark; lit, typing; sent: Open the door. Now. Delivered); Part 2: comment (the top comment on Part 1: None if them. Your moms at work, the heart turning red, 76), camFeed (Mum's computer at the hospital: KITCHEN CAM LIVE, her double at your stove, and the messages window she texted you from), call (your phone in your hands in the bright kitchen: Calling… MUM'S WORK, City Hospital; then connected, 00:03), mumHang (Mum's phone on the counter: dark; then a new text, Hang up, Bug.)", category: "theme", themes: ["home", "insert"], tags: ["insert", "card", "close-up", "phone", "text"], radius: 0.3, height: 0.96,
       build: () => undefined, rig: (a, v) => insertRig(a, v ?? "text1"), steps: ["its next state"], stepCount: () => 2000,
       variants: Object.fromEntries(Object.keys(INSERTS).map((k) => [k, () => undefined])) },
     bfChoice: { name: "Vote panels (Don't Eat It)", desc: "the end-card vote over the last frame: a glowing panel turned to the camera, popping in on its first step (hidden before it). Variants: a (A · THE STOVE, warm orange), b (B · THE DOOR, cool blue), q (WHAT DO YOU DO?, white); Part 2: c (A · HANG UP), d (B · STAY ON THE LINE), w (WHO DO YOU TRUST?); 1.0 m wide. Drawn over everything", category: "theme", themes: ["home", "vote"], tags: ["choice", "vote", "end card", "panel"], radius: 0.05, height: 0.1,

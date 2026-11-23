@@ -1,0 +1,40 @@
+{
+ "hash": "0fc76083721364",
+ "text": "Your top comment said…",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 1.625,
+ "dur": 1.671837,
+ "words": [
+  {
+   "w": "Your",
+   "t0": 0,
+   "t1": 0.244
+  },
+  {
+   "w": "top",
+   "t0": 0.29,
+   "t1": 0.522
+  },
+  {
+   "w": "comment",
+   "t0": 0.592,
+   "t1": 0.929
+  },
+  {
+   "w": "said…",
+   "t0": 0.987,
+   "t1": 1.625
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-23T04:48:29.208Z"
+}

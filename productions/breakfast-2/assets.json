@@ -1,5 +1,5 @@
 {
- "reused": 38,
+ "reused": 39,
  "missing": [],
  "byKind": {
   "character": [
@@ -36,19 +36,20 @@
    "el_phone_buzz_table",
    "msg_chime",
    "el_knock_front",
+   "pop",
+   "el_hit_sub",
+   "ding",
    "el_phone_ringout",
    "el_breath_heavy",
    "phone_tap",
    "el_hospital_line",
-   "el_hit_sub",
    "el_sting_strings",
    "knock_heavy",
    "el_ear_ring",
    "el_heartbeat_fast",
    "el_neck_creak",
    "el_riser_short",
-   "el_vial_chime",
-   "pop"
+   "el_vial_chime"
   ],
   "act": [
    "happy",

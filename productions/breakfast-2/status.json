@@ -4,17 +4,17 @@
  "stages": {
   "validate": {
    "state": "done",
-   "at": "2026-11-23T02:24:17.700Z",
-   "inputs": "0e9d95c1758d4dn",
-   "detail": "valid; 19 warning(s):\n  shot 3 (bfKitchen): prop \"bfFrontDoor\" overlaps something already in the set at [0.9, -4.5]\n  shot 8 (bfKitchen): prop \"bfFrontDoor\" overlaps something already in the set at [0.9, -4.5]\n  shot 17 (bfKitchen): prop \"bfFrontDoor\" overlaps something already in the set at [0.9, -4.5]\n  shot 21 (bfKitchen): prop \"bfFrontDoor\" overlaps something already in the set at [0.9, -4.5]\n  shot 1 (bfKitchen): mum fills 42 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 4 (bfKitchen): bug fills 54 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 4 (bfKitchen): mum fills 50 % of the frame in the foreground @1.8s (is it hiding the action?)\n  shot 6 (bfKitchen): bug fills 54 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 8 (bfKitchen): mum fills 51 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 11 (bfKitchen): bug fills 54 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 13 (bfKitchen): mum fills 82 % of the frame in the foreground @1.8s (is it hiding the action?)\n  shot 14 (bfKitchen): bug fills 58 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 14 (bfKitchen): mum fills 87 % of the frame in the foreground @2.2s (is it hiding the action?)\n  shot 15 (bfKitchen): mum fills 82 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 16 (bfKitchen): mum fills 54 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 16 (bfKitchen): mum's hand (present) is out of frame @0.2s (side): widen the shot or change the gesture\n  shot 18 (bfKitchen): bug fills 54 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 20 (bfKitchen): bug fills 58 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 21 (bfKitchen): mum fills 38 % of the frame in the foreground @0.0s (is it hiding the action?)"
+   "at": "2026-11-23T04:50:36.159Z",
+   "inputs": "09231a2ab7d824n",
+   "detail": "valid; 19 warning(s):\n  shot 3 (bfKitchen): prop \"bfFrontDoor\" overlaps something already in the set at [0.9, -4.5]\n  shot 9 (bfKitchen): prop \"bfFrontDoor\" overlaps something already in the set at [0.9, -4.5]\n  shot 18 (bfKitchen): prop \"bfFrontDoor\" overlaps something already in the set at [0.9, -4.5]\n  shot 22 (bfKitchen): prop \"bfFrontDoor\" overlaps something already in the set at [0.9, -4.5]\n  shot 1 (bfKitchen): mum fills 42 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 5 (bfKitchen): bug fills 54 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 5 (bfKitchen): mum fills 50 % of the frame in the foreground @2.0s (is it hiding the action?)\n  shot 7 (bfKitchen): bug fills 54 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 9 (bfKitchen): mum fills 51 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 12 (bfKitchen): bug fills 54 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 14 (bfKitchen): mum fills 82 % of the frame in the foreground @1.8s (is it hiding the action?)\n  shot 15 (bfKitchen): bug fills 58 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 15 (bfKitchen): mum fills 87 % of the frame in the foreground @2.2s (is it hiding the action?)\n  shot 16 (bfKitchen): mum fills 82 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 17 (bfKitchen): mum fills 54 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 17 (bfKitchen): mum's hand (present) is out of frame @0.2s (side): widen the shot or change the gesture\n  shot 19 (bfKitchen): bug fills 54 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 21 (bfKitchen): bug fills 58 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 22 (bfKitchen): mum fills 38 % of the frame in the foreground @0.0s (is it hiding the action?)"
   },
   "assets": {
    "state": "done",
-   "at": "2026-11-23T02:24:17.704Z",
-   "inputs": "0e9d95c1758d4d",
-   "detail": "38 library assets reused, none missing",
+   "at": "2026-11-23T04:50:36.165Z",
+   "inputs": "09231a2ab7d824",
+   "detail": "39 library assets reused, none missing",
    "data": {
-    "reused": 38,
+    "reused": 39,
     "missing": [],
     "byKind": {
      "character": [
@@ -51,19 +51,20 @@
       "el_phone_buzz_table",
       "msg_chime",
       "el_knock_front",
+      "pop",
+      "el_hit_sub",
+      "ding",
       "el_phone_ringout",
       "el_breath_heavy",
       "phone_tap",
       "el_hospital_line",
-      "el_hit_sub",
       "el_sting_strings",
       "knock_heavy",
       "el_ear_ring",
       "el_heartbeat_fast",
       "el_neck_creak",
       "el_riser_short",
-      "el_vial_chime",
-      "pop"
+      "el_vial_chime"
      ],
      "act": [
       "happy",
@@ -76,33 +77,33 @@
   },
   "approval": {
    "state": "done",
-   "at": "2026-11-23T02:24:17.707Z",
-   "inputs": "17224cdb2fcee2",
+   "at": "2026-11-23T04:50:36.167Z",
+   "inputs": "1564183a2e61c1",
    "detail": "all narration already generated (no cost)"
   },
   "narration": {
    "state": "done",
-   "at": "2026-11-23T02:24:17.708Z",
-   "inputs": "17224cdb2fcee2",
+   "at": "2026-11-23T04:50:36.168Z",
+   "inputs": "1564183a2e61c1",
    "detail": "all lines already generated (cached)"
   },
   "sound": {
    "state": "done",
-   "at": "2026-11-23T02:24:35.441Z",
-   "inputs": "06e219c2ef0b0b",
-   "detail": "soundtrack built: -14.1 LUFS"
+   "at": "2026-11-23T04:50:51.626Z",
+   "inputs": "09dec01c0a1c97",
+   "detail": "soundtrack built: -14.2 LUFS"
   },
   "checks": {
    "state": "done",
-   "at": "2026-11-23T02:24:42.023Z",
-   "inputs": "06e219c2ef0b0b",
+   "at": "2026-11-23T04:50:57.640Z",
+   "inputs": "09dec01c0a1c97",
    "detail": "preflight PASS; library intact"
   }
  },
  "approval": {
-  "scriptHash": "17224cdb2fcee2",
-  "chars": 110,
-  "at": "2026-11-23T02:20:28.909Z",
+  "scriptHash": "1564183a2e61c1",
+  "chars": 241,
+  "at": "2026-11-23T04:48:17.460Z",
   "by": "the owner, in the conversation"
  }
 }
