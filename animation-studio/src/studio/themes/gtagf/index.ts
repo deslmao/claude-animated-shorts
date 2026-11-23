@@ -256,6 +256,17 @@ const insertRig = (a: At, v = "textLucy"): PropRig => {
   } };
 };
 
+/** an insert as a real object in the room: the same card in a dark wooden frame with a mount, hung on a wall (facing
+ *  +z), lit by the room (it takes the set's light, unlike the full-screen cards) */
+const wallRig = (a: At, v = "calendar"): PropRig => {
+  const root = rigRoot(a), ins = INSERTS[v] ?? INSERTS.calendar, texAt = (st: number) => stex(`ggIns_${v}_${st}`, IW, IH, (g) => ins.draw(g, st));
+  const frameM = new THREE.MeshLambertMaterial({ color: "#3a2518" }), mount = new THREE.MeshLambertMaterial({ color: "#f1ebdf" });
+  const back = new THREE.Mesh(new THREE.BoxGeometry(0.68, 1.1, 0.04), frameM); back.position.z = -0.02; root.add(back);
+  const mt = new THREE.Mesh(new THREE.PlaneGeometry(0.62, 1.04), mount); mt.position.z = 0.001; root.add(mt);
+  const mat = new THREE.MeshLambertMaterial({ map: texAt(0) }), card = new THREE.Mesh(new THREE.PlaneGeometry(0.54, 0.96), mat); card.position.z = 0.003; root.add(card);
+  return { root, update: ({ step = 0 }) => { const k = Math.max(0, Math.ceil(step - 1e-3)); mat.map = texAt(ins.loop ? k % ins.n : Math.min(ins.n - 1, k)); } };
+};
+
 // ---------------------------------------------------------------- our own game HUD
 /** a round pastel street map (bottom left) with a pink arrow, a cash counter (top right); nothing from any real game */
 const hudTex = () => stex("ggHud", IW, IH, (g) => {
@@ -377,6 +388,9 @@ export const GTAGF_THEME: Theme = {
     ggInsert: { name: "Close insert (GTA GF)", desc: "an upright 9:16 card (0.54 x 0.96 m, facing +z; an `at` camera 1.0 m in front at fov 51 sees only it), a state per step. Variants: textLucy (Lucy's phone: 'hey :)' typed, sent at 3:02 PM, the clock racing to 9:14 PM, the reply 'sorry. gta'; 7 states), textGordon (the same from Gordon's phone, 'hey?'), title (GTA 6 EXPLAINED TO YOUR GIRLFRIEND · EP 1), calendar (2013 → 2026, 14 states), views (a counter racing to 90,000,000 in 24 hours, 16 states), delayed (COMING SOON, then DELAYED, then DELAYED again), receipt (printing longer; the total $1,840,000,000 est. on state 9), tv (the TV screen: the game street with our HUD)", category: "theme", themes: ["insert"], tags: ["insert", "phone", "text", "title", "calendar", "views", "receipt"], radius: 0.3, height: 0.96,
       build: () => undefined, rig: (a, v) => insertRig(a, v ?? "textLucy"), steps: ["its next state"], stepCount: () => 40,
       variants: Object.fromEntries([...Object.keys(INSERTS), "tv"].map((k) => [k, () => undefined])) },
+    ggWall: { name: "Framed insert on a wall (GTA GF)", desc: "an insert card (the ggInsert variants: calendar, views, delayed, receipt, title) as a real framed picture hung on a wall, facing +z, lit by the room: 0.68 x 1.1 m with its frame; `at` = its centre (on the apartment's back wall: z -2.56). A state per step", category: "theme", themes: ["insert", "home"], tags: ["frame", "poster", "wall", "insert"], radius: 0.35, height: 1.1,
+      build: () => undefined, rig: (a, v) => wallRig(a, v ?? "calendar"), steps: ["its next state"], stepCount: () => 40,
+      variants: Object.fromEntries(Object.keys(INSERTS).map((k) => [k, () => undefined])) },
     ggTV: { name: "TV on a stand", desc: "a flat TV (1.24 m) on a low wooden stand, its screen facing -z (the game's sunset on it); `at` = the stand's foot centre; on the apartment, face the sofa from [-2.6, 0, 1.4]", category: "theme", themes: ["home"], tags: ["tv", "television", "screen"], radius: 0.8, height: 1.3,
       build: () => undefined, rig: (a) => tvRig(a), steps: [], stepCount: () => 1 },
     ggTvGlow: { name: "TV glow", desc: "the TV's flickering cool blue light (a point light at `at`, ~1 m in front of the faces it lights; `scale` = strength; give it a step every ~0.3 s, which drives the flicker)", category: "theme", themes: ["home", "night"], tags: ["light", "tv", "glow"], radius: 1.2, height: 0.6,

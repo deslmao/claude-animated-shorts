@@ -1,5 +1,5 @@
 {
- "reused": 47,
+ "reused": 48,
  "missing": [],
  "byKind": {
   "character": [
@@ -29,6 +29,7 @@
    "ggGrade",
    "ssNight",
    "ggTvGlow",
+   "ggWall",
    "ggPlate",
    "ggHud",
    "ggShadow"

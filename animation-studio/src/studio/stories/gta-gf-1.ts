@@ -40,6 +40,15 @@ const cardIn = (base: { set: string; light: "interior" | "night" | "day" | "gold
 };
 const ROOM_CARD: V = [0, 1.4, 4.2], FLAT_CARD: V = [-2.6, 1.4, 4.2], GAME_CARD: V = [60, 1.4, 0];
 const roomInsert = cardIn(ROOM, ROOM_CARD), flatInsert = cardIn(FLAT, FLAT_CARD);
+/** an insert as a framed picture on the flat's back wall, lit by the room and the TV (STUDY.md: the reference shows its
+ *  inserts as objects in the set); the camera pushes in on it, a little off-axis so the frame has depth */
+const WALL: V = [-0.55, 1.5, -2.56];
+const wallInsert = (variant: string, note: string, extra: Partial<ShotSpec>, steps: When[]): ShotSpec => {
+  const c0 = at([-0.4, 1.58, -0.95], WALL, 51, 6, 0), c1 = at([-0.5, 1.56, -1.2], WALL, 51, 6, 0), x: Partial<ShotSpec> = { ...extra };
+  delete x.cams;
+  return { ...FLAT, camera: c0, cams: [{ t: 0, ...c0, blockOk: true }, { t: 0.1, ...c1, glide: 6, blockOk: true }], actors: [],
+    props: [{ id: "ggWall", at: WALL, variant, steps }, GRADE("tv", WALL)], note, ...x };
+};
 const cardCam = (card: V, d = 1.0, dx = 0, dy = 0, roll = 0) => at([card[0] + dx, card[1] + dy, card[2] + d], [card[0] + dx * 0.4, card[1] + dy * 0.4, card[2]], 51, 0, 0.04, roll);
 
 // ---- the game: each Blender plate hangs 30 m down -z from a level camera at its own x (PLATE_CAM heights)
@@ -84,7 +93,7 @@ export const GTA_GF_1: Storyboard = {
     { say: N("Imagine you text your boyfriend \"hey\"."), ...ROOM, hold: 0.05,
       title: { text: "6 HOURS TO REPLY", sub: "HERE'S WHY", instant: true },
       ...cuts(at([0.3, 1.25, 2.9], [0.1, 1.05, 0.55], 46, 8, 0.1), glideTo(at([0.25, 1.2, 2.3], [0.1, 1.05, 0.55], 46, 8, 0.1), 1.4), { word: "hey", c: cardCam(ROOM_CARD, 1.08) }),
-      actors: [{ who: "ggLucy", at: LUCY_BED, act: "happy", face: "smile", keepFace: true, facing: "camera", gesture: "read", hold: "phone", nod: [0.2, 0.75], beats: [{ t: 0.35, face: "grin" }, { word: "boyfriend", face: "excited" }] }],
+      actors: [{ who: "ggLucy", at: LUCY_BED, act: "happy", face: "smile", keepFace: true, facing: "camera", gesture: "hold", hold: "phone", nod: [0.2, 0.75], beats: [{ t: 0.35, face: "grin" }, { word: "boyfriend", face: "excited" }] }],
       props: [{ id: "ggInsert", at: ROOM_CARD, variant: "textLucy", steps: [{ word: "hey" }] }, GRADE("room", [0.1, 1.05, 0.55])],
       sfx: [{ t: 0, name: "el_type_tap", gain: -4 }, { word: "hey", name: "el_msg_send" }],
       note: "frame 0: Lucy, smiling, typing on her bed in the sun; the banner; on 'hey', her phone: 'hey :)' sent" },
@@ -105,7 +114,7 @@ export const GTA_GF_1: Storyboard = {
       props: [NIGHT_WIN, GLOW, GRADE("tv", [-2.2, 1.1, -1.5])], sfx: [{ t: 0, name: "el_pad_mash", gain: -6 }, { word: "special", name: "el_pad_mash", gain: -8 }],
       note: "Gordon on the sofa, controller up, lit blue by the TV; Lucy beside the sofa, arms folded" },
     // ---- reason 1: the wait
-    flatInsert("calendar", "a desk calendar: 2013 (the last one comes out), then the years flip on to 2026", {
+    wallInsert("calendar", "a desk calendar: 2013 (the last one comes out), then the years flip on to 2026", {
       say: N("First: the last GTA came out in 2013. He's been waiting thirteen years."), hold: 0.1,
       cams: [{ t: 0, ...cardCam(FLAT_CARD, 1.08), blockOk: true }, { t: 0.1, ...cardCam(FLAT_CARD, 1.0, 0, 0.02), glide: 5, blockOk: true }],
       sfx: [{ word: "2013", name: "el_hit_sub", gain: -10 }, ...[0, 1, 2, 3, 4, 5].map((k) => ({ t: 3.9 + k * 0.14, name: "el_clock_flip" as const, gain: -6 - k }))] },
@@ -116,14 +125,14 @@ export const GTA_GF_1: Storyboard = {
         { who: "ggGordon", at: G_SEAT, mode: "sit", act: "excited", face: "excited", keepFace: true, facing: "camera", gesture: "hold", hold: "gamepad" }],
       props: [{ ...GLOW, at: [-1.75, 1.1, -0.5] }, GRADE("tv", L_STAND_FACE)], note: "Lucy, close, deadpan" },
     // ---- reason 2: the trailer
-    flatInsert("views", "the first trailer's view counter racing to 90,000,000 in 24 hours; NEW RECORD", {
+    wallInsert("views", "the first trailer's view counter racing to 90,000,000 in 24 hours; NEW RECORD", {
       say: N("When the first trailer came out, ninety million people watched it in one day. No video that wasn't a song had ever been watched that fast."), hold: 0.1,
       cams: [{ t: 0, ...cardCam(FLAT_CARD, 1.08), blockOk: true }, { word: "ninety", ...cardCam(FLAT_CARD, 1.0, 0, -0.02), blockOk: true },
         { word: "No", ...cardCam(FLAT_CARD, 1.04, 0, 0.02), blockOk: true }],
       sfx: [{ word: "trailer", name: "el_counter_tick", gain: -8 }, { word: "ninety", name: "el_counter_tick", gain: -6 }, { word: "fast", name: "el_hit_boom", gain: -10 }] },
       [{ word: "trailer" }, { word: "came" }, { word: "out" }, { word: "ninety" }, { word: "million" }, { word: "people" }, { word: "watched" }, { word: "it" }, { word: "in" }, { word: "one" }, { word: "day" }, { word: "No" }, { word: "song" }, { word: "been" }, { word: "fast" }]),
     // ---- reason 3: the delays
-    flatInsert("delayed", "COMING SOON, stamped DELAYED, then DELAYED again", {
+    wallInsert("delayed", "COMING SOON, stamped DELAYED, then DELAYED again", {
       say: N("Then they delayed the game. Twice."), hold: 0.1,
       cams: [{ t: 0, ...cardCam(FLAT_CARD, 1.08), blockOk: true }, { t: 0.1, ...cardCam(FLAT_CARD, 1.0, 0, -0.02), glide: 1.6, blockOk: true }],
       kicks: [{ word: "delayed" }, { word: "Twice" }], sfx: [{ word: "delayed", name: "el_stamp_thud" }, { word: "Twice", name: "el_stamp_thud" }] },
@@ -133,7 +142,7 @@ export const GTA_GF_1: Storyboard = {
       actors: [{ who: "ggGordon", at: G_SEAT, mode: "sit", act: "sad", face: "sad", keepFace: true, facing: "camera", gesture: "belly", beats: [{ t: 0.35, gesture: "facepalm" }], shake: [0.5] }],
       props: [NIGHT_WIN, GLOW, GRADE("tv", G_FACE)], sfx: [{ t: 0.1, name: "el_crowd_aww", gain: -10 }], note: "Gordon, close, a hand on his chest, wounded" },
     // ---- reason 4: the money
-    flatInsert("receipt", "a till receipt printing on and on; the total: $1,840,000,000 (est.)", {
+    wallInsert("receipt", "a till receipt printing on and on; the total: $1,840,000,000 (est.)", {
       say: N("So when it finally came out, it made an estimated one point eight billion dollars by launch day. That's more than double the last one's launch."), hold: 0.1,
       cams: [{ t: 0, ...cardCam(FLAT_CARD, 1.08), blockOk: true }, { word: "billion", ...cardCam(FLAT_CARD, 1.0), blockOk: true }],
       sfx: [{ word: "finally", name: "el_receipt_print", gain: -6 }, { word: "billion", name: "el_cash_register" }] },
@@ -147,12 +156,12 @@ export const GTA_GF_1: Storyboard = {
       note: "the camera pushes into the TV (the game street on it), and through it: Gordon's game self strolls along the sunny pavement, our HUD on screen" },
     { say: N("He can go fishing."), ...GAME, hold: 0.05,
       ...cuts(plateCam("pier", 0, 0, 0.14), glideTo(plateCam("pier", 0.6, 0, 0.1), 0.9)),
-      actors: [{ who: "ggGordon", at: [PX.pier - 0.35, 0, -5.2], act: "happy", face: "smile", keepFace: true, facing: "camera", gesture: "offer", hold: "fishingRod", nod: [0.2] }],
+      actors: [{ who: "ggGordon", at: [PX.pier - 0.35, 0, -5.2], act: "happy", face: "smile", keepFace: true, facing: "camera", gesture: "offer", hold: "fishingRod", nod: [0.2], beats: [{ t: 0.25, gesture: "pointUp" }, { t: 0.55, gesture: "offer" }] }],
       props: [PLATE("pier"), HUD("pier"), GRADE("day", [PX.pier, 1.6, -6]), SHADOW(PX.pier - 0.35, -5.2)], sfx: [{ t: 0, name: "el_reel_cast", gain: -4 }],
       note: "the game: Gordon fishing off the pier" },
     { say: N("Play basketball."), ...GAME, hold: 0.05,
       ...cuts(plateCam("motel", 0, 0, 0.14), glideTo(plateCam("motel", 0.6, 0, 0.1), 0.8)),
-      actors: [{ who: "ggGordon", at: [PX.motel + 0.15, 0, -4.6], act: "excited", face: "excited", keepFace: true, facing: "camera", gesture: "raiseHand", hold: "basketball", nod: [0.15, 0.5] }],
+      actors: [{ who: "ggGordon", at: [PX.motel + 0.15, 0, -4.6], act: "excited", face: "excited", keepFace: true, facing: "camera", gesture: "hold", hold: "basketball", nod: [0.15, 0.5], beats: [{ t: 0.2, gesture: "raiseHand" }, { t: 0.45, gesture: "hold" }, { t: 0.65, gesture: "raiseHand" }] }],
       props: [PLATE("motel"), HUD("motel"), GRADE("day", [PX.motel, 1.6, -6]), SHADOW(PX.motel + 0.15, -4.6)], sfx: [{ t: 0, name: "el_ball_bounce", gain: -4 }],
       note: "the game: shooting hoops by the motel" },
     { say: N("Or just drive at sunset."), ...GAME, light: "golden", hold: 0.3,
@@ -167,7 +176,7 @@ export const GTA_GF_1: Storyboard = {
         { who: "ggGordon", at: G_SEAT, mode: "sit", act: "excited", face: "grin", keepFace: true, facing: "camera", gesture: "hold", hold: "gamepad" }],
       props: [NIGHT_WIN, GLOW, GRADE("tv", [-2.9, 1.0, -1.82])], note: "Lucy has sat down beside him, slowly coming round" },
     { say: gordon("I'm on holiday. In Miami. From my sofa."), ...FLAT, hold: 0.25,
-      ...cuts(at([-1.9, 1.4, 0.35], G_FACE, 40, 12, 0.08), glideTo(at([-2.05, 1.38, 0.05], G_FACE, 40, 12, 0.08), 1.6), { word: "sofa", c: at([-2.9, 1.5, 1.8], [-2.9, 0.95, -1.82], 48, 4, 0.08) }),
+      ...cuts(at([-2.2, 1.38, 0.9], [-2.8, 1.12, -1.82], 48, 8, 0.08), glideTo(at([-2.3, 1.36, 0.55], [-2.75, 1.14, -1.82], 48, 8, 0.08), 1.6), { word: "sofa", c: at([-2.9, 1.5, 1.8], [-2.9, 0.95, -1.82], 48, 4, 0.08) }),
       actors: [{ who: "ggGordon", at: G_SEAT, mode: "sit", act: "proud", face: "proud", keepFace: true, facing: "camera", gesture: "hold", hold: "gamepad", beats: [{ word: "Miami", gesture: "spread", hold: null }, { word: "sofa", gesture: "hips" }] },
         { who: "ggLucy", at: L_SEAT, mode: "sit", act: "suspicious", face: "suspicious", keepFace: true, facing: "toward:ggGordon" }],
       props: [NIGHT_WIN, GLOW, GRADE("tv", [-2.75, 1.1, -1.82])], note: "Gordon, blissful" },
