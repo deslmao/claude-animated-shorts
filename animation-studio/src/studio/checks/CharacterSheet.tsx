@@ -6,6 +6,7 @@ import { Pen } from "../characters/toon";
 import { figureFront, figureSide, Look, Pose, SidePose, EXPRESSIONS, ACT_NAMES, GESTURES, act } from "../characters/figure";
 import { MILO, JUNO, JUNO_OUT, GUS, crowd, Era, CAST } from "../characters/cast";
 import { ROSTER } from "../characters/roster";
+import { MIAMI_RICO, MIAMI_LOLA } from "../characters/miami";
 
 export const SHEET_W = 2000, SHEET_H = 2800;
 type Cell = { look: Look; pose?: Pose; side?: SidePose; label: string; mirror?: boolean; silhouette?: boolean; scale?: number; crop?: "head" };
@@ -85,6 +86,16 @@ const pageOf = (page: string, g: CanvasRenderingContext2D) => {
       { look: l, pose: { back: true }, label: "back" },
     ]), 8, 10, 520, "Themed characters");
     grid(g, crowd(16, "pirate", 600).map((l, i) => ({ look: l, pose: act(["neutral", "happy", "explain", "suspicious", "shrug", "laugh"][i % 6] as "neutral", { t: 0.3 }), label: "pirate" })), 8, y, 400, "Pirate crew (extras)");
+  } else if (page === "miami" || page === "miami-cut") {
+    // the Miami cast: front, 3/4, side; six expressions; an eight-frame walk. "miami-cut" = the same, no background
+    if (page === "miami-cut") g.clearRect(0, 0, SHEET_W, SHEET_H);
+    let y = 20;
+    for (const [nm, L] of [["Name 1 (Rico)", MIAMI_RICO], ["Name 2 (Lola)", MIAMI_LOLA]] as [string, Look][]) {
+      y = grid(g, [{ look: L, pose: { expr: "neutral" }, label: "front" }, { look: L, pose: { expr: "smile", facing: 1 }, label: "3/4" }, { look: L, side: { expr: "neutral" }, label: "side" }], 3, y, 620, nm);
+      const faces: [string, Pose][] = [["neutral", { expr: "neutral" }], ["grin", { expr: "grin" }], ["shock", { expr: "shock" }], ["angry", { expr: "angry" }], ["suspicious", { expr: "suspicious" }], ["laugh", { expr: "laugh" }]];
+      y = grid(g, faces.map(([l, pz]) => ({ look: L, pose: pz, label: l, crop: "head" as const })), 6, y, 300);
+      y = grid(g, Array.from({ length: 8 }, (_, i) => ({ look: L, side: { mode: "walk" as const, phase: i / 8, expr: "neutral" as const }, label: `walk ${i + 1}/8` })), 8, y, 380) + 30;
+    }
   } else if (page === "crowd") {
     let y = 10;
     for (const [era, n] of [["modern", 12], ["office", 6], ["lab", 6], ["fifties", 6], ["victorian", 6], ["medieval", 6]] as [Era, number][]) {

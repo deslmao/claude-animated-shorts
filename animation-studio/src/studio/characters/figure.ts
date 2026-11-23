@@ -28,13 +28,19 @@ export const BUILDS: Record<Build, { a: number; torso: number; legs: number; tw:
 export type HairStyle = "tuft" | "bob" | "horseshoe" | "short" | "side" | "long" | "bun" | "ponytail" | "curly" | "spiky" | "buzz" | "bald" | "afro" | "topknot" | "receding";
 export type TopStyle = "hoodie" | "turtleneck" | "shirt" | "tee" | "sweater" | "dress" | "stripes";
 /** labcoat / longcoat: knee-length coats (the longcoat is a captain's frock coat with buttons and a trimmed hem) */
-export type LayerStyle = "labcoat" | "waistcoat" | "blazer" | "cardigan" | "apron" | "longcoat";
-export type HatStyle = "cap" | "beanie" | "tophat" | "bowler" | "hardhat" | "tricorn" | "bandana" | "boater";
+export type LayerStyle = "labcoat" | "waistcoat" | "blazer" | "cardigan" | "apron" | "longcoat"
+  /** opt-in (Miami look): an open short-sleeve shirt over the top, a leaf print in `accent`; a denim jacket with
+   *  stitching and chest pockets in `accent` */
+  | "openShirt" | "denim";
+export type HatStyle = "cap" | "beanie" | "tophat" | "bowler" | "hardhat" | "tricorn" | "bandana" | "boater"
+  /** opt-in (Miami look): a flat-crowned snapback worn backwards (the strap gap over the forehead, the brim behind) */
+  | "snapback";
 export type Look = {
   name: string; build: Build; skin: string; seed: number;
   hair: { style: HairStyle; color: string };
   brow?: { color?: string; k?: number; quirk?: number };          // k = thickness x; quirk = facing-side brow raise (u)
-  glasses?: { style: "round" | "square"; color: string };
+  /** shades (opt-in, Miami look): solid dark lenses with a pastel sheen in `color` */
+  glasses?: { style: "round" | "square" | "shades"; color: string };
   moustache?: { style: "walrus" | "thin"; color: string };
   beard?: { style: "full" | "goatee"; color: string };
   top: { style: TopStyle; color: string; accent?: string };
@@ -205,6 +211,11 @@ const faceFront3 = (p: Pen, cx: number, cy: number, W: number, expr: Expr, facin
     const r = round ? 14 * u : 12.5 * u, col = fo.glasses.color, gw = 2.8 * u;
     for (const x of eyes) {
       if (fo.glasses.style === "round") p.ell(x, ey, r, r * 0.95, null, gw);
+      else if (fo.glasses.style === "shades") {
+        const lens: P2[] = [[x - r * 1.12, ey - r * 0.7], [x + r * 1.12, ey - r * 0.7], [x + r * 0.98, ey + r * 0.62], [x, ey + r * 0.8], [x - r * 0.98, ey + r * 0.62]];
+        p.poly(lens, "#1d1b2a", gw);
+        p.stroke([[x - r * 0.7, ey - r * 0.38], [x + r * 0.35, ey - r * 0.38]], 2.2 * u, col);                 // a pastel sheen
+      }
       else p.poly([[x - r, ey - r * 0.8], [x + r, ey - r * 0.8], [x + r * 0.92, ey + r * 0.75], [x - r * 0.92, ey + r * 0.75]], null, gw);
     }
     p.stroke([[eyes[0] + r, ey - 2 * u], [eyes[1] - r, ey - 2 * u]], gw, col === INK ? INK : col);
@@ -373,6 +384,20 @@ const hat3 = (p: Pen, L: Look, H: Blob, cx: number, hc: number, light: number, f
       p.shadedFill(dome, col, mul(col, SH_FELT), light, H.a, 0.35); p.poly(dome, null, ow);
       if (side) p.poly(R([[cx + 40 * u, cut - 2 * u], [cx + 74 * u, cut + 4 * u], [cx + 40 * u, cut + 6 * u]]), shade(col, 0.8), ow);
       else { const [px, py] = R([[cx + fs * 4 * u, cut + 1.5 * u]])[0]; p.ell(px, py, 32 * u, 0.06 * HH, shade(col, 0.8), ow, 0, 180, deg); }
+      break;
+    }
+    case "snapback": {
+      // flat-crowned, worn backwards: the strap gap and its little band over the forehead; side = the brim behind
+      const cut = crown + 0.27 * HH;
+      const dome = R(ellPts(cx, cut, H.a * 1.05, 0.27 * HH, 180, 360, 0, 24));
+      p.shadedFill(dome, col, mul(col, SH_FELT), light, H.a, 0.35); p.poly(dome, null, ow);
+      if (side) p.poly(R([[cx - 40 * u, cut - 2 * u], [cx - 80 * u, cut + 3 * u], [cx - 78 * u, cut + 9 * u], [cx - 40 * u, cut + 7 * u]]), shade(col, 0.8), ow);
+      else {
+        const [gx, gy] = R([[cx + fs * 3 * u, cut - 0.06 * HH]])[0];
+        p.ell(gx, gy, 13 * u, 0.07 * HH, mix(col, "#f4e9d8", 0.15), ow, 180, 360, deg);                       // the strap gap
+        p.stroke(R([[gx - 11 * u, gy], [gx + 11 * u, gy]]), 3 * u, L.hat.trim ?? shade(col, 0.6));             // the strap
+        const [bx, by] = R([[cx, crown + 0.02 * HH]])[0]; p.dot(bx, by, 4 * u, shade(col, 0.85));             // the button on top
+      }
       break;
     }
     case "beanie": {
@@ -868,6 +893,35 @@ const layerDetail = (p: Pen, L: Look, tcx: number, chin: number, torsoBot: numbe
       else for (let i = 0; i < 4; i++) p.dot(ox + 0.12 * T.a, chin + 0.2 * HH + i * 0.18 * HH, 2.2 * u, L.layer!.accent ?? shade(c, 0.6));
       break;
     }
+    case "openShirt": {
+      // an open shirt: wide gap down the front showing the tee, pointed collar, a scattered leaf print
+      const gapW = 0.5;
+      for (const s of [-1, 1]) {
+        panel([[ox + s * gapW * T.a, chin - 0.1 * HH], [ox + s * 2 * T.a, chin - 0.1 * HH], [ox + s * 2 * T.a, torsoBot + 0.2 * HH], [ox + s * 0.42 * T.a, torsoBot + 0.2 * HH], [ox + s * 0.32 * T.a, chin + 0.3 * HH]]);
+        p.poly([[ox + s * gapW * T.a, chin - 0.08 * HH], [ox + s * 0.95 * T.a, chin - 0.02 * HH], [ox + s * 0.62 * T.a, chin + 0.16 * HH]], shade(c, 1.08), 1.6 * u);   // the collar
+        const acc = L.layer!.accent ?? "#3f9e6e";
+        for (let i = 0; i < 9; i++) {
+          const fx = 0.62 + ((i * 37) % 100) / 100 * 1.2, fy = 0.12 + ((i * 53) % 100) / 100 * 0.95, ang = (i * 71) % 180;
+          p.ell(ox + s * fx * T.a, chin + fy * HH, 7 * u, 2.8 * u, acc, 0, 0, 360, ang);                    // palm leaves
+          p.ell(ox + s * fx * T.a + 4 * u, chin + fy * HH + 4 * u, 6 * u, 2.4 * u, acc, 0, 0, 360, ang + 50);
+        }
+      }
+      break;
+    }
+    case "denim": {
+      const gapW = 0.22, acc = L.layer!.accent ?? shade(c, 0.6);
+      for (const s of [-1, 1]) {
+        panel([[ox + s * gapW * T.a, chin - 0.1 * HH], [ox + s * 2 * T.a, chin - 0.1 * HH], [ox + s * 2 * T.a, torsoBot + 0.2 * HH], [ox + s * 0.06 * T.a, torsoBot + 0.2 * HH], [ox + s * 0.06 * T.a, chin + 0.12 * HH]]);
+        p.poly([[ox + s * gapW * T.a, chin - 0.08 * HH], [ox + s * 0.9 * T.a, chin - 0.04 * HH], [ox + s * 0.5 * T.a, chin + 0.2 * HH]], shade(c, 1.1), 1.6 * u);      // the collar
+        const px = ox + s * 0.62 * T.a, py = chin + 0.34 * HH;
+        p.poly([[px - 13 * u, py], [px + 13 * u, py], [px + 13 * u, py + 18 * u], [px - 13 * u, py + 18 * u]], shade(c, 0.94), 1.4 * u);   // chest pocket
+        p.stroke([[px - 13 * u, py + 7 * u], [px + 13 * u, py + 7 * u]], 1.1 * u, acc);
+        p.stroke([[ox + s * 0.12 * T.a, chin + 0.18 * HH], [ox + s * 0.12 * T.a, torsoBot + 0.16 * HH]], 1.1 * u, acc);                       // stitching
+        p.stroke([[ox + s * 0.2 * T.a, torsoBot - 0.02 * HH], [ox + s * 1.6 * T.a, torsoBot - 0.02 * HH]], 1.1 * u, acc);
+      }
+      for (let i = 0; i < 3; i++) p.dot(ox + 0.1 * T.a, chin + 0.3 * HH + i * 0.2 * HH, 2.4 * u, "#d8c9a0");
+      break;
+    }
     case "apron": {
       panel([[ox - 0.62 * T.a, chin + 0.22 * HH], [ox + 0.62 * T.a, chin + 0.22 * HH], [ox + 0.72 * T.a, torsoBot + 0.3 * HH], [ox - 0.72 * T.a, torsoBot + 0.3 * HH]]);
       p.band([[ox - 1.4 * T.a, torsoBot - 0.36 * HH], [ox + 1.4 * T.a, torsoBot - 0.36 * HH]], shade(c, 0.85), 0.04 * HH, 1 * u);
@@ -1012,7 +1066,7 @@ const faceSide3 = (p: Pen, L: Look, hx: number, hy: number, W: number, expr: Exp
   if (kind === "shock" || kind === "shockHalf") p.arc(ex, by - 4 * u, 9 * u, 3 * u, 200, 340, 4 * u, bc);
   else taper(p, [ex + 8 * u, by + dI * u], [ex - 7 * u, by - u + dO * u], bw, bw / 2, bc);
   if (L.eyepatch) { p.stroke([[ex + 2 * u, ey - 4 * u], [hx - 46 * u, ey - 18 * u]], 2.6 * u); p.ell(ex + u, ey + u, 7 * u, 10.5 * u, L.eyepatch.color ?? INK, 2.4 * u); }
-  if (L.glasses) { const r = 12.5 * u; p.ell(ex, ey, r * 0.55, r, null, 2.8 * u); p.stroke([[ex - r * 0.55, ey - 2 * u], [hx - 14 * u, ey - 6 * u]], 2.4 * u); }
+  if (L.glasses) { const r = 12.5 * u; p.ell(ex, ey, r * 0.55, r, L.glasses.style === "shades" ? "#1d1b2a" : null, 2.8 * u); p.stroke([[ex - r * 0.55, ey - 2 * u], [hx - 14 * u, ey - 6 * u]], 2.4 * u); }
   p.stroke([[hx + 44 * u, hy + 4 * u], [hx + 47.5 * u, hy + 9 * u], [hx + 43 * u, hy + 10 * u]], 3 * u);
   if (L.beard) { const bp: P2[] = []; for (let i = 0; i <= 12; i++) { const t = rad(-20 + (130 * i) / 12); bp.push([hx + 20 * u + Math.cos(t) * 26 * u, hy + 18 * u + Math.sin(t) * 28 * u]); } p.poly(bp, L.beard.color, 3.5 * u); }
   mouth3(p, F.mouth, hx + 33 * u, hy + 21 * u + (L.moustache?.style === "walrus" ? 3 * u : 0), u, 0.62);

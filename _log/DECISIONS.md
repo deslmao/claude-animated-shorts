@@ -86,3 +86,14 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
     ~70% of the height (all cheap, opt-in engine changes).
   - **Blender** would mainly help set detail and light.
 - **23 Nov:** The Last Train v3 final (run 60) is publishable. The QA flags were his unblinking stare (frame 172) and the plain display wall (213–269). The pinned comment's rewatch line was dropped (its timestamp no longer matched).
+- **23 Nov (owner):** design an original "GTA-style" look: a sunny 80s Miami-style city of our own, plus two original
+  characters. Design only, no animation; then stop and show the owner.
+- **23 Nov (Claude):** the owner suggested replicating Rick's clips' models in Blender. We match their grammar and
+  quality level instead (STUDY.md: full detailed sets, low warm light, 2D characters in a 3D world), never their
+  models. This follows the owner's own rule ("never copy their characters, scenes or frames"). No GTA logos, fonts,
+  place names or characters either; signs use made-up words (SOLVANA, MIRALUX, CORALEE, PALMETTA, BAYLUNE, VELOMAR,
+  SURFIO, MOTEL PALOMI).
+- **23 Nov (Claude):** the world is built procedurally in Blender (`blender/miami/miami.py`, headless Eevee, Freestyle
+  ink). The cast is drawn with our own engine and stands in it as cards. Opt-in engine additions: hat `snapback`
+  (worn backwards), glasses `shades`, layers `openShirt` (leaf print) and `denim` (pockets and stitching). The cast's
+  names are placeholders (Rico, Lola) until the owner names them.
