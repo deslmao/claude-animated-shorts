@@ -77,3 +77,11 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
 - **23 Nov (Claude):** the Rick's clips study can't be done by downloading from YouTube: this container can't fetch
   the videos, and the owner's rule forbids download workarounds. The owner needs to upload the 10 Shorts. It's a
   private reference: learn the grammar, never copy.
+- **23 Nov:** Part 2 v4 final (run 59) passed the full QA with no flags; the MP4 is kept in the repo.
+- **23 Nov (Claude):** STUDY.md was written from the 5 uploaded Rick's clips Shorts. Every frame was analysed by script
+  at 30 fps, and actions were counted from frame crops.
+  - **The biggest measured gap is stillness:** 20% of our frames repeat exactly and 40% barely move, against their
+    0.3–1.7% and 1.5–5%.
+  - **Recommended before Blender:** never-still cameras and idle motion, 5-frame dissolves, and 1–2-word captions at
+    ~70% of the height (all cheap, opt-in engine changes).
+  - **Blender** would mainly help set detail and light.

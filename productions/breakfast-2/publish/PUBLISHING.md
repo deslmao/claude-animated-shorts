@@ -1,7 +1,7 @@
 # I Rang Mum's Work. She Picked Up. (Don't Eat It, Part 2): publishing package
 
-**Video:** `Short-breakfast-2-run58` (with the recap), 1080 × 1920, 30 fps, 1:06, with our own original score. The download link is in
-`../final/QA-REPORT.md` once the final render and QA are done.
+**Video:** `productions/breakfast-2/final/Short-breakfast-2.mp4` (run 59, QA passed), 1080 × 1920, 30 fps, 1:09, with our
+own original score. It opens with the "In Part 1…" recap and the top comment.
 
 **Nothing has been uploaded or published.** This folder holds the copy and the cover, ready to paste.
 

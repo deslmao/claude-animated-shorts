@@ -1,6 +1,6 @@
 # HANDOFF: where everything stands (keep this current)
 
-**Last updated:** 23 Nov 2026, ~05:30 UTC.
+**Last updated:** 23 Nov 2026, ~05:25 UTC.
 
 **Repo and branch:** `deslmao/claude-animated-shorts`, branch `claude/admiring-hopper-kbrb3d`. Never push elsewhere,
 no pull requests.
@@ -44,21 +44,20 @@ views on Instagram, and on YouTube 71% stayed to watch.
 | `breakfast-text` | Don't Eat It, Part 1 | published | — |
 | `night-train` | The Last Train | v1 published (scream hook). **v3** (reflection hook, 63 s) final render requested 23 Nov ~04:58 UTC | QA (1,890 frames), then QA-REPORT and PUBLISHING update; tell the owner to post as a new upload and unlist the old one |
 | `six-seven` | 6 7 | final run 54 QA'd, publishable | the owner posts; check its stayed-to-watch against breakfast's 71% |
-| `breakfast-2` | Don't Eat It, Part 2 | **v4** (In Part 1… recap, top-comment card, "You were right", 69.0 s, 2,069 frames) final render requested 23 Nov ~04:52 UTC. Runs 57 and 58 are superseded | QA, then QA-REPORT and PUBLISHING (`run<N>`, 1:09); post on Instagram first |
+| `breakfast-2` | Don't Eat It, Part 2 | **DONE.** v4 final run 59, full QA passed, MP4 in the repo (`productions/breakfast-2/final/Short-breakfast-2.mp4`), 1:09 | the owner posts (Instagram first); after 24–48 h, read the comments for Part 3 (A · HANG UP / B · STAY ON THE LINE) |
 
-**Two follow-ups are scheduled** (send_later). Both use `qa-request.json`, so do Part 2's QA first, then the train's.
+**One follow-up is scheduled** (send_later, ~05:19 UTC): the train v3 final, then its QA via `qa-request.json`.
 
 ## Open owner requests
-1. **STUDY.md (the Rick's clips study).** Blocked: the owner needs to upload the 10 newest Shorts and confirm the
-   channel. Then analyse every frame at 30 fps with ffmpeg:
-   - frames per walk step;
-   - gesture durations;
-   - shot lengths;
-   - caption position and size;
-   - light direction;
-   - background fill.
+1. **STUDY.md:** done from 5 of the 10 Shorts the owner uploaded on 23 Nov (`STUDY.md`). Waiting for the other 5, plus
+   a turn to count. The main findings:
+   - their picture is never still (1.5–5% still frames, against our 40%);
+   - 5-frame dissolves and ~16-frame camera moves;
+   - captions of 1–2 words at 70% of the height;
+   - sets 1.3–2.4× as detailed;
+   - a walk step of ~10 frames.
 
-   Grammar only, never copy.
+   **Proposed next step (not approved yet):** apply items 1–3 of its "What this suggests" list in the engine as opt-ins.
 2. **Blender Phase 2.** Phase 1 is done (`docs/blender/PHASE1-INVESTIGATION.md`). The proposed next step is a
    `workflow_dispatch` Blender benchmark workflow (official LTS, one representative 3 s shot, three engines, full
    resolution). Wait for the owner's go-ahead.
