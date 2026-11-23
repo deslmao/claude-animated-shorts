@@ -1,0 +1,60 @@
+{
+ "hash": "0e5c417e8f1c8c",
+ "text": "Then he replies six hours later: \"sorry. GTA.\"",
+ "voice": "ggNarrator",
+ "lead": 0,
+ "end": 2.74,
+ "dur": 2.76898,
+ "words": [
+  {
+   "w": "Then",
+   "t0": 0,
+   "t1": 0.186
+  },
+  {
+   "w": "he",
+   "t0": 0.209,
+   "t1": 0.255
+  },
+  {
+   "w": "replies",
+   "t0": 0.29,
+   "t1": 0.58
+  },
+  {
+   "w": "six",
+   "t0": 0.615,
+   "t1": 0.766
+  },
+  {
+   "w": "hours",
+   "t0": 0.824,
+   "t1": 1.01
+  },
+  {
+   "w": "later:",
+   "t0": 1.045,
+   "t1": 1.37
+  },
+  {
+   "w": "\"sorry.",
+   "t0": 1.533,
+   "t1": 1.985
+  },
+  {
+   "w": "GTA.\"",
+   "t0": 2.125,
+   "t1": 2.74
+  }
+ ],
+ "voiceId": "iP95p4xoKVk53GoZ742B",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.08
+ },
+ "created": "2026-11-23T11:04:19.718Z"
+}

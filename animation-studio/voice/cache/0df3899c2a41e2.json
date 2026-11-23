@@ -1,0 +1,50 @@
+{
+ "hash": "0df3899c2a41e2",
+ "text": "So she tries it. Just once.",
+ "voice": "ggNarrator",
+ "lead": 0,
+ "end": 1.3,
+ "dur": 1.332245,
+ "words": [
+  {
+   "w": "So",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "she",
+   "t0": 0.221,
+   "t1": 0.313
+  },
+  {
+   "w": "tries",
+   "t0": 0.36,
+   "t1": 0.569
+  },
+  {
+   "w": "it.",
+   "t0": 0.604,
+   "t1": 0.697
+  },
+  {
+   "w": "Just",
+   "t0": 0.731,
+   "t1": 0.929
+  },
+  {
+   "w": "once.",
+   "t0": 0.998,
+   "t1": 1.3
+  }
+ ],
+ "voiceId": "iP95p4xoKVk53GoZ742B",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.08
+ },
+ "created": "2026-11-23T11:04:28.227Z"
+}

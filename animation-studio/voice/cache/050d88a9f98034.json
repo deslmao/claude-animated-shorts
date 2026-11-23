@@ -1,0 +1,50 @@
+{
+ "hash": "050d88a9f98034",
+ "text": "Imagine you text your boyfriend \"hey\".",
+ "voice": "ggNarrator",
+ "lead": 0,
+ "end": 1.904,
+ "dur": 1.933061,
+ "words": [
+  {
+   "w": "Imagine",
+   "t0": 0,
+   "t1": 0.36
+  },
+  {
+   "w": "you",
+   "t0": 0.383,
+   "t1": 0.453
+  },
+  {
+   "w": "text",
+   "t0": 0.511,
+   "t1": 0.731
+  },
+  {
+   "w": "your",
+   "t0": 0.755,
+   "t1": 0.871
+  },
+  {
+   "w": "boyfriend",
+   "t0": 0.94,
+   "t1": 1.335
+  },
+  {
+   "w": "\"hey\".",
+   "t0": 1.393,
+   "t1": 1.904
+  }
+ ],
+ "voiceId": "iP95p4xoKVk53GoZ742B",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.08
+ },
+ "created": "2026-11-23T11:04:19.144Z"
+}

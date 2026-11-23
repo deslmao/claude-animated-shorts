@@ -1,0 +1,50 @@
+{
+ "hash": "12f95306d59e1b",
+ "text": "GTA 6, explained to your girlfriend.",
+ "voice": "ggNarrator",
+ "lead": 0,
+ "end": 1.95,
+ "dur": 1.985306,
+ "words": [
+  {
+   "w": "GTA",
+   "t0": 0,
+   "t1": 0.383
+  },
+  {
+   "w": "6,",
+   "t0": 0.441,
+   "t1": 0.639
+  },
+  {
+   "w": "explained",
+   "t0": 0.673,
+   "t1": 0.975
+  },
+  {
+   "w": "to",
+   "t0": 0.998,
+   "t1": 1.045
+  },
+  {
+   "w": "your",
+   "t0": 1.091,
+   "t1": 1.196
+  },
+  {
+   "w": "girlfriend.",
+   "t0": 1.242,
+   "t1": 1.95
+  }
+ ],
+ "voiceId": "iP95p4xoKVk53GoZ742B",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.08
+ },
+ "created": "2026-11-23T11:04:20.250Z"
+}

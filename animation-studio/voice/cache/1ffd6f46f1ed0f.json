@@ -1,0 +1,150 @@
+{
+ "hash": "1ffd6f46f1ed0f",
+ "text": "When the first trailer came out, ninety million people watched it in one day. No video that wasn't a song had ever been watched that fast.",
+ "voice": "ggNarrator",
+ "lead": 0,
+ "end": 7.848,
+ "dur": 7.88898,
+ "words": [
+  {
+   "w": "When",
+   "t0": 0,
+   "t1": 0.186
+  },
+  {
+   "w": "the",
+   "t0": 0.221,
+   "t1": 0.29
+  },
+  {
+   "w": "first",
+   "t0": 0.36,
+   "t1": 0.592
+  },
+  {
+   "w": "trailer",
+   "t0": 0.627,
+   "t1": 0.894
+  },
+  {
+   "w": "came",
+   "t0": 0.929,
+   "t1": 1.091
+  },
+  {
+   "w": "out,",
+   "t0": 1.126,
+   "t1": 1.335
+  },
+  {
+   "w": "ninety",
+   "t0": 1.637,
+   "t1": 2.032
+  },
+  {
+   "w": "million",
+   "t0": 2.101,
+   "t1": 2.415
+  },
+  {
+   "w": "people",
+   "t0": 2.461,
+   "t1": 2.752
+  },
+  {
+   "w": "watched",
+   "t0": 2.798,
+   "t1": 3.1
+  },
+  {
+   "w": "it",
+   "t0": 3.135,
+   "t1": 3.204
+  },
+  {
+   "w": "in",
+   "t0": 3.239,
+   "t1": 3.309
+  },
+  {
+   "w": "one",
+   "t0": 3.39,
+   "t1": 3.576
+  },
+  {
+   "w": "day.",
+   "t0": 3.622,
+   "t1": 3.994
+  },
+  {
+   "w": "No",
+   "t0": 4.354,
+   "t1": 4.493
+  },
+  {
+   "w": "video",
+   "t0": 4.563,
+   "t1": 4.865
+  },
+  {
+   "w": "that",
+   "t0": 4.923,
+   "t1": 5.039
+  },
+  {
+   "w": "wasn't",
+   "t0": 5.085,
+   "t1": 5.352
+  },
+  {
+   "w": "a",
+   "t0": 5.387,
+   "t1": 5.422
+  },
+  {
+   "w": "song",
+   "t0": 5.492,
+   "t1": 5.817
+  },
+  {
+   "w": "had",
+   "t0": 6.037,
+   "t1": 6.188
+  },
+  {
+   "w": "ever",
+   "t0": 6.246,
+   "t1": 6.42
+  },
+  {
+   "w": "been",
+   "t0": 6.467,
+   "t1": 6.606
+  },
+  {
+   "w": "watched",
+   "t0": 6.641,
+   "t1": 6.908
+  },
+  {
+   "w": "that",
+   "t0": 6.943,
+   "t1": 7.117
+  },
+  {
+   "w": "fast.",
+   "t0": 7.187,
+   "t1": 7.848
+  }
+ ],
+ "voiceId": "iP95p4xoKVk53GoZ742B",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.08
+ },
+ "created": "2026-11-23T11:04:22.833Z"
+}

@@ -1,0 +1,40 @@
+{
+ "hash": "1fc33ffc5f976e",
+ "text": "He can go fishing.",
+ "voice": "ggNarrator",
+ "lead": 0,
+ "end": 1.161,
+ "dur": 1.201633,
+ "words": [
+  {
+   "w": "He",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "can",
+   "t0": 0.186,
+   "t1": 0.29
+  },
+  {
+   "w": "go",
+   "t0": 0.337,
+   "t1": 0.441
+  },
+  {
+   "w": "fishing.",
+   "t0": 0.499,
+   "t1": 1.161
+  }
+ ],
+ "voiceId": "iP95p4xoKVk53GoZ742B",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.08
+ },
+ "created": "2026-11-23T11:04:25.765Z"
+}

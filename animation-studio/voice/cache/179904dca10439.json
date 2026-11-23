@@ -1,0 +1,50 @@
+{
+ "hash": "179904dca10439",
+ "text": "Then they delayed the game. Twice.",
+ "voice": "ggNarrator",
+ "lead": 0,
+ "end": 1.672,
+ "dur": 1.697959,
+ "words": [
+  {
+   "w": "Then",
+   "t0": 0,
+   "t1": 0.197
+  },
+  {
+   "w": "they",
+   "t0": 0.232,
+   "t1": 0.337
+  },
+  {
+   "w": "delayed",
+   "t0": 0.383,
+   "t1": 0.627
+  },
+  {
+   "w": "the",
+   "t0": 0.65,
+   "t1": 0.72
+  },
+  {
+   "w": "game.",
+   "t0": 0.755,
+   "t1": 1.045
+  },
+  {
+   "w": "Twice.",
+   "t0": 1.115,
+   "t1": 1.672
+  }
+ ],
+ "voiceId": "iP95p4xoKVk53GoZ742B",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.08
+ },
+ "created": "2026-11-23T11:04:23.326Z"
+}

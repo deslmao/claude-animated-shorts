@@ -1,0 +1,110 @@
+{
+ "hash": "13980bb3bd4cb9",
+ "text": "This is Gordon. This is Lucy. And Lucy wants to know what's so special about a video game.",
+ "voice": "ggNarrator",
+ "lead": 0,
+ "end": 5.155,
+ "dur": 5.198367,
+ "words": [
+  {
+   "w": "This",
+   "t0": 0,
+   "t1": 0.221
+  },
+  {
+   "w": "is",
+   "t0": 0.279,
+   "t1": 0.36
+  },
+  {
+   "w": "Gordon.",
+   "t0": 0.43,
+   "t1": 0.836
+  },
+  {
+   "w": "This",
+   "t0": 0.871,
+   "t1": 1.045
+  },
+  {
+   "w": "is",
+   "t0": 1.115,
+   "t1": 1.207
+  },
+  {
+   "w": "Lucy.",
+   "t0": 1.312,
+   "t1": 1.788
+  },
+  {
+   "w": "And",
+   "t0": 2.194,
+   "t1": 2.334
+  },
+  {
+   "w": "Lucy",
+   "t0": 2.38,
+   "t1": 2.601
+  },
+  {
+   "w": "wants",
+   "t0": 2.635,
+   "t1": 2.798
+  },
+  {
+   "w": "to",
+   "t0": 2.833,
+   "t1": 2.879
+  },
+  {
+   "w": "know",
+   "t0": 2.914,
+   "t1": 3.007
+  },
+  {
+   "w": "what's",
+   "t0": 3.03,
+   "t1": 3.181
+  },
+  {
+   "w": "so",
+   "t0": 3.204,
+   "t1": 3.32
+  },
+  {
+   "w": "special",
+   "t0": 3.425,
+   "t1": 3.889
+  },
+  {
+   "w": "about",
+   "t0": 3.947,
+   "t1": 4.133
+  },
+  {
+   "w": "a",
+   "t0": 4.168,
+   "t1": 4.191
+  },
+  {
+   "w": "video",
+   "t0": 4.261,
+   "t1": 4.563
+  },
+  {
+   "w": "game.",
+   "t0": 4.621,
+   "t1": 5.155
+  }
+ ],
+ "voiceId": "iP95p4xoKVk53GoZ742B",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.08
+ },
+ "created": "2026-11-23T11:04:20.851Z"
+}

@@ -1,0 +1,30 @@
+{
+ "hash": "0a1d6717681f78",
+ "text": "We suffered.",
+ "voice": "ggGordon",
+ "lead": 0,
+ "end": 0.882,
+ "dur": 0.914286,
+ "words": [
+  {
+   "w": "We",
+   "t0": 0,
+   "t1": 0.186
+  },
+  {
+   "w": "suffered.",
+   "t0": 0.255,
+   "t1": 0.882
+  }
+ ],
+ "voiceId": "VMIM2ShRXKogVZETvvdo",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 1
+ },
+ "created": "2026-11-23T11:04:23.780Z"
+}

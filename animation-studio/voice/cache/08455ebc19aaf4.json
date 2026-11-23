@@ -1,0 +1,150 @@
+{
+ "hash": "08455ebc19aaf4",
+ "text": "So when it finally came out, it made an estimated one point eight billion dollars by launch day. That's more than double the last one's launch.",
+ "voice": "ggNarrator",
+ "lead": 0,
+ "end": 7.384,
+ "dur": 7.418776,
+ "words": [
+  {
+   "w": "So",
+   "t0": 0,
+   "t1": 0.232
+  },
+  {
+   "w": "when",
+   "t0": 0.29,
+   "t1": 0.418
+  },
+  {
+   "w": "it",
+   "t0": 0.453,
+   "t1": 0.511
+  },
+  {
+   "w": "finally",
+   "t0": 0.557,
+   "t1": 0.848
+  },
+  {
+   "w": "came",
+   "t0": 0.882,
+   "t1": 1.045
+  },
+  {
+   "w": "out,",
+   "t0": 1.08,
+   "t1": 1.289
+  },
+  {
+   "w": "it",
+   "t0": 1.544,
+   "t1": 1.649
+  },
+  {
+   "w": "made",
+   "t0": 1.695,
+   "t1": 1.834
+  },
+  {
+   "w": "an",
+   "t0": 1.869,
+   "t1": 1.927
+  },
+  {
+   "w": "estimated",
+   "t0": 1.997,
+   "t1": 2.519
+  },
+  {
+   "w": "one",
+   "t0": 2.589,
+   "t1": 2.728
+  },
+  {
+   "w": "point",
+   "t0": 2.775,
+   "t1": 2.984
+  },
+  {
+   "w": "eight",
+   "t0": 3.03,
+   "t1": 3.193
+  },
+  {
+   "w": "billion",
+   "t0": 3.239,
+   "t1": 3.541
+  },
+  {
+   "w": "dollars",
+   "t0": 3.587,
+   "t1": 3.889
+  },
+  {
+   "w": "by",
+   "t0": 3.947,
+   "t1": 4.04
+  },
+  {
+   "w": "launch",
+   "t0": 4.11,
+   "t1": 4.354
+  },
+  {
+   "w": "day.",
+   "t0": 4.4,
+   "t1": 4.69
+  },
+  {
+   "w": "That's",
+   "t0": 5.166,
+   "t1": 5.433
+  },
+  {
+   "w": "more",
+   "t0": 5.503,
+   "t1": 5.631
+  },
+  {
+   "w": "than",
+   "t0": 5.666,
+   "t1": 5.793
+  },
+  {
+   "w": "double",
+   "t0": 5.863,
+   "t1": 6.13
+  },
+  {
+   "w": "the",
+   "t0": 6.165,
+   "t1": 6.235
+  },
+  {
+   "w": "last",
+   "t0": 6.281,
+   "t1": 6.478
+  },
+  {
+   "w": "one's",
+   "t0": 6.536,
+   "t1": 6.711
+  },
+  {
+   "w": "launch.",
+   "t0": 6.757,
+   "t1": 7.384
+  }
+ ],
+ "voiceId": "iP95p4xoKVk53GoZ742B",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.08
+ },
+ "created": "2026-11-23T11:04:24.671Z"
+}

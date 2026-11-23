@@ -1,0 +1,85 @@
+{
+ "hash": "0a0aef84890312",
+ "text": "First: the last GTA came out in 2013. He's been waiting thirteen years.",
+ "voice": "ggNarrator",
+ "lead": 0,
+ "end": 5.155,
+ "dur": 5.198367,
+ "words": [
+  {
+   "w": "First:",
+   "t0": 0,
+   "t1": 0.522
+  },
+  {
+   "w": "the",
+   "t0": 0.998,
+   "t1": 1.091
+  },
+  {
+   "w": "last",
+   "t0": 1.149,
+   "t1": 1.347
+  },
+  {
+   "w": "GTA",
+   "t0": 1.382,
+   "t1": 1.765
+  },
+  {
+   "w": "came",
+   "t0": 1.811,
+   "t1": 1.962
+  },
+  {
+   "w": "out",
+   "t0": 1.985,
+   "t1": 2.067
+  },
+  {
+   "w": "in",
+   "t0": 2.101,
+   "t1": 2.148
+  },
+  {
+   "w": "2013.",
+   "t0": 2.206,
+   "t1": 3.007
+  },
+  {
+   "w": "He's",
+   "t0": 3.564,
+   "t1": 3.762
+  },
+  {
+   "w": "been",
+   "t0": 3.796,
+   "t1": 3.913
+  },
+  {
+   "w": "waiting",
+   "t0": 3.947,
+   "t1": 4.18
+  },
+  {
+   "w": "thirteen",
+   "t0": 4.249,
+   "t1": 4.702
+  },
+  {
+   "w": "years.",
+   "t0": 4.772,
+   "t1": 5.155
+  }
+ ],
+ "voiceId": "iP95p4xoKVk53GoZ742B",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.08
+ },
+ "created": "2026-11-23T11:04:21.403Z"
+}

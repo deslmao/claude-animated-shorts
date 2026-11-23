@@ -1,0 +1,118 @@
+{
+ "id": "gta-gf-1",
+ "composition": "Short-gta-gf-1",
+ "stages": {
+  "validate": {
+   "state": "done",
+   "at": "2026-11-23T11:30:43.775Z",
+   "inputs": "102547af2cb3c8n",
+   "detail": "valid; 26 warning(s):\n  shot 3 (apartment): light \"night\" on an indoor set\n  shot 4 (apartment): light \"night\" on an indoor set\n  shot 5 (apartment): light \"night\" on an indoor set\n  shot 6 (apartment): light \"night\" on an indoor set\n  shot 7 (apartment): light \"night\" on an indoor set\n  shot 8 (apartment): light \"night\" on an indoor set\n  shot 9 (apartment): light \"night\" on an indoor set\n  shot 10 (apartment): light \"night\" on an indoor set\n  shot 12 (ggPlate): prop \"ggPlate\" overlaps something already in the set at [100.0, -10.0]\n  shot 13 (ggPlate): prop \"ggPlate\" overlaps something already in the set at [200.0, -10.0]\n  shot 14 (ggPlate): prop \"ggPlate\" overlaps something already in the set at [300.0, -10.0]\n  shot 15 (apartment): light \"night\" on an indoor set\n  shot 16 (apartment): light \"night\" on an indoor set\n  shot 17 (apartment): light \"night\" on an indoor set\n  shot 18 (apartment): light \"night\" on an indoor set\n  shot 19 (apartment): light \"night\" on an indoor set\n  shot 1 (stepsRoom): ggLucy fills 32 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 4 (apartment): ggGordon fills 55 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 4 (apartment): ggLucy fills 61 % of the frame in the foreground @1.4s (is it hiding the action?)\n  shot 6 (apartment): ggLucy fills 63 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 9 (apartment): ggGordon fills 54 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 15 (apartment): ggGordon fills 25 % of the frame in the foreground @1.4s (is it hiding the action?)\n  shot 16 (apartment): ggGordon fills 54 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 17 (apartment): ggLucy fills 55 % of the frame in the foreground @0.0s (is it hiding the action?)\n  shot 17 (apartment): ggGordon fills 52 % of the frame in the foreground @1.0s (is it hiding the action?)\n  shot 19 (apartment): ggLucy fills 56 % of the frame in the foreground @2.6s (is it hiding the action?)"
+  },
+  "assets": {
+   "state": "done",
+   "at": "2026-11-23T11:30:43.779Z",
+   "inputs": "102547af2cb3c8",
+   "detail": "46 library assets reused, none missing",
+   "data": {
+    "reused": 46,
+    "missing": [],
+    "byKind": {
+     "character": [
+      "ggGordon",
+      "ggLucy"
+     ],
+     "set": [
+      "stepsRoom",
+      "apartment",
+      "ggPlate"
+     ],
+     "camera": [
+      "at"
+     ],
+     "light": [
+      "interior",
+      "night",
+      "day",
+      "golden"
+     ],
+     "ambience": [
+      "elb_bedroom_day",
+      "elb_flat_tv",
+      "elb_beach_day"
+     ],
+     "prop": [
+      "ggInsert",
+      "ssNight",
+      "ggTvGlow",
+      "ggPlate",
+      "ggHud"
+     ],
+     "sfx": [
+      "el_type_tap",
+      "el_msg_send",
+      "el_clock_flip",
+      "el_msg_ping",
+      "el_whoosh_bright",
+      "el_pad_mash",
+      "el_hit_sub",
+      "el_counter_tick",
+      "el_hit_boom",
+      "el_stamp_thud",
+      "el_crowd_aww",
+      "el_receipt_print",
+      "el_cash_register",
+      "el_reel_cast",
+      "el_ball_bounce",
+      "el_car_cruise"
+     ],
+     "act": [
+      "happy",
+      "excited",
+      "suspicious",
+      "sad",
+      "proud",
+      "thinking",
+      "determined",
+      "neutral"
+     ],
+     "item": [
+      "phone",
+      "gamepad",
+      "fishingRod",
+      "basketball"
+     ]
+    }
+   }
+  },
+  "approval": {
+   "state": "done",
+   "at": "2026-11-23T11:30:43.781Z",
+   "inputs": "045f579e7d2c69",
+   "detail": "all narration already generated (no cost)"
+  },
+  "narration": {
+   "state": "done",
+   "at": "2026-11-23T11:30:43.781Z",
+   "inputs": "045f579e7d2c69",
+   "detail": "all lines already generated (cached)"
+  },
+  "sound": {
+   "state": "done",
+   "at": "2026-11-23T11:30:56.752Z",
+   "inputs": "06a9fc1b399006",
+   "detail": "soundtrack built: -14.2 LUFS"
+  },
+  "checks": {
+   "state": "done",
+   "at": "2026-11-23T11:31:03.897Z",
+   "inputs": "06a9fc1b399006",
+   "detail": "preflight PASS; library intact"
+  }
+ },
+ "approval": {
+  "scriptHash": "045f579e7d2c69",
+  "chars": 940,
+  "at": "2026-11-23T11:04:17.701Z",
+  "by": "the owner, in the conversation"
+ }
+}

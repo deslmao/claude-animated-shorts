@@ -9,6 +9,7 @@ argv = sys.argv[sys.argv.index("--") + 1:]
 PLACE, OUT = argv[0], argv[1]
 SCALE = float(argv[2]) if len(argv) > 2 else 1.0
 HERE = os.path.dirname(os.path.abspath(__file__))
+PLATE = None                      # set by a plate_* place: an empty, level camera the engine composites the cast over
 random.seed(7)
 
 bpy.ops.wm.read_factory_settings(use_empty=True)
@@ -425,6 +426,7 @@ def stones(x0, x1, y0, y1, n=40, seed=3, color="#e8dcc6"):
 
 # ---------------------------------------------------------------- the cast: camera-facing cards (our own 2D characters)
 def card(png, x, y, height, cam_xy, z=0.0):
+    if PLATE: return None
     img = bpy.data.images.load(os.path.join(HERE, "cast", png))
     w, h = img.size; aspect = w / h
     bpy.ops.mesh.primitive_plane_add(size=1, location=(0, 0, 0))
@@ -463,6 +465,7 @@ def sea(y_edge, x0=-200, x1=200):
 def sky_and_sun(light_dir, strength=5.5):
     """a golden-hour gradient sky (peach horizon, warm blue top) and a low warm sun; light_dir = the way the light travels"""
     from mathutils import Vector
+    if PLATE and PLATE.get("sun"): light_dir, strength = PLATE["sun"], PLATE.get("sunE", strength)
     w = bpy.data.worlds.new("w"); sc.world = w; w.use_nodes = True; nt = w.node_tree
     bg = nt.nodes["Background"]
     if PHM:
@@ -538,6 +541,9 @@ def grass(x0, x1, y0, y1, z=0.0, count=2600, color="#4f9a4a", length=0.32):
     sc.collection.objects.link(o) if o.name not in sc.collection.objects else None
 
 def camera(pos, look, lens=32):
+    if PLATE:
+        pos, look, lens = PLATE["pos"], PLATE["look"], PLATE.get("lens", 24)
+        look = (look[0], look[1], pos[2])                                   # level: the engine's camera matches it
     bpy.ops.object.camera_add(location=pos); c = bpy.context.object; c.data.lens = lens
     d = [look[i] - pos[i] for i in range(3)]
     c.rotation_euler = (math.atan2(math.hypot(d[0], d[1]), -d[2]), 0, math.atan2(d[1], d[0]) - math.pi / 2)
@@ -715,6 +721,12 @@ def motel():
     for xx in range(-14, 15, 3): box(xx, -15.0, 0.0, 1.4, 0.25, 0.14, mat("wheelstop", "#f2d27a", rough=0.6))
     for xx in (-12, 0, 12): lamp(xx, -17.5)
     for xx in (-6, 6): trashcan(xx, 4.2, c="#2fb5a7")
+    HX, HY = -7.2, -11.5
+    cyl(HX, HY - 0.9, 0, 0.09, 3.3, mat("hooppole", "#2fb5a7", rough=0.5), verts=12)
+    box(HX, HY - 0.75, 2.9, 1.8, 0.06, 1.1, WHITE, bevel=0.02); box(HX, HY - 0.71, 3.05, 0.6, 0.02, 0.45, mat("hoopsq", "#ff7a8a", rough=0.5))
+    bpy.ops.mesh.primitive_torus_add(major_radius=0.23, minor_radius=0.02, location=(HX, HY - 0.48, 3.05)); o = bpy.context.object; o.data.materials.append(mat("rim", "#ff6a3a", rough=0.4)); link(o)
+    for k in range(10):
+        a_ = k / 10 * math.tau; cyl(HX + 0.2 * math.cos(a_), HY - 0.48 + 0.2 * math.sin(a_), 2.62, 0.006, 0.42, WHITE, verts=4)
     if PHM:
         for k, xx in enumerate(range(-13, 14, 6)): plant("potted", xx - 0.75, 4.55, 0.0, h=0.95, seed=k + 1200)
     for (bx, by) in [(-1.5, -7.6), (10, -7.6), (14, -6)]: bush(bx, by, r=0.55, seed=int(bx * 5 + 7))
@@ -724,7 +736,21 @@ def motel():
     card("gordon_side.png", -4.6, -14.2, 1.85, (cam.location.x, cam.location.y))
     card("lucy_side.png", -3.5, -13.6, 1.62, (cam.location.x, cam.location.y))
 
-{"street": street, "beach": beach, "motel": motel}[PLACE]()
+PLATES = {   # the engine composites the animated cast over these; ground = the floor height the cast stands on
+    "plate_street": dict(scene="street", pos=(-17.0, -8.4, 1.9), look=(14.0, 3.7, 1.9), ground=0.15),
+    "plate_pier": dict(scene="beach", pos=(-27.4, -22.0, 3.45), look=(-14.0, -62.0, 3.45), ground=1.85),
+    "plate_motel": dict(scene="motel", pos=(-4.6, -24.5, 1.6), look=(0.2, -2.0, 1.6), ground=0.0),
+    "plate_sunset": dict(scene="street", pos=(-31.0, -1.6, 1.6), look=(10.0, 0.4, 1.6), ground=0.0, hdri="sky_warm", sun=(-0.9, 0.35, -0.12), sunE=4.0),
+}
+if PLACE in PLATES:
+    PLATE = PLATES[PLACE]
+    if PLATE.get("hdri"): os.environ["MIAMI_HDRI"] = PLATE["hdri"]
+    {"street": street, "beach": beach, "motel": motel}[PLATE["scene"]]()
+    if PLACE == "plate_sunset": car(-24.0, -3.3, math.pi / 2 + 0.05, "#f59ab4")
+    json.dump({k: PLATE[k] for k in ("pos", "look", "ground")} | {"lens": 24, "sensor": 24, "w": sc.render.resolution_x, "h": sc.render.resolution_y},
+              open(os.path.splitext(OUT)[0] + ".json", "w"))
+else:
+    {"street": street, "beach": beach, "motel": motel}[PLACE]()
 sc.render.filepath = OUT
 sc.render.image_settings.file_format = "PNG"
 bpy.ops.render.render(write_still=True)

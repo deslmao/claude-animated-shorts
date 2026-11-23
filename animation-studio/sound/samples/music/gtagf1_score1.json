@@ -1,0 +1,139 @@
+{
+ "model_id": "music_v1",
+ "composition_plan": {
+  "positive_global_styles": [
+   "playful 80s Miami synthwave for a funny animated explainer short",
+   "instrumental",
+   "bright analog synths, a punchy drum machine, sunny and cheeky"
+  ],
+  "negative_global_styles": [
+   "vocals",
+   "singing",
+   "rap",
+   "horror",
+   "dark",
+   "sad",
+   "orchestral"
+  ],
+  "sections": [
+   {
+    "section_name": "the text",
+    "positive_local_styles": [
+     "a cheeky plucked synth riff, light and curious",
+     "a soft kick enters"
+    ],
+    "negative_local_styles": [
+     "vocals",
+     "singing",
+     "rap",
+     "horror",
+     "dark",
+     "sad"
+    ],
+    "duration_ms": 6200,
+    "lines": []
+   },
+   {
+    "section_name": "the question",
+    "positive_local_styles": [
+     "a laid-back synthwave groove, bass and claps",
+     "playful, comedic timing"
+    ],
+    "negative_local_styles": [
+     "vocals",
+     "singing",
+     "rap",
+     "horror",
+     "dark",
+     "sad"
+    ],
+    "duration_ms": 12100,
+    "lines": []
+   },
+   {
+    "section_name": "the hype",
+    "positive_local_styles": [
+     "the groove builds: arpeggios rising, more energy",
+     "a drum fill into each hit"
+    ],
+    "negative_local_styles": [
+     "vocals",
+     "singing",
+     "rap",
+     "horror",
+     "dark",
+     "sad"
+    ],
+    "duration_ms": 10400,
+    "lines": []
+   },
+   {
+    "section_name": "the money",
+    "positive_local_styles": [
+     "a triumphant cheesy synth brass riff",
+     "big and funny, like a game show win"
+    ],
+    "negative_local_styles": [
+     "vocals",
+     "singing",
+     "rap",
+     "horror",
+     "dark",
+     "sad"
+    ],
+    "duration_ms": 7300,
+    "lines": []
+   },
+   {
+    "section_name": "the game",
+    "positive_local_styles": [
+     "full sunny 80s Miami synthwave drop: wide pads, gated snare, a bright lead",
+     "driving along the beach at sunset"
+    ],
+    "negative_local_styles": [
+     "vocals",
+     "singing",
+     "rap",
+     "horror",
+     "dark",
+     "sad"
+    ],
+    "duration_ms": 5700,
+    "lines": []
+   },
+   {
+    "section_name": "the sofa",
+    "positive_local_styles": [
+     "the groove pulls back to bass and soft keys",
+     "warm, a little smug"
+    ],
+    "negative_local_styles": [
+     "vocals",
+     "singing",
+     "rap",
+     "horror",
+     "dark",
+     "sad"
+    ],
+    "duration_ms": 7000,
+    "lines": []
+   },
+   {
+    "section_name": "the twist",
+    "positive_local_styles": [
+     "the cheeky riff from the start returns, then a button ending on one synth stab"
+    ],
+    "negative_local_styles": [
+     "vocals",
+     "singing",
+     "rap",
+     "horror",
+     "dark",
+     "sad"
+    ],
+    "duration_ms": 4100,
+    "lines": []
+   }
+  ]
+ }
+}

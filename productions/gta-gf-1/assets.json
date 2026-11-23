@@ -1,0 +1,70 @@
+{
+ "reused": 46,
+ "missing": [],
+ "byKind": {
+  "character": [
+   "ggGordon",
+   "ggLucy"
+  ],
+  "set": [
+   "stepsRoom",
+   "apartment",
+   "ggPlate"
+  ],
+  "camera": [
+   "at"
+  ],
+  "light": [
+   "interior",
+   "night",
+   "day",
+   "golden"
+  ],
+  "ambience": [
+   "elb_bedroom_day",
+   "elb_flat_tv",
+   "elb_beach_day"
+  ],
+  "prop": [
+   "ggInsert",
+   "ssNight",
+   "ggTvGlow",
+   "ggPlate",
+   "ggHud"
+  ],
+  "sfx": [
+   "el_type_tap",
+   "el_msg_send",
+   "el_clock_flip",
+   "el_msg_ping",
+   "el_whoosh_bright",
+   "el_pad_mash",
+   "el_hit_sub",
+   "el_counter_tick",
+   "el_hit_boom",
+   "el_stamp_thud",
+   "el_crowd_aww",
+   "el_receipt_print",
+   "el_cash_register",
+   "el_reel_cast",
+   "el_ball_bounce",
+   "el_car_cruise"
+  ],
+  "act": [
+   "happy",
+   "excited",
+   "suspicious",
+   "sad",
+   "proud",
+   "thinking",
+   "determined",
+   "neutral"
+  ],
+  "item": [
+   "phone",
+   "gamepad",
+   "fishingRod",
+   "basketball"
+  ]
+ }
+}

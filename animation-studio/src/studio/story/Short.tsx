@@ -13,8 +13,9 @@ import { Captions } from "./Captions";
 import { TitleCards, type TitleCard } from "./TitleCards";
 import type { Storyboard } from "./types";
 import type { Narration } from "../voice/narration";
+import { PRELOADS } from "../look/preload";
 
-const load = () => Promise.resolve(true);
+const load = () => (PRELOADS.length ? Promise.all(PRELOADS).then(() => true) : Promise.resolve(true));
 export const makeShort = (sb: Storyboard, narr?: Narration) => {
   const film = compile(sb, narr);
   const groups = sb.captions === false ? [] : placeCaptions(film, captionGroups(film.timing.lines, film.total, sb.captionStyle));

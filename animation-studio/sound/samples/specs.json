@@ -455,6 +455,66 @@
    "s": 3,
    "level": -16,
    "p": "Sudden dead silence in a kitchen with a faint high ringing in the ears, eerie"
+  },
+  "el_msg_send": {
+   "s": 0.8,
+   "level": -12,
+   "p": "A phone text message being sent: a short bright upward swoosh, clean, close"
+  },
+  "el_msg_ping": {
+   "s": 0.8,
+   "level": -10,
+   "p": "A phone text message arriving: a clear two-note notification ping, close, quiet room"
+  },
+  "el_type_tap": {
+   "s": 1.5,
+   "level": -16,
+   "p": "Fingers tapping quickly on a smartphone touch screen keyboard, soft clicks, close"
+  },
+  "el_cash_register": {
+   "s": 1.5,
+   "level": -9,
+   "p": "An old cash register ka-ching: a drawer opening and a bright bell, close"
+  },
+  "el_receipt_print": {
+   "s": 3,
+   "level": -14,
+   "p": "A till receipt printer printing a long receipt, fast mechanical whirring and paper feeding, close"
+  },
+  "el_stamp_thud": {
+   "s": 0.8,
+   "level": -8,
+   "p": "A heavy rubber stamp slammed down hard on paper on a desk, a single loud thud"
+  },
+  "el_pad_mash": {
+   "s": 3,
+   "level": -16,
+   "p": "Game controller buttons being mashed quickly, plastic clicks and thumbstick rattles, close, a quiet living room"
+  },
+  "el_whoosh_bright": {
+   "s": 1,
+   "level": -12,
+   "p": "A quick bright whoosh transition, airy and clean, for a fun cartoon"
+  },
+  "el_crowd_aww": {
+   "s": 2,
+   "level": -14,
+   "p": "A small studio audience going aww sympathetically, short, comedic"
+  },
+  "el_ball_bounce": {
+   "s": 2,
+   "level": -12,
+   "p": "A basketball bouncing three times on an outdoor asphalt court, then a swish through the net"
+  },
+  "el_reel_cast": {
+   "s": 1.5,
+   "level": -12,
+   "p": "A fishing rod cast: a whip whoosh, the reel spinning out line, a small splash far away"
+  },
+  "el_car_cruise": {
+   "s": 3,
+   "level": -14,
+   "p": "A car cruising past slowly on a coastal road at sunset, smooth engine hum, warm, passing by"
   }
  },
  "bed": {
@@ -509,6 +569,18 @@
   "elb_train_night": {
    "s": 22,
    "p": "Inside an almost empty commuter train at night: a steady rattle of wheels over rail joints, a low motor hum, the carriage creaking, faint wind"
+  },
+  "elb_beach_day": {
+   "s": 22,
+   "p": "A sunny beach in Miami: gentle waves on the shore, distant seagulls, a light sea breeze, faint distant laughter, relaxed"
+  },
+  "elb_flat_tv": {
+   "s": 22,
+   "p": "A cosy living room at night with a video game playing quietly on the TV: soft muffled game music and city sounds from the TV speakers, a fridge hum, relaxed"
+  },
+  "elb_bedroom_day": {
+   "s": 22,
+   "p": "A quiet bedroom on a sunny afternoon, birds outside an open window, a distant lawnmower, very calm room tone"
   }
  }
 }

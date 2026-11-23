@@ -1,0 +1,80 @@
+{
+ "hash": "084b04f65f8923",
+ "text": "And inside, it's a whole sunny state you can go anywhere in.",
+ "voice": "ggNarrator",
+ "lead": 0,
+ "end": 2.926,
+ "dur": 2.951837,
+ "words": [
+  {
+   "w": "And",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "inside,",
+   "t0": 0.209,
+   "t1": 0.546
+  },
+  {
+   "w": "it's",
+   "t0": 0.569,
+   "t1": 0.685
+  },
+  {
+   "w": "a",
+   "t0": 0.731,
+   "t1": 0.766
+  },
+  {
+   "w": "whole",
+   "t0": 0.824,
+   "t1": 1.045
+  },
+  {
+   "w": "sunny",
+   "t0": 1.091,
+   "t1": 1.335
+  },
+  {
+   "w": "state",
+   "t0": 1.382,
+   "t1": 1.625
+  },
+  {
+   "w": "you",
+   "t0": 1.66,
+   "t1": 1.73
+  },
+  {
+   "w": "can",
+   "t0": 1.765,
+   "t1": 1.869
+  },
+  {
+   "w": "go",
+   "t0": 1.916,
+   "t1": 2.032
+  },
+  {
+   "w": "anywhere",
+   "t0": 2.078,
+   "t1": 2.426
+  },
+  {
+   "w": "in.",
+   "t0": 2.473,
+   "t1": 2.926
+  }
+ ],
+ "voiceId": "iP95p4xoKVk53GoZ742B",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.45,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.08
+ },
+ "created": "2026-11-23T11:04:25.302Z"
+}
