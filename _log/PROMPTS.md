@@ -16325,3 +16325,8 @@ Oldest first. Times are UTC (the owner is in GMT+11). Extracted from the session
     First, develop the complete story and screenplay.
     [requirements: an extremely strong hook; an ordinary setting with one impossible detail; a mystery viewers speculate about; clues introduced naturally; a satisfying explanation; an unexpected, emotionally meaningful twist; a memorable final line that connects back to the opening; no predictable horror clichés, unnecessary supernatural explanations or confusing devices; understandable to a first-time viewer; the complete screenplay, runtime, scene-by-scene visual direction and narration. "I will approve the story before we move into production."]
 
+## 423. 2026-11-24
+
+    STOP ALL VIDEO RENDERING IMMEDIATELY. Do not execute any Remotion renders, Blender renders, or export scripts until we refactor our core pipeline.
+    [the owner's five new non-negotiable standards: 1 unified 3D PBR environments, no world outlines, real lights, shadows, AO, atmosphere; 2 a dynamic 3D camera, no static infographics over 2–3 s, dollies, trucks, orbits, OTS, handheld drift, 24–35 mm and 85 mm with DOF, 5–10 frame impact shakes, a change every 1.5–2.0 s; 3 expressive character animation, 2–3 key poses per shot, snappy easing, squash and stretch, prop interaction, secondary motion; 4 viral pacing, no title cards, hook banners or end CTAs, in medias res by 0–2 s, large 1–2-word captions, big 3D numbers; 5 layered SFX on every action, music ducked 6–10 dB under punchlines. Next step: audit the codebase, propose a unified architecture, wait for approval before writing code or rendering.]
+

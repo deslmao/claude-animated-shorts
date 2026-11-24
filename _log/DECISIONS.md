@@ -226,3 +226,12 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
     door;
   - six planted clues, the question asked out loud at ~65 %;
   - an ending that mirrors the first line, about 70–75 s.
+- **24 Nov (owner):** all rendering is stopped until the core pipeline is refactored to five new standards.
+  - **Claude's audit and proposal (`docs/architecture/engine4-proposal.md`):** "Engine 4", opt-in.
+    - Blender is the offline set builder and Cycles lightmap baker, exporting glTF.
+    - three.js PBR with real lights, character cast shadows, SSAO, fog and dust, and no world ink.
+    - A physical camera rig with mm lenses, handheld noise and impact shakes, plus a measured motion gate.
+    - Continuous gestures, key poses with overshoot, squash and stretch, attached props.
+    - No banners or CTAs, bigger captions, `BigNumber`, auto sound cues, music ducking of 8 dB.
+  - **Rejected:** rendering everything in Blender per frame (1.5–4.5 min per frame).
+  - Waiting for approval before any code.
