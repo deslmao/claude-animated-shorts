@@ -210,3 +210,12 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
     - "rivals" for "enemies" in the last line (proposed; the owner decides).
   - **ElevenLabs to the full:** Voice Design, v3 audio tags, Text to Dialogue, context, a headset effect, sound effects,
     music, and speech-to-text checks. It awaits approval.
+- **24 Nov (owner):** GTA is dropped as a niche. Ep 2 (the GTA friends script) is on hold.
+  - **Claude's recommendation (`productions/research/next-direction-2026-11-24.md`):** "Everyday Impossible": fictional
+    everyday mysteries with one impossible, concrete detail and a fair, logical, usually human answer, plus a loop
+    twist.
+  - **Why:** it's the One Too Many pattern (85.5 % stayed), uncrowded, endless, loyalty through a solve-it game and a
+    shared town (Ashford), and the pipeline needs no rebuild.
+  - **The runners-up:** true "why it happened" story-explainers (a big market, but head-on against Rick's clips and
+    Zack D), and "Imagine…" POV dilemmas.
+  - **The plan:** a 10-video test with one variable per pair. The owner decides.

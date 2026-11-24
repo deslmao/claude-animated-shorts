@@ -16313,3 +16313,8 @@ Oldest first. Times are UTC (the owner is in GMT+11). Extracted from the session
     [the owner's full scene-by-scene concept: Scene 1 The introduction (0–8s), Scene 2 The interrogation (8–20s), Scene 3 The disaster (20–38s), Scene 4 The betrayal (38–52s), Final punchline (52–60s); see productions/gta-gf-2/viewer-script.md, where every line of it is kept]
     Please use Elevenlabs like to the maximum like, use every feature you think that will increase the likelyhood of my video increasing quality.
 
+## 421. 2026-11-24
+
+    THINKORA — FIND OUR NEXT CONTENT DIRECTION
+    [the owner's full brief: no longer pursuing GTA (trend, not loyalty); goal = views AND a loyal returning audience; One Too Many ~23K views; research successful creators, identify and score niches (viral, retention, returning viewers, endless ideas, competition, pipeline fit, sustainability), original repeatable formats, top three directions, strongest recommendation and why, five concepts, three hooks, a 10-video test; constraints: no GTA, no constant niche switching, no pipeline rebuild, no generic advice, challenge weak ideas, be research-driven and brutally honest]
+
