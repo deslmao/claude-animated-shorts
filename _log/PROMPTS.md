@@ -16305,3 +16305,11 @@ Oldest first. Times are UTC (the owner is in GMT+11). Extracted from the session
 
     and btw we need that realistic blender style everywhere, and we need to showcase it to the viewers in the first frames like in our new gta video we only used it for the driving frames which were only the last few seconds, we need then hooked
 
+## 420. 2026-11-24
+
+    How about this?
+    I'd make it a fast-paced comedy where the girlfriend thinks she's meeting his friends, but slowly realises she's entered an entirely different world.
+    When your boyfriend introduces you to his GTA friends
+    [the owner's full scene-by-scene concept: Scene 1 The introduction (0–8s), Scene 2 The interrogation (8–20s), Scene 3 The disaster (20–38s), Scene 4 The betrayal (38–52s), Final punchline (52–60s); see productions/gta-gf-2/viewer-script.md, where every line of it is kept]
+    Please use Elevenlabs like to the maximum like, use every feature you think that will increase the likelyhood of my video increasing quality.
+

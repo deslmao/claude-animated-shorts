@@ -201,3 +201,12 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
   - **No still cards.**
   - **Measured on the preview** with the STUDY.md script before the final.
   - The viewer script awaits approval.
+- **24 Nov (owner):** Ep 2 is the owner's concept, "When your boyfriend introduces you to his GTA friends". The
+  "Lucky Shirt" draft is kept for later.
+  - **Claude's adaptation:**
+    - narrator set-ups (the storytelling gate) and the breakfast-pattern hook;
+    - two original friends, Tank and Zip, with designed voices;
+    - "inside GTA", never "GTA 6 Online" (it isn't out);
+    - "rivals" for "enemies" in the last line (proposed; the owner decides).
+  - **ElevenLabs to the full:** Voice Design, v3 audio tags, Text to Dialogue, context, a headset effect, sound effects,
+    music, and speech-to-text checks. It awaits approval.
