@@ -219,3 +219,10 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
   - **The runners-up:** true "why it happened" story-explainers (a big market, but head-on against Rick's clips and
     Zack D), and "Imagine…" POV dilemmas.
   - **The plan:** a 10-video test with one variable per pair. The owner decides.
+- **24 Nov (owner):** the channel's direction is "Everyday Impossible". Story #1 is The Friday Pizza, story only, with
+  no production until it's approved. The screenplay is in `productions/friday-pizza/screenplay.md`:
+  - first person (Maya, 13), in Ashford;
+  - the answer is human: the late Mrs Hale prepaid a year of Friday pizzas to her own empty house for the two kids next
+    door;
+  - six planted clues, the question asked out loud at ~65 %;
+  - an ending that mirrors the first line, about 70–75 s.
