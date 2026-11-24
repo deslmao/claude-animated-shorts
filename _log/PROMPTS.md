@@ -16297,3 +16297,11 @@ Oldest first. Times are UTC (the owner is in GMT+11). Extracted from the session
 
     Compare our video to rick's clips
 
+## 418. 2026-11-24 (morning)
+
+    We need to change our frame where almost nothing moves to around 2.5%, frames identical to one before to 0.5-1% and frames with clearly moving  camera to 10-30% while keeping quality and visual storytelling , lets start a new one  about the gta transcript i gave you yesterday
+
+## 419. 2026-11-24 (morning, mid-task)
+
+    and btw we need that realistic blender style everywhere, and we need to showcase it to the viewers in the first frames like in our new gta video we only used it for the driving frames which were only the last few seconds, we need then hooked
+

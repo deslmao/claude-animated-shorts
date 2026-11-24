@@ -191,3 +191,13 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
   pictures. Then the final was re-rendered.
 - **23 Nov:** GTA GF Ep 1 is done. Final run 64 passed the full QA (QA run 20) with no flags, and the MP4 is kept in
   the repo. Nothing was uploaded: the owner posts from `publish/PUBLISHING.md`.
+- **24 Nov (owner):** new motion targets for every video: almost-still frames about 2.5 %, repeated frames 0.5–1 %, a
+  moving camera in 10–30 % of frames. The realistic Blender style should be everywhere and seen from the first frame.
+  - **Claude, Ep 2 "The Lucky Shirt":** the outfit trick from the owner's tips transcript (verified, and set mostly in
+    the game, so it's Blender from frame 0).
+  - **Real life becomes a Blender-rendered flat.**
+  - **Camera motion:** wide plates with pans, tilts and zooms from the plate's own lens position, which is exact
+    perspective over a flat plate.
+  - **No still cards.**
+  - **Measured on the preview** with the STUDY.md script before the final.
+  - The viewer script awaits approval.
