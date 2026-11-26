@@ -1,6 +1,6 @@
 # HANDOFF: where everything stands (keep this current)
 
-**Last updated:** 23 Nov 2026, ~22:35 UTC.
+**Last updated:** 26 Nov 2026.
 
 **Repo and branch:** `deslmao/claude-animated-shorts`, branch `claude/admiring-hopper-kbrb3d`. Never push elsewhere,
 no pull requests.
@@ -9,6 +9,16 @@ no pull requests.
 1. Read `CLAUDE.md` (the production rules).
 2. Read `_log/DECISIONS.md` (why things are the way they are).
 3. Read `_log/PROMPTS.md` (the owner's exact words, newest at the bottom).
+
+## Status, 26 Nov 2026 (read this first)
+- **The direction is "Everyday Impossible"** (`productions/research/next-direction-2026-11-24.md`). GTA is dropped; the
+  GTA Ep 1 video is finished (`productions/gta-gf-1/`), and Ep 2 is on hold.
+- **First story:** The Friday Pizza, a screenplay awaiting the owner's approval (`productions/friday-pizza/screenplay.md`).
+  Open point: it has two short flashbacks, and the new framework says zero.
+- **All rendering is paused** until Engine 4 is built. The plan is `docs/architecture/engine4-proposal.md` (approved
+  24 Nov); the rules are in CLAUDE.md ("Engine 4 pipeline rules"). **Phase 1 (Maya's kitchen: three comparison stills,
+  Engine 4 against the current look) has not been started.** Stop after those stills and show the owner.
+- **Never poll GitHub Actions** (CLAUDE.md): give the run URL and stop.
 
 ## The channel in one paragraph
 Thinkora makes animated POV horror/mystery Shorts: an everyday situation, then a twist, ending on "what would you do?"

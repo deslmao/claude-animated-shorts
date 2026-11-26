@@ -190,3 +190,46 @@ The technique to reuse (not the story):
 - **The hook that worked is a sentence you can read at a glance:** a normal situation, then the twist ("Mum's making
   breakfast. Then she texts: 'Don't eat it. I'm still at work.'"). A scream with no context didn't.
 - **Long-form isn't working yet;** Shorts only for now.
+
+## Update, 26 Nov 2026: the 7-Beat "One-Rule World" story framework (default) and the narration rules
+**This is our default storytelling framework, not a mandatory template.** Adapt, combine or replace beats when a
+story's concept requires it. Never force rivals, nicknames or competitions that don't naturally belong to the idea.
+Where it conflicts with the older rules above (for example rule 8, "end on a choice the viewer can answer"), this
+section wins for new videos.
+
+- **Target length:** 60-120 seconds. **Zero flashbacks:** the story moves forward, and everything the viewer needs is
+  shown as it happens.
+- **Pacing rule (overrides any rigid beat timings):** every 10-15 seconds something must change: a new clue, a
+  complication, a consequence, a joke or a reveal. If a stretch passes with none of these, cut or rewrite it.
+
+### The seven beats
+1. **The 3-second "One-Rule + Irony" hook.** State one bizarre, simple rule of the world in one sentence, then
+   immediately give the protagonist the worst possible weakness for that rule.
+2. **One funny world example.** Prove the rule with one hilarious, concrete detail from everyday life.
+3. **Conflict, rival or stakes.** Introduce the social pressure, rival or immediate problem that makes the protagonist's
+   weakness painful.
+4. **The wholesome "secret practice" (the planted skill).** Show one supportive person, or one quiet habit, where the
+   protagonist practises one specific, seemingly useless trick. This exact trick must pay off in the ending.
+5. **The big event and the public fail.** The protagonist enters a high-stakes moment, fails in front of everyone, and
+   hits their lowest point.
+6. **The clever loophole payoff.** The protagonist wins by using a genius loophole in the world's rule, powered directly
+   by the Beat 4 trick.
+7. **The role-reversal ending, and an optional CTA.** The rival or the crowd respects the protagonist. No forced CTA:
+   include a 1-second, story-integrated call to action only if it naturally strengthens the ending; otherwise cut
+   cleanly.
+
+### How it sits with "Everyday Impossible"
+- Everyday Impossible is the channel's direction (a fictional everyday mystery with a fair, usually human answer). The
+  7-beat framework is one way to build a story inside that direction when the concept has a world rule, a rival and a
+  trick. A pure mystery (one impossible detail, a held question, a logical reveal) may use fewer or different beats.
+- Whatever the shape, keep the Beat 4 principle: **plant the thing the ending needs earlier, in plain sight.** It's the
+  same fairness rule as the clue map.
+
+### Narration rules (all new videos)
+- **Short, punchy, conversational sentences.** No listicles, no uniform explainer tone, no run of same-length lines.
+- **Build in a deliberate 0.2-0.3 s beat pause right before each punchline and reveal.** Set it in the line timing
+  (the engine's `pauses` option on the word before the reveal), so the audio and captions land together.
+- **Use dynamic vocal delivery:** vary the pace and weight, with ElevenLabs v3 audio tags ([whispers], [shouting],
+  [softly]) and context on every line. A reveal shouldn't sound like the line before it.
+- **Scripts follow the Rick's-clips recipe from STUDY.md §7** where it fits: a one-sentence opening paradox, a "So /
+  But / Then" cause-and-effect chain, and the big question held back and then answered by name.

@@ -235,3 +235,17 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
     - No banners or CTAs, bigger captions, `BigNumber`, auto sound cues, music ducking of 8 dB.
   - **Rejected:** rendering everything in Blender per frame (1.5–4.5 min per frame).
   - Waiting for approval before any code.
+- **26 Nov (owner):** documentation only, no code and no renders.
+  - **CLAUDE.md:**
+    - a permanent "never poll GitHub Actions" rule: give the run URL and stop;
+    - the frame-0 banner, intro title cards and end-screen CTAs are removed from the format system (old productions
+      are left as they are);
+    - Engine 4 pipeline rules: opt-in (`engine: 4`), existing productions never migrated, phased with owner review;
+    - the five standards, the Phase 1 guardrails (outlines kept on the characters, ACES and sRGB / linear colour
+      management, baked lightmaps plus live lights), the audit gates before Phases 2 and 4, captions at 5-6 % of the
+      height, the 3-act story arc with no listicles, and the narration rules;
+    - an advertiser-friendly disclaimer in every publishing description.
+  - **winning-patterns.md:** the 7-Beat "One-Rule World" framework as the default (not a mandatory template), a
+    change every 10-15 s, zero flashbacks, and the narration rules.
+  - **Open point for the owner:** the Friday Pizza screenplay has two short memory flashbacks, which conflicts with the
+    zero-flashback rule. The screenplay is not yet approved, so it needs one decision.
