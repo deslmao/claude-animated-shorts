@@ -77,13 +77,14 @@ export class SetWorld implements StudioWorld {
     cam.fov = c.fov; cam.near = 0.1; cam.far = 1500; cam.updateProjectionMatrix(); cam.updateMatrixWorld();
     const focus = new THREE.Vector3(...c.look), sun = this.sunOf(s, built);
     const L = this.env.apply(s.light, cam, focus, sun, scene);
+    if (built.e4) built.e4.apply({ env: this.env, focus, t: f / 30 });
     const pv = new THREE.Vector3();
     const info: CamInfo = { pos: cam.position, right: new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld, 0), sun, project: (p) => { pv.set(...p).project(cam); return [pv.x, pv.y]; } };
     const st: Stage = { places: [], fx: [] };
     this.director(s, f, info, built, st);
     // animated props pose AFTER the actors: they reach for where the hands really are this frame
     for (const r of this.rigs.get(s.id) ?? []) r.inst.update({ ...r.animate((f - s.a) / 30, st.anchors ?? new Map()), camPos: cam.position });
-    this.cards.render(st, cam, L.actorShadow);
+    this.cards.render(st, cam, L.actorShadow || !!built.e4, built.e4?.tint);
     const d = s.dof(f);
     const exp = typeof s.shutter === "function" ? s.shutter(f) : s.shutter ?? 0;
     return { target: focus, cInf: d.cInf, focus: d.focus ? new THREE.Vector3(...d.focus) : undefined, grade: s.light, ...(exp > 0 ? { shutter: { ...this.shutterOf(s, f, exp), ...(s.shutterCap ? { cap: s.shutterCap(f) } : {}) } } : {}) };

@@ -39,9 +39,9 @@ export type EnvOptions = { clouds?: boolean; sky?: boolean };
 export class Environment {
   root = new THREE.Group();
   sun: THREE.DirectionalLight;
-  private hemi: THREE.HemisphereLight;
+  hemi: THREE.HemisphereLight;
   private sky: THREE.Mesh; private skyMat: THREE.ShaderMaterial;
-  private fog = new THREE.Fog("#bccbec", 25, 420);
+  fog = new THREE.Fog("#bccbec", 25, 420);
   private sunDisc: THREE.Sprite; private sunHalo: THREE.Sprite;
   private clouds: THREE.Mesh[] = [];
   private cloudMaps: Record<string, THREE.Texture[]> = {};

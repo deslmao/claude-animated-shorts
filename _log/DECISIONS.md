@@ -249,3 +249,18 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
     change every 10-15 s, zero flashbacks, and the narration rules.
   - **Open point for the owner:** the Friday Pizza screenplay has two short memory flashbacks, which conflicts with the
     zero-flashback rule. The screenplay is not yet approved, so it needs one decision.
+
+- **26 Nov 2026: Engine 4 Phase 1 built (Maya's kitchen); stopped for the owner's review.**
+  - **Pipeline:** `blender/sets/kitchen.py` builds the room (Poly Haven CC0 textures fetched by `assets_fetch.py` into the
+    git-ignored `blender/sets/assets/`; bevelled cabinets and worktops; kettle, toaster, cutting board with oranges and
+    knife, mugs, cereal bowl and box, fridge magnets and drawing), bakes the INDIRECT light only (Cycles, window area light
+    + pendant spot light, no OIDN: a mask-aware blur) into a 16-bit EXR lightmap on a second UV set, and exports a GLB.
+    Both files live in `animation-studio/public/e4/kitchen/`.
+  - **Engine (all opt-in):** `engine: 4` in a storyboard -> `Timeline.engine4` -> StudioFilm uses N8AO, no InkPass, ACES
+    filmic and no stylised grade. A set may carry `BuiltSet.e4` (window light in the sun slot, fog, hemisphere, dust, a card
+    tint); `CardLayer.render` has an optional tint callback. Sets and stories without them are untouched (checked by
+    `npm run test:library` and a re-render of the breakfast-2 baseline frames).
+  - **Why a spot light for the lamp:** the card depth material casts real shadows for directional and spot lights, not
+    point lights. **Why `lightMapIntensity = pi`:** Blender bakes E/pi; three multiplies the lightmap by albedo/pi.
+  - **Honest limits:** a card seen nearly edge-on to a light throws a thin shadow; characters are the existing Mum and Bug
+    (the Friday Pizza cast isn't drawn yet); the three stills are the test frames only, no renders beyond them.

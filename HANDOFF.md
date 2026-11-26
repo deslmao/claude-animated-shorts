@@ -16,8 +16,10 @@ no pull requests.
 - **First story:** The Friday Pizza, a screenplay awaiting the owner's approval (`productions/friday-pizza/screenplay.md`).
   Open point: it has two short flashbacks, and the new framework says zero.
 - **All rendering is paused** until Engine 4 is built. The plan is `docs/architecture/engine4-proposal.md` (approved
-  24 Nov); the rules are in CLAUDE.md ("Engine 4 pipeline rules"). **Phase 1 (Maya's kitchen: three comparison stills,
-  Engine 4 against the current look) has not been started.** Stop after those stills and show the owner.
+  24 Nov); the rules are in CLAUDE.md ("Engine 4 pipeline rules"). **Phase 1 (Maya's kitchen) is built and its three comparison stills
+  (Engine 4 against the current look) are with the owner for review; do not start Phase 2 until they approve.** Files:
+  `blender/sets/kitchen.py`, `animation-studio/src/studio/engine4/kitchen.ts`, `themes/e4/`, test stories
+  `stories/e4-kitchen-test.ts` (`Short-e4-kitchen-test` and `Short-e4-kitchen-legacy`, frames 20, 62, 104).
 - **Never poll GitHub Actions** (CLAUDE.md): give the run URL and stop.
 
 ## The channel in one paragraph

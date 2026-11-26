@@ -10,6 +10,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { EffectComposer } from "@react-three/postprocessing";
 import { BlendFunction, BloomEffect, ToneMappingEffect, ToneMappingMode } from "postprocessing";
 import type { EffectComposer as PPComposer } from "postprocessing";
+import { N8AOPostPass } from "n8ao";
 import { InkPass, noInkFallback } from "./ink";
 import { LensBlur, GrainEffect } from "./lensblur";
 import { MotionBlurEffect, shutterTravel, THRESH_PX } from "./motionblur";
@@ -27,7 +28,7 @@ export interface StudioWorld { root: THREE.Object3D; update(shot: number, f: num
 /** flashes: 4-frame white fades starting at each frame; dips: 12-frame dips to black centred on each frame (the cut) */
 /** motionBlur: the film uses camera motion blur (look/motionblur.ts); without it the post chain is unchanged */
 /** stableInk: engine-2 world ink (look/ink.ts `stable`: minimum feature width, wider anti-aliasing) */
-export interface Timeline { total: number; layersAt(f: number): { id: number; alpha: number }[]; flashes?: number[]; dips?: number[]; motionBlur?: boolean; controlledBlur?: boolean; stableInk?: boolean; inkSides?: boolean }
+export interface Timeline { total: number; layersAt(f: number): { id: number; alpha: number }[]; flashes?: number[]; dips?: number[]; motionBlur?: boolean; controlledBlur?: boolean; stableInk?: boolean; inkSides?: boolean; engine4?: boolean }
 
 /** A/B switches for test stills only (inputProps `{ post: { ink: false, ... } }`); everything is on by default */
 type PostToggles = { ink: boolean; ink2: boolean; sides: boolean; lens: boolean; pre: boolean; bloom: boolean; grade: boolean; grain: boolean; motion: boolean };
@@ -42,9 +43,16 @@ const makeBloom = () => {
   return b;
 };
 
+/** Engine 4 ambient occlusion (N8AO): contact darkening in the corners, under the table, behind the props */
+const makeAO = (scene: THREE.Scene, camera: THREE.PerspectiveCamera) => {
+  const ao = new N8AOPostPass(scene, camera);
+  Object.assign(ao.configuration, { aoRadius: 0.5, distanceFalloff: 0.6, intensity: 2.4, aoSamples: 16, denoiseSamples: 6, denoiseRadius: 10, halfRes: false, color: new THREE.Color(0x000000) });
+  return ao;
+};
+
 const fwd = new THREE.Vector3(), fpt = new THREE.Vector3(), ivp = new THREE.Matrix4(), mOpen = new THREE.Matrix4(), mClose = new THREE.Matrix4(), pcam = new THREE.PerspectiveCamera();
 
-function Inner<K>({ id, kit, makeWorld, blur, stableInk, controlledBlur = false, inkSides = false }: { id: number; kit: K; makeWorld: (kit: K) => StudioWorld; blur: boolean; stableInk: boolean; controlledBlur?: boolean; inkSides?: boolean }) {
+function Inner<K>({ id, kit, makeWorld, blur, stableInk, controlledBlur = false, inkSides = false, engine4 = false }: { id: number; kit: K; makeWorld: (kit: K) => StudioWorld; blur: boolean; stableInk: boolean; controlledBlur?: boolean; inkSides?: boolean; engine4?: boolean }) {
   const f = useCurrentFrame();
   const { camera, scene } = useThree();
   const world = useMemo(() => makeWorld(kit), [kit, makeWorld]);
@@ -66,16 +74,19 @@ function Inner<K>({ id, kit, makeWorld, blur, stableInk, controlledBlur = false,
     ink: new InkPass(scene, camera as THREE.PerspectiveCamera, { ...(stableInk && on.ink2 ? { stable: true } : {}), ...(inkSides && on.sides ? { sides: true } : {}) }),
     lens: new LensBlur({ maxCoC: 24, nearScale: 1.2 }),
     bloom: makeBloom(),
-    tone: new ToneMappingEffect({ mode: ToneMappingMode.NEUTRAL }),
+    // Engine 4 (opt-in): ACES filmic for the unified PBR look, with N8AO ambient occlusion first in the chain; no world ink, no stylised grade
+    tone: new ToneMappingEffect({ mode: engine4 ? ToneMappingMode.ACES_FILMIC : ToneMappingMode.NEUTRAL }),
+    ao: engine4 ? makeAO(scene, camera as THREE.PerspectiveCamera) : null,
     grade: new GradeEffect(GRADES.day, GRADE_STRENGTH.day),
     grain: new GrainEffect({ amount: 0.025, cellPx: 1.5 }), // OFF by default: the reference has no grain
     motion: new MotionBlurEffect({ controlled: controlledBlur }),
-  }), [camera, scene, stableInk, on, controlledBlur, inkSides]);
+  }), [camera, scene, stableInk, on, controlledBlur, inkSides, engine4]);
   useEffect(() => () => fx.ink.dispose(), [fx]);
   const post = useMemo(() => (
     <EffectComposer multisampling={4} ref={composer}>
       {[
-        on.ink && <primitive key="ink" object={fx.ink} dispose={null} />,
+        engine4 && fx.ao && <primitive key="ao" object={fx.ao} dispose={null} />,
+        on.ink && !engine4 && <primitive key="ink" object={fx.ink} dispose={null} />,
         // controlled blur: depth of field BEFORE motion blur. The composer ping-pongs two buffers and the scene depth
         // is attached to one of them: switching the motion pass on in front of the lens passes (it is enabled only on
         // moving frames) flips which buffer each lens pass draws into, so one of them reads the depth it is writing
@@ -87,11 +98,11 @@ function Inner<K>({ id, kit, makeWorld, blur, stableInk, controlledBlur = false,
         blur && on.motion && controlledBlur && <primitive key="motion" object={fx.motion} dispose={null} />,
         on.bloom && <primitive key="bloom" object={fx.bloom} dispose={null} />,
         <primitive key="tone" object={fx.tone} dispose={null} />,
-        on.grade && <primitive key="grade" object={fx.grade} dispose={null} />,
+        on.grade && !engine4 && <primitive key="grade" object={fx.grade} dispose={null} />,
         on.grain && <primitive key="grain" object={fx.grain} dispose={null} />,
       ].filter((x): x is React.JSX.Element => !!x)}
     </EffectComposer>
-  ), [fx, on, blur, controlledBlur]);
+  ), [fx, on, blur, controlledBlur, engine4]);
   const cam = camera as THREE.PerspectiveCamera;
   const info = world.update(id, f, cam, scene);
   noInkFallback(world.root);
@@ -134,7 +145,7 @@ export function StudioFilm<K>({ timeline, makeWorld, load, background = "#cfe3f2
           <ThreeCanvas width={1080} height={1920} {...(dprOverride() ? { dpr: dprOverride() } : {})} shadows
             gl={{ antialias: false, stencil: false, powerPreference: "high-performance", toneMappingExposure: 1.0 }}
             camera={{ fov: 40, near: 0.2, far: 1500 }}>
-            <Inner id={l.id} kit={kit} makeWorld={makeWorld} blur={!!timeline.motionBlur} stableInk={!!timeline.stableInk} controlledBlur={!!timeline.controlledBlur} inkSides={!!timeline.inkSides} />
+            <Inner id={l.id} kit={kit} makeWorld={makeWorld} blur={!!timeline.motionBlur} stableInk={!!timeline.stableInk} controlledBlur={!!timeline.controlledBlur} inkSides={!!timeline.inkSides} engine4={!!timeline.engine4} />
           </ThreeCanvas>
         </AbsoluteFill>
       ))}

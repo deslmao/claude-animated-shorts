@@ -229,5 +229,5 @@ export type Storyboard = {
    *  whatever the render worker drew before (exact chunk seams on fast camera flights). Default 1: storyboards made
    *  before 2.0 render exactly as they were approved. 3 = engine 2 plus the Video 03 render corrections: the outline
    *  buffer draws only the faces the picture draws (no phantom lines when a camera grazes or enters geometry) */
-  engine?: 1 | 2 | 3;
+  engine?: 1 | 2 | 3 | 4;
 };

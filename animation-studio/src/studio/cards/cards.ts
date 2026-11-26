@@ -68,7 +68,7 @@ const CARD = new THREE.PlaneGeometry(1, 1);
 
 /** lit flat character card */
 export class Actor {
-  mesh: THREE.Mesh; mat: THREE.MeshLambertMaterial; dmat: THREE.MeshDepthMaterial; r: Req | null = null;
+  mesh: THREE.Mesh; mat: THREE.MeshLambertMaterial; dmat: THREE.MeshDepthMaterial; r: Req | null = null; tinted = false;
   constructor(parent: THREE.Object3D, geo: THREE.BufferGeometry = BODY) {
     this.mat = cardShade(new THREE.MeshLambertMaterial({ map: blank, alphaTest: 0.5, side: THREE.DoubleSide }));
     this.mat.alphaToCoverage = false;
@@ -143,7 +143,7 @@ export class CardLayer {
   private customActor(geo: THREE.BufferGeometry) { let a = this.custom.get(geo); if (!a) { a = new Actor(this.root, geo); this.custom.set(geo, a); } return a; }
 
   /** castShadows: cards throw real shadows (golden light); by day they get contact blobs instead */
-  render(st: Stage, cam: THREE.PerspectiveCamera, castShadows: boolean) {
+  render(st: Stage, cam: THREE.PerspectiveCamera, castShadows: boolean, tint?: (x: number, y: number, z: number) => [number, number, number]) {
     this.frustum.setFromProjectionMatrix(this.m4.multiplyMatrices(cam.projectionMatrix, cam.matrixWorldInverse));
     let ai = 0;
     const used = new Set<Actor>();
@@ -158,6 +158,8 @@ export class CardLayer {
       a.mesh.rotation.set(0, p.yaw ?? Math.atan2(cam.position.x - p.x, cam.position.z - p.z), p.roll ?? 0);
       a.mesh.scale.set(p.mirror ? -sc : sc, sc, sc);
       a.mesh.castShadow = p.castShadow ?? castShadows;
+      // Engine 4: the room's lights tint the card a little (a card ignores scene lights otherwise); no callback = unchanged
+      if (tint) { a.mat.color.setRGB(...tint(p.x, p.y + 1.1 * sc, p.z)); a.tinted = true; } else if (a.tinted) { a.mat.color.setRGB(1, 1, 1); a.tinted = false; }
       used.add(a);
     }
     for (let i = ai; i < this.actors.length; i++) this.actors[i].mesh.visible = false;
