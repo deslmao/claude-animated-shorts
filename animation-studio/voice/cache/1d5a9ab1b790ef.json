@@ -1,0 +1,35 @@
+{
+ "hash": "1d5a9ab1b790ef",
+ "text": "Eight. Pool. Obviously.",
+ "voice": "e4Rival",
+ "lead": 0,
+ "end": 2.043,
+ "dur": 2.089796,
+ "words": [
+  {
+   "w": "Eight.",
+   "t0": 0,
+   "t1": 0.441
+  },
+  {
+   "w": "Pool.",
+   "t0": 0.604,
+   "t1": 1.08
+  },
+  {
+   "w": "Obviously.",
+   "t0": 1.149,
+   "t1": 2.043
+  }
+ ],
+ "voiceId": "loY1uopAz31XyhAEhNSa",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.75,
+  "style": 0.35,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-27T11:21:40.835Z"
+}

@@ -83,6 +83,11 @@ export const VOICES: Record<string, VoicePreset> = {
   // Don't Eat It. I'm Still at Work. (productions/breakfast-text): Mum in the kitchen, Mum through the front door, the
   // texts read in Mum's voice through a phone filter (the narrator is georgeHushed)
   bfMum: { name: "Bella - Professional, Bright, Warm", voiceId: "hpp4J3VqNfWAUOO0d1Us", model: MODEL, settings: { ...CHANNEL, stability: 0.55, style: 0.2, speed: 0.95 }, note: "Mum in the kitchen: warm, close, a little too sweet" },
+  // Engine 4 cast (Phase 5): Leo's official voice (ElevenLabs "Leo (Voice for my animated videos)", id 7g0kmMsyK30rO4fU1Sli), set by the owner on
+  // 27 Nov 2026: stability 0.38, style exaggeration 0.20, a snappy 1.06x. Mum and the smug rival are distinct, expressive female voices.
+  leo: { name: "Leo (Voice for my animated videos)", voiceId: "7g0kmMsyK30rO4fU1Sli", model: MODEL, settings: { stability: 0.38, similarity_boost: 0.75, style: 0.2, use_speaker_boost: true, speed: 1.06 }, note: "Leo, the owner's own voice for the animated videos (narrator and character)" },
+  e4Mum: { name: "Kathie - Sassy & Playful", voiceId: "o9B86nZP8mMLaT5FBEzP", model: MODEL, settings: { stability: 0.4, similarity_boost: 0.75, style: 0.3, use_speaker_boost: true, speed: 1.03 }, note: "Mum: playful, expressive, quick to tease (Engine 4)" },
+  e4Rival: { name: "VALF - Child, Young, Playful & Sarcastic", voiceId: "loY1uopAz31XyhAEhNSa", model: MODEL, settings: { stability: 0.4, similarity_boost: 0.75, style: 0.35, use_speaker_boost: true, speed: 1.04 }, note: "Dex, the smug rival: a young, playful, sarcastic boy (Engine 4)" },
   bfMumDoor: { name: "Bella - Professional, Bright, Warm", voiceId: "hpp4J3VqNfWAUOO0d1Us", model: MODEL, settings: { ...CHANNEL, stability: 0.3, style: 0.5, speed: 1.05 }, note: "Mum at the front door: panicked, through the door", fx: "door" },
   // 6 7 (productions/six-seven): you (an Aussie teen, narrating and talking), Isaac, Glendon, the meme on Isaac's phone
   ssMe: { name: "Charlie - Deep, Confident, Energetic", voiceId: "IKne3meq5aSn9XLyUdCD", model: MODEL, settings: { ...CHANNEL, stability: 0.45, style: 0.3, speed: 1.02 }, note: "you: an Aussie, telling his mates what happened" },

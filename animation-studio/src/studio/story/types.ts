@@ -209,6 +209,8 @@ export type Storyboard = {
   captionKeys?: string[];
   /** Engine 4: false = no automatic word-level SFX from the lexicon (sound/lexicon.ts); explicit `sfx` cues still play */
   wordSfx?: boolean;
+  /** Engine 4: this story's own word -> sound entries on top of the lexicon (sound/lexicon.ts); null removes a word's sound */
+  wordSfxMap?: Record<string, { sfx?: string; major?: boolean; gain_db?: number; lead?: number } | null>;
   /** Engine 4: "continuous" = ONE narration track for the whole film (every narrator line is a slice of it; the cuts fall on its words; `pauses` add the beats) */
   narration?: "continuous";
   /** Engine 4: true allows crowd / stadium sounds (default false: an intimate film plays only grounded room, comedy and tension sounds) */

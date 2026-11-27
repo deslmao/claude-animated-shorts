@@ -1,0 +1,80 @@
+{
+ "hash": "0f2d9a0987ead0",
+ "text": "Fine. I'll do it too. Why is my number still an eight?",
+ "voice": "e4Rival",
+ "lead": 0,
+ "end": 3.111,
+ "dur": 3.160816,
+ "words": [
+  {
+   "w": "Fine.",
+   "t0": 0,
+   "t1": 0.383
+  },
+  {
+   "w": "I'll",
+   "t0": 0.406,
+   "t1": 0.546
+  },
+  {
+   "w": "do",
+   "t0": 0.58,
+   "t1": 0.685
+  },
+  {
+   "w": "it",
+   "t0": 0.743,
+   "t1": 0.813
+  },
+  {
+   "w": "too.",
+   "t0": 0.848,
+   "t1": 1.196
+  },
+  {
+   "w": "Why",
+   "t0": 1.358,
+   "t1": 1.567
+  },
+  {
+   "w": "is",
+   "t0": 1.591,
+   "t1": 1.672
+  },
+  {
+   "w": "my",
+   "t0": 1.73,
+   "t1": 1.811
+  },
+  {
+   "w": "number",
+   "t0": 1.881,
+   "t1": 2.113
+  },
+  {
+   "w": "still",
+   "t0": 2.159,
+   "t1": 2.357
+  },
+  {
+   "w": "an",
+   "t0": 2.415,
+   "t1": 2.473
+  },
+  {
+   "w": "eight?",
+   "t0": 2.531,
+   "t1": 3.111
+  }
+ ],
+ "voiceId": "loY1uopAz31XyhAEhNSa",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.75,
+  "style": 0.35,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-27T11:21:49.082Z"
+}

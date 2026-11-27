@@ -38,17 +38,22 @@ export const linesOf = (s: ShotSpec): Line[] => (s.say === undefined ? [] : (Arr
 export const voiceOf = (sb: Storyboard, l: Line) => l.voice ?? sb.voices?.[l.who ?? "narrator"] ?? sb.voice ?? NARRATOR;
 
 /** every line of a storyboard with its voice and cache key (what `npm run voice` needs to generate) */
-/** Engine 4 continuous narration (storyboard `narration: "continuous"`): every narrator line is a slice of ONE generated track, so the
- *  pacing and prosody flow across the whole film. Other storyboards are untouched */
+/** Engine 4 continuous narration (storyboard `narration: "continuous"`): consecutive lines in the SAME voice form one run, generated as ONE track
+ *  (so the pacing and prosody flow across a whole speech, or the whole narration of a film); each line is a slice of its run. A change of voice
+ *  starts a new run (a back-and-forth is one run per turn, butted together with the natural breath between them). Other storyboards are untouched */
 export const isContinuous = (sb: Storyboard) => sb.engine === 4 && sb.narration === "continuous";
-const wordsIn = (t: string) => t.split(/\s+/).filter(Boolean);
-/** the one track's text: the narrator's lines in order, one space apart (punctuation carries the natural pauses; `pauses` adds the beats) */
-export const masterText = (sb: Storyboard) => sb.shots.flatMap((s) => linesOf(s)).filter((l) => (l.who ?? "narrator") === "narrator").map((l) => l.text.trim()).join(" ");
+export type Run = { voice: string; who: string; text: string; hash: string; lines: { k: number; line: Line }[] };
+export const runsOf = (sb: Storyboard): Run[] => {
+  const runs: Run[] = [];
+  sb.shots.forEach((s, k) => { for (const line of linesOf(s)) {
+    const voice = voiceOf(sb, line), last = runs[runs.length - 1];
+    if (last && last.voice === voice) last.lines.push({ k, line }); else runs.push({ voice, who: line.who ?? "narrator", text: "", hash: "", lines: [{ k, line }] });
+  } });
+  for (const r of runs) { r.text = r.lines.map((x) => x.line.text.trim()).join(" "); r.hash = VOICES[r.voice] ? clipHash(r.voice, r.text) : ""; }
+  return runs;
+};
 export const lineList = (sb: Storyboard) => {
-  if (isContinuous(sb)) {
-    const voice = sb.voice ?? NARRATOR, text = masterText(sb);
-    return [{ shot: 0, line: { text } as Line, voice, hash: VOICES[voice] ? clipHash(voice, text) : "", who: "narrator" }];
-  }
+  if (isContinuous(sb)) return runsOf(sb).map((r) => ({ shot: r.lines[0].k, line: { text: r.text, who: r.who } as Line, voice: r.voice, hash: r.hash, who: r.who }));
   return sb.shots.flatMap((s, k) => linesOf(s).map((l) => {
     const voice = voiceOf(sb, l);
     return { shot: k, line: l, voice, hash: VOICES[voice] ? clipHash(voice, l.text, l.context) : "", who: l.who ?? "narrator" };
@@ -90,50 +95,53 @@ export const resolve = (sb0: Storyboard, narr?: Narration): Timing => {
   const lines: Placed[] = [], problems: string[] = [];
   let T = 0, cursor = 0;
   let carry: Placed[] = []; // a split line continuing into the next (cont) shot
-  // ---- continuous narration (Engine 4): ONE track; each shot's lines are slices of it, the cuts fall just before their first words ----
+  // ---- continuous narration (Engine 4): one track per run of same-voice lines; each shot's lines are slices of it, the cuts fall just before their first words ----
   let cont: { placed: Placed[][]; starts: number[]; end: number } | undefined;
   if (isContinuous(sb)) {
-    const voice = sb.voice ?? NARRATOR, text = masterText(sb), hash = clipHash(voice, text), have = narr?.clips[hash], clip = have ?? estimateClip(voice, text);
-    const fileAt = LEAD - clip.lead, M: Placed = { shot: 0, who: "narrator", voice, text, hash, estimated: !have, fileAt, start: LEAD, end: fileAt + clip.end, clip, words: clip.words.map((w) => ({ w: w.w, t0: fileAt + w.t0, t1: fileAt + w.t1 })) };
-    // the beats: each line's `pauses` (after the n-th occurrence of a word within that line) become cuts in the one track
-    const cuts: { j: number; s: number; f: number }[] = [], offsets: number[] = [];
-    let off = 0;
-    sb.shots.forEach((s, k) => {
-      for (const l of linesOf(s)) {
-        if ((l.who ?? "narrator") !== "narrator") { problems.push(`shot ${k + 1}: continuous narration carries the narrator only (a ${l.who} line breaks the one track)`); continue; }
-        const toks = wordsIn(l.text); offsets.push(off);
+    const round = (x: number) => Math.round(x * FPS) / FPS;
+    const runs = runsOf(sb), byShot: Placed[][] = sb.shots.map(() => []);
+    let cursor2 = LEAD, lastEnd = 0;
+    for (const r of runs) {
+      if (!VOICES[r.voice]) { problems.push(`shot ${r.lines[0].k + 1}: unknown voice "${r.voice}" (presets: ${Object.keys(VOICES).join(", ")})`); continue; }
+      const have = narr?.clips[r.hash], clip = have ?? estimateClip(r.voice, r.text);
+      cursor2 += r.lines[0].line.gap ?? 0;
+      const fileAt = cursor2 - clip.lead;
+      const M: Placed = { shot: r.lines[0].k, who: r.who, voice: r.voice, text: r.text, hash: r.hash, estimated: !have, fileAt, start: cursor2, end: fileAt + clip.end, clip, words: clip.words.map((w) => ({ w: w.w, t0: fileAt + w.t0, t1: fileAt + w.t1 })) };
+      // the beats: each line's `pauses` (after the n-th occurrence of a word within that line) become cuts in the run's one track
+      const cuts: { j: number; s: number; f: number }[] = [], offsets: number[] = [];
+      let off = 0;
+      for (const { k, line: l } of r.lines) {
+        const toks = l.text.split(/\s+/).filter(Boolean); offsets.push(off);
         for (const q of l.pauses ?? []) {
           const key = norm(q.after), idx = toks.map((t, j) => (norm(t) === key ? j : -1)).filter((j) => j >= 0), j = idx[(q.n ?? 1) - 1];
           if (j === undefined) { problems.push(`shot ${k + 1}: pause after "${q.after}", which the line doesn't say`); continue; }
           const g = off + j;
-          if (g >= clip.words.length - 1) { problems.push(`shot ${k + 1}: pause after "${q.after}" is at the end of the track`); continue; }
+          if (g >= clip.words.length - 1) { problems.push(`shot ${k + 1}: pause after "${q.after}" is at the end of the run (use the next line's gap)`); continue; }
           if (clip.words[g + 1].t0 - clip.words[g].t1 < MIN_PAUSE_GAP) { problems.push(`shot ${k + 1}: pause after "${q.after}": no silence there to cut in (${Math.round((clip.words[g + 1].t0 - clip.words[g].t1) * 1000)} ms): end that word with a comma, a full stop or an ellipsis`); continue; }
           cuts.push({ j: g, s: q.s, f: q.cut ?? 0.5 });
         }
         off += toks.length;
       }
-    });
-    if (off !== clip.words.length) problems.push(`continuous narration: the lines have ${off} words but the track has ${clip.words.length} (run npm run voice)`);
-    const shifted = cuts.length ? applyCuts(M, cuts) : { words: M.words, end: M.end, segs: undefined };
-    M.words = shifted.words; M.end = shifted.end; if (shifted.segs) M.segs = shifted.segs;
-    const placed: Placed[][] = []; let li = 0, firstLine = true;
-    const round = (x: number) => Math.round(x * FPS) / FPS;
+      if (off !== clip.words.length) problems.push(`shot ${r.lines[0].k + 1}: a continuous run has ${off} words in its lines but ${clip.words.length} in its track (run npm run voice)`);
+      const shifted = cuts.length ? applyCuts(M, cuts) : { words: M.words, end: M.end, segs: undefined };
+      M.words = shifted.words; M.end = shifted.end; if (shifted.segs) M.segs = shifted.segs;
+      r.lines.forEach(({ k, line: l }, li) => {
+        const n = l.text.split(/\s+/).filter(Boolean).length, ws = M.words.slice(offsets[li], offsets[li] + n);
+        if (!ws.length) return;
+        const p: Placed = { ...M, shot: k, who: l.who ?? "narrator", text: l.text, words: ws, start: ws[0].t0, end: ws[ws.length - 1].t1, ...(li ? { shared: true } : {}) };
+        if (li) delete p.segs;
+        if (l.sub !== undefined) p.sub = l.sub; if (l.punch) p.punch = true; else delete p.punch;
+        byShot[k].push(p);
+      });
+      lastEnd = M.words[M.words.length - 1].t1; cursor2 = M.end + LINE_GAP;
+    }
     const starts: number[] = [];
     sb.shots.forEach((s, k) => {
-      const mine: Placed[] = [];
-      for (const l of linesOf(s)) {
-        const toks = wordsIn(l.text), ws = M.words.slice(offsets[li], offsets[li] + toks.length); li++;
-        if (!ws.length) continue;
-        const p: Placed = { ...M, shot: k, text: l.text, words: ws, start: ws[0].t0, end: ws[ws.length - 1].t1, ...(firstLine ? {} : { shared: true }) };
-        if (!firstLine) delete p.segs;
-        if (l.sub !== undefined) p.sub = l.sub; if (l.punch) p.punch = true; else delete p.punch;
-        firstLine = false; mine.push(p);
-      }
-      placed.push(mine);
-      starts.push(k === 0 ? 0 : mine.length ? round(Math.max(starts[k - 1] + 0.6, mine[0].words[0].t0 - LEAD)) : NaN);
+      const mine = byShot[k];
       if (!mine.length) problems.push(`shot ${k + 1}: continuous narration needs a line in every shot (the cuts fall on the track's words)`);
+      starts.push(k === 0 ? 0 : mine.length ? round(Math.max(starts[k - 1] + 0.6, mine[0].words[0].t0 - LEAD)) : NaN);
     });
-    cont = { placed, starts, end: round(M.words[M.words.length - 1].t1 + END_HOLD) };
+    cont = { placed: byShot, starts, end: round(lastEnd + END_HOLD) };
   }
   sb.shots.forEach((s, k) => {
     if (cont) {

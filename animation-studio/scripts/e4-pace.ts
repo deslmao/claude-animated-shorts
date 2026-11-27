@@ -20,7 +20,7 @@ console.log(`${sb.id}: ${film.total} frames, ${(film.total / FPS).toFixed(2)} s,
 for (const e of r.errors) console.log("  ERROR  ", e);
 for (const w of r.warnings) console.log("  warning", w);
 console.log(`pacing: ${pc.events.length} visual changes at ${pc.events.map((e) => e.toFixed(2)).join(", ")} s; average every ${pc.average.toFixed(2)} s (target 1.5-2.0); longest hold ${pc.longestGap.seconds.toFixed(2)} s (shot ${pc.longestGap.shot}); flat-card holds over 2.5 s: ${pc.flatHolds.length}`);
-let outside = 0, frozen = 0, shakeFrames = 0, prev: ReturnType<typeof withKick> | null = null;
+const outShots: Record<number, number> = {}, seen: Record<number, number> = {}; let outside = 0, frozen = 0, shakeFrames = 0, prev: ReturnType<typeof withKick> | null = null;
 const hand = sb.engine === 4;
 for (const s of film.shots) {
   let vmax = 0, vmean = 0, n = 0, maxDeg = 0, kick = 0;
@@ -36,12 +36,12 @@ for (const s of film.shots) {
       if (v < 0.002 && w < 0.02 && dz < 0.002 && Math.abs(c.roll - prev.roll) < 1e-5) frozen++;
       if (kf.has(f)) { shakeFrames++; kick = Math.max(kick, w); }
     }
-    if (s.set === "e4Kitchen" && (c.pos[0] < ROOM.x0 || c.pos[0] > ROOM.x1 || c.pos[2] < ROOM.z0 || c.pos[2] > ROOM.z1 || c.pos[1] < ROOM.y0 || c.pos[1] > ROOM.y1)) { outside++; }
+    if (s.set === "e4Kitchen" && (c.pos[0] < ROOM.x0 || c.pos[0] > ROOM.x1 || c.pos[2] < ROOM.z0 || c.pos[2] > ROOM.z1 || c.pos[1] < ROOM.y0 || c.pos[1] > ROOM.y1)) { outside++; (outShots[s.id] = (outShots[s.id] ?? 0) + 1); if (!seen[s.id]) { seen[s.id] = 1; console.log(`  shot ${s.id} outside at frame ${f}: pos ${c.pos.map((v) => v.toFixed(2)).join(",")}`); } }
     prev = c;
   }
   const c0 = runKeys(s.keys, s.a), c1 = runKeys(s.keys, s.b - 1);
   console.log(`  shot ${s.id}  frames ${s.a}-${s.b - 1}  lens ${mmOfFov(c0.fov).toFixed(0)}->${mmOfFov(c1.fov).toFixed(0)} mm  blur ${s.dof(s.a).cInf.toFixed(1)}px  speed mean ${(vmean / Math.max(1, n)).toFixed(3)} max ${vmax.toFixed(3)} m/s  aim max ${maxDeg.toFixed(1)} deg/s  hand-held ${hand ? "on" : "off"}  shake frames ${kf.size}${kf.size ? ` (peak aim ${kick.toFixed(0)} deg/s)` : ""}`);
 }
 console.log(`frozen camera frames (no position, aim, lens or roll change): ${frozen} of ${film.total}`);
-console.log(`camera frames outside the room: ${outside}`);
+console.log(`camera frames outside the room: ${outside}${outside ? " (shots " + Object.entries(outShots).map(([k, v]) => `${k}:${v}`).join(", ") + ")" : ""}`);
 if (r.errors.length || frozen || outside) process.exit(1);

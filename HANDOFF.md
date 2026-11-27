@@ -15,10 +15,9 @@ no pull requests.
   GTA Ep 1 video is finished (`productions/gta-gf-1/`), and Ep 2 is on hold.
 - **First story:** The Friday Pizza, a screenplay awaiting the owner's approval (`productions/friday-pizza/screenplay.md`).
   Open point: it has two short flashbacks, and the new framework says zero.
-- **Engine 4:** Phases 1-4 are approved. **Phase 5 has begun with the story "In my world, the toaster burns the last thing you say"**
-  (`productions/in-my-world-1/script.md`, 85 s, Maya's kitchen). Built and committed: continuous narration, Morning Mood with a hard cut,
-  grounded SFX lexicon, dual masters (`audio/Short-in-my-world-1.mp3` and `.nomusic.mp3`; `scripts/dual-export.mjs`). **Waiting for the owner to
-  approve the script and the prop list (wordToast, brokenMug) before building props or rendering anything.** Friday Pizza is on hold.
+- **Engine 4:** Phases 1-4 approved. **Phase 5 story: "In my world, the highest number wins every argument" (`productions/in-my-world-2/script.md`, 66 s,
+  Leo / Mum / Dex, Option 2 "3D Number Luck World").** Audio built (both masters, Leo's voice `7g0kmMsyK30rO4fU1Sli`). **Waiting for the owner's approval of the script and the
+  prop list (extend `e4Number`: hover + flip; a one-pancake `bfPlate`; a headstand acting key) before building anything or rendering.** The toast story (`in-my-world-1`) is superseded.
 - **Never poll GitHub Actions** (CLAUDE.md): give the run URL and stop.
 
 ## The channel in one paragraph

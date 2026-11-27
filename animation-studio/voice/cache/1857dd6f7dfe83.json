@@ -1,0 +1,70 @@
+{
+ "hash": "1857dd6f7dfe83",
+ "text": "Leo, why are you upside down by the toaster again?",
+ "voice": "e4Mum",
+ "lead": 0,
+ "end": 3.065,
+ "dur": 3.108571,
+ "words": [
+  {
+   "w": "Leo,",
+   "t0": 0,
+   "t1": 0.476
+  },
+  {
+   "w": "why",
+   "t0": 0.569,
+   "t1": 0.778
+  },
+  {
+   "w": "are",
+   "t0": 0.836,
+   "t1": 0.964
+  },
+  {
+   "w": "you",
+   "t0": 0.998,
+   "t1": 1.08
+  },
+  {
+   "w": "upside",
+   "t0": 1.149,
+   "t1": 1.486
+  },
+  {
+   "w": "down",
+   "t0": 1.509,
+   "t1": 1.683
+  },
+  {
+   "w": "by",
+   "t0": 1.741,
+   "t1": 1.834
+  },
+  {
+   "w": "the",
+   "t0": 1.904,
+   "t1": 1.985
+  },
+  {
+   "w": "toaster",
+   "t0": 2.032,
+   "t1": 2.415
+  },
+  {
+   "w": "again?",
+   "t0": 2.461,
+   "t1": 3.065
+  }
+ ],
+ "voiceId": "o9B86nZP8mMLaT5FBEzP",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 1.03
+ },
+ "created": "2026-11-27T11:21:43.006Z"
+}

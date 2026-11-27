@@ -1,0 +1,30 @@
+{
+ "hash": "10fa2d92bdc8d3",
+ "text": "Circulation, Mum.",
+ "voice": "leo",
+ "lead": 0,
+ "end": 1.393,
+ "dur": 1.436735,
+ "words": [
+  {
+   "w": "Circulation,",
+   "t0": 0,
+   "t1": 0.824
+  },
+  {
+   "w": "Mum.",
+   "t0": 0.848,
+   "t1": 1.393
+  }
+ ],
+ "voiceId": "7g0kmMsyK30rO4fU1Sli",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.38,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.06
+ },
+ "created": "2026-11-27T11:21:43.435Z"
+}

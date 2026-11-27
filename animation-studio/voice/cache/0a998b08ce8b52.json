@@ -1,0 +1,85 @@
+{
+ "hash": "0a998b08ce8b52",
+ "text": "Okay, family vote. The highest number picks Saturday, and gets the last pancake.",
+ "voice": "e4Mum",
+ "lead": 0,
+ "end": 4.923,
+ "dur": 4.963265,
+ "words": [
+  {
+   "w": "Okay,",
+   "t0": 0,
+   "t1": 0.534
+  },
+  {
+   "w": "family",
+   "t0": 0.801,
+   "t1": 1.184
+  },
+  {
+   "w": "vote.",
+   "t0": 1.242,
+   "t1": 1.567
+  },
+  {
+   "w": "The",
+   "t0": 1.614,
+   "t1": 1.73
+  },
+  {
+   "w": "highest",
+   "t0": 1.788,
+   "t1": 2.067
+  },
+  {
+   "w": "number",
+   "t0": 2.125,
+   "t1": 2.357
+  },
+  {
+   "w": "picks",
+   "t0": 2.415,
+   "t1": 2.624
+  },
+  {
+   "w": "Saturday,",
+   "t0": 2.647,
+   "t1": 3.239
+  },
+  {
+   "w": "and",
+   "t0": 3.355,
+   "t1": 3.518
+  },
+  {
+   "w": "gets",
+   "t0": 3.576,
+   "t1": 3.773
+  },
+  {
+   "w": "the",
+   "t0": 3.831,
+   "t1": 3.913
+  },
+  {
+   "w": "last",
+   "t0": 3.971,
+   "t1": 4.18
+  },
+  {
+   "w": "pancake.",
+   "t0": 4.226,
+   "t1": 4.923
+  }
+ ],
+ "voiceId": "o9B86nZP8mMLaT5FBEzP",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 1.03
+ },
+ "created": "2026-11-27T11:21:40.268Z"
+}

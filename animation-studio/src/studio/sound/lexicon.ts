@@ -33,8 +33,8 @@ export const norm = (w: string) => w.toLowerCase().replace(/[^a-z0-9']+/g, "");
 export const NOT_GROUNDED = /crowd|stadium|cheer|applause|aww|aye|gasp|scream|roar|siren|thunder|gun|bullet|jumpscare|group_|train|van_|car_|engine|bus_/i;
 export const isGrounded = (name: string) => !NOT_GROUNDED.test(name);
 /** the cues for a narration's words: each lexicon word with a sound, at least `gap` seconds apart (a denser run keeps the first, major ones win) */
-export const wordCues = (words: Word[], gap = 1.2): { t: number; name: string; major: boolean; gain_db?: number; why: string }[] => {
-  const hits = words.flatMap((w) => { const e = LEXICON[norm(w.w)]; return e?.sfx && isGrounded(e.sfx) ? [{ t: Math.max(0, w.t0 - (e.lead ?? 0)), name: e.sfx, major: !!e.major, gain_db: e.gain_db, why: `word "${norm(w.w)}"` }] : []; });
+export const wordCues = (words: Word[], gap = 1.2, extra: Record<string, LexEntry | null> = {}): { t: number; name: string; major: boolean; gain_db?: number; why: string }[] => {
+  const hits = words.flatMap((w) => { const k = norm(w.w), e = k in extra ? extra[k] ?? undefined : LEXICON[k]; return e?.sfx && isGrounded(e.sfx) ? [{ t: Math.max(0, w.t0 - (e.lead ?? 0)), name: e.sfx, major: !!e.major, gain_db: e.gain_db, why: `word "${norm(w.w)}"` }] : []; });
   const out: typeof hits = [];
   for (const h of hits) { const prev = out[out.length - 1]; if (prev && h.t - prev.t < gap) { if (h.major && !prev.major) out[out.length - 1] = h; } else out.push(h); }
   return out;

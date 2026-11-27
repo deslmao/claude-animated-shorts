@@ -322,3 +322,12 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
   - **Dual export:** `sound/build.py` masters a second file without the music (`audio/Short-<id>.nomusic.mp3`); `scripts/dual-export.mjs` muxes both
     videos. Legacy check: breakfast-2's soundtrack rebuilt byte-identical.
   - **Story:** `productions/in-my-world-1/script.md` (85 s, 229 words, 44 word-level SFX, 56 visual changes). Props proposed, not built.
+
+- **27 Nov 2026: Leo's voice locked; the Phase 5 story replaced (Option 2, 3D Number Luck World); stopped for the owner's script approval.**
+  - **Voices** (`voice/voices.ts`): `leo` = ElevenLabs "Leo (Voice for my animated videos)" id `7g0kmMsyK30rO4fU1Sli` (found with GET /v1/voices; stability 0.38,
+    style 0.20, speed 1.06, similarity 0.75, speaker boost), `e4Mum` = Kathie - Sassy & Playful (`o9B86nZP8mMLaT5FBEzP`), `e4Rival` = VALF - Child, Young, Playful & Sarcastic
+    (`loY1uopAz31XyhAEhNSa`; Cat - Droll and Dry was auditioned and dropped: Dex is a boy).
+  - **Continuous narration generalised to dialogue:** consecutive same-voice lines form a run, one generation per run (`story/timing.ts runsOf`); a back-and-forth is
+    one run per turn, butted with the natural breath. Engine 4 talking hands stay at the chest (point / present / shrug become "talk": they swung out of close-ups).
+  - **Story `in-my-world-2`** (66 s, 197 words, Leo / Mum / Dex): per-story `wordSfxMap` (numbers are not clock times; "nine" is the chime), music cut on the SECOND "Pool." (Beat 5),
+    back on "nine". The first story (`in-my-world-1`, the toast) is superseded and kept only as history.

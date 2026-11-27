@@ -1,0 +1,50 @@
+{
+ "hash": "0a50dcb2161b1d",
+ "text": "There isn't one. Nine beats eight.",
+ "voice": "e4Mum",
+ "lead": 0,
+ "end": 2.368,
+ "dur": 2.403265,
+ "words": [
+  {
+   "w": "There",
+   "t0": 0,
+   "t1": 0.232
+  },
+  {
+   "w": "isn't",
+   "t0": 0.279,
+   "t1": 0.511
+  },
+  {
+   "w": "one.",
+   "t0": 0.569,
+   "t1": 0.824
+  },
+  {
+   "w": "Nine",
+   "t0": 1.091,
+   "t1": 1.358
+  },
+  {
+   "w": "beats",
+   "t0": 1.405,
+   "t1": 1.718
+  },
+  {
+   "w": "eight.",
+   "t0": 1.846,
+   "t1": 2.368
+  }
+ ],
+ "voiceId": "o9B86nZP8mMLaT5FBEzP",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 1.03
+ },
+ "created": "2026-11-27T11:21:48.085Z"
+}

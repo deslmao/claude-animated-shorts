@@ -1,0 +1,60 @@
+{
+ "hash": "06907ea57012f3",
+ "text": "An eight looks the same both ways, sweetheart.",
+ "voice": "e4Mum",
+ "lead": 0,
+ "end": 2.368,
+ "dur": 2.403265,
+ "words": [
+  {
+   "w": "An",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "eight",
+   "t0": 0.232,
+   "t1": 0.43
+  },
+  {
+   "w": "looks",
+   "t0": 0.464,
+   "t1": 0.673
+  },
+  {
+   "w": "the",
+   "t0": 0.731,
+   "t1": 0.813
+  },
+  {
+   "w": "same",
+   "t0": 0.859,
+   "t1": 1.08
+  },
+  {
+   "w": "both",
+   "t0": 1.126,
+   "t1": 1.347
+  },
+  {
+   "w": "ways,",
+   "t0": 1.405,
+   "t1": 1.614
+  },
+  {
+   "w": "sweetheart.",
+   "t0": 1.637,
+   "t1": 2.368
+  }
+ ],
+ "voiceId": "o9B86nZP8mMLaT5FBEzP",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 1.03
+ },
+ "created": "2026-11-27T11:21:49.699Z"
+}

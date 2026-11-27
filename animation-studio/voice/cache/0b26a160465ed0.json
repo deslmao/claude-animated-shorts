@@ -1,0 +1,50 @@
+{
+ "hash": "0b26a160465ed0",
+ "text": "Pool. And I'll take that pancake.",
+ "voice": "e4Rival",
+ "lead": 0,
+ "end": 2.136,
+ "dur": 2.168163,
+ "words": [
+  {
+   "w": "Pool.",
+   "t0": 0,
+   "t1": 0.499
+  },
+  {
+   "w": "And",
+   "t0": 0.662,
+   "t1": 0.836
+  },
+  {
+   "w": "I'll",
+   "t0": 0.882,
+   "t1": 1.033
+  },
+  {
+   "w": "take",
+   "t0": 1.068,
+   "t1": 1.231
+  },
+  {
+   "w": "that",
+   "t0": 1.265,
+   "t1": 1.382
+  },
+  {
+   "w": "pancake.",
+   "t0": 1.428,
+   "t1": 2.136
+  }
+ ],
+ "voiceId": "loY1uopAz31XyhAEhNSa",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.75,
+  "style": 0.35,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-27T11:21:45.165Z"
+}

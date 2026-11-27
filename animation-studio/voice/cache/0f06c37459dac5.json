@@ -1,0 +1,55 @@
+{
+ "hash": "0f06c37459dac5",
+ "text": "Numbers don't lie, Leo. They just rank.",
+ "voice": "e4Rival",
+ "lead": 0,
+ "end": 2.554,
+ "dur": 2.586122,
+ "words": [
+  {
+   "w": "Numbers",
+   "t0": 0,
+   "t1": 0.488
+  },
+  {
+   "w": "don't",
+   "t0": 0.546,
+   "t1": 0.755
+  },
+  {
+   "w": "lie,",
+   "t0": 0.801,
+   "t1": 1.08
+  },
+  {
+   "w": "Leo.",
+   "t0": 1.126,
+   "t1": 1.521
+  },
+  {
+   "w": "They",
+   "t0": 1.556,
+   "t1": 1.695
+  },
+  {
+   "w": "just",
+   "t0": 1.753,
+   "t1": 1.927
+  },
+  {
+   "w": "rank.",
+   "t0": 1.997,
+   "t1": 2.554
+  }
+ ],
+ "voiceId": "loY1uopAz31XyhAEhNSa",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.75,
+  "style": 0.35,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-27T11:21:41.921Z"
+}

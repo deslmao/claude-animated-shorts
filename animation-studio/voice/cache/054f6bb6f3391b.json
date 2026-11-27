@@ -1,0 +1,50 @@
+{
+ "hash": "054f6bb6f3391b",
+ "text": "Sorry. It only works on sixes.",
+ "voice": "leo",
+ "lead": 0,
+ "end": 1.718,
+ "dur": 1.750204,
+ "words": [
+  {
+   "w": "Sorry.",
+   "t0": 0,
+   "t1": 0.43
+  },
+  {
+   "w": "It",
+   "t0": 0.488,
+   "t1": 0.604
+  },
+  {
+   "w": "only",
+   "t0": 0.65,
+   "t1": 0.801
+  },
+  {
+   "w": "works",
+   "t0": 0.836,
+   "t1": 1.033
+  },
+  {
+   "w": "on",
+   "t0": 1.068,
+   "t1": 1.138
+  },
+  {
+   "w": "sixes.",
+   "t0": 1.196,
+   "t1": 1.718
+  }
+ ],
+ "voiceId": "7g0kmMsyK30rO4fU1Sli",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.38,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.06
+ },
+ "created": "2026-11-27T11:21:50.625Z"
+}

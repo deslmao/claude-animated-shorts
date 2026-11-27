@@ -1,0 +1,75 @@
+{
+ "hash": "02bd7809900c31",
+ "text": "Show me the rule that says I have to stand up.",
+ "voice": "leo",
+ "lead": 0,
+ "end": 2.601,
+ "dur": 2.638367,
+ "words": [
+  {
+   "w": "Show",
+   "t0": 0,
+   "t1": 0.221
+  },
+  {
+   "w": "me",
+   "t0": 0.279,
+   "t1": 0.36
+  },
+  {
+   "w": "the",
+   "t0": 0.395,
+   "t1": 0.464
+  },
+  {
+   "w": "rule",
+   "t0": 0.522,
+   "t1": 0.743
+  },
+  {
+   "w": "that",
+   "t0": 0.778,
+   "t1": 0.894
+  },
+  {
+   "w": "says",
+   "t0": 0.929,
+   "t1": 1.138
+  },
+  {
+   "w": "I",
+   "t0": 1.242,
+   "t1": 1.312
+  },
+  {
+   "w": "have",
+   "t0": 1.428,
+   "t1": 1.625
+  },
+  {
+   "w": "to",
+   "t0": 1.66,
+   "t1": 1.73
+  },
+  {
+   "w": "stand",
+   "t0": 1.834,
+   "t1": 2.206
+  },
+  {
+   "w": "up.",
+   "t0": 2.287,
+   "t1": 2.601
+  }
+ ],
+ "voiceId": "7g0kmMsyK30rO4fU1Sli",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.38,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.06
+ },
+ "created": "2026-11-27T11:21:47.639Z"
+}

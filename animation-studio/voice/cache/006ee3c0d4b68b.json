@@ -1,0 +1,75 @@
+{
+ "hash": "006ee3c0d4b68b",
+ "text": "My secret? Every morning I stand on my head. Ten minutes.",
+ "voice": "leo",
+ "lead": 0,
+ "end": 3.204,
+ "dur": 3.239184,
+ "words": [
+  {
+   "w": "My",
+   "t0": 0,
+   "t1": 0.174
+  },
+  {
+   "w": "secret?",
+   "t0": 0.279,
+   "t1": 0.789
+  },
+  {
+   "w": "Every",
+   "t0": 0.894,
+   "t1": 1.161
+  },
+  {
+   "w": "morning",
+   "t0": 1.219,
+   "t1": 1.474
+  },
+  {
+   "w": "I",
+   "t0": 1.521,
+   "t1": 1.556
+  },
+  {
+   "w": "stand",
+   "t0": 1.649,
+   "t1": 1.881
+  },
+  {
+   "w": "on",
+   "t0": 1.927,
+   "t1": 1.985
+  },
+  {
+   "w": "my",
+   "t0": 2.032,
+   "t1": 2.101
+  },
+  {
+   "w": "head.",
+   "t0": 2.159,
+   "t1": 2.438
+  },
+  {
+   "w": "Ten",
+   "t0": 2.473,
+   "t1": 2.694
+  },
+  {
+   "w": "minutes.",
+   "t0": 2.752,
+   "t1": 3.204
+  }
+ ],
+ "voiceId": "7g0kmMsyK30rO4fU1Sli",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.38,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.06
+ },
+ "created": "2026-11-27T11:21:42.418Z"
+}

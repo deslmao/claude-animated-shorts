@@ -1,0 +1,17 @@
+{
+ "composition": "Short-in-my-world-2",
+ "fingerprint": "001de6e74a183e",
+ "engine": "sound-2",
+ "frames": 1992,
+ "seconds": 66.4,
+ "lines": 24,
+ "lufs": -14.0,
+ "truePeak": -1.8,
+ "stems": {
+  "voice_lufs": -14.49,
+  "music_vs_voice_lu": -9.81,
+  "ambience_vs_voice_lu": -20.01,
+  "sfx_cues": 36
+ },
+ "built": "2026-11-27T11:24:28Z"
+}

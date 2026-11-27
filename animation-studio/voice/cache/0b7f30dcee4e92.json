@@ -1,0 +1,30 @@
+{
+ "hash": "0b7f30dcee4e92",
+ "text": "That's cheating!",
+ "voice": "e4Rival",
+ "lead": 0,
+ "end": 1.3,
+ "dur": 1.332245,
+ "words": [
+  {
+   "w": "That's",
+   "t0": 0,
+   "t1": 0.337
+  },
+  {
+   "w": "cheating!",
+   "t0": 0.406,
+   "t1": 1.3
+  }
+ ],
+ "voiceId": "loY1uopAz31XyhAEhNSa",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.75,
+  "style": 0.35,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-27T11:21:47.178Z"
+}

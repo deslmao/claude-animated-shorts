@@ -490,6 +490,8 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
         // voiced lines: the mouth follows the narration's word timings; otherwise the stand-in talking rhythm
         const talking = a.speech?.length ? speakAt(tq, a.speech, seed)
           : (a.talk ?? []).map(([x, y]) => talkAt(tqa, t0 + x, t0 + y, seed, (base.expr as Expr) ?? "talk")).find((x) => Object.keys(x).length) ?? {};
+        // Engine 4: talking hands stay at the chest (a point or a wide present swings out of a close-up's frame)
+        if (sb.engine === 4 && talking.gesture && ["point", "pointUp", "present", "shrug"].includes(talking.gesture)) talking.gesture = "talk";
         // a speaker keeps an authored action gesture (thumbs up, pointing, holding, tickling...): the mouth talks, the
         // hands keep doing what the storyboard asked for
         if (talking.gesture && base.gesture && KEEP_WHILE_TALKING.includes(base.gesture)) delete talking.gesture;

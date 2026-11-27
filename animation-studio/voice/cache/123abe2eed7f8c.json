@@ -1,0 +1,35 @@
+{
+ "hash": "123abe2eed7f8c",
+ "text": "Leo... teach me?",
+ "voice": "e4Rival",
+ "lead": 0,
+ "end": 1.3,
+ "dur": 1.332245,
+ "words": [
+  {
+   "w": "Leo...",
+   "t0": 0,
+   "t1": 0.511
+  },
+  {
+   "w": "teach",
+   "t0": 0.557,
+   "t1": 0.871
+  },
+  {
+   "w": "me?",
+   "t0": 0.94,
+   "t1": 1.3
+  }
+ ],
+ "voiceId": "loY1uopAz31XyhAEhNSa",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.75,
+  "style": 0.35,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-27T11:21:50.159Z"
+}

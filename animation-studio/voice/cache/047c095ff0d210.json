@@ -1,0 +1,75 @@
+{
+ "hash": "047c095ff0d210",
+ "text": "You're making me dizzy. Final numbers. Dex, eight. Me, seven. Leo?",
+ "voice": "e4Mum",
+ "lead": 0,
+ "end": 4.83,
+ "dur": 4.858776,
+ "words": [
+  {
+   "w": "You're",
+   "t0": 0,
+   "t1": 0.255
+  },
+  {
+   "w": "making",
+   "t0": 0.302,
+   "t1": 0.569
+  },
+  {
+   "w": "me",
+   "t0": 0.615,
+   "t1": 0.697
+  },
+  {
+   "w": "dizzy.",
+   "t0": 0.743,
+   "t1": 1.138
+  },
+  {
+   "w": "Final",
+   "t0": 1.335,
+   "t1": 1.66
+  },
+  {
+   "w": "numbers.",
+   "t0": 1.707,
+   "t1": 2.078
+  },
+  {
+   "w": "Dex,",
+   "t0": 2.148,
+   "t1": 2.531
+  },
+  {
+   "w": "eight.",
+   "t0": 2.612,
+   "t1": 2.914
+  },
+  {
+   "w": "Me,",
+   "t0": 3.007,
+   "t1": 3.32
+  },
+  {
+   "w": "seven.",
+   "t0": 3.402,
+   "t1": 3.878
+  },
+  {
+   "w": "Leo?",
+   "t0": 4.191,
+   "t1": 4.83
+  }
+ ],
+ "voiceId": "o9B86nZP8mMLaT5FBEzP",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 1.03
+ },
+ "created": "2026-11-27T11:21:44.179Z"
+}

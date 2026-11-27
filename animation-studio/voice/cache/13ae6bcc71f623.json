@@ -1,0 +1,40 @@
+{
+ "hash": "13ae6bcc71f623",
+ "text": "Seven beats six. Bedtime.",
+ "voice": "e4Mum",
+ "lead": 0,
+ "end": 1.811,
+ "dur": 1.854694,
+ "words": [
+  {
+   "w": "Seven",
+   "t0": 0,
+   "t1": 0.372
+  },
+  {
+   "w": "beats",
+   "t0": 0.43,
+   "t1": 0.65
+  },
+  {
+   "w": "six.",
+   "t0": 0.673,
+   "t1": 1.01
+  },
+  {
+   "w": "Bedtime.",
+   "t0": 1.08,
+   "t1": 1.811
+  }
+ ],
+ "voiceId": "o9B86nZP8mMLaT5FBEzP",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 1.03
+ },
+ "created": "2026-11-27T11:21:39.075Z"
+}

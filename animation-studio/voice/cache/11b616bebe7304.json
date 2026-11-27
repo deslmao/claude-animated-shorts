@@ -1,0 +1,50 @@
+{
+ "hash": "11b616bebe7304",
+ "text": "That's not an argument, that's arithmetic!",
+ "voice": "leo",
+ "lead": 0,
+ "end": 1.95,
+ "dur": 1.985306,
+ "words": [
+  {
+   "w": "That's",
+   "t0": 0,
+   "t1": 0.232
+  },
+  {
+   "w": "not",
+   "t0": 0.279,
+   "t1": 0.395
+  },
+  {
+   "w": "an",
+   "t0": 0.43,
+   "t1": 0.476
+  },
+  {
+   "w": "argument,",
+   "t0": 0.511,
+   "t1": 0.848
+  },
+  {
+   "w": "that's",
+   "t0": 0.882,
+   "t1": 1.091
+  },
+  {
+   "w": "arithmetic!",
+   "t0": 1.138,
+   "t1": 1.95
+  }
+ ],
+ "voiceId": "7g0kmMsyK30rO4fU1Sli",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.38,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.06
+ },
+ "created": "2026-11-27T11:21:39.558Z"
+}
