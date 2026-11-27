@@ -16,7 +16,7 @@ no pull requests.
 - **First story:** The Friday Pizza, a screenplay awaiting the owner's approval (`productions/friday-pizza/screenplay.md`).
   Open point: it has two short flashbacks, and the new framework says zero.
 - **Engine 4, Episode 1: "In my world, the highest number wins every argument"** (`productions/in-my-world-2/`: script.md, shot-list.md, audio/, headstand-test.mp4). Script, voices (Leo
-  `7g0kmMsyK30rO4fU1Sli`), props and the headstand are built and committed; the owner's viral SFX pack is in `animation-studio/assets/sfx/viral/`. **Waiting for the owner's final "go" before the cloud
+  `7g0kmMsyK30rO4fU1Sli`), props and the headstand are built and committed; the owner's viral SFX pack is in `animation-studio/assets/sfx/viral/`. **The owner gave the "go" (27 Nov) after the five visual fixes; the 540p cloud preview was requested (see render-request.json), awaiting the owner's upload. Earlier: waiting for the final "go" before the cloud
   preview render** (commit `render-request.json` with `preview: true`, `chunks: 20`, `publish: false`; then give the run URL and STOP, never poll). Dual export: `node scripts/dual-export.mjs <render.mp4> in-my-world-2`.
 - **Never poll GitHub Actions** (CLAUDE.md): give the run URL and stop.
 

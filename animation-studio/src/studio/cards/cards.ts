@@ -118,7 +118,7 @@ export class Fx {
  *  custom plane (e.g. a swing); yaw defaults to facing the camera */
 export type Place = {
   key: string; draw: (p: Pen) => void; x: number; y: number; z: number;
-  scale?: number; mirror?: boolean; squash?: number; flip?: number; yaw?: number; roll?: number; size?: [number, number, number]; geo?: THREE.BufferGeometry; castShadow?: boolean;
+  scale?: number; mirror?: boolean; squash?: number; flip?: number; flipC?: number; yaw?: number; roll?: number; size?: [number, number, number]; geo?: THREE.BufferGeometry; castShadow?: boolean;
 };
 /** an effect card: w x h metres; flat = lying on the ground; soft = see-through; keys containing "|blob|" multiply */
 export type FxPlace = { key: string; cw: number; ch: number; draw: (p: Pen) => void; x: number; y: number; z: number; w: number; h: number; flat?: boolean; rot?: number; soft?: boolean; overlay?: boolean };
@@ -169,7 +169,7 @@ export class CardLayer {
       const yaw = p.yaw ?? Math.atan2(cam.position.x - p.x, cam.position.z - p.z);
       // Engine 4 headstand: the whole card turns about a point 0.9 m up its body (flip 0..1 = 0..180 degrees); the feet swing over the head, which lands
       // where the hips were, on the floor. position = base + c * (sin(th) X + (1 - cos(th)) Y), X = the card's right, Y = up
-      const th = Math.PI * (p.flip ?? 0), c = 0.9 * sc;
+      const th = Math.PI * (p.flip ?? 0), c = (p.flipC ?? 0.9) * sc;   // the pivot: half the actor's height, so the crown lands on the floor
       a.mesh.position.set(p.x + c * Math.sin(th) * Math.cos(yaw), p.y + c * (1 - Math.cos(th)), p.z - c * Math.sin(th) * Math.sin(yaw));
       a.mesh.rotation.set(0, yaw, (p.roll ?? 0) + th);
       if (p.squash !== undefined) { const sy = p.squash, sx = 1 / Math.sqrt(sy); a.mesh.scale.set((p.mirror ? -sc : sc) * sx, sc * sy, sc); }   // Engine 4 squash and stretch about the soles (volume kept)

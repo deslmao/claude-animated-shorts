@@ -10,12 +10,16 @@ import { numberRig } from "../../engine4/number";
 const DEX: Look = { name: "Dex", build: "kid", skin: "#f5c9a0", seed: 811, hair: { style: "spiky", color: "#c9672a" }, brow: { quirk: 3 },
   top: { style: "tee", color: "#2a9d8f", accent: "#f2efe6" }, legs: "#2f3448", shoes: "#f4f1ea" };
 
+/** Leo as the channel mascot: the same boy (curls, skin, size) in his signature red hoodie (front pouch, drawstrings) and jeans, instead of the school blazer and red tie */
+const LEO_HOODIE: Look = { name: "Leo", build: "kid", skin: "#c99067", seed: 104, hair: { style: "curly", color: "#2a201a" },
+  top: { style: "hoodie", color: "#d8302a", accent: "#f2efe6" }, legs: "#3f5f9e", shoes: "#f4f1ea" };
+
 const e4Kitchen: SetDef = { id: "e4Kitchen", title: "Maya's kitchen (Engine 4): a PBR room, baked bounce light, a warm pendant lamp over the table and a cool dusk window", lights: ["interior"], build: () => buildE4Kitchen() };
 
 export const E4_THEME: Theme = {
   id: "e4", name: "Engine 4 sets", desc: "Unified PBR sets built in Blender with baked lightmaps and live lights (opt-in, engine: 4)", tags: ["engine4", "pbr", "blender"],
-  characters: { dex: DEX },
-  characterMeta: { dex: { name: "Dex", desc: "11; spiky ginger hair, a teal tee, a permanently raised brow", personality: "Leo's smug cousin: always an eight, delighted by other people's trouble", themes: ["home", "everyday"], tags: ["child", "boy", "rival", "smug"] } },
+  characters: { dex: DEX, leoHoodie: LEO_HOODIE },
+  characterMeta: { leoHoodie: { name: "Leo (red hoodie)", desc: "a small boy with dark curls in his signature red hoodie, jeans and white trainers", personality: "Leo, the channel mascot: brilliant at arguing", themes: ["home", "everyday"], tags: ["child", "boy", "mascot"] }, dex: { name: "Dex", desc: "11; spiky ginger hair, a teal tee, a permanently raised brow", personality: "Leo's smug cousin: always an eight, delighted by other people's trouble", themes: ["home", "everyday"], tags: ["child", "boy", "rival", "smug"] } },
   props: {
     e4Number: { name: "3D number (Engine 4)", desc: "oversized extruded 3D text lit by the room (variant = the text, 1-8 characters, e.g. 6:00); pops in on its first step, then floats; 0.5 m tall x scale, centred on `at` (its base). Use instead of a flat framed infographic", category: "theme", themes: ["engine4"], tags: ["number", "text", "3d", "infographic"], radius: 0.6, height: 0.5,
       build: () => undefined, rig: (a, v) => numberRig(a, v ?? "6:00"), steps: ["pops in"], stepCount: () => 1,

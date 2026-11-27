@@ -43,7 +43,8 @@ export const numberRig = (a: At, text: string): PropRig => {
       // above the crown along the body's up; as the actor turns upside down (their up leaves the world's) it slides out to the side and stays above the floor,
       // beside the head, turned the same way up: a headstand's number is never inside the floor
       const lift = st.hover?.lift ?? 0.42, sd = st.hover?.side ?? 1, c = Math.max(0, uy), vert = 0.55 + 0.45 * c, side = (1 - c) * 1.3 * sd;
-      root.position.set(st.target[0] + lift * (side * Math.cos(yaw) + up[0] * c), st.target[1] + lift * vert, st.target[2] + lift * (-side * Math.sin(yaw) + up[2] * c));
+      const fwd = lift * 0.6 * (1 - c);   // toward the camera: in front of the chair back or the next actor
+      root.position.set(st.target[0] + lift * (side * Math.cos(yaw) + up[0] * c) + fwd * Math.sin(yaw), st.target[1] + lift * vert, st.target[2] + lift * (-side * Math.sin(yaw) + up[2] * c) + fwd * Math.cos(yaw));
       root.rotation.set(0, yaw, 0);
       pivot.rotation.set(0, 0, Math.atan2(-ux, uy) + 0.05 * Math.sin(t * 2.1));      // the number's own up follows the actor's up (a 6 upside down is a 9)
       pivot.position.y = 0.04 * Math.sin(t * 2.4);

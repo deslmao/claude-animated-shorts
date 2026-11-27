@@ -19,7 +19,7 @@ export type Move =
   | { move: "frame"; marks: V3[]; size?: ShotSize; from?: number; height?: number; fov?: number; roll?: number; creep?: number; top?: number; halfWidth?: number; cInf?: number }
   /** a truck: the camera slides sideways `dist` metres (centred on the subject: from -dist/2 to +dist/2) while it keeps looking at the marks */
   | { move: "truck"; marks: V3[]; dist: number; size?: ShotSize; from?: number; height?: number; fov?: number; cInf?: number }
-  | { move: "closeUp"; mark: V3; from?: number; height?: number; punch?: boolean; creep?: number; fov?: number; cInf?: number }
+  | { move: "closeUp"; mark: V3; from?: number; height?: number; punch?: boolean; creep?: number; fov?: number; cInf?: number; top?: number }
   | { move: "lowHero"; mark: V3; from?: number; creep?: number }
   | { move: "highAngle"; marks: V3[]; from?: number }
   | { move: "overShoulder"; over: V3; at: V3; side?: -1 | 1 }
@@ -61,7 +61,7 @@ export const plan = (m: Move, f0: number, f1: number, o: { cut?: boolean; dur?: 
         (f) => DOF_BY_SIZE[m.size ?? (m.move === "pushIn" ? "full" : "close")] * (1 - u(f)) + DOF_BY_SIZE[m.to ?? (m.move === "pushIn" ? "close" : "wide")] * u(f), eye(m.marks[0]));
     }
     case "closeUp": {
-      const fv = m.fov ?? 34, c = fitShot([m.mark], { size: "close", from: m.from ?? 0, height: m.height ?? m.mark[1] + 1.5, fov: fv });
+      const fv = m.fov ?? 34, c = fitShot([m.mark], { size: "close", from: m.from ?? 0, height: m.height ?? m.mark[1] + 1.5, fov: fv, ...(m.top ? { top: m.top } : {}) });
       return k((f) => dolly(c.pos, c.look, pushK(f, f0, m.creep ?? 0.003, m.punch ? 0.007 : 0, 30), { fov: fv }), m.cInf ?? DOF_BY_SIZE.close, eye(m.mark));
     }
     case "lowHero": {

@@ -222,7 +222,7 @@ const moveOf = (s: ShotSpec, c: CameraSpec, t0 = 0, cast: Storyboard["cast"] = {
         ...(above ? { top: diagramBase(s) + dsz + 0.06, halfWidth: Math.max(0.36, dsz / 2) } : {}) };
     }
     case "pushIn": case "pullOut": return { move: c.move, marks: c.on.flatMap(marks), size: c.size, to: c.to, from: c.from, height: c.height };
-    case "closeUp": return { move: "closeUp", mark: pos(c.on), from: c.from, punch: c.punch, creep: tight(0.003), ...(c.fov ? { fov: c.fov } : {}), ...(c.cInf !== undefined ? { cInf: c.cInf } : {}) };
+    case "closeUp": return { move: "closeUp", mark: pos(c.on), from: c.from, punch: c.punch, creep: tight(0.003), ...(c.fov ? { fov: c.fov } : {}), ...(c.cInf !== undefined ? { cInf: c.cInf } : {}), ...(c.top ? { top: c.top } : {}) };
     case "truck": return { move: "truck", marks: c.on.flatMap(marks), dist: c.dist, size: c.size, from: c.from, height: c.height, ...(c.fov ? { fov: c.fov } : {}), ...(c.cInf !== undefined ? { cInf: c.cInf } : {}) };
     case "lowHero": return { move: "lowHero", mark: pos(c.on), from: c.from, creep: tight(0.0025) };
     case "highAngle": return { move: "highAngle", marks: c.on.flatMap(marks), from: c.from };
@@ -378,8 +378,8 @@ export const motionAt = (moves: MoveSpec[] | undefined, tt: number, sideOf: (m: 
 
 /** an animated prop's state at shot time tt: the open hand it reaches for and the stroke it replays */
 /** an actor's anchors after the card turns upside down (headstand, flip 0..1): the same turn the card layer gives the drawing (cards/cards.ts) */
-export const flipAnchor = (an: ActorAnchor, p: V3, camPos: { x: number; z: number }, flip: number): ActorAnchor => {
-  const yaw = Math.atan2(camPos.x - p[0], camPos.z - p[2]), X: V3 = [Math.cos(yaw), 0, -Math.sin(yaw)], th = Math.PI * flip, c = 0.9, s = Math.sin(th), co = Math.cos(th);
+export const flipAnchor = (an: ActorAnchor, p: V3, camPos: { x: number; z: number }, flip: number, pivot = 0.9): ActorAnchor => {
+  const yaw = Math.atan2(camPos.x - p[0], camPos.z - p[2]), X: V3 = [Math.cos(yaw), 0, -Math.sin(yaw)], th = Math.PI * flip, c = pivot, s = Math.sin(th), co = Math.cos(th);
   const base: V3 = [p[0] + c * s * X[0], p[1] + c * (1 - co), p[2] + c * s * X[2]];
   const map = (q: V3): V3 => { const vx = (q[0] - p[0]) * X[0] + (q[2] - p[2]) * X[2], vy = q[1] - p[1], a = vx * co - vy * s, b = vx * s + vy * co; return [base[0] + a * X[0], base[1] + b, base[2] + a * X[2]]; };
   return { ...an, head: map(an.head), crown: map(an.crown), chest: map(an.chest), hands: an.hands.map((h) => ({ ...h, p: map(h.p), raised: false })), rot: an.rot + th };
@@ -479,6 +479,8 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
       hands: an.hands.map((h) => ({ p: w(h.p), raised: h.raised, side: mirror ? -h.side : h.side, kind: h.kind })), chest: w(an.chest), floor: p, mirror, gesture: an.gesture };
   };
   const neutral = new Map<string, Anchors>();
+  /** a character's crown height (m): a headstand pivots about half of it, so the crown rests on the floor */
+  const crownOf = (L: Look) => (975 - anchorsFront(L, {}).crown[1]) * SU;
   const director: Director = (shot, f, cam, _built, out) => {
     out.anchors ??= new Map();
     const s = sb.shots[shot.id - 1], t = f / FPS, t0 = ranges[shot.id - 1].a / FPS, tt = t - t0;
@@ -587,10 +589,10 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
         const pose: Pose = mo.tilt || mo.headTilt || mo.shrug ? { ...pose0, tilt: (pose0.tilt ?? 0) + mo.tilt, headTilt: (pose0.headTilt ?? 0) + mo.headTilt, shrug: (pose0.shrug ?? 0) + mo.shrug } : pose0;
         const card = lookCard(cam, L, p[0], p[1], p[2], { pose });
         let flip = 0;
-        if (pose.e4 && a.keys?.length) { const tr4 = e4Track(a.keys, tt); card.squash = tr4.squash; flip = tr4.flip; if (flip) card.flip = flip; }   // Engine 4 squash and stretch, headstand
+        if (pose.e4 && a.keys?.length) { const tr4 = e4Track(a.keys, tt); card.squash = tr4.squash; flip = tr4.flip; if (flip) { card.flip = flip; card.flipC = crownOf(L) / 2; } }   // Engine 4 squash and stretch, headstand
         out.places.push(card);
         const an0 = anchorOf(cam, L, p, anchorsFront(L, pose), false);
-        out.anchors.set(a.who, flip ? flipAnchor(an0, p, cam.pos, flip) : an0);
+        out.anchors.set(a.who, flip ? flipAnchor(an0, p, cam.pos, flip, crownOf(L) / 2) : an0);
       }
       contactShadow(out, cam.sun, shot.light, p[0], p[1], p[2]);
     }

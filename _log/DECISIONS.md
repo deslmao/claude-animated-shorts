@@ -340,3 +340,10 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
   - **Dex** = own look in `themes/e4` (fair, spiky ginger hair, teal tee, raised brow), not Noah. **Viral pack:** `assets/sfx/viral/` (22 files) wins over generic sounds; levels and trims in
     `sound/build.py`; every `viral_*` cue is a "major" hit (music -8 dB); `SfxSpec.delay` plays a voiced clip after the word, not over it. Balance measured: every SFX peak is at least 9 dB below the loudest voice.
   - **Validation:** hover props skip the footprint and in-frame checks (they follow an actor); `bfPlate` is no longer mistaken for a flat card in the pacing check.
+
+- **27 Nov 2026 — Episode 1 headstand/number/hoodie fixes (owner review of the 5 s test).** Reason: the test clip showed levitating headstands, Dex hidden by the chair, a cropped 8, a 9 over Mum, and Leo in a suit.
+  - **Grounded:** the card turns about half its own crown height (Leo 1.31, Dex 1.28, Mum 1.74), so heads and hands rest on the floor.
+  - **Blocking:** Mum -1.95, Leo -1.1, Dex -0.3 (clear of the far chair); numbers sit beside the head, slightly toward the camera; closeUps take a `top` margin so numbers are never cropped; low cameras 26 mm.
+  - **Leo** is now `leoHoodie` (red hoodie, pouch, drawstrings) as a new roster key, so One Too Many is untouched. 29 shots have authored key poses.
+  - **Audio locked:** both masters are the owner-approved files (scored 5758dc37…, no-music 0be490f0…). The mp3 encoder is not byte-reproducible, so the rebuilt mp3s were discarded; only the soundtrack fingerprint JSON was refreshed. Do not rebuild them.
+  - **Checked:** tsc, e4-pace (0 errors), library test intact, breakfast-2 frames 60/700 identical, preflight PASS.

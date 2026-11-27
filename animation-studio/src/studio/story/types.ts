@@ -30,7 +30,7 @@ export type CameraSpec =
   | { move: "frame"; on: string[]; size?: ShotSize; from?: number; height?: number; roll?: number; fov?: number; cInf?: number }   // fov / cInf: Engine 4 lens (engine4/camera.ts fovMm, blurMm)
   | { move: "truck"; on: string[]; dist: number; size?: ShotSize; from?: number; height?: number; fov?: number; cInf?: number }   // slides sideways dist metres, keeping the subject framed
   | { move: "pushIn" | "pullOut"; on: string[]; size?: ShotSize; to?: ShotSize; from?: number; height?: number }
-  | { move: "closeUp"; on: string; from?: number; punch?: boolean; fov?: number; cInf?: number }
+  | { move: "closeUp"; on: string; from?: number; punch?: boolean; fov?: number; cInf?: number; top?: number }
   | { move: "lowHero"; on: string; from?: number }
   | { move: "highAngle"; on: string[]; from?: number }
   | { move: "overShoulder"; over: string; at: string; side?: -1 | 1 }
