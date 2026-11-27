@@ -35,7 +35,8 @@ const EMISSIVE = new Set(["lampshade", "bulb", "winlit"]);
 
 /** the lamp's emissive materials and their authored strength (Engine 4 background life flickers them with the live spot light) */
 const GLOW: { mat: THREE.MeshStandardMaterial; base: number }[] = [];
-const NIGHTSKY: { mat: THREE.MeshStandardMaterial; col: THREE.Color; em: THREE.Color; ei: number }[] = [];   // the window's outside sky (and lit windows): navy at night
+const NIGHTSKY: { mat: THREE.MeshStandardMaterial; col: THREE.Color; em: THREE.Color; ei: number; map: THREE.Texture | null; emap: THREE.Texture | null }[] = [];   // the window's outside sky (and lit windows): navy at night
+const MORNING = new THREE.Color("#ffe6b8");
 const LIT: THREE.MeshStandardMaterial[] = [];   // every material that carries the baked lightmap (dimmed at night)
 function prepare(root: THREE.Object3D, lm: THREE.Texture) {
   lm.colorSpace = THREE.NoColorSpace; lm.channel = 1; lm.flipY = false; lm.repeat.set(1, -1); lm.offset.set(0, 1);   // EXRLoader rows run bottom-up; glTF uv v runs top-down lm.generateMipmaps = false; lm.minFilter = lm.magFilter = THREE.LinearFilter; lm.needsUpdate = true;
@@ -46,7 +47,7 @@ function prepare(root: THREE.Object3D, lm: THREE.Texture) {
     m.castShadow = !NO_CAST.has(name); m.receiveShadow = true;
     mat.aoMap = null;                                                   // the exporter's dummy white occlusion (it only carried the second UV set)
     mat.lightMap = lm; mat.lightMapIntensity = Math.PI;                   // Blender bakes E/pi; three multiplies by albedo/pi
-    if ((name === "sky" || name === "silhouette") && !NIGHTSKY.some((n) => n.mat === mat)) NIGHTSKY.push({ mat, col: mat.color.clone(), em: mat.emissive.clone(), ei: mat.emissiveIntensity });
+    if ((name === "sky" || name === "silhouette") && !NIGHTSKY.some((n) => n.mat === mat)) NIGHTSKY.push({ mat, col: mat.color.clone(), em: mat.emissive.clone(), ei: mat.emissiveIntensity, map: mat.map, emap: mat.emissiveMap });
     if (EMISSIVE.has(name) || name === "sky") mat.lightMap = null; else if (!LIT.includes(mat)) LIT.push(mat);
     mat.envMapIntensity = 0.4;
     if ((name === "bulb" || name === "lampshade") && !GLOW.some((g) => g.mat === mat)) GLOW.push({ mat, base: mat.emissiveIntensity });
@@ -138,7 +139,7 @@ export const buildE4Kitchen = (): BuiltSet => {
       s.shadow.bias = -0.0004; s.shadow.normalBias = 0.03; s.shadow.radius = 3; s.shadow.mapSize.set(4096, 4096);
       env.hemi.color.set("#243050"); env.hemi.groundColor.set("#3a2a20"); env.hemi.intensity = night ? 0.1 : 0.28;
       for (const m of LIT) m.lightMapIntensity = Math.PI * (night ? 0.3 : 1);
-      for (const n of NIGHTSKY) { n.mat.color.copy(n.col).multiplyScalar(night ? 0.12 : 1); n.mat.emissive.copy(n.em).multiplyScalar(night ? 0.1 : 1); n.mat.emissiveIntensity = n.ei; }
+      for (const n of NIGHTSKY) { if (night) { n.mat.color.copy(n.col).multiplyScalar(0.12); n.mat.emissive.copy(n.em).multiplyScalar(0.1); } else { n.mat.color.copy(MORNING); n.mat.emissive.set("#ffe2aa"); } n.mat.map = night ? n.map : null; n.mat.emissiveMap = night ? n.emap : null; n.mat.emissiveIntensity = night ? n.ei : Math.max(n.ei, 1) * 1.1; n.mat.needsUpdate = true; }   // a bright warm morning window by day
       env.fog.color.set("#2a2018"); env.fog.near = 2.5; env.fog.far = 16;
       CARD_K.uGain.value = light === "night" ? 0.62 : 0.92;   // PBR rooms are darker than the painted ones: the cards sit a little lower in the light
       dust.update(t); steam.update(t);

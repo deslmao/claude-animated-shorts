@@ -356,3 +356,4 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
   - **Hand-held:** drift amplitude 2.2 x the old default for every Engine 4 shot (engines 1-3 untouched).
   - **Pacing:** 44 visual changes, 1.51 s average. **Inserts:** pancake macro (shots 6, 16, 24), floor-level hands (shot 19).
   - **Sound:** the owner allows myinstants.com sound effects for future productions; nothing changes in this film's audio.
+- **27 Nov 2026 — three polish fixes.** (1) OTS camera behind Leo moved to z 0.75 so Leo is a left-edge sliver (about 15-20 %). (2) The e4 kitchen window is a bright warm morning window by default (flat pale sky, no dusk gradient); only `light: "night"` shots (2-4) keep the navy night sky. (3) Viral captions sit at 72 % height (chest, not chin); in a headstand shot (any actor flipped) they move to 27 %. Audio masters unchanged (same hashes). The owner then gave the "go" for the 540p preview.

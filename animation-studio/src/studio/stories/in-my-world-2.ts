@@ -112,7 +112,7 @@ const PLATE_AT = [0.2, 0.78, -0.4] as V;
 const PANCAKE = (): C => mk([0.18, 1.12, 0.3], [0.2, 0.8, -0.4], 35, { creep: 0.12 });
 const HANDS = (): C => mk([-0.7, 0.22, 2.3], [-0.7, 0.38, 0.2], 26, { creep: 0.12 });
 // Leo and Mum across the kitchen; Leo and Dex across the table
-const OTS_LM = OTS("leo", "mum", [-0.15, 1.2, 1.25], 30), OTS_LD = OTS("leo", "dex", [-1.8, 1.2, 0.7], 45);
+const OTS_LM = OTS("leo", "mum", [-0.15, 1.2, 1.25], 30), OTS_LD = OTS("leo", "dex", [-1.8, 1.2, 0.75], 45);
 type Cut = { word?: string; n?: number; t?: number; cam: () => C; swoop?: boolean };
 /** per shot: the opening camera, the cuts on words (hard cuts, or a quick snap-zoom `swoop` on the punchline), and the numbers' size class (tight = close-ups) */
 type Plan = { cam: () => C; cuts?: Cut[]; tight: boolean };

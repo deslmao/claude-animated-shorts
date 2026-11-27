@@ -16404,3 +16404,20 @@ Stop Gate:
 
 Also, for future productions, you can access https://www.myinstants.com/en/categories/sound%20effects/au/ 
 Utilize any sound effects you want for future productions, for now don't change the sounds, its good.
+
+## 27 Nov 2026 — owner (three polish fixes, then the go)
+The contact sheet is a huge upgrade—Night Beat 2, Low-Angle Dex, and the Pancake Insert all look great. Do NOT touch the locked audio masters.
+
+Make these 3 quick polish fixes, then you have my "go" to immediately trigger the 540p preview render:
+
+1. Trim the OTS foreground (Frame 2):
+- Shift the OTS camera slightly right/forward so Leo's blurred foreground edge is a clean 15–20% sliver on the left instead of blocking 40% of the frame.
+
+2. Fix Beat 6 window lighting (Frame 5):
+- The window behind upside-down Leo is dark blue/nighttime in Beat 6. Ensure only Beat 2 (shots 3–5) uses the night lighting state, and Beat 6–7 return cleanly to bright warm morning light.
+
+3. Clear faces from captions (Frames 1, 5, 6):
+- Shift upright captions slightly lower (~72% height) so they sit on chests instead of chins.
+- During headstand shots (when heads are on the floor), move captions to the upper third (~25–30% height) so they never cover Dex's upside-down face or collide with Leo's giant gold "9".
+
+Once those 3 fixes are committed and preflight passes, commit the updated render-request.json for the 540p preview render, give me the run URL, and stop (do NOT poll GitHub Actions).

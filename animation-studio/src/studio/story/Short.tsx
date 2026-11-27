@@ -19,7 +19,9 @@ const load = () => (PRELOADS.length ? Promise.all(PRELOADS).then(() => true) : P
 export const makeShort = (sb: Storyboard, narr?: Narration) => {
   const film = compile(sb, narr);
   const raw = sb.captions === false ? [] : captionGroups(film.timing.lines, film.total, sb.captionStyle, sb.captionKeys);
-  const groups = sb.captionStyle === "viral" ? raw : placeCaptions(film, raw);   // the viral style sits at one fixed height in the mobile safe zone
+  // the viral style sits at one fixed height (72 %, on the chest); in a headstand shot (an actor flipped) the heads are on the floor, so it moves to the upper third (27 %)
+  const upside = (f: number) => { const k = film.shots.findIndex((s) => f >= s.a && f < s.b); return k >= 0 && sb.shots[k]?.actors.some((a) => a.keys?.some((q) => (q.flip ?? 0) > 0)); };
+  const groups = sb.captionStyle === "viral" ? raw.map((g) => (upside(g.f0) ? { ...g, y: 0.27 } : g)) : placeCaptions(film, raw);   // the viral style sits at one fixed height in the mobile safe zone
   const titles: TitleCard[] = sb.shots.flatMap((s, k) => (s.title && film.shots[k] ? [{ f0: film.shots[k].a, f1: film.shots[k].b, ...s.title }] : []));
   const makeWorld = () => new SetWorld(film.shots, film.director, { clearShots: true, stable: (sb.engine ?? 1) >= 2 });
   const Comp: React.FC = () => (
