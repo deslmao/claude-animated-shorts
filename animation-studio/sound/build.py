@@ -45,11 +45,24 @@ MUSIC_ASSETS = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__fi
 CUSTOM_REL = {"sub_hit": -9, "paper_rustle": -14, "fridge_door": -13, "toast_tick": -13, "lever_clunk": -12, "toaster_pop": -11, "toast_sizzle": -11, "mug_shatter": -8, "slice_bite": -13, "kettle_click": -13, "heartbeat": -12, "shimmer_chime": -11, "crowd_swell": -13, "whoosh_soft": -13, "box_thud": -8, "plate_clink": -12, "clock_tick_six": -13}
 
 
+VIRAL_DIR = os.path.join(CUSTOM_DIR, "viral")   # the owner's own curated viral SFX pack (assets/sfx/viral/viral_*.mp3): they win over everything else
+# viral pack: level (LU, momentary max, relative to the voice; the file's own loudness is normalised away) and the longest the sound may play (s), then a 0.12 s fade
+VIRAL_REL = {"viral_anime_wow": -9, "viral_camera_flash": -10, "viral_ding": -11, "viral_error": -9, "viral_fahhh": -8, "viral_goofy_run": -10, "viral_info_5": -12,
+             "viral_keyboard_typing": -14, "viral_metal_pipe_clang": -11, "viral_punch": -8, "viral_punch_game": -10, "viral_rizz": -10, "viral_tmp7901": -11,
+             "viral_tuco_get_out": -9, "viral_undertaker_bell": -11, "viral_huh": -12, "viral_danger_alarm": -13, "viral_ack": -11, "viral_among_us_reveal": -10,
+             "viral_dun_dun_dun": -10, "viral_bing_bing_bing": -11, "viral_ender_pearl": -12}
+VIRAL_MAX = {"viral_anime_wow": 2.1, "viral_camera_flash": 1.3, "viral_ding": 1.5, "viral_error": 1.0, "viral_fahhh": 2.0, "viral_goofy_run": 1.7, "viral_info_5": 1.3,
+             "viral_keyboard_typing": 1.1, "viral_metal_pipe_clang": 1.6, "viral_punch": 0.4, "viral_punch_game": 1.1, "viral_rizz": 1.7, "viral_tmp7901": 1.0,
+             "viral_tuco_get_out": 1.0, "viral_undertaker_bell": 2.6, "viral_huh": 0.9, "viral_danger_alarm": 1.5, "viral_ack": 0.9, "viral_among_us_reveal": 2.2,
+             "viral_dun_dun_dun": 2.0, "viral_bing_bing_bing": 1.6, "viral_ender_pearl": 1.4}
+
+
 def custom_file(name):
-    for ext in ("mp3", "wav"):
-        p = os.path.join(CUSTOM_DIR, f"{name}.{ext}")
-        if os.path.exists(p):
-            return p
+    for d in (VIRAL_DIR, CUSTOM_DIR):
+        for ext in ("mp3", "wav"):
+            p = os.path.join(d, f"{name}.{ext}")
+            if os.path.exists(p):
+                return p
     return None
 
 
@@ -199,12 +212,14 @@ def main(plan_path):
             raise SystemExit(f"unknown sound effect {c['name']} (not in the catalogue and no assets/sfx/{c['name']}.mp3|wav)")
         else:
             x = decode(cf) if cf else np.asarray(SFX[c["name"]](rng(seed * 1009 + i)), float)
+            if cf and c["name"] in VIRAL_MAX:   # trim a long pack file and fade it out (a bell tail or a 10 s typing clip must not run on)
+                x = x[:int(VIRAL_MAX[c["name"]] * SR)].copy(); fo = min(len(x), int(0.12 * SR)); x[-fo:] *= np.linspace(1, 0, fo)
         wide = c["name"] in STEREO and x.ndim == 2   # a stereo sample (riser, boom) stays wide and unpanned
         x = x if x.ndim == 1 or wide else x.mean(0)
         x = fades(x, 0.001, 0.01)
         mm = momentary_max(x)
         if np.isfinite(mm):
-            x = x * dbg(Lv + (CUSTOM_REL.get(c["name"], SFX_DEFAULT) if cf else SFX_REL.get(c["name"], SAMPLE_LEVEL.get(c["name"], SFX_DEFAULT))) + c.get("gain_db", 0.0) - mm)
+            x = x * dbg(Lv + ((VIRAL_REL.get(c["name"], CUSTOM_REL.get(c["name"], SFX_DEFAULT))) if cf else SFX_REL.get(c["name"], SAMPLE_LEVEL.get(c["name"], SFX_DEFAULT))) + c.get("gain_db", 0.0) - mm)
         place(sfx, x if wide else pan(x, float(np.clip(c.get("pan", 0.0), -0.8, 0.8))), max(0.0, c["t"]))
         cues.append((c["t"], f"sfx {c['name']}: {c.get('why', '')}"))
     # ---------------- mix + master

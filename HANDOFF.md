@@ -15,9 +15,9 @@ no pull requests.
   GTA Ep 1 video is finished (`productions/gta-gf-1/`), and Ep 2 is on hold.
 - **First story:** The Friday Pizza, a screenplay awaiting the owner's approval (`productions/friday-pizza/screenplay.md`).
   Open point: it has two short flashbacks, and the new framework says zero.
-- **Engine 4:** Phases 1-4 approved. **Phase 5 story: "In my world, the highest number wins every argument" (`productions/in-my-world-2/script.md`, 66 s,
-  Leo / Mum / Dex, Option 2 "3D Number Luck World").** Audio built (both masters, Leo's voice `7g0kmMsyK30rO4fU1Sli`). **Waiting for the owner's approval of the script and the
-  prop list (extend `e4Number`: hover + flip; a one-pancake `bfPlate`; a headstand acting key) before building anything or rendering.** The toast story (`in-my-world-1`) is superseded.
+- **Engine 4, Episode 1: "In my world, the highest number wins every argument"** (`productions/in-my-world-2/`: script.md, shot-list.md, audio/, headstand-test.mp4). Script, voices (Leo
+  `7g0kmMsyK30rO4fU1Sli`), props and the headstand are built and committed; the owner's viral SFX pack is in `animation-studio/assets/sfx/viral/`. **Waiting for the owner's final "go" before the cloud
+  preview render** (commit `render-request.json` with `preview: true`, `chunks: 20`, `publish: false`; then give the run URL and STOP, never poll). Dual export: `node scripts/dual-export.mjs <render.mp4> in-my-world-2`.
 - **Never poll GitHub Actions** (CLAUDE.md): give the run URL and stop.
 
 ## The channel in one paragraph

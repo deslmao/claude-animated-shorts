@@ -64,7 +64,8 @@
     "script": "esbuild scripts/script.ts --bundle --platform=node --format=esm --outfile=out/script.mjs --log-level=warning && node out/script.mjs",
     "test:zfight": "esbuild scripts/zfight-test.ts --bundle --platform=node --format=esm --outfile=out/zfight-test.mjs --log-level=warning && node out/zfight-test.mjs",
     "stability": "node scripts/stability.mjs",
-    "e4-pace": "esbuild scripts/e4-pace.ts --bundle --platform=node --format=esm --outfile=out/e4-pace.mjs --log-level=warning && node out/e4-pace.mjs"
+    "e4-pace": "esbuild scripts/e4-pace.ts --bundle --platform=node --format=esm --outfile=out/e4-pace.mjs --log-level=warning && node out/e4-pace.mjs",
+    "shot-list": "esbuild scripts/shot-list.ts --bundle --platform=node --format=esm --outfile=out/shot-list.mjs --log-level=warning && node out/shot-list.mjs"
   },
   "allowScripts": {
     "esbuild": false

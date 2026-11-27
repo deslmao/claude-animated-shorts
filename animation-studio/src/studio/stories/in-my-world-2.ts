@@ -10,14 +10,6 @@ type V = [number, number, number];
 const LEO = [-0.55, 0, -1.3] as V, MUM = [-1.4, 0, -1.2] as V, DEX = [0.3, 0, -1.3] as V;
 type K = NonNullable<Storyboard["shots"][number]["actors"][number]["keys"]>;
 type C = Storyboard["shots"][number]["camera"];
-const CAMS: ((on: string) => C)[] = [
-  () => ({ move: "truck", on: ["leo", "mum", "dex"], dist: 0.9, size: "full", from: 8, height: 1.5, fov: fovMm(22), cInf: 0 }),
-  (on) => ({ move: "closeUp", on, from: 15, fov: fovMm(50), cInf: 6 }),
-  () => ({ move: "orbit", on: ["leo", "dex"], fromDeg: [-16, 14], size: "medium", height: 1.4 }),
-  (on) => ({ move: "closeUp", on, from: 18, fov: fovMm(85), cInf: 16 }),
-  () => ({ move: "frame", on: ["leo", "mum"], size: "medium", from: -10, height: 1.4, fov: fovMm(35), cInf: 3 }),
-  () => ({ move: "truck", on: ["leo", "mum", "dex"], dist: 0.6, size: "full", from: -8, height: 1.45, fov: fovMm(22), cInf: 1 }),
-];
 type Mood = "cheer" | "worry" | "smug" | "shock" | "sad" | "think" | "angry";
 const POSE: Record<Mood, { expr: NonNullable<K[number]["expr"]>; tilt: number; slump?: number; brow?: [number, number, number] }> = {
   cheer: { expr: "smile", tilt: 3, brow: [0, 0, 2] }, worry: { expr: "nervous", tilt: -5, slump: 0.3, brow: [0, -2, 0] }, smug: { expr: "proud", tilt: 4, brow: [-1, 0, 3] },
@@ -65,33 +57,94 @@ const S: [Who, string, [Mood, Mood, Mood], Partial<Line>?][] = [
   ["dex", "Leo... teach me?", ["cheer", "cheer", "worry"]],
   ["leo", "Sorry. It only works on sixes.", ["smug", "cheer", "sad"], { punch: true }],
 ];
-const beats = (text: string, i: number, on: string) => {
+/** the owner's viral SFX pack (assets/sfx/viral): punchlines, reveals, the number flip, the headstand, the comedic hits. [word, nth, sound, gain dB] */
+const VIRAL: Record<number, [string, number, string, number?, number?][]> = {
+  0: [["glowing", 1, "viral_camera_flash"]],                    // the numbers appear
+  1: [["six", 1, "viral_error"]],                               // "...and I'm a six": the sting that is Leo's number all film
+  3: [["Seven", 1, "viral_ding"]],                              // Mum's 7 wins
+  4: [["arithmetic", 1, "viral_fahhh", 0, 0.6]],                        // the punchline
+  5: [["vote", 1, "viral_info_5", -2]],                         // the family vote is announced
+  6: [["Obviously", 1, "viral_rizz"]],                          // Dex, smug
+  7: [["Tuesday", 1, "viral_punch"]],                           // Leo's outrage
+  8: [["rank", 1, "viral_punch_game"]],                         // Dex's line lands
+  9: [["stand", 1, "viral_goofy_run"]],                         // the morning headstand
+  10: [["again", 1, "viral_metal_pipe_clang", -2]],             // Mum, deadpan
+  11: [["Circulation", 1, "viral_ack", -3, 0.55]],              // Leo, upside down and smug
+  12: [["dizzy", 1, "viral_huh", -2, 0.3]],                     // Mum, bewildered
+  13: [["Leo", 1, "viral_among_us_reveal", -1, 0.25]],          // the roll-call: whose number is it?
+  14: [["Six", 1, "viral_error"]],                              // Leo, small (the fail)
+  15: [["take", 1, "viral_punch"]],                             // Dex takes the pancake (the music has just cut)
+  16: [["six", 1, "viral_undertaker_bell"]],                    // the lowest point, in silence
+  17: [["rule", 1, "viral_keyboard_typing"], ["up", 1, "viral_dun_dun_dun", -2, 0.1]],   // Leo working it out, and the realisation
+  18: [["again", 1, "viral_camera_flash"]],                     // Leo goes upside down: the flip
+  19: [["nine", 1, "viral_anime_wow"]],                         // the reveal: the 6 is a 9
+  20: [["cheating", 1, "viral_tuco_get_out", 0, 0.45]],                  // Dex, outraged
+  22: [["Nine", 1, "viral_ding"]],                              // the win
+  23: [["Museum", 1, "viral_bing_bing_bing", -2]],
+  24: [["too", 1, "viral_goofy_run"]],                          // Dex dives into a headstand
+  25: [["eight", 1, "viral_fahhh", 0, 0.3]],                            // and nothing happens
+  28: [["sixes", 1, "viral_ding"]],                             // the button
+};
+// ---- camera set-ups (the real shot list): lenses 22-85 mm, every shot hand-held, impact shakes on the punchlines
+const W = (): C => ({ move: "truck", on: ["leo", "mum", "dex"], dist: 0.8, size: "full", from: 8, height: 1.5, fov: fovMm(22), cInf: 0 });
+const W2 = (): C => ({ move: "truck", on: ["leo", "mum", "dex"], dist: 0.6, size: "full", from: -8, height: 1.45, fov: fovMm(22), cInf: 1 });
+const M2L = (): C => ({ move: "frame", on: ["leo", "mum"], size: "medium", from: -10, height: 1.4, fov: fovMm(35), cInf: 3 });
+const ORB = (): C => ({ move: "orbit", on: ["leo", "dex"], fromDeg: [-16, 14], size: "medium", height: 1.4 });
+const C50 = (on: string) => (): C => ({ move: "closeUp", on, from: 15, fov: fovMm(50), cInf: 6 });
+const C85 = (on: string) => (): C => ({ move: "closeUp", on, from: 18, fov: fovMm(85), cInf: 16 });
+// an upside-down actor: a low camera beside the table (the head is on the floor), 30 mm
+const LEO_LOW = (): C => ({ move: "at", pos: [-1.4, 0.9, 1.5], look: [-0.7, 1.0, -1.3], fov: fovMm(30), blur: 3 }) as unknown as C;
+const DEX_LOW = (): C => ({ move: "at", pos: [1.1, 0.9, 1.5], look: [0.35, 1.0, -1.3], fov: fovMm(30), blur: 3 }) as unknown as C;
+const CAMSEL: (() => C)[] = [
+  W, C50("leo"), M2L, C50("mum"), C85("leo"), W2, C50("dex"), C50("leo"), C85("dex"), W,         // 0-9   hook, example, stakes, the headstand habit
+  M2L, LEO_LOW, C50("mum"), W2, C85("leo"), C85("dex"), C50("mum"), ORB, M2L, W,                  // 10-19 the fail, the realisation, the flip, the reveal
+  C50("dex"), LEO_LOW, C50("mum"), M2L, W2, DEX_LOW, C50("mum"), DEX_LOW, W,                      // 20-28 the win, the rival copies and fails
+];
+const POOL_FLIPPED: (() => C)[] = [W, W2, M2L];
+const POOL: (() => C)[] = [W, C50("leo"), ORB, C85("dex"), M2L, W2];
+/** a long line gets hard cuts to new angles on its words (about every 2 s), so something changes every 1.5-2.0 s */
+const beats = (text: string, i: number, flipped: boolean) => {
   const toks = text.split(/\s+/).filter(Boolean), n = toks.length;
   if (n < 9) return {};
-  const cuts = n >= 14 ? [0.35, 0.7] : [0.55];
-  const first = CAMS[i % CAMS.length](on);
-  const cams = [{ t: 0, ...first, blockOk: true }, ...cuts.map((f, j) => {
+  const cuts = n >= 14 ? [0.35, 0.7] : [0.55], pool = flipped ? POOL_FLIPPED : POOL;
+  const cams = [{ t: 0, ...CAMSEL[i](), blockOk: true }, ...cuts.map((f, j) => {
     const idx = Math.min(n - 1, Math.floor(n * f)), w = toks[idx].replace(/[^A-Za-z0-9']+/g, ""), occ = toks.slice(0, idx + 1).filter((x) => x.replace(/[^A-Za-z0-9']+/g, "").toLowerCase() === w.toLowerCase()).length;
-    return { word: w, n: occ, ...CAMS[(i + j + 1) % CAMS.length](on), cut: true, blockOk: true };
+    return { word: w, n: occ, ...pool[(i + j + 1) % pool.length](), cut: true, blockOk: true };
   })];
   return { cams } as { cams: NonNullable<Storyboard["shots"][number]["cams"]> };
 };
-const base = { set: "e4Kitchen", light: "interior" as const, ambience: "elb_kitchen_day" as const, props: [] };
+// ---- the headstands: [flip at the start of the shot, flip at the end] (Leo's morning habit, then the reveal; Dex copies at the end)
+const LEO_FLIP: Record<number, [number, number]> = { 9: [0, 1], 10: [1, 1], 11: [1, 1], 12: [1, 1], 13: [1, 0], 18: [0, 1], 19: [1, 1], 20: [1, 1], 21: [1, 1], 22: [1, 1], 23: [1, 0] };
+const DEX_FLIP: Record<number, [number, number]> = { 24: [0, 1], 25: [1, 1], 26: [1, 1], 27: [1, 1], 28: [1, 1] };
+const keysFor = (m: Mood, n: number, fl?: [number, number]): K => {
+  if (!fl) return keys(m, n);
+  const [a, b] = fl;
+  return [{ t: 0, flip: a, gesture: a ? "cheer" : "hang", expr: a ? "smile" : "neutral" }, { t: 0.35, d: 0.5, flip: b, ...(b ? { gesture: "cheer" as const } : {}), ...POSE[m], ...(b ? { expr: "smile" as const, tilt: 0 } : {}) }];
+};
+// ---- the props: three glowing 3D numbers over the heads (6 Leo, 7 Mum, 8 Dex), and the last pancake
+const num = (who: string, at: V, text: string, side: -1 | 1, steps: ({ t: number } | { word: string })[]) => ({ id: "e4Number", variant: text, at, scale: 0.8, hover: { who, side }, steps });
+const numbers = (i: number) => { const st = i === 0 ? [{ word: "glowing" }] : [{ t: -1 }]; return [num("leo", LEO, "6", -1, st), num("mum", MUM, "7", -1, st), num("dex", DEX, "8", 1, st)]; };
+const PLATE_AT = [0.2, 0.78, -0.4] as V;
+const plate = (i: number) => (i >= 5 && i <= 14 ? [{ id: "bfPlate", variant: "one", at: PLATE_AT, steps: [{ t: 99 }] }]
+  : i === 15 ? [{ id: "bfPlate", variant: "one", at: PLATE_AT, steps: [{ word: "take" }] }]
+  : i >= 16 && i <= 22 ? [{ id: "bfPlate", variant: "one", at: PLATE_AT, steps: [{ t: -1 }] }]
+  : i >= 23 ? [{ id: "bfPlate", variant: "one", at: PLATE_AT, steps: [{ t: 99 }] }] : []);
+const base = { set: "e4Kitchen", light: "interior" as const, ambience: "elb_kitchen_day" as const };
 
 export const IN_MY_WORLD_2: Storyboard = {
   id: "in-my-world-2", title: "In my world, the highest number wins every argument",
-  cast: { leo: "leo", mum: "mum", dex: "noah" },
+  cast: { leo: "leo", mum: "mum", dex: "dex" },
   voice: "leo", voices: { leo: "leo", mum: "e4Mum", dex: "e4Rival" }, narration: "continuous",
   captionStyle: "viral", captionKeys: ["Leo", "Mum", "Dex", "six", "eight", "nine", "pancake", "pool", "museum", "number"],
-  // Morning Mood (public domain) for the cheerful beats; dead silence + a sub-bass hit on Dex's "Pool" (the climax of the fail); it returns on "nine"
+  // Morning Mood (public domain) for the cheerful beats; dead silence + a sub-bass hit on Dex's second "Pool" (the climax of the fail); it returns on "nine"
   music: { file: "morning-mood", gain: 0, cuts: [{ at: { word: "Pool.", n: 2 }, resume: { word: "nine.", n: 1 }, sub: true }] },
-  // this story's own word sounds: numbers are not clock times here; the "nine" is the reveal
+  // this story's own word sounds: numbers are not clock times here; the owner's viral pack (VIRAL above) carries the punchlines and reveals
   wordSfxMap: {
-    six: { sfx: "pop", gain_db: -5 }, sixes: { sfx: "pop", gain_db: -5 }, seven: { sfx: "pop", gain_db: -5 }, eight: { sfx: "pop", gain_db: -5 }, nine: { sfx: "shimmer_chime", major: true, gain_db: -1 },
-    bedtime: { sfx: "el_lights_off", gain_db: -3 }, pancake: { sfx: "el_plate_down" }, pool: { sfx: "el_water_rush", gain_db: -9 }, museum: { sfx: "shimmer_chime", gain_db: -5 },
-    arithmetic: { sfx: "boing", gain_db: -5 }, rules: { sfx: "el_stamp_thud", gain_db: -4 }, cheating: { sfx: "el_stamp_thud", gain_db: -3 }, obviously: { sfx: "boing", gain_db: -7 },
-    glowing: { sfx: "shimmer_chime", gain_db: -7 }, highest: { sfx: "whoosh_soft", lead: 0.1 }, saturday: { sfx: "whoosh_soft", lead: 0.1, gain_db: -3 }, upside: { sfx: "whoosh_soft", lead: 0.1 },
-    toaster: { sfx: "lever_clunk", gain_db: -3 }, dizzy: { sfx: "boing", gain_db: -6 }, stand: { sfx: "step_hard", gain_db: -5 }, circulation: { sfx: "boing", gain_db: -7 }, teach: { sfx: "shimmer_chime", gain_db: -7 },
+    six: null, sixes: null, seven: null, eight: null, nine: null,
+    bedtime: { sfx: "el_lights_off", gain_db: -3 }, pancake: { sfx: "el_plate_down" }, pool: { sfx: "el_water_rush", gain_db: -9 }, museum: null,
+    arithmetic: null, rules: { sfx: "el_stamp_thud", gain_db: -4 }, cheating: null, obviously: null,
+    glowing: null, highest: { sfx: "whoosh_soft", lead: 0.1 }, saturday: { sfx: "whoosh_soft", lead: 0.1, gain_db: -3 }, upside: { sfx: "whoosh_soft", lead: 0.1 },
+    toaster: { sfx: "lever_clunk", gain_db: -3 }, dizzy: null, stand: null, circulation: null, teach: { sfx: "shimmer_chime", gain_db: -7 },
   },
   engine: 4, motionBlur: true, controlledBlur: true,
   clarity: {
@@ -107,10 +160,12 @@ export const IN_MY_WORLD_2: Storyboard = {
     ],
   },
   shots: S.map(([who, text, [lm, mm, dm], extra], i) => {
-    const on = who === "narrator" ? "leo" : who;
+    const lf = LEO_FLIP[i], df = DEX_FLIP[i];
     return {
-      ...base, camera: CAMS[i % CAMS.length](on), say: { text, who, ...extra } as Line, hold: 0.05, ...beats(text, i, on), ...(extra?.punch ? { kicks: [0.04] } : {}),
-      actors: [{ who: "leo", at: LEO, act: "neutral" as const, facing: "camera" as const, keys: keys(lm, i) }, { who: "mum", at: MUM, act: "neutral" as const, facing: "camera" as const, keys: keys(mm, i + 1) }, { who: "dex", at: DEX, act: "neutral" as const, facing: "camera" as const, keys: keys(dm, i + 2) }],
+      ...base, camera: CAMSEL[i](), say: { text, who, ...extra } as Line, hold: 0.05, ...beats(text, i, !!(lf || df)), ...(extra?.punch ? { kicks: [0.04] } : {}),
+      ...(VIRAL[i] ? { sfx: VIRAL[i].map(([word, n, name, gain, delay]) => ({ word, n, name, ...(gain ? { gain } : {}), ...(delay ? { delay } : {}) })) } : {}),
+      props: [...numbers(i), ...(["truck", "orbit"].includes(CAMSEL[i]().move) ? plate(i) : [])],   // the plate only where the camera can see the table
+      actors: [{ who: "leo", at: LEO, act: "neutral" as const, facing: "camera" as const, keys: keysFor(lm, i, lf) }, { who: "mum", at: MUM, act: "neutral" as const, facing: "camera" as const, keys: keys(mm, i + 1) }, { who: "dex", at: DEX, act: "neutral" as const, facing: "camera" as const, keys: keysFor(dm, i + 2, df) }],
       note: `${who}: ${text}`,
     };
   }),

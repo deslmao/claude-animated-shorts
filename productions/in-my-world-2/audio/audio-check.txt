@@ -1,44 +1,56 @@
-36 SFX cues in 66.4 s
-    2.04 s  shimmer_chime           on a word (1.89s)
+48 SFX cues in 66.4 s
+    1.97 s  viral_camera_flash MAJOR  on a word (1.89s)
     3.89 s  whoosh_soft             on a word (3.76s)
-    9.04 s  pop                     on a word (8.96s)
+    8.97 s  viral_error      MAJOR  on a word (8.96s)
    10.87 s  whoosh_soft             on a word (10.77s)
-   12.19 s  pop                     on a word (12.19s)
-   14.38 s  boing                   on a word (14.38s)
+   11.45 s  viral_ding       MAJOR  on a word (11.52s)
+   12.60 s  el_lights_off           on a word (12.60s)
+   14.92 s  viral_fahhh      MAJOR  storyboard cue, shot 5
+   16.36 s  viral_info_5     MAJOR  on a word (16.43s)
    16.87 s  whoosh_soft             on a word (16.80s)
    19.41 s  el_plate_down           on a word (19.41s)
-   21.11 s  boing                   on a word (21.11s)
-   22.57 s  pop                     on a word (22.46s)
+   21.04 s  viral_rizz       MAJOR  on a word (21.11s)
+   23.01 s  viral_punch      MAJOR  on a word (23.08s)
    23.74 s  impact                  on a word (23.76s)
    24.56 s  sting_low               on a word (24.56s)
+   25.69 s  viral_punch_game MAJOR  on a word (25.76s)
    26.58 s  el_whisper_air          on a word (26.58s)
-   27.95 s  step_hard               on a word (27.82s)
+   27.88 s  viral_goofy_run  MAJOR  on a word (27.82s)
    30.63 s  whoosh_soft             on a word (30.58s)
-   32.46 s  boing                   on a word (32.46s)
-   34.42 s  boing                   on a word (34.29s)
-   36.28 s  pop                     on a word (36.28s)
-   38.32 s  pop                     on a word (38.32s)
+   31.98 s  viral_metal_pipe_clang MAJOR  on a word (32.04s)
+   32.95 s  viral_ack        MAJOR  storyboard cue, shot 12
+   34.65 s  viral_huh        MAJOR  storyboard cue, shot 13
+   38.05 s  viral_among_us_reveal MAJOR  storyboard cue, shot 14
+   38.27 s  viral_error      MAJOR  on a word (38.32s)
    39.47 s  impact                  on a word (39.51s)
    39.49 s  sub_hit                 on a word (39.51s)
+   39.51 s  el_water_rush           on a word (39.51s)
+   40.51 s  viral_punch      MAJOR  on a word (40.39s)
    40.94 s  el_plate_down           on a word (40.94s)
-   42.83 s  pop                     on a word (42.83s)
+   43.32 s  viral_undertaker_bell MAJOR  on a word (43.39s)
+   43.76 s  whoosh_soft             on a word (43.86s)
    43.84 s  impact                  on a word (43.86s)
+   45.52 s  viral_keyboard_typing MAJOR  on a word (45.43s)
+   47.30 s  viral_dun_dun_dun MAJOR  on a word (47.27s)
    47.89 s  paper_rustle            on a word (47.89s)
+   48.46 s  viral_camera_flash MAJOR  on a word (48.53s)
    48.91 s  impact                  on a word (48.93s)
-   49.83 s  shimmer_chime    MAJOR  on a word (49.83s)
-   53.28 s  step_hard               on a word (53.28s)
-   55.13 s  shimmer_chime    MAJOR  on a word (55.13s)
+   49.76 s  viral_anime_wow  MAJOR  on a word (49.65s)
+   51.06 s  viral_tuco_get_out MAJOR  storyboard cue, shot 21
+   55.06 s  viral_ding       MAJOR  on a word (55.13s)
+   56.15 s  viral_bing_bing_bing MAJOR  on a word (56.21s)
    56.17 s  impact                  on a word (56.21s)
    57.10 s  el_plate_down           on a word (57.00s)
+   58.56 s  viral_goofy_run  MAJOR  on a word (58.52s)
    59.14 s  impact                  on a word (59.15s)
-   60.31 s  pop                     on a word (60.20s)
+   60.55 s  viral_fahhh      MAJOR  on a word (60.66s)
    63.43 s  shimmer_chime           on a word (63.43s)
    64.21 s  impact                  on a word (64.25s)
-   65.44 s  pop                     on a word (65.32s)
-gaps between hits: mean 1.81 s, max 5.15 s; first hit at 2.04 s; last at 65.44 s; hits per 10 s: 5.4
-cues on a spoken word's timestamp: 36 of 36
+   65.38 s  viral_ding       MAJOR  on a word (65.32s)
+gaps between hits: mean 1.35 s, max 5.08 s; first hit at 1.97 s; last at 65.38 s; hits per 10 s: 7.2
+cues on a spoken word's timestamp: 43 of 48
 duck (constant tone through apply_duck): in the clear -0.5 dB, under plain words -3.0 dB, inside punchline / major-hit spans -8.0 dB (target -8), deepest -8.0 dB
-music cut 39.49-49.81 s: peak inside -180 dBFS (silence), the 1 s before it: -31 dBFS rms; sub-bass hit at 39.49 s: yes
+music cut 39.49-49.81 s: peak inside -180 dBFS (silence), the 1 s before it: -33 dBFS rms; sub-bass hit at 39.49 s: yes
 master audio/Short-in-my-world-2.mp3: -14.0 LUFS, true peak -1.8 dBFS
 master audio/Short-in-my-world-2.nomusic.mp3: -14.0 LUFS, true peak -1.8 dBFS
 grounded SFX (no crowd / stadium / gasp sounds): PASS

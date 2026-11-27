@@ -331,3 +331,12 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
     one run per turn, butted with the natural breath. Engine 4 talking hands stay at the chest (point / present / shrug become "talk": they swung out of close-ups).
   - **Story `in-my-world-2`** (66 s, 197 words, Leo / Mum / Dex): per-story `wordSfxMap` (numbers are not clock times; "nine" is the chime), music cut on the SECOND "Pool." (Beat 5),
     back on "nine". The first story (`in-my-world-1`, the toast) is superseded and kept only as history.
+
+- **27 Nov 2026: Episode 1 built (props, headstand, Dex, viral SFX pack); stopped for the owner's final go.**
+  - **Headstand:** `E4Key.flip` (0..1) turns the whole card about a point 0.9 m up its body (`cards/cards.ts`: position = base + c (sin th X + (1 - cos th) Y)); anchors follow
+    (`flipAnchor` in `story/compile.ts`); the shadow capsule turns with the card; the arms go to "cheer" (hands planted).
+  - **Luck numbers:** PropSpec `hover: { who, lift, side }` + `PropRig.update({ target, up, hover })`; `e4Number` floats over the crown along the body's up; upside down it slides beside the head
+    (never into the floor) and turns with the actor, so Leo's 6 reads as a 9. Colours: 6 and 9 gold, 7 cyan, 8 pink. **Plate:** `bfPlate` variant `one` (one pancake that lifts off on its step).
+  - **Dex** = own look in `themes/e4` (fair, spiky ginger hair, teal tee, raised brow), not Noah. **Viral pack:** `assets/sfx/viral/` (22 files) wins over generic sounds; levels and trims in
+    `sound/build.py`; every `viral_*` cue is a "major" hit (music -8 dB); `SfxSpec.delay` plays a voiced clip after the word, not over it. Balance measured: every SFX peak is at least 9 dB below the loudest voice.
+  - **Validation:** hover props skip the footprint and in-frame checks (they follow an actor); `bfPlate` is no longer mistaken for a flat card in the pacing check.

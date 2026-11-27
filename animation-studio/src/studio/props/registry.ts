@@ -43,7 +43,7 @@ export type PropEntry = {
   reach?: { shoulder: number; length: number; lift: number };
 };
 /** step = a stepped prop's progress: n + the eased fraction of step n+1 (0 = before the first step) */
-export type PropRig = { root: THREE.Object3D; update: (st: { target?: [number, number, number]; stroke: number; step?: number; camPos: THREE.Vector3;
+export type PropRig = { root: THREE.Object3D; update: (st: { target?: [number, number, number]; /** Engine 4 hover: the body's up direction (unit) */ up?: [number, number, number]; hover?: { lift: number; side: number }; stroke: number; step?: number; camPos: THREE.Vector3;
   /** a tracked prop (storyboard `track`): where it is this frame, its heading (rad, 0 = +z), distance travelled (m), speed (m/s), shot time (s) */
   track?: { pos: [number, number, number]; heading: number; dist: number; speed: number; t: number } }) => void };
 

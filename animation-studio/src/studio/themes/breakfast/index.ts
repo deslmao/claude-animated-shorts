@@ -133,8 +133,24 @@ const phoneRig = (a: At, v = "yours"): PropRig => {
   } };
 };
 /** three pancakes on a plate, butter and syrup, a fork beside it, untouched */
-const plateRig = (a: At): PropRig => {
+const plateRig = (a: At, one = false): PropRig => {
   const root = rigRoot(a), b = new Batch(), I = new THREE.Matrix4();
+  if (one) {
+    // Engine 4 variant "one": the LAST pancake, a separate piece that its step lifts off the plate and carries away (Dex takes it)
+    cyl(b, col("#f7f5ef"), I, 0, 0, 0, 0.13, 0.11, 0.015, 24);
+    box(b, col("#c9ccd2"), I, 0.16, 0.175, 0, 0.006, -0.1, 0.1);
+    b.build(root, true);
+    const cake = new THREE.Group(), m = (c: string) => new THREE.MeshStandardMaterial({ color: c, roughness: 0.6 });
+    const body = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.09, 0.018, 24), m("#d99a48")); body.position.y = 0.024; body.castShadow = true;
+    const syrup = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.004, 16), m("#a8561e")); syrup.position.set(0.02, 0.035, 0.02);
+    const butter = new THREE.Mesh(new THREE.BoxGeometry(0.036, 0.012, 0.036), m("#fff2a0")); butter.position.set(-0.02, 0.04, -0.01);
+    cake.add(body, syrup, butter); root.add(cake);
+    return { root, update: (st) => {
+      const s = st.step ?? 0, u = Math.min(1, s), e = u * u * (3 - 2 * u);
+      cake.visible = s < 1.02;
+      cake.position.set(0.32 * e, 0.34 * Math.sin(Math.PI * Math.min(1, u * 1.1)) + 0.1 * e, 0.08 * e); cake.rotation.set(0.5 * e, 0, -0.35 * e);
+    } };
+  }
   cyl(b, col("#f7f5ef"), I, 0, 0, 0, 0.13, 0.11, 0.015, 24);
   for (let k = 0; k < 3; k++) cyl(b, col(k % 2 ? "#e0a656" : "#d99a48"), I, 0, 0.015 + k * 0.017, 0, 0.09, 0.09, 0.016, 20);
   box(b, col("#fff2a0"), I, -0.02, 0.02, 0.066, 0.078, -0.02, 0.02); cyl(b, col("#a8561e"), I, 0.02, 0.066, 0.02, 0.05, 0.05, 0.003, 16);
@@ -488,7 +504,7 @@ export const BREAKFAST_THEME: Theme = {
     bfHomeCam: { name: "Home camera (Don't Eat It, Part 2)", desc: "a small white home security camera on a wall bracket, red light on, tilted down into the room; `at` on the wall surface, facing +z (bfKitchen back wall: z -1.9, e.g. [-0.05, 2.25, -1.89])", category: "theme", themes: ["home", "horror"], tags: ["camera", "security", "cctv", "clue"], radius: 0.08, height: 0.12,
       build: () => undefined, rig: (a) => homeCamRig(a), steps: [], stepCount: () => 0 },
     bfPlate: { name: "Plate of pancakes", desc: "three pancakes on a plate with butter and syrup, a fork beside it (on a table top: y 0.78)", category: "theme", themes: ["home", "kitchen"], tags: ["food", "breakfast", "pancakes", "plate"], radius: 0.18, height: 0.08,
-      build: () => undefined, rig: (a) => plateRig(a), steps: [], stepCount: () => 1 },
+      build: () => undefined, rig: (a, v) => plateRig(a, v === "one"), steps: ["the last pancake is lifted off and carried away (variant one)"], stepCount: () => 1, variants: { one: () => undefined } },
     bfFrontDoor: { name: "Front door (frosted glass)", desc: "the front door's leaf for the bfKitchen hallway frame (`at` = [0.95, 0, -4.47]), facing +z: deep green, a frosted glass panel lit by daylight. Variant shadow: a dark head-and-shoulders silhouette behind the glass. Each step is a knock: the leaf jolts", category: "theme", themes: ["home", "horror"], tags: ["door", "front door", "knock", "silhouette"], radius: 0.45, height: 2.05,
       build: () => undefined, rig: (a, v) => frontDoorRig(a, v ?? "empty"), steps: ["a knock"], stepCount: () => 50, variants: { empty: () => undefined, shadow: () => undefined } },
     bfInsert: { name: "Close insert (Don't Eat It)", desc: "an upright 9:16 insert card (0.54 x 0.96 m, facing +z), `at` = its centre: an `at` camera 1.0 m in front at fov 51 sees only the card. A state per step. Variants: pan (Mum holding the pan of pancakes out to you, her smile above), text1 (your phone: MUM: Don't eat it. I'm still at work.), rules (the phone in your lap under the table: the first text only; then rule one, two, three), badge (Mum's hospital lanyard on its hook: NURSE, NIGHT SHIFT 9 PM - 9 AM), oven (the oven clock 7:42 AM), mumPhone (Mum's pink phone on the counter: dark; lit, typing; sent: Open the door. Now. Delivered); Part 2: comment (the top comment on Part 1: None if them. Your moms at work, the heart turning red, 76), camFeed (Mum's computer at the hospital: KITCHEN CAM LIVE, her double at your stove, and the messages window she texted you from), call (your phone in your hands in the bright kitchen: Calling… MUM'S WORK, City Hospital; then connected, 00:03), mumHang (Mum's phone on the counter: dark; then a new text, Hang up, Bug.)", category: "theme", themes: ["home", "insert"], tags: ["insert", "card", "close-up", "phone", "text"], radius: 0.3, height: 0.96,

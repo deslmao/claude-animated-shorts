@@ -145,12 +145,13 @@ export const soundPlan = (film: Film, sb0: Storyboard): SoundPlan => {
         if (h > last) last = h;
       }
     }
-    for (const x of s.sfx ?? []) cues.push({ t: T0 + (x.t ?? 0), name: x.name, gain_db: x.gain, pan: panOf(x.on, x.t ?? 0), why: `storyboard cue, shot ${i + 1}` });
+    for (const x of s.sfx ?? []) cues.push({ t: T0 + (x.t ?? 0) + (x.delay ?? 0), name: x.name, gain_db: x.gain, pan: panOf(x.on, x.t ?? 0), why: `storyboard cue, shot ${i + 1}` });
   });
   // Engine 4 (opt-in): word-level SFX from the lexicon on the words' own timestamps, and the 8 dB duck spans
   let duck: SoundPlan["duck"];
   if (sb.engine === 4) {
     if (sb.wordSfx !== false) for (const c of wordCues(film.timing.lines.flatMap((l) => l.words), 1.2, sb.wordSfxMap)) cues.push({ t: c.t, name: c.name, gain_db: c.gain_db, major: c.major, why: `${c.why}` });
+    for (const c of cues) if (String(c.name).startsWith("viral_")) c.major = true;   // the owner's viral pack hits duck the music like any major hit
     const spans: [number, number][] = [];
     for (const l of film.timing.lines) if (l.punch && l.words.length) spans.push([l.words[0].t0 - 0.05, l.words[l.words.length - 1].t1 + 0.2]);
     for (const c of cues) if (c.major) spans.push([c.t - 0.05, c.t + 0.7]);

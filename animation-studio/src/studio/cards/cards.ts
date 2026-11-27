@@ -118,7 +118,7 @@ export class Fx {
  *  custom plane (e.g. a swing); yaw defaults to facing the camera */
 export type Place = {
   key: string; draw: (p: Pen) => void; x: number; y: number; z: number;
-  scale?: number; mirror?: boolean; squash?: number; yaw?: number; roll?: number; size?: [number, number, number]; geo?: THREE.BufferGeometry; castShadow?: boolean;
+  scale?: number; mirror?: boolean; squash?: number; flip?: number; yaw?: number; roll?: number; size?: [number, number, number]; geo?: THREE.BufferGeometry; castShadow?: boolean;
 };
 /** an effect card: w x h metres; flat = lying on the ground; soft = see-through; keys containing "|blob|" multiply */
 export type FxPlace = { key: string; cw: number; ch: number; draw: (p: Pen) => void; x: number; y: number; z: number; w: number; h: number; flat?: boolean; rot?: number; soft?: boolean; overlay?: boolean };
@@ -166,14 +166,18 @@ export class CardLayer {
       const [w, h, k] = p.size ?? [300, 500, 0.5];
       a.r = this.pool.req(p.key, w, h, k, p.draw);
       a.mesh.visible = true;
-      a.mesh.position.set(p.x, p.y, p.z);
-      a.mesh.rotation.set(0, p.yaw ?? Math.atan2(cam.position.x - p.x, cam.position.z - p.z), p.roll ?? 0);
+      const yaw = p.yaw ?? Math.atan2(cam.position.x - p.x, cam.position.z - p.z);
+      // Engine 4 headstand: the whole card turns about a point 0.9 m up its body (flip 0..1 = 0..180 degrees); the feet swing over the head, which lands
+      // where the hips were, on the floor. position = base + c * (sin(th) X + (1 - cos(th)) Y), X = the card's right, Y = up
+      const th = Math.PI * (p.flip ?? 0), c = 0.9 * sc;
+      a.mesh.position.set(p.x + c * Math.sin(th) * Math.cos(yaw), p.y + c * (1 - Math.cos(th)), p.z - c * Math.sin(th) * Math.sin(yaw));
+      a.mesh.rotation.set(0, yaw, (p.roll ?? 0) + th);
       if (p.squash !== undefined) { const sy = p.squash, sx = 1 / Math.sqrt(sy); a.mesh.scale.set((p.mirror ? -sc : sc) * sx, sc * sy, sc); }   // Engine 4 squash and stretch about the soles (volume kept)
       else a.mesh.scale.set(p.mirror ? -sc : sc, sc, sc);
       a.mesh.castShadow = p.castShadow ?? castShadows;
       // Engine 4: the room's lights tint the card a little (a card ignores scene lights otherwise); no callback = unchanged
       if (tint) { a.mat.color.setRGB(...tint(p.x, p.y + 1.1 * sc, p.z)); a.tinted = true; } else if (a.tinted) { a.mat.color.setRGB(1, 1, 1); a.tinted = false; }
-      if (tint && !p.geo) { const q = this.proxy(ai - 1); q.visible = a.mesh.castShadow; q.position.set(p.x, p.y, p.z); q.scale.setScalar(sc); }
+      if (tint && !p.geo) { const q = this.proxy(ai - 1); q.visible = a.mesh.castShadow; q.position.copy(a.mesh.position); q.rotation.set(0, yaw, th); q.scale.setScalar(sc); }
       used.add(a);
     }
     for (let i = ai; i < this.actors.length; i++) this.actors[i].mesh.visible = false;

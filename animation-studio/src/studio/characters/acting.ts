@@ -121,15 +121,17 @@ export type E4Key = {
   brow?: [number, number, number];              // lift, inner tilt, raise of the facing-side brow (head units)
   look?: [number, number];                      // gaze
   shrug?: number;                               // shoulders up (+)
+  flip?: number;                                // 0 = upright, 1 = a headstand (the whole card turns 180 degrees about the body, eased)
   squash?: number;                              // how hard this move squashes and stretches (default 1, 0 = none)
 };
 const NUM: (keyof E4Key)[] = ["tilt", "headTilt", "turn", "shrug"];
+const flipOf = (k: E4Key | undefined) => k?.flip ?? 0;
 const k0 = (k: E4Key | undefined, f: "tilt" | "headTilt" | "turn" | "shrug" | "slump") => (k && k[f] !== undefined ? (k[f] as number) : 0);
 const lerp = (a: number, b: number, e: number) => a + (b - a) * e;
 
 /** the engine 4 pose at time t (shot seconds) from the keys (sorted by t): numeric fields, the squash factor and how fast the pose is moving.
  *  Before the first key the pose is the first key's: author a key at t 0 for the starting pose */
-export const e4Track = (keys: E4Key[], t: number): { pose: Partial<Pose>; squash: number; speed: number; propTilt: number } => {
+export const e4Track = (keys: E4Key[], t: number): { pose: Partial<Pose>; squash: number; speed: number; propTilt: number; flip: number } => {
   const ks = [...keys].sort((a, b) => a.t - b.t);
   let i = -1; for (let n = 0; n < ks.length; n++) if (ks[n].t <= t) i = n;
   const cur = ks[Math.max(0, i)], prev = i > 0 ? ks[i - 1] : cur, d = cur.d ?? 0.34, u = i > 0 ? (t - cur.t) / d : 1, e = easeSnap(u), moving = u >= 0 && u < 1;
@@ -162,5 +164,6 @@ export const e4Track = (keys: E4Key[], t: number): { pose: Partial<Pose>; squash
   const dt = 1 / 60, e2 = (tt: number) => { const j = ks.filter((k) => k.t <= tt).length - 1, c = ks[Math.max(0, j)], p = j > 0 ? ks[j - 1] : c; return lerp(k0(p, "tilt"), k0(c, "tilt"), j > 0 ? easeSnap((tt - c.t) / (c.d ?? 0.34)) : 1); };
   const speed = (e2(t + dt) - e2(t - dt)) / (2 * dt);
   void NUM;
-  return { pose, squash: sq, speed, propTilt: Math.max(-14, Math.min(14, -speed * 0.35)) };
+  const flip = Math.max(0, Math.min(1.04, lerp(flipOf(prev), flipOf(cur), e)));   // a small overshoot past upside-down, settling
+  return { pose, squash: sq, speed, propTilt: Math.max(-14, Math.min(14, -speed * 0.35)), flip };
 };

@@ -4,7 +4,7 @@
 import type { Storyboard } from "../story/types";
 
 export const PACE_MIN = 1.5, PACE_MAX = 2.0, FLAT_MAX = 2.5;
-const FLAT_PROP = /insert|poster|plate|panel|sign|card|label|screen|display|diagram/i;
+const FLAT_PROP = /insert|poster|ggPlate|panel|sign|card|label|screen|display|diagram/i;
 /** a shot that is mostly a flat graphic: an insert / diagram camera, a title, or a story prop that is a card */
 export const isFlat = (s: Storyboard["shots"][number]) =>
   s.camera.move === "insert" || !!s.diagram || !!s.title || (s.props ?? []).some((p) => FLAT_PROP.test(p.id));

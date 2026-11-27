@@ -105,6 +105,7 @@ export const validate = (sb0: Storyboard, narr?: Narration): Report => {
     for (const q of s.props ?? []) {
       const e = PROPS[q.id];
       if (!e) { errors.push(`${at}: unknown prop "${q.id}" (search the library: npm run assets -- search <words>)`); continue; }
+      if (q.hover) { if (!s.actors.some((x) => x.who === q.hover!.who)) errors.push(`${at}: prop "${q.id}" hovers over "${q.hover.who}", who is not in the shot`); if (q.variant && e.param && !e.param.ok(q.variant)) errors.push(`${at}: prop "${q.id}": "${q.variant}" is not a valid ${e.param.desc}`); continue; }   // Engine 4: a hover prop floats over an actor; it has no footprint to check
       if (q.variant && e.param && !e.param.ok(q.variant)) errors.push(`${at}: prop "${q.id}": "${q.variant}" is not a valid ${e.param.desc}`);
       if (q.variant && !e.param && !e.variants?.[q.variant]) errors.push(`${at}: prop "${q.id}" has no variant "${q.variant}" (variants: ${Object.keys(e.variants ?? {}).join(", ") || "none"})`);
       if ((q.follow || q.drive || q.track) && !e.rig) errors.push(`${at}: prop "${q.id}" can't move (no rig), so it can't follow, be driven or travel with someone`);
@@ -133,7 +134,7 @@ export const validate = (sb0: Storyboard, narr?: Narration): Report => {
       if (w[1] < 0.3 && hasFloorMap(s.set) && !clearAt(s.set, x, z, Math.min(r, 0.6) * 0.8)) warnings.push(`${at}: prop "${q.id}" overlaps something already in the set at [${x.toFixed(1)}, ${z.toFixed(1)}]`);
     }
     for (const x of s.sfx ?? []) {
-      if (!(x.name in SFX)) errors.push(`${at}: unknown sound effect "${x.name}" (see src/studio/sound/catalog.ts)`);
+      if (!(x.name in SFX) && !String(x.name).startsWith("viral_")) errors.push(`${at}: unknown sound effect "${x.name}" (see src/studio/sound/catalog.ts)`);
       if (x.on && !seen.has(x.on)) errors.push(`${at}: sound "${x.name}" is placed on "${x.on}" who is not in the shot`);
     }
     for (const fx of s.fx ?? []) {
@@ -337,7 +338,7 @@ const staging = (film: ReturnType<typeof compile>, sb: Storyboard, i: number, a:
       }
     }
   }
-  (s.props ?? []).forEach((q, k) => { if (!seenProp.has(k)) report(`prop-${k}`, `prop "${q.id}" is never in frame (move it into the shot or drop it)`); });
+  (s.props ?? []).forEach((q, k) => { if (!seenProp.has(k) && !q.hover) report(`prop-${k}`, `prop "${q.id}" is never in frame (move it into the shot or drop it)`); });
   // arm snaps: around every beat, follow each hand frame by frame; a jump of more than SNAP metres in one frame means
   // a gesture changed without easing (cuts, walks and frames outside the shot are skipped; so is a hard camera cut
   // inside the shot: cards turn to the new camera, so the frame after a cut is never compared with the one before)

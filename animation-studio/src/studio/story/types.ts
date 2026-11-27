@@ -135,6 +135,8 @@ export type FxSpec = When & { kind: FxKind; on: string; life?: number; side?: -1
  *  (follow) and replay an actor's control strokes (drive), late by `delay` seconds, changed at moments */
 export type PropSpec = { id: string; at: Where; yaw?: number; scale?: number; variant?: string; offset?: [number, number];
   follow?: { who: string };
+  /** Engine 4: the prop floats over this actor's head (lift metres above the crown, along the body's own up: a headstand turns it with the head) */
+  hover?: { who: string; lift?: number; side?: -1 | 1 };
   /** a stepped prop (a registry entry with `steps`, e.g. lootPiles): each step plays on its word, in order */
   steps?: When[];
   drive?: { who: string; delay?: number; changes?: (When & { delay: number })[] };
@@ -145,7 +147,7 @@ export type PropSpec = { id: string; at: Where; yaw?: number; scale?: number; va
   track?: { who: string; behind?: number; offset?: [number, number] } };
 /** an explicit sound cue (automatic cues already cover effects, transitions, kicks, jumps, falls and footsteps).
  *  on = an actor (the sound is panned to where they are on screen); gain in dB on top of the kind's default level */
-export type SfxSpec = When & { name: SfxName; on?: string; gain?: number };
+export type SfxSpec = When & { name: SfxName | (string & {}); on?: string; gain?: number; /** seconds after the cue time (a sound with a voice in it plays AFTER the word, not over it) */ delay?: number };
 export type ShotSpec = {
   /** seconds. With narration the shot lasts as long as its lines (+ hold); dur is then a minimum and may be left out */
   dur?: number;

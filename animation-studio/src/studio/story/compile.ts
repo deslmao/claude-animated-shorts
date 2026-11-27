@@ -377,7 +377,14 @@ export const motionAt = (moves: MoveSpec[] | undefined, tt: number, sideOf: (m: 
 };
 
 /** an animated prop's state at shot time tt: the open hand it reaches for and the stroke it replays */
-export type PropAnim = (tt: number, anchors: Map<string, ActorAnchor>) => { target?: V3; stroke: number; step?: number; track?: { pos: V3; heading: number; dist: number; speed: number; t: number } };
+/** an actor's anchors after the card turns upside down (headstand, flip 0..1): the same turn the card layer gives the drawing (cards/cards.ts) */
+export const flipAnchor = (an: ActorAnchor, p: V3, camPos: { x: number; z: number }, flip: number): ActorAnchor => {
+  const yaw = Math.atan2(camPos.x - p[0], camPos.z - p[2]), X: V3 = [Math.cos(yaw), 0, -Math.sin(yaw)], th = Math.PI * flip, c = 0.9, s = Math.sin(th), co = Math.cos(th);
+  const base: V3 = [p[0] + c * s * X[0], p[1] + c * (1 - co), p[2] + c * s * X[2]];
+  const map = (q: V3): V3 => { const vx = (q[0] - p[0]) * X[0] + (q[2] - p[2]) * X[2], vy = q[1] - p[1], a = vx * co - vy * s, b = vx * s + vy * co; return [base[0] + a * X[0], base[1] + b, base[2] + a * X[2]]; };
+  return { ...an, head: map(an.head), crown: map(an.crown), chest: map(an.chest), hands: an.hands.map((h) => ({ ...h, p: map(h.p), raised: false })), rot: an.rot + th };
+};
+export type PropAnim = (tt: number, anchors: Map<string, ActorAnchor>) => { target?: V3; up?: V3; hover?: { lift: number; side: number }; stroke: number; step?: number; track?: { pos: V3; heading: number; dist: number; speed: number; t: number } };
 /** a stepped prop's progress at shot time tt: steps done + the eased fraction of the one playing (STEP_DUR s each) */
 export const STEP_DUR = 0.7;
 export const stepAt = (steps: { t?: number }[], tt: number) => steps.reduce((n, c) => n + glide((tt - (c.t ?? 0)) / STEP_DUR), 0);
@@ -396,6 +403,14 @@ const propAnim = (s: ShotSpec, q: PropSpec): PropAnim | undefined => {
   if (q.track) {
     const a = s.actors.find((x) => x.who === q.track!.who);
     if (a) return (tt) => ({ stroke: 0, track: { ...trackPose(s.set, a, q.track!, tt, ((q.yaw ?? 0) * Math.PI) / 180), t: tt } });
+  }
+  if (q.hover) {   // Engine 4: a prop that floats over an actor's head, along the body's own up (a headstand turns it upside down with the head)
+    const h = q.hover;
+    return (tt, anchors) => {
+      const an = anchors.get(h.who); if (!an) return { stroke: 0, ...(q.steps ? { step: stepAt(q.steps, tt) } : {}) };
+      const d: V3 = [an.crown[0] - an.head[0], an.crown[1] - an.head[1], an.crown[2] - an.head[2]], L = Math.hypot(...d) || 1, up: V3 = [d[0] / L, d[1] / L, d[2] / L];
+      return { target: an.crown, up, hover: { lift: h.lift ?? 0.42, side: h.side ?? 1 }, stroke: 0, ...(q.steps ? { step: stepAt(q.steps, tt) } : {}) };
+    };
   }
   if (!q.follow && !q.drive && !q.steps) return undefined;
   const drv = driveOf(s.actors.find((x) => x.who === q.drive?.who));
@@ -571,9 +586,11 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
         const pose0: Pose = eased(Math.round(tt * FPS));
         const pose: Pose = mo.tilt || mo.headTilt || mo.shrug ? { ...pose0, tilt: (pose0.tilt ?? 0) + mo.tilt, headTilt: (pose0.headTilt ?? 0) + mo.headTilt, shrug: (pose0.shrug ?? 0) + mo.shrug } : pose0;
         const card = lookCard(cam, L, p[0], p[1], p[2], { pose });
-        if (pose.e4 && a.keys?.length) card.squash = e4Track(a.keys, tt).squash;   // Engine 4 squash and stretch
+        let flip = 0;
+        if (pose.e4 && a.keys?.length) { const tr4 = e4Track(a.keys, tt); card.squash = tr4.squash; flip = tr4.flip; if (flip) card.flip = flip; }   // Engine 4 squash and stretch, headstand
         out.places.push(card);
-        out.anchors.set(a.who, anchorOf(cam, L, p, anchorsFront(L, pose), false));
+        const an0 = anchorOf(cam, L, p, anchorsFront(L, pose), false);
+        out.anchors.set(a.who, flip ? flipAnchor(an0, p, cam.pos, flip) : an0);
       }
       contactShadow(out, cam.sun, shot.light, p[0], p[1], p[2]);
     }
