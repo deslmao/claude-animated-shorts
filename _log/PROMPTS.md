@@ -16430,3 +16430,98 @@ Fix one last caption bug, then trigger the final full-resolution 1080p render:
 2. Generate productions/in-my-world-2/publish/PUBLISHING.md with punchy, scroll-stopping titles, descriptions, and hashtags for YouTube Shorts, TikTok, and Instagram Reels.
 
 Once the caption fix passes preflight, commit everything, trigger the final 1080p GitHub Actions render (scored + no-music dual export), give me the run URL, and stop (do NOT poll GitHub Actions).
+
+## 27 Nov 2026 — owner (Episode 2: kd-talent-1, Phase A)
+We are starting Episode 2 in Engine 4: productions/kd-talent-1/ ("The Day I Stole Kevin Durant's Talent", ~2:15–2:30).
+Do NOT modify engines 1–3 or touch productions/in-my-world-2/.
+
+==================================================
+1. VISUAL STORYTELLING BLUEPRINT (CRITICAL)
+==================================================
+We are breaking out of the single-kitchen trap using a high-retention visual storytelling system:
+- Multi-Set Reuse (2 Main Sets + Lighting States): Instead of 10 complex rooms, build 2 clean, stylized 3D sets and get massive visual variety through lighting and camera zones:
+  1) Street Court Set: Flat asphalt court, 1 basketball hoop/backboard, chain-link fence, simple trees/houses in background. Needs 2 lighting states: Bright Afternoon Day (opening/ending) and 5 AM Dawn + Rain (for the Beat 5 grind montage).
+  2) Thunder Arena Set: Hardwood court with center logo, hoop, bleachers/crowd backdrop, and an adjacent Tunnel/Bench area.
+- Literal Visual Proof (Insert Shots): Never let a character just talk about a key detail—cut for 1–1.5s to a macro insert shot of the prop/graphic proving it.
+- Emotional Camera Grammar (No Flat Lineups):
+  - Bird's-Eye Trap Shot: Looking straight down when 3 defenders swarm KD on the final play.
+  - Low-Angle Hero Shots: Looking UP at KD in the tunnel, Leo's first dunk, and KD lifting Leo onto his shoulders at the end.
+  - High-Angle Underdog Shots: Looking DOWN at Leo when he's picked last ("Brick") or sitting on the bench without powers.
+  - Dynamic Motion: Subtle handheld drift on dialogue, slow push-ins on tension, snap-zooms on punchlines/swishes, and fast whip/cut pacing (average 1.5–2.0s per visual change).
+- Face-First Framing & Captions: Eyes sit in the upper-middle third of the frame (zero forehead/chin cropping). Captions sit cleanly at ~72% height (chest level) on upright shots, never covering faces or graphics.
+- Bold Expression Swaps: Swap faces cleanly per beat (defeated/sad when picked last, wide-eyed awe at KD, locked-in intense during 5 AM grind, panicked when powers vanish, triumphant grin on the buzzer-beater).
+
+==================================================
+2. CAST & VOICES (ENGINE 4 CONTINUOUS DIALOGUE)
+==================================================
+- Leo (Protagonist/Narrator): Red hoodie + stick legs (or Thunder jersey overlay for arena scenes). Voice: "Leo (Voice for my animated videos)" — ID 7g0kmMsyK30rO4fU1Sli (stability 0.38, style 0.20, speed 1.06).
+- Dex (Street Rival): Existing spiky ginger hair, teal tee, smug brow. Voice: VALF.
+- Kevin Durant (KD): Tall, lanky, blue/white #35 Thunder jersey, goatee/short hair. Assign a calm, deep, cool-mentor male ElevenLabs voice.
+- Coach: Whistle, clipboard. Assign a gruff, urgent male ElevenLabs voice.
+- Background Kids / Defenders: Simple recolored silhouettes/jerseys so we can show the street game and the 3 defenders swarming KD.
+
+==================================================
+3. THE 4 HERO INSERT PROPS
+==================================================
+1. signedBasketball: Beat-up basketball with "KD" signature in black marker + an electric blue/gold lightning spark effect when Leo and KD touch it.
+2. viralPhone: Smartphone screen close-up showing a viral video thumbnail: "11-YEAR-OLD DROPS 40 AT TRYOUTS — 1.4M VIEWS".
+3. tvNewsSlump: TV screen graphic showing a sports broadcast chyron: "KD: 0-12 — CAREER OVER?"
+4. arenaScoreboard: Overhead/cutaway scoreboard reading "THUNDER 88 | 00:05 | OPP 89" right before the final play.
+
+==================================================
+4. AUDIO RULES
+==================================================
+- Use our Engine 4 continuous narration/dialogue splicing, -14 LUFS dual export (scored + no-music master), and 8 dB music ducking under punchlines and viral SFX.
+- Prioritize our curated viral SFX pack in https://www.myinstants.com (normalized cleanly below voice peaks) plus grounded basketball SFX (dribble, brick clank, net swish, buzzer, arena crowd roar, lightning crackle).
+- Music: Use an energetic/cinematic public-domain or royalty-free track that hard-cuts to DEAD SILENCE + sub-bass hit at Beat 7 ("Five seconds left. Down by one.") and swells back triumphantly on Beat 8 ("Swish.").
+
+==================================================
+5. THE FULL SCRIPT: "The Day I Stole Kevin Durant's Talent"
+==================================================
+[BEAT 1 — HOOK | Arena Court, Low-Angle Hero Flash-Forward -> Cut to Street Court]
+[LEO (VO)]: I was 11 when I hit the game-winner for the Oklahoma City Thunder, right next to Kevin Durant. And on my own street, I was always the last one picked.
+
+[BEAT 2 — UNDERDOG & RIVAL | Street Court, Day]
+[LEO (VO)]: Every day after school, the kids on my block play at the park. Dex, the tallest kid, is always captain. And every day, he picks everybody before me. Because I bricked every single shot.
+[DEX]: Nice shot, Brick!
+[LEO (VO)]: My name is Leo, and Kevin Durant is my hero. I know his game by heart. The lethal crossover. The high release. That unstoppable pull-up middy. I couldn't shoot like KD. I couldn't dribble like him. Every time I shot, it clanked off the backboard.
+
+[BEAT 3 — THE THUNDER GAME & THE SPARK | Arena Tunnel]
+[LEO (VO)]: Then, one Friday, my dad took me to a real Thunder game. After warmups, I leaned over the tunnel holding my beat-up basketball. KD walked right up and signed it.
+[LEO]: I wish I had your talent.
+[KD]: You need to work hard, kid.
+[LEO (VO)]: The second our hands touched the ball, a jolt of lightning shot straight between us. My fingers tingled. KD blinked and shook his hand out.
+
+[BEAT 4 — POWERS & VIRAL FAME | Street Court -> Viral Phone Insert]
+[LEO (VO)]: The next morning, I stepped onto the court. I dribbled once—and the ball moved like it was on a string. I pulled up from mid-range. Swish. Again. Swish. I drove to the rim, jumped, and dunked. I'd never even touched the net before. My pull-up middy was 100%. I couldn't miss. I destroyed school tryouts. Someone filmed me dropping 40 points, and by the end of the month, I was all over the news.
+
+[BEAT 5 — SECRET HABIT & GUILT | Street Court 5 AM Rain/Dawn -> TV News Insert]
+[LEO (VO)]: Even with the magic, KD's words stayed in my head. "You need to work hard, kid." So I didn't get lazy. For months, I woke up at 5 AM. Rain, snow, didn't matter. Five hundred pull-up middies before school, every single day. Meanwhile, on TV, something was wrong. Kevin Durant was missing everything. Airballs. Bricks. Turnovers. The media said his career was over. I stared at my hands and realized the truth. I didn't just get his talent. I took it.
+
+[BEAT 6 — THE RETURN | Arena Tunnel]
+[LEO (VO)]: Because I was the "viral miracle kid," the Thunder invited me to suit up and play alongside KD. In the tunnel before the fourth quarter, KD sat on the bench with his head down. I walked over and held out my signed basketball.
+[LEO]: I'm sorry. This belongs to you.
+[LEO (VO)]: When he grabbed it, the lightning snapped right back. My arms felt heavy. The magic was gone. I was just me again.
+
+[BEAT 7 — CLIMAX | Arena Court + Scoreboard Insert | MUSIC HARD-CUTS TO DEAD SILENCE]
+[LEO (VO)]: Five seconds left. Down by one. KD was instantly back—draining threes, carrying the team. So on the final play, the other team panicked and sent three defenders straight at him. Coach looked down the bench and pointed at me.
+[COACH]: Leo! You're in!
+[LEO]: I can't! I lost the powers!
+[KD]: The magic didn't wake up at 5 AM, kid. You did.
+[LEO (VO)]: The whistle blew. KD drove, drew all three defenders, and whipped the pass to me at the elbow. No lightning. No superpowers. Just months of muscle memory. I rose up for the pull-up middy. The buzzer went off with the ball in the air.
+
+[BEAT 8 — PAYOFF | Arena Court -> Street Court Ending | MUSIC SWELLS BACK]
+[LEO (VO)]: Swish. We won by one. The entire arena exploded. KD lifted me onto his shoulders, and twenty thousand people chanted my name. The lightning gave me a head start—but the countless days and months in the gym made it real. The next day, back on my street, Dex won the coin toss to pick first. He looked at every kid on the court. Then he pointed straight at me.
+[DEX]: Leo. You're with me.
+(Clean cut, no CTA.)
+
+==================================================
+6. STOP GATE (DO NOT RENDER FULL VIDEO YET)
+==================================================
+Phase A (Build & Verify First):
+1. Generate the full spliced audio mix (scored + no-music masters at -14 LUFS) and commit productions/kd-talent-1/script.md.
+2. Build the 2 sets (Street Court with Day + 5 AM Rain lighting, Thunder Arena with Tunnel + Court), KD's character rig, and the 4 insert props (signedBasketball, viralPhone, tvNewsSlump, arenaScoreboard).
+3. Commit everything and send me:
+   - The scored audio master so I can review pacing, voices, and SFX.
+   - A 6-frame contact sheet showing: (1) Street Court Day, (2) 5 AM Rain Grind, (3) Arena Tunnel KD Lightning Spark, (4) Viral Phone + TV Slump Inserts, (5) Bird's-Eye 3-Defender Swarm, and (6) Low-Angle KD Shoulder Lift.
+4. Wait for my approval before writing the final shot list or triggering any GitHub Actions render (and NEVER poll GitHub Actions).
