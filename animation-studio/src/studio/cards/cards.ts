@@ -65,6 +65,9 @@ const blank = (() => { const c = document.createElement("canvas"); c.width = c.h
 export const SU = 0.00216; // metres per design unit: 1000 units = 2.16 m (character design canvas 600 x 1000, soles at y 975)
 const BODY = (() => { const g = new THREE.PlaneGeometry(600 * SU, 1000 * SU); g.translate(0, (975 - 500) * SU, 0); return g; })();
 const CARD = new THREE.PlaneGeometry(1, 1);
+// shadow proxy: a 1.7 m capsule (0.17 m radius: shoulder-wide) standing on the feet; colour and depth writes off, so it draws nothing
+const PROXY = (() => { const g = new THREE.CapsuleGeometry(0.17, 1.36, 4, 12); g.translate(0, 0.85, 0); return g; })();
+const PROXY_MAT = new THREE.MeshBasicMaterial({ colorWrite: false, depthWrite: false });
 
 /** lit flat character card */
 export class Actor {
@@ -134,6 +137,15 @@ export class CardLayer {
   private pool: Pool;
   private actors: Actor[] = [];
   private custom = new Map<THREE.BufferGeometry, Actor>();
+  /** Engine 4: an invisible upright capsule inside each character card that only exists in the shadow maps, so a card seen edge-on to a
+   *  light still throws a body-shaped shadow from any light angle (the card's own shadow is a thin sliver then). One per actor slot */
+  private proxies: THREE.Mesh[] = [];
+  private proxy(i: number) {
+    while (this.proxies.length <= i) {
+      const m = new THREE.Mesh(PROXY, PROXY_MAT); m.castShadow = true; m.receiveShadow = false; m.visible = false; m.renderOrder = -10; this.root.add(m); this.proxies.push(m);
+    }
+    return this.proxies[i];
+  }
   private fxs: Fx[] = [];
   private frustum = new THREE.Frustum();
   private m4 = new THREE.Matrix4(); private v = new THREE.Vector3(); private sph = new THREE.Sphere();
@@ -160,9 +172,11 @@ export class CardLayer {
       a.mesh.castShadow = p.castShadow ?? castShadows;
       // Engine 4: the room's lights tint the card a little (a card ignores scene lights otherwise); no callback = unchanged
       if (tint) { a.mat.color.setRGB(...tint(p.x, p.y + 1.1 * sc, p.z)); a.tinted = true; } else if (a.tinted) { a.mat.color.setRGB(1, 1, 1); a.tinted = false; }
+      if (tint && !p.geo) { const q = this.proxy(ai - 1); q.visible = a.mesh.castShadow; q.position.set(p.x, p.y, p.z); q.scale.setScalar(sc); }
       used.add(a);
     }
     for (let i = ai; i < this.actors.length; i++) this.actors[i].mesh.visible = false;
+    for (let i = tint ? ai : 0; i < this.proxies.length; i++) this.proxies[i].visible = false;
     for (const a of this.custom.values()) if (!used.has(a)) a.mesh.visible = false;
     let fi = 0;
     const fused: Fx[] = [];

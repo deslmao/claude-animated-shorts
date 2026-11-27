@@ -123,9 +123,6 @@ box("winL", (WX0 + fw / 2, (WY0 + WY1) / 2, Z0 + 0.03), (fw, WY1 - WY0, 0.08), "
 box("winMid", (0, (WY0 + WY1) / 2, Z0 + 0.03), (0.03, WY1 - WY0, 0.05), "white", 0.004); box("winCross", (0, (WY0 + WY1) / 2 + 0.1, Z0 + 0.03), (WX1 - WX0, 0.03, 0.05), "white", 0.004)
 box("sill", (0, WY0 + 0.012, Z0 + 0.09), (WX1 - WX0 + 0.14, 0.025, 0.2), "white", 0.008)
 skyp = box("skyplane", (0, 1.7, Z0 - T - 1.6), (8.0, 4.4, 0.02), "sky")
-box("house9", (-0.6, 1.0, Z0 - T - 1.55), (3.4, 1.0, 0.1), "silhouette"); box("roof9", (-0.6, 1.62, Z0 - T - 1.55), (3.6, 0.28, 0.1), "silhouette", roty=0.0)
-for i, (wx, wy) in enumerate(((-1.5, 1.05), (-0.75, 1.15), (0.0, 1.0), (0.6, 1.2))): box(f"win9{i}", (wx, wy, Z0 - T - 1.49), (0.2, 0.26, 0.02), "winlit")   # lit windows across the garden
-box("chim9", (-1.9, 1.85, Z0 - T - 1.55), (0.22, 0.4, 0.1), "silhouette")
 # skirting boards
 for nm, c, s in (("skL", (X0 + 0.008, 0.045, cz), (0.016, 0.09, Z1 - Z0)), ("skR", (X1 - 0.008, 0.045, cz), (0.016, 0.09, Z1 - Z0)), ("skF", (0, 0.045, Z1 - 0.008), (X1 - X0, 0.09, 0.016))):
     box(nm, c, s, "white", 0.003)

@@ -59,7 +59,7 @@ function makeDust() {
   }
   g.setAttribute("position", new THREE.BufferAttribute(pos, 3)); g.setAttribute("color", new THREE.BufferAttribute(col, 3));
   const tex = ctex("e4dust", 64, 64, (c) => { const gr = c.createRadialGradient(32, 32, 0, 32, 32, 32); gr.addColorStop(0, "rgba(255,255,255,1)"); gr.addColorStop(0.35, "rgba(255,255,255,0.45)"); gr.addColorStop(1, "rgba(255,255,255,0)"); c.fillStyle = gr; c.fillRect(0, 0, 64, 64); });
-  const pts = new THREE.Points(g, new THREE.PointsMaterial({ size: 0.012, map: tex, vertexColors: true, transparent: true, opacity: 0.4, depthWrite: false, blending: THREE.AdditiveBlending, sizeAttenuation: true, fog: false }));
+  const pts = new THREE.Points(g, new THREE.PointsMaterial({ size: 0.006, map: tex, vertexColors: true, transparent: true, opacity: 0.2, depthWrite: false, blending: THREE.AdditiveBlending, sizeAttenuation: true, fog: false }));
   pts.frustumCulled = false;
   const update = (t: number) => {
     for (let i = 0; i < N; i++) {
