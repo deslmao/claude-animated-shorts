@@ -578,7 +578,10 @@ export const rigFront = (L: Look, pose: Pose) => {
     case "wave": one((s) => { const S = S1(s), w = Math.sin(t * 9); add(s, [S[0] + s * (0.3 * HH + 3 * u * w), S[1] - 0.2 * HH], [S[0] + s * (0.38 * HH + 12 * u * w), S[1] - 0.62 * HH], 0, "open"); }); break;
     case "point": one((s) => { const S = S1(s); add(s, [S[0] + s * 0.42 * HH, S[1] + 0.03 * HH], [S[0] + s * 0.86 * HH, S[1] - 0.04 * HH], 0, "point", s > 0 ? 0 : Math.PI); }); break;
     case "pointUp": one((s) => { const S = S1(s); add(s, [S[0] + s * 0.34 * HH, S[1] - 0.3 * HH], [S[0] + s * 0.44 * HH, S[1] - 0.76 * HH], 0, "point", -Math.PI / 2); }); break; // angled out, clear of the head and long hair
-    case "raiseHand": one((s) => { const S = S1(s); add(s, [S[0] + s * 0.34 * HH, S[1] - 0.6 * HH], [S[0] + s * 0.42 * HH, S[1] - 1.35 * HH], 0, "open"); }); break; // angled out, the hand well above the head (a vote reads)
+    case "raiseHand": one((s) => { const S = S1(s);
+      // engine 4: the raised arm keeps a natural length (shoulder to hand about 0.95 head heights, like the hanging arm), the hand just over the head
+      if (pose.e4) add(s, [S[0] + s * 0.3 * HH, S[1] - 0.36 * HH], [S[0] + s * 0.36 * HH, S[1] - 0.86 * HH], 0, "open");
+      else add(s, [S[0] + s * 0.34 * HH, S[1] - 0.6 * HH], [S[0] + s * 0.42 * HH, S[1] - 1.35 * HH], 0, "open"); }); break; // angled out, the hand well above the head (a vote reads)
     case "thumbsUp": one((s) => { const S = S1(s); add(s, [S[0] + s * 0.26 * HH, S[1] + 0.4 * HH], [S[0] + s * 0.4 * HH, S[1] + 0.04 * HH], 1, "thumb"); }); break;
     case "present": one((s) => { const S = S1(s); add(s, [S[0] + s * 0.32 * HH, S[1] + 0.38 * HH], [S[0] + s * 0.66 * HH, S[1] + 0.24 * HH], 0, "open"); }); break;
     case "chin": {
@@ -840,7 +843,12 @@ export const figureFront = (p: Pen, L: Look, pose: Pose) => {
     if (g === "read") { ITEMS[pose.hold].draw(p, tcx, chin + 0.66 * HH, u, hs); for (const a of arms) drawHand(a); } // held open in both hands
     // an item held out to someone (offer) or written with (write) is drawn larger, so the handed-over thing reads
     else if (hold) {
-      const hx = hold.pts[2][0], hy = hold.pts[2][1];
+      if (pose.e4) {
+        // engine 4: the fist wraps the item's lower body and the arm ends INSIDE the fist: the hand sits a little back along the forearm
+        const ex = hold.pts[1][0], ey = hold.pts[1][1], fx = hold.pts[2][0] - ex, fy = hold.pts[2][1] - ey, fl = Math.hypot(fx, fy) || 1;
+        hold.pts[2] = [hold.pts[2][0] - (fx / fl) * 4 * u, hold.pts[2][1] - (fy / fl) * 4 * u];
+      }
+      const hx = hold.pts[2][0], hy = hold.pts[2][1] + (pose.e4 ? 8 * u : 0);
       if (pose.e4) {
         // Engine 4: the item is part of the hand. It turns about the hand with the forearm (elbow -> hand) and with the hand's momentum,
         // composed with the body lean, so it never floats beside the fist
