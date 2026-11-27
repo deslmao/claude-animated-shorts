@@ -16376,3 +16376,31 @@ Oldest first. Times are UTC (the owner is in GMT+11). Extracted from the session
 
 ## 27 Nov 2026 — owner (headstand test review)
 The viral SFX audio mix is 10/10—lock both audio masters as-is (don't touch the audio). However, the 5-second headstand clip caught 4 visual bugs we need to fix before rendering: 1. Ground the headstands: Leo is levitating mid-air when upside down (big gap between his head and the floor shadow). Lower the headstand Z-height so Leo's and Dex's heads/hands actually rest on the floor. 2. Unblock Dex and his pink '8': Dex's headstand happens behind the chair so the chair hides his face, and his pink '8' gets cut off by the right edge of the frame. Move Dex slightly forward/left (or adjust framing) so both his upside-down face and the full pink '8' are clearly visible inside the frame. 3. Clean up Leo's '9' placement: Leo's flipped '9' overlaps Mum's apron/hip and clips on the left in the close-up. Nudge Mum slightly left or place the flipped '9' cleanly beside Leo's head with zero overlap, and ensure numbers stay readable (not cropped) in tight 85 mm shots. 4. Put Leo in his signature red hoodie: Leo is currently in a navy suit and red tie—swap him to his signature red hoodie (with front pouch/drawstrings) so he matches our channel mascot design. 5. Finalize the real acting poses across the 29 shots (replace the generic placeholder poses). Once those 5 fixes are committed, you have my 'go' to trigger the 540p GitHub Actions preview render, give me the run URL, and stop (do NOT poll GitHub Actions).
+
+
+## 27 Nov 2026 — owner (540p preview review, camera and staging upgrade)
+I reviewed the 540p preview (video_1.mp4). The audio mix is locked and great, but the camera system, framing, and staging need a real cinematographic upgrade before we ship Episode 1.
+
+Do NOT touch the locked audio masters. Fix these 5 visual/camera issues in Engine 4:
+
+1. Break the "Police Lineup" (3D Depth & Angles):
+- Stop lining Mum, Leo, and Dex up on one flat horizontal X-axis line against the back wall. Stage them in a 3D triangle around the kitchen table (different Z-depths) so shots have foreground/background parallax.
+- Add real camera angles to our Engine 4 camera system: Over-The-Shoulder (OTS) dialogue shots, Low-Angle power shots (looking UP at Dex when he's 8 and Leo when he's 9), and High-Angle weak shots (looking DOWN at Leo when he's 6).
+
+2. Fix the "Forehead Crop" Close-Ups:
+- In close-ups, characters' faces are shoved into the bottom 25% of the frame with their chins/mouths cut off to make room for huge numbers.
+- Hard rule: in every medium/close-up shot, the speaker's eyes MUST sit in the upper-middle third of the frame with their full face visible. Scale the 3D floating numbers down by ~40% during close-ups so both face and number fit cleanly.
+
+3. Add Dynamic Camera Motion (No Dead Tripod Shots):
+- Add subtle handheld drift/breathing on dialogue shots, slow tension push-ins during Beat 5 ("Final numbers..."), quick snap-zooms on punchlines ("Bedtime.", "Pool.", "It's... a nine."), and a slight Dutch tilt on Dex's "That's cheating!"
+
+4. Fix the Spoiler + Add Visual Variety / Inserts:
+- Beat 2 ("Can I stay up late tonight?"): Switch to a dark nighttime lighting state + tight angle so it visually reads as a different time/scene from the bright morning pancake vote.
+- Beat 4 (Secret Practice): Frame Leo's headstand so his number is NOT shown flipping to 9 yet—don't spoil the Beat 6 twist 20 seconds early!
+- Add at least 2 dedicated prop insert shots: a tight macro close-up of the last pancake on the plate (when Mum/Dex/Leo mention it) and a floor-level insert of Leo's hands planting for the Beat 6 headstand reveal.
+
+Stop Gate:
+- Commit the camera engine & staging upgrades, and send me a contact sheet of 6 key frames (Nighttime Beat 2, OTS Argument, Pancake Insert, Low-Angle Dex 8, Beat 6 "9" Reveal, and Dex upside-down 8) so I can verify the framing before we trigger the next 540p render.
+
+Also, for future productions, you can access https://www.myinstants.com/en/categories/sound%20effects/au/ 
+Utilize any sound effects you want for future productions, for now don't change the sounds, its good.

@@ -18,7 +18,7 @@ export type BuiltSet = {
   /** Engine 4 (opt-in; engine/pbr rig): a set with real lights. SetWorld calls `apply` after the shared light rig each frame so the
    *  set can take over the sun (as its window light), hemisphere and fog, and animate its own atmosphere (dust); `tint` is the colour
    *  multiplier the set's lights give a character card standing at a point. Sets without it (every earlier set) are untouched. */
-  e4?: { apply(ctx: { env: { sun: THREE.DirectionalLight; hemi: THREE.HemisphereLight; fog: THREE.Fog }; focus: THREE.Vector3; t: number }): void; tint(x: number, y: number, z: number): [number, number, number] };
+  e4?: { apply(ctx: { env: { sun: THREE.DirectionalLight; hemi: THREE.HemisphereLight; fog: THREE.Fog }; focus: THREE.Vector3; t: number; light?: string }): void; tint(x: number, y: number, z: number): [number, number, number] };
 };
 export type SetDef = { id: string; title: string; lights: LightName[]; /** cams = extra camera positions (a storyboard's shots) whose sight lines the set must keep clear of props */
   build: (cams?: View[]) => BuiltSet };

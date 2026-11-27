@@ -14,7 +14,7 @@ const DEX: Look = { name: "Dex", build: "kid", skin: "#f5c9a0", seed: 811, hair:
 const LEO_HOODIE: Look = { name: "Leo", build: "kid", skin: "#c99067", seed: 104, hair: { style: "curly", color: "#2a201a" },
   top: { style: "hoodie", color: "#d8302a", accent: "#f2efe6" }, legs: "#3f5f9e", shoes: "#f4f1ea" };
 
-const e4Kitchen: SetDef = { id: "e4Kitchen", title: "Maya's kitchen (Engine 4): a PBR room, baked bounce light, a warm pendant lamp over the table and a cool dusk window", lights: ["interior"], build: () => buildE4Kitchen() };
+const e4Kitchen: SetDef = { id: "e4Kitchen", title: "Maya's kitchen (Engine 4): a PBR room, baked bounce light, a warm pendant lamp over the table and a cool dusk window", lights: ["interior", "night"], build: () => buildE4Kitchen() };
 
 export const E4_THEME: Theme = {
   id: "e4", name: "Engine 4 sets", desc: "Unified PBR sets built in Blender with baked lightmaps and live lights (opt-in, engine: 4)", tags: ["engine4", "pbr", "blender"],

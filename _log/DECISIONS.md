@@ -347,3 +347,12 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
   - **Leo** is now `leoHoodie` (red hoodie, pouch, drawstrings) as a new roster key, so One Too Many is untouched. 29 shots have authored key poses.
   - **Audio locked:** both masters are the owner-approved files (scored 5758dc37…, no-music 0be490f0…). The mp3 encoder is not byte-reproducible, so the rebuilt mp3s were discarded; only the soundtrack fingerprint JSON was refreshed. Do not rebuild them.
   - **Checked:** tsc, e4-pace (0 errors), library test intact, breakfast-2 frames 60/700 identical, preflight PASS.
+
+- **27 Nov 2026 — Episode 1 cinematography upgrade (owner review of the 540p preview).** Audio masters stay locked (same hashes; only the soundtrack fingerprint JSON is refreshed).
+  - **Staging:** a triangle round the table: Leo (-1.05, 0.2), Dex (1.4, -0.45) by the fridge, Mum (-1.75, -1.25) by the counter. Three-actor wides need 10-12 mm lenses from the front corners (the 3.2 m spread in a 4.3 m room).
+  - **Cameras:** `view()` frames one actor with the eyes at about 44 % from the top, the full face and a small number in frame; `LOW` (knee height, looking up) for Dex's 8 and Mum's 7, `HIGH` (looking down) for Leo's 6, an over-the-shoulder behind Leo (a vertical frame can only fit a sliver of the foreground actor at 1 m, so the camera sits about 1.2 m behind and 0.4 m to the side), `at` cameras with `roll` for the Dutch tilt, `swoop` for snap-zooms. Plan table `PLAN` in `in-my-world-2.ts`.
+  - **Numbers:** tight shots use scale 0.45 and lift 0.28 (about 40 % smaller); wides keep 0.8. Leo's number is hidden in Beat 4 (shots 10-13) and pops back on "Leo?", so the 6 first flips to a 9 in Beat 6.
+  - **Night:** `light: "night"` on e4Kitchen (Beat 2): the window sky goes navy, the baked bounce is dimmed to 30 %, the pendant lamp stronger. `e4.apply` now receives the shot's light.
+  - **Hand-held:** drift amplitude 2.2 x the old default for every Engine 4 shot (engines 1-3 untouched).
+  - **Pacing:** 44 visual changes, 1.51 s average. **Inserts:** pancake macro (shots 6, 16, 24), floor-level hands (shot 19).
+  - **Sound:** the owner allows myinstants.com sound effects for future productions; nothing changes in this film's audio.

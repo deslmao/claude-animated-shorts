@@ -79,7 +79,7 @@ export class SetWorld implements StudioWorld {
     cam.fov = c.fov; cam.near = 0.1; cam.far = 1500; cam.updateProjectionMatrix(); cam.updateMatrixWorld();
     const focus = new THREE.Vector3(...c.look), sun = this.sunOf(s, built);
     const L = this.env.apply(s.light, cam, focus, sun, scene);
-    if (built.e4) built.e4.apply({ env: this.env, focus, t: f / 30 });
+    if (built.e4) built.e4.apply({ env: this.env, focus, t: f / 30, light: s.light });
     const pv = new THREE.Vector3();
     const info: CamInfo = { pos: cam.position, right: new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld, 0), sun, project: (p) => { pv.set(...p).project(cam); return [pv.x, pv.y]; } };
     const st: Stage = { places: [], fx: [] };
@@ -110,7 +110,7 @@ export class SetWorld implements StudioWorld {
   /** the shot's camera at frame fr (the kick is that of frame f): the key list, the hand-held drift (Engine 4 sets) and the impact kick */
   private camAt(s: WorldShot, fr: number, f: number) {
     const base = runKeys(s.keys, fr);
-    return withKick(this.hand ? handheld(base, fr, s.id) : base, kickAt(s.kicks ?? [], f / 30));
+    return withKick(this.hand ? handheld(base, fr, s.id, 2.2) : base, kickAt(s.kicks ?? [], f / 30));
   }
   private shutCam = new THREE.PerspectiveCamera(40, 9 / 16, 0.1, 1500);
 }

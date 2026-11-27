@@ -4,11 +4,12 @@
 // AUDIO-FIRST BUILD (the script gate): narration, voices, music, SFX and dual masters are real; the picture is a placeholder storyboard; the
 // props (extending e4Number with a hover + flip, and a one-pancake variant of bfPlate) are NOT built until the owner approves the script.
 import type { Storyboard, Line } from "../story/types";
-import { fovMm } from "../engine4/camera";
+import { fovMm, blurMm } from "../engine4/camera";
 
 type V = [number, number, number];
-// the cast stands in the free floor left of the table (the far-side chair is at x 0.14-0.56): Mum, Leo, Dex; a headstand needs a clear metre round the head
-const LEO = [-1.1, 0, -1.3] as V, MUM = [-1.95, 0, -1.2] as V, DEX = [-0.3, 0, -1.3] as V;
+// the cast is staged in a triangle round the table (different depths, so every shot has foreground / background parallax): Leo front-left, Dex mid-right
+// beside the fridge, Mum back-left by the counter. Each has a clear metre round them for a headstand; the far-side chair is at x 0.14-0.56.
+const LEO = [-1.05, 0, 0.2] as V, MUM = [-1.75, 0, -1.25] as V, DEX = [1.4, 0, -0.45] as V;
 const CROWN: Record<string, number> = { leo: 1.31, mum: 1.74, dex: 1.28 };   // crown heights (m): a close-up frames the number floating over the head too
 type K = NonNullable<Storyboard["shots"][number]["actors"][number]["keys"]>;
 type C = Storyboard["shots"][number]["camera"];
@@ -81,33 +82,84 @@ const VIRAL: Record<number, [string, number, string, number?, number?][]> = {
   25: [["eight", 1, "viral_fahhh", 0, 0.3]],                            // and nothing happens
   28: [["sixes", 1, "viral_ding"]],                             // the button
 };
-// ---- camera set-ups (the real shot list): lenses 22-85 mm, every shot hand-held, impact shakes on the punchlines
-const W = (): C => ({ move: "truck", on: ["leo", "mum", "dex"], dist: 0.8, size: "full", from: 8, height: 1.5, fov: fovMm(22), cInf: 0 });
-const W2 = (): C => ({ move: "truck", on: ["leo", "mum", "dex"], dist: 0.6, size: "full", from: -8, height: 1.45, fov: fovMm(22), cInf: 1 });
-const M2L = (): C => ({ move: "frame", on: ["leo", "mum"], size: "medium", from: 12, height: 1.4, fov: fovMm(35), cInf: 3 });
-const ORB = (): C => ({ move: "orbit", on: ["leo", "dex"], fromDeg: [-16, 14], size: "medium", height: 1.4 });
-const C50 = (on: string) => (): C => ({ move: "closeUp", on, from: 15, fov: fovMm(50), cInf: 6, top: CROWN[on] + 0.75 });
-const C85 = (on: string) => (): C => ({ move: "closeUp", on, from: 18, fov: fovMm(85), cInf: 16, top: CROWN[on] + 0.75 });
-// an upside-down actor: a low camera beside the table (the head is on the floor), 30 mm
-const LEO_LOW = (): C => ({ move: "at", pos: [-0.25, 0.9, 1.9], look: [-1.1, 0.85, -1.3], fov: fovMm(26), blur: 3 }) as unknown as C;
-const DEX_LOW = (): C => ({ move: "at", pos: [-1.5, 0.9, 1.9], look: [-0.3, 0.85, -1.3], fov: fovMm(26), blur: 3 }) as unknown as C;
-const CAMSEL: (() => C)[] = [
-  W, C50("leo"), M2L, C50("mum"), C85("leo"), W2, C50("dex"), C50("leo"), C85("dex"), W,         // 0-9   hook, example, stakes, the headstand habit
-  M2L, LEO_LOW, C50("mum"), W2, C85("leo"), C85("dex"), C50("mum"), ORB, M2L, W,                  // 10-19 the fail, the realisation, the flip, the reveal
-  C50("dex"), LEO_LOW, C50("mum"), M2L, W2, DEX_LOW, C50("mum"), DEX_LOW, W,                      // 20-28 the win, the rival copies and fails
+// ---- camera set-ups (the real shot list). Every Engine 4 shot is hand-held (SetWorld), so no frame is ever a dead tripod shot.
+const P: Record<string, V> = { leo: LEO, mum: MUM, dex: DEX };
+const rad = Math.PI / 180;
+type Cam = (o?: { creep?: number; roll?: number }) => C;
+const mk = (pos: V, look: V, mm: number, o: { creep?: number; roll?: number } = {}): C => ({ move: "at", pos, look, fov: fovMm(mm), blur: blurMm(mm) + (mm >= 50 ? 2 : 0), ...o }) as unknown as C;
+/** a framing of one actor from `deg` degrees off straight-on, `d` metres away, camera at height `y` (default level), on a `mm` lens: the eyes sit at 42 % of the
+ *  frame height from the top (upper-middle third), the whole face and a small floating number above it are in frame */
+const view = (who: string, deg: number, d: number, mm: number, y?: number, o: { creep?: number; roll?: number } = {}): C => {
+  const p = P[who], H = (d * 24) / mm, centre = CROWN[who] - 0.08 - 0.08 * H;   // eyes at about 44 % from the top
+  return mk([p[0] + Math.sin(deg * rad) * d, y ?? centre, p[2] + Math.cos(deg * rad) * d], [p[0], centre, p[2]], mm, o);
+};
+// medium close-ups: 50 mm (head and chest) and 85 mm (face), levels the eyes
+const CU = (who: string, deg = 0, o: { creep?: number; roll?: number } = {}) => (): C => view(who, deg, { leo: 2.9, mum: 2.9, dex: 2.9 }[who]!, 50, undefined, o);
+const CU85 = (who: string, deg = 0, o: { creep?: number; roll?: number } = {}) => (): C => view(who, deg, { leo: 3.15, mum: 4.5, dex: 3.7 }[who]!, { leo: 60, mum: 85, dex: 70 }[who]!, undefined, o);
+// a low-angle power shot looks UP at the actor from knee height; a high-angle weak shot looks DOWN from above the head (both within 35 degrees)
+const LOW = (who: string, deg = 0, o: { creep?: number; roll?: number } = {}) => (): C => view(who, deg, 2.3, 35, 0.25, o);
+const HIGH = (who: string, deg = 0, o: { creep?: number; roll?: number } = {}) => (): C => view(who, deg, 2.3, 35, CROWN[who] + 0.85, o);
+/** over the shoulder: the camera stands behind `over` (off to one side) and looks at `at`; `over` fills the edge of the frame, out of focus */
+const OTS = (over: string, at: string, cam: V, mm = 35): Cam => (o = {}) => { const t = P[at]; return mk(cam, [t[0], CROWN[at] - 0.28, t[2]], mm, { creep: 0.05, ...o }); };
+// the three-shot wides: a diagonal 3-quarter view across the table (the spread is 3.2 m in a 4.3 m room, so an ultra-wide 11-12 mm lens from the front corners)
+const W = (): C => ({ move: "truck", on: ["leo", "mum", "dex"], dist: 0.4, size: "full", from: -20, height: 1.45, fov: fovMm(12), cInf: 0 });
+const W2 = (): C => ({ move: "truck", on: ["leo", "mum", "dex"], dist: 0.3, size: "full", from: 30, height: 1.5, fov: fovMm(10), cInf: 1 });
+// an upside-down actor: a low camera beside the table (the head is on the floor), 26 mm; the camera is below the knees so the body towers above the lens
+const LEO_LOW = (): C => mk([-0.7, 0.4, 2.3], [-0.7, 0.55, 0.2], 24, { creep: 0.1 });
+const DEX_LOW = (): C => mk([1.7, 0.4, 1.9], [1.7, 0.55, -0.45], 24, { creep: 0.1 });
+// inserts: a macro of the last pancake (the plate on the table), a floor-level shot of Leo's hands planting
+const PLATE_AT = [0.2, 0.78, -0.4] as V;
+const PANCAKE = (): C => mk([0.18, 1.12, 0.3], [0.2, 0.8, -0.4], 35, { creep: 0.12 });
+const HANDS = (): C => mk([-0.7, 0.22, 2.3], [-0.7, 0.38, 0.2], 26, { creep: 0.12 });
+// Leo and Mum across the kitchen; Leo and Dex across the table
+const OTS_LM = OTS("leo", "mum", [-0.15, 1.2, 1.25], 30), OTS_LD = OTS("leo", "dex", [-1.8, 1.2, 0.7], 45);
+type Cut = { word?: string; n?: number; t?: number; cam: () => C; swoop?: boolean };
+/** per shot: the opening camera, the cuts on words (hard cuts, or a quick snap-zoom `swoop` on the punchline), and the numbers' size class (tight = close-ups) */
+type Plan = { cam: () => C; cuts?: Cut[]; tight: boolean };
+const T = (cam: () => C, cuts: Cut[] = []): Plan => ({ cam, cuts, tight: true }), Wd = (cam: () => C, cuts: Cut[] = []): Plan => ({ cam, cuts, tight: false });
+const PLAN: Plan[] = [
+  /* 0 hook */ Wd(W, [{ word: "highest", cam: W2 }]),
+  /* 1 I'm a six */ T(HIGH("leo", 12), [{ word: "six", cam: HIGH("leo", -8, { creep: 0.2 }), swoop: true }]),
+  // BEAT 2 (night): a tight over-the-shoulder, then the verdict from a low angle
+  /* 2 stay up late */ T(CU("leo", -10, { creep: 0.12 })),
+  /* 3 seven beats six */ T(OTS_LM, [{ word: "Bedtime", cam: LOW("mum", 8, { creep: 0.15 }), swoop: true }]),
+  /* 4 arithmetic */ T(HIGH("leo", -10), [{ word: "arithmetic", cam: CU85("leo", 6, { creep: 0.1 }), swoop: true }]),
+  // BEAT 3: the family vote (morning) and the last pancake
+  /* 5 family vote */ Wd(W2, [{ word: "last", cam: PANCAKE }]),
+  /* 6 eight, pool */ T(OTS_LD, [{ word: "Pool", cam: LOW("dex", -12, { creep: 0.12 }), swoop: true }]),
+  /* 7 since Tuesday */ T(HIGH("leo", 8, { creep: 0.12 })),
+  /* 8 they just rank */ T(LOW("dex", 14, { creep: 0.14 })),
+  // BEAT 4: the secret habit (Leo's number is hidden: the flip to a nine is the Beat 6 reveal)
+  /* 9 stand on my head */ Wd(W2, [{ word: "stand", cam: LEO_LOW }]),
+  /* 10 why upside down */ Wd(W),
+  /* 11 circulation */ Wd(LEO_LOW),
+  /* 12 dizzy */ T(CU("mum", 8, { creep: 0.1 })),
+  // BEAT 5: tension push-ins
+  /* 13 final numbers */ T(OTS_LM, [{ word: "Dex", cam: LOW("dex", 12, { creep: 0.18 }) }, { word: "Leo", cam: HIGH("leo", 0, { creep: 0.2 }), swoop: true }]),
+  /* 14 ...Six */ T(HIGH("leo", 6, { creep: 0.22 })),
+  /* 15 take that pancake */ T(LOW("dex", 8, { creep: 0.15 }), [{ word: "take", cam: PANCAKE }]),
+  /* 16 rules are rules */ T(CU("mum", 10, { creep: 0.15 })),
+  // BEAT 6: the loophole
+  /* 17 never said which way up */ T(CU85("leo", 0, { creep: 0.2 })),
+  /* 18 read my number again */ Wd(HANDS, [{ t: 0.95, cam: LEO_LOW }]),
+  /* 19 it's a nine */ Wd(W2, [{ word: "nine", cam: LEO_LOW, swoop: true }]),
+  /* 20 cheating */ T(LOW("dex", 0, { roll: 6, creep: 0.12 }), [{ word: "cheating", cam: CU85("dex", 0, { roll: 7, creep: 0.1 }), swoop: true }]),
+  /* 21 show me the rule */ Wd(LEO_LOW),
+  /* 22 there isn't one */ T(CU("mum", 10)),
+  /* 23 museum */ T(LOW("leo", -8), [{ word: "pancake", cam: PANCAKE }]),
+  // BEAT 7: the rival is humbled
+  /* 24 I'll do it too */ Wd(W2),
+  /* 25 why still an eight */ Wd(DEX_LOW),
+  /* 26 eight looks the same */ Wd(W),
+  /* 27 teach me */ Wd(DEX_LOW),
+  /* 28 only works on sixes */ T(CU("leo", -8), [{ word: "sixes", cam: LOW("leo", 0, { creep: 0.1 }), swoop: true }]),
 ];
-const POOL_FLIPPED: (() => C)[] = [W, W2, M2L];
-const POOL: (() => C)[] = [W, C50("leo"), ORB, C85("dex"), M2L, W2];
-/** a long line gets hard cuts to new angles on its words (about every 2 s), so something changes every 1.5-2.0 s */
-const beats = (text: string, i: number, flipped: boolean) => {
-  const toks = text.split(/\s+/).filter(Boolean), n = toks.length;
-  if (n < 9) return {};
-  const cuts = n >= 14 ? [0.35, 0.7] : [0.55], pool = flipped ? POOL_FLIPPED : POOL;
-  const cams = [{ t: 0, ...CAMSEL[i](), blockOk: true }, ...cuts.map((f, j) => {
-    const idx = Math.min(n - 1, Math.floor(n * f)), w = toks[idx].replace(/[^A-Za-z0-9']+/g, ""), occ = toks.slice(0, idx + 1).filter((x) => x.replace(/[^A-Za-z0-9']+/g, "").toLowerCase() === w.toLowerCase()).length;
-    return { word: w, n: occ, ...pool[(i + j + 1) % pool.length](), cut: true, blockOk: true };
-  })];
-  return { cams } as { cams: NonNullable<Storyboard["shots"][number]["cams"]> };
+const CAMSEL: (() => C)[] = PLAN.map((q) => q.cam);
+/** a shot's camera beats: hard cuts on words (or on a second), a swoop on the punchline snap-zooms */
+const beats = (i: number) => {
+  const cuts = PLAN[i].cuts ?? [];
+  if (!cuts.length) return {};
+  return { cams: [{ t: 0, ...CAMSEL[i](), blockOk: true }, ...cuts.map((c) => ({ ...(c.word ? { word: c.word, n: c.n ?? 1 } : { t: c.t! }), ...c.cam(), ...(c.swoop ? { swoop: 0.3 } : { cut: true }), blockOk: true }))] } as { cams: NonNullable<Storyboard["shots"][number]["cams"]> };
 };
 // ---- the headstands: [flip at the start of the shot, flip at the end] (Leo's morning habit, then the reveal; Dex copies at the end)
 const LEO_FLIP: Record<number, [number, number]> = { 9: [0, 1], 10: [1, 1], 11: [1, 1], 12: [1, 1], 13: [1, 0], 18: [0, 1], 19: [1, 1], 20: [1, 1], 21: [1, 1], 22: [1, 1], 23: [1, 0] };
@@ -155,9 +207,14 @@ const withFlip = (ks: K, fl?: [number, number]): K => {
   return out;
 };
 // ---- the props: three glowing 3D numbers over the heads (6 Leo, 7 Mum, 8 Dex), and the last pancake
-const num = (who: string, at: V, text: string, side: -1 | 1, steps: ({ t: number } | { word: string })[]) => ({ id: "e4Number", variant: text, at, scale: 0.8, hover: { who, side }, steps });
-const numbers = (i: number) => { const st = i === 0 ? [{ word: "glowing" }] : [{ t: -1 }]; return [num("leo", LEO, "6", 1, st), num("mum", MUM, "7", -1, st), num("dex", DEX, "8", -1, st)]; };
-const PLATE_AT = [0.2, 0.78, -0.4] as V;
+const num = (who: string, at: V, text: string, side: -1 | 1, steps: ({ t: number } | { word: string })[], tight: boolean) => ({ id: "e4Number", variant: text, at, scale: tight ? 0.45 : 0.8, hover: { who, side, lift: tight ? 0.28 : 0.42 }, steps });
+// Leo's number is hidden through Beat 4 (the headstand habit, shots 9-12) so the 6 never flips to a 9 before the Beat 6 reveal; it pops back on "Leo?" in shot 13
+const numbers = (i: number) => {
+  const tight = PLAN[i].tight, st = i === 0 ? [{ word: "glowing" }] : [{ t: -1 }];
+  const leo = i >= 9 && i <= 12 ? [{ t: 99 }] : i === 13 ? [{ word: "Leo" }] : st;
+  return [num("leo", LEO, "6", 1, leo, tight), num("mum", MUM, "7", -1, st, tight), num("dex", DEX, "8", 1, st, tight)];
+};
+const hasInsert = (i: number) => (PLAN[i].cuts ?? []).some((c) => c.cam === PANCAKE);
 const plate = (i: number) => (i >= 5 && i <= 14 ? [{ id: "bfPlate", variant: "one", at: PLATE_AT, steps: [{ t: 99 }] }]
   : i === 15 ? [{ id: "bfPlate", variant: "one", at: PLATE_AT, steps: [{ word: "take" }] }]
   : i >= 16 && i <= 22 ? [{ id: "bfPlate", variant: "one", at: PLATE_AT, steps: [{ t: -1 }] }]
@@ -195,9 +252,9 @@ export const IN_MY_WORLD_2: Storyboard = {
   shots: S.map(([who, text, , extra], i) => {
     const lf = LEO_FLIP[i], df = DEX_FLIP[i];
     return {
-      ...base, camera: CAMSEL[i](), say: { text, who, ...extra } as Line, hold: 0.05, ...beats(text, i, !!(lf || df)), ...(extra?.punch ? { kicks: [0.04] } : {}),
+      ...base, ...(i >= 2 && i <= 4 ? { light: "night" as const } : {}), camera: CAMSEL[i](), say: { text, who, ...extra } as Line, hold: 0.05, ...beats(i), ...(extra?.punch ? { kicks: [0.04] } : {}),
       ...(VIRAL[i] ? { sfx: VIRAL[i].map(([word, n, name, gain, delay]) => ({ word, n, name, ...(gain ? { gain } : {}), ...(delay ? { delay } : {}) })) } : {}),
-      props: [...numbers(i), ...(["truck", "orbit"].includes(CAMSEL[i]().move) ? plate(i) : [])],   // the plate only where the camera can see the table
+      props: [...numbers(i), ...(["truck", "orbit"].includes(CAMSEL[i]().move) || hasInsert(i) ? plate(i) : [])],   // the plate only where a camera can see the table
       actors: [{ who: "leo", at: LEO, act: "neutral" as const, facing: "camera" as const, keys: withFlip(ACT[i].l, lf) }, { who: "mum", at: MUM, act: "neutral" as const, facing: "camera" as const, keys: ACT[i].m }, { who: "dex", at: DEX, act: "neutral" as const, facing: "camera" as const, keys: withFlip(ACT[i].d, df) }],
       note: `${who}: ${text}`,
     };

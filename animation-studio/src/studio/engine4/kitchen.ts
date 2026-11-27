@@ -35,6 +35,8 @@ const EMISSIVE = new Set(["lampshade", "bulb", "winlit"]);
 
 /** the lamp's emissive materials and their authored strength (Engine 4 background life flickers them with the live spot light) */
 const GLOW: { mat: THREE.MeshStandardMaterial; base: number }[] = [];
+const NIGHTSKY: { mat: THREE.MeshStandardMaterial; col: THREE.Color; em: THREE.Color; ei: number }[] = [];   // the window's outside sky (and lit windows): navy at night
+const LIT: THREE.MeshStandardMaterial[] = [];   // every material that carries the baked lightmap (dimmed at night)
 function prepare(root: THREE.Object3D, lm: THREE.Texture) {
   lm.colorSpace = THREE.NoColorSpace; lm.channel = 1; lm.flipY = false; lm.repeat.set(1, -1); lm.offset.set(0, 1);   // EXRLoader rows run bottom-up; glTF uv v runs top-down lm.generateMipmaps = false; lm.minFilter = lm.magFilter = THREE.LinearFilter; lm.needsUpdate = true;
   root.traverse((o) => {
@@ -44,7 +46,8 @@ function prepare(root: THREE.Object3D, lm: THREE.Texture) {
     m.castShadow = !NO_CAST.has(name); m.receiveShadow = true;
     mat.aoMap = null;                                                   // the exporter's dummy white occlusion (it only carried the second UV set)
     mat.lightMap = lm; mat.lightMapIntensity = Math.PI;                   // Blender bakes E/pi; three multiplies by albedo/pi
-    if (EMISSIVE.has(name) || name === "sky") mat.lightMap = null;
+    if ((name === "sky" || name === "silhouette") && !NIGHTSKY.some((n) => n.mat === mat)) NIGHTSKY.push({ mat, col: mat.color.clone(), em: mat.emissive.clone(), ei: mat.emissiveIntensity });
+    if (EMISSIVE.has(name) || name === "sky") mat.lightMap = null; else if (!LIT.includes(mat)) LIT.push(mat);
     mat.envMapIntensity = 0.4;
     if ((name === "bulb" || name === "lampshade") && !GLOW.some((g) => g.mat === mat)) GLOW.push({ mat, base: mat.emissiveIntensity });
     mat.needsUpdate = true;
@@ -126,19 +129,22 @@ export const buildE4Kitchen = (): BuiltSet => {
     box([0, -0.05, 0.6], [4.4, 0.1, 6.0]); box([0.35, 0.4, -0.3], [1.3, 0.8, 0.8]); box([-0.5, 0.45, -2.1], [3.4, 0.9, 0.6]); box([1.7, 0.92, -2.05], [0.8, 1.85, 0.75]);
   }
   const e4: NonNullable<BuiltSet["e4"]> = {
-    apply: ({ env, focus, t }) => {
+    apply: ({ env, focus, t, light }) => {
+      const night = light === "night" ? 1 : 0;   // a night shot: the window is moonlight, the baked bounce is dimmed, the pendant lamp carries the room
       // the window light takes the sun's slot (the only light the cards' side gradient reads), fixed in the room, not camera-relative
       const s = env.sun;
-      s.color.set("#a9c4ff"); s.intensity = 3.2; s.position.copy(focus).addScaledVector(WINDOW_DIR, 60); s.target.position.copy(focus);
+      s.color.set(night ? "#5f7fd8" : "#a9c4ff"); s.intensity = 3.2; s.position.copy(focus).addScaledVector(WINDOW_DIR, 60); s.target.position.copy(focus);
       const sc = s.shadow.camera; sc.left = -4.5; sc.right = 4.5; sc.top = 4.5; sc.bottom = -4.5; sc.near = 20; sc.far = 100; sc.updateProjectionMatrix();
       s.shadow.bias = -0.0004; s.shadow.normalBias = 0.03; s.shadow.radius = 3; s.shadow.mapSize.set(4096, 4096);
-      env.hemi.color.set("#243050"); env.hemi.groundColor.set("#3a2a20"); env.hemi.intensity = 0.28;
+      env.hemi.color.set("#243050"); env.hemi.groundColor.set("#3a2a20"); env.hemi.intensity = night ? 0.1 : 0.28;
+      for (const m of LIT) m.lightMapIntensity = Math.PI * (night ? 0.3 : 1);
+      for (const n of NIGHTSKY) { n.mat.color.copy(n.col).multiplyScalar(night ? 0.12 : 1); n.mat.emissive.copy(n.em).multiplyScalar(night ? 0.1 : 1); n.mat.emissiveIntensity = n.ei; }
       env.fog.color.set("#2a2018"); env.fog.near = 2.5; env.fog.far = 16;
-      CARD_K.uGain.value = 0.92;   // PBR rooms are darker than the painted ones: the cards sit a little lower in the light
+      CARD_K.uGain.value = light === "night" ? 0.62 : 0.92;   // PBR rooms are darker than the painted ones: the cards sit a little lower in the light
       dust.update(t); steam.update(t);
       const fl = lampFlicker(t);
-      lamp.intensity = 14 * fl; for (const gl of GLOW) gl.mat.emissiveIntensity = gl.base * fl;
-      s.intensity = 3.2 * (1 + 0.04 * Math.sin(t * 0.7) + 0.02 * Math.sin(t * 1.9 + 2));   // slow cloud light from the window
+      lamp.intensity = (night ? 24 : 14) * fl; for (const gl of GLOW) gl.mat.emissiveIntensity = gl.base * fl;
+      s.intensity = (night ? 0.7 : 3.2) * (1 + 0.04 * Math.sin(t * 0.7) + 0.02 * Math.sin(t * 1.9 + 2));   // slow cloud light from the window
     },
     tint,
   };
