@@ -225,7 +225,9 @@ export const IN_MY_WORLD_2: Storyboard = {
   id: "in-my-world-2", title: "In my world, the highest number wins every argument",
   cast: { leo: "leoHoodie", mum: "mum", dex: "dex" },
   voice: "leo", voices: { leo: "leo", mum: "e4Mum", dex: "e4Rival" }, narration: "continuous",
-  captionStyle: "viral", captionKeys: ["Leo", "Mum", "Dex", "six", "eight", "nine", "pancake", "pool", "museum", "number"],
+  captionStyle: "viral",
+  // the shots where an upside-down head is in frame (headstand cameras): captions move to the upper third; every other shot keeps them at 72 %
+  captionHigh: [9, 10, 11, 18, 19, 21, 24, 25, 26, 27], captionKeys: ["Leo", "Mum", "Dex", "six", "eight", "nine", "pancake", "pool", "museum", "number"],
   // Morning Mood (public domain) for the cheerful beats; dead silence + a sub-bass hit on Dex's second "Pool" (the climax of the fail); it returns on "nine"
   music: { file: "morning-mood", gain: 0, cuts: [{ at: { word: "Pool.", n: 2 }, resume: { word: "nine.", n: 1 }, sub: true }] },
   // this story's own word sounds: numbers are not clock times here; the owner's viral pack (VIRAL above) carries the punchlines and reveals

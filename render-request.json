@@ -1,8 +1,8 @@
 {
   "composition": "Short-in-my-world-2",
   "chunks": 20,
-  "preview": true,
+  "preview": false,
   "audio": "",
   "publish": false,
-  "note": "Episode 1 (In my world, the highest number wins every argument): 540p preview 2 after the cinematography upgrade and polish (OTS sliver, morning window, captions). Audio masters locked. No GitHub Release."
+  "note": "Episode 1 (In my world, the highest number wins every argument): FINAL 1080p render. Audio masters locked. Dual export (scored + no-music) after the render with scripts/dual-export.mjs. No GitHub Release."
 }

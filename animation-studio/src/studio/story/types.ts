@@ -206,6 +206,8 @@ export type Storyboard = {
   captions?: boolean;
   /** opt-in caption style (STUDY.md): "short" = 1-2 words at a time, centred 70 % down, ~58 px tall; translated /
    *  tagged lines (`sub`) are split into word chunks too instead of one long line */
+  /** Engine 4 viral captions: shot indices whose captions sit in the upper third (27 %) because a head is on the floor in frame; every other shot keeps 72 % */
+  captionHigh?: number[];
   captionStyle?: "short" | "viral";
   /** Engine 4: words the viral captions highlight in a pop colour (besides the lexicon's key nouns) */
   captionKeys?: string[];

@@ -16421,3 +16421,12 @@ Make these 3 quick polish fixes, then you have my "go" to immediately trigger th
 - During headstand shots (when heads are on the floor), move captions to the upper third (~25–30% height) so they never cover Dex's upside-down face or collide with Leo's giant gold "9".
 
 Once those 3 fixes are committed and preflight passes, commit the updated render-request.json for the 540p preview render, give me the run URL, and stop (do NOT poll GitHub Actions).
+
+## 27 Nov 2026 — owner (final caption fix, publishing copy, the 1080p render)
+The 540p preview looks awesome—Night Beat 2, the triangle staging, the Dutch tilt, the Beat 4 spoiler fix, and the headstand framing all landed. Do NOT touch the locked audio masters.
+
+Fix one last caption bug, then trigger the final full-resolution 1080p render:
+1. Restrict upper-third captions (~25–30% height) STRICTLY to headstand shots (where a character is upside down). Right now the upper-third position is leaking onto upright shots (e.g., 0:36, 0:50, 0:54, 0:56, 1:04), placing text over foreheads and floating numbers. Keep all upright shots at ~72% height (chest level).
+2. Generate productions/in-my-world-2/publish/PUBLISHING.md with punchy, scroll-stopping titles, descriptions, and hashtags for YouTube Shorts, TikTok, and Instagram Reels.
+
+Once the caption fix passes preflight, commit everything, trigger the final 1080p GitHub Actions render (scored + no-music dual export), give me the run URL, and stop (do NOT poll GitHub Actions).
