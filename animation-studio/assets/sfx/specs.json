@@ -1,12 +1,69 @@
 {
  "_about": "Custom SFX for Engine 4 word-level audio (Phase 4). Generated once with the ElevenLabs Sound Effects API (python3 sound/sfx_fetch.py [--force name ...]) and committed as assets/sfx/<name>.mp3. A storyboard names them in `sfx` or the lexicon (sound/lexicon.ts) maps words to them; sound/build.py loads any assets/sfx/<name>.mp3 or .wav that is not in the built-in catalogue.",
  "sfx": {
-  "heartbeat": { "s": 2.4, "p": "A slow, deep, close human heartbeat, two soft thumps then a pause, repeated, low and muffled, tense, no music" },
-  "shimmer_chime": { "s": 1.6, "p": "A bright magical shimmer chime, a rising glassy sparkle with a soft bell tail, short, clean, no music" },
-  "crowd_swell": { "s": 3.0, "p": "A distant crowd murmur swelling into a rising gasp and cheer, then fading, airy, cinematic, no words" },
-  "whoosh_soft": { "s": 0.9, "p": "A quick soft airy whoosh of a fast pass, smooth, short, clean, cinematic transition sound" },
-  "box_thud": { "s": 0.9, "p": "A cardboard pizza box dropped onto a wooden kitchen table, a dull cardboard thud with a tiny rattle, close" },
-  "plate_clink": { "s": 1.0, "p": "Three ceramic plates set down one after another on a wooden table, soft clinks, close, kitchen" },
-  "clock_tick_six": { "s": 2.2, "p": "A wall clock ticking three times and then striking a single soft chime, quiet kitchen, close" }
+  "heartbeat": {
+   "s": 2.4,
+   "p": "A slow, deep, close human heartbeat, two soft thumps then a pause, repeated, low and muffled, tense, no music"
+  },
+  "shimmer_chime": {
+   "s": 1.6,
+   "p": "A bright magical shimmer chime, a rising glassy sparkle with a soft bell tail, short, clean, no music"
+  },
+  "crowd_swell": {
+   "s": 3.0,
+   "p": "A distant crowd murmur swelling into a rising gasp and cheer, then fading, airy, cinematic, no words"
+  },
+  "whoosh_soft": {
+   "s": 0.9,
+   "p": "A quick soft airy whoosh of a fast pass, smooth, short, clean, cinematic transition sound"
+  },
+  "box_thud": {
+   "s": 0.9,
+   "p": "A cardboard pizza box dropped onto a wooden kitchen table, a dull cardboard thud with a tiny rattle, close"
+  },
+  "plate_clink": {
+   "s": 1.0,
+   "p": "Three ceramic plates set down one after another on a wooden table, soft clinks, close, kitchen"
+  },
+  "clock_tick_six": {
+   "s": 2.2,
+   "p": "A wall clock ticking three times and then striking a single soft chime, quiet kitchen, close"
+  },
+  "toaster_pop": {
+   "s": 1.2,
+   "p": "A kitchen toaster lever springing up with a mechanical clunk and a short metallic spring pop, two slices lifting out, close, quiet kitchen"
+  },
+  "toast_sizzle": {
+   "s": 1.4,
+   "p": "A hot toaster element briefly crackling and sizzling as letters are burnt into a slice of bread, a short dry sizzle and faint smoky hiss, close, no music"
+  },
+  "mug_shatter": {
+   "s": 1.5,
+   "p": "A ceramic coffee mug dropping on a kitchen tile floor and breaking into a few pieces, a single sharp crack then small shards skittering, close, dry room"
+  },
+  "slice_bite": {
+   "s": 0.8,
+   "p": "One crisp bite and crunch of toast in a quiet kitchen, close, dry"
+  },
+  "kettle_click": {
+   "s": 1.0,
+   "p": "An electric kettle switching off with a firm plastic click and the soft tick of cooling metal, close, quiet kitchen"
+  },
+  "paper_rustle": {
+   "s": 0.9,
+   "p": "A sheet of drawing paper being picked up and rustled on a kitchen fridge, one soft paper rustle, close, quiet"
+  },
+  "fridge_door": {
+   "s": 1.1,
+   "p": "A kitchen fridge door opening with a soft rubber seal pull and a gentle hum, then closing with a soft thump, close, quiet room"
+  },
+  "toast_tick": {
+   "s": 0.6,
+   "p": "A single crisp light tap of a butter knife on a slice of toast, dry, close, quiet kitchen"
+  },
+  "lever_clunk": {
+   "s": 0.8,
+   "p": "A toaster lever being pushed down with a firm mechanical clunk and a soft latch click, close, quiet kitchen"
+  }
  }
 }

@@ -41,7 +41,8 @@ SFX_REL = {"step_hard": -17, "step_stone": -17, "step_floor": -17, "step_grass":
 SFX_DEFAULT = -10
 # custom SFX (Engine 4, Phase 4): assets/sfx/<name>.mp3|wav (generated with sound/sfx_fetch.py). A custom file wins over a catalogue sound of the same name.
 CUSTOM_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "assets", "sfx")
-CUSTOM_REL = {"heartbeat": -12, "shimmer_chime": -11, "crowd_swell": -13, "whoosh_soft": -13, "box_thud": -8, "plate_clink": -12, "clock_tick_six": -13}
+MUSIC_ASSETS = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "assets", "music")   # recorded scores (public domain / CC0): assets/music/<file>.mp3
+CUSTOM_REL = {"sub_hit": -9, "paper_rustle": -14, "fridge_door": -13, "toast_tick": -13, "lever_clunk": -12, "toaster_pop": -11, "toast_sizzle": -11, "mug_shatter": -8, "slice_bite": -13, "kettle_click": -13, "heartbeat": -12, "shimmer_chime": -11, "crowd_swell": -13, "whoosh_soft": -13, "box_thud": -8, "plate_clink": -12, "clock_tick_six": -13}
 
 
 def custom_file(name):
@@ -138,7 +139,8 @@ def main(plan_path):
         # a recorded score (opt-in: storyboard music { file }): sound/samples/music/<file>.mp3 from 0 s, written to the
         # film's timings, so its own silences and hits land where they were planned; ducked and levelled like a mood bed
         mu = P["music"]
-        x = decode_sample(os.path.join(SCORE_DIR, f"{mu['file']}.mp3"), 2)[:, :N]
+        sp = os.path.join(MUSIC_ASSETS, f"{mu['file']}.mp3")
+        x = decode_sample(sp if os.path.exists(sp) else os.path.join(SCORE_DIR, f"{mu['file']}.mp3"), 2)[:, :N]
         music[:, :x.shape[1]] = x
         f = ns(0.6)
         music[:, max(0, x.shape[1] - f):x.shape[1]] *= np.linspace(1, 0, min(f, x.shape[1]))
@@ -147,6 +149,14 @@ def main(plan_path):
             music *= dbg(np.interp(np.arange(N) / SR, ts, dbs))[None, :]
         music = apply_duck(music, P, mu.get("duck_db", DUCK_DB))
         music *= dbg(Lv + MUSIC_REL + mu.get("gain_db", 0.0) - lu(music))
+        # Engine 4 hard cuts: dead silence from the cut (15 ms fade), the score coming back at `resume` (15 ms fade in)
+        for c in mu.get("cuts", []):
+            a = ns(c["t"]); b = ns(c["resume"]) if "resume" in c else N; f = ns(0.015)
+            env = np.ones(N); env[a:b] = 0.0
+            if a >= f: env[a - f:a] = np.linspace(1, 0, f)
+            if b < N and b + f <= N: env[b:b + f] = np.linspace(0, 1, f)
+            music *= env[None, :]
+            cues.append((c["t"], "music: hard cut to silence" + (f", back at {c['resume']:.2f} s" if "resume" in c else "")))
         cues.append((0.0, f"music: score {mu['file']}"))
         log(f"music: score {mu['file']} ({x.shape[1] / SR:.1f} s) -> {lu(music) - Lv:+.1f} LU vs voice")
     elif P.get("music"):
@@ -182,9 +192,13 @@ def main(plan_path):
     sfx = np.zeros((2, N))
     for i, c in enumerate(P["cues"]):
         cf = custom_file(c["name"])
-        if cf is None and c["name"] not in SFX:
+        if c["name"] == "sub_hit" and cf is None:   # a low sub-bass hit: a sine dropping 62 -> 38 Hz, a fast attack and a 0.9 s decay
+            tt = np.arange(int(0.9 * SR)) / SR; fr = 38 + 24 * np.exp(-tt * 6.0)
+            x = np.sin(2 * np.pi * np.cumsum(fr) / SR) * np.exp(-tt * 4.2) * (1 - np.exp(-tt * 250))
+        elif cf is None and c["name"] not in SFX:
             raise SystemExit(f"unknown sound effect {c['name']} (not in the catalogue and no assets/sfx/{c['name']}.mp3|wav)")
-        x = decode(cf) if cf else np.asarray(SFX[c["name"]](rng(seed * 1009 + i)), float)
+        else:
+            x = decode(cf) if cf else np.asarray(SFX[c["name"]](rng(seed * 1009 + i)), float)
         wide = c["name"] in STEREO and x.ndim == 2   # a stereo sample (riser, boom) stays wide and unpanned
         x = x if x.ndim == 1 or wide else x.mean(0)
         x = fades(x, 0.001, 0.01)
@@ -198,43 +212,49 @@ def main(plan_path):
     mix = (voice + music + amb + sfx) * g0
     work = os.path.join("out", "sound", P["id"])
     os.makedirs(work, exist_ok=True)
-    wav = os.path.join(work, "mix.wav")
-    # the intermediate WAV keeps headroom (integer samples would clip peaks above full scale); the gain comes back in
-    # ffmpeg's float pipeline right before the peak limiter
-    head = min(1.0, 0.89 / max(1e-9, np.abs(mix).max()))
-    write_wav(wav, mix * head, 24)
-    for name, x in [("voice", voice), ("music", music), ("ambience", amb), ("sfx", sfx)]:  # stems at mix scale (review, analysis)
-        write_wav(os.path.join(work, f"{name}.wav"), x * g0 * head, 24)
-    back = -20 * np.log10(head)
-    out = P["out"]
+    def master(mix, g0, out, wav, stems):
+        # the intermediate WAV keeps headroom (integer samples would clip peaks above full scale); the gain comes back in
+        # ffmpeg's float pipeline right before the peak limiter
+        head = min(1.0, 0.89 / max(1e-9, np.abs(mix).max()))
+        write_wav(wav, mix * head, 24)
+        for name, x in stems:  # stems at mix scale (review, analysis)
+            write_wav(os.path.join(work, f"{name}.wav"), x * g0 * head, 24)
+        back = -20 * np.log10(head)
 
-    def encode(gain_db, lim_db=CEIL - 0.5):
-        subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", wav, "-af",
-                        f"volume={gain_db + back:.2f}dB,alimiter=limit={dbg(lim_db):.4f}:attack=2:release=40:level=false,atrim=end={total:.3f}",
-                        "-ar", str(SR), "-ac", "2", "-c:a", "libmp3lame", "-b:a", "320k", out], check=True)
-        r = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", out, "-af", "ebur128=peak=true", "-f", "null", "-"], capture_output=True, text=True).stderr
-        s = r[r.rfind("Summary:"):]
-        I_ = float(s.split("I:")[1].split("LUFS")[0])
-        pk = float(s.split("Peak:")[1].split("dBFS")[0])
-        return I_, pk
+        def encode(gain_db, lim_db=CEIL - 0.5):
+            subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", wav, "-af",
+                            f"volume={gain_db + back:.2f}dB,alimiter=limit={dbg(lim_db):.4f}:attack=2:release=40:level=false,atrim=end={total:.3f}",
+                            "-ar", str(SR), "-ac", "2", "-c:a", "libmp3lame", "-b:a", "320k", out], check=True)
+            r = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", out, "-af", "ebur128=peak=true", "-f", "null", "-"], capture_output=True, text=True).stderr
+            s = r[r.rfind("Summary:"):]
+            I_ = float(s.split("I:")[1].split("LUFS")[0])
+            pk = float(s.split("Peak:")[1].split("dBFS")[0])
+            return I_, pk
 
-    # master: hit -14 LUFS (+-0.2) with the true peak at or under the ceiling. Raising the gain for loudness raises the
-    # peaks, and the MP3 encode overshoots between samples, so iterate: correct the gain, and if the encoded true peak
-    # is over the ceiling, lower the sample-peak limiter by the overshoot (+0.1 dB). A mix already in range is done
-    # on the first pass (identical output to the one-pass master).
-    g, lim = 0.0, CEIL - 0.5
-    I_, pk = encode(g, lim)
-    for _ in range(5):
-        if abs(I_ - TARGET) <= 0.2 and pk <= CEIL:
-            break
-        if pk > CEIL:
-            lim -= pk - CEIL + 0.1
-        if abs(I_ - TARGET) > 0.2:
-            g += TARGET - I_
+        # master: hit -14 LUFS (+-0.2) with the true peak at or under the ceiling. Raising the gain for loudness raises the
+        # peaks, and the MP3 encode overshoots between samples, so iterate: correct the gain, and if the encoded true peak
+        # is over the ceiling, lower the sample-peak limiter by the overshoot (+0.1 dB). A mix already in range is done
+        # on the first pass (identical output to the one-pass master).
+        g, lim = 0.0, CEIL - 0.5
         I_, pk = encode(g, lim)
-    if abs(I_ - TARGET) > 0.5 or pk > CEIL + 0.2:
-        raise SystemExit(f"mastering did not converge: {I_:.1f} LUFS, true peak {pk:.1f} dBFS")
-    log(f"master: {I_:.1f} LUFS, true peak {pk:.1f} dBFS -> {out}")
+        for _ in range(5):
+            if abs(I_ - TARGET) <= 0.2 and pk <= CEIL:
+                break
+            if pk > CEIL:
+                lim -= pk - CEIL + 0.1
+            if abs(I_ - TARGET) > 0.2:
+                g += TARGET - I_
+            I_, pk = encode(g, lim)
+        if abs(I_ - TARGET) > 0.5 or pk > CEIL + 0.2:
+            raise SystemExit(f"mastering did not converge: {I_:.1f} LUFS, true peak {pk:.1f} dBFS")
+        log(f"master: {I_:.1f} LUFS, true peak {pk:.1f} dBFS -> {out}")
+        return I_, pk
+    I_, pk = master(mix, g0, P["out"], os.path.join(work, "mix.wav"), [("voice", voice), ("music", music), ("ambience", amb), ("sfx", sfx)])
+    # Engine 4 dual export: the same film without the music (narration + SFX + ambience), mastered on its own, for native-audio posts
+    if P.get("dual"):
+        bed = voice + amb + sfx
+        g1 = dbg(TARGET - lu(bed))
+        master(bed * g1, g1, P["dual"], os.path.join(work, "mix_nomusic.wav"), [])
     stems = {"voice_lufs": round(Lv, 2), "music_vs_voice_lu": round(lu(music) - Lv, 2) if P.get("music") else None,
              "ambience_vs_voice_lu": round(lu(amb) - Lv, 2) if np.abs(amb).max() > 0 else None, "sfx_cues": len(P["cues"])}
     info = {"composition": P["composition"], "fingerprint": P["fingerprint"], "engine": P["engine"], "frames": P["frames"],

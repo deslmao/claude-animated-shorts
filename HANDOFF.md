@@ -15,10 +15,10 @@ no pull requests.
   GTA Ep 1 video is finished (`productions/gta-gf-1/`), and Ep 2 is on hold.
 - **First story:** The Friday Pizza, a screenplay awaiting the owner's approval (`productions/friday-pizza/screenplay.md`).
   Open point: it has two short flashbacks, and the new framework says zero.
-- **Engine 4:** Phases 1 (kitchen), 2 (camera) and 3 (acting) are approved. **Phase 4 (audio, literal SFX, mobile format) is built**:
-  word-level SFX (`sound/lexicon.ts`, custom files in `animation-studio/assets/sfx/`), 8 dB ducking, viral captions, the 3D number
-  prop, clean-frame checks. The 15 s template (Phases 1-4, with audio) is `productions/engine4-phase4/e4-template.mp4` (540p);
-  **the owner reviews it before Phase 5 (the Friday Pizza production, after its flashbacks are rewritten as forward action).**
+- **Engine 4:** Phases 1-4 are approved. **Phase 5 has begun with the story "In my world, the toaster burns the last thing you say"**
+  (`productions/in-my-world-1/script.md`, 85 s, Maya's kitchen). Built and committed: continuous narration, Morning Mood with a hard cut,
+  grounded SFX lexicon, dual masters (`audio/Short-in-my-world-1.mp3` and `.nomusic.mp3`; `scripts/dual-export.mjs`). **Waiting for the owner to
+  approve the script and the prop list (wordToast, brokenMug) before building props or rendering anything.** Friday Pizza is on hold.
 - **Never poll GitHub Actions** (CLAUDE.md): give the run URL and stop.
 
 ## The channel in one paragraph

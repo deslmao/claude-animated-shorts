@@ -310,3 +310,15 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
     on a long end CTA for engine 4.
   - **Two fixes the template exposed:** an import cycle (a theme module imported the character library: easing moved to `engine4/ease.ts`);
     the 3D number first stood on the counter outside the lamp's cone (unlit): it stands on the table under the lamp.
+
+- **27 Nov 2026: Engine 4 Phase 5 gate: audio and narration upgrades built, script and prop list written; stopped for the owner's approval.**
+  - **Continuous narration** (`narration: "continuous"`, engine 4 only): `story/timing.ts` joins every narrator line into ONE track (`masterText`,
+    one ElevenLabs request), each shot's lines are slices of it, the cuts fall just before their first words, `pauses` become 0.25 s cuts in
+    the one track (the beat before a reveal). Mixer: the file is placed once (`Placed.shared`). Mum / other voices cannot be in a continuous film.
+  - **Music:** `assets/music/morning-mood.mp3` = Wikimedia Commons `Musopen - Morning.ogg` (Grieg, Musopen Symphony Orchestra), Public domain
+    (the original upload.wikimedia.org file URL was rate-limited (429); the Commons mp3 transcode downloaded). `music.cuts`: hard cut to silence
+    (15 ms fades) at a word, an optional `sub_hit`, optional resume. **Grounded SFX:** lexicon rewritten (kitchen / comedy / tension only);
+    `isGrounded` strips crowd, stadium, gasp, scream, siren, weapon sounds from every engine 4 cue list unless `crowdSfx: true`.
+  - **Dual export:** `sound/build.py` masters a second file without the music (`audio/Short-<id>.nomusic.mp3`); `scripts/dual-export.mjs` muxes both
+    videos. Legacy check: breakfast-2's soundtrack rebuilt byte-identical.
+  - **Story:** `productions/in-my-world-1/script.md` (85 s, 229 words, 44 word-level SFX, 56 visual changes). Props proposed, not built.

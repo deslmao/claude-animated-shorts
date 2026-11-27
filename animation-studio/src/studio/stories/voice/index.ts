@@ -12,6 +12,7 @@ import { N_extra_door } from "./extra-door";
 import { N_extra_door_2 } from "./extra-door-2";
 import { N_float_away } from "./float-away";
 import { N_gta_gf_1 } from "./gta-gf-1";
+import { N_in_my_world_1 } from "./in-my-world-1";
 import { N_locked_out } from "./locked-out";
 import { N_marathon_1904 } from "./marathon-1904";
 import { N_memory_money } from "./memory-money";
@@ -30,4 +31,4 @@ import { N_tickle } from "./tickle";
 import { N_whale_city } from "./whale-city";
 import { N_yawn_demo } from "./yawn-demo";
 
-export const NARRATION: Record<string, Narration> = { "breakfast-2": N_breakfast_2, "breakfast-text": N_breakfast_text, "buried-treasure": N_buried_treasure, "doorway-effect": N_doorway_effect, "e4-template": N_e4_template, "empty-seat": N_empty_seat, "every-lie": N_every_lie, "extra-door": N_extra_door, "extra-door-2": N_extra_door_2, "float-away": N_float_away, "gta-gf-1": N_gta_gf_1, "locked-out": N_locked_out, "marathon-1904": N_marathon_1904, "memory-money": N_memory_money, "night-shift": N_night_shift, "night-train": N_night_train, "nova-commands": N_nova_commands, "ollie-1": N_ollie_1, "ollie-2": N_ollie_2, "one-too-many": N_one_too_many, "other-jamie": N_other_jamie, "pirate-democracy": N_pirate_democracy, "six-seven": N_six_seven, "steps-4012": N_steps_4012, "stop-time-1": N_stop_time_1, "tickle": N_tickle, "whale-city": N_whale_city, "yawn-demo": N_yawn_demo };
+export const NARRATION: Record<string, Narration> = { "breakfast-2": N_breakfast_2, "breakfast-text": N_breakfast_text, "buried-treasure": N_buried_treasure, "doorway-effect": N_doorway_effect, "e4-template": N_e4_template, "empty-seat": N_empty_seat, "every-lie": N_every_lie, "extra-door": N_extra_door, "extra-door-2": N_extra_door_2, "float-away": N_float_away, "gta-gf-1": N_gta_gf_1, "in-my-world-1": N_in_my_world_1, "locked-out": N_locked_out, "marathon-1904": N_marathon_1904, "memory-money": N_memory_money, "night-shift": N_night_shift, "night-train": N_night_train, "nova-commands": N_nova_commands, "ollie-1": N_ollie_1, "ollie-2": N_ollie_2, "one-too-many": N_one_too_many, "other-jamie": N_other_jamie, "pirate-democracy": N_pirate_democracy, "six-seven": N_six_seven, "steps-4012": N_steps_4012, "stop-time-1": N_stop_time_1, "tickle": N_tickle, "whale-city": N_whale_city, "yawn-demo": N_yawn_demo };

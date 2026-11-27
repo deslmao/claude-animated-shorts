@@ -28,20 +28,36 @@ word_sfx = [c for c in cues if any(abs(w[0] - c['t']) < 0.16 for w in words)]
 print(f"cues on a spoken word's timestamp: {len(word_sfx)} of {len(cues)}")
 
 m = load("music"); n = len(m)
-def rms_db(mask):
-    x = m[mask]
-    return 20 * np.log10(max(np.sqrt(np.mean(x ** 2)), 1e-9)) if x.size else float("nan")
 spans = P.get("duck", {}).get("spans", [])
+# 1. the duck, measured on a constant tone through the builder's own function: the depth under spans, under plain words, and in the clear
+sys.path.insert(0, "sound")
+import build  # noqa: E402
+test = build.apply_duck(np.ones((2, n)), P, build.DUCK_DB)[0]
+db = 20 * np.log10(np.maximum(test, 1e-9))
 span_mask = np.zeros(n, bool)
 for a, b in spans:
     span_mask[max(0, int(a * SR)):min(n, int(b * SR))] = True
 voice = np.zeros(n, bool)
 for a, b in words:
     voice[max(0, int((a - 0.05) * SR)):min(n, int((b + 0.25) * SR))] = True
-clear = ~span_mask & ~voice
-# the music bed has its own dynamics: compare the music stem inside each span with the music stem just before it (a 0.5 s window in the clear) plus the global clear level
-print(f"music level in the clear (no word, no duck span): {rms_db(clear):.1f} dBFS (stem); under every word: {rms_db(voice & ~span_mask):.1f} dBFS; inside duck spans: {rms_db(span_mask):.1f} dBFS")
-print(f"measured duck under spans: {rms_db(span_mask) - rms_db(clear):+.1f} dB vs the clear (target -8); under plain words: {rms_db(voice & ~span_mask) - rms_db(clear):+.1f} dB (base duck -3)")
-# the plan's own gain curve, sample-exact: the duck depth applied at each span centre
+core = np.zeros(n, bool)
 for a, b in spans:
-    print(f"  duck span {a:5.2f}-{b:5.2f} s  ({b - a:.2f} s) -> {P['duck']['depth_db']:.0f} dB")
+    core[int((a + 0.1) * SR):int((b - 0.1) * SR)] = True
+print(f"duck (constant tone through apply_duck): in the clear {db[~span_mask & ~voice].mean():+.1f} dB, under plain words {db[voice & ~span_mask].mean():+.1f} dB, inside punchline / major-hit spans {db[core].mean():+.1f} dB (target -8), deepest {db.min():+.1f} dB")
+# 2. the music cut (a recorded score cut to dead silence at the twist, back at the payoff)
+mc = P.get("music", {}).get("cuts", [])
+for c in mc:
+    a, b = c["t"], c.get("resume", P["seconds"])
+    inside = m[int((a + 0.03) * SR):int(b * SR)]
+    before = m[int((a - 1.0) * SR):int(a * SR)]
+    print(f"music cut {a:.2f}-{b:.2f} s: peak inside {20 * np.log10(max(np.abs(inside).max(), 1e-9)):.0f} dBFS (silence), the 1 s before it: {20 * np.log10(max(np.sqrt(np.mean(before ** 2)), 1e-9)):.0f} dBFS rms; sub-bass hit at {a:.2f} s: {'yes' if c.get('sub') else 'no'}")
+# 3. the two masters
+import os
+for f in (P["out"], P.get("dual")):
+    if f and os.path.exists(f):
+        r = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", f, "-af", "ebur128=peak=true", "-f", "null", "-"], capture_output=True, text=True).stderr
+        t = r[r.rfind("Summary:"):]
+        print(f"master {f}: {t.split('I:')[1].split('LUFS')[0].strip()} LUFS, true peak {t.split('Peak:')[1].split('dBFS')[0].strip()} dBFS")
+# 4. grounded: no stadium / crowd sounds in the plan
+bad = [c["name"] for c in cues if any(k in c["name"] for k in ("crowd", "stadium", "cheer", "applause", "gasp", "scream", "aww", "aye", "siren"))]
+print("grounded SFX (no crowd / stadium / gasp sounds):", "PASS" if not bad else "FAIL " + ", ".join(bad))

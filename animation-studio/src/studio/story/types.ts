@@ -73,6 +73,9 @@ export type LinePause = { after: string; n?: number; s: number; cut?: number };
 export type LineContext = { before?: string; after?: string };
 /** sub (What Ollie Says at 3 A.M.): a translated subtitle shown for the whole line INSTEAD of its word captions (a line
  *  spoken in another language); "" shows nothing (the viewer isn't meant to understand yet). Not sent to the voice */
+/** Engine 4: a hard cut of a recorded score to dead silence at a spoken word (or a time in seconds), optionally with a low sub-bass hit on the cut and
+ *  the score coming back at `resume` (omit = silent to the end) */
+export type MusicCut = { at: WordRef | number; resume?: WordRef | number; sub?: boolean };
 export type Line = { /** a dialogue punchline: the music ducks 8 dB under the whole line (Engine 4) */ punch?: boolean; text: string; who?: string; voice?: string; gap?: number; pauses?: LinePause[]; context?: LineContext; sub?: string };
 export type ActorSpec = {
   who: string;                // key into storyboard.cast
@@ -206,6 +209,10 @@ export type Storyboard = {
   captionKeys?: string[];
   /** Engine 4: false = no automatic word-level SFX from the lexicon (sound/lexicon.ts); explicit `sfx` cues still play */
   wordSfx?: boolean;
+  /** Engine 4: "continuous" = ONE narration track for the whole film (every narrator line is a slice of it; the cuts fall on its words; `pauses` add the beats) */
+  narration?: "continuous";
+  /** Engine 4: true allows crowd / stadium sounds (default false: an intimate film plays only grounded room, comedy and tension sounds) */
+  crowdSfx?: boolean;
   /** opt-in (STUDY.md "never still"): every placed camera keeps pushing in, at least 12 % of the distance over its beat
    *  (~0.2 %/frame), so no shot holds a frozen frame */
   alive?: boolean;
@@ -219,7 +226,7 @@ export type Storyboard = {
   /** background music: a mood, { mood, gain } (dB), a recorded score { file, gain, duck } (sound/samples/music/<file>.mp3,
    *  written to this film's timings, from 0 s; duck = the dip under words in dB, default -3; curve = [seconds, dB]
    *  points, linear between: the score's silences and swells), or false for none. Default: chosen from the story's acting */
-  music?: Mood | { mood: Mood; gain?: number } | { file: string; gain?: number; duck?: number; curve?: [number, number][] } | false;
+  music?: Mood | { mood: Mood; gain?: number } | { file: string; gain?: number; duck?: number; curve?: [number, number][]; cuts?: MusicCut[] } | false;
   /** the music drops out after this spoken word (a beat of silence before the punchline): the bed fades out in 0.1 s
    *  and stays out until the button chord lands on the last word (Video 04). Default: no drop-out */
   musicDrop?: WordRef;

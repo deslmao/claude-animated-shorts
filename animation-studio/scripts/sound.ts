@@ -36,13 +36,14 @@ const seed = parseInt(soundtrackFingerprint({ ...sb, shots: [], ...((sb.engine ?
 const job = {
   id: sb.id, composition: comp, frames: film.total, seconds: film.total / 30, seed,
   fingerprint: soundtrackFingerprint(sb, narr), engine: SOUNDTRACK_ENGINE,
-  voice: tm.lines.flatMap((l) => { const fx = VOICES[l.voice]?.fx ? { fx: VOICES[l.voice].fx } : {};
+  voice: tm.lines.filter((l) => !l.shared).flatMap((l) => { const fx = VOICES[l.voice]?.fx ? { fx: VOICES[l.voice].fx } : {};
     return l.segs ? l.segs.map((g) => ({ file: `voice/cache/${l.hash}.mp3`, at: g.at, from: g.from, ...(g.to !== undefined ? { to: g.to } : {}), ...fx })) : [{ file: `voice/cache/${l.hash}.mp3`, at: l.fileAt, ...fx }]; }),
   words: tm.lines.flatMap((l) => l.words.map((w) => [w.t0, w.t1])),
   shots: film.shots.map((s, i) => ({ t0: s.a / 30, t1: s.b / 30, ambience: plan.ambience[i] })),
-  music: plan.file ? { file: plan.file.file, gain_db: plan.musicGain, ...(plan.file.duck !== undefined ? { duck_db: plan.file.duck } : {}), ...(plan.file.curve ? { curve: plan.file.curve } : {}) } : plan.sections ? { sections: plan.sections, button_t: plan.button_t, gain_db: plan.musicGain, ...(plan.drop_t !== undefined ? { drop_t: plan.drop_t } : {}) } : null,
+  music: plan.file ? { file: plan.file.file, gain_db: plan.musicGain, ...(plan.file.duck !== undefined ? { duck_db: plan.file.duck } : {}), ...(plan.file.cuts ? { cuts: plan.file.cuts } : {}), ...(plan.file.curve ? { curve: plan.file.curve } : {}) } : plan.sections ? { sections: plan.sections, button_t: plan.button_t, gain_db: plan.musicGain, ...(plan.drop_t !== undefined ? { drop_t: plan.drop_t } : {}) } : null,
   cues: plan.cues,
   ...(plan.duck ? { duck: plan.duck } : {}),
+  ...(sb.engine === 4 && plan.file ? { dual: `audio/${comp}.nomusic.mp3` } : {}),
   out: `audio/${comp}.mp3`, info: `audio/${comp}.json`, cuesheet: `audio/${comp}.cues.md`,
 };
 fs.mkdirSync("out/sound", { recursive: true });
