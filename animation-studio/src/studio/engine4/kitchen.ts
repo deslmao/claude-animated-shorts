@@ -4,7 +4,7 @@
 // live: a cool window light (the sun slot, so the 2D characters' shadow and side gradient follow it), the warm pendant lamp
 // (a spot light: real card shadows), a low hemisphere fill, fog and drifting dust motes.
 // Colour management: GLB colour textures are sRGB, the lightmap is linear (EXR), the composer ends in ACES filmic (look/StudioFilm).
-// Coordinates (three, metres): room x -2.2..2.2, z -2.4 (back wall, window) .. 1.8 (open front), height 2.7.
+// Coordinates (three, metres): room x -2.2..2.2, z -2.4 (back wall, window) .. 3.6 (front wall, the "fourth wall" cameras shoot from), height 2.7.
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { EXRLoader } from "three/examples/jsm/loaders/EXRLoader.js";
@@ -14,6 +14,8 @@ import { ctex } from "../materials/paint";
 import { CARD_K } from "../look/cardshade";
 import type { BuiltSet } from "../sets/types";
 
+/** the room's inside (x0, x1, z0, z1, floor, ceiling): a camera outside it films the back of a wall (a black frame) */
+export const ROOM = { x0: -2.15, x1: 2.15, z0: -2.35, z1: 3.55, y0: 0.1, y1: 2.6 };
 export const LAMP: [number, number, number] = [0.35, 1.6, -0.3];     // the pendant bulb
 export const WINDOW: [number, number, number] = [0, 1.6, -2.3];       // the window's centre
 /** world direction toward the (dusk) window light, from outside the back wall */
@@ -94,7 +96,7 @@ export const buildE4Kitchen = (): BuiltSet => {
   else {
     // no GLB (Node: floor maps, validators): coarse invisible stand-ins for the solids so clearance checks have something to hit
     const box = (c: [number, number, number], s: [number, number, number]) => { const m = new THREE.Mesh(new THREE.BoxGeometry(...s), new THREE.MeshBasicMaterial({ visible: false })); m.position.set(...c); root.add(m); };
-    box([0, -0.05, -0.3], [4.4, 0.1, 4.2]); box([0.35, 0.4, -0.3], [1.3, 0.8, 0.8]); box([-0.5, 0.45, -2.1], [3.4, 0.9, 0.6]); box([1.7, 0.92, -2.05], [0.8, 1.85, 0.75]);
+    box([0, -0.05, 0.6], [4.4, 0.1, 6.0]); box([0.35, 0.4, -0.3], [1.3, 0.8, 0.8]); box([-0.5, 0.45, -2.1], [3.4, 0.9, 0.6]); box([1.7, 0.92, -2.05], [0.8, 1.85, 0.75]);
   }
   const e4: NonNullable<BuiltSet["e4"]> = {
     apply: ({ env, focus, t }) => {

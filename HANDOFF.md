@@ -15,11 +15,10 @@ no pull requests.
   GTA Ep 1 video is finished (`productions/gta-gf-1/`), and Ep 2 is on hold.
 - **First story:** The Friday Pizza, a screenplay awaiting the owner's approval (`productions/friday-pizza/screenplay.md`).
   Open point: it has two short flashbacks, and the new framework says zero.
-- **All rendering is paused** until Engine 4 is built. The plan is `docs/architecture/engine4-proposal.md` (approved
-  24 Nov); the rules are in CLAUDE.md ("Engine 4 pipeline rules"). **Phase 1 (Maya's kitchen) is built and its three comparison stills
-  (Engine 4 against the current look) are with the owner for review; do not start Phase 2 until they approve.** Files:
-  `blender/sets/kitchen.py`, `animation-studio/src/studio/engine4/kitchen.ts`, `themes/e4/`, test stories
-  `stories/e4-kitchen-test.ts` (`Short-e4-kitchen-test` and `Short-e4-kitchen-legacy`, frames 20, 62, 104).
+- **Engine 4:** Phase 1 (Maya's kitchen) is approved and polished. **Phase 2 (camera system) is built**: lenses in mm,
+  hand-held drift, truck move, pacing checks (`engine4/pacing.ts`, `npm run e4-pace -- e4-camera-test`). The 5 s test clip is
+  `productions/engine4-phase2/e4-camera-test.mp4` (540p); **the owner reviews it before Phase 3 starts.** Plan:
+  `docs/architecture/engine4-proposal.md`; rules: CLAUDE.md. The audit gate before Phase 4 (audio and SFX files) still applies.
 - **Never poll GitHub Actions** (CLAUDE.md): give the run URL and stop.
 
 ## The channel in one paragraph

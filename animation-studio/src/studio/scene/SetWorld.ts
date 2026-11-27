@@ -11,6 +11,7 @@ import type { FrameInfo, StudioWorld } from "../look/StudioFilm";
 import { PROPS, PropRig } from "../props/registry";
 import { Batch } from "../materials/geo";
 import type { At } from "../props/kit";
+import { handheld } from "../engine4/camera";
 
 /** props: story props shown in this shot only (built the first time the shot is drawn) */
 /** shutter: camera motion blur exposure in frames (0.5 = a 180-degree shutter), or a function of the frame (less on
@@ -72,7 +73,8 @@ export class SetWorld implements StudioWorld {
   update(id: number, f: number, cam: THREE.PerspectiveCamera, scene: THREE.Scene): FrameInfo {
     const s = this.shots.find((x) => x.id === id) ?? this.shots[0], built = this.use(s.set);
     this.shotProps(s);
-    const c = withKick(runKeys(s.keys, f), kickAt(s.kicks ?? [], f / 30));
+    this.hand = !!built.e4;   // Engine 4 sets: a subtle hand-held drift on every shot (also in the motion-blur shutter below)
+    const c = this.camAt(s, f, f);
     cam.position.set(...c.pos); cam.up.set(0, 1, 0); cam.lookAt(...c.look); cam.rotateZ(c.roll);
     cam.fov = c.fov; cam.near = 0.1; cam.far = 1500; cam.updateProjectionMatrix(); cam.updateMatrixWorld();
     const focus = new THREE.Vector3(...c.look), sun = this.sunOf(s, built);
@@ -97,12 +99,18 @@ export class SetWorld implements StudioWorld {
     let lo = Math.max(s.a, f - h), hi = Math.min(s.b - 1, f + h);
     for (const k of s.keys.slice(1)) if (k.cut) { if (k.f > lo && k.f <= f) lo = k.f; if (k.f > f && k.f <= hi) hi = k.f - 1e-3; }
     const vp = (fr: number) => {
-      const c = withKick(runKeys(s.keys, fr), kickAt(s.kicks ?? [], f / 30)), m = this.shutCam;
+      const c = this.camAt(s, fr, f), m = this.shutCam;
       m.position.set(...c.pos); m.up.set(0, 1, 0); m.lookAt(...c.look); m.rotateZ(c.roll);
       m.updateMatrixWorld();
       return { view: m.matrixWorldInverse.clone(), fov: c.fov };
     };
     return { open: vp(lo), close: vp(hi) };
+  }
+  private hand = false;
+  /** the shot's camera at frame fr (the kick is that of frame f): the key list, the hand-held drift (Engine 4 sets) and the impact kick */
+  private camAt(s: WorldShot, fr: number, f: number) {
+    const base = runKeys(s.keys, fr);
+    return withKick(this.hand ? handheld(base, fr, s.id) : base, kickAt(s.kicks ?? [], f / 30));
   }
   private shutCam = new THREE.PerspectiveCamera(40, 9 / 16, 0.1, 1500);
 }

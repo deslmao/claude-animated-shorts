@@ -106,7 +106,7 @@ def arc(name, pts, r, mat):
     for i in range(len(pts) - 1): seg(f"{name}{i}", pts[i], pts[i + 1], r, r, mat, 8)
 
 # ------------------------------------------------------------------------------------------------ the room
-X0, X1, Z0, Z1, H, T = -2.2, 2.2, -2.4, 1.8, 2.7, 0.12            # the room: x from X0 to X1, z from Z0 (back wall) to Z1 (front), height H, wall thickness T
+X0, X1, Z0, Z1, H, T = -2.2, 2.2, -2.4, 3.6, 2.7, 0.12            # the room: x from X0 to X1, z from Z0 (back wall) to Z1 (front), height H, wall thickness T
 WX0, WX1, WY0, WY1 = -0.7, 0.7, 1.05, 2.15                         # the window opening in the back wall
 cz = (Z0 + Z1) / 2
 box("floor", (0, -0.05, cz), (X1 - X0 + 2 * T, 0.1, Z1 - Z0 + 2 * T), "floor")

@@ -218,11 +218,12 @@ const moveOf = (s: ShotSpec, c: CameraSpec, t0 = 0, cast: Storyboard["cast"] = {
     case "establish": return { move: "establish", view: view(c.view) };
     case "frame": {
       const above = s.diagram?.place === "above" && c.on.includes("diagram"), dsz = s.diagram?.size ?? 0.95;
-      return { move: "frame", marks: c.on.flatMap(marks), size: c.size, from: c.from, height: c.height, roll: c.roll, creep,
+      return { move: "frame", marks: c.on.flatMap(marks), size: c.size, from: c.from, height: c.height, roll: c.roll, creep, ...(c.fov ? { fov: c.fov } : {}), ...(c.cInf !== undefined ? { cInf: c.cInf } : {}),
         ...(above ? { top: diagramBase(s) + dsz + 0.06, halfWidth: Math.max(0.36, dsz / 2) } : {}) };
     }
     case "pushIn": case "pullOut": return { move: c.move, marks: c.on.flatMap(marks), size: c.size, to: c.to, from: c.from, height: c.height };
-    case "closeUp": return { move: "closeUp", mark: pos(c.on), from: c.from, punch: c.punch, creep: tight(0.003) };
+    case "closeUp": return { move: "closeUp", mark: pos(c.on), from: c.from, punch: c.punch, creep: tight(0.003), ...(c.fov ? { fov: c.fov } : {}), ...(c.cInf !== undefined ? { cInf: c.cInf } : {}) };
+    case "truck": return { move: "truck", marks: c.on.flatMap(marks), dist: c.dist, size: c.size, from: c.from, height: c.height, ...(c.fov ? { fov: c.fov } : {}), ...(c.cInf !== undefined ? { cInf: c.cInf } : {}) };
     case "lowHero": return { move: "lowHero", mark: pos(c.on), from: c.from, creep: tight(0.0025) };
     case "highAngle": return { move: "highAngle", marks: c.on.flatMap(marks), from: c.from };
     case "overShoulder": return { move: "overShoulder", over: pos(c.over), at: pos(c.at), side: c.side };

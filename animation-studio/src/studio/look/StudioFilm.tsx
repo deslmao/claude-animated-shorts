@@ -31,8 +31,8 @@ export interface StudioWorld { root: THREE.Object3D; update(shot: number, f: num
 export interface Timeline { total: number; layersAt(f: number): { id: number; alpha: number }[]; flashes?: number[]; dips?: number[]; motionBlur?: boolean; controlledBlur?: boolean; stableInk?: boolean; inkSides?: boolean; engine4?: boolean }
 
 /** A/B switches for test stills only (inputProps `{ post: { ink: false, ... } }`); everything is on by default */
-type PostToggles = { ink: boolean; ink2: boolean; sides: boolean; lens: boolean; pre: boolean; bloom: boolean; grade: boolean; grain: boolean; motion: boolean };
-const toggles = (): PostToggles => ({ ink: true, ink2: true, sides: true, lens: true, pre: true, bloom: true, grade: true, grain: false, motion: true, ...((getInputProps() as { post?: Partial<PostToggles> }).post ?? {}) });
+type PostToggles = { ink: boolean; ink2: boolean; sides: boolean; lens: boolean; pre: boolean; bloom: boolean; grade: boolean; grain: boolean; motion: boolean; ao: boolean };
+const toggles = (): PostToggles => ({ ink: true, ink2: true, sides: true, lens: true, pre: true, bloom: true, grade: true, grain: false, motion: true, ao: true, ...((getInputProps() as { post?: Partial<PostToggles> }).post ?? {}) });
 
 /** bloom for emissive sources only; its MIP chain always starts at half of 1080x1920 so the glow keeps its size */
 const makeBloom = () => {
@@ -85,7 +85,6 @@ function Inner<K>({ id, kit, makeWorld, blur, stableInk, controlledBlur = false,
   const post = useMemo(() => (
     <EffectComposer multisampling={4} ref={composer}>
       {[
-        engine4 && fx.ao && <primitive key="ao" object={fx.ao} dispose={null} />,
         on.ink && !engine4 && <primitive key="ink" object={fx.ink} dispose={null} />,
         // controlled blur: depth of field BEFORE motion blur. The composer ping-pongs two buffers and the scene depth
         // is attached to one of them: switching the motion pass on in front of the lens passes (it is enabled only on
@@ -96,6 +95,8 @@ function Inner<K>({ id, kit, makeWorld, blur, stableInk, controlledBlur = false,
         on.lens && on.pre && <primitive key="pre" object={fx.lens.pre} dispose={null} />,
         on.lens && <primitive key="lens" object={fx.lens.main} dispose={null} />,
         blur && on.motion && controlledBlur && <primitive key="motion" object={fx.motion} dispose={null} />,
+        // Engine 4 ambient occlusion runs AFTER the lens passes: before them it replaced the depth buffer the lens blur reads (a defocused subject)
+        engine4 && on.ao && fx.ao && <primitive key="ao" object={fx.ao} dispose={null} />,
         on.bloom && <primitive key="bloom" object={fx.bloom} dispose={null} />,
         <primitive key="tone" object={fx.tone} dispose={null} />,
         on.grade && !engine4 && <primitive key="grade" object={fx.grade} dispose={null} />,

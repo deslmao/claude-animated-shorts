@@ -264,3 +264,21 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
     point lights. **Why `lightMapIntensity = pi`:** Blender bakes E/pi; three multiplies the lightmap by albedo/pi.
   - **Honest limits:** a card seen nearly edge-on to a light throws a thin shadow; characters are the existing Mum and Bug
     (the Friday Pizza cast isn't drawn yet); the three stills are the test frames only, no renders beyond them.
+
+- **27 Nov 2026: Engine 4 polish + Phase 2 (camera system) built; stopped for the owner's review of the 5 s clip.**
+  - **Polish (commit acab8c0):** the house silhouette and lit windows outside the window are gone (clean dusk gradient); dust
+    motes halved (size 0.012 -> 0.006, opacity 0.4 -> 0.2); an invisible capsule (0.17 m radius, 1.7 m) in every character
+    card casts a body-shaped shadow from any light angle (colour and depth writes off, shadow pass only).
+  - **Audit gate (cited before any edit):** `camera/keys.ts` (key lists, `runKeys`, glides, `pushK`, `dolly`, `kickAt`/`withKick`
+    7-frame impact kicks, `flyPath`), `camera/moves.ts` (`plan()`: view, frame, pushIn, closeUp, overShoulder, orbit, crane, follow,
+    dutch, aim; `DOF_BY_SIZE`), `camera/framing.ts` (`fitShot`); consumers `story/compile.ts` (`moveOf`, beats -> keys, `kicks`),
+    `scene/SetWorld.ts` (poses the camera each frame, shutter), `look/StudioFilm.tsx` (lens blur / motion blur from `cInf` + focus).
+  - **Phase 2 additions (all opt-in):** `engine4/camera.ts` (lens in mm -> fov and blur; deterministic hand-held drift, applied by
+    SetWorld only for sets with `e4`), a new `truck` move, optional `fov` / `cInf` on `frame` and `closeUp`, `engine4/pacing.ts`
+    (visual-change rhythm target 1.5-2.0 s, flat card / graphic hold max 2.5 s; runs in `validate` only when `engine: 4`),
+    `npm run e4-pace -- <id>` (analytic camera metrics) and `scripts/e4_motion_check.py` (rendered-pixel metrics). Orbit, crane
+    and over-the-shoulder already existed. Impact shakes reuse `kicks` (7 frames, inside 5-10).
+  - **Two bugs found by the test clip:** (1) the room was only 4.2 m deep, so a 24 mm wide or 85 mm shot put the camera behind the
+    front wall (black frames): the room's front wall moved from z 1.8 to 3.6 (rebaked; `e4-pace` now fails any camera outside the
+    room); (2) N8AO placed before the lens passes replaced the depth buffer the lens blur reads, defocusing the subject: AO now runs
+    after the lens passes.

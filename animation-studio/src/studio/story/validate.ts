@@ -1,6 +1,7 @@
 // Storyboard validator (stage 1E, narration in stage 2): catches mistakes before any render time or voice credits are
 // spent, and checks vertical framing. It checks the narration-timed storyboard (story/timing.ts).
 // errors = the film would be wrong (unknown names, collisions, a subject's head out of frame); warnings = worth a look.
+import { paceOf } from "../engine4/pacing";
 import * as THREE from "three";
 import { SETS } from "../sets";
 import { LAYOUTS } from "../sets/layouts";
@@ -54,6 +55,7 @@ export const validate = (sb0: Storyboard, narr?: Narration): Report => {
   if (mood && !(mood in MOODS)) errors.push(`unknown music mood "${mood}" (moods: ${Object.keys(MOODS).join(", ")})`);
   const total = sb.shots.reduce((s, x) => s + (x.dur ?? 0), 0);
   if (!sb.shots.length) errors.push("no shots");
+  if (sb.engine === 4) { const pc = paceOf(sb); errors.push(...pc.errors); warnings.push(...pc.warnings); }   // Engine 4 pacing checks (opt-in)
   if (total < 10 || total > 75) warnings.push(`total length ${total.toFixed(1)} s (Shorts target 55-65 s)`);
   for (const [k, ref] of Object.entries(sb.cast)) if (typeof ref === "string" && !(ref in ROSTER)) errors.push(`cast "${k}": unknown character "${ref}" (characters: ${Object.keys(ROSTER).join(", ")}; or { extra: n }; search: npm run assets -- search <words>)`);
   sb.shots.forEach((s, i) => {
