@@ -15,10 +15,10 @@ no pull requests.
   GTA Ep 1 video is finished (`productions/gta-gf-1/`), and Ep 2 is on hold.
 - **First story:** The Friday Pizza, a screenplay awaiting the owner's approval (`productions/friday-pizza/screenplay.md`).
   Open point: it has two short flashbacks, and the new framework says zero.
-- **Engine 4:** Phases 1 (kitchen) and 2 (camera) are approved. **Phase 3 (acting + background life) is built**: `ActorSpec.keys`
-  (2-3 key poses per shot, `characters/acting.ts e4Track`), squash-and-stretch, attached held items, kettle steam and a flickering
-  pendant. The 5 s test clip is `productions/engine4-phase3/e4-acting-test.mp4` (540p, silent); **the owner reviews it before Phase 4.**
-  Before Phase 4, inspect and cite the exact audio and SFX pipeline files (CLAUDE.md audit gate). Plan: `docs/architecture/engine4-proposal.md`.
+- **Engine 4:** Phases 1 (kitchen), 2 (camera) and 3 (acting) are approved. **Phase 4 (audio, literal SFX, mobile format) is built**:
+  word-level SFX (`sound/lexicon.ts`, custom files in `animation-studio/assets/sfx/`), 8 dB ducking, viral captions, the 3D number
+  prop, clean-frame checks. The 15 s template (Phases 1-4, with audio) is `productions/engine4-phase4/e4-template.mp4` (540p);
+  **the owner reviews it before Phase 5 (the Friday Pizza production, after its flashbacks are rewritten as forward action).**
 - **Never poll GitHub Actions** (CLAUDE.md): give the run URL and stop.
 
 ## The channel in one paragraph

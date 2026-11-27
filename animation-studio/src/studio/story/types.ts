@@ -73,7 +73,7 @@ export type LinePause = { after: string; n?: number; s: number; cut?: number };
 export type LineContext = { before?: string; after?: string };
 /** sub (What Ollie Says at 3 A.M.): a translated subtitle shown for the whole line INSTEAD of its word captions (a line
  *  spoken in another language); "" shows nothing (the viewer isn't meant to understand yet). Not sent to the voice */
-export type Line = { text: string; who?: string; voice?: string; gap?: number; pauses?: LinePause[]; context?: LineContext; sub?: string };
+export type Line = { /** a dialogue punchline: the music ducks 8 dB under the whole line (Engine 4) */ punch?: boolean; text: string; who?: string; voice?: string; gap?: number; pauses?: LinePause[]; context?: LineContext; sub?: string };
 export type ActorSpec = {
   who: string;                // key into storyboard.cast
   at: Where;
@@ -201,7 +201,11 @@ export type Storyboard = {
   captions?: boolean;
   /** opt-in caption style (STUDY.md): "short" = 1-2 words at a time, centred 70 % down, ~58 px tall; translated /
    *  tagged lines (`sub`) are split into word chunks too instead of one long line */
-  captionStyle?: "short";
+  captionStyle?: "short" | "viral";
+  /** Engine 4: words the viral captions highlight in a pop colour (besides the lexicon's key nouns) */
+  captionKeys?: string[];
+  /** Engine 4: false = no automatic word-level SFX from the lexicon (sound/lexicon.ts); explicit `sfx` cues still play */
+  wordSfx?: boolean;
   /** opt-in (STUDY.md "never still"): every placed camera keeps pushing in, at least 12 % of the distance over its beat
    *  (~0.2 %/frame), so no shot holds a frozen frame */
   alive?: boolean;

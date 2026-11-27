@@ -1,0 +1,21 @@
+10 SFX cues in 15.0 s
+    0.91 s  clock_tick_six   MAJOR  on a word (0.79s)
+    2.16 s  shimmer_chime    MAJOR  on a word (2.16s)
+    4.66 s  plate_clink             on a word (4.66s)
+    5.91 s  whoosh_soft             on a word (5.87s)
+    7.51 s  box_thud         MAJOR  on a word (7.51s)
+    9.42 s  impact                  on a word (9.47s)
+   10.50 s  heartbeat               on a word (10.38s)
+   11.63 s  impact                  camera kick, shot 7
+   11.63 s  heartbeat               storyboard cue, shot 7
+   13.96 s  crowd_swell      MAJOR  on a word (13.96s)
+gaps between hits: mean 1.45 s, max 2.50 s; first hit at 0.91 s; last at 13.96 s; hits per 10 s: 6.7
+cues on a spoken word's timestamp: 8 of 10
+music level in the clear (no word, no duck span): -25.9 dBFS (stem); under every word: -29.1 dBFS; inside duck spans: -35.6 dBFS
+measured duck under spans: -9.8 dB vs the clear (target -8); under plain words: -3.2 dB (base duck -3)
+  duck span  9.42-11.17 s  (1.76 s) -> -8 dB
+  duck span 13.25-14.60 s  (1.35 s) -> -8 dB
+  duck span  0.86- 1.61 s  (0.75 s) -> -8 dB
+  duck span  2.11- 2.86 s  (0.75 s) -> -8 dB
+  duck span  7.46- 8.21 s  (0.75 s) -> -8 dB
+  duck span 13.91-14.66 s  (0.75 s) -> -8 dB

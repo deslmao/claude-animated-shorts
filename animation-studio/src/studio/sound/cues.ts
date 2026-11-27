@@ -15,10 +15,15 @@ import { norm } from "../voice/narration";
 import type { compile } from "../story/compile";
 import type { Storyboard, ActorSpec } from "../story/types";
 import { Mood, MOODS, SfxName, ambienceFor, stepFor, FX_SOUND } from "./catalog";
+import { wordCues } from "./lexicon";
 
 type Film = ReturnType<typeof compile>;
-export type Cue = { t: number; name: SfxName; gain_db?: number; pan?: number; why: string };
-export type SoundPlan = { file?: { file: string; duck?: number; curve?: [number, number][] }; sections: [Mood, number, number][] | null; button_t: number; drop_t?: number; musicGain: number; ambience: (string | null)[]; cues: Cue[]; mood: Mood | null; moodWhy: string };
+/** a catalogue sound, or the name of a custom file assets/sfx/<name>.mp3|wav (Engine 4) */
+export type CueName = SfxName | (string & {});
+export type Cue = { t: number; name: CueName; gain_db?: number; pan?: number; why: string; major?: boolean };
+export type SoundPlan = { file?: { file: string; duck?: number; curve?: [number, number][] }; sections: [Mood, number, number][] | null; button_t: number; drop_t?: number; musicGain: number; ambience: (string | null)[]; cues: Cue[]; mood: Mood | null; moodWhy: string;
+  /** Engine 4: spans [t0, t1] where the music ducks depth_db (under dialogue punchlines and major SFX hits) */
+  duck?: { spans: [number, number][]; depth_db: number } };
 
 const COMEDY = ["laugh", "happy", "excited", "dazed", "embarrassed", "facepalm", "thumbsUp", "hello"];
 const TENSION = ["scared", "shock", "nervous", "angry", "suspicious"];
@@ -142,13 +147,22 @@ export const soundPlan = (film: Film, sb0: Storyboard): SoundPlan => {
     }
     for (const x of s.sfx ?? []) cues.push({ t: T0 + (x.t ?? 0), name: x.name, gain_db: x.gain, pan: panOf(x.on, x.t ?? 0), why: `storyboard cue, shot ${i + 1}` });
   });
+  // Engine 4 (opt-in): word-level SFX from the lexicon on the words' own timestamps, and the 8 dB duck spans
+  let duck: SoundPlan["duck"];
+  if (sb.engine === 4) {
+    if (sb.wordSfx !== false) for (const c of wordCues(film.timing.lines.flatMap((l) => l.words))) cues.push({ t: c.t, name: c.name, gain_db: c.gain_db, major: c.major, why: `${c.why}` });
+    const spans: [number, number][] = [];
+    for (const l of film.timing.lines) if (l.punch && l.words.length) spans.push([l.words[0].t0 - 0.05, l.words[l.words.length - 1].t1 + 0.2]);
+    for (const c of cues) if (c.major) spans.push([c.t - 0.05, c.t + 0.7]);
+    duck = { spans, depth_db: -8 };
+  }
   // the same sound twice within 120 ms is one sound
   cues.sort((a, b) => a.t - b.t);
   const dedup = cues.filter((c, k) => !cues.slice(0, k).some((d) => d.name === c.name && Math.abs(d.t - c.t) < 0.12));
   // a music drop-out before the punchline: from the end of the named word (n-th occurrence in the whole narration)
   const dw = sb.musicDrop ? words.filter((w) => norm(w.w) === norm(sb.musicDrop!.word))[(sb.musicDrop.n ?? 1) - 1] : undefined;
   const file = sb0.music && typeof sb0.music === "object" && "file" in sb0.music ? { file: sb0.music.file, ...(sb0.music.duck !== undefined ? { duck: sb0.music.duck } : {}), ...(sb0.music.curve ? { curve: sb0.music.curve } : {}) } : undefined;
-  return { ...(file ? { file } : {}), sections, button_t: last ? last.t0 : film.total / FPS - 1, ...(dw ? { drop_t: dw.t1 } : {}), musicGain: gain, ambience, cues: dedup, mood, moodWhy: why };
+  return { ...(file ? { file } : {}), sections, button_t: last ? last.t0 : film.total / FPS - 1, ...(dw ? { drop_t: dw.t1 } : {}), musicGain: gain, ambience, cues: dedup, mood, moodWhy: why, ...(duck ? { duck } : {}) };
 };
 
 export const MOOD_NAMES = Object.keys(MOODS) as Mood[];

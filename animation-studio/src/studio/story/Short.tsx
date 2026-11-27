@@ -18,14 +18,15 @@ import { PRELOADS } from "../look/preload";
 const load = () => (PRELOADS.length ? Promise.all(PRELOADS).then(() => true) : Promise.resolve(true));
 export const makeShort = (sb: Storyboard, narr?: Narration) => {
   const film = compile(sb, narr);
-  const groups = sb.captions === false ? [] : placeCaptions(film, captionGroups(film.timing.lines, film.total, sb.captionStyle));
+  const raw = sb.captions === false ? [] : captionGroups(film.timing.lines, film.total, sb.captionStyle, sb.captionKeys);
+  const groups = sb.captionStyle === "viral" ? raw : placeCaptions(film, raw);   // the viral style sits at one fixed height in the mobile safe zone
   const titles: TitleCard[] = sb.shots.flatMap((s, k) => (s.title && film.shots[k] ? [{ f0: film.shots[k].a, f1: film.shots[k].b, ...s.title }] : []));
   const makeWorld = () => new SetWorld(film.shots, film.director, { clearShots: true, stable: (sb.engine ?? 1) >= 2 });
   const Comp: React.FC = () => (
     <AbsoluteFill>
       <StudioFilm timeline={film.timeline} makeWorld={makeWorld} load={load} />
       {titles.length ? <TitleCards cards={titles} /> : null}
-      {groups.length ? <Captions groups={groups} colors={sb.captionColors} /> : null}
+      {groups.length ? <Captions groups={groups} colors={sb.captionColors} viral={sb.captionStyle === "viral"} /> : null}
     </AbsoluteFill>
   );
   Comp.displayName = `Short-${sb.id}`;

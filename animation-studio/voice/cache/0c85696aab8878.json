@@ -1,0 +1,45 @@
+{
+ "hash": "0c85696aab8878",
+ "text": "Maya... did you order this?",
+ "voice": "bfMum",
+ "lead": 0,
+ "end": 1.672,
+ "dur": 1.697959,
+ "words": [
+  {
+   "w": "Maya...",
+   "t0": 0,
+   "t1": 0.615
+  },
+  {
+   "w": "did",
+   "t0": 0.743,
+   "t1": 0.882
+  },
+  {
+   "w": "you",
+   "t0": 0.917,
+   "t1": 0.987
+  },
+  {
+   "w": "order",
+   "t0": 1.033,
+   "t1": 1.196
+  },
+  {
+   "w": "this?",
+   "t0": 1.242,
+   "t1": 1.672
+  }
+ ],
+ "voiceId": "hpp4J3VqNfWAUOO0d1Us",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-27T07:21:35.131Z"
+}

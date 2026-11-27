@@ -4,6 +4,7 @@
 import "./lib/dom-stub";
 declare const process: { argv: string[]; exit(n: number): never };
 import { STORIES } from "../src/studio/stories";
+import { NARRATION } from "../src/studio/stories/voice";
 import { validate } from "../src/studio/story/validate";
 import { compile } from "../src/studio/story/compile";
 import { paceOf } from "../src/studio/engine4/pacing";
@@ -14,7 +15,7 @@ import { runKeys, withKick, kickAt } from "../src/studio/camera/keys";
 const id = process.argv[2], found = STORIES.find((s) => s.id === id);
 if (!found) { console.error("usage: npm run e4-pace -- <storyId>"); process.exit(1); }
 const sb = found!;
-const r = validate(sb), film = compile(sb), pc = paceOf(sb), FPS = 30;
+const r = validate(sb, NARRATION[sb.id]), film = compile(sb, NARRATION[sb.id]), pc = paceOf(film.timing.sb), FPS = 30;
 console.log(`${sb.id}: ${film.total} frames, ${(film.total / FPS).toFixed(2)} s, engine ${sb.engine}`);
 for (const e of r.errors) console.log("  ERROR  ", e);
 for (const w of r.warnings) console.log("  warning", w);

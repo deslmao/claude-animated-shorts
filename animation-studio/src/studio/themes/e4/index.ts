@@ -3,11 +3,17 @@
 import type { Theme } from "..";
 import type { SetDef } from "../../sets/types";
 import { buildE4Kitchen, SPOTS, VIEWS } from "../../engine4/kitchen";
+import { numberRig } from "../../engine4/number";
 
 const e4Kitchen: SetDef = { id: "e4Kitchen", title: "Maya's kitchen (Engine 4): a PBR room, baked bounce light, a warm pendant lamp over the table and a cool dusk window", lights: ["interior"], build: () => buildE4Kitchen() };
 
 export const E4_THEME: Theme = {
   id: "e4", name: "Engine 4 sets", desc: "Unified PBR sets built in Blender with baked lightmaps and live lights (opt-in, engine: 4)", tags: ["engine4", "pbr", "blender"],
+  props: {
+    e4Number: { name: "3D number (Engine 4)", desc: "oversized extruded 3D text lit by the room (variant = the text, 1-8 characters, e.g. 6:00); pops in on its first step, then floats; 0.5 m tall x scale, centred on `at` (its base). Use instead of a flat framed infographic", category: "theme", themes: ["engine4"], tags: ["number", "text", "3d", "infographic"], radius: 0.6, height: 0.5,
+      build: () => undefined, rig: (a, v) => numberRig(a, v ?? "6:00"), steps: ["pops in"], stepCount: () => 1,
+      param: { desc: "the text to show (1-8 letters, digits, : . ! ? % $ + -)", ok: (v: string) => /^[A-Za-z0-9:.!?%$+\- ]{1,8}$/.test(v) } },
+  },
   sets: { e4Kitchen },
   layouts: { e4Kitchen: { spots: SPOTS, views: VIEWS, ceiling: 2.7 } },
   setMeta: { e4Kitchen: { name: "Maya's kitchen (Engine 4)", desc: "4.4 x 6.0 m (z -2.4..3.6), back wall z -2.4 with a window (x -0.7..0.7, y 1.05..2.15) over the sink, counter run along the back wall (x -2.2..1.2, kettle x -1.55, toaster x -0.95, cutting board x 0.82), fridge x 1.3..2.1, table centre (0.35, -0.3) with three chairs and a pendant lamp over it at y 1.72. Spots a (counter), b (table front), c (fridge), d", themes: ["home", "everyday"], tags: ["kitchen", "engine4", "pbr", "pendant lamp"] } },

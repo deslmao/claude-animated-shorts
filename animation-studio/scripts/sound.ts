@@ -42,6 +42,7 @@ const job = {
   shots: film.shots.map((s, i) => ({ t0: s.a / 30, t1: s.b / 30, ambience: plan.ambience[i] })),
   music: plan.file ? { file: plan.file.file, gain_db: plan.musicGain, ...(plan.file.duck !== undefined ? { duck_db: plan.file.duck } : {}), ...(plan.file.curve ? { curve: plan.file.curve } : {}) } : plan.sections ? { sections: plan.sections, button_t: plan.button_t, gain_db: plan.musicGain, ...(plan.drop_t !== undefined ? { drop_t: plan.drop_t } : {}) } : null,
   cues: plan.cues,
+  ...(plan.duck ? { duck: plan.duck } : {}),
   out: `audio/${comp}.mp3`, info: `audio/${comp}.json`, cuesheet: `audio/${comp}.cues.md`,
 };
 fs.mkdirSync("out/sound", { recursive: true });

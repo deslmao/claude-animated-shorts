@@ -1,0 +1,3 @@
+451 frames, 450 transitions; cuts at frames [57, 111, 133, 134, 137, 143, 174, 217, 282, 307, 308, 311, 317, 346, 397]
+identical to previous: 0 (0.0 %)   almost static: 24 (5.3 %)   moving: 411 (91.3 %)
+mean diff 3.73, min 0.24, max 19.69, largest non-cut jump at frame 144

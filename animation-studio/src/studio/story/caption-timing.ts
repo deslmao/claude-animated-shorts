@@ -5,16 +5,21 @@ import type { Placed } from "./timing";
 
 /** y = caption centre height as a fraction of the frame (set by caption-place.ts; default lower-middle) */
 /** sub = a translated subtitle (a whole sentence, wrapped, smaller) */
-export type CaptionGroup = { f0: number; f1: number; text: string; who: string; y?: number; sub?: boolean; voice?: string; short?: boolean };
+export type CaptionGroup = { f0: number; f1: number; text: string; who: string; y?: number; sub?: boolean; voice?: string; short?: boolean;
+  /** Engine 4 viral style: the words of `text` (by index) to show in a pop colour, and the colour of each */ hi?: Record<number, string> };
+/** the pop colours of the viral captions, in turn: yellow, cyan, pink */
+export const POP = ["#ffe14d", "#4de3ff", "#ff5fb0"];
 
+import { LEXICON, norm } from "../sound/lexicon";
+const isKey = (w: string, keys: string[]) => !!LEXICON[norm(w)]?.key || keys.some((k) => norm(k) === norm(w));
 const FPS = 30;
 const MAX_WORDS = 3, MAX_CHARS = 14, BREAK_GAP = 0.3, HIDE_GAP = 0.6;
 const ends = (w: string) => /[.!?;:…—,]["')\]]*$/.test(w);
 /** words as shown: keep ? ! and apostrophes, drop trailing commas / full stops (they read as noise on screen) */
 const shown = (w: string) => w.replace(/[.,;:…]+(["')\]]*)$/, "$1").replace(/^["'(]+|["')]+$/g, "");
 
-export const captionGroups = (lines: Placed[], total: number, style?: "short"): CaptionGroup[] => {
-  const short = style === "short", MAXW = short ? 2 : MAX_WORDS, MAXC = short ? 12 : MAX_CHARS;
+export const captionGroups = (lines: Placed[], total: number, style?: "short" | "viral", keys: string[] = []): CaptionGroup[] => {
+  const short = style === "short", viral = style === "viral", MAXW = short ? 2 : MAX_WORDS, MAXC = short ? 12 : viral ? 13 : MAX_CHARS;
   // short style: a sub line's words are spread evenly over the spoken span, then chunked like any other words
   const subWords = (l: Placed) => { const ws = l.sub!.split(/\s+/).filter(Boolean), t0 = l.words[0].t0, t1 = l.words[l.words.length - 1].t1, d = (t1 - t0) / ws.length;
     return ws.map((w, i) => ({ ...l.words[0], w, t0: t0 + i * d, t1: t0 + (i + 1) * d - 0.02, who: l.who, voice: l.voice })); };
@@ -28,12 +33,15 @@ export const captionGroups = (lines: Placed[], total: number, style?: "short"): 
     const join = g && prev && g.ws.length < MAXW && len <= MAXC && !ends(prev.w) && w.t0 - prev.t1 < BREAK_GAP && w.who === prev.who && w.voice === prev.voice;
     if (join) g.ws.push(w); else groups.push({ ws: [w] });
   }
+  let popN = 0;
   const out = groups.map((g, k) => {
     const first = g.ws[0], last = g.ws[g.ws.length - 1], next = groups[k + 1]?.ws[0];
     const f0 = Math.max(0, Math.round(first.t0 * FPS) - 1);                       // on screen a frame before the word
     const hold = Math.round((last.t1 + 0.25) * FPS);
     const f1 = next ? (next.t0 - last.t1 > HIDE_GAP ? hold : Math.max(f0 + 2, Math.round(next.t0 * FPS) - 1)) : Math.min(total, Math.round((last.t1 + 0.4) * FPS));
-    return { f0, f1: Math.max(f0 + 2, f1), text: g.ws.map((x) => shown(x.w)).join(" "), who: first.who, voice: first.voice, ...(short ? { short: true } : {}) } as CaptionGroup;
+    const grp = { f0, f1: Math.max(f0 + 2, f1), text: g.ws.map((x) => shown(x.w)).join(" "), who: first.who, voice: first.voice, ...(short ? { short: true } : {}) } as CaptionGroup;
+    if (viral) { const hi: Record<number, string> = {}; g.ws.forEach((x, j) => { if (isKey(x.w, keys)) hi[j] = POP[popN++ % POP.length]; }); if (Object.keys(hi).length) grp.hi = hi; }
+    return grp;
   });
   return [...out, ...subs].sort((p, q) => p.f0 - q.f0);
 };

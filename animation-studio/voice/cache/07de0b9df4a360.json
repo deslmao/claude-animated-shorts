@@ -1,0 +1,30 @@
+{
+ "hash": "07de0b9df4a360",
+ "text": "But tonight,",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 1.022,
+ "dur": 1.07102,
+ "words": [
+  {
+   "w": "But",
+   "t0": 0,
+   "t1": 0.197
+  },
+  {
+   "w": "tonight,",
+   "t0": 0.232,
+   "t1": 1.022
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-27T07:21:34.062Z"
+}

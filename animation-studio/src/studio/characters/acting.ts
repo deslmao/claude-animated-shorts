@@ -107,13 +107,8 @@ export const speak = (t: number, words: { w: string; t0: number; t1: number }[],
 //   squash and stretch on every pose change: a stretch while the pose leaves, a squash as it lands, a damped wobble after
 // All pure functions of time, so chunked renders match.
 // ================================================================================================================
-/** fast-out slow-in with a small overshoot that settles: 0 at u 0, ~1.05 near u 0.62, 1 at u 1 (a back-ease-out) */
-export const easeSnap = (u: number, over = 1.0): number => {
-  if (u <= 0) return 0; if (u >= 1) return 1;
-  const x = u - 1, c = 1.15 * over;
-  return 1 + (c + 1) * x * x * x + c * x * x;
-};
-
+export { easeSnap } from "../engine4/ease";
+import { easeSnap } from "../engine4/ease";
 /** one keyframed pose: the numeric fields ease from the previous key; face and gesture switch part-way through the move */
 export type E4Key = {
   t: number;                                    // seconds into the shot the move STARTS

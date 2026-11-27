@@ -294,3 +294,19 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
     held item is drawn in the hand's own frame, turned with the forearm and the hand's momentum; faces still swap discretely a third of the
     way into a move (the body eases continuously); a full-body lean toward the camera is not drawable on a 2D card, so lean = sideways tilt
     and slump = lowered shoulders + head + a lower card.
+
+- **27 Nov 2026: Engine 4 Phase 4 (audio, literal SFX, mobile format) built; stopped for the owner's review of the 15 s template.**
+  - **Audit gate (cited before any edit):** audio `sound/cues.ts` (`soundPlan`: cues from the picture), `sound/catalog.ts` (SFX names),
+    `scripts/sound.ts` (plan -> job JSON), `sound/build.py` (mix: `duck_curve` under every word, SFX placement, mastering), recorded
+    samples `sound/samples.py` + `sound/samples_fetch.py` (ElevenLabs); captions `story/Captions.tsx` (render), `story/caption-timing.ts`
+    (groups), `story/caption-place.ts` (face-avoiding height), `story/Short.tsx` (wiring); narration `scripts/voice.ts` + `story/timing.ts`.
+  - **Word-level SFX:** `sound/lexicon.ts` maps concrete nouns and actions to sounds on the word's own timestamp (only for `engine: 4`);
+    custom files `assets/sfx/<name>.mp3|wav` (made with `python3 sound/sfx_fetch.py`, ElevenLabs) load in `sound/build.py` and win over a
+    catalogue sound of the same name. **Ducking:** a `duck` plan (-8 dB total under dialogue punchlines (`Line.punch`) and major SFX
+    hits) is applied by `apply_duck`; storyboards without it get the old math (breakfast-2 rebuilt byte-identical).
+  - **Viral captions:** `captionStyle: "viral"`: 106 px (5.5 % of 1920), stroke 0.2 x size plus a hard shadow, centred at 66 % height,
+    1-3 words (13 chars), key nouns in yellow / cyan / pink (lexicon keys + `captionKeys`). **3D numbers:** prop `e4Number` (extruded
+    Helvetiker bold, PBR, casts a shadow, pops in with the snap easing). **Clean frame:** `validate` errors on any title card / banner and
+    on a long end CTA for engine 4.
+  - **Two fixes the template exposed:** an import cycle (a theme module imported the character library: easing moved to `engine4/ease.ts`);
+    the 3D number first stood on the counter outside the lamp's cone (unlit): it stands on the table under the lamp.

@@ -55,7 +55,14 @@ export const validate = (sb0: Storyboard, narr?: Narration): Report => {
   if (mood && !(mood in MOODS)) errors.push(`unknown music mood "${mood}" (moods: ${Object.keys(MOODS).join(", ")})`);
   const total = sb.shots.reduce((s, x) => s + (x.dur ?? 0), 0);
   if (!sb.shots.length) errors.push("no shots");
-  if (sb.engine === 4) { const pc = paceOf(sb); errors.push(...pc.errors); warnings.push(...pc.warnings); }   // Engine 4 pacing checks (opt-in)
+  if (sb.engine === 4) {
+    const pc = paceOf(sb); errors.push(...pc.errors); warnings.push(...pc.warnings);
+    // clean frame (CLAUDE.md format system): no intro title card, no top banner, no long end-screen call to action
+    sb.shots.forEach((s, i) => { if (s.title) errors.push(`clean frame: shot ${i + 1} has a title card / banner (Engine 4 opens in medias res: no title cards, no banners)`); });
+    const lastLine = tm.lines[tm.lines.length - 1];
+    if (lastLine && /\b(follow|subscribe|like|comment|share|link in bio)\b/i.test(lastLine.text) && lastLine.end - lastLine.start > 1.0) errors.push(`clean frame: the last line looks like an end-screen call to action (${(lastLine.end - lastLine.start).toFixed(1)} s; only a 1 s line built into the story is allowed)`);
+    if (sb.captionStyle && sb.captionStyle !== "viral" && sb.captions !== false) warnings.push("Engine 4 captions should use captionStyle: \"viral\" (5.5 % of the frame height, pop-colour key nouns)");
+  }   // Engine 4 pacing checks (opt-in)
   if (total < 10 || total > 75) warnings.push(`total length ${total.toFixed(1)} s (Shorts target 55-65 s)`);
   for (const [k, ref] of Object.entries(sb.cast)) if (typeof ref === "string" && !(ref in ROSTER)) errors.push(`cast "${k}": unknown character "${ref}" (characters: ${Object.keys(ROSTER).join(", ")}; or { extra: n }; search: npm run assets -- search <words>)`);
   sb.shots.forEach((s, i) => {

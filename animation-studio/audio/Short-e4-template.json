@@ -1,0 +1,17 @@
+{
+ "composition": "Short-e4-template",
+ "fingerprint": "08ec5b4d89086c",
+ "engine": "sound-2",
+ "frames": 451,
+ "seconds": 15.033333333333333,
+ "lines": 7,
+ "lufs": -14.2,
+ "truePeak": -1.8,
+ "stems": {
+  "voice_lufs": -19.13,
+  "music_vs_voice_lu": -10.0,
+  "ambience_vs_voice_lu": -19.99,
+  "sfx_cues": 10
+ },
+ "built": "2026-11-27T07:26:41Z"
+}

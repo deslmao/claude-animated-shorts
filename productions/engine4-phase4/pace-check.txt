@@ -1,0 +1,14 @@
+> esbuild scripts/e4-pace.ts --bundle --platform=node --format=esm --outfile=out/e4-pace.mjs --log-level=warning && node out/e4-pace.mjs e4-template
+
+e4-template: 451 frames, 15.03 s, engine 4
+pacing: 8 visual changes at 0.00, 1.90, 3.70, 5.80, 7.23, 9.40, 11.53, 13.23 s; average every 1.88 s (target 1.5-2.0); longest hold 2.17 s (shot 5); flat-card holds over 2.5 s: 0
+  shot 1  frames 0-56  lens 24->24 mm  blur 0.0px  speed mean 0.538 max 0.990 m/s  aim max 16.1 deg/s  hand-held on  shake frames 0
+  shot 2  frames 57-110  lens 40->40 mm  blur 4.0px  speed mean 0.034 max 0.059 m/s  aim max 0.4 deg/s  hand-held on  shake frames 0
+  shot 3  frames 111-173  lens 50->50 mm  blur 6.0px  speed mean 0.202 max 0.218 m/s  aim max 0.5 deg/s  hand-held on  shake frames 0
+  shot 4  frames 174-216  lens 33->33 mm  blur 10.0px  speed mean 1.532 max 1.566 m/s  aim max 22.9 deg/s  hand-held on  shake frames 0
+  shot 5  frames 217-281  lens 28->28 mm  blur 1.0px  speed mean 0.421 max 0.780 m/s  aim max 11.1 deg/s  hand-held on  shake frames 0
+  shot 6  frames 282-345  lens 85->85 mm  blur 16.0px  speed mean 0.335 max 0.362 m/s  aim max 2.6 deg/s  hand-held on  shake frames 7 (peak aim 3 deg/s)
+  shot 7  frames 346-396  lens 35->35 mm  blur 3.0px  speed mean 0.189 max 0.198 m/s  aim max 5.7 deg/s  hand-held on  shake frames 7 (peak aim 6 deg/s)
+  shot 8  frames 397-450  lens 33->33 mm  blur 10.0px  speed mean 1.150 max 1.182 m/s  aim max 17.3 deg/s  hand-held on  shake frames 0
+frozen camera frames (no position, aim, lens or roll change): 0 of 451
+camera frames outside the room: 0

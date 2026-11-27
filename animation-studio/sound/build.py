@@ -39,6 +39,17 @@ SFX_REL = {"step_hard": -17, "step_stone": -17, "step_floor": -17, "step_grass":
            "claw_ticks": -15, "dog_breath": -15, "dog_sigh": -14, "tag_jingle": -16, "heartbeat": -11,
            "bus_doors": -11, "air_brake": -12, "bus_pullaway": -14, "glass_slap": -6, "indicator": -17, "monitor_beep": -16, "monitor_flat": -15, "radio_squelch": -14, "breath_fast": -13}  # race day 1904 (Video 04)  # tickle-revision effects: subtle, under the voice
 SFX_DEFAULT = -10
+# custom SFX (Engine 4, Phase 4): assets/sfx/<name>.mp3|wav (generated with sound/sfx_fetch.py). A custom file wins over a catalogue sound of the same name.
+CUSTOM_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "assets", "sfx")
+CUSTOM_REL = {"heartbeat": -12, "shimmer_chime": -11, "crowd_swell": -13, "whoosh_soft": -13, "box_thud": -8, "plate_clink": -12, "clock_tick_six": -13}
+
+
+def custom_file(name):
+    for ext in ("mp3", "wav"):
+        p = os.path.join(CUSTOM_DIR, f"{name}.{ext}")
+        if os.path.exists(p):
+            return p
+    return None
 
 
 def log(*a):
@@ -73,8 +84,8 @@ def lu(x):
     return v if np.isfinite(v) else -99.0
 
 
-def duck_curve(words, n, depth_db):
-    """gain curve: depth_db while words are spoken (50 ms attack before a word, 250 ms release after)"""
+def duck_g(words, n):
+    """0..1 envelope: 1 while words are spoken (50 ms attack before a word, 250 ms release after)"""
     g = np.zeros(n)
     for t0, t1 in words:
         a, b = max(0, ns(t0 - 0.05)), min(n, ns(t1 + 0.25))
@@ -82,7 +93,27 @@ def duck_curve(words, n, depth_db):
     k = ns(0.08)
     if k > 1:
         g = np.convolve(g, np.ones(k) / k, mode="same")
-    return dbg(depth_db * g)
+    return g
+
+
+def duck_curve(words, n, depth_db):
+    """gain curve: depth_db while words are spoken"""
+    return dbg(depth_db * duck_g(words, n))
+
+
+def apply_duck(music, P, depth_db):
+    """the music's duck: depth_db (a few dB) under every spoken word; with an Engine 4 plan the music ducks 8 dB (the plan's depth) under the
+    spans of dialogue punchlines and major SFX hits (the deeper of the two applies, so they never stack)"""
+    n = music.shape[1]
+    db = depth_db * duck_g(P["words"], n)
+    if P.get("duck"):
+        d = P["duck"]; m = np.zeros(n)
+        for a, b in d["spans"]:
+            m[max(0, ns(a)):min(n, ns(b))] = 1.0
+        k = ns(0.06)
+        m = np.convolve(m, np.ones(k) / k, mode="same")
+        db = np.minimum(db, d["depth_db"] * m)
+    return music * dbg(db)[None, :]
 
 
 def main(plan_path):
@@ -114,7 +145,7 @@ def main(plan_path):
         if mu.get("curve"):  # a volume curve over the score (dB at times, linear between): its silences and swells
             ts, dbs = zip(*mu["curve"])
             music *= dbg(np.interp(np.arange(N) / SR, ts, dbs))[None, :]
-        music *= duck_curve(P["words"], N, mu.get("duck_db", DUCK_DB))[None, :]
+        music = apply_duck(music, P, mu.get("duck_db", DUCK_DB))
         music *= dbg(Lv + MUSIC_REL + mu.get("gain_db", 0.0) - lu(music))
         cues.append((0.0, f"music: score {mu['file']}"))
         log(f"music: score {mu['file']} ({x.shape[1] / SR:.1f} s) -> {lu(music) - Lv:+.1f} LU vs voice")
@@ -122,7 +153,7 @@ def main(plan_path):
         mu = P["music"]
         music, mcues = M.compose([tuple(s) for s in mu["sections"]], total, mu["button_t"], seed, **({"drop_t": mu["drop_t"]} if "drop_t" in mu else {}))
         music = music[:, :N]
-        music *= duck_curve(P["words"], N, DUCK_DB)[None, :]
+        music = apply_duck(music, P, DUCK_DB)
         music *= dbg(Lv + MUSIC_REL + mu.get("gain_db", 0.0) - lu(music))
         cues += mcues
         log(f"music: {', '.join(s[0] for s in mu['sections'])} -> {lu(music) - Lv:+.1f} LU vs voice")
@@ -150,15 +181,16 @@ def main(plan_path):
     # ---------------- effects
     sfx = np.zeros((2, N))
     for i, c in enumerate(P["cues"]):
-        if c["name"] not in SFX:
-            raise SystemExit(f"unknown sound effect {c['name']}")
-        x = np.asarray(SFX[c["name"]](rng(seed * 1009 + i)), float)
+        cf = custom_file(c["name"])
+        if cf is None and c["name"] not in SFX:
+            raise SystemExit(f"unknown sound effect {c['name']} (not in the catalogue and no assets/sfx/{c['name']}.mp3|wav)")
+        x = decode(cf) if cf else np.asarray(SFX[c["name"]](rng(seed * 1009 + i)), float)
         wide = c["name"] in STEREO and x.ndim == 2   # a stereo sample (riser, boom) stays wide and unpanned
         x = x if x.ndim == 1 or wide else x.mean(0)
         x = fades(x, 0.001, 0.01)
         mm = momentary_max(x)
         if np.isfinite(mm):
-            x = x * dbg(Lv + SFX_REL.get(c["name"], SAMPLE_LEVEL.get(c["name"], SFX_DEFAULT)) + c.get("gain_db", 0.0) - mm)
+            x = x * dbg(Lv + (CUSTOM_REL.get(c["name"], SFX_DEFAULT) if cf else SFX_REL.get(c["name"], SAMPLE_LEVEL.get(c["name"], SFX_DEFAULT))) + c.get("gain_db", 0.0) - mm)
         place(sfx, x if wide else pan(x, float(np.clip(c.get("pan", 0.0), -0.8, 0.8))), max(0.0, c["t"]))
         cues.append((c["t"], f"sfx {c['name']}: {c.get('why', '')}"))
     # ---------------- mix + master

@@ -1,0 +1,35 @@
+{
+ "hash": "16246d4defcb4d",
+ "text": "the pizza comes.",
+ "voice": "georgeHushed",
+ "lead": 0,
+ "end": 1.254,
+ "dur": 1.28,
+ "words": [
+  {
+   "w": "the",
+   "t0": 0,
+   "t1": 0.151
+  },
+  {
+   "w": "pizza",
+   "t0": 0.197,
+   "t1": 0.476
+  },
+  {
+   "w": "comes.",
+   "t0": 0.534,
+   "t1": 1.254
+  }
+ ],
+ "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.6,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "created": "2026-11-27T07:21:33.001Z"
+}
