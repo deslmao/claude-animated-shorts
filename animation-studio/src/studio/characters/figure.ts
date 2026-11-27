@@ -171,7 +171,7 @@ const mouth3 = (p: Pen, kind: Mouth3, mx: number, my: number, u: number, k = 1) 
   }
 };
 
-type FaceOpts = { browCol: string; browK: number; quirk: number; shockK: number; glasses?: Look["glasses"]; moustache?: Look["moustache"]; beard?: Look["beard"]; eyepatch?: Look["eyepatch"]; lashes?: Look["lashes"]; blush?: Look["blush"] };
+type FaceOpts = { browCol: string; browK: number; quirk: number; shockK: number; glasses?: Look["glasses"]; moustache?: Look["moustache"]; beard?: Look["beard"]; eyepatch?: Look["eyepatch"]; lashes?: Look["lashes"]; blush?: Look["blush"] ; browMod?: [number, number, number]};
 const LASHLESS = new Set<string>(["closed", "up", "dash", "squeeze", "happy"]);
 /** two lash flicks off the outer top of an open eye (side = which way is outward) */
 const lashes3 = (p: Pen, x: number, ey: number, u: number, side: number, round: boolean, col: string) => {
@@ -196,7 +196,9 @@ const faceFront3 = (p: Pen, cx: number, cy: number, W: number, expr: Expr, facin
     eye3(p, kind, x, ey, u, side, gaze, skin, fo.shockK);
     if (fo.lashes && !LASHLESS.has(kind)) lashes3(p, x, ey, u, side, isRound(kind), fo.lashes === true ? INK : fo.lashes);
     eyes.push(x);
-    const [dI, dO] = F.brow[front ? 1 : 0], by = ey - 20 * u - (front ? fo.quirk : 0) * u - (isRound(kind) ? 3 * u : 0);
+    let [dI, dO] = F.brow[front ? 1 : 0], by = ey - 20 * u - (front ? fo.quirk : 0) * u - (isRound(kind) ? 3 * u : 0);
+    // Engine 4 eyebrow acting (pose.brow): [lift (+ = down), inner tilt (+ = angry), extra raise of the facing-side brow] in u
+    if (fo.browMod) { by += fo.browMod[0] * u - (front ? fo.browMod[2] : 0) * u; dI += fo.browMod[1]; dO -= 0.4 * fo.browMod[1]; }
     const bw = 5 * u * fo.browK;
     if (kind === "shock" || kind === "shockHalf") p.arc(x, by - 4 * u, 9 * u, 3 * u, 200, 340, 4 * u * fo.browK, fo.browCol);
     else taper(p, [x - side * 8.5 * u, by + dI * u], [x + side * 8.5 * u, by + dO * u], bw, bw / 2, fo.browCol);
@@ -509,6 +511,15 @@ export type Pose = {
   blend?: { from: Pose; k: number };
   /** seen from behind (over-the-shoulder shots, walking away): no face, hair covers the back of the head */
   back?: boolean;
+  /** ---- Engine 4 acting (characters/acting.ts e4Track; opt-in, every field is ignored unless set, so engines 1-3 draw as before) ---- */
+  /** e4: the engine 4 drawing rules (a gesture blend may overshoot; a held item turns with the forearm) */
+  e4?: boolean;
+  /** a fractional turn toward a side, -1..1 (facing takes only -1, 0, 1): the features and body slide part-way */
+  turn?: number;
+  /** eyebrow acting [lift (+ = down), inner tilt (+ = angry, - = worried), extra raise of the facing-side brow] in head units */
+  brow?: [number, number, number];
+  /** extra swing of the held item about the hand, degrees (momentum when the hand moves fast) */
+  propTilt?: number;
 };
 
 const armColOf = (c: string) => {
@@ -520,7 +531,8 @@ const armColOf = (c: string) => {
 /** the front view's rig: every position figureFront draws from (body, head, arms and hands in design units), for a
  *  look + pose. Pure, and shared by the drawing and by anchorsFront (heads and hands for effects, contact and checks). */
 export const rigFront = (L: Look, pose: Pose) => {
-  const { expr = "neutral", gesture = "hang", mode = "stand", phase = 0, facing = 0, look = [0, 0], blink = false, tilt = 0, headTilt = 0,
+  const facing: number = pose.turn ?? pose.facing ?? 0;
+  const { expr = "neutral", gesture = "hang", mode = "stand", phase = 0, look = [0, 0], blink = false, tilt = 0, headTilt = 0,
     shrug = 0, jump = 0, t = 0, light = DEF_LIGHT } = pose;
   const back = !!pose.back;
   const hs = pose.hand ?? 1;
@@ -644,7 +656,7 @@ export const rigFront = (L: Look, pose: Pose) => {
     if (k >= 0) arms[k] = bent; else arms.push(bent);
   }
   // gesture easing: each arm moves part-way from where the earlier pose had the arm on the same side
-  if (pose.blend && pose.blend.k < 1) {
+  if (pose.blend && (pose.e4 ? pose.blend.k !== 1 : pose.blend.k < 1)) {   // engine 4: k may overshoot 1 (a settle past the pose)
     const from = rigFront(L, pose.blend.from).arms, k = pose.blend.k; // the earlier pose may itself be mid-blend
     const sideOf = (a: ArmDef) => Math.sign(a.pts[0][0] - tcx) || 1;
     for (const arm of arms) {
@@ -827,7 +839,18 @@ export const figureFront = (p: Pen, L: Look, pose: Pose) => {
     const hold = arms.find((a) => Math.sign(a.pts[0][0] - tcx) === hs && a.hand !== "dot") ?? arms.find((a) => Math.sign(a.pts[0][0] - tcx) === hs);
     if (g === "read") { ITEMS[pose.hold].draw(p, tcx, chin + 0.66 * HH, u, hs); for (const a of arms) drawHand(a); } // held open in both hands
     // an item held out to someone (offer) or written with (write) is drawn larger, so the handed-over thing reads
-    else if (hold) { ITEMS[pose.hold].draw(p, hold.pts[2][0], hold.pts[2][1], u * (g === "offer" ? 1.5 : g === "write" ? 1.3 : 1), hs); if (hold.layer === 0) drawArm(hold); else drawHand(hold); } // fingers over the item
+    else if (hold) {
+      const hx = hold.pts[2][0], hy = hold.pts[2][1];
+      if (pose.e4) {
+        // Engine 4: the item is part of the hand. It turns about the hand with the forearm (elbow -> hand) and with the hand's momentum,
+        // composed with the body lean, so it never floats beside the fist
+        const fa = Math.atan2((hx - hold.pts[1][0]) * hs, -(hy - hold.pts[1][1])), want = Math.max(-0.6, Math.min(0.6, 0.4 * (fa + 0.73))) + rad(pose.propTilt ?? 0);
+        const Q = rad(A) + want, hb: P2 = [hx, hy], [rx, ry] = A ? rotAbout(hb, rad(A), [300, hipY]) : hb;
+        p.rot = [Q, hx, hy, rx - hx, ry - hy];
+      }
+      ITEMS[pose.hold].draw(p, hx, hy, u * (g === "offer" ? 1.5 : g === "write" ? 1.3 : 1), hs);
+      if (pose.e4) p.rot = A ? [rad(A), 300, hipY] : null;
+      if (hold.layer === 0) drawArm(hold); else drawHand(hold); } // fingers over the item
   }
   // ---- head ----
   const Ah = A + headTilt, [cpx, cpy] = rotAbout([300, chin], rad(A), [300, hipY]);
@@ -842,6 +865,7 @@ export const figureFront = (p: Pen, L: Look, pose: Pose) => {
     faceFront3(p, 300, hc, W, expr, facing, look, lid, skin, {
       browCol: L.brow?.color ?? INK, browK: L.brow?.k ?? 1, quirk: L.brow?.quirk ?? 0, shockK: L.eyes?.shock ?? 1,
       glasses: L.glasses, moustache: L.moustache, beard: L.beard, eyepatch: L.eyepatch, lashes: L.lashes, blush: L.blush,
+      ...(pose.brow ? { browMod: pose.brow } : {}),
     });
   }
   if (L.visor) visor3(p, H, 300, hc, L.visor, facing, false, back);

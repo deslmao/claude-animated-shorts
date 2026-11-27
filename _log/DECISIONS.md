@@ -282,3 +282,15 @@ Newest at the bottom. Each entry gives the date, the decision, who made it, and 
     front wall (black frames): the room's front wall moved from z 1.8 to 3.6 (rebaked; `e4-pace` now fails any camera outside the
     room); (2) N8AO placed before the lens passes replaced the depth buffer the lens blur reads, defocusing the subject: AO now runs
     after the lens passes.
+
+- **27 Nov 2026: Engine 4 Phase 3 (character acting and background life) built; stopped for the owner's review of the 5 s clip.**
+  - **Where:** `characters/acting.ts` (`easeSnap`, `E4Key`, `e4Track`), `characters/figure.ts` (Pose fields `e4`, `turn`, `brow`, `propTilt`;
+    brow acting in `faceFront3`; a blend that may overshoot; the held item turns about the hand), `story/compile.ts` (ActorSpec.keys ->
+    the pose, eased gesture blends, squash on the card), `cards/cards.ts` (`Place.squash`, volume-kept scale about the soles),
+    `engine4/kitchen.ts` (pendant flicker, kettle steam, window cloud-light, drifting dust).
+  - **Opt-in:** every new field is read only when `engine: 4` and the actor has `keys`; engines 1-3 take the old paths (breakfast-2
+    baseline frames pixel-identical, `test:library` intact, the 3 caption PROBLEM lines in `test:story` predate this).
+  - **Design choices:** squash and stretch is a card-level scale (the figure is a 2D drawing, not a skeleton); "bone" attachment means the
+    held item is drawn in the hand's own frame, turned with the forearm and the hand's momentum; faces still swap discretely a third of the
+    way into a move (the body eases continuously); a full-body lean toward the camera is not drawable on a 2D card, so lean = sideways tilt
+    and slump = lowered shoulders + head + a lower card.

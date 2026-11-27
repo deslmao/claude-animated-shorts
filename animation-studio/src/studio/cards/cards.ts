@@ -118,7 +118,7 @@ export class Fx {
  *  custom plane (e.g. a swing); yaw defaults to facing the camera */
 export type Place = {
   key: string; draw: (p: Pen) => void; x: number; y: number; z: number;
-  scale?: number; mirror?: boolean; yaw?: number; roll?: number; size?: [number, number, number]; geo?: THREE.BufferGeometry; castShadow?: boolean;
+  scale?: number; mirror?: boolean; squash?: number; yaw?: number; roll?: number; size?: [number, number, number]; geo?: THREE.BufferGeometry; castShadow?: boolean;
 };
 /** an effect card: w x h metres; flat = lying on the ground; soft = see-through; keys containing "|blob|" multiply */
 export type FxPlace = { key: string; cw: number; ch: number; draw: (p: Pen) => void; x: number; y: number; z: number; w: number; h: number; flat?: boolean; rot?: number; soft?: boolean; overlay?: boolean };
@@ -168,7 +168,8 @@ export class CardLayer {
       a.mesh.visible = true;
       a.mesh.position.set(p.x, p.y, p.z);
       a.mesh.rotation.set(0, p.yaw ?? Math.atan2(cam.position.x - p.x, cam.position.z - p.z), p.roll ?? 0);
-      a.mesh.scale.set(p.mirror ? -sc : sc, sc, sc);
+      if (p.squash !== undefined) { const sy = p.squash, sx = 1 / Math.sqrt(sy); a.mesh.scale.set((p.mirror ? -sc : sc) * sx, sc * sy, sc); }   // Engine 4 squash and stretch about the soles (volume kept)
+      else a.mesh.scale.set(p.mirror ? -sc : sc, sc, sc);
       a.mesh.castShadow = p.castShadow ?? castShadows;
       // Engine 4: the room's lights tint the card a little (a card ignores scene lights otherwise); no callback = unchanged
       if (tint) { a.mat.color.setRGB(...tint(p.x, p.y + 1.1 * sc, p.z)); a.tinted = true; } else if (a.tinted) { a.mat.color.setRGB(1, 1, 1); a.tinted = false; }

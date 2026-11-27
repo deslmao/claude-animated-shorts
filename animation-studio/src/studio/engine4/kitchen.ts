@@ -33,6 +33,8 @@ if (typeof window !== "undefined" && typeof document !== "undefined") {
 const NO_CAST = new Set(["sky", "silhouette", "winlit", "lampshade", "bulb", "cord"]);   // outside the window / the lamp itself: never block the lights
 const EMISSIVE = new Set(["lampshade", "bulb", "winlit"]);
 
+/** the lamp's emissive materials and their authored strength (Engine 4 background life flickers them with the live spot light) */
+const GLOW: { mat: THREE.MeshStandardMaterial; base: number }[] = [];
 function prepare(root: THREE.Object3D, lm: THREE.Texture) {
   lm.colorSpace = THREE.NoColorSpace; lm.channel = 1; lm.flipY = false; lm.repeat.set(1, -1); lm.offset.set(0, 1);   // EXRLoader rows run bottom-up; glTF uv v runs top-down lm.generateMipmaps = false; lm.minFilter = lm.magFilter = THREE.LinearFilter; lm.needsUpdate = true;
   root.traverse((o) => {
@@ -44,6 +46,7 @@ function prepare(root: THREE.Object3D, lm: THREE.Texture) {
     mat.lightMap = lm; mat.lightMapIntensity = Math.PI;                   // Blender bakes E/pi; three multiplies by albedo/pi
     if (EMISSIVE.has(name) || name === "sky") mat.lightMap = null;
     mat.envMapIntensity = 0.4;
+    if ((name === "bulb" || name === "lampshade") && !GLOW.some((g) => g.mat === mat)) GLOW.push({ mat, base: mat.emissiveIntensity });
     mat.needsUpdate = true;
   });
 }
@@ -75,6 +78,30 @@ function makeDust() {
   return { pts, update };
 }
 
+// ---- background life (Phase 3): kettle steam, a living lamp, slow cloud-light on the window. All pure functions of time.
+const KETTLE: [number, number, number] = [-1.4, 1.09, -2.12];
+function makeSteam() {
+  const n = 28, g = new THREE.BufferGeometry(), pos = new Float32Array(n * 3), col = new Float32Array(n * 3);
+  g.setAttribute("position", new THREE.BufferAttribute(pos, 3)); g.setAttribute("color", new THREE.BufferAttribute(col, 3));
+  const tex = ctex("e4steam", 64, 64, (c) => { const gr = c.createRadialGradient(32, 32, 0, 32, 32, 32); gr.addColorStop(0, "rgba(255,255,255,0.9)"); gr.addColorStop(1, "rgba(255,255,255,0)"); c.fillStyle = gr; c.fillRect(0, 0, 64, 64); });
+  const pts = new THREE.Points(g, new THREE.PointsMaterial({ size: 0.075, map: tex, vertexColors: true, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, sizeAttenuation: true, fog: false }));
+  pts.frustumCulled = false;
+  const update = (t: number) => {
+    for (let i = 0; i < n; i++) {
+      const ph = (t * 0.42 + i / n) % 1, life = Math.sin(Math.PI * ph) ** 1.5, sw = Math.sin(ph * 7 + i * 2.1);
+      pos[i * 3] = KETTLE[0] + 0.03 * ph + sw * 0.03 * ph; pos[i * 3 + 1] = KETTLE[1] + ph * 0.42; pos[i * 3 + 2] = KETTLE[2] + Math.cos(ph * 5 + i) * 0.025 * ph;
+      const c = 0.2 * life; col[i * 3] = col[i * 3 + 1] = col[i * 3 + 2] = c;
+    }
+    g.attributes.position.needsUpdate = true; g.attributes.color.needsUpdate = true;
+  };
+  return { pts, update };
+}
+/** a warm pendant flicker: a slight fast shimmer plus a slow breathing, and every ~5 s a brief dip (a failing filament), -3..+3 % */
+export const lampFlicker = (t: number) => {
+  const dip = Math.max(0, Math.sin(t * 1.25 + 0.6)) ** 24 * Math.max(0, Math.sin(t * 17)) * 0.5;
+  return 1 + 0.018 * Math.sin(t * 9.3) + 0.012 * Math.sin(t * 23.7 + 1.1) + 0.01 * Math.sin(t * 2.1) - 0.05 * dip;
+};
+
 const mix = (a: number[], b: number[], k: number) => a.map((v, i) => v + (b[i] - v) * k);
 /** the room's lights on a character card: warm near the pendant, a cool cast near the window (subtle: a few per cent) */
 const tint = (x: number, y: number, z: number): [number, number, number] => {
@@ -86,12 +113,12 @@ const tint = (x: number, y: number, z: number): [number, number, number] => {
 
 export const buildE4Kitchen = (): BuiltSet => {
   const root = new THREE.Group();
-  const dust = makeDust();
+  const dust = makeDust(), steam = makeSteam();
   // the live lamp: a spot light straight down from the bulb (spot shadows work with the card depth material; point shadows do not)
   const lamp = new THREE.SpotLight(0xffb870, 14, 0, 1.15, 0.9, 2);
   lamp.position.set(...LAMP); lamp.target.position.set(LAMP[0], 0, LAMP[2]);
   lamp.castShadow = true; lamp.shadow.mapSize.set(2048, 2048); lamp.shadow.camera.near = 0.15; lamp.shadow.camera.far = 6; lamp.shadow.bias = -0.0004; lamp.shadow.normalBias = 0.02; lamp.shadow.radius = 4;
-  root.add(lamp, lamp.target, dust.pts);
+  root.add(lamp, lamp.target, dust.pts, steam.pts);
   if (loaded) { prepare(loaded.scene, loaded.lm); root.add(loaded.scene); }
   else {
     // no GLB (Node: floor maps, validators): coarse invisible stand-ins for the solids so clearance checks have something to hit
@@ -108,7 +135,10 @@ export const buildE4Kitchen = (): BuiltSet => {
       env.hemi.color.set("#243050"); env.hemi.groundColor.set("#3a2a20"); env.hemi.intensity = 0.28;
       env.fog.color.set("#2a2018"); env.fog.near = 2.5; env.fog.far = 16;
       CARD_K.uGain.value = 0.92;   // PBR rooms are darker than the painted ones: the cards sit a little lower in the light
-      dust.update(t);
+      dust.update(t); steam.update(t);
+      const fl = lampFlicker(t);
+      lamp.intensity = 14 * fl; for (const gl of GLOW) gl.mat.emissiveIntensity = gl.base * fl;
+      s.intensity = 3.2 * (1 + 0.04 * Math.sin(t * 0.7) + 0.02 * Math.sin(t * 1.9 + 2));   // slow cloud light from the window
     },
     tint,
   };

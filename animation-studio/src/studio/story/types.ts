@@ -83,6 +83,9 @@ export type ActorSpec = {
   back?: boolean;             // seen from behind (the near actor in an over-the-shoulder)
   hold?: string;              // a hand-held item (characters/items.ts), e.g. "map", "book", "telescope"
   beats?: Beat[];
+  /** Engine 4 acting (storyboard `engine: 4` only): 2-3 keyframed expressive poses per shot (lean, slump, turn, head tilt, eyebrows, glance, face, gesture, held
+   *  item), eased with a snappy overshoot and squash-and-stretch (characters/acting.ts e4Track). Seconds into the shot */
+  keys?: import("../characters/acting").E4Key[];
   talk?: [number, number][];  // speaking spans without audio (mouth + talking hands); voiced lines set this themselves
   nod?: (number | WordRef)[];  // nod start times (or words)
   shake?: (number | WordRef)[]; // head-shake start times (or words)

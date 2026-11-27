@@ -13,7 +13,7 @@ import type { Timeline } from "../look/StudioFilm";
 import { extra } from "../characters/cast";
 import { ROSTER } from "../characters/roster";
 import { act as actPose, Look, Pose, Expr, anchorsFront, Anchors, Mode } from "../characters/figure";
-import { idle, nod as nodAt, shake as shakeAt, talk as talkAt, speak as speakAt, layer, faceToward } from "../characters/acting";
+import { idle, nod as nodAt, shake as shakeAt, talk as talkAt, speak as speakAt, layer, faceToward, e4Track, easeSnap } from "../characters/acting";
 import { lookCard, contactShadow, lidAt, cardPoint } from "../cards/person";
 import { fxNear, fxHalo, HALO_KINDS } from "../fx/effects";
 import { diagramCard } from "../fx/diagrams";
@@ -484,7 +484,7 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
       // body motion. Used for now and, for gesture easing, for the frames just before
       const actingAt = (tq: number) => {
         const tqa = t0 + tq;
-        const { base, held } = basePoseAt(a, tq);
+        const { base, held: held0 } = basePoseAt(a, tq); let held = held0;
         const swaps = (a.beats ?? []).map((x) => t0 + (x.t ?? 0));
         const life = { ...idle(tqa, seed, a.idle ?? 1), blink: a.blink === false ? 0 : lidAt(tqa, seed, swaps) };
         // voiced lines: the mouth follows the narration's word timings; otherwise the stand-in talking rhythm
@@ -500,7 +500,14 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
         }
         const nodTilt = (a.nod ?? []).reduce((acc: number, x) => acc + nodAt(tqa, t0 + (x as number), 2), 0);
         const shook = (a.shake ?? []).map((x) => shakeAt(tqa, t0 + (x as number))).find((x) => Object.keys(x).length) ?? {};
-        return { base, held, life, talking, nodTilt, shook };
+        // Engine 4 keyframed acting: expressive key poses eased with overshoot, squash and stretch, the held item swung by the hand's momentum
+        const tr = sb.engine === 4 && a.keys?.length ? e4Track(a.keys, tq) : undefined;
+        if (tr) {
+          if (tr.pose.gesture && talking.gesture) delete talking.gesture;
+          const hk = [...(a.keys ?? [])].filter((k) => k.t <= tq && k.hold !== undefined).sort((x, y) => x.t - y.t).pop();
+          if (hk) held = hk.hold ?? undefined;
+        }
+        return { base: tr ? { ...base, ...tr.pose } as Pose : base, held, life, talking, nodTilt, shook, tr };
       };
       const { base, held, life, talking } = actingAt(tt);
       // facing: explicit, or toward the nearest other actor
@@ -530,7 +537,7 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
         Object.assign(extra, reachExtra(s, a, p, tt, lateral, (w) => posOf.get(w), [cam.pos.x, cam.pos.y, cam.pos.z], basePoseAt(a, tt).base.gesture === "write"));
         if (a.drive) extra.drive = driveOf(a)(tt);
         if (viewStride) Object.assign(extra, viewStride);
-        const build = (x: ReturnType<typeof actingAt>, tq: number) => layer(x.base, x.life, x.talking, x.shook, { headTilt: x.nodTilt, facing, back: a.back, t: t0 + tq, ...(x.held ? { hold: x.held } : {}), ...extra });
+        const build = (x: ReturnType<typeof actingAt>, tq: number) => layer(x.base, x.life, x.talking, x.shook, { headTilt: x.nodTilt, facing, back: a.back, t: t0 + tq, ...(x.held ? { hold: x.held } : {}), ...(x.tr ? { e4: true, propTilt: x.tr.propTilt } : {}), ...extra });
         // gesture easing: if the arms' configuration changed recently, blend from what the frame before the change
         // really drew (itself possibly mid-blend). The easing time grows with how far the hands travel (EASE for small
         // changes, up to EASE_MAX, so a hand never moves faster than HAND_SPEED m/s). Pure: built from exact earlier
@@ -549,7 +556,7 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
               const ha = anchorsFront(L, raw).hands, hb = anchorsFront(L, from).hands;
               const d = Math.max(0, ...ha.map((h) => { const q = hb.find((x) => x.side === h.side); return q ? Math.hypot(h.p[0] - q.p[0], h.p[1] - q.p[1]) * SU : 0; }));
               const dur = Math.min(EASE_MAX, Math.max(EASE, (1.5 * d) / HAND_SPEED)), el = (k - 0.5) / FPS;
-              if (el < dur) out = { ...raw, blend: { from, k: smooth(el / dur) } };
+              if (el < dur) out = { ...raw, blend: { from, k: raw.e4 ? easeSnap(el / dur) : smooth(el / dur) } };   // engine 4: fast out, slow in, with a small overshoot
             }
             break;
           }
@@ -561,7 +568,9 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
         // its blend for one frame: an arm snap)
         const pose0: Pose = eased(Math.round(tt * FPS));
         const pose: Pose = mo.tilt || mo.headTilt || mo.shrug ? { ...pose0, tilt: (pose0.tilt ?? 0) + mo.tilt, headTilt: (pose0.headTilt ?? 0) + mo.headTilt, shrug: (pose0.shrug ?? 0) + mo.shrug } : pose0;
-        out.places.push(lookCard(cam, L, p[0], p[1], p[2], { pose }));
+        const card = lookCard(cam, L, p[0], p[1], p[2], { pose });
+        if (pose.e4 && a.keys?.length) card.squash = e4Track(a.keys, tt).squash;   // Engine 4 squash and stretch
+        out.places.push(card);
         out.anchors.set(a.who, anchorOf(cam, L, p, anchorsFront(L, pose), false));
       }
       contactShadow(out, cam.sun, shot.light, p[0], p[1], p[2]);
