@@ -16756,3 +16756,25 @@ Fix these final 4 tiny framing/layering tweaks, generate PUBLISHING.md, and trig
 5. Generate productions/kd-talent-1/publish/PUBLISHING.md with scroll-stopping titles, descriptions, and hashtags for YouTube Shorts, TikTok, and Instagram Reels.
 
 Once preflight passes (with locked 2:29 audio masters untouched), commit everything, trigger the final 1080p GitHub Actions render (scored + no-music dual export), give me the run URL, and stop (do NOT poll GitHub Actions).
+
+## 28 Nov 2026 — owner (Episode 3: Solo Leveling World, Step 1)
+We are starting Episode 3 in productions/solo-leveling-1/ (target release: tomorrow 10:00 AM AEDT, target runtime: ~2:15–2:30). Follow every rule in the "Engine 4 Visual, Audio & Motion Standards" block of CLAUDE.md.
+
+### Concept: The Solo Leveling World (Leo vs. Dex)
+- **PenguRuckus-Style Intro (0:00–0:03):** Start with a 0.4–0.5s camera un-blur (blur-in) paired with a sharp RPG level-up chime / whoosh SFX as Leo delivers the hook:
+  "In my world, everyone has a floating power level—and mine has been stuck at Level 1 my whole life."
+- **Story Arc:**
+  1. **Setup:** Everyone has a glowing 2D-canvas power level badge floating above their head. Dex is a cocky `LVL 50` bully who mocks `LVL 1` Leo in the school hallway and forces him to carry his books/do his homework.
+  2. **The Glitch / Secret Quest:** Late at night in Leo's bedroom (reuse the Engine 4 bedroom + glowing `5:00 AM` alarm clock micro-set), a glowing blue RPG System Window pops up in front of Leo:
+     `[SECRET QUEST: 100 PUSH-UPS BEFORE 5:00 AM — PENALTY: STAY LVL 1 FOREVER]`
+  3. **The Grind Montage:** Leo grinds through brutal daily quests (eased push-ups, sprints, pull-ups—no static poses). His badge ticks up (`LVL 2` -> `LVL 15` -> `LVL 40` -> `LVL 85`), but he pulls his hoodie up / hides his badge at school so Dex still thinks he's `LVL 1`.
+  4. **Climax & Twist:** Dex challenges Leo in the school gym in front of the crowd to humiliate him. Dex charges in with a cocky smirk—Leo drops his hoodie, revealing a glowing gold `LVL 99` badge (brief bass drop + shockwave), and beats Dex with a single eased finger-flick that sends Dex sliding across the hardwood floor.
+  5. **Ending:** Quick punchline/cliffhanger (e.g., a new blue System Window pops up: `[NEW QUEST UNLOCKED]`) to drive comments and replays.
+
+### Visual & Technical Requirements
+- **Audio:** Keep Morning Mood as the baseline score (-14 LUFS dual export: scored + no-music), ducking 8 dB under RPG chimes, system pop-ups, and the final bass drop.
+- **2D Canvas UI:** Render all floating `LVL` badges and glowing blue RPG System Windows as crisp 2D Canvas textures with clean margins (never cover faces or collide with ~72% height captions).
+- **Motion & Framing:** Use eased keyframes (`easeOutQuad` / `easeOutBack`) for push-ups, hoodie drop, Dex's charge, and the finger-flick slide. Zero character clipping, zero head overlaps, and matching emotional face cards on every beat.
+
+### Step 1 (Do This Now)
+Write the full locked VO script (~2:15–2:30) and the 80–90 beat shot list in productions/solo-leveling-1/, then stop and show me the script for a quick thumbs-up before generating audio masters and the 540p preview.

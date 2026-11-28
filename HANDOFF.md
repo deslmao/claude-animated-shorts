@@ -10,6 +10,8 @@ no pull requests.
 2. Read `_log/DECISIONS.md` (why things are the way they are).
 3. Read `_log/PROMPTS.md` (the owner's exact words, newest at the bottom).
 
+## EPISODE 3 (solo-leveling-1), Step 1 done (28 Nov): script.md + shot-list.md written in productions/solo-leveling-1/, WAITING FOR THE OWNER'S THUMBS-UP before audio masters, builds and the 540p preview. Episode 2's final render is still pending on the owner's side (never poll).
+
 ## EPISODE 2 FINAL RENDER RE-REQUESTED (28 Nov, newest): four last framing tweaks done, PUBLISHING.md written (productions/kd-talent-1/publish/), final 1080p render requested again. After it finishes: dual export (scripts/dual-export.mjs), then the QA. Never poll.
 
 ## EPISODE 2 FINAL RENDER REQUESTED (28 Nov, newest): the owner approved the preview; defender-in-front and the coin-toss ending are done; the full-resolution cloud render was requested (render-request.json, preview false, publish false). Next: when the owner says the render finished, request the QA (qa-request.json). Never poll.
