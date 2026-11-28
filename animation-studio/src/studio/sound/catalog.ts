@@ -168,6 +168,7 @@ export const SFX = {
   el_lightning_zap: "recorded: A jolt of electric lightning snapping between two hands: a sharp crackle and zap with a bright magical shimmer tail, short and punchy, no music (1.6 s)",
   el_whistle: "recorded: A referee whistle, one short sharp blast in a big indoor arena, then a faint echo (1.0 s)",
   el_rpg_levelup: "recorded: A bright video-game RPG level-up jingle: a quick rising sparkling chime arpeggio ending on a shimmering high note (1.8 s)",
+  el_glitch_cut: "recorded: A very short digital glitch transition: a quick static zap and a bit-crushed whoosh (0.8 s)",
   el_ui_pop: "recorded: A futuristic holographic game UI window popping open: a glassy blip with an airy whoosh and a soft chime tail (1 s)",
   el_ui_type: "recorded: Fast soft digital typing ticks of sci-fi terminal text appearing line by line (1.6 s)",
   el_bass_drop: "recorded: A single huge cinematic sub-bass drop, a deep boom that slams in and rings out (2.4 s)",

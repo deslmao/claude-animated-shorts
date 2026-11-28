@@ -21,7 +21,7 @@ type Film = ReturnType<typeof compile>;
 /** a catalogue sound, or the name of a custom file assets/sfx/<name>.mp3|wav (Engine 4) */
 export type CueName = SfxName | (string & {});
 /** Episode 3's RPG hits duck the score 8 dB like the viral pack */
-const RPG_MAJOR = ["el_rpg_levelup", "el_ui_pop", "el_bass_drop", "el_shockwave", "el_finger_flick"];
+const RPG_MAJOR = ["el_rpg_levelup", "el_ui_pop", "el_bass_drop", "el_shockwave", "el_finger_flick", "el_glitch_cut"];
 export type Cue = { t: number; name: CueName; gain_db?: number; pan?: number; why: string; major?: boolean };
 export type SoundPlan = { file?: { file: string; duck?: number; curve?: [number, number][]; cuts?: { t: number; resume?: number; sub?: boolean; jump?: number; swell?: number }[]; layers?: { file: string; t0: number; t1: number; fade: number; gain: number }[] }; sections: [Mood, number, number][] | null; button_t: number; drop_t?: number; musicGain: number; ambience: (string | null)[]; cues: Cue[]; mood: Mood | null; moodWhy: string;
   /** Engine 4: spans [t0, t1] where the music ducks depth_db (under dialogue punchlines and major SFX hits) */

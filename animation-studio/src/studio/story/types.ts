@@ -222,6 +222,8 @@ export type Storyboard = {
   captionHigh?: number[];
   /** Engine 4 opt-in intro: the first `dur` seconds of the world un-blur from `px` pixels of blur to sharp (easeOutQuad); captions and UI stay crisp */
   blurIn?: { dur: number; px: number };
+  /** Engine 4 opt-in act-shift cuts: on the n-th time `word` is spoken, a 3-frame white flash with an RGB split on the picture (the captions stay crisp) */
+  glitch?: { word: string; n?: number }[];
   captionStyle?: "short" | "viral";
   /** Engine 4: words the viral captions highlight in a pop colour (besides the lexicon's key nouns) */
   captionKeys?: string[];

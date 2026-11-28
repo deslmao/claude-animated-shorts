@@ -10,7 +10,7 @@ import { makeCrowd } from "./arena";
 import type { BuiltSet } from "../sets/types";
 
 export const HALLWAY_ROOM = { x0: -2.1, x1: 2.1, z0: -8.6, z1: 4.2, y0: 0.1, y1: 2.75 };
-export const GYM_ROOM = { x0: -7.8, x1: 7.8, z0: -11.6, z1: 7.6, y0: 0.1, y1: 6.4 };
+export const GYM_ROOM = { x0: -5.5, x1: 5.5, z0: -11.6, z1: 8.6, y0: 0.1, y1: 6.4 };
 
 const std = (color: string | THREE.Texture, o: Partial<THREE.MeshStandardMaterialParameters> = {}) => new THREE.MeshStandardMaterial({ ...(typeof color === "string" ? { color } : { map: color }), roughness: 0.85, metalness: 0, ...o });
 const mk = (root: THREE.Object3D, g: THREE.BufferGeometry, m: THREE.Material, x: number, y: number, z: number, o: { cast?: boolean; ry?: number } = {}) => { const mesh = new THREE.Mesh(g, m); mesh.position.set(x, y, z); if (o.ry) mesh.rotation.y = o.ry; mesh.castShadow = o.cast ?? true; mesh.receiveShadow = true; root.add(mesh); return mesh; };
@@ -99,20 +99,21 @@ export const buildE4Gym = (): BuiltSet => {
   const root = new THREE.Group();
   const ft = gymFloor(); ft.anisotropy = 8;
   const wood = new THREE.MeshPhysicalMaterial({ map: ft, roughness: 0.16, metalness: 0.02, clearcoat: 0.75, clearcoatRoughness: 0.08, reflectivity: 0.6 });
-  mk(root, new THREE.PlaneGeometry(16, 20).rotateX(-Math.PI / 2), wood, 0, 0.002, -2, { cast: false });
+  mk(root, new THREE.PlaneGeometry(11.6, 21).rotateX(-Math.PI / 2), wood, 0, 0.002, -2, { cast: false });
   const wallM = std("#d8cfae", { roughness: 0.95 }), lower = std("#7a1d1d", { roughness: 0.9 });
-  mk(root, box(40, 8, 0.4), wallM, 0, 4, -13.2, { cast: false }); mk(root, box(40, 8, 0.4), wallM, 0, 4, 9.4, { cast: false }); mk(root, box(0.4, 8, 26), wallM, -17, 4, -2, { cast: false }); mk(root, box(0.4, 8, 26), wallM, 17, 4, -2, { cast: false });
+  mk(root, box(40, 8, 0.4), wallM, 0, 4, -13.2, { cast: false }); mk(root, box(40, 8, 0.4), wallM, 0, 4, 9.4, { cast: false }); mk(root, box(0.4, 8, 26), wallM, -14.4, 4, -2, { cast: false }); mk(root, box(0.4, 8, 26), wallM, 14.4, 4, -2, { cast: false });
   mk(root, box(40, 0.4, 28), std("#2a2d36", { roughness: 0.9 }), 0, 7.7, -2, { cast: false });
   mk(root, box(40, 1.2, 0.5), lower, 0, 0.6, -12.95, { cast: false });
   // bleachers: seven tiers each side, with the instanced cheering crowd
   const spots: { x: number; y: number; z: number; ry: number }[] = [], seat = std("#8a6a44", { roughness: 0.7 });
   for (const sx of [-1, 1]) for (let t = 0; t < 7; t++) {
-    const px = sx * (8.6 + t * 0.9), y = 0.45 * (t + 1); mk(root, box(0.9, y, 17), seat, px, y / 2, -2.5, { cast: false });
-    for (let i = 0; i < 25; i++) { if ((i * 7 + t * 3) % 8 === 0) continue; spots.push({ x: px, y, z: -10.4 + i * 0.66, ry: Math.atan2(sx, 0) }); }
+    const px = sx * (6.0 + t * 0.9), y = 0.45 * (t + 1); mk(root, box(0.9, y, 20), seat, px, y / 2, -2.5, { cast: false });
+    for (let i = 0; i < 36; i++) { if ((i * 7 + t * 3) % 11 === 0) continue; spots.push({ x: px, y, z: -11.4 + i * 0.55, ry: Math.atan2(sx, 0) }); }
   }
   const crowd = makeCrowd(spots); root.add(crowd.body, crowd.head);
   // banners on the back wall and over the bleachers; steel trusses and lamp bars
   const bm = [banner("a", "#c8252d", "#7a1d1d", "TIGERS"), banner("b", "#1d428a", "#0d2250", "WINNERS"), banner("c", "#2a9d8f", "#145a52", "LEVEL UP")];
+  for (let i = 0; i < 6; i++) for (const sx of [-1, 1]) mk(root, new THREE.PlaneGeometry(1.5, 3), new THREE.MeshStandardMaterial({ map: bm[(i + (sx > 0 ? 1 : 0)) % 3], roughness: 0.8, emissive: "#ffffff", emissiveMap: bm[(i + (sx > 0 ? 1 : 0)) % 3], emissiveIntensity: 0.22, side: THREE.DoubleSide }), sx * 14.1, 5.2, -11 + i * 3.6, { cast: false, ry: -sx * Math.PI / 2 });
   for (let i = 0; i < 7; i++) mk(root, new THREE.PlaneGeometry(1.5, 3), new THREE.MeshStandardMaterial({ map: bm[i % 3], roughness: 0.8, emissive: "#ffffff", emissiveMap: bm[i % 3], emissiveIntensity: 0.22, side: THREE.DoubleSide }), -9 + i * 3, 4.6, -12.95, { cast: false });
   const steel = std("#3a3f4c", { roughness: 0.5, metalness: 0.6 }); for (let i = 0; i < 6; i++) mk(root, box(0.18, 0.22, 26), steel, -7 + i * 2.8, 7.2, -2, { cast: false });
   const lamps: THREE.MeshStandardMaterial[] = [];

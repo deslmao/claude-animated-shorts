@@ -54,7 +54,7 @@ export const lvlBadgeRig = (a: At, variant?: string): PropRig => {
   return { root, update: (st) => {
     const s = st.step ?? 0, t = st.track?.t ?? 0, k = easeSnap(Math.min(1, s));
     // the value: step n shows vals[n-1]; the bump rides each change (the glide of the step: 0 -> 1 -> pulse)
-    const idx = Math.max(0, Math.min(vals.length - 1, Math.round(s) - 1)), v = vals[idx], frac = s - Math.floor(s), bump = s > 1 && frac > 0 && frac < 1 ? Math.sin(Math.PI * frac) * 0.28 : 0;
+    const idx = Math.max(0, Math.min(vals.length - 1, Math.ceil(s - 0.002) - 1)), v = vals[idx], frac = s - Math.floor(s), bump = s > 1 && frac > 0 && frac < 1 ? Math.sin(Math.PI * frac) * 0.28 : 0;
     if (v !== shown) { shown = v; mat.map = badgeTex(label, v); mat.needsUpdate = true; }
     root.visible = s > 0 && v !== "-";
     if (st.target) { root.position.set(st.target[0], st.target[1] + (st.hover?.lift ?? 0.32), st.target[2]); }

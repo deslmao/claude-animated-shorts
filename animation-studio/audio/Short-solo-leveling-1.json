@@ -1,17 +1,17 @@
 {
  "composition": "Short-solo-leveling-1",
- "fingerprint": "101d8455d536dc",
+ "fingerprint": "0ca0adbce80f02",
  "engine": "sound-2",
  "frames": 4474,
  "seconds": 149.13333333333333,
  "lines": 11,
  "lufs": -14.0,
- "truePeak": -1.8,
+ "truePeak": -1.9,
  "stems": {
   "voice_lufs": -13.13,
   "music_vs_voice_lu": -10.0,
-  "ambience_vs_voice_lu": -19.98,
-  "sfx_cues": 61
+  "ambience_vs_voice_lu": -19.99,
+  "sfx_cues": 65
  },
- "built": "2026-11-28T06:06:36Z"
+ "built": "2026-11-28T06:56:25Z"
 }

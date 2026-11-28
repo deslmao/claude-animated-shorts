@@ -16789,3 +16789,52 @@ Make these 2 tiny script tweaks before locking audio:
 All your other choices (hidden badge under hood, 100/100 push-up counter, 5 rooms, Leo reading System Windows, Dex VALF voice, and adding the 0.45s blur-in to Engine 4) are approved. Keep following all Engine 4 standards (Morning Mood baseline at -14 LUFS dual export, eased keyframe motion, crisp 2D canvas UI that never covers faces or ~72% captions, zero character clipping).
 
 Proceed to Step 2: lock the script and audio masters (trim filler if it runs over 2:30), build the new assets/sets, run preflight, commit, trigger the 540p GitHub Actions preview render, give me the run URL, and stop (do NOT poll GitHub Actions).
+
+## 28 Nov 2026 — owner (Episode 3: preview fixes, push-up/pull-up animation, show-don't-tell upgrade, glitch cuts)
+[uploaded: Short-solo-leveling-1_preview.mp4] Hold 1080p—the hallway, lockers, LVL badges, System Windows, pull-up bar, and gym look awesome, but the 540p preview has a few framing, UI cutoff, and overlap bugs. Do NOT touch the locked audio masters.
+
+Fix these exact bugs in productions/solo-leveling-1/, then trigger a new 540p preview render:
+
+1. Fix Framing & Empty/Zoomed Shots:
+- 0:27 ("his homework"): Frame Leo in the hallway (instead of empty blue lockers).
+- 1:02 ("Push-ups at"): Lower the camera pitch/Y-target so Leo doing push-ups is framed cleanly in the middle/lower-middle third (currently cut off at the bottom edge).
+- 1:30 ("shaking"): Pull the camera back so Leo's full face/hoodie is framed normally (currently zoomed into one eye).
+- 1:42 ("won"): Aim the camera at Leo/Dex's upper bodies/faces instead of Leo's legs and the floor.
+- 1:55 ("It was Level"): Frame slightly wider/higher so the glowing gold `LVL 99` badge is clearly visible above Leo's head the moment he drops his hoodie.
+
+2. Fix Cut-Off System Windows & Badge Sync:
+- 0:52 ("Then one more"): Center/scale the blue push-up counter window (`40/100` -> `100/100`) so it stays 100% inside the frame.
+- 0:57 ("changed"): Move/scale the `QUEST COMPLETE` window so it stays inside the frame and does NOT overlap Leo's `LVL 2` badge.
+- 1:10–1:12: Sync the badge jumps to the exact VO words (`LVL 15` on "fifteen", `LVL 40` on "forty", `LVL 85` on "eighty-five").
+- 2:20 ("face"): Frame Leo's full head/upper body with the `NEW QUEST UNLOCKED` blue System Window centered/fully visible inside the frame, and keep `LVL 99` clear of the ~72% caption line.
+
+3. Fix Character Overlaps & Populate the Gym:
+- 0:07, 0:17, 1:22, 1:47, 2:02: Offset foreground/background characters horizontally so no heads, hair, or `LVL` badges overlap behind another character.
+- 1:35–2:15 (School Gym): Add populated bleachers/crowd along the gym sidelines (reuse the Engine 4 crowd/bleacher assets) so the gym actually looks packed when the VO says "the whole school packed the bleachers" and "The gym went wild."
+
+Once preflight passes (with locked audio masters untouched), commit everything, trigger the 540p GitHub Actions preview render, give me the run URL, and stop (do NOT poll GitHub Actions).
+
+1. Make Push-Ups & Pull-Ups Clearly Animated & Framed:
+- Push-Ups (0:50–0:55 Bedroom & 1:02 Dawn Grind): Use a low side-profile (3/4 floor-level) camera so Leo's entire horizontal plank body, planted hands, and floor are clearly visible in the middle/lower-middle third (never cut off at the bottom edge). Animate a distinct, eased vertical up-and-down push-up cycle (arms bending/extending, torso lowering near the floor and pushing back up with `easeInOutQuad`, slight struggle/tremble on the 11th rep) synced to the push-up counter.
+- Pull-Ups (Park Bar Grind): Frame a clear medium-wide shot showing the horizontal metal pull-up bar across the upper third and Leo's full hanging body below it. Animate his hands gripping the bar firmly while his elbows bend and pull his chin cleanly above the bar, then lower back down with eased motion (`easeOutQuad`), plus a quick tight insert on his gripping palms/hands.
+
+Along with the framing/overlap/bleacher fixes, upgrade the visual storytelling and camera variety in productions/solo-leveling-1/ to match a 1-to-1 "show, don't tell" standard (do NOT touch the locked audio masters):
+
+1. Stage the 3 Missed World-Building Beats Literally (0:08–0:18):
+- "Teachers bowed to the big numbers": Show an adult teacher character physically bowing forward (torso pitched ~35–45 deg) toward a cocky student with a glowing `LVL 45` badge.
+- "Kids stepped out of their way": High-angle / wide hallway shot showing students physically sliding/stepping aside to clear a path down the center for a `LVL 50` student walking through.
+- "And the small ones? They shrank into the walls": Tight shot of a nervous `LVL 2` student pressed flat against the lockers with hunched shoulders while bigger numbers walk past.
+
+2. Add Camera Angle Variety (No Static Medium-Shot Streaks):
+- Use at least 1 high-angle / bird's-eye establishing shot in the hallway and the packed school gym.
+- Use punch-in close-ups on key emotional reactions (e.g., Leo's eyes widening at the first blue System Window, Dex's smirk turning to shock right before the finger-flick).
+- Use tight prop/action inserts (e.g., close-up of Leo's hands trembling during push-ups, close-up of his finger lifting to flick).
+
+3. Add 2–3 Frame Flash / RGB-Glitch Transition Cuts:
+- Add a crisp 2–3 frame white/chromatic-aberration flash transition (paired with a subtle whoosh/glitch SFX ducking Morning Mood) at major act shifts:
+  a) World-building intro -> Leo's personal story (introducing Dex)
+  b) Midnight bedroom -> Grind montage
+  c) Hoodie drop -> `LVL 99` gold reveal
+  d) Gym cheering -> `LVL ???` hooded stranger cliffhanger
+
+Once preflight passes (with locked audio masters untouched), commit everything, trigger the 540p GitHub Actions preview render, give me the run URL, and stop (do NOT poll GitHub Actions).

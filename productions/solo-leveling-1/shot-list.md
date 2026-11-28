@@ -108,3 +108,12 @@ Times are **estimates** from the word count; the real cuts snap to the spoken wo
 - The built storyboard (`animation-studio/src/studio/stories/solo-leveling-1.ts`) has 33 shots and **93 visual changes over 149.1 s, an average of one every 1.60 s** (the Engine 4 target is 1.5 to 2.0 s). Cuts land on the spoken words; the times above were estimates.
 - The tweaks: line 22 "My number wasn't Level 1 anymore." and line 30 "Three glowing question marks." (the badge stays `LVL ???`).
 - The hood drop is a hard cut with a snap-zoom on "dropped" (the hood-up Leo to the hood-down Leo), because an actor cannot change look inside a shot.
+
+## Preview fixes (28 Nov 2026, after the owner's first 540p preview)
+
+- **Show, don't tell (line 3, now three shots):** a teacher bows about 40 degrees to the LVL 45 student; the kids step aside for the LVL 50 Dex walking down the middle (high-angle wide); the LVL 2 kid is pressed into the lockers while bigger numbers walk past.
+- **Camera variety:** a bird's-eye of the hallway (line 2) and of the packed gym (line 19 and again on "went"), a side view of the bleachers, a punch-in on Leo's eyes at the first System Window ("face"), a punch-in on Dex's smirk turning to shock before the flick, tight inserts on the trembling push-up and on the lifting finger.
+- **Push-ups and pull-ups:** floor-level side views; eleven eased reps with a growing tremble; the counter badge (0, 11, 40, 100 / 100) sits inside the frame; the pull-up is framed with the bar across the upper third.
+- **Four act-shift glitch cuts** (3 frames of white flash and an RGB split, with a glitch SFX that ducks the score 8 dB): on "Dex" (the world into Leo's story), on the second "So" (the bedroom into the grind), on "dropped" (the hood drop into the reveal), on "badge" (the cheering into the stranger).
+- **The gym is populated:** bleachers with a dense crowd start 6 m from the centre line, and the wide shots look along them.
+- **The badge steps** now flip on the first frame of each spoken word (LVL 15 on "fifteen", 40 on "forty", 85 on "eighty-five"), and the gold LVL 99, the bass drop and the shockwave land together on "Level 99".

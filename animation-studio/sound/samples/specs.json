@@ -610,6 +610,11 @@
    "s": 3.5,
    "level": -8,
    "p": "A school gym crowd of kids erupting into cheers and whistles, a rising roar then sustained, chanting a name, no music, big echo"
+  },
+  "el_glitch_cut": {
+   "s": 0.8,
+   "level": -11,
+   "p": "A very short digital glitch transition: a quick static zap and a bit-crushed whoosh, subtle, clean, cinematic, no music"
   }
  },
  "bed": {
