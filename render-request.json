@@ -1,8 +1,8 @@
 {
   "composition": "Short-solo-leveling-1",
   "chunks": 20,
-  "preview": true,
+  "preview": false,
   "audio": "",
   "publish": false,
-  "note": "Episode 3 (The Solo Leveling World): 540p preview of the realism and blocking pass: real push-up / pull-up / kneel mechanics, tracked sprint, hallway blocking, Dex's charge, slide and kneel, the stranger cliffhanger. Locked narration. No GitHub Release."
+  "note": "Episode 3 (The Solo Leveling World): FINAL 1080p render (the owner approved the preview). Narration locked. Dual export (scored + no-music) after the render with scripts/dual-export.mjs. No GitHub Release."
 }

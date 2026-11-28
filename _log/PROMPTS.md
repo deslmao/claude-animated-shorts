@@ -16862,3 +16862,11 @@ Hold 1080p—before we do the final render, we need a realism and blocking pass 
 - 2:24–2:28 ("one badge I" / "Three glowing" / "marks"): Cut directly to a clean, centered shot of the hooded stranger at the back of the gym with the glowing `LVL ???` badge fully visible above his head (currently cut off on the right edge).
 
 Verify these fixes in preflight stills, commit everything, trigger a 540p GitHub Actions preview render (not 1080p yet), give me the run URL, and stop (do NOT poll GitHub Actions).
+
+## 28 Nov 2026 — owner (Episode 3: one last camera fix, then the final render)
+The new 540p preview looks awesome—push-ups, pull-ups, sprint, System Windows, Dex's slide/kneel, and the `LVL ???` cliffhanger are all approved. Do NOT touch the locked audio masters.
+
+There is just 1 remaining camera bug to fix before final render:
+- **0:30 ("whole hallway"):** The camera is still clipping straight into a character's head/face (a giant tan oval fills the screen). Pull/reposition that camera so Leo and the hallway students are cleanly framed with zero face clipping.
+
+Verify the 0:30 frame in preflight stills, commit everything, trigger the final 1080p GitHub Actions render (scored + no-music dual export + PUBLISHING.md), give me the run URL, and stop (do NOT poll GitHub Actions).

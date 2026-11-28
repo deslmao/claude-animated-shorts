@@ -10,6 +10,8 @@ no pull requests.
 2. Read `_log/DECISIONS.md` (why things are the way they are).
 3. Read `_log/PROMPTS.md` (the owner's exact words, newest at the bottom).
 
+## EPISODE 3 FINAL 1080p RENDER REQUESTED (28 Nov, newest): the owner approved the preview; the 0:30 camera fix is in; PUBLISHING.md is written. Next: when the owner says the render finished and uploads the MP4, run `node scripts/dual-export.mjs <mp4> solo-leveling-1` (scored + no-music), then the QA (qa-request.json), then the cover. Release target 10:00 AM AEDT. Never poll.
+
 ## EPISODE 3 REALISM AND BLOCKING PASS (28 Nov, newest): realistic push-up / pull-up / kneel poses (figureSide plank, hang, kneel + ActorSpec.sideMode), hallway and Dex blocking, stranger cliffhanger; a 540p preview was requested; waiting for the owner (never poll). Final 1080p render, dual export, QA and PUBLISHING.md still to do after approval.
 
 ## EPISODE 3 PREVIEW-FIX PASS (28 Nov, newest): the owner's first-preview notes are fixed and a second 540p preview was requested; waiting for the owner (never poll). VO is locked (voice cache untouched); the mixed soundtrack was rebuilt for the glitch SFX. Still to do after approval: final 1080p render, dual export, QA, PUBLISHING.md, cover. Target release 10:00 AM AEDT.
