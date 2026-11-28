@@ -134,7 +134,7 @@ export const buildE4Arena = (): BuiltSet => {
   for (const [x, z] of [[-4, -6], [4, -6], [-4, 0], [4, 0], [0, 4], [0, -3]] as [number, number][]) { const m = new THREE.MeshStandardMaterial({ color: "#fff7e0", emissive: "#fff2cc", emissiveIntensity: 3 }); lamps.push(m); add(root, box(1.1, 0.12, 0.6), m, x, 8.4, z, { cast: false }); }
   // light shafts under the roof lamps: faint additive cones (light atmosphere)
   const shaft = new THREE.MeshBasicMaterial({ color: "#fff0cc", transparent: true, opacity: 0.045, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, fog: false });
-  for (const [x, z] of [[-4, -6], [4, -6], [-4, 0], [4, 0], [0, 4], [0, -3]] as [number, number][]) { const c = new THREE.Mesh(new THREE.ConeGeometry(2.1, 8.2, 20, 1, true), shaft); c.position.set(x, 4.3, z); root.add(c); }
+  for (const [x, z] of [[-4, -6], [4, -6], [-4, 0], [4, 0], [0, 4], [0, -3]] as [number, number][]) { const c = new THREE.Mesh(new THREE.ConeGeometry(2.1, 6.0, 20, 1, true), shaft); c.position.set(x, 5.2, z); root.add(c); }
   const crowd = makeCrowd(spots); root.add(crowd.body, crowd.head);
   const flashes = makeFlashes(spots); root.add(flashes.pts);
   // ---- the tunnel: concrete floor, walls, a low ceiling with strip lights, a banner, the bench, the dark end door, the lit mouth

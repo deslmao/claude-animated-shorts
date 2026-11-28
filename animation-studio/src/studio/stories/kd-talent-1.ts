@@ -59,7 +59,7 @@ const LEO = "#" as const; void LEO;
 const POS: Record<string, Record<string, V>> = {
   court: { leo: [-0.4, 0, 1.6], dex: [1.0, 0, -0.4], kidA: [-1.4, 0, -0.9], kidB: [1.9, 0, -1.3], kidC: [-2.2, 0, -1.6], kidD: [0.1, 0, -2.4] },
   dawn: { leo: [-2.4, 0, 0.2] },
-  tunnel: { kd: [-12.4, 0, -0.7], leo: [-10.85, 0, 0.9] },
+  tunnel: { kd: [-13.3, 0, 0.3], leo: [-11.3, 0, 0.9] },
   tunnel2: { kd: [-13.0, 0.2, -2.0], leoJ: [-11.7, 0, -3.0] },
   arena: { kd: [0, 0, -3.4], leoJ: [1.5, 0, -2.4], coach: [-5.4, 0, -1.0], defA: [-1.1, 0, -4.1], defB: [1.1, 0, -4.1], defC: [0, 0, -5.2] },
   stands: { leo: [12.2, 2.5, -1.3], dad: [12.2, 2.5, -0.5] },
@@ -82,17 +82,17 @@ const lo = (sc: string, who: string, deg = 0, d = 2.4, mm = 35, o: Opt = {}) => 
 const hi = (sc: string, who: string, deg = 0, d = 2.6, mm = 35, o: Opt = {}) => view(sc, who, deg, d, mm, (o.at?.[1] ?? POS[sc][who]?.[1] ?? 0) + CROWN[who] + 0.85, o, o.at);   // a high-angle underdog shot, looking DOWN
 const WIDE_COURT = A([1.6, 1.8, 4.8], [-0.5, 1.1, -0.4], 24), WIDE_COURT_LOW = A([2.2, 0.5, 4.4], [0, 1.4, -1.5], 24, { creep: 0.1 });
 const WIDE_ARENA = A([3.6, 1.9, 4.8], [0, 1.2, -3.8], 26, { creep: 0.1 }), BIRDS_EYE = A([0, 7.4, -2.2], [0, 0, -4.2], 30, { creep: 0.1 });
-const WIDE_TUNNEL = A([-9.3, 1.5, 2.8], [-12.0, 1.1, -0.3], 22), TWO_SHOT_TUNNEL = A([-11.4, 0.45, 3.0], [-11.4, 1.2, 0.3], 20, { creep: 0.08 });
+const WIDE_TUNNEL = A([-9.3, 1.5, 2.8], [-12.0, 1.1, -0.3], 22), TWO_SHOT_TUNNEL = A([-12.3, 0.45, 3.0], [-12.3, 1.2, 0.5], 20, { creep: 0.08 });
 const RIM_CLOSE = A([1.2, 1.8, -1.4], [0, 2.6, -4.1], 40);
 const ANET = (x = 0.9) => A([x, 2.3, -6.0], [0, 2.45, -8.15], 50);
 // the rims (the ball's net ripples there)
 const RIM_C: V = [0, 2.45, -4.15], RIM_A: V = [0, 2.45, -8.15];
 // inserts: a macro of each hero prop on the word that names it, framed so its text sits above the caption band (about 66-78 % of the frame height)
-const INS_BALL = A([-11.4, 1.1, 2.3], [-11.4, 1.05, 0.4], 35), INS_SPARK = A([-11.4, 1.1, 1.6], [-11.4, 1.05, 0.4], 30, { creep: 0.15 });
+const INS_BALL = A([-12.3, 1.1, 2.3], [-12.3, 1.05, 0.6], 35), INS_SPARK = A([-12.3, 1.1, 1.8], [-12.3, 1.05, 0.6], 30, { creep: 0.15 });
 const INS_PHONE = A([-4.4, 1.0, 1.0], [-4.4, 1.0, -1.2], 45), INS_SCORE = A([0, 1.4, 4.2], [0, 5.0, -3.0], 30, { creep: 0.1 });
 const INS_TV = A([1.2, 0.9, 1.6], [1.45, 0.5, -2.1], 40), INS_TV2 = A([1.4, 0.9, 1.4], [1.45, 0.5, -2.1], 40, { creep: 0.15 });
 const INS_CLOCK = A([0.45, 0.85, -1.1], [0.3, 0.64, -2.05], 45, { creep: 0.1 });
-const INS_TEXT = A([0.2, 0.75, 2.0], [0.2, 0.75, 0.4], 45), INS_CONTRACT = A([0.05, 1.3, -0.1], [0.1, 0.82, -0.95], 38, { creep: 0.1 }), INS_STAT = A([0.0, 1.4, 2.0], [0.0, 1.4, 0.0], 35);
+const INS_TEXT = A([0.2, 0.75, 2.0], [0.2, 0.75, 0.4], 45), INS_CONTRACT = A([0.05, 1.3, -0.1], [0.1, 0.82, -0.95], 38, { creep: 0.1 }), INS_STAT = A([0.0, 1.4, 3.6], [0.0, 1.4, 0.0], 35);
 type Cut = [string | null, C, boolean?];   // [the word it lands on ("Swish.#2" = the second), the camera, a snap-zoom swoop?]
 type Face = [string, string?, number?];     // the face at the start, and an optional second face (a bold expression swap) at t seconds (default 1.2)
 type Ex = { at?: V; play?: PlayMove[]; walk?: { to: V; t0: number; t1: number }; mode?: string; slump?: number; look?: [number, number]; keys?: K; sad?: boolean };
@@ -116,7 +116,7 @@ const COURT_CREW = (faces: Record<string, Face>, ex: Record<string, Ex> = {}) =>
 // ================================ the shot list: one entry per spoken line; a line that changes place is split on a word ================================
 const shootAt: V = [-1.2, 0, -1.0];    // Leo's mid-range spot on the street court (3.2 m from the rim)
 const SEGS: Seg[][] = [
-  /* 0 the flash-forward: Leo hits the game-winner next to KD */ [{ sc: "arena", place: "arena", cuts: [[null, lo("arena", "kd", -15, 3.2, 35, { creep: 0.12 })], ["game-winner", A([2.6, 0.5, -0.4], [1.4, 2.0, -5.4], 28), true], ["right", WIDE_ARENA]],
+  /* 0 the flash-forward: Leo hits the game-winner next to KD */ [{ sc: "arena", place: "arena", cuts: [[null, lo("arena", "kd", -15, 3.2, 35, { creep: 0.12 })], ["game-winner", A([2.6, 0.5, -0.4], [1.4, 0.95, -5.4], 28), true], ["right", WIDE_ARENA]],
     actors: ARENA_CREW({ leoJ: ["proud"], kd: ["smile"] }, { leoJ: { at: [1.4, 0, -5.0], play: [pullUpSwish("leoJ", w("game-winner", -1.12), RIM_A).play] } }),
     props: [ball(RIM_A, pullUpSwish("leoJ", w("game-winner", -1.12), RIM_A).ball)] }],
   /* 1 picked last */ [{ sc: "court", place: "court", cuts: [[null, hi("court", "leo", 12, 2.6, 35)], ["always", cu("court", "leo", -8, 2.5, 50, { creep: 0.15 })]], actors: COURT_CREW({ leo: ["sad"], dex: ["grin"] }) }],
@@ -141,11 +141,11 @@ const SEGS: Seg[][] = [
     { sc: "stands", place: "tunnel", until: { word: "After" }, cuts: [[null, A([9.4, 3.9, -0.9], [12.2, 3.4, -0.9], 30, { creep: 0.1 })], ["Thunder", cu("stands", "leo", -60, 2.2, 40, { at: POS.stands.leo })]],
       actors: [ac("stands", "leo", ["shock"], { mode: "sit", look: [-1.1, 0] }), ac("stands", "dad", ["smile"], { mode: "sit", look: [-1.1, 0] })] },
     { sc: "tunnel", place: "tunnel", cuts: [[null, WIDE_TUNNEL], ["walked", lo("tunnel", "kd", 25, 2.2, 28)], ["signed", INS_BALL], ["beat-up", cu("tunnel", "leo", -22, 2.0, 40)]],
-      actors: [ac("tunnel", "kd", ["smile"]), ac("tunnel", "leo", ["shock"])], props: [{ id: "signedBasketball", at: [-11.4, 1.05, 0.4], scale: 1.3, steps: [{ word: "signed" }] }] }],
+      actors: [ac("tunnel", "kd", ["smile"]), ac("tunnel", "leo", ["shock"])], props: [{ id: "signedBasketball", at: [-12.3, 1.05, 0.6], scale: 1.3, steps: [{ word: "signed" }] }] }],
   /* 6 */ [{ sc: "tunnel", place: "tunnel", cuts: [[null, cu("tunnel", "leo", -15, 2.0, 40)]], actors: [ac("tunnel", "kd", ["smile"]), ac("tunnel", "leo", ["shock"])] }],
   /* 7 */ [{ sc: "tunnel", place: "tunnel", cuts: [[null, lo("tunnel", "kd", 15, 2.0, 35, { creep: 0.12 })]], actors: [ac("tunnel", "kd", ["smile"]), ac("tunnel", "leo", ["shock"])] }],
   /* 8 the spark, and KD shakes his hand out on "shook his hand out" */ [{ sc: "tunnel", place: "tunnel", cuts: [[null, TWO_SHOT_TUNNEL], ["lightning", INS_SPARK, true], ["tingled.", cu("tunnel", "leo", 0, 1.9, 40)], ["Kevin", A([-12.5, 1.2, 2.2], [-12.0, 1.15, -0.1], 26, { creep: 0.1 })]],
-    actors: [ac("tunnel", "kd", ["shock", "smile", 2.6], { play: [{ ...w("shook", -0.05), kind: "shake" }] }), ac("tunnel", "leo", ["shock", "excited", 1.2])], props: [{ id: "signedBasketball", at: [-11.4, 1.05, 0.4], scale: 1.3, steps: [{ t: 0 }, { word: "lightning" }, { word: "tingled." }] }] }],
+    actors: [ac("tunnel", "kd", ["shock", "smile", 2.6], { play: [{ ...w("shook", -0.05), kind: "shake" }] }), ac("tunnel", "leo", ["shock", "excited", 1.2])], props: [{ id: "signedBasketball", at: [-12.3, 1.05, 0.6], scale: 1.3, steps: [{ t: 0 }, { word: "lightning" }, { word: "tingled." }] }] }],
   /* 9 Next morning: Leo steps onto the court, pulls up twice (swish, swish) */ (() => {
     const a = pullUpSwish("leo", w("Swish.", -1.12, 1), RIM_C, { go: [0.3, -0.2] }), b = pullUpSwish("leo", w("Swish.", -0.97, 2), RIM_C, { flight: 0.45, apex: 0.8 });
     const wk = crossover("leo", w("stepped", -0.1), 1, [1.1, -0.6]);
@@ -182,7 +182,7 @@ const SEGS: Seg[][] = [
       { sc: "office", place: "tunnel", until: { word: "to" }, cuts: [[null, A([2.2, 1.5, 2.6], [0, 1.2, -1.2], 24)], ["miracle", INS_CONTRACT], ["kid", cu("office", "leo", 15, 2.2, 40)]], actors: [ac("office", "leo", ["excited"])] },
       { sc: "arena", place: "tunnel", until: { word: "Before" }, cuts: [[null, A([2.6, 1.2, -3.4], [-0.3, 1.3, -6.4], 26)], ["suit", A([2.8, 1.3, -5.0], [-0.1, 2.2, -7.8], 24), true], ["with", INS_STAT]],
         actors: [ac("arena", "leoJ", ["excited"], { at: [-0.7, 0, -5.4], play: [{ ...w("to", 0.0), kind: "dunk" as const, go: [0.6, -2.0] as [number, number] }] })],
-        props: [ball(RIM_A, [{ kind: "dribble", who: "leoJ", t: 0, hz: 2.6 }, { ...w("to", -0.1), kind: "hold", who: "leoJ", which: "hi" }, { ...w("to", 0.56), kind: "flight", from: { who: "leoJ", up: 1.6 }, to: [RIM_A[0], RIM_A[1] + 0.1, RIM_A[2]], dur: 0.1, apex: 0.0, swish: true }, { ...w("to", 0.66), kind: "drop", from: [RIM_A[0], RIM_A[1] - 0.1, RIM_A[2]] }], [-0.7, 0.2, -5.4]), { id: "statGraphic", at: [0.0, 1.4, 0.0], scale: 1.0, variant: "LEO: 30 PTS | Q3", steps: [{ word: "with" }] }], shake: [w("to", 0.66) as never] },
+        props: [ball(RIM_A, [{ kind: "dribble", who: "leoJ", t: 0, hz: 2.6 }, { ...w("to", -0.1), kind: "hold", who: "leoJ", which: "hi" }, { ...w("to", 0.56), kind: "flight", from: { who: "leoJ", up: 1.6 }, to: [RIM_A[0], RIM_A[1] + 0.1, RIM_A[2]], dur: 0.1, apex: 0.0, swish: true }, { ...w("to", 0.66), kind: "drop", from: [RIM_A[0], RIM_A[1] - 0.1, RIM_A[2]] }], [-0.7, 0.2, -5.4]), { id: "statGraphic", at: [0.0, 2.1, 0.0], scale: 1.0, variant: "LEO: 30 PTS | Q3", steps: [{ word: "with" }] }], shake: [w("to", 0.66) as never] },
       { sc: "tunnel2", place: "tunnel", cuts: [[null, A([-9.6, 1.5, -0.2], [-12.7, 0.95, -2.4], 26)], ["sat", cu("tunnel2", "kd", 72, 2.4, 32, { at: [-13.0, -0.5, -2.0] })], ["head", cu("tunnel2", "kd", 62, 2.0, 40, { creep: 0.15, at: [-13.0, -0.5, -2.0] })], ["held", A([-10.0, 1.3, -0.6], [-12.4, 0.95, -2.4], 28)]],
         actors: [ac("tunnel2", "kd", ["sad"], { mode: "sit", slump: 0.7, look: [0, -1] }), ac("tunnel2", "leoJ", ["nervous"])] },
     ];
@@ -213,7 +213,7 @@ const SEGS: Seg[][] = [
       actors: [ac("arena", "leoJ", ["determined", "excited", 1.6], { at: lj, play: [{ ...w("rose", 0.0), kind: "pullup", go: [-0.2, -0.1], rise: 0.5 }] }), ac("arena", "kd", ["determined"], { at: [-0.8, 0, -5.4] }), ac("arena", "coach", ["stern"])], props: [ball(RIM_A, bp, [lj[0], 0.2, lj[2]])] }];
   })(),
   /* 26 Swish. */ [{ sc: "arena", place: "arena", cuts: [[null, ANET()]], actors: [ac("arena", "leoJ", ["laugh"], { at: [1.5, 0, -4.9] }), ac("arena", "kd", ["laugh"], { at: [-0.8, 0, -5.4] })], props: [ball(RIM_A, [{ t: -0.3, kind: "flight", from: [RIM_A[0], RIM_A[1] + 1.2, RIM_A[2]], to: [RIM_A[0], RIM_A[1] + 0.08, RIM_A[2]], dur: 0.3, apex: 0.0, swish: true }, { t: 0, kind: "drop", from: [RIM_A[0], RIM_A[1] - 0.1, RIM_A[2]] }])] }],
-  /* 27 the arena explodes; KD lifts Leo onto his shoulders (at mid-court, so no backboard sits behind them) */ [{ sc: "arena", place: "arena", cuts: [[null, A([7.6, 2.0, 4.8], [4.0, 1.9, -1.0], 24)], ["arena", A([4.0, 1.0, 4.0], [3.0, 4.5, -9.0], 26)], ["KD", A([4.6, 1.3, 3.6], [4.0, 1.9, -0.6], 28)], ["shoulders", A([4.5, 1.5, 3.6], [4.0, 2.05, -0.6], 24)], ["chanted", A([6.2, 0.8, 5.2], [4.0, 2.1, -1.0], 22)]],
+  /* 27 the arena explodes; KD lifts Leo onto his shoulders (at mid-court, so no backboard sits behind them) */ [{ sc: "arena", place: "arena", cuts: [[null, A([7.6, 1.8, 4.8], [4.0, 1.55, -1.0], 24)], ["arena", A([4.0, 1.0, 4.0], [3.5, 2.9, -9.0], 26)], ["KD", A([4.6, 1.3, 3.6], [4.0, 1.65, -0.6], 28)], ["shoulders", A([4.5, 1.3, 3.8], [4.0, 1.75, -0.6], 24)], ["chanted", A([6.2, 0.9, 5.2], [4.0, 1.8, -1.0], 22)]],
     actors: [ac("arena", "kd", ["laugh"], { at: [4.0, 0, -1.0] }), ac("arena", "leoJ", ["laugh"], { at: [4.0, 1.45, -0.9], mode: "sit" })] }],
   /* 28 the coin toss: Dex flips a gold coin high in the air on "won the coin toss", catches it, then points at Leo */ [{ sc: "court", place: "court", cuts: [[null, WIDE_COURT], ["won", A([1.3, 1.1, 3.0], [1.0, 2.2, -0.4], 24)], ["pointed", cu("court", "dex", 0, 2.4, 50)]], actors: COURT_CREW({ dex: ["smile"], leo: ["proud"], kidA: ["smile"], kidB: ["smile"] }),
     props: [{ id: "coinToss", at: [1.3, 0.2, 0.2], scale: 1, ball: [{ kind: "hold", who: "dex", t: 0, which: "hi" }, { ...w("won", 0.1), kind: "flight", from: { who: "dex", up: 1.1 }, to: { who: "dex", up: 1.1 }, dur: 1.15, apex: 2.0, spin: 60 } as BallSeg, { ...w("won", 1.25), kind: "hold", who: "dex", which: "hi" }], steps: [{ t: -1 }] }] }],

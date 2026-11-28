@@ -16743,3 +16743,16 @@ Once preflight passes (with locked 2:29 audio masters untouched), commit everyth
 
 ## 28 Nov 2026 — owner (Episode 2: approve the final render, two small fixes)
 Its good, approve final render but before kd does the crossover the defender is behind him, he should be infront and small fix in the end, show a coin toss in the air visual storytelling
+
+## 28 Nov 2026 — owner (Episode 2: final 4 framing tweaks, PUBLISHING.md, final 1080p render)
+The new 540p preview is a huge upgrade—almost every fix landed cleanly (bedroom + 5:00 AM clock, home TV, Thunder front office, tunnel bench, basketball arcs, 1:58 panicked face, and 2:22 confident ending all look great). Do NOT touch the locked 2:29 audio masters.
+
+Fix these final 4 tiny framing/layering tweaks, generate PUBLISHING.md, and trigger the final 1080p render:
+
+1. 0:02 ("Oklahoma City"): Make sure Leo's OKC 11 jersey/body is 100% opaque (no translucency over the court) and frame slightly lower so the caption at ~72% height sits at chest level instead of across his eyes.
+2. 0:32 ("Kevin Durant"): Offset Leo slightly right (or KD slightly left) in the tunnel so KD's head does not peek out directly behind Leo's hair.
+3. 1:32 ("up with KD"): Move the "LEO: 30 PTS | Q3" banner up toward the top of the frame (or as a compact top scoreboard bug) so it does not cover Leo's face.
+4. 2:16–2:20 (Shoulder Lift): Frame the camera slightly wider/lower so KD's face sits above the ~72% caption line (currently "exploded" / "onto his" / "thousand fans" overlap KD's face/chin).
+5. Generate productions/kd-talent-1/publish/PUBLISHING.md with scroll-stopping titles, descriptions, and hashtags for YouTube Shorts, TikTok, and Instagram Reels.
+
+Once preflight passes (with locked 2:29 audio masters untouched), commit everything, trigger the final 1080p GitHub Actions render (scored + no-music dual export), give me the run URL, and stop (do NOT poll GitHub Actions).
