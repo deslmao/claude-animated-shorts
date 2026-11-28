@@ -10,6 +10,8 @@ no pull requests.
 2. Read `_log/DECISIONS.md` (why things are the way they are).
 3. Read `_log/PROMPTS.md` (the owner's exact words, newest at the bottom).
 
+## EPISODE 2 UPDATE (28 Nov, later): the shot list is written and committed, the realism pass is built, and the 540p PREVIEW HAS NOT BEEN TRIGGERED: waiting for the owner to approve `productions/kd-talent-1/realism-comparison.jpg`. The audio masters are LOCKED (eec89324… / 969852de…): never rebuild the mp3s; after a storyboard edit run `npm run sound -- kd-talent-1`, check the cue sheet is identical to the committed one, then `git checkout` the two mp3s. Next step when approved: commit `render-request.json` for `Short-kd-talent-1` (preview true, chunks 20, publish false), give the run URL, stop.
+
 ## EPISODE 2 (kd-talent-1), Phase A, 28 Nov 2026: READ THIS FIRST
 - **"The Day I Stole Kevin Durant's Talent"** (`productions/kd-talent-1/`). Engine 4, opt-in. **Waiting for the owner's approval of the audio and the contact sheet** before the real shot list, any preview, or any render (never poll Actions).
 - Built: two procedural sets (`engine4/court.ts` street court with `day` and `night` = 5 AM dawn + rain; `engine4/arena.ts` Thunder arena with `interior` = game and `interiorCool` = tunnel), characters (`kd`, `coach`, `leoJersey`, `kidA-D`, `defA-C` in `themes/e4/index.ts`; opt-in `Look.jersey` number in `characters/figure.ts`), items (`basketball`, `clipboard`), four hero props (`engine4/heroProps.ts`: signedBasketball, viralPhone, tvNewsSlump, arenaScoreboard), voices `kdKD`, `kdCoach`.

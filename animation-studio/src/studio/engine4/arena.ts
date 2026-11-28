@@ -7,6 +7,7 @@
 // the bench sits against the tunnel's back wall at (-13, 0, -2.45).
 import * as THREE from "three";
 import { mkTex as ctex } from "./tex";
+import { buildHoop } from "./hoop";
 import type { BuiltSet } from "../sets/types";
 
 /** where a camera may stand: the arena floor and the tunnel (a camera inside the stands or outside the walls films a seat back or a black wall) */
@@ -27,6 +28,7 @@ const floorTexture = () => ctex("e4arenafloor", 1024, 1200, (g) => {
   const W = 1024, H = 1200;
   for (let x = 0; x < W; x += 16) { const v = 168 + Math.floor(rnd() * 26); g.fillStyle = `rgb(${v + 22},${v - 20},${v - 78})`; g.fillRect(x, 0, 15, H); g.fillStyle = "rgba(60,30,10,0.35)"; g.fillRect(x + 15, 0, 1, H); }
   for (let i = 0; i < 1500; i++) { g.fillStyle = `rgba(80,40,10,${rnd() * 0.12})`; g.fillRect(rnd() * W, rnd() * H, 18 + rnd() * 60, 1); }
+  for (let x = 0; x < W; x += 16) for (let y = rnd() * 200; y < H; y += 140 + rnd() * 220) { g.fillStyle = "rgba(45,22,6,0.55)"; g.fillRect(x, y, 15, 1.6); g.fillStyle = `rgba(255,200,140,${0.05 + rnd() * 0.08})`; g.fillRect(x, y + 1.6, 15, 60 + rnd() * 80); }   // the plank end joints and a little tone change from board to board
   // paint: the baseline end (top of the image = -z) with a blue key, the logo at the other end
   g.fillStyle = "#1d428a"; g.fillRect(372, 40, 280, 440); g.strokeStyle = "#ffffff"; g.lineWidth = 9; g.strokeRect(372, 40, 280, 440); g.strokeRect(24, 24, 976, 1150);
   g.beginPath(); g.arc(512, 480, 140, 0, Math.PI); g.stroke(); g.beginPath(); g.arc(512, 100, 470, 0.16 * Math.PI, 0.84 * Math.PI); g.stroke();
@@ -45,6 +47,24 @@ const concreteTexture = () => ctex("e4concrete", 256, 256, (g) => {
   g.strokeStyle = "rgba(30,32,38,0.55)"; g.lineWidth = 2; for (let k = 0; k < 4; k++) { g.strokeRect(-2, k * 64 - 2, 260, 66); } g.beginPath(); g.moveTo(128, 0); g.lineTo(128, 256); g.stroke();
 });
 
+const bannerTex = (k: number) => ctex("e4banner" + k, 256, 512, (g) => {
+  const cols: [string, string][] = [["#1d428a", "#ef3b24"], ["#ef3b24", "#1d428a"], ["#f4f1ea", "#1d428a"]];
+  g.fillStyle = cols[k][0]; g.fillRect(0, 0, 256, 512); g.fillStyle = cols[k][1]; g.fillRect(0, 0, 256, 30); g.fillRect(0, 482, 256, 30);
+  g.textAlign = "center"; g.textBaseline = "middle"; g.fillStyle = k === 2 ? "#1d428a" : "#ffffff"; g.font = "900 70px Impact, Arial Black, sans-serif";
+  g.font = (k === 1 ? "900 44px" : "900 70px") + " Impact, Arial Black, sans-serif"; g.fillText(["OKC", "THUNDER", "WEST"][k], 128, 140); g.font = "900 96px Impact, Arial Black, sans-serif"; g.fillText(["2012", "NBA", "CHAMP"][k], 128, 290);
+  g.fillStyle = cols[k][1]; g.beginPath(); g.moveTo(146, 360); g.lineTo(96, 430); g.lineTo(130, 430); g.lineTo(100, 480); g.lineTo(168, 410); g.lineTo(134, 410); g.closePath(); g.fill();
+});
+/** camera flashes in the stands: white points that blink for a few frames at random seats (a pure function of time) */
+const makeFlashes = (spots: { x: number; y: number; z: number }[]) => {
+  const N = 90, g = new THREE.BufferGeometry(), pos = new Float32Array(N * 3), col = new Float32Array(N * 3); let s = 77; const rnd = () => { s = (s * 16807) % 2147483647; return s / 2147483647; };
+  const ph: number[] = [], rate: number[] = [];
+  for (let i = 0; i < N; i++) { const sp = spots[Math.floor(rnd() * spots.length)]; pos.set([sp.x, sp.y + 0.9, sp.z], i * 3); ph.push(rnd()); rate.push(0.18 + rnd() * 0.3); }
+  g.setAttribute("position", new THREE.BufferAttribute(pos, 3)); g.setAttribute("color", new THREE.BufferAttribute(col, 3));
+  const pts = new THREE.Points(g, new THREE.PointsMaterial({ size: 0.9, vertexColors: true, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, sizeAttenuation: true, fog: false }));
+  pts.frustumCulled = false;
+  const update = (t: number) => { for (let i = 0; i < N; i++) { const u = (t * rate[i] + ph[i]) % 1, v = u < 0.012 ? 1 - u / 0.012 : 0; col.set([v * 3, v * 3, v * 3], i * 3); } g.attributes.color.needsUpdate = true; };
+  return { pts, update };
+};
 /** the crowd: instanced bodies (boxes) and heads (spheres) on the bleacher tiers, bobbing a little (a pure function of time) */
 const makeCrowd = (spots: { x: number; y: number; z: number; ry: number }[]) => {
   const n = spots.length, body = new THREE.InstancedMesh(box(0.42, 0.55, 0.3), new THREE.MeshStandardMaterial({ roughness: 0.9 }), n), head = new THREE.InstancedMesh(new THREE.SphereGeometry(0.15, 8, 6), new THREE.MeshStandardMaterial({ roughness: 0.8 }), n);
@@ -67,22 +87,20 @@ const makeCrowd = (spots: { x: number; y: number; z: number; ry: number }[]) => 
 export const buildE4Arena = (): BuiltSet => {
   const root = new THREE.Group();
   const ft = floorTexture(); ft.anisotropy = 8;
-  const wood = std(ft, { roughness: 0.28, metalness: 0.05 });
+  const wood = new THREE.MeshPhysicalMaterial({ map: ft, roughness: 0.15, metalness: 0.02, clearcoat: 0.8, clearcoatRoughness: 0.07, reflectivity: 0.65 });   // varnished hardwood: the overhead spots glint off it
   // ---- the court floor (x -7..7 = 14 m, z -10..6.5 = 16.5 m; the image's top is the hoop end) and the concrete concourse round it
   add(root, new THREE.PlaneGeometry(14, 16.5).rotateX(-Math.PI / 2), wood, 0, 0.002, -1.75, { cast: false });
   add(root, new THREE.PlaneGeometry(40, 40).rotateX(-Math.PI / 2), std("#1a1d26", { roughness: 0.6 }), 0, -0.004, -2, { cast: false });
-  // ---- the hoop and its stanchion
+  // ---- the hoop and its stanchion (engine4/hoop.ts: plexiglass board, breakaway rim, diamond-mesh net)
   const steel = std("#2b303a", { roughness: 0.4, metalness: 0.6 });
-  add(root, box(0.5, 4.2, 0.5), std("#1d428a", { roughness: 0.5 }), 0, 2.1, -9.7); add(root, box(0.16, 0.16, 1.6), steel, 0, 3.3, -8.9);
-  add(root, box(1.8, 1.05, 0.06), std("#eef2f6", { roughness: 0.25, transparent: true, opacity: 0.9 }), 0, 2.95, -8.4); add(root, box(0.6, 0.45, 0.02), std("#ef3b24"), 0, 2.72, -8.37, { cast: false });
-  add(root, new THREE.TorusGeometry(0.24, 0.018, 8, 28).rotateX(Math.PI / 2), std("#e86a1c", { roughness: 0.35, metalness: 0.5 }), HOOP[0], HOOP[1], HOOP[2]);
-  const net = new THREE.Mesh(new THREE.CylinderGeometry(0.24, 0.14, 0.42, 12, 1, true), new THREE.MeshStandardMaterial({ color: "#f2f2f2", wireframe: true, transparent: true, opacity: 0.85 })); net.position.set(HOOP[0], HOOP[1] - 0.22, HOOP[2]); root.add(net);
+  add(root, box(0.5, 4.2, 0.5), std("#1d428a", { roughness: 0.5 }), 0, 2.1, -9.7); add(root, box(0.16, 0.16, 1.6), steel, 0, 3.3, -9.0);
+  root.add(buildHoop(HOOP));
   // ---- LED ad boards along both sidelines and the baseline (emissive; they bloom)
   const ledMats: THREE.MeshStandardMaterial[] = [];
   const led = (x: number, z: number, w: number, d: number, hue: string) => { const m = new THREE.MeshStandardMaterial({ color: "#10141c", emissive: hue, emissiveIntensity: 1.1 }); ledMats.push(m); add(root, box(w, 0.7, d), m, x, 0.36, z, { cast: false }); };
   led(-7.4, -2, 0.18, 14, "#1d6bff"); led(7.4, -2, 0.18, 14, "#1d6bff"); led(0, -10.3, 14.6, 0.18, "#ef3b24"); led(0, 6.9, 14.6, 0.18, "#ef3b24");
   // ---- bleachers on the left, right and behind the hoop, with the crowd on them; and the back wall and the roof
-  const seat = std("#1b2236", { roughness: 0.7 }); const spots: { x: number; y: number; z: number; ry: number }[] = [];
+  const seat = std("#2a3552", { roughness: 0.7 }); const spots: { x: number; y: number; z: number; ry: number }[] = [];
   const stand = (x0: number, z0: number, along: "x" | "z", len: number, dirx: number, dirz: number, tiers: number) => {
     for (let t = 0; t < tiers; t++) {
       const px = x0 + dirx * (t * 0.95), pz = z0 + dirz * (t * 0.95), y = 0.5 * (t + 1);
@@ -91,16 +109,27 @@ export const buildE4Arena = (): BuiltSet => {
       for (let i = 0; i < n; i++) { const u = -len / 2 + 0.31 + i * 0.62; if (((i * 7 + t * 3) % 9) === 0) continue; spots.push({ x: px + (along === "x" ? u : 0), y, z: pz + (along === "z" ? u : 0), ry: Math.atan2(-dirx, -dirz) }); }
     }
   };
-  stand(-8.4, -7.0, "z", 7, -1, 0, 7); stand(-8.4, 5.0, "z", 3, -1, 0, 7); stand(8.4, -2.0, "z", 17, 1, 0, 7);   // (the left stand stops short of the tunnel mouth, z -3.2..3.2) stand(0, -11.6, "x", 17, 0, -1, 7);
-  add(root, box(40, 10, 0.4), std("#0e111a", { roughness: 0.9 }), 0, 5, -19.4); add(root, box(0.4, 10, 40), std("#0e111a", { roughness: 0.9 }), -19, 5, -2); add(root, box(0.4, 10, 40), std("#0e111a", { roughness: 0.9 }), 15.5, 5, -2);
-  add(root, box(40, 0.4, 40), std("#0b0d14", { roughness: 0.9 }), -2, 9.2, -2, { cast: false });
+  // the left stand stops short of the tunnel mouth (z -3.2..3.2)
+  stand(-8.4, -7.0, "z", 7, -1, 0, 13); stand(-8.4, 5.0, "z", 3, -1, 0, 13); stand(8.4, -2.0, "z", 17, 1, 0, 13);
+  stand(0, -11.6, "x", 17, 0, -1, 13);   // behind the hoop
+  const wallM = std("#0a0d16", { roughness: 0.95 });
+  add(root, box(90, 14, 0.4), wallM, 0, 7, -26); add(root, box(0.4, 14, 90), wallM, -26, 7, -2); add(root, box(0.4, 14, 90), wallM, 22, 7, -2);   // dark upper walls behind the top tier
+  add(root, box(90, 0.4, 90), std("#080a10", { roughness: 0.95 }), -2, 12, -2, { cast: false });
   for (let i = 0; i < 6; i++) { const x = -6 + i * 2.4; add(root, box(0.22, 0.22, 16), steel, x, 8.6, -2, { cast: false }); }
+  // banners hanging above the top tier (championships, retired numbers): three canvas designs on both ends and the sides
+  const bannerMats = [0, 1, 2].map((k) => new THREE.MeshStandardMaterial({ map: bannerTex(k), roughness: 0.8, emissive: "#ffffff", emissiveMap: bannerTex(k), emissiveIntensity: 0.25, side: THREE.DoubleSide }));
+  for (let i = 0; i < 9; i++) { const x = -18 + i * 4.5; add(root, new THREE.PlaneGeometry(1.7, 3.4), bannerMats[i % 3], x, 8.6, -25.7, { cast: false }); }
+  for (let i = 0; i < 6; i++) { const z = -14 + i * 4.5; add(root, new THREE.PlaneGeometry(1.7, 3.4), bannerMats[(i + 1) % 3], 21.7, 8.6, z, { cast: false, ry: -Math.PI / 2 }); add(root, new THREE.PlaneGeometry(1.7, 3.4), bannerMats[(i + 2) % 3], -25.7, 8.6, z, { cast: false, ry: Math.PI / 2 }); }
+  // an LED ribbon along the front of the stands
+  const ribbon = new THREE.MeshStandardMaterial({ color: "#10141c", emissive: "#2a6bff", emissiveIntensity: 1.4 }); ledMats.push(ribbon);
+  add(root, box(17, 0.16, 0.1), ribbon, 0, 1.1, -11.1, { cast: false }); add(root, box(0.1, 0.16, 17), ribbon, 8.0, 1.1, -2, { cast: false });
   const lamps: THREE.MeshStandardMaterial[] = [];
   for (const [x, z] of [[-4, -6], [4, -6], [-4, 0], [4, 0], [0, 4], [0, -3]] as [number, number][]) { const m = new THREE.MeshStandardMaterial({ color: "#fff7e0", emissive: "#fff2cc", emissiveIntensity: 3 }); lamps.push(m); add(root, box(1.1, 0.12, 0.6), m, x, 8.4, z, { cast: false }); }
   // light shafts under the roof lamps: faint additive cones (light atmosphere)
   const shaft = new THREE.MeshBasicMaterial({ color: "#fff0cc", transparent: true, opacity: 0.045, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, fog: false });
   for (const [x, z] of [[-4, -6], [4, -6], [-4, 0], [4, 0], [0, 4], [0, -3]] as [number, number][]) { const c = new THREE.Mesh(new THREE.ConeGeometry(2.1, 8.2, 20, 1, true), shaft); c.position.set(x, 4.3, z); root.add(c); }
   const crowd = makeCrowd(spots); root.add(crowd.body, crowd.head);
+  const flashes = makeFlashes(spots); root.add(flashes.pts);
   // ---- the tunnel: concrete floor, walls, a low ceiling with strip lights, a banner, the bench, the dark end door, the lit mouth
   const ct = concreteTexture(); ct.wrapS = ct.wrapT = THREE.RepeatWrapping; ct.repeat.set(4, 1);
   const conc = std(ct, { roughness: 0.85 }); const concFloor = std("#4a4f58", { roughness: 0.4 });
@@ -121,6 +150,9 @@ export const buildE4Arena = (): BuiltSet => {
   const keySpot = new THREE.SpotLight(0xfff0d8, 0, 0, 0.9, 0.6, 1.4); keySpot.position.set(1.5, 8.2, 0); keySpot.target.position.set(0, 0, -3); keySpot.castShadow = true; keySpot.shadow.mapSize.set(2048, 2048); keySpot.shadow.camera.near = 2; keySpot.shadow.camera.far = 14; keySpot.shadow.bias = -0.0004; keySpot.shadow.radius = 4;
   const benchSpot = new THREE.SpotLight(0xcfe0ff, 0, 0, 0.8, 0.7, 1.4); benchSpot.position.set(-12.2, 3.2, 0.4); benchSpot.target.position.set(-13, 0.6, -2.3); root.add(keySpot, keySpot.target, benchSpot, benchSpot.target);
   const mouthLight = new THREE.PointLight(0xfff0d0, 0, 9, 2); mouthLight.position.set(-8.2, 1.9, 0); root.add(mouthLight);
+  // the arena's house lights on the stands: three soft directional lights (no shadows) from the court toward the back and the two sides, so the crowd and the banners read
+  const stands: THREE.DirectionalLight[] = [];
+  for (const [px, pz, tx, tz] of [[0, 2, 0, -18], [-2, -2, 18, -2], [2, -2, -12, -2]] as [number, number, number, number][]) { const d = new THREE.DirectionalLight(0xdfe6ff, 0); d.position.set(px, 7, pz); d.target.position.set(tx, 3.5, tz); root.add(d, d.target); stands.push(d); }
   let tunnelMode = false;
   const e4: NonNullable<BuiltSet["e4"]> = {
     apply: ({ env, focus, t, light }) => {
@@ -131,11 +163,11 @@ export const buildE4Arena = (): BuiltSet => {
       s.shadow.bias = -0.0004; s.shadow.normalBias = 0.03; s.shadow.radius = 3; s.shadow.mapSize.set(4096, 4096);
       env.hemi.color.set(tunnel ? "#35446a" : "#4a5578"); env.hemi.groundColor.set("#1a1410"); env.hemi.intensity = tunnel ? 0.42 : 1.0;
       env.fog.color.set(tunnel ? "#10141f" : "#181c2c"); env.fog.near = 8; env.fog.far = tunnel ? 26 : 44;
-      keySpot.intensity = tunnel ? 0 : 160;   // (castShadow is never toggled: that would recompile every material on a shot change)
+      keySpot.intensity = tunnel ? 0 : 160; for (const d of stands) d.intensity = tunnel ? 0.25 : 1.9;   // (castShadow is never toggled: that would recompile every material on a shot change)
       benchSpot.intensity = tunnel ? 38 : 0; mouthLight.intensity = tunnel ? 14 : 0;
       for (const m of lamps) m.emissiveIntensity = tunnel ? 1.2 : 3; for (const m of strips) m.emissiveIntensity = (tunnel ? 2.4 : 1.4) * (1 + 0.025 * Math.sin(t * 11));
       ledMats.forEach((m, i) => { m.emissiveIntensity = 1.0 + 0.35 * Math.sin(t * 2.2 + i * 1.7); });
-      void mouth; crowd.update(t);
+      void mouth; crowd.update(t); flashes.update(t);
     },
     tint: (x, y, z) => { void y; void z; if (tunnelMode || x < -8.6) return [0.82 + Math.max(0, (x + 14) * 0.03), 0.9, 1.08]; return [1.0, 0.97, 0.94]; },
   };

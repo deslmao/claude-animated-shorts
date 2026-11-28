@@ -16590,3 +16590,48 @@ Quick script naming tweak before rebuilding the ~2:30 audio for productions/kd-t
 - Use "Kevin Durant" in Beats 1–5 (Hook, Underdog, Thunder Game, Secret Habit/TV Slump).
 - Switch to "KD" starting in Beat 6 (The Return in the tunnel) through Beat 8 (Payoff), once Leo actually knows him personally.
 - Keep the TV news chyron as "KEVIN DURANT: 0-12 — CAREER OVER?" so it reads clearly at a glance.
+
+## 28 Nov 2026 — owner (Episode 2: go for the shot list and preview, then the realism pass)
+Go—the 2:29 audio masters are locked (do NOT rebuild or touch them) and the updated TV chyron is approved.
+
+Move straight to the full shot list and 540p preview render:
+
+1. Quick Visual Polish (if not already applied):
+- Ensure "#35" is clearly visible on the front of KD's blue Thunder jersey.
+- Ensure Leo's legs sit visibly over KD's shoulders in the Beat 8 shoulder-lift shot so he reads as sitting on KD's shoulders rather than stacked behind his head.
+
+2. Author the Full Engine 4 Shot List (148.7 s):
+- Target 1.5–2.0 s average pacing per visual change across the full 2:29 runtime.
+- Use our full camera grammar: low-angle hero shots (KD tunnel, first dunk, shoulder lift), high-angle underdog shots ("Brick", bench), bird's-eye 3-defender swarm, handheld drift, slow push-ins during the sad piano climax, and snap-zooms on swishes/punchlines.
+- Cut cleanly to all 4 hero insert props at their exact spoken beats (signedBasketball + lightning spark, viralPhone, updated tvNewsSlump chyron, and arenaScoreboard).
+- Keep face-first framing (eyes in upper-middle third) and chest-level captions (~72% height) so captions never cover faces or insert graphics.
+
+3. Trigger 540p Preview Render:
+- Once preflight passes (with locked audio masters untouched), commit everything, trigger the 540p GitHub Actions preview render, give me the run URL, and stop (do NOT poll GitHub Actions).
+
+(mid-turn message) Please make the jersey's actual nba jerseys with the thunders logo
+
+(mid-turn message, which replaced the render step) Before we write the Episode 2 shot list or render, we need a realism upgrade on the Thunder Arena, Street Court, and jerseys—right now the sets look too flat and primitive. Do NOT touch the locked 2:29 audio masters.
+
+Upgrade these 5 visual details:
+
+1. Realistic Glass Backboard & Pro Hoop (Arena + Street Court):
+- Replace the solid white backboard with a transparent plexiglass backboard (MeshPhysicalMaterial or semi-transparent glossy material with subtle reflection), dark steel outer frame, crisp white outer border + white shooter's square above the rim, and dark protective bottom padding.
+- Upgrade the rim to a metallic orange breakaway hoop with a visible mounting bracket/flange and a tapered white diamond-mesh net (not a blocky cylinder).
+
+2. Realistic Court Surfaces & Lighting:
+- Thunder Arena: Add a procedural hardwood plank texture with low roughness/gloss so overhead arena spotlights reflect subtly off the floor.
+- Street Court: Add a rough, slightly weathered asphalt texture with crisp painted key/three-point lines.
+
+3. Fill the Empty Arena Background:
+- Replace the flat beige walls behind the baseline with tiered dark stadium seating, rows of stylized/blurred crowd dots + occasional camera flashes, and hanging arena banners so it feels like a real 20,000-fan NBA arena.
+
+4. Fix the Jerseys (Crisp 2D Canvas Textures):
+- Remove the 7-segment digital-clock rectangles and clipped "HUNDEI"/"HUNDER" text.
+- Render the jersey chest graphics onto a clean 2D Canvas texture using a bold athletic font (Impact / Arial Black, white with dark outline): centered "OKC" (with clean margin on both sides so it NEVER clips) and bold "35" on KD / "11" on Leo.
+
+5. Make KD Recognizable:
+- Add KD's signature short goatee/beard to his face card.
+
+Stop Gate:
+- Commit these visual upgrades and send me a 2-frame comparison still (KD close-up + Arena wide/hoop & shoulder-lift) so I can approve the realism pass before we trigger the 540p preview render.

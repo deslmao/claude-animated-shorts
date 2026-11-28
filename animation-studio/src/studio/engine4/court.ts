@@ -6,6 +6,7 @@
 // Coordinates (three, metres): the court floor is y = 0, x -5.6..5.6, z -6.2 (fence behind the hoop) .. +4.8 (the camera side); the hoop is at (0, 2.45, -4.15).
 import * as THREE from "three";
 import { mkTex as ctex } from "./tex";
+import { buildHoop } from "./hoop";
 import type { BuiltSet } from "../sets/types";
 
 /** where a camera may stand: inside the fenced court (a camera outside the fence films a back or a house wall) */
@@ -21,18 +22,26 @@ const add = (root: THREE.Object3D, g: THREE.BufferGeometry, m: THREE.Material, x
 const box = (w: number, h: number, d: number) => new THREE.BoxGeometry(w, h, d);
 
 /** the painted court: a faded blue key and white lines on grey asphalt, with crack and wear noise (a canvas, 1 px = 1 cm / 4) */
-const courtTexture = () => ctex("e4court", 1024, 1024, (g) => {
+const courtTexture = () => ctex("e4court", 2048, 2048, (g) => {
   let s = 11; const rnd = () => { s = (s * 16807) % 2147483647; return s / 2147483647; };
-  g.fillStyle = "#4b4f55"; g.fillRect(0, 0, 1024, 1024);
-  for (let i = 0; i < 9000; i++) { const v = 60 + rnd() * 46; g.fillStyle = `rgba(${v},${v + 2},${v + 6},0.5)`; g.fillRect(rnd() * 1024, rnd() * 1024, 2 + rnd() * 3, 2 + rnd() * 3); }
-  // the painted half-court (1024 px = 11.4 m wide, 1 px = 1.11 cm): the key and the arc, faded
-  g.fillStyle = "#2d5f86"; g.fillRect(380, 90, 264, 380);
-  g.strokeStyle = "#e8e4d8"; g.lineWidth = 9; g.strokeRect(380, 90, 264, 380); g.strokeRect(60, 90, 904, 860);
-  g.beginPath(); g.arc(512, 470, 112, 0, Math.PI); g.stroke(); g.beginPath(); g.arc(512, 140, 420, 0.18 * Math.PI, 0.82 * Math.PI); g.stroke();
-  g.beginPath(); g.arc(512, 90, 52, 0, Math.PI); g.stroke();
-  g.strokeStyle = "rgba(20,20,22,0.8)"; g.lineWidth = 2.5;
-  for (let k = 0; k < 14; k++) { let x = rnd() * 1024, y = rnd() * 1024; g.beginPath(); g.moveTo(x, y); for (let j = 0; j < 7; j++) { x += (rnd() - 0.5) * 70; y += (rnd() - 0.3) * 60; g.lineTo(x, y); } g.stroke(); }
-  for (let k = 0; k < 160; k++) { g.fillStyle = `rgba(232,228,216,${rnd() * 0.25})`; g.fillRect(rnd() * 1024, rnd() * 1024, 6 + rnd() * 20, 2); }
+  const W = 2048;
+  g.fillStyle = "#4a4e54"; g.fillRect(0, 0, W, W);
+  // rough, weathered asphalt: coarse grit, worn lighter patches, dark oil stains, tar-filled cracks
+  for (let i = 0; i < 60000; i++) { const v = 52 + rnd() * 52; g.fillStyle = `rgba(${v},${v + 2},${v + 6},0.55)`; g.fillRect(rnd() * W, rnd() * W, 2 + rnd() * 4, 2 + rnd() * 4); }
+  for (let i = 0; i < 40; i++) { const gr = g.createRadialGradient(0, 0, 0, 0, 0, 1); g.save(); g.translate(rnd() * W, rnd() * W); g.scale(60 + rnd() * 200, 40 + rnd() * 120); gr.addColorStop(0, "rgba(120,124,130,0.16)"); gr.addColorStop(1, "rgba(120,124,130,0)"); g.fillStyle = gr; g.beginPath(); g.arc(0, 0, 1, 0, 6.3); g.fill(); g.restore(); }
+  for (let i = 0; i < 18; i++) { const gr = g.createRadialGradient(0, 0, 0, 0, 0, 1); g.save(); g.translate(rnd() * W, rnd() * W); g.scale(30 + rnd() * 90, 20 + rnd() * 60); gr.addColorStop(0, "rgba(10,10,12,0.4)"); gr.addColorStop(1, "rgba(10,10,12,0)"); g.fillStyle = gr; g.beginPath(); g.arc(0, 0, 1, 0, 6.3); g.fill(); g.restore(); }
+  // the painted half-court (1 m = 179.6 px; the hoop is at x 1024, y 368 on this plane): a faded blue key, crisp white lines
+  const m = 179.6, base = 144, hoopY = 368;
+  g.fillStyle = "#2d5f86"; g.fillRect(1024 - 1.95 * m, base, 3.9 * m, 4.6 * m);
+  g.strokeStyle = "#ece8dc"; g.lineWidth = 14; g.lineJoin = "miter";
+  g.strokeRect(100, base, W - 200, 1800); g.strokeRect(1024 - 1.95 * m, base, 3.9 * m, 4.6 * m);
+  g.beginPath(); g.arc(1024, base + 4.6 * m, 1.45 * m, Math.PI, 2 * Math.PI, true); g.stroke();                       // the free-throw circle (the half toward the hoop is solid)
+  g.setLineDash([26, 22]); g.beginPath(); g.arc(1024, base + 4.6 * m, 1.45 * m, 0, Math.PI, false); g.stroke(); g.setLineDash([]);
+  g.beginPath(); g.moveTo(1024 - 5.0 * m, base); g.lineTo(1024 - 5.0 * m, hoopY); g.arc(1024, hoopY, 5.0 * m, Math.PI, 0, true); g.lineTo(1024 + 5.0 * m, base); g.stroke();   // the three-point line
+  g.beginPath(); g.arc(1024, hoopY, 0.7 * m, 0, Math.PI, false); g.stroke();                                           // the restricted arc
+  for (let k = 0; k < 24; k++) { g.fillStyle = `rgba(74,78,84,${0.15 + rnd() * 0.3})`; g.fillRect(rnd() * W, rnd() * W, 8 + rnd() * 26, 3 + rnd() * 6); }   // paint wear
+  g.strokeStyle = "rgba(14,14,16,0.85)"; g.lineWidth = 3;
+  for (let k = 0; k < 26; k++) { let x = rnd() * W, y = rnd() * W; g.beginPath(); g.moveTo(x, y); for (let j = 0; j < 9; j++) { x += (rnd() - 0.5) * 90; y += (rnd() - 0.3) * 80; g.lineTo(x, y); } g.stroke(); }
 });
 /** a chain-link fence as an alpha-tested diamond mesh */
 const fenceTexture = () => ctex("e4fence", 128, 128, (g) => {
@@ -65,19 +74,14 @@ export const buildE4Court = (): BuiltSet => {
   const ct = courtTexture(); ct.wrapS = ct.wrapT = THREE.RepeatWrapping; ct.anisotropy = 4;
   const asphalt = std("#3e4147", { roughness: 0.9 });
   add(root, new THREE.PlaneGeometry(60, 60).rotateX(-Math.PI / 2), asphalt, 0, -0.002, -6, { cast: false });
-  const courtMat = std(ct, { roughness: 0.82 });
+  const courtMat = std(ct, { roughness: 0.85, bumpMap: ct, bumpScale: 2.0 });   // the grit also roughens the surface (a bump map)
   add(root, new THREE.PlaneGeometry(11.4, 11.4).rotateX(-Math.PI / 2), courtMat, 0, 0.002, -0.5, { cast: false });
   add(root, box(12.4, 0.06, 0.18), std("#8c8f94"), 0, 0.03, 5.2, { cast: false }); add(root, box(12.4, 0.06, 0.18), std("#8c8f94"), 0, 0.03, -6.3, { cast: false });
-  // ---- the hoop: a steel pole behind a rectangular backboard, a rim, a net
+  // ---- the hoop: a steel pole and arm behind a plexiglass backboard, a breakaway rim, a diamond-mesh net (engine4/hoop.ts)
   const steel = std("#5d6670", { roughness: 0.45, metalness: 0.6 });
   add(root, new THREE.CylinderGeometry(0.09, 0.09, 3.6, 12), steel, 0, 1.8, -5.0);
   add(root, box(0.1, 0.1, 0.9), steel, 0, 3.15, -4.75);
-  add(root, box(1.8, 1.05, 0.06), std("#e9eef3", { roughness: 0.3, transparent: true, opacity: 0.92 }), 0, 2.9, -4.55);
-  add(root, box(0.6, 0.45, 0.02), std("#c8252d"), 0, 2.72, -4.51, { cast: false });
-  const rim = add(root, new THREE.TorusGeometry(0.24, 0.018, 8, 28).rotateX(Math.PI / 2), std("#e86a1c", { roughness: 0.35, metalness: 0.5 }), HOOP[0], HOOP[1], HOOP[2]);
-  rim.castShadow = true;
-  const net = new THREE.Mesh(new THREE.CylinderGeometry(0.24, 0.14, 0.42, 12, 1, true), new THREE.MeshStandardMaterial({ color: "#f2f2f2", roughness: 0.9, wireframe: true, transparent: true, opacity: 0.85 }));
-  net.position.set(HOOP[0], HOOP[1] - 0.22, HOOP[2]); net.castShadow = true; root.add(net);
+  root.add(buildHoop(HOOP));
   // ---- the chain-link fence behind the hoop and down both sides, with posts and a top rail
   const ft = fenceTexture(); ft.wrapS = ft.wrapT = THREE.RepeatWrapping;
   const fenceMat = (len: number) => { const t = ft.clone(); t.repeat.set(len * 2.4, 3.2 * 2.4); t.needsUpdate = true; return new THREE.MeshStandardMaterial({ map: t, alphaTest: 0.5, side: THREE.DoubleSide, roughness: 0.5, metalness: 0.5, color: "#aab2bc" }); };

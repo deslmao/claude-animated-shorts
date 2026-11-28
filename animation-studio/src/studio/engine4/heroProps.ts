@@ -42,7 +42,7 @@ const ballTexture = () => ctex("kdball", 1024, 512, (g) => {
 export const signedBallRig = (a: At): PropRig => {
   const { root, pivot } = root0(a);
   const tex = ballTexture(); tex.anisotropy = 8;
-  const ball = new THREE.Mesh(new THREE.SphereGeometry(0.15, 40, 28), new THREE.MeshStandardMaterial({ map: tex, roughness: 0.62, bumpMap: tex, bumpScale: 0.6 }));
+  const ball = new THREE.Mesh(new THREE.SphereGeometry(0.15, 40, 28), new THREE.MeshStandardMaterial({ map: tex, roughness: 0.62, bumpMap: tex, bumpScale: 0.6, emissiveMap: tex, emissive: "#ffffff", emissiveIntensity: 0.3 }));   // a faint glow of its own, so the signature reads in a dark tunnel
   ball.castShadow = true; ball.receiveShadow = true; pivot.add(ball);
   // the lightning: three bolts of 10 jagged segments (instanced thin boxes, unlit so they glow past the bloom threshold) running out of the ball to the left and the right hand, and sparks
   const SEG = 10, BOLTS = 4, n = SEG * BOLTS, bolt = new THREE.InstancedMesh(new THREE.BoxGeometry(1, 0.018, 0.018), new THREE.MeshBasicMaterial({ toneMapped: false }), n);

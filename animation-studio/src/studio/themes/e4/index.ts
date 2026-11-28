@@ -31,10 +31,10 @@ const LEO_HOODIE: Look = { name: "Leo", build: "kid", skin: "#c99067", seed: 104
 
 /** Leo in the Thunder jersey (arena scenes): the same boy, sleeveless blue jersey with a number, blue shorts */
 const LEO_JERSEY: Look = { name: "Leo (Thunder jersey)", build: "kid", skin: "#c99067", seed: 104, hair: { style: "curly", color: "#2a201a" },
-  top: { style: "tee", color: "#1d428a", accent: "#ef3b24" }, jersey: { number: "11", color: "#ffffff" }, bare: { arms: true }, legs: "#1d428a", shorts: "#1d428a", shoes: "#f4f1ea" };
+  top: { style: "tee", color: "#0b5ec7", accent: "#ef3b24" }, jersey: { number: "11", color: "#ffffff", team: "thunder" }, bare: { arms: true }, legs: "#1d428a", shorts: "#1d428a", shoes: "#f4f1ea" };
 /** Kevin Durant: tall and lanky, short hair and a goatee, the blue and white #35 Thunder jersey */
-const KD: Look = { name: "Kevin Durant", build: "lanky", skin: "#7a4a2e", seed: 35, hair: { style: "buzz", color: "#120c0a" }, beard: { style: "goatee", color: "#120c0a" },
-  top: { style: "tee", color: "#1d428a", accent: "#ef3b24" }, jersey: { number: "35", color: "#ffffff" }, bare: { arms: true }, legs: "#1d428a", shorts: "#1d428a", shoes: "#f4f1ea" };
+const KD: Look = { name: "Kevin Durant", build: "lanky", skin: "#8d5a38", seed: 35, hair: { style: "buzz", color: "#120c0a" }, beard: { style: "goatee", color: "#0c0807" }, moustache: { style: "thin", color: "#0c0807" },
+  top: { style: "tee", color: "#0b5ec7", accent: "#ef3b24" }, jersey: { number: "35", color: "#ffffff", team: "thunder" }, bare: { arms: true }, legs: "#1d428a", shorts: "#1d428a", shoes: "#f4f1ea" };
 /** the Thunder coach: stout, bald with a walrus moustache, a white polo, a whistle (the whistle face) and a clipboard */
 const COACH: Look = { name: "Coach", build: "stout", skin: "#d9a066", seed: 77, hair: { style: "bald", color: "#2a2a2a" }, moustache: { style: "walrus", color: "#3a3028" },
   top: { style: "shirt", color: "#f2efe6", accent: "#1d428a" }, legs: "#1d2433", shoes: "#2a2a2a" };

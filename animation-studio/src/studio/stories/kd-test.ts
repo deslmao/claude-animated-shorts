@@ -37,8 +37,19 @@ export const KD_TEST: Storyboard = {
         who("leoJ", [2.3, 0, -3.4], [{ t: 0, expr: "nervous" }])] },
     // 6 KD lifts Leo onto his shoulders: low angle, the crowd behind
     { ...arena, dur: 1.5, camera: at([0.6, 0.4, 3.4], [0.0, 1.5, -1.2], 24, 2), note: "6 shoulder lift",
-      actors: [who("kd", [0.0, 0, -1.0], [{ t: 0, expr: "laugh", gesture: "cheer" }]), { ...who("leoJ", [0.02, 1.0, -1.1], [{ t: 0, expr: "laugh", gesture: "cheer", tilt: 3 }]), mode: "sit" as never }] },
+      actors: [who("kd", [0.0, 0, -1.0], [{ t: 0, expr: "laugh", gesture: "cheer" }]), { ...who("leoJ", [0.0, 1.45, -0.9], [{ t: 0, expr: "laugh", gesture: "cheer", tilt: 3 }]), mode: "sit" as never }] },
+    // 8 KD close-up: the #35 jersey
+    { ...arena, dur: 1.5, camera: at([0.4, 1.45, 1.6], [0.0, 1.25, -1.0], 35, 0), note: "8 KD jersey", actors: [who("kd", [0.0, 0, -1.0], [{ t: 0, expr: "smile_closed" }])] },
     // 7 the arena scoreboard insert (THUNDER 88 | 00:05 | OPP 89), hung over the court, seen from the floor
     { ...arena, dur: 1.5, camera: at([0.0, 1.4, 4.2], [0.0, 5.0, -3.0], 30, 0), note: "7 scoreboard", props: [{ id: "arenaScoreboard", at: [0, 4.6, -3.0] as V, scale: 1.0, steps: [{ t: -1 }] }], actors: [] },
+    { ...arena, dur: 1.5, camera: at([0.6, 0.4, 3.4], [0.0, 1.5, -1.2], 24, 2), note: "v0", actors: [who("kd", [0.0, 0, -1.0], [{ t: 0, expr: "laugh", gesture: "cheer" }]), { ...who("leoJ", [0.0, 1.45, -0.9], [{ t: 0, expr: "laugh", gesture: "cheer", tilt: 3 }]), mode: "sit" as never }] },
+    { ...arena, dur: 1.5, camera: at([0.6, 0.4, 3.4], [0.0, 1.5, -1.2], 24, 2), note: "v1", actors: [who("kd", [0.0, 0, -1.0], [{ t: 0, expr: "laugh", gesture: "cheer" }]), { ...who("leoJ", [0.0, 1.62, -0.9], [{ t: 0, expr: "laugh", gesture: "cheer", tilt: 3 }]), mode: "sit" as never }] },
+    { ...arena, dur: 1.5, camera: at([0.6, 0.4, 3.4], [0.0, 1.5, -1.2], 24, 2), note: "v2", actors: [who("kd", [0.0, 0, -1.0], [{ t: 0, expr: "laugh", gesture: "cheer" }]), { ...who("leoJ", [0.0, 1.78, -0.9], [{ t: 0, expr: "laugh", gesture: "cheer", tilt: 3 }]), mode: "sit" as never }] },
+    // the realism pass: the shoulder lift under the hoop with the stands behind; the street court's hoop and asphalt; the arena hoop up close
+    { ...arena, dur: 1.5, camera: at([-2.4, 0.7, 1.2], [0.4, 2.0, -6.4], 28, 2), note: "A lift + hoop", actors: [who("kd", [0.7, 0, -4.9], [{ t: 0, expr: "laugh", gesture: "cheer" }]), { ...who("leoJ", [0.7, 1.45, -4.8], [{ t: 0, expr: "laugh", gesture: "cheer", tilt: 3 }]), mode: "sit" as never }] },
+    { ...court, dur: 1.5, camera: at([-1.6, 0.9, 0.6], [0.0, 2.4, -4.2], 32, 0), note: "B court hoop", actors: [who("kidA", [-0.8, 0, -1.6], [{ t: 0, expr: "smile" }])] },
+    { ...arena, dur: 1.5, camera: at([-1.0, 2.1, -5.4], [0.0, 2.6, -8.3], 45, 0), note: "C arena hoop", actors: [] },
+    { ...arena, dur: 1.5, camera: at([3.0, 3.2, -4.0], [0.0, 3.4, -18.0], 28, 0), note: "D stands debug", actors: [] },
+    { ...arena, dur: 1.5, camera: at([-2.4, 0.7, 1.2], [0.4, 2.0, -6.4], 28, 2), note: "E same as A without shafts", actors: [] },
   ],
 };
