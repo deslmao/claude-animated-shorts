@@ -320,9 +320,9 @@ const staging = (film: ReturnType<typeof compile>, sb: Storyboard, i: number, a:
     (s.props ?? []).forEach((q, k) => {
       const e = PROPS[q.id], pr = shot.props?.[k]; if (!e || !pr) return;
       // in frame if any part of its footprint box (radius x height) is: a prop partly in shot counts as seen
-      const r0 = e.radius * (pr.at.s ?? 1), y0 = pr.at.y ?? 0, y1 = y0 + e.height * (pr.at.s ?? 1);
-      // a prop travelling with an actor (track) is where it really is this frame
-      const tr = q.track ? pr.animate?.((f - a) / FPS, anchors)?.track : undefined, px = tr ? tr.pos[0] : pr.at.x, pz = tr ? tr.pos[2] : pr.at.z;
+      const r0 = e.radius * (pr.at.s ?? 1);
+      // a prop travelling with an actor (track), or a ball on a plan, is where it really is this frame
+      const tr = q.track || q.ball ? pr.animate?.((f - a) / FPS, anchors)?.track : undefined, y0 = q.ball && tr ? tr.pos[1] - e.radius : pr.at.y ?? 0, y1 = y0 + (q.ball && tr ? 2 * e.radius : e.height * (pr.at.s ?? 1)), px = tr ? tr.pos[0] : pr.at.x, pz = tr ? tr.pos[2] : pr.at.z;
       for (const [dx, dz] of [[0, 0], [-1, -1], [1, -1], [1, 1], [-1, 1], [-1, 0], [1, 0], [0, -1], [0, 1]]) for (const y of [y0, (y0 + y1) / 2, y1])
         if (inFrame(P([px + dx * r0, y, pz + dz * r0]), 1.0)) { seenProp.add(k); break; }
       if (q.follow && e.reach) {

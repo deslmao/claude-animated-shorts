@@ -11,7 +11,7 @@ import { buildHoop } from "./hoop";
 import type { BuiltSet } from "../sets/types";
 
 /** where a camera may stand: the arena floor and the tunnel (a camera inside the stands or outside the walls films a seat back or a black wall) */
-export const arenaInside = (x: number, y: number, z: number) => y >= 0.05 && y <= 8.2 && ((x >= -8.6 && x <= 8.2 && z >= -10.4 && z <= 6.6) || (x >= -17.2 && x < -8.6 && z >= -3.2 && z <= 3.2 && y <= 3.3));
+export const arenaInside = (x: number, y: number, z: number) => y >= 0.05 && y <= 8.2 && ((x >= -8.6 && x <= 8.2 && z >= -10.4 && z <= 6.6) || (x >= -17.2 && x < -8.6 && z >= -3.2 && z <= 3.2 && y <= 3.3) || (x > 8.2 && x <= 19.5 && z >= -10.4 && z <= 6.6 && y >= 0.5 * Math.ceil((x - 8.4) / 0.95 + 0.3) + 1.0));   // (the right stands: a camera there must stay above the tier it is over)
 export const ARENA_ROOM = { x0: -17.2, x1: 8.2, z0: -10.4, z1: 6.6, y0: 0.05, y1: 8.2 };
 export const HOOP: [number, number, number] = [0, 2.45, -8.15];
 export const BENCH: [number, number, number] = [-13, 0, -2.45];
@@ -29,9 +29,16 @@ const floorTexture = () => ctex("e4arenafloor", 1024, 1200, (g) => {
   for (let x = 0; x < W; x += 16) { const v = 168 + Math.floor(rnd() * 26); g.fillStyle = `rgb(${v + 22},${v - 20},${v - 78})`; g.fillRect(x, 0, 15, H); g.fillStyle = "rgba(60,30,10,0.35)"; g.fillRect(x + 15, 0, 1, H); }
   for (let i = 0; i < 1500; i++) { g.fillStyle = `rgba(80,40,10,${rnd() * 0.12})`; g.fillRect(rnd() * W, rnd() * H, 18 + rnd() * 60, 1); }
   for (let x = 0; x < W; x += 16) for (let y = rnd() * 200; y < H; y += 140 + rnd() * 220) { g.fillStyle = "rgba(45,22,6,0.55)"; g.fillRect(x, y, 15, 1.6); g.fillStyle = `rgba(255,200,140,${0.05 + rnd() * 0.08})`; g.fillRect(x, y + 1.6, 15, 60 + rnd() * 80); }   // the plank end joints and a little tone change from board to board
-  // paint: the baseline end (top of the image = -z) with a blue key, the logo at the other end
-  g.fillStyle = "#1d428a"; g.fillRect(372, 40, 280, 440); g.strokeStyle = "#ffffff"; g.lineWidth = 9; g.strokeRect(372, 40, 280, 440); g.strokeRect(24, 24, 976, 1150);
-  g.beginPath(); g.arc(512, 480, 140, 0, Math.PI); g.stroke(); g.beginPath(); g.arc(512, 100, 470, 0.16 * Math.PI, 0.84 * Math.PI); g.stroke();
+  // paint: the baseline end (top of the image = -z) with a blue key, proper lane hash marks and blocks, the restricted-area arc, the full free-throw circle and the three-point line
+  const base = 24, hx = 512, hy = 134, m = 73;
+  g.fillStyle = "#1d428a"; g.fillRect(hx - 1.95 * m, base, 3.9 * m, 4.64 * m);
+  g.strokeStyle = "#ffffff"; g.lineWidth = 9; g.lineJoin = "miter"; g.strokeRect(24, 24, 976, 1150); g.strokeRect(hx - 1.95 * m, base, 3.9 * m, 4.64 * m);
+  g.beginPath(); g.arc(hx, base + 4.64 * m, 1.44 * m, Math.PI, 2 * Math.PI, false); g.stroke();                                    // the free-throw circle: the half inside the lane is solid ...
+  g.setLineDash([22, 18]); g.beginPath(); g.arc(hx, base + 4.64 * m, 1.44 * m, 0, Math.PI, false); g.stroke(); g.setLineDash([]);   // ... the half outside is dashed
+  g.beginPath(); g.arc(hx, hy, 1.0 * m, 0, Math.PI, false); g.stroke(); g.beginPath(); g.moveTo(hx - 1.0 * m, base + 4); g.lineTo(hx - 1.0 * m, hy); g.moveTo(hx + 1.0 * m, base + 4); g.lineTo(hx + 1.0 * m, hy); g.stroke();   // the restricted-area arc under the hoop
+  g.beginPath(); g.moveTo(hx - 5.36 * m, base); g.lineTo(hx - 5.36 * m, hy + 161); g.arc(hx, hy, 5.8 * m, Math.PI - 0.391, 0.391, true); g.lineTo(hx + 5.36 * m, base); g.stroke();   // the three-point line
+  for (let i = 0; i < 4; i++) for (const s of [-1, 1]) { const y = base + 1.45 * m + i * 0.8 * m; g.fillStyle = "#ffffff"; g.fillRect(hx + s * 1.95 * m - (s > 0 ? 0 : 0.22 * m), y, 0.22 * m, 5); g.fillRect(hx + s * 1.95 * m - (s > 0 ? 0.22 * m : 0), y, 0.22 * m, 5); }   // lane hash marks, across both lane lines
+  for (const s of [-1, 1]) { g.fillStyle = "#ef3b24"; g.fillRect(hx + s * 1.95 * m - (s > 0 ? 0.14 * m : -0.0), base + 1.15 * m, 0.14 * m, 0.38 * m); g.fillStyle = "#ffffff"; g.fillRect(hx + s * 1.95 * m - (s > 0 ? 0.14 * m : 0.0), base + 2.35 * m, 0.14 * m, 0.38 * m); }   // the lane blocks
   g.beginPath(); g.arc(512, 1010, 190, 0, Math.PI * 2); g.fillStyle = "#1d428a"; g.fill(); g.lineWidth = 12; g.strokeStyle = "#ef3b24"; g.stroke();
   g.fillStyle = "#ffffff"; g.font = "900 78px Arial Black, Arial, sans-serif"; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("THUNDER", 512, 1000);
   g.fillStyle = "#ef3b24"; g.beginPath(); g.moveTo(560, 905); g.lineTo(486, 1010); g.lineTo(532, 1010); g.lineTo(468, 1112); g.lineTo(576, 986); g.lineTo(528, 986); g.closePath(); g.fill();

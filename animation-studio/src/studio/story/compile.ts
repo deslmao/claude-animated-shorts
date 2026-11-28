@@ -13,6 +13,7 @@ import type { Timeline } from "../look/StudioFilm";
 import { extra } from "../characters/cast";
 import { ROSTER } from "../characters/roster";
 import { act as actPose, Look, Pose, Expr, anchorsFront, Anchors, Mode } from "../characters/figure";
+import { playAt, ballAt, type BallSeg } from "../engine4/motion";
 import { idle, nod as nodAt, shake as shakeAt, talk as talkAt, speak as speakAt, layer, faceToward, e4Track, easeSnap } from "../characters/acting";
 import { lookCard, contactShadow, lidAt, cardPoint } from "../cards/person";
 import { fxNear, fxHalo, HALO_KINDS } from "../fx/effects";
@@ -412,6 +413,19 @@ const propAnim = (s: ShotSpec, q: PropSpec): PropAnim | undefined => {
       return { target: an.crown, up, hover: { lift: h.lift ?? 0.42, side: h.side ?? 1 }, stroke: 0, ...(q.steps ? { step: stepAt(q.steps, tt) } : {}) };
     };
   }
+  if (q.ball) {
+    // the game ball: held in a hand, dribbled, in flight, dropping through the net (engine4/motion.ts); the rim centre comes in the variant "x,y,z"
+    const segs = q.ball as BallSeg[], r = 0.12 * (q.scale ?? 1), floor = whereOf(s.set, q.at)[1] - 0;
+    const whoAt = (who: string, t: number): V3 => { const a = s.actors.find((x) => x.who === who); if (!a) return whereOf(s.set, q.at); const p = actorPos(s.set, a, t), pl = a.play?.length ? playAt(a.play, t) : undefined; return pl ? [p[0] + pl.dx, p[1] + pl.dy, p[2] + pl.dz] : p; };
+    return (tt, anchors) => {
+      const hand = (who: string, which: "hi" | "lo" | "mid"): V3 | undefined => {
+        const hs = anchors.get(who)?.hands; if (!hs?.length) return undefined;
+        const sorted = [...hs].sort((x, y) => x.p[1] - y.p[1]); return which === "hi" ? sorted[sorted.length - 1].p : which === "lo" ? sorted[0].p : [(sorted[0].p[0] + sorted[sorted.length - 1].p[0]) / 2, (sorted[0].p[1] + sorted[sorted.length - 1].p[1]) / 2, (sorted[0].p[2] + sorted[sorted.length - 1].p[2]) / 2];
+      };
+      const b = ballAt(segs, tt, { r, hand, at: whoAt, floor });
+      return { stroke: 0, step: 1, track: { pos: b.pos, heading: 0, dist: b.spin, speed: b.pulse, t: tt } };
+    };
+  }
   if (!q.follow && !q.drive && !q.steps) return undefined;
   const drv = driveOf(s.actors.find((x) => x.who === q.drive?.who));
   const delayAt = (tt: number) => { let d = q.drive?.delay ?? 0; for (const c of q.drive?.changes ?? []) if (tt >= (c.t ?? 0)) d = c.delay; return d; };
@@ -430,7 +444,7 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
     const { a, b } = ranges[k], pre = s.transition === "fade" ? FADE : s.transition === "dissolve" ? DISSOLVE : s.transition === "zoom" || s.transition === "whip" ? ZFADE : 0;
     const p = cameraOf(s, sb.cast, a, b, pre);
     const props = (s.props ?? []).map((q) => { const w = whereOf(s.set, q.at); return { id: q.id, variant: q.variant, at: { x: w[0] + (q.offset?.[0] ?? 0), y: w[1], z: w[2] + (q.offset?.[1] ?? 0), yaw: ((q.yaw ?? 0) * Math.PI) / 180, s: q.scale ?? 1 }, animate: propAnim(s, q) }; });
-    return { id: k + 1, a, b, set: s.set, light: s.light ?? SETS[s.set].lights[0], keys: p.keys, dof: p.dof, kicks: (s.kicks ?? []).map((t) => [a / FPS + (t as number), 1] as [number, number]), ...(props.length ? { props } : {}), ...(sb.motionBlur ? { ...(() => { const sh = shutterOf(s, a, b, sb.motionBlur === true ? 0.5 : sb.motionBlur, ["zoom", "whip"].includes(sb.shots[k + 1]?.transition ?? ""), !!sb.controlledBlur, ["zoom", "whip"].includes(s.transition ?? "")) as ((f: number) => number) & { cap?: (f: number) => number }; return { shutter: sh, ...(sh.cap ? { shutterCap: sh.cap } : {}) }; })() } : {}) };
+    return { id: k + 1, a, b, set: s.set, light: s.light ?? SETS[s.set].lights[0], keys: p.keys, dof: p.dof, kicks: [...(s.kicks ?? []), ...(s.shake ?? [])].map((t) => [a / FPS + (t as number), 1] as [number, number]), ...(props.length ? { props } : {}), ...(sb.motionBlur ? { ...(() => { const sh = shutterOf(s, a, b, sb.motionBlur === true ? 0.5 : sb.motionBlur, ["zoom", "whip"].includes(sb.shots[k + 1]?.transition ?? ""), !!sb.controlledBlur, ["zoom", "whip"].includes(s.transition ?? "")) as ((f: number) => number) & { cap?: (f: number) => number }; return { shutter: sh, ...(sh.cap ? { shutterCap: sh.cap } : {}) }; })() } : {}) };
   });
   // crowds: extras join the shot's actors (after the cameras are planned: cameras frame the named cast only)
   const notes: string[] = [];
@@ -489,10 +503,14 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
     const rightAt = (p: V3): [number, number] => { const yaw = Math.atan2(cam.pos.x - p[0], cam.pos.z - p[2]); return [Math.cos(yaw), -Math.sin(yaw)]; };
     const lateral = (from: V3, to: V3) => { const [rx, rz] = rightAt(from); return (to[0] - from[0]) * rx + (to[2] - from[2]) * rz; };
     // body motion first: a stagger slides the actor, so everyone else reacts to where they really are
+    const plays = new Map<string, ReturnType<typeof playAt>>();
     const motion = new Map(s.actors.map((a) => {
       const p = posOf.get(a.who)!;
       const m = motionAt(a.moves, tt, (mv) => mv.dir ?? (mv.away && posOf.get(mv.away) ? -Math.sign(lateral(p, posOf.get(mv.away)!) || 1) : 1));
       if (m.slide || m.hop) { const [rx, rz] = rightAt(p); posOf.set(a.who, [p[0] + rx * m.slide, p[1] + m.hop, p[2] + rz * m.slide]); }
+      // Engine 4 basketball play (engine4/motion.ts): the glide, the jump arc, the tilt and squash of a crossover / pull-up / dunk / pass, all from one clock
+      const pl = a.play?.length ? playAt(a.play, tt) : undefined;
+      if (pl) { const q = posOf.get(a.who)!; posOf.set(a.who, [q[0] + pl.dx, q[1] + pl.dy, q[2] + pl.dz]); plays.set(a.who, pl); return [a.who, { ...m, tilt: m.tilt + pl.tilt, headTilt: m.headTilt + pl.headTilt }]; }
       return [a.who, m];
     }));
     for (const a of s.actors) {
@@ -586,15 +604,18 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
         // could put a beat that falls on a frame boundary on the other side of the change (the new pose drawn without
         // its blend for one frame: an arm snap)
         const pose0: Pose = eased(Math.round(tt * FPS));
-        const pose: Pose = mo.tilt || mo.headTilt || mo.shrug ? { ...pose0, tilt: (pose0.tilt ?? 0) + mo.tilt, headTilt: (pose0.headTilt ?? 0) + mo.headTilt, shrug: (pose0.shrug ?? 0) + mo.shrug } : pose0;
+        const pl = plays.get(a.who);
+        const pose1: Pose = mo.tilt || mo.headTilt || mo.shrug ? { ...pose0, tilt: (pose0.tilt ?? 0) + mo.tilt, headTilt: (pose0.headTilt ?? 0) + mo.headTilt, shrug: (pose0.shrug ?? 0) + mo.shrug } : pose0;
+        const pose: Pose = pl?.gesture ? { ...pose1, gesture: pl.gesture } : pose1;
         const card = lookCard(cam, L, p[0], p[1], p[2], { pose });
         let flip = 0;
         if (pose.e4 && a.keys?.length) { const tr4 = e4Track(a.keys, tt); card.squash = tr4.squash; flip = tr4.flip; if (flip) { card.flip = flip; card.flipC = crownOf(L) / 2; } }   // Engine 4 squash and stretch, headstand
+        if (pl) card.squash = (card.squash ?? 1) * pl.squash;
         out.places.push(card);
         const an0 = anchorOf(cam, L, p, anchorsFront(L, pose), false);
         out.anchors.set(a.who, flip ? flipAnchor(an0, p, cam.pos, flip, crownOf(L) / 2) : an0);
       }
-      contactShadow(out, cam.sun, shot.light, p[0], p[1], p[2]);
+      contactShadow(out, cam.sun, shot.light, p[0], p[1] - (plays.get(a.who)?.dy ?? 0), p[2]);   // the shadow stays on the floor while the body jumps
     }
     // effects sit beside the head on the side facing the frame centre (a character right of centre gets it on the left;
     // a centred one always on the right, so the mark never jumps sides while the camera moves)

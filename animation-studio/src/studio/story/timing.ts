@@ -156,6 +156,7 @@ export const resolve = (sb0: Storyboard, narr?: Narration): Timing => {
         if (act.nod) act.nod = act.nod.map((x) => (typeof x === "number" ? x : at(x, `${act.who}'s nod`)));
         if (act.shake) act.shake = act.shake.map((x) => (typeof x === "number" ? x : at(x, `${act.who}'s head shake`)));
         for (const m of act.moves ?? []) when(m, `${act.who}'s ${m.kind}`);
+      for (const m of act.play ?? []) { when(m, `${act.who}'s ${m.kind}`); if (m.dt) m.t = (m.t ?? 0) + m.dt; }
         for (const kk of (act as { keys?: { t: number; word?: string; n?: number }[] }).keys ?? []) when(kk, `${act.who}'s key pose`);
         const mine = here.filter((p) => p.who === act.who).flatMap((p) => p.words.map((w) => ({ w: w.w, t0: w.t0 - a, t1: w.t1 - a })));
         if (mine.length) (act as { speech?: Word[] }).speech = mine;
@@ -163,6 +164,8 @@ export const resolve = (sb0: Storyboard, narr?: Narration): Timing => {
       for (const c of s.cams ?? []) when(c, `a camera beat (${c.move})`);
       for (const fx of s.fx ?? []) when(fx, `the ${fx.kind} effect`);
       for (const p of s.props ?? []) for (const c of p.steps ?? []) when(c, `the ${p.id}'s step`);
+    for (const p of s.props ?? []) for (const c of p.ball ?? []) { when(c, `the ${p.id}'s ${c.kind}`); if (c.dt) c.t = (c.t ?? 0) + c.dt; }
+    if (s.shake) s.shake = s.shake.map((x) => (typeof x === "number" ? x : at(x, "a camera shake")));
       for (const x of s.sfx ?? []) when(x, `the ${x.name} sound`);
       if (s.kicks) s.kicks = s.kicks.map((x) => (typeof x === "number" ? x : at(x, "a kick")));
       T = a + s.dur;

@@ -94,14 +94,38 @@ const phoneTexture = () => ctex("kdphone", 540, 1160, (g) => {
   g.fillStyle = "#9aa3b2"; g.font = "700 28px Arial, sans-serif"; g.fillText("♥ 312K     💬 18.2K     ↗ 96K", 28, 1070);
   g.fillStyle = "#1b1f2c"; g.fillRect(0, 1100, 540, 60);
 });
-export const viralPhoneRig = (a: At): PropRig => {
+const phoneRigOf = (tex: () => THREE.Texture) => (a: At): PropRig => {
   const { root, pivot } = root0(a);
   const body = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.43, 0.026), new THREE.MeshStandardMaterial({ color: "#1a1c24", roughness: 0.3, metalness: 0.7 })); body.castShadow = true; pivot.add(body);
-  const screen = new THREE.Mesh(new THREE.PlaneGeometry(0.185, 0.398), lit(phoneTexture(), 0.85, { roughness: 0.2 })); screen.position.z = 0.0135; pivot.add(screen);
+  const screen = new THREE.Mesh(new THREE.PlaneGeometry(0.185, 0.398), lit(tex(), 0.85, { roughness: 0.2 })); screen.position.z = 0.0135; pivot.add(screen);
   return { root, update: (st) => {
     const s = st.step ?? 0, k = easeSnap(Math.min(1, s)), t = st.track?.t ?? 0; root.visible = s > 0; face(root, st.camPos);
     pivot.scale.setScalar(Math.max(0.001, k)); pivot.rotation.z = 0.04 * Math.sin(t * 1.4) + (1 - k) * 0.4; pivot.position.y = 0.008 * Math.sin(t * 2);
   } };
+};
+
+export const viralPhoneRig = phoneRigOf(phoneTexture);
+// the Thunder's text: a messages screen from "OKC THUNDER": "We want you."
+const textTexture = () => ctex("kdtext", 540, 1160, (g) => {
+  g.fillStyle = "#0b0d14"; g.fillRect(0, 0, 540, 1160); g.fillStyle = "#ffffff"; g.font = "700 26px Arial, sans-serif"; g.textAlign = "left"; g.fillText("9:41", 28, 44); g.fillText("●●● ▮", 440, 44);
+  g.fillStyle = "#16203a"; g.fillRect(0, 70, 540, 130); g.fillStyle = "#1d428a"; g.beginPath(); g.arc(80, 135, 42, 0, 6.3); g.fill(); g.fillStyle = "#ef3b24"; g.beginPath(); g.moveTo(92, 108); g.lineTo(62, 142); g.lineTo(80, 142); g.lineTo(66, 168); g.lineTo(100, 130); g.lineTo(82, 130); g.closePath(); g.fill();
+  g.fillStyle = "#ffffff"; g.font = "900 38px Arial Black, Arial, sans-serif"; g.fillText("OKC THUNDER", 140, 128); g.fillStyle = "#6fa0ff"; g.font = "700 22px Arial, sans-serif"; g.fillText("✓ Verified team account", 142, 162);
+  g.fillStyle = "#8a93a8"; g.font = "700 22px Arial, sans-serif"; g.textAlign = "center"; g.fillText("Today 9:41 AM", 270, 262);
+  g.fillStyle = "#2b3350"; g.beginPath(); g.roundRect(28, 300, 360, 150, 34); g.fill(); g.fillStyle = "#ffffff"; g.textAlign = "left"; g.font = "900 62px Arial Black, Arial, sans-serif"; g.fillText("We want", 60, 358); g.fillText("you.", 60, 424);
+  g.fillStyle = "#2b3350"; g.beginPath(); g.roundRect(28, 480, 440, 90, 30); g.fill(); g.fillStyle = "#dfe6f5"; g.font = "700 30px Arial, sans-serif"; g.fillText("Suit up with KD. 🏀", 56, 536);
+  g.fillStyle = "#1d6bff"; g.beginPath(); g.roundRect(330, 620, 190, 80, 30); g.fill(); g.fillStyle = "#fff"; g.font = "800 34px Arial, sans-serif"; g.fillText("YES!!", 372, 672);
+});
+export const thunderTextRig = phoneRigOf(textTexture);
+// a quick stat graphic ("LEO: 30 PTS | Q3"), a flat panel that faces the camera
+const statTexture = (text: string) => ctex("kdstat" + text, 768, 192, (g) => {
+  g.fillStyle = "#0b1736"; g.beginPath(); g.roundRect(0, 0, 768, 192, 26); g.fill(); g.fillStyle = "#ef3b24"; g.fillRect(0, 150, 768, 42); g.fillStyle = "#ffb43a"; g.fillRect(0, 0, 24, 192);
+  g.fillStyle = "#ffffff"; g.font = "900 78px Impact, Arial Black, sans-serif"; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(text, 396, 78);
+  g.font = "800 28px Arial, sans-serif"; g.fillStyle = "#ffffff"; g.fillText("OKC THUNDER", 396, 171);
+});
+export const statGraphicRig = (a: At, text?: string): PropRig => {
+  const { root, pivot } = root0(a);
+  const m = lit(statTexture(text ?? "LEO: 30 PTS | Q3"), 1.0, { roughness: 0.5, transparent: true }); const quad = new THREE.Mesh(new THREE.PlaneGeometry(1.0, 0.25), m); pivot.add(quad);
+  return { root, update: (st) => { const s = st.step ?? 0, k = easeSnap(Math.min(1, s)), t = st.track?.t ?? 0; root.visible = s > 0; face(root, st.camPos); pivot.scale.set(Math.max(0.001, k), Math.max(0.001, k) * (1 + 0.15 * (1 - Math.min(1, s))), 1); pivot.position.y = 0.01 * Math.sin(t * 5); } };
 };
 
 // ---- the TV news slump ----

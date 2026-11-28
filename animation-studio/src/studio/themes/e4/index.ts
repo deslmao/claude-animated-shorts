@@ -7,7 +7,9 @@ import { buildE4Kitchen, SPOTS, VIEWS } from "../../engine4/kitchen";
 import { numberRig } from "../../engine4/number";
 import { buildE4Court, SPOTS as COURT_SPOTS, VIEWS as COURT_VIEWS } from "../../engine4/court";
 import { buildE4Arena, SPOTS as ARENA_SPOTS, VIEWS as ARENA_VIEWS } from "../../engine4/arena";
-import { signedBallRig, viralPhoneRig, tvNewsRig, scoreboardRig } from "../../engine4/heroProps";
+import { buildE4Bedroom, buildE4Office } from "../../engine4/rooms";
+import { gameBallRig } from "../../engine4/ball";
+import { signedBallRig, viralPhoneRig, thunderTextRig, statGraphicRig, tvNewsRig, scoreboardRig } from "../../engine4/heroProps";
 import type { ItemEntry } from "../../characters/items";
 
 const rect = (cx: number, cy: number, w: number, h: number): [number, number][] => [[cx - w / 2, cy - h / 2], [cx + w / 2, cy - h / 2], [cx + w / 2, cy + h / 2], [cx - w / 2, cy + h / 2]];
@@ -42,21 +44,27 @@ const COACH: Look = { name: "Coach", build: "stout", skin: "#d9a066", seed: 77, 
 const kid = (name: string, seed: number, skin: string, hair: Look["hair"], top: string, legs: string): Look => ({ name, build: "kid", skin, seed, hair, top: { style: "tee", color: top, accent: "#f2efe6" }, legs, shoes: "#f4f1ea" });
 const defender = (name: string, seed: number, skin: string, hair: Look["hair"]): Look => ({ name, build: "tall", skin, seed, hair, top: { style: "tee", color: "#c8252d", accent: "#ffffff" }, jersey: { number: String(seed % 90 + 10), color: "#ffffff" }, bare: { arms: true }, legs: "#c8252d", shorts: "#c8252d", shoes: "#1d2433" });
 
+/** Leo's dad (the stands, Beat 3): a blue Thunder cap and tee */
+const DAD: Look = { name: "Dad", build: "adult", skin: "#c99067", seed: 505, hair: { style: "short", color: "#2a201a" }, hat: { style: "cap", color: "#1d428a" }, moustache: { style: "thin", color: "#2a201a" }, top: { style: "tee", color: "#0b5ec7", accent: "#ef3b24" }, legs: "#2f3448", shoes: "#f4f1ea" };
+
 const e4Kitchen: SetDef = { id: "e4Kitchen", title: "Maya's kitchen (Engine 4): a PBR room, baked bounce light, a warm pendant lamp over the table and a cool dusk window", lights: ["interior", "night"], build: () => buildE4Kitchen() };
 
 const e4Court: SetDef = { id: "e4Court", title: "Street court (Engine 4): a fenced asphalt half-court with one hoop, houses and trees behind; light day = bright afternoon, night = 5 AM dawn in the rain", lights: ["day", "night"], build: () => buildE4Court() };
 const e4Arena: SetDef = { id: "e4Arena", title: "Thunder arena (Engine 4): a hardwood court with a centre logo, a hoop, LED boards and a crowd; and the tunnel and bench off it; light interior = game night, interiorCool = the tunnel", lights: ["interior", "interiorCool"], build: () => buildE4Arena() };
+const e4Bedroom: SetDef = { id: "e4Bedroom", title: "Leo's bedroom at 5 AM (Engine 4): a bed with a blanket across its foot, a glowing 5:00 AM alarm clock, a KD poster, a rainy window, a dresser for the TV; light night", lights: ["night"], build: () => buildE4Bedroom() };
+const e4Office: SetDef = { id: "e4Office", title: "The Thunder front office (Engine 4): a big desk with a contract, a leather chair, a wall-size team logo, banners, a trophy shelf, a night skyline; light interior", lights: ["interior"], build: () => buildE4Office() };
 const heroProp = (name: string, desc: string, tags: string[], rig: (a: import("../../props/kit").At) => import("../../props/registry").PropRig, steps: string[], radius: number, height: number) =>
   ({ name, desc, category: "theme" as const, themes: ["engine4", "sport"], tags, radius, height, build: () => undefined, rig: (a: import("../../props/kit").At) => rig(a), steps, stepCount: () => steps.length });
 
 export const E4_THEME: Theme = {
   id: "e4", name: "Engine 4 sets", desc: "Unified PBR sets built in Blender with baked lightmaps and live lights (opt-in, engine: 4)", tags: ["engine4", "pbr", "blender"],
   items: HOOPS_ITEMS,
-  characters: { dex: DEX, leoHoodie: LEO_HOODIE, leoJersey: LEO_JERSEY, kd: KD, coach: COACH,
+  characters: { dad: DAD, dex: DEX, leoHoodie: LEO_HOODIE, leoJersey: LEO_JERSEY, kd: KD, coach: COACH,
     kidA: kid("Kid A", 301, "#e8b98a", { style: "buzz", color: "#2a201a" }, "#e0a526", "#3a4a6a"), kidB: kid("Kid B", 302, "#8a5a3c", { style: "afro", color: "#120c0a" }, "#2a9d8f", "#2f3448"),
     kidC: kid("Kid C", 303, "#d9a066", { style: "tuft", color: "#6a3a1e" }, "#8e44ad", "#3f5f9e"), kidD: kid("Kid D", 304, "#f5c9a0", { style: "short", color: "#e0b040" }, "#c8252d", "#2f3448"),
     defA: defender("Defender A", 411, "#8a5a3c", { style: "buzz", color: "#120c0a" }), defB: defender("Defender B", 422, "#e8b98a", { style: "short", color: "#3a2a1e" }), defC: defender("Defender C", 433, "#c99067", { style: "afro", color: "#120c0a" }) },
   characterMeta: {
+    dad: { name: "Dad", desc: "Leo's dad: a blue Thunder cap and tee, a thin moustache", personality: "a proud, easygoing fan", themes: ["sport", "everyday"], tags: ["adult", "dad", "fan"] },
     leoJersey: { name: "Leo (Thunder jersey)", desc: "Leo in the blue sleeveless Oklahoma City Thunder jersey (number 11) and shorts, for the arena scenes", personality: "Leo, the underdog who earns it", themes: ["sport", "arena"], tags: ["child", "boy", "basketball", "jersey"] },
     kd: { name: "Kevin Durant", desc: "very tall and lanky, short black hair and a goatee, the blue and white number 35 Thunder jersey and shorts", personality: "KD: calm, deep, a cool mentor", themes: ["sport", "arena"], tags: ["basketball", "tall", "mentor", "jersey"] },
     coach: { name: "Coach", desc: "a stout bald coach with a walrus moustache and a white polo; a whistle (the whistle face) and a clipboard", personality: "a gruff, urgent Thunder coach", themes: ["sport", "arena"], tags: ["basketball", "coach", "whistle", "clipboard"] },
@@ -73,13 +81,20 @@ export const E4_THEME: Theme = {
     viralPhone: heroProp("Viral phone", "a smartphone, screen to camera: the viral clip '11-YEAR-OLD DROPS 40 AT TRYOUTS' and '1.4M VIEWS'; step 1 pops it in; 0.43 m tall x scale", ["phone", "viral", "news"], viralPhoneRig, ["pops in"], 0.15, 0.43),
     tvNewsSlump: heroProp("TV news slump", "a TV with the sports chyron 'KEVIN DURANT: 0-12 - CAREER OVER?'; step 1 flickers it on; 1.3 m wide x scale", ["tv", "news", "chyron"], tvNewsRig, ["flickers on"], 0.7, 0.95),
     arenaScoreboard: heroProp("Arena scoreboard", "the hanging scoreboard 'THUNDER 88 | 00:05 | OPP 89' (2.7 m cube, hung from cables) x scale; step 1 lights it up", ["scoreboard", "arena", "clock"], scoreboardRig, ["lights up"], 1.4, 2.0),
+    thunderText: heroProp("Thunder text", "a smartphone, screen to camera: a message from OKC THUNDER, 'We want you.'; step 1 pops it in; 0.43 m tall x scale", ["phone", "text", "thunder"], thunderTextRig, ["pops in"], 0.15, 0.43),
+    statGraphic: { name: "Stat graphic", desc: "a flat in-world stat panel facing the camera (1 m wide x scale); the variant is the text, e.g. LEO: 30 PTS | Q3; pops in on step 1", category: "theme" as const, themes: ["engine4", "sport"], tags: ["stat", "graphic", "score"], radius: 0.5, height: 0.25, build: () => undefined, rig: (a: import("../../props/kit").At, v?: string) => statGraphicRig(a, v), steps: ["pops in"], stepCount: () => 1,
+      param: { desc: "the text (1-24 letters, digits, : . ! | -)", ok: (v: string) => /^[A-Za-z0-9:.!| \-]{1,24}$/.test(v) } },
+    gameBall: { name: "Game basketball", desc: "the game ball: a 3D orange basketball with black seams (0.12 m radius x scale), driven by a ball plan (`ball`: hold in a hand, dribble, a parabolic flight, a drop through the net with bounces); the variant is the rim centre x,y,z (the net ripples on a swish)", category: "theme", themes: ["engine4", "sport"], tags: ["basketball", "ball", "game"], radius: 0.15, height: 0.25, build: () => undefined, rig: (a, v) => gameBallRig(a, v), steps: ["visible"], stepCount: () => 1,
+      param: { desc: "the rim centre as x,y,z", ok: (v: string) => /^-?[\d.]+,-?[\d.]+,-?[\d.]+$/.test(v) } },
     e4Number: { name: "3D number (Engine 4)", desc: "oversized extruded 3D text lit by the room (variant = the text, 1-8 characters, e.g. 6:00); pops in on its first step, then floats; 0.5 m tall x scale, centred on `at` (its base). Use instead of a flat framed infographic", category: "theme", themes: ["engine4"], tags: ["number", "text", "3d", "infographic"], radius: 0.6, height: 0.5,
       build: () => undefined, rig: (a, v) => numberRig(a, v ?? "6:00"), steps: ["pops in"], stepCount: () => 1,
       param: { desc: "the text to show (1-8 letters, digits, : . ! ? % $ + -)", ok: (v: string) => /^[A-Za-z0-9:.!?%$+\- ]{1,8}$/.test(v) } },
   },
-  sets: { e4Kitchen, e4Court, e4Arena },
-  layouts: { e4Kitchen: { spots: SPOTS, views: VIEWS, ceiling: 2.7 }, e4Court: { spots: COURT_SPOTS, views: COURT_VIEWS, ceiling: 8 }, e4Arena: { spots: ARENA_SPOTS, views: ARENA_VIEWS, ceiling: 9 } },
-  setMeta: { e4Court: { name: "Street court (Engine 4)", desc: "a fenced asphalt half-court (x -5.6..5.6, z -6.2..4.8) with one hoop at (0, 2.45, -4.15), a bench, a streetlamp, houses and trees behind the fence; light day = bright afternoon, night = 5 AM dawn in the rain", themes: ["sport", "street"], tags: ["basketball", "court", "engine4"] },
+  sets: { e4Kitchen, e4Court, e4Arena, e4Bedroom, e4Office },
+  layouts: { e4Kitchen: { spots: SPOTS, views: VIEWS, ceiling: 2.7 }, e4Court: { spots: COURT_SPOTS, views: COURT_VIEWS, ceiling: 8 }, e4Arena: { spots: ARENA_SPOTS, views: ARENA_VIEWS, ceiling: 9 }, e4Bedroom: { spots: { bed: [-0.9, 0.45, -1.6], tv: [1.45, 0.52, -2.1], door: [0, 0, 2.2] }, views: [{ name: "bed", pos: [1.2, 1.4, 2.2], look: [-0.9, 0.9, -1.4], fov: 50 }], ceiling: 2.6 }, e4Office: { spots: { desk: [0, 0, -0.1], door: [0, 0, 2.6] }, views: [{ name: "office", pos: [1.8, 1.5, 2.6], look: [0, 1.1, -1.4], fov: 50 }], ceiling: 3.0 } },
+  setMeta: { e4Bedroom: { name: "Leo's bedroom (Engine 4)", desc: "4.4 x 5 m (x -2.2..2.2, z -2.4..2.6): the bed at (-0.9, -1.3) with a blanket across its foot, a nightstand with a 5:00 AM alarm clock at (0.3, -2.15), a KD poster, a rainy window on the right wall, a dresser at (1.45, -2.1) to stand a TV on; light night", themes: ["home"], tags: ["bedroom", "engine4", "night"] },
+    e4Office: { name: "Thunder front office (Engine 4)", desc: "6 x 6 m: a big desk at (0, -1.1) with a contract, a leather chair behind it, a wall-size THUNDER logo on the back wall, banners on the left wall, a trophy shelf, a skyline window on the right; light interior", themes: ["sport", "office"], tags: ["office", "engine4"] },
+    e4Court: { name: "Street court (Engine 4)", desc: "a fenced asphalt half-court (x -5.6..5.6, z -6.2..4.8) with one hoop at (0, 2.45, -4.15), a bench, a streetlamp, houses and trees behind the fence; light day = bright afternoon, night = 5 AM dawn in the rain", themes: ["sport", "street"], tags: ["basketball", "court", "engine4"] },
     e4Arena: { name: "Thunder arena (Engine 4)", desc: "a hardwood arena court (x -7..7, z -10..6) with a centre logo, a hoop at (0, 2.45, -8.15), LED boards and a crowd on three sides, and a tunnel (x -17..-9, z -3..3) with a bench at (-13, 0, -2.45); light interior = game night, interiorCool = the tunnel", themes: ["sport", "arena"], tags: ["basketball", "arena", "tunnel", "engine4"] },
     e4Kitchen: { name: "Maya's kitchen (Engine 4)", desc: "4.4 x 6.0 m (z -2.4..3.6), back wall z -2.4 with a window (x -0.7..0.7, y 1.05..2.15) over the sink, counter run along the back wall (x -2.2..1.2, kettle x -1.55, toaster x -0.95, cutting board x 0.82), fridge x 1.3..2.1, table centre (0.35, -0.3) with three chairs and a pendant lamp over it at y 1.72. Spots a (counter), b (table front), c (fridge), d", themes: ["home", "everyday"], tags: ["kitchen", "engine4", "pbr", "pendant lamp"] } },
 };

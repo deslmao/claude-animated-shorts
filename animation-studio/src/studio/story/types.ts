@@ -95,6 +95,8 @@ export type ActorSpec = {
   /** Engine 4 acting (storyboard `engine: 4` only): 2-3 keyframed expressive poses per shot (lean, slump, turn, head tilt, eyebrows, glance, face, gesture, held
    *  item), eased with a snappy overshoot and squash-and-stretch (characters/acting.ts e4Track). Seconds into the shot */
   keys?: import("../characters/acting").E4Key[];
+  /** Engine 4 basketball moves (engine4/motion.ts): a crossover, a pull-up (or an off-balance brick), a dunk, a whip pass, a catch, shaking a hand out. Each drives the torso tilt, the arms, the jump arc and glide, and the squash together on easeOutQuad / easeInOutCubic / easeOutBack curves */
+  play?: import("../engine4/motion").PlayMove[];
   talk?: [number, number][];  // speaking spans without audio (mouth + talking hands); voiced lines set this themselves
   nod?: (number | WordRef)[];  // nod start times (or words)
   shake?: (number | WordRef)[]; // head-shake start times (or words)
@@ -150,7 +152,9 @@ export type PropSpec = { id: string; at: Where; yaw?: number; scale?: number; va
    *  direction, `behind` metres back along it (a dog chasing a runner) and `offset` [x, z] metres in the actor's own
    *  frame (x right, z forward; the seat of a car its rider sits in). Needs a rig (registry); the rig gets the travelled
    *  distance and speed for wheels and legs */
-  track?: { who: string; behind?: number; offset?: [number, number] } };
+  track?: { who: string; behind?: number; offset?: [number, number] };
+  /** Engine 4 game ball (id "gameBall"): the plan of where the ball is - held in a hand, dribbled, in flight, dropping through the net (engine4/motion.ts BallSeg). The variant is the rim centre "x,y,z" (the net ripples there) */
+  ball?: import("../engine4/motion").BallSeg[] };
 /** an explicit sound cue (automatic cues already cover effects, transitions, kicks, jumps, falls and footsteps).
  *  on = an actor (the sound is panned to where they are on screen); gain in dB on top of the kind's default level */
 export type SfxSpec = When & { name: SfxName | (string & {}); on?: string; gain?: number; /** seconds after the cue time (a sound with a voice in it plays AFTER the word, not over it) */ delay?: number };
@@ -160,6 +164,8 @@ export type ShotSpec = {
   /** split shot: this shot ends ON this word of its line (a cut or transition mid-sentence); the next shot carries on
    *  with the same line and must have `cont: true` */
   until?: WordRef;
+  /** camera micro-shakes (seconds into the shot, or on a word) WITHOUT the impact sound that `kicks` add (a dunk, a clank) */
+  shake?: (number | WordRef)[];
   /** this shot continues the previous shot's line (which ended with `until`): no new narration, its word anchors are
    *  the rest of that line, and it may be another set (an environment transition mid-sentence) */
   cont?: boolean;

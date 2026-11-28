@@ -39,6 +39,9 @@ const courtTexture = () => ctex("e4court", 2048, 2048, (g) => {
   g.setLineDash([26, 22]); g.beginPath(); g.arc(1024, base + 4.6 * m, 1.45 * m, 0, Math.PI, false); g.stroke(); g.setLineDash([]);
   g.beginPath(); g.moveTo(1024 - 5.0 * m, base); g.lineTo(1024 - 5.0 * m, hoopY); g.arc(1024, hoopY, 5.0 * m, Math.PI, 0, true); g.lineTo(1024 + 5.0 * m, base); g.stroke();   // the three-point line
   g.beginPath(); g.arc(1024, hoopY, 0.7 * m, 0, Math.PI, false); g.stroke();                                           // the restricted arc
+  g.beginPath(); g.moveTo(1024 - 0.7 * m, base + 6); g.lineTo(1024 - 0.7 * m, hoopY); g.moveTo(1024 + 0.7 * m, base + 6); g.lineTo(1024 + 0.7 * m, hoopY); g.stroke();
+  g.fillStyle = "#ece8dc"; for (let i = 0; i < 4; i++) for (const s of [-1, 1]) { const y = base + 1.4 * m + i * 0.85 * m; g.fillRect(1024 + s * 1.95 * m - 0.24 * m, y, 0.48 * m, 8); }   // the lane hash marks across both lane lines
+  for (const s of [-1, 1]) { g.fillStyle = "#c8252d"; g.fillRect(1024 + s * 1.95 * m - (s > 0 ? 0.18 * m : 0), base + 1.1 * m, 0.18 * m, 0.4 * m); g.fillStyle = "#ece8dc"; g.fillRect(1024 + s * 1.95 * m - (s > 0 ? 0.18 * m : 0), base + 2.3 * m, 0.18 * m, 0.4 * m); }   // the lane blocks
   for (let k = 0; k < 24; k++) { g.fillStyle = `rgba(74,78,84,${0.15 + rnd() * 0.3})`; g.fillRect(rnd() * W, rnd() * W, 8 + rnd() * 26, 3 + rnd() * 6); }   // paint wear
   g.strokeStyle = "rgba(14,14,16,0.85)"; g.lineWidth = 3;
   for (let k = 0; k < 26; k++) { let x = rnd() * W, y = rnd() * W; g.beginPath(); g.moveTo(x, y); for (let j = 0; j < 9; j++) { x += (rnd() - 0.5) * 90; y += (rnd() - 0.3) * 80; g.lineTo(x, y); } g.stroke(); }
