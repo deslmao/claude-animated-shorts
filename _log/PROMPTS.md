@@ -16640,3 +16640,74 @@ Stop Gate:
 Go—the realism pass is a massive upgrade and fully approved (jerseys, glass backboard/net, arena crowd/banners, KD's face, and the shoulder lift all look great). Keep the 87-beat shot list and do NOT touch the locked 2:29 audio masters.
 
 Commit the render-request.json for the 540p GitHub Actions preview render of productions/kd-talent-1/, give me the run URL, and stop (do NOT poll GitHub Actions).
+
+## 28 Nov 2026 — owner (Episode 2: the Visual Storytelling & Animation Motion Pass)
+Hold the 1080p render. We are doing a major Visual Storytelling & Animation Motion Pass on productions/kd-talent-1/ before shipping. Do NOT touch the locked 2:29 audio masters (keep them byte-identical).
+
+Apply all of these upgrades, then trigger a new 540p preview render so we can inspect the motion:
+
+==================================================
+1. COMPLETE COURT MARKINGS (ARENA + STREET COURT)
+==================================================
+- Add full, accurate basketball court lines to both the Thunder Arena and Street Court:
+  - Proper painted key with inside lane hash marks/blocks.
+  - Restricted-area semi-circle arc under the hoop.
+  - Full free-throw circle at the top of the key and clean three-point arc.
+
+==================================================
+2. ADD THE GAME BASKETBALL + REAL MOTION (NO STATIC POSES)
+==================================================
+- Add a visible, properly scaled 3D orange basketball (with black seams) across ALL playing scenes, driven by actual animated character motion (crouch/load -> jump -> arm release -> follow-through):
+  - Beat 2 ("brick every shot"): Show Leo shooting with awkward, off-balance form and missing horribly (ball clanks wildly off the rim/backboard).
+  - Beat 2 ("The lethal crossover" & "pull-up middy"): Visual storytelling—show KD actually performing a sharp crossover move past a defender in-game, then rising into a smooth 1-2 pull-up mid-range jump shot.
+  - Beat 3 ("KD shook his hand out"): Animate KD visibly shaking out his hand after the lightning jolt.
+  - Beat 4 ("Next morning I stepped on the court... Swish... dunked"): No frozen characters. Show Leo physically stepping/walking onto the court, rising into a smooth pull-up mid-range jump shot (ball arcs and swishes through the net), and driving/leaping to slam a dunk through the rim.
+  - Beat 7 (Climax): Animate KD whipping the pass to Leo (ball zips across the court), Leo catching and rising into a full-motion pull-up middy, the ball arcing high in the air on "with the ball in the air", and dropping cleanly through the net on "Swish."
+
+==================================================
+3. NEW MICRO-SETS & VISUAL STORYTELLING INSERTS
+==================================================
+- Beat 3 (Arena Stands): On "Then one Friday my dad took me to a Thunder game", show Leo and his dad sitting together in the arena stands watching the game BEFORE cutting to the tunnel after warmups.
+- Beat 5 (5:00 AM Bedroom + Home TV):
+  - On "Kevin Durant's words stayed in my head... 5 AM", cut to Leo in a simple bedroom set waking up in bed next to a glowing "5:00 AM" alarm clock, then cut to him training his crossover and pull-up middy in the 5 AM rain.
+  - Place the "KEVIN DURANT: 0-12 — CAREER OVER?" broadcast inside a TV in Leo's home living room/bedroom (not floating outdoors).
+- Beat 6 (Phone Invite -> Thunder Office -> Q1–Q3 Cooking Montage):
+  - Over "The Thunder invited the viral miracle kid to suit up with KD":
+    1) Quick phone insert showing a text message from "OKC THUNDER": "We want you."
+    2) Cut to Leo inside a detailed, high-quality Thunder Front Office (desk, team banner/logo wall, contract) instead of jumping straight to the tunnel.
+    3) Quick high-energy in-game montage (Q1–Q3) showing Leo cooking in his OKC #11 jersey—hitting insane shots and dunks with a quick "LEO: 30 PTS | Q3" graphic—right before "Before the fourth quarter..." cuts to KD sitting down in the tunnel.
+
+==================================================
+4. TWO REMAINING BUG FIXES FROM LAST PREVIEW
+==================================================
+- Fix Leo's expression at ~1:56 ("I can't! I lost the powers!"): Swap his smile to his panicked/sweating expression.
+- Fix the tunnel overlap at ~1:30–1:33 ("KD sat in the tunnel with his head down"): Shift Leo slightly right or angle the camera so KD is clearly visible sitting on the bench behind him (no head poking out of Leo's hair).
+
+==================================================
+STOP GATE
+==================================================
+- Keep face-first framing, chest-level captions (~72% height), and 1.5–2.0s average pacing.
+- Once preflight passes (with locked 2:29 audio masters untouched), commit everything, trigger the 540p GitHub Actions preview render, give me the run URL, and stop (do NOT poll GitHub Actions).
+
+Technical Animation Add-On for productions/kd-talent-1/ (No Robotic Linear Motion):
+
+Build a reusable procedural basketball keyframe/easing helper in Engine 4 (do NOT use linear interpolation—use easeOutQuad, easeInOutCubic, and easeOutBack). Drive 4 properties together: torso tilt, limb angles, vertical jump arc, and ball-to-hand parenting (snap ball to hand during dribble/hold, detach into parabolic flight on release):
+
+1. Lethal Crossover (~0.8s):
+- 0.00–0.25s (Sell the Fake): Lean torso +15° left, slight crouch (scaleY: 0.90), bounce ball low on left side. Defender slides left to bite on the fake.
+- 0.25–0.45s (The Whip): Snap ball diagonally across the floor from left hand to right hand (sharp V-bounce off floor).
+- 0.45–0.80s (Blow-By): Snap torso -15° right (easeOutBack) and burst past the defender while the defender stumbles/tilts backward the wrong way.
+
+2. 1-2 Pull-Up Middy (~1.0s):
+- 0.00–0.20s (Plant & Load): Fast horizontal glide into mid-range -> sudden 1-2 stop with a 1-frame crouch/squash (scaleY: 0.86) and both arms pulling the ball up to chest/chin height.
+- 0.20–0.50s (Rise & Release): Launch vertically on a smooth parabolic curve (easeOutQuad for hang-time at the peak). At peak height, snap both arms straight overhead to release the ball.
+- 0.50–1.00s (Follow-Through & Arc): Hold shooting arms raised as the character lands (brief scaleY: 0.92 landing squash). Ball detaches into a clean parabolic arc into the rim:
+  - Swish: Drops cleanly through the net with a subtle net-ripple/scale pulse.
+  - Brick (Beat 2): Awkward off-balance torso tilt on release -> ball clanks hard off the rim/backboard and ricochets away.
+
+3. Dunk (~0.9s):
+- Run-up glide -> crouch/squash -> high parabolic leap toward the rim with ball parented to overhead extended arms -> slam down through the rim at peak height with a brief camera micro-shake + net pulse.
+
+4. Pass & Hand Shake:
+- Whip Pass (Beat 7): KD steps and snaps arms forward; ball zips on a fast, flat-arc trajectory directly into Leo's catching hands (brief catch-recoil) right before Leo's 1-2 pull-up middy.
+- Hand Shake (Beat 3): Rapid alternating wrist/arm oscillation (3–4 quick shakes over ~0.6s) on KD's hand immediately after the lightning jolt.
