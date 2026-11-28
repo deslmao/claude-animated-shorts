@@ -18,19 +18,19 @@ const S: [Who, string, Place, Partial<Line>?, Snd?][] = [
   // BEAT 2: the underdog and the rival
   ["narrator", "Every day after school, Dex—the tallest kid—picks everybody before me, because I brick every shot.", "court", undefined, [["tallest", 1, "whoosh_short", -3], ["everybody", 1, "el_squeak", -6], ["brick", 1, "el_bb_brick"]]],
   ["dex", "Nice shot, Brick!", "court", { punch: true }, [["Brick!", 1, "viral_vine_boom", -2]]],
-  ["narrator", "I'm Leo, and KD is my hero. The lethal crossover. That unstoppable pull-up middy. I couldn't shoot like him. Every shot clanked off the rim.", "court", undefined, [["hero.", 1, "viral_ding", -8], ["crossover.", 1, "el_squeak", -4], ["middy.", 1, "el_bb_swish", -4], ["clanked", 1, "el_bb_brick", -2]]],
+  ["narrator", "I'm Leo, and Kevin Durant is my hero. The lethal crossover. That unstoppable pull-up middy. I couldn't shoot like him. Every shot clanked off the rim.", "court", undefined, [["hero.", 1, "viral_ding", -8], ["crossover.", 1, "el_squeak", -4], ["middy.", 1, "el_bb_swish", -4], ["clanked", 1, "el_bb_brick", -2]]],
   // BEAT 3: the Thunder game and the spark
-  ["narrator", "Then one Friday, my dad took me to a Thunder game. After warmups, KD walked right up to the tunnel and signed my beat-up basketball.", "tunnel", undefined, [["game.", 1, "el_arena_roar", -8], ["signed", 1, "el_squeak", -4]]],
+  ["narrator", "Then one Friday, my dad took me to a Thunder game. After warmups, Kevin Durant walked right up to the tunnel and signed my beat-up basketball.", "tunnel", undefined, [["game.", 1, "el_arena_roar", -8], ["signed", 1, "el_squeak", -4]]],
   ["leo", "I wish I had your talent.", "tunnel"],
   ["kd", "You need to work hard, kid.", "tunnel", undefined, [["kid.", 1, "viral_ding", -9, 0.1]]],
-  ["narrator", "The second our hands touched the ball, lightning shot straight between us. My fingers tingled. KD shook his hand out.", "tunnel", { punch: true }, [["lightning", 1, "el_lightning_zap", 0], ["tingled.", 1, "viral_ack", -6]]],
+  ["narrator", "The second our hands touched the ball, lightning shot straight between us. My fingers tingled. Kevin Durant shook his hand out.", "tunnel", { punch: true }, [["lightning", 1, "el_lightning_zap", 0], ["tingled.", 1, "viral_ack", -6]]],
   // BEAT 4: powers and viral fame
   ["narrator", "Next morning, I stepped on the court. I pulled up from mid-range. Swish. Again. Swish.", "court", undefined, [["Swish.", 1, "el_bb_swish"], ["Swish.", 2, "el_bb_swish"], ["Again.", 1, "viral_bing_bing_bing", -5]]],
   ["narrator", "I drove and dunked—I'd never even touched the net before. My middy was 100%.", "court", undefined, [["dunked", 1, "el_bb_dunk"], ["dunked", 1, "viral_sheesh", -6, 0.25], ["100%.", 1, "viral_ding", -3]]],
   ["narrator", "I destroyed tryouts, dropped 40 points on camera, and went viral overnight.", "court", undefined, [["tryouts,", 1, "viral_airhorn", -8], ["40", 1, "viral_anime_wow", -2]]],
   // BEAT 5: the secret habit and the guilt
-  ["narrator", "Still, KD's words stayed in my head. So I didn't get lazy. For months, I woke up at 5 AM—rain or snow—shooting 500 pull-up middies before school.", "dawn", undefined, [["lazy.", 1, "whoosh_short", -4], ["AM", 1, "el_clock_tick", -3], ["snow", 1, "el_water_rush", -10], ["500", 1, "el_bb_dribble", -5]]],
-  ["narrator", "Meanwhile, on TV, KD was missing everything. Airballs. Bricks. Turnovers. The media said his career was over.", "dawn", undefined, [["TV,", 1, "viral_info_5", -4], ["Airballs.", 1, "viral_error", -2], ["Bricks.", 1, "el_bb_brick", -2], ["over.", 1, "viral_undertaker_bell", -2]]],
+  ["narrator", "Still, Kevin Durant's words stayed in my head. So I didn't get lazy. For months, I woke up at 5 AM—rain or snow—shooting 500 pull-up middies before school.", "dawn", undefined, [["lazy.", 1, "whoosh_short", -4], ["AM", 1, "el_clock_tick", -3], ["snow", 1, "el_water_rush", -10], ["500", 1, "el_bb_dribble", -5]]],
+  ["narrator", "Meanwhile, on TV, Kevin Durant was missing everything. Airballs. Bricks. Turnovers. The media said his career was over.", "dawn", undefined, [["TV,", 1, "viral_info_5", -4], ["Airballs.", 1, "viral_error", -2], ["Bricks.", 1, "el_bb_brick", -2], ["over.", 1, "viral_undertaker_bell", -2]]],
   ["narrator", "I stared at my hands. I didn't just get his talent—I took it.", "dawn", { punch: true }, [["took", 1, "viral_dun_dun_dun", -2]]],
   // BEAT 6: the return
   ["narrator", "The Thunder invited the \"viral miracle kid\" to suit up with KD. Before the fourth quarter, KD sat in the tunnel with his head down. I held out my signed ball.", "tunnel", undefined, [["Thunder", 1, "el_arena_roar", -12], ["down.", 1, "el_breath_hold", -3]]],
@@ -88,7 +88,7 @@ export const KD_TALENT_1: Storyboard = {
     facts: [
       { fact: "who Leo is", said: "I was always picked last" },
       { fact: "the rival", said: "Dex—the tallest kid—picks everybody before me" },
-      { fact: "his hero", said: "KD is my hero" },
+      { fact: "his hero", said: "Kevin Durant is my hero" },
       { fact: "the wish", said: "I wish I had your talent" },
       { fact: "the spark", said: "lightning shot straight between us" },
       { fact: "the cost", said: "I didn't just get his talent—I took it" },

@@ -16584,3 +16584,9 @@ Instead of keeping Morning Mood all the way to "Five seconds left.", mirror the 
 1. Beats 1–6: Play Morning Mood (ducked 8 dB under punchlines/SFX).
 2. Beat 6 ("My arms felt heavy. The magic was gone.") through Beat 7 ("The magic didn't wake up at 5 AM, kid. You did."): Switch from Morning Mood to a slow, sad/emotional piano or strings track (you can generate a clean 40s sad piano cue via ElevenLabs Music or use a local sad piano track).
 3. Beat 7 Climax ("The buzzer sounded with the ball in the air."): Brief drop to silence + sub-bass hit, then swell Morning Mood back in triumphantly on "Swish. We won by one." through the end.
+
+## 28 Nov 2026 — owner (Episode 2 naming tweak)
+Quick script naming tweak before rebuilding the ~2:30 audio for productions/kd-talent-1/:
+- Use "Kevin Durant" in Beats 1–5 (Hook, Underdog, Thunder Game, Secret Habit/TV Slump).
+- Switch to "KD" starting in Beat 6 (The Return in the tunnel) through Beat 8 (Payoff), once Leo actually knows him personally.
+- Keep the TV news chyron as "KEVIN DURANT: 0-12 — CAREER OVER?" so it reads clearly at a glance.

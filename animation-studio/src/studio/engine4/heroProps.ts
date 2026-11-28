@@ -2,7 +2,7 @@
 // insert shot, so a key detail is SEEN, never only said:
 //   signedBall      Leo's beat-up basketball with "KD" in black marker; step 2 fires the lightning (blue and gold bolts and sparks) between two hands
 //   viralPhone      a phone whose screen shows the viral clip: "11-YEAR-OLD DROPS 40 AT TRYOUTS" and "1.4M VIEWS"
-//   tvNewsSlump     a TV with the sports broadcast chyron "KD: 0-12 - CAREER OVER?"
+//   tvNewsSlump     a TV with the sports broadcast chyron "KEVIN DURANT: 0-12 - CAREER OVER?"
 //   arenaScoreboard the hanging scoreboard: "THUNDER 88 | 00:05 | OPP 89"
 // All turn about the vertical axis to face the camera (an insert is always square-on) and pop in on step 1 with the engine's snappy overshoot.
 import * as THREE from "three";
@@ -113,7 +113,7 @@ const tvTexture = () => ctex("kdtv", 1024, 576, (g) => {
   g.fillStyle = "#c4601a"; g.beginPath(); g.arc(760, 150, 26, 0, 6.3); g.fill(); g.strokeStyle = "#1a0e08"; g.lineWidth = 4; g.stroke();
   g.fillStyle = "#e8f0ff"; g.font = "900 34px Arial Black, Arial, sans-serif"; g.fillText("SPORTS DESK LIVE", 40, 56); g.fillStyle = "#ef3b24"; g.fillRect(780, 24, 210, 44); g.fillStyle = "#fff"; g.font = "900 28px Arial Black, Arial, sans-serif"; g.fillText("● LIVE", 806, 56);
   g.fillStyle = "#ef3b24"; g.fillRect(0, 410, 1024, 84); g.fillStyle = "#ffffff"; g.fillRect(0, 404, 1024, 8);
-  g.fillStyle = "#ffffff"; g.font = "900 54px Arial Black, Arial, sans-serif"; g.fillText("KD: 0-12 — CAREER OVER?", 36, 470);
+  g.fillStyle = "#ffffff"; g.font = "900 44px Arial Black, Arial, sans-serif"; g.fillText("KEVIN DURANT: 0-12 — CAREER OVER?", 28, 466);
   g.fillStyle = "#0c1020"; g.fillRect(0, 494, 1024, 82); g.fillStyle = "#ffd35a"; g.font = "800 30px Arial, sans-serif"; g.fillText("THUNDER STAR IN HISTORIC SLUMP • AIRBALLS • TURNOVERS • COACH: \"WE BELIEVE\"", 28, 546);
   g.fillStyle = "rgba(0,0,0,0.12)"; for (let y = 0; y < 576; y += 4) g.fillRect(0, y, 1024, 1);
 });
