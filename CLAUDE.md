@@ -26,6 +26,31 @@ Follow `productions/research/storytelling-system.md`.
 Every new storyboard needs a `clarity` block: the premise, plus each fact the viewer must be told, with the words that
 tell it. `npm run short` fails without it. The owner approves `productions/<id>/viewer-script.md`, not a screenplay.
 
+### Hook & Retention Gate (0-3 s question-payoff rule; owner, 28 Nov 2026, permanent, every new episode)
+- **Pattern interrupt (0:00 to 0:00.5):** every Short opens with a 0.4-0.5 s camera blur-in (`Storyboard.blurIn`, Engine 4) paired
+  with a sharp, relevant SFX.
+- **Force an immediate question.** Never open on a flat world premise alone ("In my world, everyone has X"). The first 2 s must
+  put an urgent question or an impossible contradiction in the viewer's head, using one of four hook types:
+  1. *Visual action / mid-climax:* drop straight into danger or a climax freeze-frame, then rewind.
+  2. *Visual mystery / weird detail:* show an impossible visual anomaly at once.
+  3. *Impossible stakes / hard constraint:* pair the world rule with a strict countdown or an expulsion / survival threat.
+  4. *Contradiction / literal question:* state a direct paradox that demands an explanation ("Every lie shrinks you, so how is
+     the biggest liar 7 feet tall?").
+- **Step 1 check:** the top of `script.md` states `OPENING QUESTION:` and `PAYOFF:` in words, and every beat is checked to build
+  toward answering that exact question, before any audio is locked.
+
+### Strict 1-to-1 literal action rule (owner, 28 Nov 2026, permanent, every new episode)
+- **No generic placeholders.** Every VO line that mentions a physical action, prop or posture must show that exact action and
+  prop on screen. Never substitute a generic hallway-standing or walking shot.
+- **Examples:** "carried his books" = the character physically holds a heavy stack of books; "did his homework until midnight"
+  = seated at a desk writing on paper with a glowing `12:00 AM` clock; "shrank into the walls" = pressed flat against the
+  lockers with hunched shoulders.
+- **Step 1 check:** `shot-list.md` lists the exact `[PROP]` and `[POSE/ACTION]` for every beat. A prop or pose that does not
+  exist yet is flagged in Step 1 and built in Step 2; never fall back to a generic walk cycle.
+- **Transitions and camera variety:** rotate the camera (high-angle / bird's-eye, tight prop and action inserts, reaction
+  punch-ins; no static medium-shot streaks) and put a 2-3 frame flash / RGB-glitch transition plus an SFX at each major act
+  pivot (`Storyboard.glitch`, Engine 4).
+
 ## Format system (the owner's standing rule; revised 26 Nov 2026: every new video)
 - **No frame-0 banner, no intro title card, no end-screen CTA.** The 21 Nov frame-0 banner rule is withdrawn. Open
   *in medias res*, with physical visual action in the first 0-2 s. The only call to action allowed is one 1-second line

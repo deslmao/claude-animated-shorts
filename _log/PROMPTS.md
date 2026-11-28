@@ -16870,3 +16870,22 @@ There is just 1 remaining camera bug to fix before final render:
 - **0:30 ("whole hallway"):** The camera is still clipping straight into a character's head/face (a giant tan oval fills the screen). Pull/reposition that camera so Leo and the hallway students are cleanly framed with zero face clipping.
 
 Verify the 0:30 frame in preflight stills, commit everything, trigger the final 1080p GitHub Actions render (scored + no-music dual export + PUBLISHING.md), give me the run URL, and stop (do NOT poll GitHub Actions).
+
+## 28 Nov 2026 — owner (Episode 3 is finished; two permanent rules for CLAUDE.md)
+The video is alright. It is finished , do not go back.
+from now on, Add two permanent rules to CLAUDE.md under the Engine 4 Storytelling Gate for all future episodes:
+
+### 1. Hook & Retention Gate (0–3s Question–Payoff Rule)
+- **Pattern Interrupt (0:00–0:00.5):** Every Short opens with a 0.4–0.5s camera blur-in paired with a sharp, relevant SFX.
+- **Force an Immediate Question:** Never open with a flat world premise alone (e.g., "In my world, everyone has X"). The first 2 seconds MUST fire an urgent question or impossible contradiction in the viewer's head using one of these 4 hook types:
+  1. *Visual Action / Mid-Climax:* Drop straight into danger or a climax freeze-frame, then rewind.
+  2. *Visual Mystery / Weird Detail:* Show an impossible visual anomaly immediately.
+  3. *Impossible Stakes / Hard Constraint:* Pair the world rule with a strict countdown or expulsion/survival threat.
+  4. *Contradiction / Literal Question:* State a direct paradox that demands an explanation ("Every lie shrinks you—so how is the biggest liar 7 feet tall?").
+- **Step 1 Check:** At the top of `script.md`, explicitly write `OPENING QUESTION:` and `PAYOFF:` so we verify every beat builds toward answering that exact question before locking audio.
+
+### 2. Strict 1-to-1 Literal Action Rule
+- **No Generic Placeholders:** Every VO line that mentions a physical action, prop, or posture MUST show that exact action and prop on screen—never substitute generic hallway standing or walking shots.
+- **Examples:** "carried his books" = character physically holding a heavy stack of books; "did his homework until midnight" = seated at a desk writing on paper with a glowing `12:00 AM` clock; "shrank into the walls" = pressed flat against the lockers with hunched shoulders.
+- **Step 1 Check:** In `shot-list.md`, list the exact `[PROP]` and `[POSE/ACTION]` for every beat. If a required prop or pose does not exist yet, flag it in Step 1 so we build it in Step 2 instead of falling back to a generic walk cycle.
+- **Transitions & Camera Variety:** Rotate camera angles (high-angle/bird's-eye, tight prop/action inserts, reaction punch-ins—no static medium-shot streaks) and place 2–3 frame flash/RGB-glitch transitions + SFX at major act pivots.

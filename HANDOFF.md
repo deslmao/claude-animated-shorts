@@ -10,6 +10,8 @@ no pull requests.
 2. Read `_log/DECISIONS.md` (why things are the way they are).
 3. Read `_log/PROMPTS.md` (the owner's exact words, newest at the bottom).
 
+## EPISODE 3 IS FINISHED (owner, 28 Nov): do not go back to it. NEW PERMANENT RULES in CLAUDE.md (Storytelling gate): the Hook & Retention Gate (OPENING QUESTION / PAYOFF in script.md, a blur-in plus SFX, one of four hook types) and the strict 1-to-1 literal action rule ([PROP] and [POSE/ACTION] per beat in shot-list.md, flag missing props in Step 1). Read both before writing any new script.
+
 ## EPISODE 3 FINAL 1080p RENDER REQUESTED (28 Nov, newest): the owner approved the preview; the 0:30 camera fix is in; PUBLISHING.md is written. Next: when the owner says the render finished and uploads the MP4, run `node scripts/dual-export.mjs <mp4> solo-leveling-1` (scored + no-music), then the QA (qa-request.json), then the cover. Release target 10:00 AM AEDT. Never poll.
 
 ## EPISODE 3 REALISM AND BLOCKING PASS (28 Nov, newest): realistic push-up / pull-up / kneel poses (figureSide plank, hang, kneel + ActorSpec.sideMode), hallway and Dex blocking, stranger cliffhanger; a 540p preview was requested; waiting for the owner (never poll). Final 1080p render, dual export, QA and PUBLISHING.md still to do after approval.
