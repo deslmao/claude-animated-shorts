@@ -10,6 +10,8 @@ no pull requests.
 2. Read `_log/DECISIONS.md` (why things are the way they are).
 3. Read `_log/PROMPTS.md` (the owner's exact words, newest at the bottom).
 
+## EPISODE 3 (solo-leveling-1), STEP 2 DONE (28 Nov, newest): script locked (427 words, 2:29), voices generated (never regenerate), SFX/beds generated, props/sets/motion built, preflight PASS, 540p preview requested (render-request.json); waiting for the owner to upload the preview (never poll). Then corrections, final 1080p render, dual export, QA, PUBLISHING.md (not written yet), cover. Target release 10:00 AM AEDT.
+
 ## EPISODE 3 (solo-leveling-1), Step 1 done (28 Nov): script.md + shot-list.md written in productions/solo-leveling-1/, WAITING FOR THE OWNER'S THUMBS-UP before audio masters, builds and the 540p preview. Episode 2's final render is still pending on the owner's side (never poll).
 
 ## EPISODE 2 FINAL RENDER RE-REQUESTED (28 Nov, newest): four last framing tweaks done, PUBLISHING.md written (productions/kd-talent-1/publish/), final 1080p render requested again. After it finishes: dual export (scripts/dual-export.mjs), then the QA. Never poll.

@@ -17,9 +17,9 @@ export const easeOutBack = (u: number, s = 1.70158) => { const x = c01(u); retur
 const seg = (t: number, a: number, b: number) => c01((t - a) / (b - a));
 
 export type When2 = { t?: number; word?: string; n?: number; /** seconds added after the time / word the move starts on */ dt?: number };
-export type PlayKind = "crossover" | "bite" | "pullup" | "brick" | "dunk" | "whip" | "catch" | "shake";
-export type PlayMove = When2 & { kind: PlayKind; /** -1 | 1: which way the fake / the lean goes (screen right = +1) */ dir?: -1 | 1; /** world glide [x, z] metres */ go?: [number, number]; /** jump height m */ rise?: number };
-export const PLAY_DUR: Record<PlayKind, number> = { crossover: 0.8, bite: 0.8, pullup: 1.0, brick: 1.0, dunk: 0.9, whip: 0.5, catch: 0.5, shake: 0.6 };
+export type PlayKind = "crossover" | "bite" | "pullup" | "brick" | "dunk" | "whip" | "catch" | "shake" | "pushup" | "barpull" | "charge" | "flick" | "slide";
+export type PlayMove = When2 & { kind: PlayKind; /** -1 | 1: which way the fake / the lean goes (screen right = +1) */ dir?: -1 | 1; /** world glide [x, z] metres */ go?: [number, number]; /** jump height m */ rise?: number; /** pushup / barpull: how many reps and seconds per rep */ reps?: number; per?: number; /** pushup: how far (0..1) the arms tire and the body sags near the end */ tire?: number };
+export const PLAY_DUR: Record<PlayKind, number> = { crossover: 0.8, bite: 0.8, pullup: 1.0, brick: 1.0, dunk: 0.9, whip: 0.5, catch: 0.5, shake: 0.6, pushup: 1.0, barpull: 1.0, charge: 1.0, flick: 0.5, slide: 1.4 };
 export type PlayOut = { dx: number; dy: number; dz: number; tilt: number; headTilt: number; squash: number; gesture?: Gesture };
 
 /** the body's state at shot time tt from a list of moves: displacement (done moves stay displaced), tilt, squash, the arms */
@@ -78,6 +78,47 @@ export const playAt = (moves: PlayMove[] | undefined, tt: number): PlayOut => {
         // hands out, a brief recoil as the ball lands in them
         o.tilt += 6 * dir * easeOutBack(seg(u, 0.35, 0.5)) * (1 - seg(u, 0.55, 0.9)); o.squash *= 1 - 0.04 * Math.sin(Math.PI * seg(u, 0.35, 0.65));
         if (u < D + 0.3) o.gesture = u < 0.4 ? "offer" : "present";
+        break;
+      }
+      case "pushup": {
+        // lying flat (the keys' flip 0.5 turns the card on its side; this sinks it to the floor): each rep goes down 45 % of the period on easeInOutCubic, holds a beat, and pushes up on easeOutQuad;
+        // the arms tire (the bottom gets lower, the top lower) as the reps go on
+        const per = m.per ?? 1.1, n = m.reps ?? 4, T = per * n, tire = (m.tire ?? 0.5) * seg(u, 0, T), k = (u % per) / per;
+        if (u <= T) {
+          const wave = k < 0.5 ? easeInOutCubic(k / 0.5) : 1 - easeOutQuad((k - 0.5) / 0.5);   // 0 = top, 1 = chest on the floor
+          o.dy += -0.36 - 0.12 * tire + (0.13 - 0.05 * tire) * (1 - wave) * 1.0 - 0.13 * (1 - 0) * 0; o.squash *= 1 - 0.015 * wave;
+        } else o.dy += -0.36;
+        break;
+      }
+      case "barpull": {
+        // hanging from a bar by the hands (arms overhead): each rep pulls up on easeOutQuad and lowers slowly on easeInOutCubic
+        const per = m.per ?? 1.2, n = m.reps ?? 3, T = per * n, k = (u % per) / per;
+        const wave = u > T ? 0 : k < 0.4 ? easeOutQuad(k / 0.4) : 1 - easeInOutCubic((k - 0.4) / 0.6);
+        o.dy += 0.22 + (m.rise ?? 0.34) * wave; o.squash *= 1 + 0.025 * Math.sin(Math.PI * Math.min(1, wave)); o.tilt += 2 * Math.sin(u * 5) * 0.4 * (1 - wave);
+        o.gesture = "cheer";
+        break;
+      }
+      case "charge": {
+        // Dex's rush: coil back (0-0.25, lean away, squash 0.92), then burst forward on an easeOutQuad curve (0.25-0.85) leaning into it with a little overshoot
+        glide(0.25, 0.85, easeOutQuad);
+        o.tilt += u < 0.25 ? -8 * dir * easeOutQuad(u / 0.25) : -8 * dir * (1 - easeOutBack(seg(u, 0.25, 0.45))) + 10 * dir * easeOutBack(seg(u, 0.3, 0.6)) * (1 - seg(u, 0.85, 1.1));
+        o.squash *= u < 0.25 ? 1 - 0.08 * easeOutQuad(u / 0.25) : 1 + 0.04 * Math.sin(Math.PI * seg(u, 0.25, 0.7));
+        o.dy += 0.05 * Math.abs(Math.sin(u * 14)) * seg(u, 0.25, 0.4) * (1 - seg(u, 0.8, 0.9));
+        o.gesture = "pump";
+        break;
+      }
+      case "flick": {
+        // one finger up (0-0.25, a calm held beat), then the flick: a quick snap (0.25-0.33, easeOutBack) and a small recoil of the shoulders
+        o.gesture = "pointUp";
+        o.tilt += 5 * dir * easeOutBack(seg(u, 0.25, 0.36)) * (1 - seg(u, 0.4, 0.9)); o.headTilt += -3 * dir * easeOutQuad(seg(u, 0.25, 0.4)) * (1 - seg(u, 0.5, 1.0));
+        o.squash *= 1 + 0.02 * Math.sin(Math.PI * seg(u, 0.25, 0.5));
+        break;
+      }
+      case "slide": {
+        // blown back and sliding on the back: thrown flat (tilt to -78 deg on easeOutBack over 0.3 s), then a long easeOutQuad slide along `go` (1.2 s) coming to rest; the body stays sunk to the floor
+        glide(0, 1.2, easeOutQuad);
+        o.tilt += -78 * dir * easeOutBack(seg(u, 0, 0.3)); o.dy += -0.3 * easeOutQuad(seg(u, 0, 0.3)) + 0.1 * Math.sin(Math.PI * seg(u, 0, 0.3));
+        o.squash *= 1 - 0.04 * Math.sin(Math.PI * seg(u, 0, 0.3)); o.gesture = "spread";
         break;
       }
       case "shake": {

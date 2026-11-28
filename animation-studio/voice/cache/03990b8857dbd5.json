@@ -1,0 +1,70 @@
+{
+ "hash": "03990b8857dbd5",
+ "text": "I handed it over. He never noticed I'd stopped shaking.",
+ "voice": "leo",
+ "lead": 0,
+ "end": 2.879,
+ "dur": 2.925714,
+ "words": [
+  {
+   "w": "I",
+   "t0": 0,
+   "t1": 0.081
+  },
+  {
+   "w": "handed",
+   "t0": 0.186,
+   "t1": 0.499
+  },
+  {
+   "w": "it",
+   "t0": 0.546,
+   "t1": 0.615
+  },
+  {
+   "w": "over.",
+   "t0": 0.662,
+   "t1": 0.952
+  },
+  {
+   "w": "He",
+   "t0": 0.998,
+   "t1": 1.115
+  },
+  {
+   "w": "never",
+   "t0": 1.173,
+   "t1": 1.37
+  },
+  {
+   "w": "noticed",
+   "t0": 1.44,
+   "t1": 1.8
+  },
+  {
+   "w": "I'd",
+   "t0": 1.858,
+   "t1": 1.997
+  },
+  {
+   "w": "stopped",
+   "t0": 2.032,
+   "t1": 2.299
+  },
+  {
+   "w": "shaking.",
+   "t0": 2.334,
+   "t1": 2.879
+  }
+ ],
+ "voiceId": "7g0kmMsyK30rO4fU1Sli",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.38,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.06
+ },
+ "created": "2026-11-28T05:54:14.670Z"
+}

@@ -560,6 +560,56 @@
    "s": 1.2,
    "level": -11,
    "p": "Basketball sneakers squeaking on a polished hardwood court, three quick squeaks, close"
+  },
+  "el_rpg_levelup": {
+   "s": 1.8,
+   "level": -9,
+   "p": "A bright video-game RPG level-up jingle: a quick rising sparkling chime arpeggio ending on a shimmering high note, clean and punchy, no music bed"
+  },
+  "el_ui_pop": {
+   "s": 1.0,
+   "level": -10,
+   "p": "A futuristic holographic game UI window popping open: a glassy blip with a short airy whoosh and a soft chime tail, clean sci-fi interface sound"
+  },
+  "el_ui_type": {
+   "s": 1.6,
+   "level": -14,
+   "p": "Fast soft digital typing ticks of sci-fi terminal text appearing line by line, tiny clicks, clean, close"
+  },
+  "el_bass_drop": {
+   "s": 2.4,
+   "level": -6,
+   "p": "A single huge cinematic sub-bass drop: a deep sine boom that slams in and rings out, powerful impact, short tail, no music"
+  },
+  "el_shockwave": {
+   "s": 1.8,
+   "level": -8,
+   "p": "A magical energy shockwave blast expanding outward: a deep thump followed by an airy rushing ring and a glittering shimmer, cinematic, short"
+  },
+  "el_finger_flick": {
+   "s": 0.8,
+   "level": -9,
+   "p": "A single sharp whip-crack flick: a tiny finger snap releasing a burst of force, crisp, very short, cinematic, close"
+  },
+  "el_body_slide": {
+   "s": 2.4,
+   "level": -8,
+   "p": "A boy sliding fast on his back along a polished wooden gym floor: a long rubbery scrape and squeak, slowing down, ending in a dull thud against a padded wall"
+  },
+  "el_crowd_gasp": {
+   "s": 2.0,
+   "level": -9,
+   "p": "A big school gym crowd gasping in shock all at once, hundreds of kids sucking in a breath, then a held silence, no words"
+  },
+  "el_locker_slam": {
+   "s": 1.2,
+   "level": -9,
+   "p": "A metal school locker door slamming shut in a long hallway with an echo, one hit, close"
+  },
+  "el_gym_cheer": {
+   "s": 3.5,
+   "level": -8,
+   "p": "A school gym crowd of kids erupting into cheers and whistles, a rising roar then sustained, chanting a name, no music, big echo"
   }
  },
  "bed": {
@@ -642,6 +692,14 @@
   "elb_tunnel": {
    "s": 22,
    "p": "A concrete arena tunnel before the fourth quarter: the muffled roar of a crowd through the walls, a low ventilation hum, a drip, distant echoing footsteps, tense"
+  },
+  "elb_school_hall": {
+   "s": 22,
+   "p": "A busy school hallway between classes: a murmur of many students talking, distant locker slams and footsteps, a faint bell far away, hard reflective echo, no music"
+  },
+  "elb_gym_crowd": {
+   "s": 22,
+   "p": "A packed school gymnasium full of kids murmuring and chattering with big echo, distant sneaker squeaks and a ball bouncing, anticipation, no music"
   }
  }
 }

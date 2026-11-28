@@ -1,0 +1,75 @@
+{
+ "hash": "038b8907625aa0",
+ "text": "Carry my books, Level 1. And my homework's due at nine.",
+ "voice": "e4Rival",
+ "lead": 0,
+ "end": 4.04,
+ "dur": 4.075102,
+ "words": [
+  {
+   "w": "Carry",
+   "t0": 0,
+   "t1": 0.325
+  },
+  {
+   "w": "my",
+   "t0": 0.372,
+   "t1": 0.476
+  },
+  {
+   "w": "books,",
+   "t0": 0.557,
+   "t1": 0.836
+  },
+  {
+   "w": "Level",
+   "t0": 0.871,
+   "t1": 1.161
+  },
+  {
+   "w": "1.",
+   "t0": 1.207,
+   "t1": 1.637
+  },
+  {
+   "w": "And",
+   "t0": 1.776,
+   "t1": 1.916
+  },
+  {
+   "w": "my",
+   "t0": 1.962,
+   "t1": 2.055
+  },
+  {
+   "w": "homework's",
+   "t0": 2.113,
+   "t1": 2.635
+  },
+  {
+   "w": "due",
+   "t0": 2.705,
+   "t1": 2.926
+  },
+  {
+   "w": "at",
+   "t0": 2.961,
+   "t1": 3.053
+  },
+  {
+   "w": "nine.",
+   "t0": 3.146,
+   "t1": 4.04
+  }
+ ],
+ "voiceId": "loY1uopAz31XyhAEhNSa",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.75,
+  "style": 0.35,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-28T05:54:09.618Z"
+}

@@ -220,6 +220,8 @@ export type Storyboard = {
    *  tagged lines (`sub`) are split into word chunks too instead of one long line */
   /** Engine 4 viral captions: shot indices whose captions sit in the upper third (27 %) because a head is on the floor in frame; every other shot keeps 72 % */
   captionHigh?: number[];
+  /** Engine 4 opt-in intro: the first `dur` seconds of the world un-blur from `px` pixels of blur to sharp (easeOutQuad); captions and UI stay crisp */
+  blurIn?: { dur: number; px: number };
   captionStyle?: "short" | "viral";
   /** Engine 4: words the viral captions highlight in a pop colour (besides the lexicon's key nouns) */
   captionKeys?: string[];

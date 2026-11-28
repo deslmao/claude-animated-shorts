@@ -1,8 +1,8 @@
 {
-  "composition": "Short-kd-talent-1",
+  "composition": "Short-solo-leveling-1",
   "chunks": 20,
-  "preview": false,
+  "preview": true,
   "audio": "",
   "publish": false,
-  "note": "Episode 2 (The Day I Stole Kevin Durant's Talent): FINAL 1080p render with the last framing tweaks. Audio masters locked. Dual export (scored + no-music) after the render with scripts/dual-export.mjs. No GitHub Release."
+  "note": "Episode 3 (The Solo Leveling World): 540p preview. Locked 2:29 audio (Morning Mood, dual export later). No GitHub Release."
 }

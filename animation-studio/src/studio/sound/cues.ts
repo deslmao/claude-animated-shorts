@@ -20,6 +20,8 @@ import { wordCues, isGrounded } from "./lexicon";
 type Film = ReturnType<typeof compile>;
 /** a catalogue sound, or the name of a custom file assets/sfx/<name>.mp3|wav (Engine 4) */
 export type CueName = SfxName | (string & {});
+/** Episode 3's RPG hits duck the score 8 dB like the viral pack */
+const RPG_MAJOR = ["el_rpg_levelup", "el_ui_pop", "el_bass_drop", "el_shockwave", "el_finger_flick"];
 export type Cue = { t: number; name: CueName; gain_db?: number; pan?: number; why: string; major?: boolean };
 export type SoundPlan = { file?: { file: string; duck?: number; curve?: [number, number][]; cuts?: { t: number; resume?: number; sub?: boolean; jump?: number; swell?: number }[]; layers?: { file: string; t0: number; t1: number; fade: number; gain: number }[] }; sections: [Mood, number, number][] | null; button_t: number; drop_t?: number; musicGain: number; ambience: (string | null)[]; cues: Cue[]; mood: Mood | null; moodWhy: string;
   /** Engine 4: spans [t0, t1] where the music ducks depth_db (under dialogue punchlines and major SFX hits) */
@@ -151,7 +153,7 @@ export const soundPlan = (film: Film, sb0: Storyboard): SoundPlan => {
   let duck: SoundPlan["duck"];
   if (sb.engine === 4) {
     if (sb.wordSfx !== false) for (const c of wordCues(film.timing.lines.flatMap((l) => l.words), 1.2, sb.wordSfxMap)) cues.push({ t: c.t, name: c.name, gain_db: c.gain_db, major: c.major, why: `${c.why}` });
-    for (const c of cues) if (String(c.name).startsWith("viral_")) c.major = true;   // the owner's viral pack hits duck the music like any major hit
+    for (const c of cues) if (String(c.name).startsWith("viral_") || RPG_MAJOR.includes(String(c.name))) c.major = true;   // the owner's viral pack hits duck the music like any major hit
     const spans: [number, number][] = [];
     for (const l of film.timing.lines) if (l.punch && l.words.length) spans.push([l.words[0].t0 - 0.05, l.words[l.words.length - 1].t1 + 0.2]);
     for (const c of cues) if (c.major) spans.push([c.t - 0.05, c.t + 0.7]);

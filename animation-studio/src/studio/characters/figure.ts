@@ -32,7 +32,7 @@ export type LayerStyle = "labcoat" | "waistcoat" | "blazer" | "cardigan" | "apro
   /** opt-in (Miami look): an open short-sleeve shirt over the top, a leaf print in `accent`; a denim jacket with
    *  stitching and chest pockets in `accent` */
   | "openShirt" | "denim";
-export type HatStyle = "cap" | "beanie" | "tophat" | "bowler" | "hardhat" | "tricorn" | "bandana" | "boater"
+export type HatStyle = "cap" | "beanie" | "hood" | "tophat" | "bowler" | "hardhat" | "tricorn" | "bandana" | "boater"
   /** opt-in (Miami look): a flat-crowned snapback worn backwards (the strap gap over the forehead, the brim behind) */
   | "snapback";
 export type Look = {
@@ -402,6 +402,18 @@ const hat3 = (p: Pen, L: Look, H: Blob, cx: number, hc: number, light: number, f
         p.stroke(R([[gx - 11 * u, gy], [gx + 11 * u, gy]]), 3 * u, L.hat.trim ?? shade(col, 0.6));             // the strap
         const [bx, by] = R([[cx, crown + 0.02 * HH]])[0]; p.dot(bx, by, 4 * u, shade(col, 0.85));             // the button on top
       }
+      break;
+    }
+    case "hood": {
+      // a hoodie's hood pulled up: a dome over the hair that drapes down both sides of the face to the jaw (the face stays open), with a darker fold at the brow
+      const cut = crown + 0.4 * HH, jaw = hc + 0.52 * H.b;
+      const dome = R(ellPts(cx, cut, H.a * 1.1, 0.46 * HH, 180, 360, 0, 28));
+      p.shadedFill(dome, col, mul(col, SH_FELT), light, H.a, 0.35); p.poly(dome, null, ow);
+      for (const sd of [-1, 1]) {
+        const side = R([[cx + sd * H.a * 1.08, cut - 6 * u], [cx + sd * H.a * 1.12, hc + 0.1 * H.b], [cx + sd * H.a * 1.0, jaw], [cx + sd * H.a * 0.84, jaw - 4 * u], [cx + sd * H.a * 0.9, hc], [cx + sd * H.a * 0.9, cut + 4 * u]]);
+        p.shadedFill(side, col, mul(col, SH_FELT), light, H.a, 0.35); p.poly(side, null, ow);
+      }
+      p.poly(R([[cx - H.a * 0.92, cut - 5 * u], [cx + H.a * 0.92, cut - 5 * u], [cx + H.a * 0.9, cut + 5 * u], [cx - H.a * 0.9, cut + 5 * u]]), shade(col, 0.82), ow);
       break;
     }
     case "beanie": {

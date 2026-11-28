@@ -16778,3 +16778,14 @@ We are starting Episode 3 in productions/solo-leveling-1/ (target release: tomor
 
 ### Step 1 (Do This Now)
 Write the full locked VO script (~2:15–2:30) and the 80–90 beat shot list in productions/solo-leveling-1/, then stop and show me the script for a quick thumbs-up before generating audio masters and the 540p preview.
+
+## 28 Nov 2026 — owner (Episode 3: thumbs-up, two script tweaks, proceed to Step 2)
+Thumbs up on Step 1—also ignore Episode 2, it is already rendered and uploaded.
+
+Make these 2 tiny script tweaks before locking audio:
+1. Line 22: Change "My number was never Level 1." to "My number wasn't Level 1 anymore." (he earned the grind from 1 to 99).
+2. Line 30: Change "Level question mark." to "Three glowing question marks." (keep the visual badge as `LVL ???`).
+
+All your other choices (hidden badge under hood, 100/100 push-up counter, 5 rooms, Leo reading System Windows, Dex VALF voice, and adding the 0.45s blur-in to Engine 4) are approved. Keep following all Engine 4 standards (Morning Mood baseline at -14 LUFS dual export, eased keyframe motion, crisp 2D canvas UI that never covers faces or ~72% captions, zero character clipping).
+
+Proceed to Step 2: lock the script and audio masters (trim filler if it runs over 2:30), build the new assets/sets, run preflight, commit, trigger the 540p GitHub Actions preview render, give me the run URL, and stop (do NOT poll GitHub Actions).

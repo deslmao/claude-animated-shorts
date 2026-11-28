@@ -1,0 +1,70 @@
+{
+ "hash": "00a58ac3ad844d",
+ "text": "Gym. Friday. Everyone's coming to watch Level 1 get deleted.",
+ "voice": "e4Rival",
+ "lead": 0,
+ "end": 3.808,
+ "dur": 3.84,
+ "words": [
+  {
+   "w": "Gym.",
+   "t0": 0,
+   "t1": 0.348
+  },
+  {
+   "w": "Friday.",
+   "t0": 0.383,
+   "t1": 0.975
+  },
+  {
+   "w": "Everyone's",
+   "t0": 1.022,
+   "t1": 1.498
+  },
+  {
+   "w": "coming",
+   "t0": 1.533,
+   "t1": 1.776
+  },
+  {
+   "w": "to",
+   "t0": 1.811,
+   "t1": 1.858
+  },
+  {
+   "w": "watch",
+   "t0": 1.916,
+   "t1": 2.136
+  },
+  {
+   "w": "Level",
+   "t0": 2.206,
+   "t1": 2.461
+  },
+  {
+   "w": "1",
+   "t0": 2.519,
+   "t1": 2.647
+  },
+  {
+   "w": "get",
+   "t0": 2.728,
+   "t1": 2.891
+  },
+  {
+   "w": "deleted.",
+   "t0": 2.949,
+   "t1": 3.808
+  }
+ ],
+ "voiceId": "loY1uopAz31XyhAEhNSa",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.75,
+  "style": 0.35,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-28T05:54:15.259Z"
+}

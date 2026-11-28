@@ -1,0 +1,25 @@
+{
+ "hash": "1c43afe9a73078",
+ "text": "H-how?",
+ "voice": "e4Rival",
+ "lead": 0,
+ "end": 0.789,
+ "dur": 0.835918,
+ "words": [
+  {
+   "w": "H-how?",
+   "t0": 0,
+   "t1": 0.789
+  }
+ ],
+ "voiceId": "loY1uopAz31XyhAEhNSa",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.75,
+  "style": 0.35,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-28T05:54:18.454Z"
+}

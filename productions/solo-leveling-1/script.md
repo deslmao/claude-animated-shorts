@@ -1,8 +1,8 @@
 # The Solo Leveling World (Episode 3): locked VO script and shot list
 
-**Status: Step 1, awaiting the owner's thumbs-up.** No audio, voice, preview or render has been made. Nothing below is final until you approve it.
+**Status: Step 2 (28 Nov 2026): script approved with two tweaks, audio masters generated and locked, assets built, 540p preview requested.**
 
-**Length:** 427 words, estimated **149 s (about 2:29)** at the measured Episode 2 rate (about 2.96 words per second including pauses). Target 2:15 to 2:30. The real length comes from the ElevenLabs audio in Step 2; expect plus or minus 5 %. If it runs over 2:30 I trim the filler lines (marked below), not the story.
+**Length:** 427 words, **149.13 s (2:29)** from the generated audio (4474 frames at 30 fps), inside the 2:15 to 2:30 target. The ElevenLabs narration is locked: never regenerate it (`npm run voice` must report 0 new lines).
 
 **Format:** Engine 4 (opt-in), 1080 x 1920, 30 fps. No title card, no banner, no end CTA. The comment question goes in the pinned comment. Five rooms and lighting setups: **school hallway** (bright fluorescent), **Leo's bedroom** (midnight lamp, glowing 5:00 AM clock; reused), **dawn court in the rain** (reused), **park, daylight** (the court set with a pull-up bar), **school gym** (hardwood, packed bleachers, bright).
 
@@ -35,7 +35,7 @@
 | 19 | 5 The challenge | 1:37.6 | Leo (voice-over) | On Friday, the whole school packed the bleachers, and Dex strutted in with his glowing fifty over his head, grinning like he'd already won. |
 | 20 | 5 The challenge | 1:45.9 | Dex | Last chance, Leo. Say sorry, carry my books forever, and I might go easy. |
 | 21 | 6 The reveal | 1:50.7 | Leo (voice-over) | I took one slow breath. Then I dropped my hoodie. |
-| 22 | 6 The reveal | 1:54.3 | Leo (voice-over) | My number was never Level 1. It was Level 99, and it was gold. |
+| 22 | 6 The reveal | 1:54.3 | Leo (voice-over) | My number wasn't Level 1 anymore. It was Level 99, and it was gold. |
 | 23 | 6 The reveal | 1:59.1 | Leo (voice-over) | Dex charged anyway. For half a second, he was still smiling. |
 | 24 | 6 The reveal | 2:03.0 | Leo (voice-over) | I lifted one finger. And flicked. |
 | 25 | 6 The reveal | 2:05.2 | Leo (voice-over) | Dex slid the whole length of the gym on his back. |
@@ -43,7 +43,7 @@
 | 27 | 7 Payoff | 2:09.8 | Leo | You said it yourself, Dex. The higher the number, the more people listen. |
 | 28 | 7 Payoff | 2:14.4 | Leo (voice-over) | The gym went wild. For the first time ever, they were cheering for me. |
 | 29 | 8 Cliffhanger | 2:19.3 | Leo (voice-over) | Then a new blue window opened in front of my face. New quest unlocked. |
-| 30 | 8 Cliffhanger | 2:24.1 | Leo (voice-over) | And at the back of the gym, one badge I couldn't read. Level question mark. |
+| 30 | 8 Cliffhanger | 2:24.1 | Leo (voice-over) | And at the back of the gym, one badge I couldn't read. Three glowing question marks. |
 
 ## Clarity block (the storytelling gate: everything the viewer must be told, and the words that tell it)
 

@@ -73,7 +73,7 @@ const makeFlashes = (spots: { x: number; y: number; z: number }[]) => {
   return { pts, update };
 };
 /** the crowd: instanced bodies (boxes) and heads (spheres) on the bleacher tiers, bobbing a little (a pure function of time) */
-const makeCrowd = (spots: { x: number; y: number; z: number; ry: number }[]) => {
+export const makeCrowd = (spots: { x: number; y: number; z: number; ry: number }[]) => {
   const n = spots.length, body = new THREE.InstancedMesh(box(0.42, 0.55, 0.3), new THREE.MeshStandardMaterial({ roughness: 0.9 }), n), head = new THREE.InstancedMesh(new THREE.SphereGeometry(0.15, 8, 6), new THREE.MeshStandardMaterial({ roughness: 0.8 }), n);
   let s = 21; const rnd = () => { s = (s * 16807) % 2147483647; return s / 2147483647; };
   const shirts = ["#1d428a", "#ffffff", "#ef3b24", "#1d428a", "#f2c14e", "#2a2f3e"], skins = ["#f0c8a0", "#c99067", "#8a5a3c", "#5a3a28", "#e8b98a"];

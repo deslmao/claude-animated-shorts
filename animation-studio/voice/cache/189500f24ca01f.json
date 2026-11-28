@@ -1,0 +1,90 @@
+{
+ "hash": "189500f24ca01f",
+ "text": "Last chance, Leo. Say sorry, carry my books forever, and I might go easy.",
+ "voice": "e4Rival",
+ "lead": 0,
+ "end": 5.991,
+ "dur": 6.034286,
+ "words": [
+  {
+   "w": "Last",
+   "t0": 0,
+   "t1": 0.325
+  },
+  {
+   "w": "chance,",
+   "t0": 0.36,
+   "t1": 0.72
+  },
+  {
+   "w": "Leo.",
+   "t0": 0.766,
+   "t1": 1.3
+  },
+  {
+   "w": "Say",
+   "t0": 1.44,
+   "t1": 1.672
+  },
+  {
+   "w": "sorry,",
+   "t0": 1.753,
+   "t1": 2.299
+  },
+  {
+   "w": "carry",
+   "t0": 2.38,
+   "t1": 2.67
+  },
+  {
+   "w": "my",
+   "t0": 2.74,
+   "t1": 2.833
+  },
+  {
+   "w": "books",
+   "t0": 2.902,
+   "t1": 3.135
+  },
+  {
+   "w": "forever,",
+   "t0": 3.181,
+   "t1": 3.994
+  },
+  {
+   "w": "and",
+   "t0": 4.11,
+   "t1": 4.319
+  },
+  {
+   "w": "I",
+   "t0": 4.435,
+   "t1": 4.47
+  },
+  {
+   "w": "might",
+   "t0": 4.598,
+   "t1": 4.83
+  },
+  {
+   "w": "go",
+   "t0": 4.888,
+   "t1": 5.05
+  },
+  {
+   "w": "easy.",
+   "t0": 5.132,
+   "t1": 5.991
+  }
+ ],
+ "voiceId": "loY1uopAz31XyhAEhNSa",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.75,
+  "style": 0.35,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-28T05:54:16.792Z"
+}

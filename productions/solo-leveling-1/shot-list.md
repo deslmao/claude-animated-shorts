@@ -1,4 +1,4 @@
-# The Solo Leveling World (Episode 3): shot list (90 beats)
+# The Solo Leveling World (Episode 3): shot list (as built: 93 visual changes, average 1.60 s)
 
 Times are **estimates** from the word count; the real cuts snap to the spoken words once the audio exists (Step 2). Every beat is a cut, an insert, a new angle or a big camera move. Captions: 1-2 words, centred at about 72 % of the height. Faces: eyes in the upper-middle of the frame; LVL badges and System Windows stay in the upper frame with clean margins, never over a face or the caption band. Every shot has a subtle handheld drift; 5-10 frame impact shake on hits and reveals.
 
@@ -102,3 +102,9 @@ Times are **estimates** from the word count; the real cuts snap to the spoken wo
 - **Rooms and lighting setups:** 5 (hallway, bedroom, dawn rain court, park daylight, gym).
 - **Camera:** every beat has a named lens (24 to 85 mm), a move and handheld drift; no held poster or flat infographic beyond 2 to 3 s.
 - **Power-level beats:** badges on LVL 1 -> 2 (line 10), 15 -> 40 -> 85 (line 13), gold 99 (line 22), the unreadable ??? (line 30).
+
+## As built (Step 2)
+
+- The built storyboard (`animation-studio/src/studio/stories/solo-leveling-1.ts`) has 33 shots and **93 visual changes over 149.1 s, an average of one every 1.60 s** (the Engine 4 target is 1.5 to 2.0 s). Cuts land on the spoken words; the times above were estimates.
+- The tweaks: line 22 "My number wasn't Level 1 anymore." and line 30 "Three glowing question marks." (the badge stays `LVL ???`).
+- The hood drop is a hard cut with a snap-zoom on "dropped" (the hood-up Leo to the hood-down Leo), because an actor cannot change look inside a shot.

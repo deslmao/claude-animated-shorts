@@ -42,3 +42,11 @@ export const coinRig = (a: At): PropRig => {
   coin.castShadow = true; root.add(coin);
   return { root, update: (st) => { const t = st.track; root.visible = (st.step ?? 0) > 0; if (!t) return; coin.position.set(...t.pos); coin.rotation.set(t.dist, 0, 0.25); } };
 };
+
+/** Engine 4: a small hardcover book for the "catching Dex's thrown books" beat: it tumbles through the air on a ball plan (`ball`) */
+export const bookRig = (a: At): PropRig => {
+  const root = new THREE.Group(), sc = a.s ?? 1;
+  const cover = new THREE.MeshStandardMaterial({ color: "#2a5fb8", roughness: 0.6 }), pages = new THREE.MeshStandardMaterial({ color: "#f3ecd8", roughness: 0.9 });
+  const book = new THREE.Mesh(new THREE.BoxGeometry(0.2 * sc, 0.045 * sc, 0.27 * sc), [cover, cover, cover, cover, pages, pages]); book.castShadow = true; root.add(book);
+  return { root, update: (st) => { const t = st.track; root.visible = (st.step ?? 0) > 0; if (!t) return; book.position.set(...t.pos); book.rotation.set(t.dist * 0.6, t.dist * 0.3, t.dist * 0.5); } };
+};

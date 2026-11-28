@@ -3,7 +3,7 @@
 // "Short-<id>" (so the cloud render farm can render it by name). The voice itself is muxed in at the join step from
 // audio/Short-<id>.mp3 (written by `npm run voice`), so chunked renders never split the audio.
 import React from "react";
-import { AbsoluteFill } from "remotion";
+import { AbsoluteFill, useCurrentFrame } from "remotion";
 import { StudioFilm } from "../look/StudioFilm";
 import { SetWorld } from "../scene/SetWorld";
 import { compile } from "./compile";
@@ -24,13 +24,20 @@ export const makeShort = (sb: Storyboard, narr?: Narration) => {
   const groups = sb.captionStyle === "viral" ? raw.map((g) => (upside(g.f0) ? { ...g, y: 0.27 } : g)) : placeCaptions(film, raw);   // the viral style sits at one fixed height in the mobile safe zone
   const titles: TitleCard[] = sb.shots.flatMap((s, k) => (s.title && film.shots[k] ? [{ f0: film.shots[k].a, f1: film.shots[k].b, ...s.title }] : []));
   const makeWorld = () => new SetWorld(film.shots, film.director, { clearShots: true, stable: (sb.engine ?? 1) >= 2 });
-  const Comp: React.FC = () => (
+  const bi = sb.blurIn;
+  const Comp: React.FC = () => {
+    // an opt-in un-blur at the start (easeOutQuad: fast at first, then settles); the scene blurs, the captions do not
+    const frame = useCurrentFrame(), u = bi ? Math.min(1, frame / Math.max(1, bi.dur * 30)) : 1, px = bi ? bi.px * (1 - (1 - (1 - u) * (1 - u))) : 0;
+    return (
     <AbsoluteFill>
-      <StudioFilm timeline={film.timeline} makeWorld={makeWorld} load={load} />
+      <AbsoluteFill style={px > 0.05 ? { filter: `blur(${px.toFixed(2)}px)`, transform: `scale(${(1 + px / 400).toFixed(4)})` } : undefined}>
+        <StudioFilm timeline={film.timeline} makeWorld={makeWorld} load={load} />
+      </AbsoluteFill>
       {titles.length ? <TitleCards cards={titles} /> : null}
       {groups.length ? <Captions groups={groups} colors={sb.captionColors} viral={sb.captionStyle === "viral"} /> : null}
     </AbsoluteFill>
-  );
+    );
+  };
   Comp.displayName = `Short-${sb.id}`;
   return { Comp, frames: film.total, film, groups };
 };
