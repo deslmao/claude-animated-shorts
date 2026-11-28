@@ -50,7 +50,7 @@ const POS: Record<string, Record<string, V>> = {
   floorB: { leo: [0.5, 0, 0.0] },
   dawn: { leo: [-1.2, 0, 0.6] },
   park: { leo: [1.3, 0, -1.0], dex: [-3.0, 0, -0.6] },
-  gym: { leo: [0.3, 0, 0.3], leoH: [0.3, 0, 0.3], dex: [-0.6, 0, -6.2], kidA: [-3.2, 0, -2.0], kidB: [3.3, 0, -1.2], stranger: [2.9, 0, -6.0] },
+  gym: { leo: [0.3, 0, 0.3], leoH: [0.3, 0, 0.3], dex: [-0.6, 0, -6.2], kidA: [-3.2, 0, -2.0], kidB: [3.3, 0, -1.2], stranger: [0.0, 0, -8.0] },
 };
 const CROWN: Record<string, number> = { leo: 1.31, leoH: 1.31, dex: 1.28, kidA: 1.3, kidB: 1.3, kidC: 1.3, kidD: 1.3, kidE: 1.3, kidF: 1.3, coach: 1.6, stranger: 1.75 };
 type C = Storyboard["shots"][number]["camera"];
@@ -67,13 +67,13 @@ type Opt = { creep?: number; roll?: number; at?: V };
 const cu = (sc: string, who: string, deg = 0, d = 3.0, mm = 50, o: Opt = {}) => view(sc, who, deg, d, mm, undefined, o, o.at);
 const lo = (sc: string, who: string, deg = 0, d = 2.6, mm = 35, o: Opt = {}) => view(sc, who, deg, d, mm, (o.at?.[1] ?? POS[sc][who]?.[1] ?? 0) + 0.3, o, o.at);   // a low-angle hero shot, looking UP
 export const hi = (sc: string, who: string, deg = 0, d = 2.8, mm = 35, o: Opt = {}) => view(sc, who, deg, d, mm, (o.at?.[1] ?? POS[sc][who]?.[1] ?? 0) + CROWN[who] + 0.8, o, o.at);   // a high-angle underdog shot, looking DOWN
-type Cut = [string | null, C, boolean?];   // [the word it lands on ("Level#2" = the second), the camera, a snap-zoom swoop?]
+type Cut = [string | null, C, boolean?, number?];   // [the word it lands on ("Level#2" = the second), the camera, a snap-zoom swoop?]
 type Face = [string, string?, number?];     // the face at the start, and an optional second face (a bold swap) at t seconds (default 1.2)
-type Ex = { at?: V; play?: PlayMove[]; walk?: { to: V; t0?: number; t1?: number; mode?: "walk" | "run"; view?: "back" | "front"; from?: { word: string; n?: number }; until?: { word: string; n?: number } }; mode?: string; slump?: number; look?: [number, number]; keys?: K; gesture?: string };
+type Ex = { sideMode?: "plank" | "hang" | "kneel"; flip?: boolean; at?: V; play?: PlayMove[]; walk?: { to: V; t0?: number; t1?: number; mode?: "walk" | "run"; view?: "back" | "front"; from?: { word: string; n?: number }; until?: { word: string; n?: number } }; mode?: string; slump?: number; look?: [number, number]; keys?: K; gesture?: string };
 const ac = (sc: string, who: string, face: Face, ex: Ex = {}) => {
   const p = ex.at ?? POS[sc][who];
   const keys: K = ex.keys ?? [{ t: 0, expr: face[0] as never, ...(ex.gesture ? { gesture: ex.gesture as never } : {}), ...(ex.slump ? { slump: ex.slump } : {}), ...(ex.look ? { look: ex.look } : {}) }, ...(face[1] ? [{ t: face[2] ?? 1.2, d: 0.34, expr: face[1] as never }] : [])];
-  return { who, at: p, act: "neutral" as const, facing: "camera" as const, keys, ...(ex.play ? { play: ex.play } : {}), ...(ex.walk ? { walk: ex.walk as never } : {}), ...(ex.mode ? { mode: ex.mode as never } : {}) };
+  return { who, at: p, act: "neutral" as const, facing: "camera" as const, keys, ...(ex.play ? { play: ex.play } : {}), ...(ex.walk ? { walk: ex.walk as never } : {}), ...(ex.mode ? { mode: ex.mode as never } : {}), ...(ex.sideMode ? { sideMode: ex.sideMode } : {}), ...(ex.flip ? { facing: -1 as never } : {}) };
 };
 type PropS = NonNullable<Storyboard["shots"][number]["props"]>[number];
 type Seg = { sc: string; amb: Amb; light?: Light; until?: { word: string; n?: number }; cuts: Cut[]; actors: ReturnType<typeof ac>[]; props?: PropS[]; shake?: (number | { word: string; n?: number })[]; shot?: Partial<Storyboard["shots"][number]> };
@@ -94,18 +94,18 @@ const SEGS: Seg[][] = [
     actors: [ac("hall", "leo", ["sad"], { at: [0.5, 0, -1.6], walk: { to: [0.5, 0, 0.5], t0: 0.0, t1: 2.6, view: "front" } }), ac("hall", "dex", ["grin"]), ...hallKids({}, ["kidA", "kidB", "kidC", "kidE", "kidF"])],
     props: [badge("leo", "1", [{ t: 0.1 }]), badge("dex", "50", [{ t: 0.25 }]), ...hallBadges((i) => ({ t: 0.35 + i * 0.12 }), ["kidA", "kidB", "kidC", "kidE", "kidF"])] }],
   /* 2 the number decides who the school listens to: a high-angle establishing shot of the hallway first */ [{ sc: "hall", amb: "elb_school_hall", light: "interior",
-    cuts: [[null, A([0.4, 2.6, 3.9], [0.0, 0.3, -3.4], 20, { creep: 0.1 })], ["head,", cu("hall", "kidE", -14, 3.0, 50, { at: [1.4, 0, -1.4], creep: 0.12 })], ["higher", A([-0.2, 1.4, 2.4], [0.1, 1.4, -1.0], 35, { creep: 0.15 })], ["school", cu("hall", "leo", -10, 3.0, 50, { creep: 0.15, at: [-0.5, 0, 0.8] })]],
+    cuts: [[null, A([0.4, 2.6, 3.9], [0.0, 0.3, -3.4], 20, { creep: 0.1 })], ["head,", A([-0.2, 1.5, 3.4], [1.0, 1.4, -1.6], 30, { creep: 0.1 })], ["higher", A([0.35, 1.4, 3.4], [0.35, 1.4, -1.6], 26, { creep: 0.1 })], ["school", cu("hall", "leo", -10, 3.0, 50, { creep: 0.15, at: [-0.5, 0, 0.8] })]],
     actors: [ac("hall", "leo", ["sad"], { at: [-0.5, 0, 0.8] }), ac("hall", "dex", ["grin"], { at: [-0.7, 0, -1.8] }), ac("hall", "kidE", ["grin"], { at: [1.4, 0, -1.4] }), ac("hall", "kidA", ["neutral"], { at: [-1.6, 0, -3.4] }), ac("hall", "kidB", ["neutral"], { at: [1.6, 0, -3.8] }), ac("hall", "kidC", ["neutral"], { at: [-1.5, 0, -5.2] }), ac("hall", "kidF", ["sad"], { at: [-1.5, 0, 0.0] })],
     props: [badge("leo", "1", SHOW), badge("dex", "50", SHOW), badge("kidE", "38", SHOW), badge("kidA", "12", SHOW), badge("kidB", "31", SHOW), badge("kidC", "7", SHOW), badge("kidF", "23", SHOW)] }],
   /* 3 shown literally: a teacher bows to the LVL 45 student; the kids step aside for the LVL 50; the LVL 2 kid is pressed into the lockers */ [
-    { sc: "hall", amb: "elb_school_hall", light: "interior", until: { word: "Kids" }, cuts: [[null, A([-1.2, 1.3, 2.9], [0.2, 1.2, -1.5], 30, { creep: 0.1 })], ["big", cu("hall", "kidE", -12, 3.0, 50, { at: [0.9, 0, -1.5], creep: 0.12 })]],
-      actors: [ac("hall", "coach", ["neutral"], { at: [-0.5, 0, -1.5], play: [{ ...w("bowed", -0.1), kind: "bow", dir: 1 }] }), ac("hall", "kidE", ["grin"], { at: [0.9, 0, -1.5] }), ac("hall", "kidB", ["neutral"], { at: [1.6, 0, -4.2] })], props: [badge("coach", "60", SHOW, 0.4), badge("kidE", "45", SHOW), badge("kidB", "31", SHOW)] },
-    { sc: "hall", amb: "elb_school_hall", light: "interior", until: { word: "And" }, cuts: [[null, A([0.6, 2.6, 3.6], [0.0, 0.4, -2.8], 20, { creep: 0.1 })], ["way.", A([-1.7, 0.9, 2.9], [0.3, 1.3, -1.5], 28)]],
+    { sc: "hall", amb: "elb_school_hall", light: "interior", until: { word: "Kids" }, cuts: [[null, A([0.4, 1.3, 3.3], [0.4, 1.2, -1.6], 28, { creep: 0.1 })], ["big", A([2.0, 1.3, 1.6], [1.2, 1.3, -1.6], 40, { creep: 0.1 })]],
+      actors: [ac("hall", "coach", ["neutral"], { at: [-0.5, 0, -1.6], play: [{ ...w("bowed", -0.1), kind: "bow", dir: 1 }] }), ac("hall", "kidE", ["grin"], { at: [1.25, 0, -1.6] }), ac("hall", "kidB", ["neutral"], { at: [1.6, 0, -4.2] })], props: [badge("coach", "35", SHOW, 0.4), badge("kidE", "45", SHOW), badge("kidB", "31", SHOW)] },
+    { sc: "hall", amb: "elb_school_hall", light: "interior", until: { word: "And" }, cuts: [[null, A([0.0, 2.65, 3.6], [0.0, 0.3, -3.0], 20, { creep: 0.08 })], ["way.", A([0.0, 1.3, 3.5], [0.0, 1.2, -2.0], 28, { creep: 0.1 })]],
       actors: [ac("hall", "dex", ["grin"], { at: [0.0, 0, -7.0], walk: { to: [0.0, 0, -0.4], from: { word: "Kids" }, until: { word: "way." }, view: "front" } }), ac("hall", "kidA", ["scared"], { at: [-0.3, 0, -3.0], play: [{ ...w("stepped", -0.2), kind: "step", dir: -1, go: [-1.1, 0] }] }), ac("hall", "kidB", ["scared"], { at: [0.4, 0, -3.8], play: [{ ...w("stepped", 0.0), kind: "step", dir: 1, go: [1.0, 0] }] }), ac("hall", "kidC", ["scared"], { at: [-0.3, 0, -5.0], play: [{ ...w("out", 0.0), kind: "step", dir: -1, go: [-1.1, 0] }] }), ac("hall", "kidF", ["scared"], { at: [0.4, 0, -1.8], play: [{ ...w("out", 0.15), kind: "step", dir: 1, go: [1.0, 0] }] })],
       props: [badge("dex", "50", SHOW), badge("kidA", "12", SHOW), badge("kidB", "31", SHOW), badge("kidC", "7", SHOW), badge("kidF", "23", SHOW)] },
-    { sc: "hall", amb: "elb_school_hall", light: "interior", cuts: [[null, A([0.3, 1.2, 1.9], [1.5, 1.2, -0.8], 33, { creep: 0.1 })], ["shrank", cu("hall", "kidF", -8, 2.8, 70, { at: [1.65, 0, -0.8], creep: 0.15 })]],
+    { sc: "hall", amb: "elb_school_hall", light: "interior", cuts: [[null, A([0.3, 1.2, 1.9], [1.5, 1.2, -0.8], 33, { creep: 0.1 })], ["shrank", A([0.1, 1.25, 2.6], [1.5, 1.15, -0.8], 34, { creep: 0.1 })]],
       actors: [ac("hall", "kidF", ["scared"], { at: [1.65, 0, -0.8], slump: 0.9, keys: [{ t: 0, expr: "scared", slump: 0.9, tilt: 7 }] }), ac("hall", "dex", ["grin"], { at: [-0.3, 0, -5.4], walk: { to: [-0.3, 0, 0.8], from: { word: "And" }, until: { word: "walls." }, view: "front" } }), ac("hall", "coach", ["neutral"], { at: [0.3, 0, -7.0], walk: { to: [0.3, 0, 0.6], from: { word: "small" }, until: { word: "walls." }, view: "front" } })],
-      props: [badge("kidF", "2", SHOW, 0.34), badge("dex", "50", SHOW), badge("coach", "60", SHOW, 0.4)] }],
+      props: [badge("kidF", "2", SHOW, 0.34), badge("dex", "50", SHOW), badge("coach", "35", SHOW, 0.4)] }],
   /* 4 Dex is Level 50 (the glitch cut: the world, then Leo's story) */ [{ sc: "hall", amb: "elb_school_hall", light: "interior",
     cuts: [[null, lo("hall", "dex", -8, 3.0, 35, { creep: 0.12, at: [-0.1, 0, -0.9] })], ["He", cu("hall", "leo", 14, 3.0, 50, { creep: 0.1, at: [0.9, 0, 0.5] })]],
     actors: [ac("hall", "dex", ["grin"], { at: [-0.1, 0, -0.9] }), ac("hall", "leo", ["scared"], { at: [0.9, 0, 0.5] })], props: [badge("dex", "50", SHOW), badge("leo", "1", SHOW)] }],
@@ -123,9 +123,9 @@ const SEGS: Seg[][] = [
     cuts: [[null, cu("bed", "leo", 6, 2.3, 50, { creep: 0.1, at: [-0.9, 0.2, -1.5] })], ["window", A([1.2, 1.8, 2.45], [-0.35, 1.75, -0.9], 24)], ["face.", cu("bed", "leo", 0, 1.4, 85, { creep: 0.2, at: [-0.9, 0.2, -1.5] }), true], ["Secret", A([1.1, 1.95, 2.45], [-0.35, 1.95, -0.9], 24, { creep: 0.05 })], ["Penalty:", A([1.1, 1.9, 2.45], [-0.35, 1.9, -0.9], 24, { creep: 0.05 })], ["forever.", cu("bed", "leo", -6, 2.3, 50, { creep: 0.2, at: [-0.9, 0.2, -1.5] })]],
     actors: [ac("bed", "leo", ["shock", "scared", 7.0], { mode: "sit", slump: 0.2 })],
     props: [sysWin([-0.35, 2.0, -0.9], "SYSTEM|[SECRET QUEST]|100 PUSH-UPS BEFORE 5:00 AM|!PENALTY: STAY LVL 1 FOREVER", [{ word: "window" }, { word: "Secret" }, { word: "One" }, { word: "Penalty:" }], 0.95)], shot: { shake: [{ word: "window" }] as never } }],
-  /* 9 eleven push-ups, then one more, then one more: a floor-level side view, a tight insert on the trembling hands */ [{ sc: "floorB", amb: "elb_rain_window", light: "night", cuts: [[null, A([0.5, 0.38, 2.4], [0.5, 0.42, 0.0], 20, { creep: 0.08 })], ["eleven", A([1.7, 0.55, 2.1], [0.6, 0.35, 0.0], 28, { creep: 0.1 })], ["arms", A([0.5, 0.45, 1.9], [0.9, 0.42, 0.0], 50, { creep: 0.12 })], ["Then", A([-0.4, 0.5, 2.2], [0.5, 0.45, 0.0], 22, { creep: 0.08 })]],
-    actors: [ac("floorB", "leo", ["determined", "scared", 4.0], { keys: [{ t: 0, flip: 0.5, expr: "determined", headTilt: 90 }, { t: 4.2, d: 0.4, flip: 0.5, expr: "scared", headTilt: 90 }, { t: 6.2, d: 0.4, flip: 0.5, expr: "determined", headTilt: 90 }], play: [{ ...w("I'm", 0.1), kind: "pushup", reps: 11, per: 0.62, tire: 0.9 }] })],
-    props: [{ id: "lvlBadge", variant: "PUSH-UPS:0/100>11/100>40/100>100/100", at: [0.5, 1.1, -0.5], scale: 0.85, steps: [{ word: "I'm" }, { word: "eleven" }, { word: "Then" }, { word: "Then", n: 2 }] } as PropS] }],
+  /* 9 eleven push-ups, then one more, then one more: a floor-level side view, a tight insert on the trembling hands */ [{ sc: "floorB", amb: "elb_rain_window", light: "night", cuts: [[null, A([0.5, 0.45, 2.4], [0.5, 0.5, 0.0], 17, { creep: 0.05 })], ["eleven", A([1.7, 0.4, 2.3], [0.5, 0.45, 0.0], 18, { creep: 0.06 })], ["arms", A([0.0, 0.5, 2.4], [0.5, 0.5, 0.0], 18, { creep: 0.06 })], ["Then", A([0.5, 0.5, 2.4], [0.5, 0.52, 0.0], 17, { creep: 0.05 })]],
+    actors: [ac("floorB", "leo", ["determined", "scared", 4.0], { sideMode: "plank", play: [{ ...w("I'm", 0.1), kind: "pushup", reps: 11, per: 0.62, tire: 0.9 }] })],
+    props: [{ id: "lvlBadge", variant: "PUSH-UPS:0/100>11/100>40/100>100/100", at: [0.85, 1.05, 0.0], scale: 0.75, steps: [{ word: "I'm" }, { word: "eleven" }, { word: "Then" }, { word: "Then", n: 2 }] } as PropS] }],
   /* 10 five A.M.: the clock flashes, the number changes, Level 2 (the QUEST COMPLETE window stacks above the badge, never on it) */ [{ sc: "bed", amb: "elb_rain_window", light: "night",
     cuts: [[null, A([0.55, 0.88, -1.05], [0.3, 0.64, -2.05], 45)], ["flashed,", cu("bed", "leo", 8, 3.0, 50, { creep: 0.15, at: [-0.9, 0.2, -1.5] })], ["number", A([1.3, 1.7, 2.45], [-0.9, 1.75, -1.4], 22)]],
     actors: [ac("bed", "leo", ["shock", "excited", 3.4], { mode: "sit", slump: 0.1 })],
@@ -134,17 +134,17 @@ const SEGS: Seg[][] = [
     cuts: [[null, cu("bed", "leo", -6, 3.0, 50, { creep: 0.1, at: [-0.9, 0.2, -1.5] })], ["happier", A([1.5, 1.4, 2.2], [-0.8, 1.2, -1.4], 24)]],
     actors: [ac("bed", "leo", ["laugh"], { mode: "sit" })], props: [badge("leo", "2", SHOW, 0.42)] }],
   /* 12 the grind: push-ups at dawn, sprints in the rain, pull-ups on the park bar (the act-shift glitch cut is on "So") */ [
-    { sc: "dawn", amb: "elb_court_rain", light: "night", until: { word: "Sprints" }, cuts: [[null, A([0.2, 0.42, 3.7], [-1.2, 0.42, 0.6], 28, { creep: 0.08 })], ["Push-ups", A([-0.1, 0.3, 1.9], [-1.0, 0.22, 0.6], 60, { creep: 0.1 })]],
-      actors: [ac("dawn", "leo", ["determined"], { keys: [{ t: 0, flip: 0.5, expr: "determined", headTilt: 90 }], play: [{ ...w("kept", 0.3), kind: "pushup", reps: 5, per: 0.8, tire: 0.4 }] })], props: [badge("leo", "2", SHOW, 0.3)] },
-    { sc: "dawn", amb: "elb_court_rain", light: "night", until: { word: "Pull-ups" }, cuts: [[null, A([0.4, 1.1, 3.4], [-0.5, 1.1, 0.6], 30)], ["rain.", A([-4.0, 1.3, 1.8], [1.0, 1.1, 0.6], 26, { creep: 0.12 })]],
-      actors: [ac("dawn", "leo", ["determined"], { at: [-3.4, 0, 0.6], walk: { to: [3.4, 0, 0.6], mode: "run", from: { word: "Sprints" }, until: { word: "rain." } } })], props: [badge("leo", "2", SHOW, 0.42)] },
-    { sc: "park", amb: "elb_court_day", light: "day", cuts: [[null, A([0.0, 1.4, 4.8], [1.3, 1.7, -1.3], 26, { creep: 0.1 })], ["palms", A([1.0, 2.2, 1.5], [1.3, 2.2, -1.3], 60, { creep: 0.1 })], ["Every", cu("park", "leo", 8, 3.2, 50, { creep: 0.15, at: [1.3, 0.5, -1.0] })]],
-      actors: [ac("park", "leo", ["determined", "excited", 5.0], { play: [{ ...w("Pull-ups", 0.2), kind: "barpull", reps: 5, per: 1.3 }] })],
-      props: [{ id: "pullupBar", at: [1.3, 0, -1.5], scale: 0.9, steps: [{ t: -1 }] } as PropS, sysWin([-0.4, 2.35, -1.0], "SYSTEM|DAILY QUEST COMPLETE", [{ word: "Every" }], 0.6), badge("leo", "2", SHOW, 0.5)] }],
+    { sc: "dawn", amb: "elb_court_rain", light: "night", until: { word: "Sprints" }, cuts: [[null, A([-1.2, 0.55, 3.6], [-1.2, 0.5, 0.6], 18, { creep: 0.05 })], ["Push-ups", A([-2.8, 0.6, 3.2], [-1.2, 0.5, 0.6], 20, { creep: 0.06 })]],
+      actors: [ac("dawn", "leo", ["determined"], { sideMode: "plank", play: [{ ...w("kept", 0.3), kind: "pushup", reps: 5, per: 0.8, tire: 0.4 }] })], props: [{ id: "lvlBadge", variant: "2", at: [-0.9, 1.0, 0.6], scale: 0.65, steps: [{ t: -1 }] } as PropS] },
+    { sc: "dawn", amb: "elb_court_rain", light: "night", until: { word: "Pull-ups" }, cuts: [[null, A([0.0, 1.0, 4.4], [0.0, 0.9, 0.6], 16, { creep: 0.04 })]],
+      actors: [ac("dawn", "leo", ["determined"], { at: [-1.5, 0, 0.6], walk: { to: [1.5, 0, 0.6], mode: "run", t0: 0.0, t1: 1.05 } })], props: [badge("leo", "2", SHOW, 0.42)] },
+    { sc: "park", amb: "elb_court_day", light: "day", cuts: [[null, A([1.3, 1.1, 4.8], [1.3, 1.1, -1.0], 26, { creep: 0.08 })], ["palms", A([1.3, 1.75, 2.2], [1.3, 1.62, -1.0], 40, { creep: 0.1 })], ["Every", A([1.3, 1.05, 3.9], [1.3, 1.05, -1.0], 28, { creep: 0.12 })]],
+      actors: [ac("park", "leo", ["determined", "excited", 5.0], { sideMode: "hang", play: [{ ...w("Pull-ups", 0.2), kind: "barpull", reps: 5, per: 1.3 }] })],
+      props: [{ id: "lvlBadge", variant: "2", at: [1.3, 2.1, -1.0], scale: 0.6, steps: [{ t: -1 }] } as PropS] }],
   /* 13 the climb: Level 15, 40, 85 (each jump lands on its word) */ [{ sc: "park", amb: "elb_court_day", light: "day",
-    cuts: [[null, A([-1.2, 1.6, 2.6], [1.3, 1.5, -1.3], 28, { creep: 0.1 })], ["forty.", A([-1.5, 1.2, 2.6], [1.3, 1.5, -1.0], 26, { creep: 0.15 })], ["spring,", A([3.6, 2.4, 3.0], [1.3, 1.2, -1.0], 28, { creep: 0.12 })]],
-    actors: [ac("park", "leo", ["determined", "proud", 3.0], { play: [{ ...w("Level", 0.0), kind: "barpull", reps: 4, per: 1.3 }] })],
-    props: [{ id: "pullupBar", at: [1.3, 0, -1.5], scale: 0.9, steps: [{ t: -1 }] } as PropS, badge("leo", "2>15>40>85", [{ t: -1 }, { word: "fifteen." }, { word: "forty." }, { word: "eighty-five." }], 0.6)] }],
+    cuts: [[null, A([1.3, 1.1, 4.8], [1.3, 1.1, -1.0], 26, { creep: 0.08 })], ["forty.", A([0.2, 1.15, 3.8], [1.3, 1.15, -1.0], 28, { creep: 0.12 })], ["spring,", A([2.6, 1.3, 4.0], [1.3, 1.15, -1.0], 26, { creep: 0.1 })]],
+    actors: [ac("park", "leo", ["determined", "proud", 3.0], { sideMode: "hang", play: [{ ...w("Level", 0.0), kind: "barpull", reps: 4, per: 1.3 }] })],
+    props: [{ id: "lvlBadge", variant: "2>15>40>85", at: [1.3, 2.1, -1.0], scale: 0.6, steps: [{ t: -1 }, { word: "fifteen." }, { word: "forty." }, { word: "eighty-five." }] } as PropS] }],
   /* 14 stronger: arms, legs, catching Dex's thrown books */ [{ sc: "park", amb: "elb_court_day", light: "day",
     cuts: [[null, cu("park", "leo", 10, 3.0, 50, { creep: 0.1, at: [0.5, 0, 0.6] })], ["legs", A([-1.6, 1.2, 2.4], [0.5, 1.0, 0.6], 30, { creep: 0.1 })], ["catching", A([-0.6, 1.5, 1.9], [0.4, 1.3, 0.6], 40, { creep: 0.1 })]],
     actors: [ac("park", "leo", ["proud", "excited", 3.6], { at: [0.5, 0, 0.6], gesture: "pump" }), ac("park", "dex", ["grin"], { at: [-3.6, 0, 0.0] })],
@@ -175,29 +175,29 @@ const SEGS: Seg[][] = [
     actors: [ac("gym", "leo", ["determined", "proud", 2.8]), ac("gym", "dex", ["grin", "shock", 3.2], { at: [-1.8, 0, -2.4] }), ac("gym", "kidA", ["shock"], { at: [-3.6, 0, -2.0] }), ac("gym", "kidB", ["shock"], { at: [3.8, 0, -1.2] })],
     props: [badge("dex", "50", SHOW), badge("leo", "99", [{ word: "Level", n: 2 }], 0.36), { id: "shockRing", at: [0.3, 0, 0.95], scale: 1, steps: [{ word: "Level", n: 2 }] } as PropS], shake: [{ word: "Level", n: 2 }, { word: "Level", n: 2, dt: 0.12 }] as never }],
   /* 23 Dex charges, smiling for half a second */ [{ sc: "gym", amb: "elb_gym_crowd", light: "interior",
-    cuts: [[null, A([3.0, 0.7, 2.4], [-0.3, 1.0, -3.6], 28)], ["half", cu("gym", "dex", 0, 2.6, 70, { at: [-0.8, 0, -1.2], creep: 0.25 })]],
-    actors: [ac("gym", "dex", ["grin", "scared", 2.3], { at: [-1.0, 0, -6.2], play: [{ ...w("charged", -0.1), kind: "charge", dir: 1, go: [0.2, 5.0] }] }), ac("gym", "leo", ["determined"])],
+    cuts: [[null, A([-0.8, 1.2, 3.6], [-0.8, 1.15, -3.0], 28)], ["half", cu("gym", "dex", 0, 2.6, 70, { at: [-0.8, 0, -1.2], creep: 0.25 })]],
+    actors: [ac("gym", "dex", ["grin", "scared", 2.3], { at: [-0.8, 0, -6.2], play: [{ ...w("charged", -0.1), kind: "charge", dir: 1, go: [0.0, 5.0] }] }), ac("gym", "leo", ["determined"])],
     props: [badge("dex", "50", SHOW), badge("leo", "99", SHOW, 0.36)] }],
   /* 24 one finger, flick (punch-in on Dex's smirk turning to shock, a tight insert on the lifting finger) */ [{ sc: "gym", amb: "elb_gym_crowd", light: "interior",
     cuts: [[null, cu("gym", "leo", 6, 3.4, 35, { creep: 0.15 })], ["lifted", cu("gym", "dex", 0, 2.4, 70, { at: [-0.8, 0, -1.2], creep: 0.2 })], ["finger.", A([1.3, 1.45, 2.3], [0.45, 1.35, 0.3], 42, { creep: 0.08 })], ["flicked.", A([1.3, 1.5, 3.4], [0.3, 1.45, 0.3], 32, { creep: 0.1 })]],
     actors: [ac("gym", "leo", ["determined", "excited", 1.8], { play: [{ ...w("flicked.", -0.3), kind: "flick", dir: 1 }] }), ac("gym", "dex", ["grin", "shock", 0.9], { at: [-0.8, 0, -1.2] })], props: [badge("leo", "99", SHOW, 0.36), badge("dex", "50", SHOW)], shake: [{ word: "flicked." }] as never }],
   /* 25 Dex slides the whole length of the gym */ [{ sc: "gym", amb: "elb_gym_crowd", light: "interior",
-    cuts: [[null, A([5.0, 0.7, -2.4], [-0.5, 0.5, -3.6], 26, { creep: 0.1 })], ["whole", A([2.0, 3.6, 3.0], [-0.5, 0.4, -5.6], 28, { creep: 0.12 })]],
-    actors: [ac("gym", "dex", ["shock"], { at: [-0.8, 0, -1.2], play: [{ ...w("slid", -0.2), kind: "slide", dir: 1, go: [-0.2, -6.6] }] }), ac("gym", "leo", ["determined"])], props: [badge("leo", "99", SHOW, 0.36)], shake: [{ word: "slid" }] as never }],
-  /* 26 Dex: H-how? */ [{ sc: "gym", amb: "elb_gym_crowd", light: "interior", cuts: [[null, A([-0.4, 0.9, -4.6], [-0.6, 0.55, -8.0], 40, { creep: 0.1 })]],
-    actors: [ac("gym", "dex", ["shock"], { at: [-0.8, 0, -7.8], play: [{ t: 0, kind: "slide", dir: 1, go: [0, 0] }] }), ac("gym", "leo", ["determined"])], props: [badge("leo", "99", SHOW, 0.36)] }],
+    cuts: [[null, A([5.3, 1.0, -3.5], [-0.8, 0.55, -3.6], 17)], ["whole", A([5.3, 1.0, -5.6], [-0.8, 0.55, -5.8], 17)]],
+    actors: [ac("gym", "dex", ["shock"], { at: [-0.8, 0, -1.2], play: [{ ...w("slid", -0.2), kind: "slide", dir: 1, go: [0.0, -6.3] }] }), ac("gym", "leo", ["determined"])], props: [badge("leo", "99", SHOW, 0.36)], shake: [{ word: "slid" }] as never }],
+  /* 26 Dex: H-how? (on his knees, braced on his hands, the whole body and the shocked face in frame) */ [{ sc: "gym", amb: "elb_gym_crowd", light: "interior", cuts: [[null, A([4.2, 0.85, -7.4], [-0.8, 0.7, -7.5], 36, { creep: 0.08 })]],
+    actors: [ac("gym", "dex", ["shock"], { at: [-0.8, 0, -7.5], sideMode: "kneel" }), ac("gym", "leo", ["determined"])], props: [badge("leo", "99", SHOW, 0.36)] }],
   /* 27 Leo: you said it yourself */ [{ sc: "gym", amb: "elb_gym_crowd", light: "interior", cuts: [[null, A([2.2, 1.3, 2.4], [0.0, 1.3, -2.0], 28)], ["The", cu("gym", "leo", -8, 3.2, 50, { creep: 0.15, at: [0.3, 0, -0.6] })]],
-    actors: [ac("gym", "leo", ["proud", "smile", 2.6], { at: [0.3, 0, -0.6] }), ac("gym", "dex", ["shock"], { at: [-0.8, 0, -7.8], play: [{ t: 0, kind: "slide", dir: 1, go: [0, 0] }] })], props: [badge("leo", "99", SHOW, 0.36)] }],
+    actors: [ac("gym", "leo", ["proud", "smile", 2.6], { at: [0.3, 0, -0.6] }), ac("gym", "dex", ["shock"], { at: [-0.8, 0, -7.5], sideMode: "kneel" })], props: [badge("leo", "99", SHOW, 0.36)] }],
   /* 28 the gym goes wild: the bleachers on both sides, a bird's-eye of the packed gym */ [{ sc: "gym", amb: "elb_gym_crowd", light: "interior", cuts: [[null, A([2.8, 1.5, 1.8], [-7.0, 2.6, -1.6], 24, { creep: 0.1 })], ["went", A([4.6, 6.0, 3.0], [-4.6, 0.8, -2.2], 18, { creep: 0.1 })], ["first", lo("gym", "leo", 0, 3.6, 28, { at: [0.3, 0, -0.6], creep: 0.1 })], ["cheering", cu("gym", "leo", 8, 3.2, 50, { at: [0.3, 0, -0.6], creep: 0.15 })]],
     actors: [ac("gym", "leo", ["laugh"], { at: [0.3, 0, -0.6] }), ac("gym", "kidA", ["excited"], { at: [-3.4, 0, 1.4] }), ac("gym", "kidB", ["excited"], { at: [3.6, 0, 1.2] })], props: [badge("leo", "99", SHOW, 0.36)] }],
   /* 29 a new window: NEW QUEST UNLOCKED (centred above Leo's head and his badge, clear of the caption line) */ [{ sc: "gym", amb: "elb_gym_crowd", light: "interior", cuts: [[null, cu("gym", "leo", 0, 3.6, 40, { at: [0.3, 0, -0.6], creep: 0.12 })], ["window", A([0.3, 1.7, 5.4], [0.3, 1.75, -0.6], 24, { creep: 0.1 }), true], ["quest", A([-1.6, 1.5, 2.6], [0.3, 1.7, -0.6], 40, { creep: 0.1 })]],
     actors: [ac("gym", "leo", ["shock", "thinking", 2.6], { at: [0.3, 0, -0.6] })], props: [badge("leo", "99", SHOW, 0.36), sysWin([0.3, 2.35, -0.6], "SYSTEM|[NEW QUEST UNLOCKED]|$???", [{ word: "window" }, { word: "quest" }, { word: "unlocked." }], 0.75)] }],
-  /* 30 cliffhanger: three glowing question marks (the glitch cut is on "badge") */ [{ sc: "gym", amb: "elb_gym_crowd", light: "interior", cuts: [[null, A([0.0, 1.5, 4.6], [0.2, 1.3, -3.6], 24, { creep: 0.18 })], ["badge", A([2.9, 1.9, -1.6], [2.9, 1.95, -6.0], 55, { creep: 0.1 })], ["Three", cu("gym", "leo", -12, 3.2, 50, { at: [0.3, 0, -0.6], creep: 0.2 })]],
-    actors: [ac("gym", "leo", ["determined"], { at: [0.3, 0, -0.6] }), ac("gym", "stranger", ["neutral"], { at: [2.9, 0, -6.0] })], props: [badge("leo", "99", SHOW, 0.36), badge("stranger", "???", [{ word: "badge" }], 0.42)] }],
+  /* 30 cliffhanger: three glowing question marks (the glitch cut is on "badge") */ [{ sc: "gym", amb: "elb_gym_crowd", light: "interior", cuts: [[null, A([0.0, 1.5, 4.6], [0.0, 1.5, -3.6], 24, { creep: 0.18 })], ["badge", A([0.0, 1.55, -1.6], [0.0, 1.6, -8.0], 34, { creep: 0.05 })], ["Three", A([0.0, 1.55, -2.6], [0.0, 1.65, -8.0], 44, { creep: 0.08 })]],
+    actors: [ac("gym", "leo", ["determined"], { at: [0.3, 0, -0.6] }), ac("gym", "stranger", ["neutral"], { at: [0.0, 0, -8.0] })], props: [badge("leo", "99", SHOW, 0.36), badge("stranger", "???", [{ word: "badge" }], 0.42)] }],
 ];
 const SETLIGHT: Record<string, string> = { hall: "e4Hallway", bed: "e4Bedroom", floorB: "e4Bedroom", dawn: "e4Court", park: "e4Court", gym: "e4Gym" };
 /** a segment's camera beats: the opening camera, then a hard cut (or a snap-zoom swoop) on each named word */
-const beatsOf = (cuts: Cut[]) => cuts.length < 2 ? {} : { cams: cuts.map(([wd, cam, sw], j) => (j === 0 ? { t: 0, ...cam, blockOk: true } : { word: wd!.split("#")[0], n: Number(wd!.split("#")[1] ?? 1), ...cam, ...(sw ? { swoop: 0.3 } : { cut: true }), blockOk: true })) } as { cams: NonNullable<Storyboard["shots"][number]["cams"]> };
+const beatsOf = (cuts: Cut[]) => cuts.length < 2 ? {} : { cams: cuts.map(([wd, cam, sw, gl], j) => (j === 0 ? { t: 0, ...cam, blockOk: true } : { word: wd!.split("#")[0], n: Number(wd!.split("#")[1] ?? 1), ...cam, ...(sw ? { swoop: 0.3 } : gl ? { glide: gl } : { cut: true }), blockOk: true })) } as { cams: NonNullable<Storyboard["shots"][number]["cams"]> };
 const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9'—-]/g, "");
 /** the token index of the n-th word in a line (exact match first, then a prefix) */
 const tokIdx = (text: string, word: string, n = 1) => { const toks = text.split(/\s+/).map(norm), key = norm(word); const ex = toks.map((t, i) => (t === key ? i : -1)).filter((i) => i >= 0); const pre = toks.map((t, i) => (t.startsWith(key) ? i : -1)).filter((i) => i >= 0); return (ex.length >= n ? ex : pre)[n - 1] ?? 0; };

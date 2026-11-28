@@ -20,7 +20,7 @@ export type When2 = { t?: number; word?: string; n?: number; /** seconds added a
 export type PlayKind = "crossover" | "bite" | "pullup" | "brick" | "dunk" | "whip" | "catch" | "shake" | "pushup" | "barpull" | "charge" | "flick" | "slide" | "bow" | "step";
 export type PlayMove = When2 & { kind: PlayKind; /** -1 | 1: which way the fake / the lean goes (screen right = +1) */ dir?: -1 | 1; /** world glide [x, z] metres */ go?: [number, number]; /** jump height m */ rise?: number; /** pushup / barpull: how many reps and seconds per rep */ reps?: number; per?: number; /** pushup: how far (0..1) the arms tire and the body sags near the end */ tire?: number };
 export const PLAY_DUR: Record<PlayKind, number> = { crossover: 0.8, bite: 0.8, pullup: 1.0, brick: 1.0, dunk: 0.9, whip: 0.5, catch: 0.5, shake: 0.6, pushup: 1.0, barpull: 1.0, charge: 1.0, flick: 0.5, slide: 1.4, bow: 2.0, step: 0.7 };
-export type PlayOut = { dx: number; dy: number; dz: number; tilt: number; headTilt: number; squash: number; gesture?: Gesture };
+export type PlayOut = { /** the profile pose's bend (0..1): the push-up's chest height, the pull-up's chin height */ bend?: number; dx: number; dy: number; dz: number; tilt: number; headTilt: number; squash: number; gesture?: Gesture };
 
 /** the body's state at shot time tt from a list of moves: displacement (done moves stay displaced), tilt, squash, the arms */
 export const playAt = (moves: PlayMove[] | undefined, tt: number): PlayOut => {
@@ -81,23 +81,18 @@ export const playAt = (moves: PlayMove[] | undefined, tt: number): PlayOut => {
         break;
       }
       case "pushup": {
-        // lying flat (the keys' flip 0.5 turns the card on its side; this sinks it to the floor): each rep goes down on easeInOutCubic, holds a beat at the floor, and pushes up on easeOutQuad;
-        // the arms tire as the reps go on: the bottom gets lower, the top lower, and the body trembles harder (a fast small shake) over the last reps
-        const per = m.per ?? 1.1, n = m.reps ?? 4, T = per * n, prog = seg(u, 0, T), tire = (m.tire ?? 0.5) * prog, k = (u % per) / per;
-        if (u <= T) {
-          const wave = k < 0.45 ? easeInOutCubic(k / 0.45) : k < 0.6 ? 1 : 1 - easeOutQuad((k - 0.6) / 0.4);   // 0 = top, 1 = chest at the floor
-          const shake = Math.sin(u * 46) * 0.012 * Math.pow(prog, 2.2) * (1 - 0.6 * wave);
-          o.dy += -0.36 - 0.12 * tire + (0.15 - 0.06 * tire) * (1 - wave) + shake; o.squash *= 1 - 0.015 * wave;
-          o.tilt += Math.sin(u * 38) * 1.6 * Math.pow(prog, 2.4);
-        } else o.dy += -0.36 - 0.1;
+        // eased reps: down on easeInOutCubic, a beat at the floor, up on easeOutQuad; the arms tire (the top gets lower, the bottom closer to the floor) and the body trembles over the last reps
+        const per = m.per ?? 1.1, n = m.reps ?? 4, T = per * n, prog = seg(u, 0, T), k = (u % per) / per;
+        const wave = u > T ? 0.3 : k < 0.45 ? easeInOutCubic(k / 0.45) : k < 0.6 ? 1 : 1 - easeOutQuad((k - 0.6) / 0.4);
+        const tire = (m.tire ?? 0.5) * prog;
+        o.bend = Math.min(1, wave * (0.9 + 0.1 * tire) + 0.03 * tire * (1 - wave));
+        if (u <= T) o.dy += Math.sin(u * 46) * 0.008 * Math.pow(prog, 2.2);
         break;
       }
       case "barpull": {
-        // hanging from a bar by the hands (arms overhead): each rep pulls up on easeOutQuad (the arms bend at the top) and lowers slowly on easeInOutCubic
+        // hanging from the bar (the card draws the bar and the hands locked on it): each rep pulls the chin over the bar on easeOutQuad and lowers on easeInOutCubic
         const per = m.per ?? 1.3, n = m.reps ?? 3, T = per * n, k = (u % per) / per;
-        const wave = u > T ? 0 : k < 0.4 ? easeOutQuad(k / 0.4) : 1 - easeInOutCubic((k - 0.4) / 0.6);
-        o.dy += 0.2 + (m.rise ?? 0.5) * wave; o.squash *= 1 + 0.02 * Math.sin(Math.PI * Math.min(1, wave)); o.tilt += 1.5 * Math.sin(u * 7) * (1 - wave) * 0.4;
-        o.gesture = wave > 0.55 ? "pump" : "cheer";
+        o.bend = u > T ? 0 : k < 0.4 ? easeOutQuad(k / 0.4) : 1 - easeInOutCubic((k - 0.4) / 0.6);
         break;
       }
       case "bow": {

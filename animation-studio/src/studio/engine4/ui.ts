@@ -78,8 +78,8 @@ export const systemWindowRig = (a: At, variant?: string): PropRig => {
     g.shadowBlur = 0; g.strokeStyle = "rgba(160,215,255,0.45)"; g.lineWidth = 2; g.beginPath(); g.roundRect(38, 38, W - 76, H - 76, 18); g.stroke();
     g.fillStyle = "#4fb4ff"; g.fillRect(52, 110, W - 104, 3);
     g.fillStyle = "#e8f6ff"; g.textBaseline = "middle"; g.textAlign = "center"; g.font = "900 48px Arial Black, Arial, sans-serif"; g.fillText(title, W / 2, 76);
-    g.textAlign = "left"; g.font = "800 35px Arial, sans-serif";
-    lines.forEach((ln, i) => { const col = ln.startsWith("!") ? "#ff6a5a" : ln.startsWith("$") ? "#ffd23a" : "#d6ecff"; const txt = ln.replace(/^[!$]/, "").slice(0, shownChars[i] ?? 0); g.fillStyle = col; g.fillText(txt, 58, 160 + i * 92 + 8); });
+    g.textAlign = "left"; g.font = "800 31px Arial, sans-serif";
+    lines.forEach((ln, i) => { const col = ln.startsWith("!") ? "#ff6a5a" : ln.startsWith("$") ? "#ffd23a" : "#d6ecff"; const txt = ln.replace(/^[!$]/, "").slice(0, shownChars[i] ?? 0); g.fillStyle = col; g.fillText(txt, 62, 160 + i * 92 + 8, W - 130); });
     tex.needsUpdate = true;
   };
   return { root, update: (st) => {

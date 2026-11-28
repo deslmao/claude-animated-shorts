@@ -36,6 +36,8 @@ Voice -13.1 LUFS; music -10.0 LU and ambience -19.99 LU relative to the voice.
 |  62.73 s | 1882 | ambience: elb_court_rain |
 |  62.98 s | 1889 | sfx whoosh_soft: word "kept" |
 |  63.59 s | 1908 | sfx el_breath_heavy: storyboard cue, shot 14 |
+|  65.08 s | 1953 | sfx step_floor: leo runs, shot 15 |
+|  65.33 s | 1960 | sfx step_floor: leo runs, shot 15 |
 |  65.77 s | 1973 | ambience: elb_court_day |
 |  69.53 s | 2086 | sfx el_ui_pop: storyboard cue, shot 16 |
 |  70.47 s | 2114 | sfx el_rpg_levelup: storyboard cue, shot 17 |

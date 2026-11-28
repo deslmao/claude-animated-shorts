@@ -98,7 +98,7 @@ export const buildE4Hallway = (): BuiltSet => {
 export const buildE4Gym = (): BuiltSet => {
   const root = new THREE.Group();
   const ft = gymFloor(); ft.anisotropy = 8;
-  const wood = new THREE.MeshPhysicalMaterial({ map: ft, roughness: 0.16, metalness: 0.02, clearcoat: 0.75, clearcoatRoughness: 0.08, reflectivity: 0.6 });
+  const wood = new THREE.MeshPhysicalMaterial({ map: ft, roughness: 0.62, metalness: 0.0, clearcoat: 0.0, reflectivity: 0.1 });
   mk(root, new THREE.PlaneGeometry(11.6, 21).rotateX(-Math.PI / 2), wood, 0, 0.002, -2, { cast: false });
   const wallM = std("#d8cfae", { roughness: 0.95 }), lower = std("#7a1d1d", { roughness: 0.9 });
   mk(root, box(40, 8, 0.4), wallM, 0, 4, -13.2, { cast: false }); mk(root, box(40, 8, 0.4), wallM, 0, 4, 9.4, { cast: false }); mk(root, box(0.4, 8, 26), wallM, -14.4, 4, -2, { cast: false }); mk(root, box(0.4, 8, 26), wallM, 14.4, 4, -2, { cast: false });
@@ -126,7 +126,7 @@ export const buildE4Gym = (): BuiltSet => {
       const s = env.sun; s.color.set("#fff4e2"); s.intensity = 2.2; s.position.copy(focus).add(new THREE.Vector3(2, 36, 8)); s.target.position.copy(focus);
       const sc = s.shadow.camera; sc.left = -8; sc.right = 8; sc.top = 8; sc.bottom = -8; sc.near = 14; sc.far = 80; sc.updateProjectionMatrix(); s.shadow.bias = -0.0004; s.shadow.normalBias = 0.03; s.shadow.radius = 3; s.shadow.mapSize.set(4096, 4096);
       env.hemi.color.set("#aab4d4"); env.hemi.groundColor.set("#3a2a1c"); env.hemi.intensity = 1.1; env.fog.color.set("#2a2e40"); env.fog.near = 10; env.fog.far = 46;
-      keySpot.intensity = 130; for (const d of stands) d.intensity = 1.5; for (const m of lamps) m.emissiveIntensity = 2.6; crowd.update(t);
+      keySpot.intensity = 60; for (const d of stands) d.intensity = 1.5; for (const m of lamps) m.emissiveIntensity = 2.6; crowd.update(t);
     },
     tint: () => [1.0, 0.98, 0.95],
   };

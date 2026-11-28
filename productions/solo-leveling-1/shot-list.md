@@ -117,3 +117,12 @@ Times are **estimates** from the word count; the real cuts snap to the spoken wo
 - **Four act-shift glitch cuts** (3 frames of white flash and an RGB split, with a glitch SFX that ducks the score 8 dB): on "Dex" (the world into Leo's story), on the second "So" (the bedroom into the grind), on "dropped" (the hood drop into the reveal), on "badge" (the cheering into the stranger).
 - **The gym is populated:** bleachers with a dense crowd start 6 m from the centre line, and the wide shots look along them.
 - **The badge steps** now flip on the first frame of each spoken word (LVL 15 on "fifteen", 40 on "forty", 85 on "eighty-five"), and the gold LVL 99, the bass drop and the shockwave land together on "Level 99".
+
+## Realism and blocking pass (28 Nov 2026)
+
+- **Push-ups:** a real plank in profile: the body is one straight line from the toes to the head, the hands stay planted under the shoulders and the elbows bend (two-bone IK), the chest lowers close to the floor and pushes back up (easeInOutCubic down, easeOutQuad up) with a growing tremble over the 11 reps; the counter badge reads 0, 11, 40, 100 / 100.
+- **Pull-ups:** a bar with two posts is drawn in the card, so the hands never leave it; the arms bend (stretched while hanging, folded at the top), the chin goes over the bar, the legs hang with a slight knee bend.
+- **Sprint:** the run is a centred wide side view that keeps Leo in frame the whole way.
+- **Hallway:** the teacher is `LVL 35`, stands clear of the wall and bows about 40 degrees toward the `LVL 45` student; Dex (`LVL 50`) walks straight down the centre while the kids step aside; no more close-ups on a chin or into a face.
+- **Dex:** centred while he charges; the slide is covered by two side cameras so his whole body stays in frame; he ends on his knees, hunched, hands braced on the floor, the shocked face in frame.
+- **UI and cliffhanger:** the System Window text is smaller and auto-fits; the last three lines cut to the hooded stranger, centred, with the whole `LVL ???` badge above his head. The gym floor is matte (the glare was washing Dex out).

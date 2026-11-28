@@ -996,8 +996,9 @@ const layerDetail = (p: Pen, L: Look, tcx: number, chin: number, torsoBot: numbe
 };
 
 // ---------------- side view ----------------
-export type SideMode = "stand" | "walk" | "run" | "sit";
-export type SidePose = { expr?: Expr; mode?: SideMode; phase?: number; blink?: boolean | number; stride?: number; point?: boolean; light?: number; talk?: number; t?: number; hold?: string };
+export type SideMode = "stand" | "walk" | "run" | "sit" | "plank" | "hang" | "kneel";
+/** bend: plank = 0 arms straight (top of the push-up) .. 1 chest at the floor; hang = 0 arms straight .. 1 chin over the bar (pull-up); kneel = how hunched (0..1) */
+export type SidePose = { bend?: number; expr?: Expr; mode?: SideMode; phase?: number; blink?: boolean | number; stride?: number; point?: boolean; light?: number; talk?: number; t?: number; hold?: string };
 const ik = (hip: P2, ank: P2, l1: number, l2: number): P2 => {
   const dx = ank[0] - hip[0], dy = ank[1] - hip[1], d = clamp(Math.hypot(dx, dy), 1, l1 + l2 - 0.01);
   const A = Math.acos(clamp((l1 * l1 + d * d - l2 * l2) / (2 * l1 * d), -1, 1)), k = Math.atan2(dy, dx) - A;
@@ -1008,9 +1009,13 @@ export const figureSide = (p: Pen, L: Look, pose: SidePose) => {
   const { expr = "neutral", mode = "stand", phase = 0, blink = false, stride = 1, light = DEF_LIGHT } = pose;
   const Bd = BUILDS[L.build], skin = L.skin, two = Math.PI * 2, lid = lidOf(blink), seed = L.seed;
   const H: Blob = { ...headBlob(seed, Bd.a, 1), asym: 0.12, rot: rad(3 + 3 * (rnd(seed, 7) - 0.5)) };
-  const W = 2 * H.a, HH = 2 * H.b, u = W / 100, sole = 975, ankY = sole - 4 * u;
+  const W = 2 * H.a, HH = 2 * H.b, u = W / 100, sole = 975, ankBase = sole - 4 * u;
   const thick = thickAngle(light), ow = 5 * u;
   const legLen = (Bd.legs + 0.12) * HH - 4 * u, l1 = legLen / 2, l2 = legLen / 2;
+  // Episode 3 poses: a push-up plank (the whole body rotated about the toes, the arms bending under the shoulders), a pull-up hang (hands locked on a bar drawn in the card) and a kneel
+  const bendK = clamp(pose.bend ?? 0, 0, 1), plank = mode === "plank", hang = mode === "hang", kneel = mode === "kneel", aLenH = 2.0 * HH, BAR_Y = 200;
+  let ankY = ankBase;
+  if (hang) { const ys = BAR_Y + 0.97 * aLenH * (1 - bendK) + 0.1 * HH * bendK; ankY = ys + legLen * 0.995 - 0.26 * HH + Bd.torso * HH; }
   const legBase = L.shorts ? mix(skin, INK, 0.3) : L.legs;
   const nearCol = L.shorts ? legBase : mix(L.legs, INK, 0.55), farCol = L.shorts ? mix(skin, INK, 0.5) : mix(L.legs, INK, 0.75), footCol = L.shoes;
   type LegS = { ank: P2; pitch: number; near: boolean; knee?: P2 };
@@ -1037,9 +1042,28 @@ export const figureSide = (p: Pen, L: Look, pose: SidePose) => {
       const knee: P2 = [300 + l1 * 0.98 + dx * u, hipY - 4 * u];
       legs.push({ ank: [knee[0] + 4 * u, ankY], pitch: 0, near, knee });
     }
+  } else if (hang) {
+    // the legs hang with a slight knee bend that grows as the body is pulled up
+    for (const [dx, near] of [[-10, false], [-4, true]] as const) legs.push({ ank: [300 + (dx - 6 * bendK) * u, ankY - 0.04 * legLen * bendK], pitch: rad(-20), near });
+  } else if (kneel) {
+    // on both knees: the thighs straight down to the floor, the shins lying back along it, the feet pointing back
+    const kneeY = sole - 7 * u; hipY = kneeY - l1 * 0.995;
+    for (const [dx, near] of [[-9, false], [0, true]] as const) { const knee: P2 = [300 + 8 * u + dx * u, kneeY]; legs.push({ ank: [knee[0] - l2 * 0.97, sole - 6 * u], pitch: Math.PI, near, knee }); }
+    lean = 16 + 14 * bendK;
   } else legs.push({ ank: [300 - 4 * u, ankY], pitch: 0, near: false }, { ank: [300 + 4 * u, ankY], pitch: 0, near: true });
   const torsoBot = hipY + 0.12 * HH, chin = torsoBot - Bd.torso * HH, hc = chin - H.b, hip: P2 = [300, hipY];
-  p.rot = null;
+  // the plank: the whole figure rotates about the toes so the shoulders sit at a height the bent arms reach; the toes stay on the floor
+  const rotPt = (q: P2, a: number, c: P2): P2 => [c[0] + (q[0] - c[0]) * Math.cos(a) - (q[1] - c[1]) * Math.sin(a), c[1] + (q[0] - c[0]) * Math.sin(a) + (q[1] - c[1]) * Math.cos(a)];
+  const aLen0 = 0.95 * HH, plankX0 = -292, sLocal: P2 = [300 + 2 * u + 0.016 * W, chin + 0.14 * HH];
+  const plankPhi = (hs: number) => { let lo = 0.2, hi = 1.65; for (let i = 0; i < 40; i++) { const m = (lo + hi) / 2, vx = sLocal[0] - 300, vy = sLocal[1] - ankY; if (vx * Math.sin(m) + vy * Math.cos(m) + hs < 0) lo = m; else hi = m; } return (lo + hi) / 2; };
+  const hsTop = 0.9 * aLen0 * 0.97, hsBot = 0.42 * HH, phi = plank ? plankPhi(hsTop + (hsBot - hsTop) * bendK) : 0, phiTop = plank ? plankPhi(hsTop) : 0;
+  const plankRot: number[] | null = plank ? [phi, 300, ankY, plankX0, 0] : null;
+  p.rot = plankRot;
+  if (hang) { // the bar and its two posts, behind the figure
+    p.stroke([[60, BAR_Y + 6 * u], [60, sole]], 9 * u + 3 * u, INK); p.stroke([[540, BAR_Y + 6 * u], [540, sole]], 9 * u + 3 * u, INK);
+    p.stroke([[60, BAR_Y + 6 * u], [60, sole]], 9 * u, "#5d6574"); p.stroke([[540, BAR_Y + 6 * u], [540, sole]], 9 * u, "#5d6574");
+    p.stroke([[40, BAR_Y], [560, BAR_Y]], 10 * u + 3.2 * u, INK); p.stroke([[40, BAR_Y], [560, BAR_Y]], 10 * u, "#aab4c4"); p.stroke([[40, BAR_Y - 2.2 * u], [560, BAR_Y - 2.2 * u]], 2.4 * u, "#e6edf7");
+  }
   for (const Lg of legs) {
     const knee = Lg.knee ?? ik(hip, Lg.ank, l1, l2);
     p.stroke([[300 + (Lg.near ? 0 : -5 * u), hipY], knee, Lg.ank], 5.8 * u, Lg.near ? nearCol : farCol);
@@ -1050,7 +1074,7 @@ export const figureSide = (p: Pen, L: Look, pose: SidePose) => {
       p.stroke([h0, k2], 13 * u + 3.2 * u, INK); p.stroke([h0, k2], 13 * u, Lg.near ? L.shorts : shade(L.shorts, 0.8));
     }
   }
-  p.rot = lean ? [rad(lean), 300, hipY] : null;
+  p.rot = plank ? plankRot : lean ? [rad(lean), 300, hipY] : null;
   const coat = L.layer?.style === "labcoat" || L.layer?.style === "longcoat", frock = L.layer?.style === "longcoat", outer = L.layer && L.layer.style !== "waistcoat" && L.layer.style !== "apron" ? L.layer.color : L.top.color;
   const T: Blob = { a: (L.build === "stout" ? 0.38 : L.build === "tall" ? 0.28 : 0.31) * W, b: 0.5 * (torsoBot - (chin - 0.25 * HH)), nTop: 2.2, nBot: 2.5, egg: 0.1, asym: 0.06 + (L.build === "stout" ? 0.06 : 0), rot: 0, noise: 0.006, seed: seed + 7 };
   const tcx = 300 + 2 * u, tcy = torsoBot - T.b, tp = blobPts(tcx, tcy, T);
@@ -1060,14 +1084,31 @@ export const figureSide = (p: Pen, L: Look, pose: SidePose) => {
     const e: P2 = [S[0] + Math.sin(ang) * aLen * 0.5, S[1] + Math.cos(ang) * aLen * 0.5], a2 = ang + rad(bend) * Math.sign(ang || 1);
     return [S, e, [e[0] + Math.sin(a2) * aLen * 0.5, e[1] + Math.cos(a2) * aLen * 0.5]];
   };
+  const ikArm = (sh: P2, hand: P2, sign: number): [P2, P2, P2] => {
+    const l = hang ? aLenH / 2 : aLen * 0.5, d = clamp(Math.hypot(hand[0] - sh[0], hand[1] - sh[1]), 1, 2 * l - 0.01), A = Math.acos(clamp((d * d) / (2 * l * d), -1, 1)), b = Math.atan2(hand[1] - sh[1], hand[0] - sh[0]);
+    return [sh, [sh[0] + l * Math.cos(b + sign * A), sh[1] + l * Math.sin(b + sign * A)], hand];
+  };
   const run = mode === "run";
   let near: [P2, P2, P2] = swingArm(rad(run ? -55 : -30) * nearFwd, run ? 70 : 16);
-  const far: [P2, P2, P2] | null = mode === "walk" || run ? swingArm(rad(run ? 55 : 30) * nearFwd, run ? 70 : 16) : null;
+  let far: [P2, P2, P2] | null = mode === "walk" || run ? swingArm(rad(run ? 55 : 30) * nearFwd, run ? 70 : 16) : null;
   if (pose.point) near = [S, [S[0] + 0.45 * HH, S[1] - 0.02 * HH], [S[0] + 0.9 * HH, S[1] - 0.08 * HH]];
   if (mode === "sit") near = [S, [S[0] + 0.2 * HH, S[1] + 0.4 * HH], [S[0] + 0.55 * HH, torsoBot - 0.05 * HH]];
   const holding = !!(pose.hold && ITEMS[pose.hold]) && mode !== "sit" && !pose.point;
   if (holding) near = [S, [S[0] + 0.24 * HH, S[1] + 0.4 * HH], [S[0] + 0.46 * HH, S[1] + 0.18 * HH]]; // item carried in front at chest height
-  if (far) { p.stroke(curve(far[0], far[1], far[2]), 5.2 * u, farArm); p.dot(far[2][0], far[2][1], 5.5 * u); }
+  // Episode 3: the arms of the plank / hang / kneel are solved in world card space (two-bone IK to a planted hand), so they are drawn with the rotation off
+  let worldArms = false;
+  if (plank) {
+    const Sw = rotPt(S, phi, [300, ankY]), St = rotPt(S, phiTop, [300, ankY]), hX = St[0] + plankX0, hY = sole - 5.5 * u, sh: P2 = [Sw[0] + plankX0, Sw[1]];
+    near = ikArm(sh, [hX, hY], 1); far = ikArm([sh[0] - 4 * u, sh[1] - 1 * u], [hX - 9 * u, hY], 1); worldArms = true;
+  } else if (hang) {
+    const hand: P2 = [S[0] + 6 * u, BAR_Y + 1 * u];
+    near = ikArm(S, hand, -1); far = ikArm([S[0] - 4 * u, S[1]], [hand[0] + 9 * u, hand[1]], -1);
+  } else if (kneel) {
+    const Sk = rotPt(S, rad(lean), [300, hipY]), hand: P2 = [Sk[0] + (0.3 + 0.12 * bendK) * HH, sole - 5.5 * u];
+    near = ikArm(Sk, hand, 1); far = ikArm([Sk[0] - 4 * u, Sk[1]], [hand[0] + 10 * u, hand[1]], 1); worldArms = true;
+  }
+  const rotSave = p.rot;
+  if (far) { if (worldArms) p.rot = null; p.stroke(curve(far[0], far[1], far[2]), 5.2 * u, farArm); p.dot(far[2][0], far[2][1], 5.5 * u); p.rot = rotSave; }
   const top = L.top.color;
   if (coat) {
     const cTop = chin - 0.2 * HH, cBot = torsoBot + 0.42 * HH, lc = L.layer!.color;
@@ -1097,21 +1138,24 @@ export const figureSide = (p: Pen, L: Look, pose: SidePose) => {
   if (L.jersey && !coat) jerseyDigits(p, L, tcx, chin, T, HH);
   if (L.top.style === "hoodie" && !coat) p.ell(tcx - 0.55 * T.a, chin + 0.02 * HH, 0.2 * W, 0.13 * HH, mix(top, INK, 0.08), ow * 0.8);
   if (L.neck?.style === "bowtie") { const y = chin + 0.05 * HH, x = tcx + T.a * 0.95; p.poly([[x, y], [x - 4 * u, y - 7 * u], [x - 4 * u, y + 7 * u]], L.neck.color, 2 * u); }
-  p.stroke(curve(near[0], near[1], near[2]), 5.2 * u, armCol);
+  const rotSave2 = p.rot; if (worldArms) p.rot = null;
+  if (!hang) p.stroke(curve(near[0], near[1], near[2]), 5.2 * u, armCol);
   if (pose.point) taper(p, near[2], [near[2][0] + 13 * u, near[2][1] - 1.5 * u], 4.2 * u, 3.4 * u);
   if (holding) ITEMS[pose.hold!].draw(p, near[2][0], near[2][1], u, 1);
-  p.dot(near[2][0], near[2][1], 5.5 * u);
+  if (!hang) p.dot(near[2][0], near[2][1], 5.5 * u); p.rot = rotSave2;
   // ---- head ----
-  const hx = 300 + 4 * u;
-  hairBack(p, L, H, hx, hc, light, thick, ow, true, chin);
-  const hp = blobPts(hx, hc, H);
+  let hx = 300 + 4 * u, hcD = hc;
+  if (plank) { const phiH = phi - rad(62), c2 = rotPt([hx, hc], rad(62), [300, ankY]); hx = c2[0]; hcD = c2[1]; p.rot = [phiH, 300, ankY, plankX0, 0]; }   // the head is pitched up so the face looks along the floor
+  hairBack(p, L, H, hx, hcD, light, thick, ow, true, chin);
+  const hp = blobPts(hx, hcD, H);
   p.shadedFill(hp, skin, mul(skin, SH_SKIN), light, H.a);
   p.inkRing(hp, ow, thick);
-  hairFront(p, L, hp, H, hx, hc, light, thick, ow, 1, true);
-  faceSide3(p, L, hx, hc, W, expr, lid, skin);
-  if (L.visor) visor3(p, H, hx, hc, L.visor, 1, true, false);
-  hat3(p, L, H, hx, hc, light, 1, true);
+  hairFront(p, L, hp, H, hx, hcD, light, thick, ow, 1, true);
+  faceSide3(p, L, hx, hcD, W, expr, lid, skin);
+  if (L.visor) visor3(p, H, hx, hcD, L.visor, 1, true, false);
+  hat3(p, L, H, hx, hcD, light, 1, true);
   p.rot = null;
+  if (hang) { p.stroke(curve(near[0], near[1], near[2]), 5.8 * u, armCol); p.dot(near[2][0], near[2][1], 6 * u); }   // the near arm reaches up in front of the head (the side nearest the camera), the hand over the bar
 };
 /** the visor worn up: a glowing band arched over the crown, ink-edged, with a bright core line */
 const visor3 = (p: Pen, H: Blob, hx: number, hy: number, col: string, facing: number, side: boolean, back: boolean) => {

@@ -567,6 +567,11 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
         out.places.push(lookCard(cam, L, p[0], p[1], p[2], { side: { mode: a.walk!.mode === "run" ? "run" : "walk", phase: dist / (a.walk!.mode === "run" ? 2.08 : 1.47), ...(held ? { hold: held } : {}), expr: (talking.expr ?? base.expr ?? "neutral") as Expr, blink: life.blink }, mirror: dirScreen < 0 }));
         // profile walk: the front rig in the same stride approximates where the head and hands are
         out.anchors.set(a.who, { ...anchorOf(cam, L, p, anchorsFront(L, { mode: a.walk!.mode === "run" ? "run" : "walk", phase: dist / 1.47 }), dirScreen < 0), walking: true });
+      } else if (a.sideMode) {
+        // Engine 4 profile poses (plank, hang, kneel): one side card per frame, the move's bend drives the arms
+        const pl = plays.get(a.who), expr = (talking.expr ?? base.expr ?? "neutral") as Expr;
+        out.places.push(lookCard(cam, L, p[0], p[1], p[2], { side: { mode: a.sideMode, bend: pl?.bend ?? (a.sideMode === "kneel" ? 0.6 : 0), expr, blink: life.blink }, mirror: a.facing === -1 }));
+        out.anchors.set(a.who, anchorOf(cam, L, p, anchorsFront(L, { mode: "stand", phase: 0 }), a.facing === -1));
       } else {
         const mo = motion.get(a.who)!, extra: Partial<Pose> = {};
         // a reach: for another actor the hands land on their flank (tickle) or meet theirs half-way (offer, write); for

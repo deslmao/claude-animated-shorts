@@ -87,6 +87,8 @@ export type ActorSpec = {
   who: string;                // key into storyboard.cast
   at: Where;
   act?: Act; face?: Expr; gesture?: Gesture; mode?: Mode;
+  /** Engine 4 (Episode 3): draw this actor in profile in a body pose the front rig cannot do: "plank" (push-ups), "hang" (a pull-up bar in the card) or "kneel"; the move's `bend` drives it */
+  sideMode?: "plank" | "hang" | "kneel";
   /** "camera", "toward:<who>", or -1 | 0 | 1. Default: toward the nearest other actor in the shot */
   facing?: "camera" | `toward:${string}` | -1 | 0 | 1;
   back?: boolean;             // seen from behind (the near actor in an over-the-shoulder)

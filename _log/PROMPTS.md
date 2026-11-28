@@ -16838,3 +16838,27 @@ Along with the framing/overlap/bleacher fixes, upgrade the visual storytelling a
   d) Gym cheering -> `LVL ???` hooded stranger cliffhanger
 
 Once preflight passes (with locked audio masters untouched), commit everything, trigger the 540p GitHub Actions preview render, give me the run URL, and stop (do NOT poll GitHub Actions).
+
+## 28 Nov 2026 — owner (Episode 3: realism and blocking pass, before the final render)
+Hold 1080p—before we do the final render, we need a realism and blocking pass on productions/solo-leveling-1/ (do NOT touch the locked audio masters). Fix all of the following:
+
+1. Realistic Body Mechanics (Push-Ups, Pull-Ups, Sprints):
+- Push-Ups (0:50–0:55 Bedroom & 1:02 Dawn): Make the push-up look like real-life human mechanics—keep Leo's body in a straight, rigid plank from head to heels, hands planted firmly on the floor under his shoulders (no sliding/floating), and bend his elbows naturally so his chest lowers close to the floor and pushes back up with eased weight.
+- Pull-Ups (Park Bar): Keep Leo's hands locked firmly onto the horizontal bar the entire time, elbows bending naturally to pull his chin cleanly over the bar while his legs hang naturally (slight knee bend), then lowering with control.
+- Sprints (1:04 "Sprints in"): Leo is currently missing from the frame. Keep him clearly visible sprinting across the rain court with a realistic forward lean, pumping opposite arms and legs, and a camera pan/track following him.
+
+2. Hallway Blocking, Level Logic & Bad Camera Angles:
+- Remove all broken/random hallway camera angles (including the shot aimed at a character's chin showing nothing, and the 0:30 shot clipping into a face).
+- Teacher Bowing: Give the teacher a lower level badge (`LVL 35`) so bowing to a higher number makes sense, and position him far enough from the lockers/wall that his head does NOT clip through the wall when he bows forward.
+- Kids Stepping Out of the Way: Put Dex (`LVL 50`) walking straight down the center of the hallway while the other students step aside to clear his path.
+
+3. Dex's Charge, Slide & Realistic Kneeling Pose (1:58–2:08):
+- 1:58 ("anyway"): Keep Dex centered in frame as he charges (currently cut off on the left).
+- 2:04–2:06 (Slide & "H-how?"): Keep Dex's entire body (head to feet) cleanly inside the frame as he slides across the gym floor—do NOT cut off his head or legs at the edges.
+- End of Slide Pose ("H-how?"): Pose Dex realistically ON HIS KNEES on the gym floor (knees planted on the hardwood, shins back, hands bracing on the floor or torso hunched in shock—like a real person who just got knocked back), with his full head and shocked face clearly framed.
+
+4. Remaining UI & Cliffhanger Fixes:
+- 0:46 ("Penalty"): Slightly shrink font size or widen padding in the System Window so "PENALTY: STAY LVL 1 FOREVER" does not clip the "ER".
+- 2:24–2:28 ("one badge I" / "Three glowing" / "marks"): Cut directly to a clean, centered shot of the hooded stranger at the back of the gym with the glowing `LVL ???` badge fully visible above his head (currently cut off on the right edge).
+
+Verify these fixes in preflight stills, commit everything, trigger a 540p GitHub Actions preview render (not 1080p yet), give me the run URL, and stop (do NOT poll GitHub Actions).
