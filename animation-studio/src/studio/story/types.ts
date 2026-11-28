@@ -75,7 +75,13 @@ export type LineContext = { before?: string; after?: string };
  *  spoken in another language); "" shows nothing (the viewer isn't meant to understand yet). Not sent to the voice */
 /** Engine 4: a hard cut of a recorded score to dead silence at a spoken word (or a time in seconds), optionally with a low sub-bass hit on the cut and
  *  the score coming back at `resume` (omit = silent to the end) */
-export type MusicCut = { at: WordRef | number; resume?: WordRef | number; sub?: boolean };
+export type MusicCut = { at: WordRef | number; resume?: WordRef | number; sub?: boolean;
+  /** the score comes back from this second of its file (not where it would have been): e.g. Morning Mood's sunrise climax on the buzzer-beater */
+  jump?: number;
+  /** the score swells back in over this many seconds (from a quarter of its level) instead of a 15 ms fade */
+  swell?: number };
+/** a second recorded track laid over the score for a span (the sad piano under the return and the climax); the score is muted for the span */
+export type MusicLayer = { file: string; from: WordRef | number; to: WordRef | number; fade?: number; gain?: number };
 export type Line = { /** a dialogue punchline: the music ducks 8 dB under the whole line (Engine 4) */ punch?: boolean; text: string; who?: string; voice?: string; gap?: number; pauses?: LinePause[]; context?: LineContext; sub?: string };
 export type ActorSpec = {
   who: string;                // key into storyboard.cast
@@ -232,7 +238,7 @@ export type Storyboard = {
   /** background music: a mood, { mood, gain } (dB), a recorded score { file, gain, duck } (sound/samples/music/<file>.mp3,
    *  written to this film's timings, from 0 s; duck = the dip under words in dB, default -3; curve = [seconds, dB]
    *  points, linear between: the score's silences and swells), or false for none. Default: chosen from the story's acting */
-  music?: Mood | { mood: Mood; gain?: number } | { file: string; gain?: number; duck?: number; curve?: [number, number][]; cuts?: MusicCut[] } | false;
+  music?: Mood | { mood: Mood; gain?: number } | { file: string; gain?: number; duck?: number; curve?: [number, number][]; cuts?: MusicCut[]; layers?: MusicLayer[] } | false;
   /** the music drops out after this spoken word (a beat of silence before the punchline): the bed fades out in 0.1 s
    *  and stays out until the button chord lands on the last word (Video 04). Default: no drop-out */
   musicDrop?: WordRef;

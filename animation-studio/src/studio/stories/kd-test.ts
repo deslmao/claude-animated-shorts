@@ -25,7 +25,7 @@ export const KD_TEST: Storyboard = {
     { ...dawn, dur: 1.5, camera: at([1.7, 1.15, 1.5], [-0.3, 1.0, -2.3], 35, 3), note: "2 5 AM rain grind",
       actors: [who("leo", [-0.4, 0, -1.6], [{ t: 0, expr: "determined", brow: [3, 2, 0], tilt: -3 }], "basketball")] },
     // 3 the tunnel spark: KD and Leo, the signed ball between them throwing lightning; low angle up at KD
-    { ...tunnel, dur: 1.5, camera: at([-11.4, 0.45, 3.3], [-11.4, 1.2, 0.3], 20, 2), note: "3 tunnel spark",
+    { ...tunnel, dur: 1.5, camera: at([-11.4, 0.45, 3.0], [-11.4, 1.2, 0.3], 20, 2), note: "3 tunnel spark",
       props: [{ id: "signedBasketball", at: [-11.4, 1.05, 0.4] as V, scale: 1.3, steps: [{ t: -1 }, { t: -0.2 }] }],
       actors: [who("kd", [-11.95, 0, -0.1], [{ t: 0, expr: "shock", tilt: -3, brow: [-2, -1, 3] }]), who("leo", [-10.85, 0, 0.9], [{ t: 0, expr: "shock", tilt: 3, brow: [-3, -2, 3] }])] },
     // 4a the viral phone insert; 4b the TV slump insert
@@ -37,6 +37,8 @@ export const KD_TEST: Storyboard = {
         who("leoJ", [2.3, 0, -3.4], [{ t: 0, expr: "nervous" }])] },
     // 6 KD lifts Leo onto his shoulders: low angle, the crowd behind
     { ...arena, dur: 1.5, camera: at([0.6, 0.4, 3.4], [0.0, 1.5, -1.2], 24, 2), note: "6 shoulder lift",
-      actors: [who("kd", [0.0, 0, -1.0], [{ t: 0, expr: "laugh", gesture: "cheer" }]), who("leoJ", [0.04, 1.42, -1.04], [{ t: 0, expr: "laugh", gesture: "cheer", tilt: 3 }])] },
+      actors: [who("kd", [0.0, 0, -1.0], [{ t: 0, expr: "laugh", gesture: "cheer" }]), { ...who("leoJ", [0.02, 1.0, -1.1], [{ t: 0, expr: "laugh", gesture: "cheer", tilt: 3 }]), mode: "sit" as never }] },
+    // 7 the arena scoreboard insert (THUNDER 88 | 00:05 | OPP 89), hung over the court, seen from the floor
+    { ...arena, dur: 1.5, camera: at([0.0, 1.4, 4.2], [0.0, 5.0, -3.0], 30, 0), note: "7 scoreboard", props: [{ id: "arenaScoreboard", at: [0, 4.6, -3.0] as V, scale: 1.0, steps: [{ t: -1 }] }], actors: [] },
   ],
 };

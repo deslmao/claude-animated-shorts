@@ -155,6 +155,21 @@ def main(plan_path):
         sp = os.path.join(MUSIC_ASSETS, f"{mu['file']}.mp3")
         x = decode_sample(sp if os.path.exists(sp) else os.path.join(SCORE_DIR, f"{mu['file']}.mp3"), 2)[:, :N]
         music[:, :x.shape[1]] = x
+        # Engine 4 score switches: a cut may bring the score back from another second of its file (`jump`), and a second track (a layer) can sit
+        # over a span with the score muted underneath it (the sad piano); both are placed BEFORE the duck so punchlines duck them like the score
+        for c in mu.get("cuts", []):
+            if "jump" in c and "resume" in c:
+                a0 = ns(c["resume"]); j0 = ns(c["jump"]); n = min(N - a0, x.shape[1] - j0)
+                if n > 0: music[:, a0:a0 + n] = x[:, j0:j0 + n]
+        for L in mu.get("layers", []):
+            lp = os.path.join(MUSIC_ASSETS, f"{L['file']}.mp3"); y = decode_sample(lp if os.path.exists(lp) else os.path.join(SCORE_DIR, f"{L['file']}.mp3"), 2)
+            a0, a1 = ns(L["t0"]), min(N, ns(L["t1"])); span = a1 - a0; y = y[:, :span]; fd = ns(L.get("fade", 1.2))
+            env = np.ones(span); env[:min(fd, span)] = np.linspace(0, 1, min(fd, span)); fo = ns(0.03); env[max(0, span - fo):] *= np.linspace(1, 0, min(fo, span))[-len(env[max(0, span - fo):]):]
+            hole = np.ones(N); hole[a0:a1] = 0.0
+            if a0 >= fd: hole[a0 - fd:a0] = np.linspace(1, 0, fd)
+            if a1 + fd <= N: hole[a1:a1 + fd] = np.linspace(0, 1, fd)
+            music *= hole[None, :]
+            music[:, a0:a0 + y.shape[1]] += y * env[None, :y.shape[1]] * float(dbg(L.get("gain", 0.0)))
         f = ns(0.6)
         music[:, max(0, x.shape[1] - f):x.shape[1]] *= np.linspace(1, 0, min(f, x.shape[1]))
         if mu.get("curve"):  # a volume curve over the score (dB at times, linear between): its silences and swells
@@ -168,6 +183,8 @@ def main(plan_path):
             env = np.ones(N); env[a:b] = 0.0
             if a >= f: env[a - f:a] = np.linspace(1, 0, f)
             if b < N and b + f <= N: env[b:b + f] = np.linspace(0, 1, f)
+            if c.get("swell") and b < N:   # a swell back: from a quarter of the level up over `swell` seconds, instead of a 15 ms fade
+                sw = ns(c["swell"]); env[b:b + sw] = np.linspace(0.25, 1, min(sw, N - b))
             music *= env[None, :]
             cues.append((c["t"], "music: hard cut to silence" + (f", back at {c['resume']:.2f} s" if "resume" in c else "")))
         cues.append((0.0, f"music: score {mu['file']}"))

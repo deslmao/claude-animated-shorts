@@ -1,0 +1,38 @@
+{
+ "model_id": "music_v1",
+ "composition_plan": {
+  "positive_global_styles": [
+   "slow sad emotional solo piano for an animated sports short",
+   "instrumental",
+   "melancholy and tender",
+   "minimal, spacious, a few soft sustained strings underneath"
+  ],
+  "negative_global_styles": [
+   "drums",
+   "percussion",
+   "vocals",
+   "lyrics",
+   "upbeat",
+   "electronic",
+   "beat",
+   "fast"
+  ],
+  "sections": [
+   {
+    "section_name": "the magic is gone",
+    "positive_local_styles": [
+     "a slow sad solo piano melody, gentle and heavy",
+     "regret and guilt, a held breath",
+     "soft low strings enter halfway, building slightly with tension"
+    ],
+    "negative_local_styles": [
+     "drums",
+     "vocals",
+     "upbeat"
+    ],
+    "duration_ms": 34000,
+    "lines": []
+   }
+  ]
+ }
+}

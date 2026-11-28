@@ -21,7 +21,7 @@ type Film = ReturnType<typeof compile>;
 /** a catalogue sound, or the name of a custom file assets/sfx/<name>.mp3|wav (Engine 4) */
 export type CueName = SfxName | (string & {});
 export type Cue = { t: number; name: CueName; gain_db?: number; pan?: number; why: string; major?: boolean };
-export type SoundPlan = { file?: { file: string; duck?: number; curve?: [number, number][]; cuts?: { t: number; resume?: number; sub?: boolean }[] }; sections: [Mood, number, number][] | null; button_t: number; drop_t?: number; musicGain: number; ambience: (string | null)[]; cues: Cue[]; mood: Mood | null; moodWhy: string;
+export type SoundPlan = { file?: { file: string; duck?: number; curve?: [number, number][]; cuts?: { t: number; resume?: number; sub?: boolean; jump?: number; swell?: number }[]; layers?: { file: string; t0: number; t1: number; fade: number; gain: number }[] }; sections: [Mood, number, number][] | null; button_t: number; drop_t?: number; musicGain: number; ambience: (string | null)[]; cues: Cue[]; mood: Mood | null; moodWhy: string;
   /** Engine 4: spans [t0, t1] where the music ducks depth_db (under dialogue punchlines and major SFX hits) */
   duck?: { spans: [number, number][]; depth_db: number } };
 
@@ -171,9 +171,10 @@ export const soundPlan = (film: Film, sb0: Storyboard): SoundPlan => {
     if (!w) throw new Error(`music cut at "${r.word}", which the narration doesn't say`);
     return w.t0 - 0.02;
   };
-  const musicCuts = sb0.music && typeof sb0.music === "object" && "file" in sb0.music && sb0.music.cuts ? sb0.music.cuts.map((c) => ({ t: wordAt(c.at), ...(c.resume !== undefined ? { resume: wordAt(c.resume) } : {}), ...(c.sub ? { sub: true } : {}) })) : [];
+  const musicCuts = sb0.music && typeof sb0.music === "object" && "file" in sb0.music && sb0.music.cuts ? sb0.music.cuts.map((c) => ({ t: wordAt(c.at), ...(c.resume !== undefined ? { resume: wordAt(c.resume) } : {}), ...(c.sub ? { sub: true } : {}), ...(c.jump !== undefined ? { jump: c.jump } : {}), ...(c.swell !== undefined ? { swell: c.swell } : {}) })) : [];
+  const layers = sb0.music && typeof sb0.music === "object" && "file" in sb0.music && sb0.music.layers ? sb0.music.layers.map((l) => ({ file: l.file, t0: wordAt(l.from), t1: wordAt(l.to), fade: l.fade ?? 1.2, gain: l.gain ?? 0 })) : [];
   const subCues: Cue[] = musicCuts.filter((c) => c.sub).map((c) => ({ t: c.t, name: "sub_hit", why: "the score cuts to silence: a low sub-bass hit" }));
-  const file = sb0.music && typeof sb0.music === "object" && "file" in sb0.music ? { file: sb0.music.file, ...(musicCuts.length ? { cuts: musicCuts } : {}), ...(sb0.music.duck !== undefined ? { duck: sb0.music.duck } : {}), ...(sb0.music.curve ? { curve: sb0.music.curve } : {}) } : undefined;
+  const file = sb0.music && typeof sb0.music === "object" && "file" in sb0.music ? { file: sb0.music.file, ...(musicCuts.length ? { cuts: musicCuts } : {}), ...(layers.length ? { layers } : {}), ...(sb0.music.duck !== undefined ? { duck: sb0.music.duck } : {}), ...(sb0.music.curve ? { curve: sb0.music.curve } : {}) } : undefined;
   return { ...(file ? { file } : {}), sections, button_t: last ? last.t0 : film.total / FPS - 1, ...(dw ? { drop_t: dw.t1 } : {}), musicGain: gain, ambience, cues: [...dedup, ...subCues].sort((a, b) => a.t - b.t), mood, moodWhy: why, ...(duck ? { duck } : {}) };
 };
 

@@ -16525,3 +16525,62 @@ Phase A (Build & Verify First):
    - The scored audio master so I can review pacing, voices, and SFX.
    - A 6-frame contact sheet showing: (1) Street Court Day, (2) 5 AM Rain Grind, (3) Arena Tunnel KD Lightning Spark, (4) Viral Phone + TV Slump Inserts, (5) Bird's-Eye 3-Defender Swarm, and (6) Low-Angle KD Shoulder Lift.
 4. Wait for my approval before writing the final shot list or triggering any GitHub Actions render (and NEVER poll GitHub Actions).
+
+## 28 Nov 2026 — owner (Episode 2: Morning Mood, the tightened script, shoulder-lift fix)
+Two mandatory fixes before we move to the Episode 2 shot list:
+
+1. Lock "Morning Mood" Permanently (Engine 4 Rule):
+- Morning Mood is our permanent channel signature soundtrack across all Engine 4 episodes (do NOT generate ElevenLabs music tracks).
+- Replace the ElevenLabs music in productions/kd-talent-1/ with our existing Morning Mood track (looped/extended seamlessly to fit the runtime, ducked 8 dB under punchlines/viral SFX, hard-cut to DEAD SILENCE + sub-bass hit at "Five seconds left.", and swelling back on "Swish.").
+- Keep the current Leo, KD (Brian), Coach (Adam), and Dex (VALF) voices, plus the viral + basketball SFX pack—those all sound great.
+
+2. Tighten the Script to ~2:30 (Under YouTube Shorts' 3:00 Cap):
+- At 3:21, YouTube won't classify this as a Short. Rebuild the scored + no-music audio masters (-14 LUFS) using this tightened ~440-word version (keeps Leo at speed 1.06 and preserves every beat, landing around 2:25–2:35):
+
+[BEAT 1 — HOOK]
+[LEO (VO)]: I was 11 when I hit the game-winner for the Oklahoma City Thunder, right next to Kevin Durant. And on my own street, I was always picked last.
+
+[BEAT 2 — UNDERDOG & RIVAL]
+[LEO (VO)]: Every day after school, Dex—the tallest kid—picks everybody before me, because I brick every shot.
+[DEX]: Nice shot, Brick!
+[LEO (VO)]: I'm Leo, and KD is my hero. The lethal crossover. That unstoppable pull-up middy. I couldn't shoot like him. Every shot clanked off the rim.
+
+[BEAT 3 — THE THUNDER GAME & THE SPARK]
+[LEO (VO)]: Then one Friday, my dad took me to a Thunder game. After warmups, KD walked right up to the tunnel and signed my beat-up basketball.
+[LEO]: I wish I had your talent.
+[KD]: You need to work hard, kid.
+[LEO (VO)]: The second our hands touched the ball, lightning shot straight between us. My fingers tingled. KD shook his hand out.
+
+[BEAT 4 — POWERS & VIRAL FAME]
+[LEO (VO)]: Next morning, I stepped on the court. I pulled up from mid-range. Swish. Again. Swish. I drove and dunked—I'd never even touched the net before. My middy was 100%. I destroyed tryouts, dropped 40 points on camera, and went viral overnight.
+
+[BEAT 5 — SECRET HABIT & GUILT]
+[LEO (VO)]: Still, KD's words stayed in my head. So I didn't get lazy. For months, I woke up at 5 AM—rain or snow—shooting 500 pull-up middies before school. Meanwhile, on TV, KD was missing everything. Airballs. Bricks. Turnovers. The media said his career was over. I stared at my hands. I didn't just get his talent—I took it.
+
+[BEAT 6 — THE RETURN]
+[LEO (VO)]: The Thunder invited the "viral miracle kid" to suit up with KD. Before the fourth quarter, KD sat in the tunnel with his head down. I held out my signed ball.
+[LEO]: I'm sorry. This belongs to you.
+[LEO (VO)]: He grabbed it, and the lightning snapped right back. My arms felt heavy. The magic was gone.
+
+[BEAT 7 — CLIMAX | MUSIC HARD-CUTS TO DEAD SILENCE]
+[LEO (VO)]: Five seconds left. Down by one. KD was instantly back—draining threes—so the other team sent three defenders straight at him. Coach pointed at me.
+[COACH]: Leo! You're in!
+[LEO]: I can't! I lost the powers!
+[KD]: The magic didn't wake up at 5 AM, kid. You did.
+[LEO (VO)]: KD drew all three defenders and whipped the pass to me at the elbow. No lightning. Just months of muscle memory. I rose up for the pull-up middy. The buzzer sounded with the ball in the air.
+
+[BEAT 8 — PAYOFF | MUSIC SWELLS BACK]
+[LEO (VO)]: Swish. We won by one. The arena exploded. KD lifted me onto his shoulders while twenty thousand fans chanted my name. Next day on my street, Dex won the coin toss and pointed straight at me.
+[DEX]: Leo. You're with me.
+
+3. Quick Visual Fix Before Contact Sheet Approval:
+- Fix the shoulder-lift pose so Leo sits on KD's shoulders (legs straddling/resting at shoulder height) instead of looking like he's standing on KD's head.
+- Include the arenaScoreboard prop in the contact sheet (or as a 7th tile / stacked with the inserts).
+
+Stop Gate:
+- Commit the updated ~2:30 Morning Mood audio masters and updated contact sheet, send both to me, and wait for my "go" before writing the full shot list or triggering any GitHub Actions render (never poll GitHub Actions).
+Music adjustment for productions/kd-talent-1/:
+Instead of keeping Morning Mood all the way to "Five seconds left.", mirror the emotional shift in our reference story:
+1. Beats 1–6: Play Morning Mood (ducked 8 dB under punchlines/SFX).
+2. Beat 6 ("My arms felt heavy. The magic was gone.") through Beat 7 ("The magic didn't wake up at 5 AM, kid. You did."): Switch from Morning Mood to a slow, sad/emotional piano or strings track (you can generate a clean 40s sad piano cue via ElevenLabs Music or use a local sad piano track).
+3. Beat 7 Climax ("The buzzer sounded with the ball in the air."): Brief drop to silence + sub-bass hit, then swell Morning Mood back in triumphantly on "Swish. We won by one." through the end.
