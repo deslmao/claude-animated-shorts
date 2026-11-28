@@ -10,6 +10,8 @@ no pull requests.
 2. Read `_log/DECISIONS.md` (why things are the way they are).
 3. Read `_log/PROMPTS.md` (the owner's exact words, newest at the bottom).
 
+## EPISODE 2 FINAL RENDER REQUESTED (28 Nov, newest): the owner approved the preview; defender-in-front and the coin-toss ending are done; the full-resolution cloud render was requested (render-request.json, preview false, publish false). Next: when the owner says the render finished, request the QA (qa-request.json). Never poll.
+
 ## EPISODE 2 PREVIEW-FIX PASS (28 Nov, newest): the owner's 540p notes (overlaps, bench, swish/dunk, expressions, shoulder lift) are fixed and a new 540p preview was requested; waiting for the owner (never poll). Same locked-audio workflow as below.
 
 ## EPISODE 2 MOTION PASS (28 Nov, latest): the Motion Pass is built and the 540p preview was requested (render-request.json). Shot list is now 37 shots (split lines are separate narration slices); ball/motion code in engine4/motion.ts + ball.ts; sets in engine4/rooms.ts. Locked masters intact; after any edit run `npm run sound -- kd-talent-1`, diff the cue sheet against the committed one, and copy back the locked mp3/cues from git. Waiting for the owner to upload the preview (never poll).

@@ -16740,3 +16740,6 @@ Fix these exact bugs in productions/kd-talent-1/, then trigger a new 540p previe
 Once preflight passes (with locked 2:29 audio masters untouched), commit everything, trigger the 540p GitHub Actions preview render, give me the run URL, and stop (do NOT poll GitHub Actions).
 
 (Added mid-turn by the owner, same fix pass:) 0:11 "yellow shirt kid blocks leo  at the same spot"
+
+## 28 Nov 2026 — owner (Episode 2: approve the final render, two small fixes)
+Its good, approve final render but before kd does the crossover the defender is behind him, he should be infront and small fix in the end, show a coin toss in the air visual storytelling

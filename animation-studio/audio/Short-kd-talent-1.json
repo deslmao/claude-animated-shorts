@@ -1,6 +1,6 @@
 {
  "composition": "Short-kd-talent-1",
- "fingerprint": "064a23fce272fe",
+ "fingerprint": "1ec56764a7f4bc",
  "engine": "sound-2",
  "frames": 4461,
  "seconds": 148.7,
@@ -13,5 +13,5 @@
   "ambience_vs_voice_lu": -19.82,
   "sfx_cues": 67
  },
- "built": "2026-11-28T02:43:21Z"
+ "built": "2026-11-28T04:03:41Z"
 }

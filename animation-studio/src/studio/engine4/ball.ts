@@ -31,3 +31,14 @@ export const gameBallRig = (a: At, variant?: string): PropRig => {
     ripple.visible = p > 0.02; ripple.scale.set(1 + 0.3 * p, 1 + 0.06 * p, 1 + 0.3 * p); (ripple.material as THREE.MeshBasicMaterial).opacity = 0.15 + 0.5 * p;
   } };
 };
+
+/** Engine 4: a gold coin for a coin toss (a thick disc with a rim and a face), positioned and spun every frame from the same plan as the ball (`ball`); it flips end over end */
+export const coinRig = (a: At): PropRig => {
+  const root = new THREE.Group(), sc = a.s ?? 1;
+  const face = mkTex("coinface", 256, 256, (g) => { g.fillStyle = "#e8b923"; g.fillRect(0, 0, 256, 256); g.strokeStyle = "#8a6508"; g.lineWidth = 12; g.beginPath(); g.arc(128, 128, 98, 0, Math.PI * 2); g.stroke(); g.fillStyle = "#8a6508"; g.font = "bold 120px sans-serif"; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("$", 128, 136); });
+  const edge = new THREE.MeshStandardMaterial({ color: "#c99a14", metalness: 0.8, roughness: 0.3, emissive: "#6a4a00", emissiveIntensity: 0.5 });
+  const side = new THREE.MeshStandardMaterial({ map: face, metalness: 0.6, roughness: 0.3, emissive: "#ffcf40", emissiveMap: face, emissiveIntensity: 0.45 });
+  const coin = new THREE.Mesh(new THREE.CylinderGeometry(0.1 * sc, 0.1 * sc, 0.016 * sc, 36), [edge, side, side]);
+  coin.castShadow = true; root.add(coin);
+  return { root, update: (st) => { const t = st.track; root.visible = (st.step ?? 0) > 0; if (!t) return; coin.position.set(...t.pos); coin.rotation.set(t.dist, 0, 0.25); } };
+};

@@ -8,7 +8,7 @@ import { numberRig } from "../../engine4/number";
 import { buildE4Court, SPOTS as COURT_SPOTS, VIEWS as COURT_VIEWS } from "../../engine4/court";
 import { buildE4Arena, SPOTS as ARENA_SPOTS, VIEWS as ARENA_VIEWS } from "../../engine4/arena";
 import { buildE4Bedroom, buildE4Office } from "../../engine4/rooms";
-import { gameBallRig } from "../../engine4/ball";
+import { gameBallRig, coinRig } from "../../engine4/ball";
 import { signedBallRig, viralPhoneRig, thunderTextRig, statGraphicRig, tvNewsRig, scoreboardRig } from "../../engine4/heroProps";
 import type { ItemEntry } from "../../characters/items";
 
@@ -84,6 +84,7 @@ export const E4_THEME: Theme = {
     thunderText: heroProp("Thunder text", "a smartphone, screen to camera: a message from OKC THUNDER, 'We want you.'; step 1 pops it in; 0.43 m tall x scale", ["phone", "text", "thunder"], thunderTextRig, ["pops in"], 0.15, 0.43),
     statGraphic: { name: "Stat graphic", desc: "a flat in-world stat panel facing the camera (1 m wide x scale); the variant is the text, e.g. LEO: 30 PTS | Q3; pops in on step 1", category: "theme" as const, themes: ["engine4", "sport"], tags: ["stat", "graphic", "score"], radius: 0.5, height: 0.25, build: () => undefined, rig: (a: import("../../props/kit").At, v?: string) => statGraphicRig(a, v), steps: ["pops in"], stepCount: () => 1,
       param: { desc: "the text (1-24 letters, digits, : . ! | -)", ok: (v: string) => /^[A-Za-z0-9:.!| \-]{1,24}$/.test(v) } },
+    coinToss: { name: "Coin toss coin", desc: "a gold coin that flips through the air on a plan (`ball`: a flight with spin), for a coin toss", category: "theme", themes: ["engine4", "sport"], tags: ["coin", "toss"], radius: 0.12, height: 0.12, build: () => undefined, rig: (a) => coinRig(a), steps: ["visible"], stepCount: () => 1 },
     gameBall: { name: "Game basketball", desc: "the game ball: a 3D orange basketball with black seams (0.12 m radius x scale), driven by a ball plan (`ball`: hold in a hand, dribble, a parabolic flight, a drop through the net with bounces); the variant is the rim centre x,y,z (the net ripples on a swish)", category: "theme", themes: ["engine4", "sport"], tags: ["basketball", "ball", "game"], radius: 0.15, height: 0.25, build: () => undefined, rig: (a, v) => gameBallRig(a, v), steps: ["visible"], stepCount: () => 1,
       param: { desc: "the rim centre as x,y,z", ok: (v: string) => /^-?[\d.]+,-?[\d.]+,-?[\d.]+$/.test(v) } },
     e4Number: { name: "3D number (Engine 4)", desc: "oversized extruded 3D text lit by the room (variant = the text, 1-8 characters, e.g. 6:00); pops in on its first step, then floats; 0.5 m tall x scale, centred on `at` (its base). Use instead of a flat framed infographic", category: "theme", themes: ["engine4"], tags: ["number", "text", "3d", "infographic"], radius: 0.6, height: 0.5,
