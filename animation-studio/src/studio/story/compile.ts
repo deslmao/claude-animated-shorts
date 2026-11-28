@@ -533,7 +533,7 @@ export const compile = (sb0: Storyboard, narr?: Narration) => {
         // keepFace: the authored face stays while the mouth talks (between words its own mouth)
         if (a.keepFace && talking.expr) {
           if (talking.expr === "smile") delete talking.expr;
-          else talking.expr = `${(base.expr as Expr) ?? "neutral"}|${a.sadTalk ? (talking.expr === "talk_wide" ? "talk_sad_wide" : "talk_sad") : talking.expr}` as Expr;
+          else talking.expr = `${((sb.engine === 4 && a.keys?.length ? e4Track(a.keys, tq).pose.expr : undefined) as Expr | undefined) ?? (base.expr as Expr) ?? "neutral"}|${a.sadTalk ? (talking.expr === "talk_wide" ? "talk_sad_wide" : "talk_sad") : talking.expr}` as Expr;
         }
         const nodTilt = (a.nod ?? []).reduce((acc: number, x) => acc + nodAt(tqa, t0 + (x as number), 2), 0);
         const shook = (a.shake ?? []).map((x) => shakeAt(tqa, t0 + (x as number))).find((x) => Object.keys(x).length) ?? {};

@@ -113,7 +113,7 @@ export const buildE4Arena = (): BuiltSet => {
       const px = x0 + dirx * (t * 0.95), pz = z0 + dirz * (t * 0.95), y = 0.5 * (t + 1);
       add(root, along === "x" ? box(len, y, 0.95) : box(0.95, y, len), seat, px, y / 2, pz);
       const n = Math.floor(len / 0.62);
-      for (let i = 0; i < n; i++) { const u = -len / 2 + 0.31 + i * 0.62; if (((i * 7 + t * 3) % 9) === 0) continue; spots.push({ x: px + (along === "x" ? u : 0), y, z: pz + (along === "z" ? u : 0), ry: Math.atan2(-dirx, -dirz) }); }
+      for (let i = 0; i < n; i++) { const u = -len / 2 + 0.31 + i * 0.62; if (((i * 7 + t * 3) % 9) === 0) continue; const sx = px + (along === "x" ? u : 0), sz = pz + (along === "z" ? u : 0); if (dirx === 1 && sx > 9.5 && sx < 12.6 && sz > -2.4 && sz < 1.2) continue; /* an open aisle on the right stand: the seats where Leo and his dad sit, and the rows in front of them */ spots.push({ x: px + (along === "x" ? u : 0), y, z: pz + (along === "z" ? u : 0), ry: Math.atan2(-dirx, -dirz) }); }
     }
   };
   // the left stand stops short of the tunnel mouth (z -3.2..3.2)

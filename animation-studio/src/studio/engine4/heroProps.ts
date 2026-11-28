@@ -55,7 +55,7 @@ export const signedBallRig = (a: At): PropRig => {
     root.visible = s > 0; face(root, st.camPos);
     const sc = Math.max(0.001, k); pivot.scale.setScalar(sc); pivot.position.y = 0.012 * Math.sin(t * 2.2); ball.rotation.y = 0.35 + 0.18 * Math.sin(t * 0.9); ball.rotation.x = 0.12 * Math.sin(t * 0.7);
     // spark amplitude: 0 before step 2, a quick rise and a long fade over step 2, a faint flicker afterwards
-    const f = Math.max(0, Math.min(1, s - 1)), amp = s < 1 ? 0 : s >= 2 ? 0.12 : Math.sin(Math.PI * Math.min(1, f * 1.15)) ** 0.6;
+    const f = Math.max(0, Math.min(1, s - 1)), amp = s < 1 ? 0 : s >= 3 ? 0 : s >= 2 ? 0.12 : Math.sin(Math.PI * Math.min(1, f * 1.15)) ** 0.6;
     bolt.visible = spark.visible = amp > 0.02;
     if (bolt.visible) {
       const frame = Math.floor(t * 24);

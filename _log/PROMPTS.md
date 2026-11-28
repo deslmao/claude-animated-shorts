@@ -16711,3 +16711,32 @@ Build a reusable procedural basketball keyframe/easing helper in Engine 4 (do NO
 4. Pass & Hand Shake:
 - Whip Pass (Beat 7): KD steps and snaps arms forward; ball zips on a fast, flat-arc trajectory directly into Leo's catching hands (brief catch-recoil) right before Leo's 1-2 pull-up middy.
 - Hand Shake (Beat 3): Rapid alternating wrist/arm oscillation (3–4 quick shakes over ~0.6s) on KD's hand immediately after the lightning jolt.
+
+
+## 28 Nov 2026 — owner (Episode 2: the Motion Pass preview fixes)
+Hold 1080p—the new court markings, basketball arcs, bedroom, home TV, and Thunder front office look awesome, but the 540p preview has camera/character clipping and a few missing beats. Do NOT touch the locked 2:29 audio masters.
+
+Fix these exact bugs in productions/kd-talent-1/, then trigger a new 540p preview render:
+
+1. Fix All Camera/Character Overlaps & Bad Framing:
+- 0:20 (Crossover): Separate Defender #61 and KD on the X/Z axis so #61 never clips through KD's body.
+- 0:24, 0:32, 0:50: Offset background/foreground characters horizontally so no character's head/body overlaps or pokes out behind Leo's head.
+- 0:30 (Stands): Clear the foreground spectator row directly in front of Leo so no crowd block clips into his face.
+- 1:10 & 1:28 (Bedroom): Lower the camera pitch/Y-target so Leo's full face sits in the upper-middle third (currently cut off at the bottom edge).
+- 1:34–1:36 (Tunnel Bench): Reposition the camera to the front-side of the bench so KD is clearly visible sitting on it (currently the bench backrest cuts through KD at 1:34 and 1:36 is a blank wall).
+- 1:40 ("He grabbed it"): Place Leo next to KD handing the signed basketball directly between them instead of floating the ball above the bench.
+
+2. Fix Missing Action & Cut-Off Inserts:
+- 0:52–0:58 (Beat 4 Swish & Dunk): Show the basketball actually dropping through the net on "Swish" and Leo actively jumping/slamming the ball into the rim on "dunked" (currently empty hoop).
+- 1:06–1:08 (Bedroom): Pan/frame slightly right so the glowing "5:00 AM" alarm clock on the nightstand is fully visible in-frame.
+- 1:30–1:32 (Beat 6): Add the quick phone insert ("OKC THUNDER: We want you.") before the front office shot, and replace the static standing shot at 1:32 with a quick Q1–Q3 cooking shot (Leo hitting a shot/dunk with a "LEO: 30 PTS | Q3" graphic).
+- 0:46: Turn off the lightning bolts before KD shakes his hand out.
+
+3. Fix Wrong Expressions & Shoulder-Lift Layering:
+- 1:58 ("I can't! I lost the powers!"): Swap Leo's smile to his panicked/sweating expression.
+- 2:22–2:24 ("Next day on my street"): Swap Leo's panicked/sweating expression to a calm/confident expression.
+- 2:14–2:20 (Shoulder Lift): Remove the stray white rectangle behind Leo at 2:16 and frame slightly higher/wider so captions at ~72% height sit below KD's face.
+
+Once preflight passes (with locked 2:29 audio masters untouched), commit everything, trigger the 540p GitHub Actions preview render, give me the run URL, and stop (do NOT poll GitHub Actions).
+
+(Added mid-turn by the owner, same fix pass:) 0:11 "yellow shirt kid blocks leo  at the same spot"
