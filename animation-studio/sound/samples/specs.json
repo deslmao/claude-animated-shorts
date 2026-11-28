@@ -515,6 +515,51 @@
    "s": 3,
    "level": -14,
    "p": "A car cruising past slowly on a coastal road at sunset, smooth engine hum, warm, passing by"
+  },
+  "el_bb_dribble": {
+   "s": 2,
+   "level": -9,
+   "p": "A basketball dribbled five times on an outdoor asphalt court, crisp solid bounces and a quick sneaker squeak, close, dry, nothing else"
+  },
+  "el_bb_brick": {
+   "s": 1.6,
+   "level": -8,
+   "p": "A basketball hits the metal rim with a loud clank and thuds off the backboard, a missed shot, outdoor court, close and dry"
+  },
+  "el_bb_swish": {
+   "s": 1.2,
+   "level": -9,
+   "p": "A basketball swishing cleanly through a basketball net, one crisp soft swish, close, nothing else"
+  },
+  "el_bb_dunk": {
+   "s": 1.8,
+   "level": -7,
+   "p": "A basketball player dunking: a hard slam through the rim, the metal rim and backboard rattling hard, then the ball thudding on the court, outdoor"
+  },
+  "el_arena_buzzer": {
+   "s": 1.6,
+   "level": -8,
+   "p": "A loud basketball arena game-end buzzer, one long harsh horn blast, echoing in a big hall"
+  },
+  "el_arena_roar": {
+   "s": 5,
+   "level": -8,
+   "p": "A packed basketball arena crowd erupting into a huge roar and cheer when the winning shot goes in, twenty thousand people, rising then sustained, no words, no music"
+  },
+  "el_lightning_zap": {
+   "s": 1.6,
+   "level": -8,
+   "p": "A jolt of electric lightning snapping between two hands: a sharp crackle and zap with a bright magical shimmer tail, short and punchy, no music"
+  },
+  "el_whistle": {
+   "s": 1.0,
+   "level": -9,
+   "p": "A referee whistle, one short sharp blast in a big indoor arena, then a faint echo"
+  },
+  "el_squeak": {
+   "s": 1.2,
+   "level": -11,
+   "p": "Basketball sneakers squeaking on a polished hardwood court, three quick squeaks, close"
   }
  },
  "bed": {
@@ -581,6 +626,22 @@
   "elb_bedroom_day": {
    "s": 22,
    "p": "A quiet bedroom on a sunny afternoon, birds outside an open window, a distant lawnmower, very calm room tone"
+  },
+  "elb_court_day": {
+   "s": 22,
+   "p": "A sunny afternoon at a neighbourhood outdoor basketball court: a ball bouncing in the distance, kids shouting and laughing far away, sparrows, a light breeze, relaxed"
+  },
+  "elb_court_rain": {
+   "s": 22,
+   "p": "An outdoor basketball court at five in the morning at dawn in steady rain: rain on asphalt and puddles, one distant dawn bird, a lone ball bouncing slowly, cold, quiet, immersive"
+  },
+  "elb_arena": {
+   "s": 22,
+   "p": "Inside a basketball arena before a game: a huge crowd murmur and chatter, an echoing announcer far away, distant ball bounces and sneaker squeaks, a big roomy echo"
+  },
+  "elb_tunnel": {
+   "s": 22,
+   "p": "A concrete arena tunnel before the fourth quarter: the muffled roar of a crowd through the walls, a low ventilation hum, a drip, distant echoing footsteps, tense"
   }
  }
 }

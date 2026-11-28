@@ -1,0 +1,50 @@
+{
+ "hash": "1c8464e23691e8",
+ "text": "I can't! I lost the powers!",
+ "voice": "leo",
+ "lead": 0,
+ "end": 1.95,
+ "dur": 1.985306,
+ "words": [
+  {
+   "w": "I",
+   "t0": 0,
+   "t1": 0.081
+  },
+  {
+   "w": "can't!",
+   "t0": 0.186,
+   "t1": 0.662
+  },
+  {
+   "w": "I",
+   "t0": 0.731,
+   "t1": 0.789
+  },
+  {
+   "w": "lost",
+   "t0": 0.894,
+   "t1": 1.149
+  },
+  {
+   "w": "the",
+   "t0": 1.184,
+   "t1": 1.254
+  },
+  {
+   "w": "powers!",
+   "t0": 1.3,
+   "t1": 1.95
+  }
+ ],
+ "voiceId": "7g0kmMsyK30rO4fU1Sli",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.38,
+  "similarity_boost": 0.75,
+  "style": 0.2,
+  "use_speaker_boost": true,
+  "speed": 1.06
+ },
+ "created": "2026-11-27T23:51:58.179Z"
+}

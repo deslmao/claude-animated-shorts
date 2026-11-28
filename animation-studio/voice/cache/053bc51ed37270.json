@@ -1,0 +1,35 @@
+{
+ "hash": "053bc51ed37270",
+ "text": "Nice shot, Brick!",
+ "voice": "e4Rival",
+ "lead": 0,
+ "end": 1.579,
+ "dur": 1.619592,
+ "words": [
+  {
+   "w": "Nice",
+   "t0": 0,
+   "t1": 0.43
+  },
+  {
+   "w": "shot,",
+   "t0": 0.476,
+   "t1": 0.94
+  },
+  {
+   "w": "Brick!",
+   "t0": 0.964,
+   "t1": 1.579
+  }
+ ],
+ "voiceId": "loY1uopAz31XyhAEhNSa",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.75,
+  "style": 0.35,
+  "use_speaker_boost": true,
+  "speed": 1.04
+ },
+ "created": "2026-11-27T23:51:48.303Z"
+}

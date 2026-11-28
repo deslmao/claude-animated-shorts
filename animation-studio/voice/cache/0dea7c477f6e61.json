@@ -1,0 +1,50 @@
+{
+ "hash": "0dea7c477f6e61",
+ "text": "You need to work hard, kid.",
+ "voice": "kdKD",
+ "lead": 0,
+ "end": 1.625,
+ "dur": 1.671837,
+ "words": [
+  {
+   "w": "You",
+   "t0": 0,
+   "t1": 0.163
+  },
+  {
+   "w": "need",
+   "t0": 0.221,
+   "t1": 0.372
+  },
+  {
+   "w": "to",
+   "t0": 0.395,
+   "t1": 0.441
+  },
+  {
+   "w": "work",
+   "t0": 0.488,
+   "t1": 0.673
+  },
+  {
+   "w": "hard,",
+   "t0": 0.72,
+   "t1": 0.952
+  },
+  {
+   "w": "kid.",
+   "t0": 0.987,
+   "t1": 1.625
+  }
+ ],
+ "voiceId": "nPczCjzI2devNBz1zQrb",
+ "model": "eleven_multilingual_v2",
+ "settings": {
+  "stability": 0.55,
+  "similarity_boost": 0.75,
+  "style": 0.3,
+  "use_speaker_boost": true,
+  "speed": 0.94
+ },
+ "created": "2026-11-27T23:51:50.744Z"
+}

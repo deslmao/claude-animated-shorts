@@ -67,6 +67,8 @@ export type Look = {
   lashes?: boolean | string;
   blush?: string;
   visor?: string;
+  /** opt-in (Engine 4, basketball): a sports-shirt number on the chest, seven-segment strokes in `color` (front views) */
+  jersey?: { number: string; color: string };
 };
 
 // ---------------- faces ----------------
@@ -1060,6 +1062,16 @@ export const figureSide = (p: Pen, L: Look, pose: SidePose) => {
       if (L.top.style === "hoodie") p.poly([[tcx + 0.2 * T.a, torsoBot - 0.4 * HH], [tcx + 1.2 * T.a, torsoBot - 0.4 * HH], [tcx + 1.2 * T.a, torsoBot - 0.08 * HH], [tcx + 0.1 * T.a, torsoBot - 0.08 * HH]], shade(top, 0.94), 1.8 * u);
     });
     p.inkRing(tp, ow, thick);
+  }
+  if (L.jersey && !coat) {
+    // a jersey number: seven-segment digits (a top, b upper right, c lower right, d bottom, e lower left, f upper left, g middle) in thick round strokes
+    const DG: Record<string, string> = { "0": "abcdef", "1": "bc", "2": "abged", "3": "abgcd", "4": "fgbc", "5": "afgcd", "6": "afgedc", "7": "abc", "8": "abcdefg", "9": "abcdfg" };
+    const wd = 0.42 * T.a, hh = 0.22 * HH, gap = 0.2 * T.a, n = L.jersey.number.length;
+    [...L.jersey.number].forEach((ch, i) => {
+      const cx = tcx - ((n - 1) * (wd + gap)) / 2 + i * (wd + gap), y0 = chin + 0.3 * HH, X0 = cx - wd / 2, X1 = cx + wd / 2, Y1 = y0 + hh, Y2 = y0 + 2 * hh;
+      const sg: Record<string, [P2, P2]> = { a: [[X0, y0], [X1, y0]], b: [[X1, y0], [X1, Y1]], c: [[X1, Y1], [X1, Y2]], d: [[X0, Y2], [X1, Y2]], e: [[X0, Y1], [X0, Y2]], f: [[X0, y0], [X0, Y1]], g: [[X0, Y1], [X1, Y1]] };
+      for (const s of DG[ch] ?? "") p.band(sg[s], L.jersey!.color, 0.07 * HH, 0, "round");
+    });
   }
   if (L.top.style === "hoodie" && !coat) p.ell(tcx - 0.55 * T.a, chin + 0.02 * HH, 0.2 * W, 0.13 * HH, mix(top, INK, 0.08), ow * 0.8);
   if (L.neck?.style === "bowtie") { const y = chin + 0.05 * HH, x = tcx + T.a * 0.95; p.poly([[x, y], [x - 4 * u, y - 7 * u], [x - 4 * u, y + 7 * u]], L.neck.color, 2 * u); }

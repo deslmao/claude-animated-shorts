@@ -10,7 +10,14 @@ no pull requests.
 2. Read `_log/DECISIONS.md` (why things are the way they are).
 3. Read `_log/PROMPTS.md` (the owner's exact words, newest at the bottom).
 
-## Status, 26 Nov 2026 (read this first)
+## EPISODE 2 (kd-talent-1), Phase A, 28 Nov 2026: READ THIS FIRST
+- **"The Day I Stole Kevin Durant's Talent"** (`productions/kd-talent-1/`). Engine 4, opt-in. **Waiting for the owner's approval of the audio and the contact sheet** before the real shot list, any preview, or any render (never poll Actions).
+- Built: two procedural sets (`engine4/court.ts` street court with `day` and `night` = 5 AM dawn + rain; `engine4/arena.ts` Thunder arena with `interior` = game and `interiorCool` = tunnel), characters (`kd`, `coach`, `leoJersey`, `kidA-D`, `defA-C` in `themes/e4/index.ts`; opt-in `Look.jersey` number in `characters/figure.ts`), items (`basketball`, `clipboard`), four hero props (`engine4/heroProps.ts`: signedBasketball, viralPhone, tvNewsSlump, arenaScoreboard), voices `kdKD`, `kdCoach`.
+- Audio: `npm run sound -- kd-talent-1` (Eleven Music score `sound/samples/music/kdtalent1_score.json`, 9 sections; hard cut at "Five" #2, back on "Swish." #3). Masters in `productions/kd-talent-1/audio/`. **The script runs 3:21, not 2:15-2:30**: flagged to the owner, nothing cut.
+- The storyboard `stories/kd-talent-1.ts` is an audio-first placeholder (one camera per line); `stories/kd-test.ts` makes the contact-sheet frames. After approval: write the real shot list (inserts, bird's-eye, low/high angles, 1.5-2 s cuts), then a 540p cloud preview.
+- Engines 1-3 and `productions/in-my-world-2/` untouched (Episode 1 masters hashes unchanged, library test intact).
+
+## Status, 26 Nov 2026 (older)
 - **The direction is "Everyday Impossible"** (`productions/research/next-direction-2026-11-24.md`). GTA is dropped; the
   GTA Ep 1 video is finished (`productions/gta-gf-1/`), and Ep 2 is on hold.
 - **First story:** The Friday Pizza, a screenplay awaiting the owner's approval (`productions/friday-pizza/screenplay.md`).

@@ -10,6 +10,8 @@ import { compile } from "../src/studio/story/compile";
 import { paceOf } from "../src/studio/engine4/pacing";
 import { handheld, mmOfFov } from "../src/studio/engine4/camera";
 import { ROOM } from "../src/studio/engine4/kitchen";
+import { COURT_ROOM } from "../src/studio/engine4/court";
+import { arenaInside } from "../src/studio/engine4/arena";
 import { runKeys, withKick, kickAt } from "../src/studio/camera/keys";
 
 const id = process.argv[2], found = STORIES.find((s) => s.id === id);
@@ -36,7 +38,9 @@ for (const s of film.shots) {
       if (v < 0.002 && w < 0.02 && dz < 0.002 && Math.abs(c.roll - prev.roll) < 1e-5) frozen++;
       if (kf.has(f)) { shakeFrames++; kick = Math.max(kick, w); }
     }
-    if (s.set === "e4Kitchen" && (c.pos[0] < ROOM.x0 || c.pos[0] > ROOM.x1 || c.pos[2] < ROOM.z0 || c.pos[2] > ROOM.z1 || c.pos[1] < ROOM.y0 || c.pos[1] > ROOM.y1)) { outside++; (outShots[s.id] = (outShots[s.id] ?? 0) + 1); if (!seen[s.id]) { seen[s.id] = 1; console.log(`  shot ${s.id} outside at frame ${f}: pos ${c.pos.map((v) => v.toFixed(2)).join(",")}`); } }
+    if ((s.set === "e4Kitchen" && (c.pos[0] < ROOM.x0 || c.pos[0] > ROOM.x1 || c.pos[2] < ROOM.z0 || c.pos[2] > ROOM.z1 || c.pos[1] < ROOM.y0 || c.pos[1] > ROOM.y1)) ||
+      (s.set === "e4Court" && (c.pos[0] < COURT_ROOM.x0 || c.pos[0] > COURT_ROOM.x1 || c.pos[2] < COURT_ROOM.z0 || c.pos[2] > COURT_ROOM.z1 || c.pos[1] < COURT_ROOM.y0 || c.pos[1] > COURT_ROOM.y1)) ||
+      (s.set === "e4Arena" && !arenaInside(c.pos[0], c.pos[1], c.pos[2]))) { outside++; (outShots[s.id] = (outShots[s.id] ?? 0) + 1); if (!seen[s.id]) { seen[s.id] = 1; console.log(`  shot ${s.id} outside at frame ${f}: pos ${c.pos.map((v) => v.toFixed(2)).join(",")}`); } }
     prev = c;
   }
   const c0 = runKeys(s.keys, s.a), c1 = runKeys(s.keys, s.b - 1);
