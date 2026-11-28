@@ -16635,3 +16635,8 @@ Upgrade these 5 visual details:
 
 Stop Gate:
 - Commit these visual upgrades and send me a 2-frame comparison still (KD close-up + Arena wide/hoop & shoulder-lift) so I can approve the realism pass before we trigger the 540p preview render.
+
+## 28 Nov 2026 — owner (Episode 2: the realism pass is approved, trigger the 540p preview)
+Go—the realism pass is a massive upgrade and fully approved (jerseys, glass backboard/net, arena crowd/banners, KD's face, and the shoulder lift all look great). Keep the 87-beat shot list and do NOT touch the locked 2:29 audio masters.
+
+Commit the render-request.json for the 540p GitHub Actions preview render of productions/kd-talent-1/, give me the run URL, and stop (do NOT poll GitHub Actions).

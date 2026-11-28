@@ -1,8 +1,8 @@
 {
-  "composition": "Short-in-my-world-2",
+  "composition": "Short-kd-talent-1",
   "chunks": 20,
-  "preview": false,
+  "preview": true,
   "audio": "",
   "publish": false,
-  "note": "Episode 1 (In my world, the highest number wins every argument): FINAL 1080p render. Audio masters locked. Dual export (scored + no-music) after the render with scripts/dual-export.mjs. No GitHub Release."
+  "note": "Episode 2 (The Day I Stole Kevin Durant's Talent): 540p preview of the 87-beat shot list after the approved realism pass. Locked 2:29 audio masters. No GitHub Release."
 }
